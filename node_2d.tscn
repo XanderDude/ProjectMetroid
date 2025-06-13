@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfj6x7j6uhqee"]
+
+[ext_resource type="Script" uid="uid://cjhdoemu0ufnh" path="res://Label.cs" id="1_wtcfe"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 174.0
+offset_right = 733.0
+offset_bottom = 343.0
+theme_override_font_sizes/font_size = 64
+text = "Test"
+script = ExtResource("1_wtcfe")
