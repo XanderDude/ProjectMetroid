@@ -1,3 +1,55 @@
-[gd_scene format=3 uid="uid://bn2trn1l2kr2m"]
+[gd_scene load_steps=6 format=3 uid="uid://bn2trn1l2kr2m"]
+
+[ext_resource type="PackedScene" uid="uid://t7llup5800qe" path="res://Environment/environment.tscn" id="1_b3x38"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="2_pmugk"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_macrl"]
+turbidity = 1.0
+sun_disk_scale = 25.0
+
+[sub_resource type="Sky" id="Sky_imyq5"]
+sky_material = SubResource("PhysicalSkyMaterial_macrl")
+radiance_size = 4
+
+[sub_resource type="Environment" id="Environment_ixidp"]
+background_mode = 2
+background_color = Color(0.32549, 1, 1, 1)
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_imyq5")
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.962862, 0.925712, 1)
+ambient_light_energy = 0.1
+ssao_enabled = true
+ssil_enabled = true
+ssil_intensity = 2.0
+sdfgi_enabled = true
 
 [node name="EnvironmentTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ixidp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.853158, 0.417082, -0.313313, 0.112733, 0.439008, 0.891383, 0.509326, -0.79581, 0.327524, 0, 0, 0)
+light_color = Color(1, 1, 0.972549, 1)
+light_angular_distance = 0.1
+shadow_enabled = true
+
+[node name="Environment" parent="." instance=ExtResource("1_b3x38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0229443, 0, -2.82897)
+
+[node name="ForegroundWall" parent="Environment/interactable" index="2"]
+transform = Transform3D(20, 0, 0, 0, 1.19249e-08, 4.5, 0, -1, 5.3662e-08, -40, 3.37689, -4.55759)
+
+[node name="FloorMesh" parent="Environment/interactable/ForegroundWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245034, 0)
+transparency = 1.0
+
+[node name="Player" parent="." instance=ExtResource("2_pmugk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143227, 1.00143, -2.47437)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919002, 5.68398)
+
+[editable path="Environment"]
+[editable path="Player"]
