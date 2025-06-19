@@ -1,0 +1,6 @@
+res://node_2d.tscn
+res://playerMovement/player.tscn
+res://playerMovement/playertestScene.tscn
+res://Label.cs
+res://playerMovement/Player.cs
+res://testScript.cs

@@ -1,0 +1,5 @@
+DirectionalLight3D
+WorldEnvironment
+MeshInstance3D
+Camera3D
+Node3D
