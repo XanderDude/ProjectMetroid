@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ci16k70ov1ik4"]
+
+[ext_resource type="Texture2D" uid="uid://d3nf4r1fvp6q" path="res://Environment/Props/PropsBasic_Albedo.jpg" id="1_gvtex"]
+
+[resource]
+albedo_texture = ExtResource("1_gvtex")

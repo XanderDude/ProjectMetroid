@@ -1,0 +1,2 @@
+ImageTexture
+StandardMaterial3D

@@ -1,7 +1,2 @@
 res://Environment/environment.tscn
-res://playerMovement/player.tscn
-res://Environment/environmentTest.tscn
-res://node_2d.tscn
-res://Label.cs
-res://testScript.cs
-res://playerMovement/Player.cs
+res://Environment/Props/PropsBasic_mat.tres

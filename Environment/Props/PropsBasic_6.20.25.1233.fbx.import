@@ -1,0 +1,49 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dq4o2pndprgm3"
+path="res://.godot/imported/PropsBasic_6.20.25.1233.fbx-70f0ae4beca567de2381efb65fa6cad9.scn"
+
+[deps]
+
+source_file="res://Environment/Props/PropsBasic_6.20.25.1233.fbx"
+dest_files=["res://.godot/imported/PropsBasic_6.20.25.1233.fbx-70f0ae4beca567de2381efb65fa6cad9.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"phong1": {
+"use_external/enabled": true,
+"use_external/path": "uid://ci16k70ov1ik4"
+},
+"standardSurface1": {
+"use_external/enabled": true,
+"use_external/path": "uid://ci16k70ov1ik4"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
