@@ -1,2 +1,10 @@
 res://Environment/environment.tscn
 res://Environment/Props/PropsBasic_mat.tres
+res://Environment/environmentTest.tscn
+res://Label.cs
+res://testScript.cs
+res://playerMovement/Player.cs
+res://Environment/Shaders/ps1Jitter.gdshader
+res://Environment/Shaders/jitterTestShader_mat.tres
+res://Environment/Shaders/ps1PostProcess.gdshader
+res://Environment/Platforms/platSmall.tscn

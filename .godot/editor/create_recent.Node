@@ -1,2 +1,6 @@
+CSGMesh3D
+CanvasLayer
+SubViewport
+SubViewportContainer
 DirectionalLight3D
 Camera3D
