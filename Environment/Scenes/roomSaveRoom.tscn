@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8lbuq5popor"]
+
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/wallDoorWay.tscn" id="1_nilwv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[node name="RoomSaveRoom" type="Node3D"]
+
+[node name="Interactable" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(10, 0.5, 7.5)
+
+[node name="Ceiling" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.25, 0)
+size = Vector3(10, 0.5, 7.5)
+
+[node name="BackWall" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3.75)
+size = Vector3(10, 9, 0.5)
+
+[node name="Wall_DoorWay" parent="Interactable" instance=ExtResource("1_nilwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="WallFillerL" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -5, 4, 3)
+size = Vector3(1.5, 9, 0.4)
+
+[node name="WallFillerL2" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, -5, 4, -3)
+size = Vector3(1.5, 9, 0.4)
+
+[node name="WallFillerR" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 5, 4, 3)
+size = Vector3(1.5, 9, 0.4)
+
+[node name="WallFillerR2" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 5, 4, -3)
+size = Vector3(1.5, 9, 0.4)
+
+[node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_nilwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Cosmetic" type="Node3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cosmetic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108218, 0)
+radius = 0.986816
+height = 0.331055
+material = SubResource("StandardMaterial3D_nilwv")

@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=4 uid="uid://bn2trn1l2kr2m"]
 
-[ext_resource type="PackedScene" uid="uid://t7llup5800qe" path="res://Environment/environment.tscn" id="1_b3x38"]
-[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_ixidp"]
-[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="2_macrl"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="2_pmugk"]
-[ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="6_siear"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_uuo18"]
+[ext_resource type="PackedScene" uid="uid://t7llup5800qe" path="res://Environment/Scenes/environment.tscn" id="2_xnder"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="3_klkam"]
+[ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="4_dlbrp"]
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="5_i0gc5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bp2iv"]
-shader = ExtResource("1_ixidp")
+shader = ExtResource("1_uuo18")
 shader_parameter/enabled = true
 shader_parameter/dithering = false
 shader_parameter/colors = 16
@@ -43,7 +43,7 @@ adjustment_contrast = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siear"]
 render_priority = 0
-shader = ExtResource("2_macrl")
+shader = ExtResource("5_i0gc5")
 shader_parameter/affine_mapping = false
 shader_parameter/albedo = SubResource("PlaceholderTexture2D_ixidp")
 shader_parameter/alpha_scissor = 0.5
@@ -74,7 +74,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rd767"]
 render_priority = 0
-shader = ExtResource("2_macrl")
+shader = ExtResource("5_i0gc5")
 shader_parameter/affine_mapping = false
 shader_parameter/albedo = SubResource("PlaceholderTexture2D_glgja")
 shader_parameter/alpha_scissor = 0.5
@@ -123,7 +123,7 @@ light_color = Color(1, 1, 0.972549, 1)
 light_angular_distance = 0.1
 shadow_enabled = true
 
-[node name="Environment" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_b3x38")]
+[node name="Environment" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_xnder")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023, 0, 0)
 
 [node name="ForegroundWall" parent="SubViewportContainer/SubViewport/Environment/interactable" index="2"]
@@ -132,8 +132,11 @@ transform = Transform3D(20, 0, 0, 0, 1.19249e-08, 4.5, 0, -1, 5.3662e-08, -40, 3
 [node name="FloorMesh" parent="SubViewportContainer/SubViewport/Environment/interactable/ForegroundWall" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245034, 0)
 
+[node name="RoomSaveRoom" parent="SubViewportContainer/SubViewport/Environment/interactable" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0, 0)
+
 [node name="PlatSmall" parent="SubViewportContainer/SubViewport/Environment/interactable/Platforms" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65435, 1.94318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65471, 2.00954, -0.0318565)
 
 [node name="PropsBasic_6_20_25_1233" parent="SubViewportContainer/SubViewport/Environment" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8491, 0, -2.29874)
@@ -141,20 +144,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8491, 0, -2.29874)
 [node name="Barrel" parent="SubViewportContainer/SubViewport/Environment/PropsBasic_6_20_25_1233/PropGroupBasics" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7698, -4.76837e-07, -0.0193443)
 
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_pmugk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143, 1.001, 0)
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_klkam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.001, 0)
 axis_lock_linear_z = true
+JumpVelocity = 11.2
+gravity = 16.0
 
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player" index="0"]
 transparency = 1.0
 cast_shadow = 0
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68863, 10.687)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 15)
 keep_aspect = 0
-fov = 70.0
+fov = 45.0
 
-[node name="Idle" parent="SubViewportContainer/SubViewport/Player" instance=ExtResource("6_siear")]
+[node name="Idle" parent="SubViewportContainer/SubViewport/Player" instance=ExtResource("4_dlbrp")]
 transform = Transform3D(0.000274715, 2.72208e-05, 1, -0.00033787, 1, -2.71045e-05, -1, -0.00033786, 0.000274726, 0, -1, 0)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/Idle" index="0"]
@@ -165,7 +170,6 @@ bones/4/rotation = Quaternion(0.00282771, -6.31089e-30, 6.81083e-28, 0.999996)
 bones/5/rotation = Quaternion(0, 0, 0, 1)
 bones/8/position = Vector3(7.63278e-17, 0.129223, 4.44089e-16)
 bones/8/rotation = Quaternion(-0.0104518, -0.00106272, 0.10115, 0.994816)
-bones/8/scale = Vector3(1, 1, 1)
 bones/9/position = Vector3(1.38599e-07, 0.274047, -4.44089e-16)
 bones/10/position = Vector3(1.14254e-08, 0.276145, 2.33611e-09)
 bones/11/position = Vector3(-0.0300297, 0.0378881, 0.0216715)
@@ -238,7 +242,69 @@ mesh = SubResource("ArrayMesh_1x7v8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3326, 0.5, 0)
+use_collision = true
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3326, 3.5, -1)
+use_collision = true
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3326, 4.5, -1)
+use_collision = true
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3326, 5.5, -1)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3423, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3423, 3, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3423, 7, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.3423, 7, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3423, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
 [editable path="SubViewportContainer/SubViewport/Environment"]
+[editable path="SubViewportContainer/SubViewport/Environment/interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/PropsBasic_6_20_25_1233"]
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Player/Idle"]

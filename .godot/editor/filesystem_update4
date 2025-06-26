@@ -8,3 +8,8 @@ res://Environment/Platforms/platSmall.tscn
 res://Label.cs
 res://testScript.cs
 res://playerMovement/Player.cs
+res://Environment/Scenes/environmentTest.tscn
+res://Environment/Scenes/roomSaveRoom.tscn
+res://Environment/Scenes/environment.tscn
+res://Environment/RoomPieces/wallDoorWay.tscn
+res://Environment/Scenes/roomHallway.tscn

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca3p56isv30sb"]
+
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/wallDoorWay.tscn" id="1_y27mi"]
+
+[node name="RoomSaveRoom" type="Node3D"]
+
+[node name="Interactable" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(20, 0.5, 4.5)
+
+[node name="Ceiling" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, 0)
+size = Vector3(20, 0.5, 4.5)
+
+[node name="BackWall" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.25, -2.25)
+size = Vector3(20, 0.5, 5.5)
+
+[node name="Wall_DoorWay" parent="Interactable" instance=ExtResource("1_y27mi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_y27mi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Cosmetic" type="Node3D" parent="."]
