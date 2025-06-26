@@ -36,11 +36,11 @@ _subresources={
 "materials": {
 "phong1": {
 "use_external/enabled": true,
-"use_external/path": "uid://ci16k70ov1ik4"
+"use_external/path": "uid://cwp76vmvw1wlw"
 },
 "standardSurface1": {
 "use_external/enabled": true,
-"use_external/path": "uid://ci16k70ov1ik4"
+"use_external/path": "uid://cwp76vmvw1wlw"
 }
 }
 }

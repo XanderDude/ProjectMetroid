@@ -143,6 +143,11 @@ size = Vector3(8.8, 7.49121, 0.4)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.5903, 7.43804, -0.0999999)
 size = Vector3(8.8, 7.49121, 0.4)
 
+[node name="Platforms" type="Node" parent="interactable"]
+
+[node name="PlatSmall" parent="interactable/Platforms" instance=ExtResource("2_t8n6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 0)
+
 [node name="cosmetic" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
@@ -253,6 +258,3 @@ skeleton = NodePath("../../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15
 
 [node name="PropsBasic_6_20_25_1233" parent="." instance=ExtResource("1_jjsqy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 0)
-
-[node name="PlatSmall" parent="." instance=ExtResource("2_t8n6f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 0)

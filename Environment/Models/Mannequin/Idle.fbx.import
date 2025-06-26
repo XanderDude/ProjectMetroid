@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://qndukwj4r6uc"
-path="res://.godot/imported/Idle.fbx-485621b42c41604458c9437e3cf4b317.scn"
+path="res://.godot/imported/Idle.fbx-b246e2ddfa554b857ac14d8278ef59da.scn"
 
 [deps]
 
-source_file="res://Environment/Models/Idle.fbx"
-dest_files=["res://.godot/imported/Idle.fbx-485621b42c41604458c9437e3cf4b317.scn"]
+source_file="res://Environment/Models/Mannequin/Idle.fbx"
+dest_files=["res://.godot/imported/Idle.fbx-b246e2ddfa554b857ac14d8278ef59da.scn"]
 
 [params]
 

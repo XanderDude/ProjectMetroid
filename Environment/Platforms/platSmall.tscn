@@ -6,4 +6,5 @@
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
 mesh = SubResource("BoxMesh_8ply0")
