@@ -105,13 +105,13 @@ blend_shape_mode = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_bp2iv")
-offset_left = -2.0
-offset_right = 638.0
-offset_bottom = 480.0
+offset_right = 640.0
+offset_bottom = 360.0
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(640, 480)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
@@ -155,9 +155,10 @@ transparency = 1.0
 cast_shadow = 0
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 25)
 keep_aspect = 0
-fov = 45.0
+current = true
+fov = 32.0
 
 [node name="Idle" parent="SubViewportContainer/SubViewport/Player" instance=ExtResource("4_dlbrp")]
 transform = Transform3D(0.000274715, 2.72208e-05, 1, -0.00033787, 1, -2.71045e-05, -1, -0.00033786, 0.000274726, 0, -1, 0)
@@ -241,6 +242,52 @@ mesh = SubResource("ArrayMesh_bp2iv")
 mesh = SubResource("ArrayMesh_1x7v8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="EyeLevel_MinCamHeight" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -70.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterLine" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/CanvasLayer/CenterLine"]
+clip_contents = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = -5.0
+offset_right = 650.0
+offset_bottom = 15.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 12
+text = "Camera center - Default to player's head"
+fit_content = true
+
+[node name="EyeLevel_MaxCamHeight" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 70.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3326, 0.5, 0)

@@ -1,0 +1,22 @@
+Aspect Ratios:
+1. 4:3
+		320x240 (Classic PS1 resolution used to fit most TVs)
+		640x480 (The most common "high" resolution for the PS1)
+		
+2. 16:9
+	CURRENT	640x360 (Lowest 16:9 resolution)
+3. other
+		256x224 (lowest resolution supported)
+		
+Camera Settings
+	FOV:	32.0
+	
+	camera.y:	
+		max 2.3 (max dist above player)
+		default 0.8 (around eye level of the character)
+		min -0.8 (min dist below player
+
+	camera.z:	
+		25.0 (Dist between camera and player)
+	
+		
