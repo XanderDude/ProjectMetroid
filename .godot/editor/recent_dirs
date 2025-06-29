@@ -1,5 +1,8 @@
+res://Environment/Scenes
+res://Environment/Props
+res://Environment/Materials
+res://Environment/Shaders
+res://Environment/Lighting
 H:/GameDesign/Projects/GodotProjects/ProjectMetroid/Environment
 res://Environment/RoomPieces
-res://Environment/Shaders
-res://Environment/Props
 H:/GameDesign/Projects/GodotProjects/ProjectMetroid

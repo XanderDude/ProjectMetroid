@@ -9,6 +9,7 @@ Aspect Ratios:
 		256x224 (lowest resolution supported)
 		
 Camera Settings
+	Keep Aspect: Keep Width
 	FOV:	32.0
 	
 	camera.y:	

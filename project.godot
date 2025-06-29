@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="ProjectMetroid"
-run/main_scene="uid://bn2trn1l2kr2m"
+run/main_scene="uid://bj04crs2qg4xo"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+run/max_fps=30
 config/icon="res://icon.svg"
 
 [display]

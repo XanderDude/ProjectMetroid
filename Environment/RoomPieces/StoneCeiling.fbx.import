@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dq4o2pndprgm3"
-path="res://.godot/imported/PropsBasic_6.20.25.1233.fbx-70f0ae4beca567de2381efb65fa6cad9.scn"
+uid="uid://dmdsxcfsomcpt"
+path="res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"
 
 [deps]
 
-source_file="res://Environment/Props/PropsBasic_6.20.25.1233.fbx"
-dest_files=["res://.godot/imported/PropsBasic_6.20.25.1233.fbx-70f0ae4beca567de2381efb65fa6cad9.scn"]
+source_file="res://Environment/RoomPieces/StoneCeiling.fbx"
+dest_files=["res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"]
 
 [params]
 
@@ -34,13 +34,14 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"phong1": {
+"architectureBasic_Mat": {
 "use_external/enabled": true,
-"use_external/path": "uid://cwp76vmvw1wlw"
+"use_external/path": "uid://ducihyrqk73pc"
+}
 },
-"standardSurface1": {
-"use_external/enabled": true,
-"use_external/path": "uid://cwp76vmvw1wlw"
+"nodes": {
+"PATH:ArchitectureBasic/StoneCeiling/stoneCeiling": {
+"mesh_instance/cast_shadow": 2
 }
 }
 }

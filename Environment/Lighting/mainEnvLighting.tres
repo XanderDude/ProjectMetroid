@@ -1,0 +1,30 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bm4c0ci186op8"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_macrl"]
+turbidity = 1.0
+sun_disk_scale = 25.0
+
+[sub_resource type="Sky" id="Sky_imyq5"]
+sky_material = SubResource("PhysicalSkyMaterial_macrl")
+radiance_size = 4
+
+[resource]
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_imyq5")
+ambient_light_source = 2
+ambient_light_color = Color(0.233926, 0.233925, 0.233925, 1)
+reflected_light_source = 1
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.2
+glow_hdr_threshold = 0.9
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 0.05
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 0.0
+fog_depth_end = 50.0

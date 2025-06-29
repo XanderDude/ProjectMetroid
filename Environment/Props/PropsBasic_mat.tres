@@ -1,7 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ci16k70ov1ik4"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8kxgx18h77cs"]
 
-[ext_resource type="Texture2D" uid="uid://d3nf4r1fvp6q" path="res://Environment/Props/PropsBasic_Albedo.jpg" id="1_gvtex"]
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="1_ef3y4"]
+[ext_resource type="Texture2D" uid="uid://d3nf4r1fvp6q" path="res://Environment/Props/PropsBasic_Albedo.jpg" id="2_d42e2"]
 
 [resource]
-albedo_texture = ExtResource("1_gvtex")
-texture_filter = 4
+render_priority = 0
+shader = ExtResource("1_ef3y4")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_d42e2")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)

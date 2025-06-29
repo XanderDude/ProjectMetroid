@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://bn2trn1l2kr2m"]
+[gd_scene load_steps=19 format=4 uid="uid://bn2trn1l2kr2m"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_uuo18"]
-[ext_resource type="PackedScene" uid="uid://t7llup5800qe" path="res://Environment/Scenes/environment.tscn" id="2_xnder"]
+[ext_resource type="PackedScene" uid="uid://do8lbuq5popor" path="res://Environment/Rooms/roomSaveRoom.tscn" id="2_klkam"]
+[ext_resource type="PackedScene" uid="uid://dqh2ibntvywkk" path="res://Environment/Platforms/platSmall.tscn" id="3_dlbrp"]
 [ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="3_klkam"]
 [ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="4_dlbrp"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="5_i0gc5"]
@@ -38,6 +39,11 @@ fog_sky_affect = 0.75
 fog_depth_end = 200.0
 adjustment_enabled = true
 adjustment_contrast = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qyyad"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5t3uj"]
+size = Vector3(2, 0.851428, 1.9)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ixidp"]
 
@@ -123,26 +129,49 @@ light_color = Color(1, 1, 0.972549, 1)
 light_angular_distance = 0.1
 shadow_enabled = true
 
-[node name="Environment" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_xnder")]
+[node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023, 0, 0)
 
-[node name="ForegroundWall" parent="SubViewportContainer/SubViewport/Environment/interactable" index="2"]
-transform = Transform3D(20, 0, 0, 0, 1.19249e-08, 4.5, 0, -1, 5.3662e-08, -40, 3.37689, -4.55759)
+[node name="interactable" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
-[node name="FloorMesh" parent="SubViewportContainer/SubViewport/Environment/interactable/ForegroundWall" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245034, 0)
-
-[node name="RoomSaveRoom" parent="SubViewportContainer/SubViewport/Environment/interactable" index="3"]
+[node name="RoomSaveRoom" parent="SubViewportContainer/SubViewport/Environment/interactable" instance=ExtResource("2_klkam")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0, 0)
 
-[node name="PlatSmall" parent="SubViewportContainer/SubViewport/Environment/interactable/Platforms" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65471, 2.00954, -0.0318565)
+[node name="Floor3" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/interactable"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 4.5, 25, 0, 0)
 
-[node name="PropsBasic_6_20_25_1233" parent="SubViewportContainer/SubViewport/Environment" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8491, 0, -2.29874)
+[node name="FloorMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.434868, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyyad")
+skeleton = NodePath("../FloorCollision")
 
-[node name="Barrel" parent="SubViewportContainer/SubViewport/Environment/PropsBasic_6_20_25_1233/PropGroupBasics" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7698, -4.76837e-07, -0.0193443)
+[node name="FloorCollision" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor3/FloorCollision"]
+transform = Transform3D(1, 0, 0, 0, 0.999995, 3.86358e-14, 0, -3.4106e-13, 1, 0, -0.424284, 1.44707e-13)
+shape = SubResource("BoxShape3D_5t3uj")
+debug_color = Color(0.911271, 0, 0.0709477, 1)
+
+[node name="Floor4" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/interactable"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 4.5, 45, 0, 0)
+
+[node name="FloorMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.434868, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyyad")
+skeleton = NodePath("../FloorCollision")
+
+[node name="FloorCollision" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/interactable/Floor4/FloorCollision"]
+transform = Transform3D(1, 0, 0, 0, 0.999995, 3.86358e-14, 0, -3.4106e-13, 1, 0, -0.424284, 1.44707e-13)
+shape = SubResource("BoxShape3D_5t3uj")
+debug_color = Color(0.911271, 0, 0.0709477, 1)
+
+[node name="Platforms" type="Node" parent="SubViewportContainer/SubViewport/Environment/interactable"]
+
+[node name="PlatSmall" parent="SubViewportContainer/SubViewport/Environment/interactable/Platforms" instance=ExtResource("3_dlbrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6547, 2.00954, -0.0318565)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_klkam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.001, 0)
@@ -350,8 +379,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3423, 1, 0)
 use_collision = true
 size = Vector3(1, 2, 1)
 
-[editable path="SubViewportContainer/SubViewport/Environment"]
-[editable path="SubViewportContainer/SubViewport/Environment/interactable/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/PropsBasic_6_20_25_1233"]
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Player/Idle"]
