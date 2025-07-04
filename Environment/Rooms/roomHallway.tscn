@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca3p56isv30sb"]
 
-[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/wallDoorWay.tscn" id="1_pr4k5"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="1_pr4k5"]
 
 [node name="RoomSaveRoom" type="Node3D"]
 

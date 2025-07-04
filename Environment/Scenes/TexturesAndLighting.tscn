@@ -1,18 +1,21 @@
-[gd_scene load_steps=29 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=37 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
-[ext_resource type="PackedScene" uid="uid://do8lbuq5popor" path="res://Environment/Rooms/roomSaveRoom.tscn" id="2_anokj"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="Material" uid="uid://cwp76vmvw1wlw" path="res://Environment/Shaders/jitterTestShader_mat.tres" id="4_owwmw"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/StoneFloor.fbx" id="5_opqc5"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Props/architectureBasic_mat.tres" id="5_q35ir"]
 [ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="6_2o7o6"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/StoneCeiling.fbx" id="6_3ugus"]
 [ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="7_l2ohs"]
+[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="11_vlgid"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Environment/Models/PlayAnimation.cs" id="12_8iu05"]
 [ext_resource type="PackedScene" uid="uid://b8bdid4fmnh03" path="res://Environment/RoomPieces/StoneWindow.fbx" id="12_uc2gq"]
 [ext_resource type="VoxelGIData" uid="uid://cnr8x1xpy8fko" path="res://Environment/Scenes/TexturesAndLighting.VoxelGI_data.res" id="13_8iu05"]
+[ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Rooms/roomHallway_Small.tscn" id="14_8okvn"]
+[ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="16_alqiq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -125,6 +128,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_60qv4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gvmoa"]
 _surfaces = [{
@@ -267,6 +275,69 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1wx5l")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0q7jh"]
+resource_name = "standardSurface1"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.665185, 0.665185, 0.665185, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.901961, 0.772549, 0, 1)
+emission_energy_multiplier = 2.08
+emission_on_uv2 = true
+disable_receive_shadows = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0i60c"]
+_surfaces = [{
+"aabb": AABB(-0.360406, 0, -0.342085, 0.720812, 0.640752, 0.684171),
+"format": 34359742465,
+"index_count": 306,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAgABAAQABAAFAAIABgABAAAABgAEAAEABwAAAAMABgAAAAcAAwAIAAcABQAEAAkABgAJAAQACQAKAAUACwAKAAkADAAHAAgABgAHAAwACAANAAwADAANAA4ABgAMAA8ADgAPAAwABgAQAAkACQAQAAsABgAPABAADgALABAAEAAPAA4AEQASABMAEgARABQAEwAVABEAFgAUABEAFgARABUAFQATABcAFgAVABgAFwAYABUAGQAXABMAGQATABIAGAAXABoAGQAaABcAFgAYABsAGgAbABgAFgAbABwAFgAcABQAGwAaAB0AGQAdABoAHQAcABsAGQAeAB0AHAAdAB4AHgAUABwAGQASAB4AFAAeABIAHwAgACEAIQAiAB8AIwAkACUAJAAjACYAJQAnACMAKAAmACMAKAAjACcAJwAlACkAKAAnACoAKQAqACcAKwApACUAKwAlACQAKgApACwAKwAsACkAKAAqAC0ALAAtACoAKAAtAC4AKAAuACYALQAsAC8AKwAvACwALwAuAC0AKwAwAC8ALgAvADAAMAAmAC4AKwAkADAAJgAwACQAMQAyADMAMwA0ADEANQA2ADcANgA1ADgANwA5ADUAOgA4ADUAOgA1ADkAOQA3ADsAOgA5ADwAOwA8ADkAPQA7ADcAPQA3ADYAPAA7AD4APQA+ADsAOgA8AD8APgA/ADwAOgA/AEAAOgBAADgAPwA+AEEAPQBBAD4AQQBAAD8APQBCAEEAQABBAEIAQgA4AEAAPQA2AEIAOABCADYAQwBEAEUARQBGAEMA"),
+"name": "standardSurface1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 71,
+"vertex_data": PackedByteArray("/IbXvQAAAAAPFYI+/YbXPQAAAAAOFYI+Kt4YPjK4HD3SJa8+Kt4YvjK4HD3UJa8+DhWCPgAAAAD9htc9H4e4PjK4HD3cGBE+AAAAAAAAAAB7FC4zDBWCvgAAAAARh9c9G4e4vjK4HD3qGBE+DRWCPgAAAAD8hte9HIe4PjK4HD3fGBG+KN4YPjK4HD3UJa++DhWCvgAAAAD2hte9H4e4vjK4HD3aGBG+MN4YvjK4HD3SJa++BYfXvQAAAAAMFYK++obXPQAAAAANFYK+OMA2PUPt1T6suJG9OMA2Pc3sQzqsuJG9ZEHWPc3sQzqquJG9uHtvPEPt1T57N528ZEHWPUPt1T6quJG9v9CYPUPt1T52N528A9kJPs3sQzp2N528A9kJPkPt1T52N528v9CYPc3sQzp2N528Y0HWPc3sQzrhOQY9Y0HWPUPt1T7hOQY9M8A2PUPt1T7gOQY9M8A2Pc3sQzrgOQY9uHtvPM3sQzp7N528oEutPaGaAz+MN528oEutPXHS0T6MN5283VWEPXHS0T6MN5283VWEPaGaAz+MN528NKnjvbNPBT+dexC+NKnjvc3sQzqdexC+2I9Rvc3sQzqdexC+7YwQvrNPBT9ujLa92I9RvbNPBT+dexC+kjimvbNPBT9tjLa9KV2tvM3sQzptjLa9KV2tvLNPBT9tjLa9kjimvc3sQzptjLa93I9Rvc3sQzo9Qxi93I9RvbNPBT89Qxi9N6njvbNPBT8/Qxi9N6njvc3sQzo/Qxi97YwQvs3sQzpujLa9sb2RvU8IJD9yjLa9sb2RvaLAAj9yjLa9c7O6vaLAAj9yjLa9c7O6vU8IJD9yjLa9VL+ivZpeqz5hOUg8VL+ivc3sQzphOUg8LnifvM3sQzpxOUg8+C/gvZpeqz76cYM9LnifvJpeqz5xOUg8Y51KvZpeqz77cYM9s5QsPM3sQzr7cYM9s5QsPJpeqz77cYM9Y51Kvc3sQzr7cYM9N3ifvM3sQzrJ3O09N3ifvJpeqz7J3O09Vr+ivZpeqz7I3O09Vr+ivc3sQzrI3O09+C/gvc3sQzr6cYM9oKchvVjU0j71cYM9oKchvTEVqD71cYM9JZNzvTEVqD71cYM9JZNzvVjU0j71cYM9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3kfqo"]
+resource_name = "CandleTriple"
+lightmap_size_hint = Vector2i(26, 26)
+_surfaces = [{
+"aabb": AABB(-0.360406, 0, -0.342085, 0.720812, 0.640752, 0.684171),
+"attribute_data": PackedByteArray("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"),
+"format": 34359742519,
+"index_count": 306,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABwAIAAkACQAKAAcACwAMAA0ADgAPABAAEAARAA4AEgATABQAFQAWABcAFwAYABUAGQAaABsAHAAdAB4AHgAfABwAIAAhACIAIwAkACUAJQAmACMAJwAoACkAKgArACwALAAtACoALgAvADAAMQAyADMAMwA0ADEANQA2ADcAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUABTAFEAUABSAFQAUABVAFMAUABUAFYAUABWAFUAVwBYAFkAVwBaAFgAVwBZAFsAVwBcAFoAVwBbAF0AVwBdAFwAXgBfAGAAYABhAF4AYgBjAGQAZABlAGIAZgBnAGgAaABpAGYAagBrAGwAbABtAGoAbgBvAHAAcABxAG4AcgBzAHQAdAB1AHIAdgB3AHgAeAB5AHYAegB7AHwAegB9AHsAegB8AH4AegB/AH0AegB+AIAAegCAAH8AgQCCAIMAgQCEAIIAgQCDAIUAgQCGAIQAgQCFAIcAgQCHAIYAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmgCbAJgAnACdAJ4AngCfAJwAoAChAKIAogCjAKAApAClAKYApACnAKUApACmAKgApACpAKcApACoAKoApACqAKkAqwCsAK0AqwCuAKwAqwCtAK8AqwCwAK4AqwCvALEAqwCxALAAsgCzALQAtAC1ALIA"),
+"material": SubResource("StandardMaterial3D_0q7jh"),
+"name": "standardSurface1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 182,
+"vertex_data": PackedByteArray("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+C/gvc3sQzr6cYM9+C/gvZpeqz76cYM9N3ifvJpeqz7J3O09N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Vr+ivZpeqz7I3O09s5QsPJpeqz77cYM9s5QsPM3sQzr7cYM9N3ifvM3sQzrJ3O09N3ifvJpeqz7J3O09LnifvJpeqz5xOUg8LnifvM3sQzpxOUg8s5QsPM3sQzr7cYM9s5QsPJpeqz77cYM9Y51Kvc3sQzr7cYM9LnifvM3sQzpxOUg8VL+ivc3sQzphOUg8s5QsPM3sQzr7cYM9+C/gvc3sQzr6cYM9N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Y51KvZpeqz77cYM9VL+ivZpeqz5hOUg8LnifvJpeqz5xOUg8+C/gvZpeqz76cYM9s5QsPJpeqz77cYM9Vr+ivZpeqz7I3O09N3ifvJpeqz7J3O09oKchvVjU0j71cYM9oKchvTEVqD71cYM9JZNzvTEVqD71cYM9JZNzvVjU0j71cYM9N1n//////783Wf//////vzdZ//////+/N1n//////7//f///////v/9///////+//3///////78tUm7psfFR1i1SbukP7LLSLVJu6bHxUdYtUm7p8fax2f9///////+//3///////7//f///////vyFeIN7Jv3nLIV4g3qvVaM8hXiDeouT52SFeIN6r1WjP/3///////7//f///////v/9///////+/b2ks0lvTJcdvaSzSmsyFxG9pLNJb0yXHb2ks0pna9sn/f///////v/9///////+//3///////7//fzbZ////v/9/Ntn///+//3822f///7//fzbZ////v/9///////+//3///////7//f///////v4+WLNKx8a2pj5Ys0g/sTK2PlizSsfGtqY+WLNLx9k2m/3///////7//f///////v/9///////+/3aEg3qvVlbDdoSDeyb+FtN2hIN6r1ZWw3aEg3qLkBab/f///////v/9///////+//3///////7/RrW7pW9PYuNGtbumazHi70a1u6VvT2LjRrW7pmdoHtv9///////+//3///////7//f///////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3/+//7//7//f////v//v/9////+//+//3////7//7//f///////v/9//v/+//+//3/+//7//7//f/9/////v/9//3////+//3//f////7//f/9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0i60c")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_alqiq"]
+resource_name = "CandleTriple"
+lightmap_size_hint = Vector2i(26, 26)
+_surfaces = [{
+"aabb": AABB(-0.360406, 0, -0.342085, 0.720812, 0.640752, 0.684171),
+"attribute_data": PackedByteArray("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"),
+"format": 34359742519,
+"index_count": 306,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABwAIAAkACQAKAAcACwAMAA0ADgAPABAAEAARAA4AEgATABQAFQAWABcAFwAYABUAGQAaABsAHAAdAB4AHgAfABwAIAAhACIAIwAkACUAJQAmACMAJwAoACkAKgArACwALAAtACoALgAvADAAMQAyADMAMwA0ADEANQA2ADcAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUABTAFEAUABSAFQAUABVAFMAUABUAFYAUABWAFUAVwBYAFkAVwBaAFgAVwBZAFsAVwBcAFoAVwBbAF0AVwBdAFwAXgBfAGAAYABhAF4AYgBjAGQAZABlAGIAZgBnAGgAaABpAGYAagBrAGwAbABtAGoAbgBvAHAAcABxAG4AcgBzAHQAdAB1AHIAdgB3AHgAeAB5AHYAegB7AHwAegB9AHsAegB8AH4AegB/AH0AegB+AIAAegCAAH8AgQCCAIMAgQCEAIIAgQCDAIUAgQCGAIQAgQCFAIcAgQCHAIYAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmgCbAJgAnACdAJ4AngCfAJwAoAChAKIAogCjAKAApAClAKYApACnAKUApACmAKgApACpAKcApACoAKoApACqAKkAqwCsAK0AqwCuAKwAqwCtAK8AqwCwAK4AqwCvALEAqwCxALAAsgCzALQAtAC1ALIA"),
+"material": SubResource("StandardMaterial3D_0q7jh"),
+"name": "standardSurface1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 182,
+"vertex_data": PackedByteArray("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+C/gvc3sQzr6cYM9+C/gvZpeqz76cYM9N3ifvJpeqz7J3O09N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Vr+ivZpeqz7I3O09s5QsPJpeqz77cYM9s5QsPM3sQzr7cYM9N3ifvM3sQzrJ3O09N3ifvJpeqz7J3O09LnifvJpeqz5xOUg8LnifvM3sQzpxOUg8s5QsPM3sQzr7cYM9s5QsPJpeqz77cYM9Y51Kvc3sQzr7cYM9LnifvM3sQzpxOUg8VL+ivc3sQzphOUg8s5QsPM3sQzr7cYM9+C/gvc3sQzr6cYM9N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Y51KvZpeqz77cYM9VL+ivZpeqz5hOUg8LnifvJpeqz5xOUg8+C/gvZpeqz76cYM9s5QsPJpeqz77cYM9Vr+ivZpeqz7I3O09N3ifvJpeqz7J3O09oKchvVjU0j71cYM9oKchvTEVqD71cYM9JZNzvTEVqD71cYM9JZNzvVjU0j71cYM9N1n//////783Wf//////vzdZ//////+/N1n//////7//f///////v/9///////+//3///////78tUm7psfFR1i1SbukP7LLSLVJu6bHxUdYtUm7p8fax2f9///////+//3///////7//f///////vyFeIN7Jv3nLIV4g3qvVaM8hXiDeouT52SFeIN6r1WjP/3///////7//f///////v/9///////+/b2ks0lvTJcdvaSzSmsyFxG9pLNJb0yXHb2ks0pna9sn/f///////v/9///////+//3///////7//fzbZ////v/9/Ntn///+//3822f///7//fzbZ////v/9///////+//3///////7//f///////v4+WLNKx8a2pj5Ys0g/sTK2PlizSsfGtqY+WLNLx9k2m/3///////7//f///////v/9///////+/3aEg3qvVlbDdoSDeyb+FtN2hIN6r1ZWw3aEg3qLkBab/f///////v/9///////+//3///////7/RrW7pW9PYuNGtbumazHi70a1u6VvT2LjRrW7pmdoHtv9///////+//3///////7//f///////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3/+//7//7//f////v//v/9////+//+//3////7//7//f///////v/9//v/+//+//3/+//7//7//f/9/////v/9//3////+//3//f////7//f/9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0i60c")
+
 [node name="TexturesAndLighting" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -277,580 +348,58 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.790726, 0.593634, -0.149503, 0.538775, -0.558902, 0.630358, 0.290644, -0.578988, -0.761773, -2, 11, -8)
+[node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, -2, 11, -8)
 light_energy = 0.3
+light_indirect_energy = 0.5
+light_angular_distance = 0.5
 light_bake_mode = 1
 shadow_enabled = true
-directional_shadow_mode = 1
+shadow_bias = 0.094
+shadow_blur = 0.6
+directional_shadow_split_1 = 0.15
+directional_shadow_split_2 = 0.4
+directional_shadow_pancake_size = 2.3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = ExtResource("1_28ia1")
 
 [node name="VoxelGI" type="VoxelGI" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70337, 3, 0)
+size = Vector3(31.4067, 8, 12)
+data = ExtResource("13_8iu05")
+
+[node name="VoxelGI2" type="VoxelGI" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 3, 0)
+visible = false
 size = Vector3(12, 8, 12)
 data = ExtResource("13_8iu05")
 
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="RoomSaveRoom" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("2_anokj")]
-
-[node name="Floor" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000500023, 0)
-visible = false
-cast_shadow = 0
-size = Vector3(11, 0.01, 10)
-
-[node name="Ceiling" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" index="1"]
-visible = false
-
-[node name="BackWall" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" index="2"]
-visible = false
-
-[node name="Wall_DoorWay2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" index="4"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 5, 0, 0)
-
-[node name="ArchitectureBasic" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" index="5"]
-
-[node name="ArchitectureBasics" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic"]
-
-[node name="stoneWallBack" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
-
-[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24345e-16)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="StoneWindow" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="StoneWindow2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-
-[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 0)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 0)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="stoneWallLeft" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 0)
-
-[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="stoneWallRight" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 0, 0)
-
-[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
-mesh = SubResource("ArrayMesh_d8bt0")
-skeleton = NodePath("")
-
-[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
-mesh = SubResource("ArrayMesh_ccryp")
-skeleton = NodePath("")
-
-[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneWallRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
-mesh = SubResource("ArrayMesh_awcun")
-skeleton = NodePath("")
-
-[node name="stoneFloor" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics"]
-
-[node name="StoneFloor" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
-
-[node name="StoneFloor2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
-
-[node name="StoneFloor3" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-
-[node name="StoneFloor4" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
-
-[node name="StoneFloor5" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
-
-[node name="StoneFloor6" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
-
-[node name="StoneFloor7" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
-
-[node name="StoneFloor8" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-
-[node name="StoneFloor9" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
-
-[node name="StoneFloor10" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
-
-[node name="StoneFloor11" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
-
-[node name="StoneFloor12" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
-
-[node name="StoneFloor13" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="StoneFloor14" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
-
-[node name="StoneFloor15" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
-
-[node name="StoneFloor16" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
-
-[node name="StoneFloor17" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
-
-[node name="StoneFloor18" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="StoneFloor19" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
-
-[node name="StoneFloor20" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
-
-[node name="StoneFloor21" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
-
-[node name="StoneFloor22" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
-
-[node name="StoneFloor23" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="StoneFloor24" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
-
-[node name="StoneFloor25" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
-
-[node name="stoneCeiling" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics"]
-
-[node name="StoneCeiling" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -5)
-
-[node name="StoneCeiling2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -5)
-
-[node name="StoneCeiling3" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5)
-
-[node name="StoneCeiling4" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -5)
-
-[node name="StoneCeiling5" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -5)
-
-[node name="StoneCeiling6" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
-
-[node name="StoneCeiling7" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
-
-[node name="StoneCeiling8" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
-
-[node name="StoneCeiling9" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
-
-[node name="StoneCeiling10" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
-
-[node name="StoneCeiling11" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -1)
-
-[node name="StoneCeiling12" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -1)
-
-[node name="StoneCeiling13" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -1)
-
-[node name="StoneCeiling14" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -1)
-
-[node name="StoneCeiling15" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -1)
-
-[node name="StoneCeiling16" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 1)
-
-[node name="StoneCeiling17" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 1)
-
-[node name="StoneCeiling18" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1)
-
-[node name="StoneCeiling19" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 1)
-
-[node name="StoneCeiling20" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 1)
-
-[node name="StoneCeiling21" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 3)
-
-[node name="StoneCeiling22" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 3)
-
-[node name="StoneCeiling23" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
-
-[node name="StoneCeiling24" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
-
-[node name="StoneCeiling25" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/ArchitectureBasic/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 3)
-
-[node name="PropsBasic" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic" index="1" instance=ExtResource("3_owwmw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
-
-[node name="Barrel" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75859, 0, 0)
-
-[node name="BarrelWithRing" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="1"]
-transform = Transform3D(0.947935, 0, -0.318463, 0, 1, 0, 0.318463, 0, 0.947935, 0.890548, 0, -2)
-
-[node name="BarrelWithRing2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="2"]
-transform = Transform3D(0.199659, 0, -0.979866, 0, 1, 0, 0.979866, 0, 0.199659, 1.83848, 0, -1.73331)
-mesh = SubResource("ArrayMesh_ybx82")
-skeleton = NodePath("")
-
-[node name="Crate" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="3"]
-visible = false
-
-[node name="Box" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="4"]
-transform = Transform3D(0.625243, 0, 0.78043, 0, 1, 0, -0.78043, 0, 0.625243, -1.45052, 2.38419e-07, -1.92299)
-
-[node name="Box2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="5"]
-transform = Transform3D(0.993961, 0, 0.109734, 0, 1, 0, -0.109734, 0, 0.993961, -2.16262, 2.38419e-07, -1.3999)
-mesh = SubResource("ArrayMesh_l32kx")
-skeleton = NodePath("")
-
-[node name="Box3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="6"]
-transform = Transform3D(0.625243, 0, 0.78043, 0, 1, 0, -0.78043, 0, 0.625243, 5.54948, 2.38419e-07, -1.20871)
-mesh = SubResource("ArrayMesh_l32kx")
-skeleton = NodePath("")
-
-[node name="Box5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="7"]
-transform = Transform3D(0.12613, 0, 0.992014, 0, 1, 0, -0.992014, 0, 0.12613, 4.72009, 2.38419e-07, -1.61368)
-mesh = SubResource("ArrayMesh_l32kx")
-skeleton = NodePath("")
-
-[node name="Box6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="8"]
-transform = Transform3D(-0.580561, 0, 0.814217, 0, 1, 0, -0.814217, 0, -0.580561, 5.11246, 0.662619, -1.0001)
-mesh = SubResource("ArrayMesh_l32kx")
-skeleton = NodePath("")
-
-[node name="Box4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="9"]
-transform = Transform3D(0.993961, 0, 0.109734, 0, 1, 0, -0.109734, 0, 0.993961, 4.83738, 2.38419e-07, -0.685617)
-mesh = SubResource("ArrayMesh_l32kx")
-skeleton = NodePath("")
-
-[node name="Haybale" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic/Props_Basics" index="10"]
-visible = false
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95795, 0.401645, -2.85822)
-light_color = Color(0.999999, 0.732094, 0.304035, 1)
-light_bake_mode = 1
-omni_range = 4.5
-omni_attenuation = -0.5
-
-[node name="Player" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom" instance=ExtResource("6_2o7o6")]
+[node name="Player" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_2o7o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player" index="0"]
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Player" index="0"]
 visible = false
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player"]
-transform = Transform3D(1, 0, 0, 0, 0.995562, 0.0941083, 0, -0.0941083, 0.995562, 0, 4.3, 25)
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Player" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0782529, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Environment/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 25)
 keep_aspect = 0
 fov = 32.0
 
-[node name="Idle" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player" instance=ExtResource("7_l2ohs")]
+[node name="Idle" parent="SubViewportContainer/SubViewport/Environment/Player" instance=ExtResource("7_l2ohs")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player/Idle" index="0"]
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Environment/Player/Idle" index="0"]
 bones/2/position = Vector3(0, 0.11732, 2.77556e-17)
 bones/2/rotation = Quaternion(0.000196092, -1.82681e-09, -9.31607e-06, 1)
 bones/3/position = Vector3(1.93149e-13, 0.134588, 6.31439e-15)
@@ -937,16 +486,16 @@ bones/61/position = Vector3(9.71445e-17, 0.405994, 2.67147e-16)
 bones/62/position = Vector3(-2.91434e-16, 0.42099, -6.245e-16)
 bones/63/position = Vector3(1.38778e-17, 0.157216, 1.38778e-17)
 
-[node name="Alpha_Surface" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player/Idle/Skeleton3D" index="0"]
+[node name="Alpha_Surface" parent="SubViewportContainer/SubViewport/Environment/Player/Idle/Skeleton3D" index="0"]
 layers = 2
 
-[node name="Alpha_Joints" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player/Idle/Skeleton3D" index="1"]
+[node name="Alpha_Joints" parent="SubViewportContainer/SubViewport/Environment/Player/Idle/Skeleton3D" index="1"]
 layers = 2
 
-[node name="AnimationPlayer" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player/Idle" index="1"]
+[node name="AnimationPlayer" parent="SubViewportContainer/SubViewport/Environment/Player/Idle" index="1"]
 script = ExtResource("12_8iu05")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Environment/Player"]
 light_color = Color(0.147672, 0.147672, 0.147672, 1)
 light_energy = 16.0
 light_specular = 0.0
@@ -956,29 +505,1133 @@ distance_fade_length = 5.0
 omni_range = 5.993
 omni_attenuation = 0.1
 
-[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="RoomSaveRoom" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+
+[node name="Interactable" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom"]
+
+[node name="Ceiling" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable"]
+transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1.1, 0, 6.25, 0)
+cast_shadow = 3
+size = Vector3(10, 0.5, 10)
+
+[node name="BackWall" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3.75)
+visible = false
+size = Vector3(10, 9, 0.5)
+
+[node name="Wall_DoorWay" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" instance=ExtResource("4_8iu05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="Wall_DoorWay2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable" instance=ExtResource("4_8iu05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="SpawnRoom" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable"]
+
+[node name="ArchitectureBasics" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom"]
+
+[node name="stoneWallBack" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24345e-16)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="StoneWindow" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="StoneWindow2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneWallLeft" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 0)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneWallRight" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 8, 0, 0)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneFloor" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics"]
+
+[node name="StoneFloor" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="StoneFloor2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+
+[node name="StoneFloor3" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="StoneFloor4" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
+
+[node name="StoneFloor5" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
+
+[node name="StoneFloor6" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="StoneFloor7" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="StoneFloor8" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="StoneFloor9" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="StoneFloor10" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="StoneFloor11" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="StoneFloor12" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="StoneFloor13" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="StoneFloor14" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="StoneFloor15" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
+
+[node name="StoneFloor16" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
+
+[node name="StoneFloor17" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="StoneFloor18" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="StoneFloor19" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="StoneFloor20" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
+
+[node name="StoneFloor21" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
+
+[node name="StoneFloor22" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="StoneFloor23" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="StoneFloor24" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="StoneFloor25" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="stoneCeiling" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics"]
+
+[node name="StoneCeiling" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -5)
+
+[node name="StoneCeiling2" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -5)
+
+[node name="StoneCeiling3" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5)
+
+[node name="StoneCeiling4" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -5)
+
+[node name="StoneCeiling5" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -5)
+
+[node name="StoneCeiling6" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+
+[node name="StoneCeiling7" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+
+[node name="StoneCeiling8" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+
+[node name="StoneCeiling9" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+
+[node name="StoneCeiling10" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+
+[node name="StoneCeiling11" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -1)
+
+[node name="StoneCeiling12" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -1)
+
+[node name="StoneCeiling13" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -1)
+
+[node name="StoneCeiling14" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -1)
+
+[node name="StoneCeiling15" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -1)
+
+[node name="StoneCeiling16" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 1)
+
+[node name="StoneCeiling17" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 1)
+
+[node name="StoneCeiling18" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1)
+
+[node name="StoneCeiling19" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 1)
+
+[node name="StoneCeiling20" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 1)
+
+[node name="StoneCeiling21" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 3)
+
+[node name="StoneCeiling22" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 3)
+
+[node name="StoneCeiling23" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
+
+[node name="StoneCeiling24" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
+
+[node name="StoneCeiling25" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 3)
+
+[node name="Floor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+cast_shadow = 0
+use_collision = true
+size = Vector3(10, 0.5, 10)
+
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108218, 0)
+visible = false
+radius = 0.986816
+height = 0.331055
+material = SubResource("StandardMaterial3D_nilwv")
+
+[node name="PropsBasic" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations" instance=ExtResource("3_owwmw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="Barrel" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75859, 0, 0)
+
+[node name="BarrelWithRing" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="1"]
+transform = Transform3D(0.947935, 0, -0.318463, 0, 1, 0, 0.318463, 0, 0.947935, 0.890548, 0, -2)
+
+[node name="BarrelWithRing2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="2"]
+transform = Transform3D(0.199659, 0, -0.979866, 0, 1, 0, 0.979866, 0, 0.199659, 1.83848, 0, -1.73331)
+mesh = SubResource("ArrayMesh_ybx82")
+skeleton = NodePath("")
+
+[node name="Crate" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="3"]
+visible = false
+
+[node name="Box" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="4"]
+transform = Transform3D(0.625243, 0, 0.78043, 0, 1, 0, -0.78043, 0, 0.625243, -1.45052, 2.38419e-07, -1.92299)
+
+[node name="Box2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="5"]
+transform = Transform3D(0.993961, 0, 0.109734, 0, 1, 0, -0.109734, 0, 0.993961, -2.16262, 2.38419e-07, -1.3999)
+mesh = SubResource("ArrayMesh_l32kx")
+skeleton = NodePath("")
+
+[node name="Box3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="6"]
+transform = Transform3D(0.625243, 0, 0.78043, 0, 1, 0, -0.78043, 0, 0.625243, 5.54948, 2.38419e-07, -1.20871)
+mesh = SubResource("ArrayMesh_l32kx")
+skeleton = NodePath("")
+
+[node name="Box5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="7"]
+transform = Transform3D(0.12613, 0, 0.992014, 0, 1, 0, -0.992014, 0, 0.12613, 4.72009, 2.38419e-07, -1.61368)
+mesh = SubResource("ArrayMesh_l32kx")
+skeleton = NodePath("")
+
+[node name="Box6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="8"]
+transform = Transform3D(-0.580561, 0, 0.814217, 0, 1, 0, -0.814217, 0, -0.580561, 5.11246, 0.662619, -1.0001)
+mesh = SubResource("ArrayMesh_l32kx")
+skeleton = NodePath("")
+
+[node name="Box4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="9"]
+transform = Transform3D(0.993961, 0, 0.109734, 0, 1, 0, -0.109734, 0, 0.993961, 4.83738, 2.38419e-07, -0.685617)
+mesh = SubResource("ArrayMesh_l32kx")
+skeleton = NodePath("")
+
+[node name="Haybale" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic/Props_Basics" index="10"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95795, 0.401645, -2.85822)
+light_color = Color(0.999999, 0.732094, 0.304035, 1)
+light_bake_mode = 1
+omni_range = 4.5
+omni_attenuation = -0.5
+
+[node name="LowLightTestRoom" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Interactable" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+
+[node name="Floor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000500023, 0)
+visible = false
+cast_shadow = 0
+use_collision = true
+size = Vector3(11, 0.01, 10)
+
+[node name="ArchitectureBasics" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable"]
+
+[node name="stoneWallBack" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24345e-16)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="StoneWindow" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="StoneWindow2" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack" instance=ExtResource("12_uc2gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 0)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneWallLeft" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 0)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneWallRight" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics"]
+transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 2, 0, 0)
+
+[node name="wall1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="wall15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+mesh = SubResource("ArrayMesh_d8bt0")
+skeleton = NodePath("")
+
+[node name="pillar1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="pillar5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
+mesh = SubResource("ArrayMesh_ccryp")
+skeleton = NodePath("")
+
+[node name="pillar6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
+mesh = SubResource("ArrayMesh_awcun")
+skeleton = NodePath("")
+
+[node name="stoneFloor" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics"]
+
+[node name="StoneFloor" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="StoneFloor2" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+
+[node name="StoneFloor3" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="StoneFloor4" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
+
+[node name="StoneFloor5" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
+
+[node name="StoneFloor6" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="StoneFloor7" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="StoneFloor8" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="StoneFloor9" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="StoneFloor10" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="StoneFloor11" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="StoneFloor12" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="StoneFloor13" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="StoneFloor14" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="StoneFloor15" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
+
+[node name="StoneFloor16" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
+
+[node name="StoneFloor17" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="StoneFloor18" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="StoneFloor19" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="StoneFloor20" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
+
+[node name="StoneFloor21" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
+
+[node name="StoneFloor22" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="StoneFloor23" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="StoneFloor24" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="StoneFloor25" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneFloor" instance=ExtResource("5_opqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="stoneCeiling" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics"]
+
+[node name="StoneCeiling" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -5)
+
+[node name="StoneCeiling2" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -5)
+
+[node name="StoneCeiling3" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5)
+
+[node name="StoneCeiling4" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -5)
+
+[node name="StoneCeiling5" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -5)
+
+[node name="StoneCeiling6" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+
+[node name="StoneCeiling7" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+
+[node name="StoneCeiling8" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+
+[node name="StoneCeiling9" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
+
+[node name="StoneCeiling10" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
+
+[node name="StoneCeiling11" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -1)
+
+[node name="StoneCeiling12" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -1)
+
+[node name="StoneCeiling13" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -1)
+
+[node name="StoneCeiling14" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -1)
+
+[node name="StoneCeiling15" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -1)
+
+[node name="StoneCeiling16" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 1)
+
+[node name="StoneCeiling17" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 1)
+
+[node name="StoneCeiling18" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1)
+
+[node name="StoneCeiling19" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 1)
+
+[node name="StoneCeiling20" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 1)
+
+[node name="StoneCeiling21" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 3)
+
+[node name="StoneCeiling22" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 3)
+
+[node name="StoneCeiling23" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
+
+[node name="StoneCeiling24" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
+
+[node name="StoneCeiling25" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/ArchitectureBasics/stoneCeiling" instance=ExtResource("6_3ugus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 3)
+
+[node name="Wall_DoorWay" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable" instance=ExtResource("4_8iu05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="DoorWay" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay/Wall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02768e-09, -1.16553, -0.137897)
+
+[node name="Wall_DoorWay2" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable" instance=ExtResource("4_8iu05")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 5, 0, 0)
+
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+
+[node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("14_8okvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="BG" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 16, -16, -15)
+material_override = ExtResource("11_vlgid")
 size = Vector3(1, 5, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20, -16, -25)
+material_override = ExtResource("11_vlgid")
 size = Vector3(1, 5, 1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1, -13, -25)
+material_override = ExtResource("11_vlgid")
 size = Vector3(1, 5, 1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(80.64, 0, 0, 0, 22, 0, 0, 0, 67.5, -5, -71, -15)
+material_override = ExtResource("11_vlgid")
 use_collision = true
 size = Vector3(1, 5, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
+material_override = ExtResource("11_vlgid")
+size = Vector3(10, 49.99, 10)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -25, 0)
+material_override = ExtResource("11_vlgid")
 size = Vector3(10, 50, 10)
 
-[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom"]
-[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Cosmetic/PropsBasic"]
-[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player"]
-[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Player/Idle"]
+[node name="CandleTriple" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0113, 0.0143627, -3.95178)
+
+[node name="PropsCastleInterior" type="Node3D" parent="CandleTriple"]
+
+[node name="Lighting" type="Node3D" parent="CandleTriple/PropsCastleInterior"]
+
+[node name="CandleTriple" type="MeshInstance3D" parent="CandleTriple/PropsCastleInterior/Lighting"]
+mesh = SubResource("ArrayMesh_3kfqo")
+skeleton = NodePath("")
+
+[node name="candleLight" type="OmniLight3D" parent="CandleTriple"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00984955, 0.578816, -0.0097506)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_energy = 0.851
+light_indirect_energy = 0.252
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 12.186
+omni_attenuation = 0.346
+script = ExtResource("16_alqiq")
+
+[node name="CandleTriple2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7001, 0.0143627, -4.15024)
+
+[node name="PropsCastleInterior" type="Node3D" parent="CandleTriple2"]
+
+[node name="Lighting" type="Node3D" parent="CandleTriple2/PropsCastleInterior"]
+
+[node name="CandleTriple" type="MeshInstance3D" parent="CandleTriple2/PropsCastleInterior/Lighting"]
+mesh = SubResource("ArrayMesh_alqiq")
+skeleton = NodePath("")
+
+[node name="candleLight" type="OmniLight3D" parent="CandleTriple2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00984955, 0.578816, -0.0097506)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_energy = 0.477
+light_indirect_energy = 0.252
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 7.352
+omni_attenuation = 0.346
+script = ExtResource("16_alqiq")
+
+[editable path="SubViewportContainer/SubViewport/Environment/Player"]
+[editable path="SubViewportContainer/SubViewport/Environment/Player/Idle"]
+[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic"]
+[editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]

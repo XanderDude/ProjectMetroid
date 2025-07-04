@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://do8lbuq5popor"]
 
-[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/wallDoorWay.tscn" id="1_kgphg"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="1_kgphg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
 albedo_color = Color(1, 1, 0, 1)
@@ -28,7 +28,7 @@ size = Vector3(10, 9, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
 [node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_kgphg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 0)
 
 [node name="Cosmetic" type="Node3D" parent="."]
 

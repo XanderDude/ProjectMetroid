@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bjbkmeqmnukig"
-path="res://.godot/imported/StoneDoorway.fbx-5c3937e251aab7370e6cbb32b8b01742.scn"
+uid="uid://b76tbs2pco6n"
+path="res://.godot/imported/StoneDoorWayOpening.fbx-52971688bdc15a2d1527374fc4296613.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneDoorway.fbx"
-dest_files=["res://.godot/imported/StoneDoorway.fbx-5c3937e251aab7370e6cbb32b8b01742.scn"]
+source_file="res://Environment/Models/StoneDoorWayOpening.fbx"
+dest_files=["res://.godot/imported/StoneDoorWayOpening.fbx-52971688bdc15a2d1527374fc4296613.scn"]
 
 [params]
 
@@ -20,13 +20,13 @@ nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=false
+meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=true
+animation/import=false
 animation/fps=30
 animation/trimming=true
 animation/remove_immutable_tracks=true

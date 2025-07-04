@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx6inaiw5kq1u"]
+
+[ext_resource type="PackedScene" uid="uid://b76tbs2pco6n" path="res://Environment/Models/StoneDoorWayOpening.fbx" id="1_1c3po"]
+[ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/StoneWall.fbx" id="2_wdekh"]
+
+[node name="Wall_DoorWay" type="Node3D"]
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 0, 2, 0)
+visible = false
+use_collision = true
+size = Vector3(2.5, 4, 0.4)
+
+[node name="DoorWay" type="CSGBox3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.138)
+operation = 2
+size = Vector3(1.5, 2.4, 1)
+
+[node name="StoneDoorWayOpening" parent="." instance=ExtResource("1_1c3po")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="stonePillar3" parent="StoneDoorWayOpening/ArchitectureBasic/StoneDoorway" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9838, 0)
+
+[node name="StoneWall" parent="." instance=ExtResource("2_wdekh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
+
+[editable path="StoneDoorWayOpening"]

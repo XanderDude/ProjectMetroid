@@ -1,4 +1,4 @@
-Aspect Ratios:
+.8Aspect Ratios:
 1. 4:3
 		320x240 (Classic PS1 resolution used to fit most TVs)
 		640x480 (The most common "high" resolution for the PS1)

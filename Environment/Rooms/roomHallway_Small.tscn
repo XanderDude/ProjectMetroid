@@ -1,0 +1,360 @@
+[gd_scene load_steps=13 format=4 uid="uid://bpdtxa4qxfht3"]
+
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="1_oo6ox"]
+[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_wlbv0"]
+[ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/StoneCeiling.fbx" id="2_hegf4"]
+[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/StoneFloor.fbx" id="2_ujff6"]
+[ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/StoneWall.fbx" id="3_wlbv0"]
+[ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Props/architectureBasic_mat.tres" id="4_fm40f"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xgeom"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -2.22045e-16, 2, 2, 1e-05),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAQAAAAQABAAFAAEABgAHAAgACAAJAAYACQAIAAoACgALAAkA"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAIAlAAAAAAAAAAAAAIClAACAvwAAAAAAAIClAACAvwAAgD8AAIAlAACAPwAAgD8AAIAlAACAPwAAAAAAAIClAACAPwAAAEAAAIAlAACAPwAAgD8AAIClAAAAAAAAgD8AAIClAAAAAAAAAEAAAIAlAACAvwAAgD8AAIClAACAvwAAAEAAAIAl")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wdl2r"]
+resource_name = "stoneWall"
+lightmap_size_hint = Vector2i(14, 14)
+_surfaces = [{
+"aabb": AABB(-1, 0, -2.22045e-16, 2, 2, 1e-05),
+"attribute_data": PackedByteArray("8Pe/PgDNYDtu23Y/AAAAP/D3vz48WhI+t20bPwAAAD/dGHE+PFoSPrdtGz8lSRI93RhxPgDNYDtu23Y/JUkSPfD3vz4AzWA7btt2P27bdj/w978+PFoSPrdtGz9u23Y/3RhxPjxaEj63bRs/AAAAP90YcT4AzWA7btt2PwAAAD/w978+AM1gO5IkyT5u23Y/8Pe/PjxaEj4lSRI9btt2P90YcT48WhI+JUkSPQAAAD/dGHE+AM1gO5IkyT4AAAA/8Pe/PgDNYDuSJMk+AAAAP/D3vz48WhI+JUkSPQAAAD/dGHE+PFoSPiVJEj0lSRI93RhxPgDNYDuSJMk+JUkSPQ=="),
+"format": 34359742519,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwA"),
+"material": ExtResource("4_fm40f"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAIAlAAAAAAAAAAAAAIClAACAvwAAAAAAAIClAACAvwAAgD8AAIAlAACAPwAAgD8AAIAlAACAPwAAAAAAAIClAAAAAAAAAAAAAIClAAAAAAAAgD8AAIAlAACAPwAAAEAAAIAlAACAPwAAgD8AAIClAAAAAAAAgD8AAIClAAAAAAAAAEAAAIAlAAAAAAAAAEAAAIAlAAAAAAAAgD8AAIClAACAvwAAgD8AAIClAACAvwAAAEAAAIAl/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xgeom")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7kn4d"]
+_surfaces = [{
+"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
+"format": 34359742465,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAgAEAAAAAwAFAAEABAACAAYABQADAAcABgAHAAQABwAGAAUACAAJAAoACgALAAgACQAIAAwADAAIAAsADQAKAAkACwAKAA0ADAAOAAkACQAOAA0ACwAPAAwADgAMAA8ADQAPAAsADwANAA4A"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZma+ZmZmvmZmBkBmZma+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ip3ox"]
+resource_name = "stonePillar1"
+lightmap_size_hint = Vector2i(30, 22)
+_surfaces = [{
+"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
+"attribute_data": PackedByteArray("ZkwyPgAq9Dp3dzc/RhcdPwJQMj4uy48+d3c3P4wuujxkWvI9jMuPPs3MDD+MLro8LFPyPQCG9DrNzAw/RhcdP0Dy3DtMzI8+iYiIPIwuujyAftw7AD71OmZm5j6MLro8jA2APQDi9DpmZuY+AACAPsQUgD3qy48+iYiIPAAAgD42b2s+AMrzOomIiDwAAEA/0nJrPtTKjz5mZuY+AABAPwJQMj4uy48+ZmbmPowuej9mTDI+ACr0OomIiDyMLno/LFPyPQCG9DpmZuY+RhcdP2Ra8j2My48+iYiIPEYXHT/EFIA96suPPomIiDx00cU+jA2APQDi9DpmZuY+dNHFPlrGqT7GHZo+vLt7P4wuej8Hxqk+emaoPry7ez+ji24/cqKJPsZlqD4REVE/o4tuP8KiiT4WHZo+ERFRP4wuej8Mx6k+ZPRzPnd3Nz8AAEA/WsapPsYdmj53dzc/jC56P8KiiT4WHZo+zcwMP4wuej94o4k+7PJzPs3MDD8AAEA/W8epPvRiVz68u3s/dNHFPgzHqT5k9HM+vLt7P0YX3T54o4k+7PJzPhERUT9GF90+xqOJPoRhVz4REVE/dNHFPhLIqT7YGxc+ERFRPwAAgD5bx6k+9GJXPhERUT+MLro8xqOJPoRhVz68u3s/jC66PHykiT5oGhc+vLt7PwAAgD7u6ck+eB6aPjMzcz9ddBE/nOnJPi5nqD68u3s/XXQRPwfGqT56Zqg+vLt7P+miSz9axqk+xh2aPjMzcz/poks/wqKJPhYdmj6amVk/6aJLP3KiiT7GZag+ERFRP+miSz+4/VI+EmWoPhERUT9ddBE/WP5SPlocmj6amVk/XXQRPw=="),
+"format": 34359742519,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQA"),
+"material": ExtResource("4_fm40f"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEy+zcxMvgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMPgAAAADNzEy+zcxMPgAAAADNzEw+zcxMPgAAAEDNzEw+zcxMvgAAAEDNzEw+zcxMvgAAAADNzEw+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPmZmBkBmZma+ZmZmvmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPjMz8z9mZma+ZmZmvjMz8z9mZma+ZmZmvjMz8z9mZmY+ZmZmPmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvjMz8z9mZmY+ZmZmvjMz8z9mZma+ZmZmvmZmBkBmZma+/3//f/3//r//f/9//f/+v/9//3/9//6//3//f/3//r//////AQD+v/////8BAP6//////wEA/r//////AQD+v////3/9/wCA////f/3/AID///9//f8AgP///3/9/wCAAAD/f/9//r8AAP9//3/+vwAA/3//f/6/AAD/f/9//r//f/9//P8AwP9//3/8/wDA/3//f/z/AMD/f/9//P8AwP9//////wDA/3//////AMD/f/////8AwP9//////wDA//////z//b///////P/9v//////8//2///////z//b//fwAA/P//v/9/AAD8//+//38AAPz//7//fwAA/P//v////3/8////////f/z///////9//P///////3/8////AAD/f/9/AMAAAP9//38AwAAA/3//fwDAAAD/f/9/AMA=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7kn4d")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nlumo"]
+_surfaces = [{
+"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
+"format": 34359742465,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAgAEAAAAAwAFAAEABAACAAYABQADAAcABgAHAAQABwAGAAUACAAJAAoACgALAAgACQAIAAwADAAIAAsADQAKAAkACwAKAA0ADAAOAAkACQAOAA0ACwAPAAwADgAMAA8ADQAPAAsADwANAA4A"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZma+ZmZmvmZmBkBmZma+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0rcot"]
+resource_name = "stonePillar2"
+lightmap_size_hint = Vector2i(30, 22)
+_surfaces = [{
+"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
+"attribute_data": PackedByteArray("ZkwyPgAo9Dp3dzc/RhcdPwRQMj4wy48+d3c3P4wuujxnWvI9jMuPPs3MDD+MLro8L1PyPQCE9DrNzAw/RhcdP0Dy3DtGzI8+iYiIPIwuujyAftw7ADz1OmZm5j6MLro8iw2APQDg9DpmZuY+AACAPsMUgD3oy48+iYiIPAAAgD44b2s+AMrzOomIiDwAAEA/1HJrPtTKjz5mZuY+AABAPwRQMj4wy48+ZmbmPowuej9mTDI+ACj0OomIiDyMLno/L1PyPQCE9DpmZuY+RhcdP2da8j2My48+iYiIPEYXHT/DFIA96MuPPomIiDx00cU+iw2APQDg9DpmZuY+dNHFPljGqT7KHZo+vLt7P4wuej8Hxqk+fmaoPry7ez+ji24/cKKJPsplqD4REVE/o4tuP8CiiT4WHZo+ERFRP4wuej8Mx6k+XPRzPnd3Nz8AAEA/WMapPsodmj53dzc/jC56P8CiiT4WHZo+zcwMP4wuej92o4k+9PJzPs3MDD8AAEA/W8epPvRiVz68u3s/dNHFPgzHqT5c9HM+vLt7P0YX3T52o4k+9PJzPhERUT9GF90+xqOJPoxhVz4REVE/dNHFPhDIqT7MGxc+ERFRPwAAgD5bx6k+9GJXPhERUT+MLro8xqOJPoxhVz68u3s/jC66PHqkiT5kGhc+vLt7PwAAgD7t6ck+fh6aPjMzcz9ddBE/nenJPjJnqD68u3s/XXQRPwfGqT5+Zqg+vLt7P+miSz9Yxqk+yh2aPjMzcz/poks/wKKJPhYdmj6amVk/6aJLP3CiiT7KZag+ERFRP+miSz+2/VI+EmWoPhERUT9ddBE/Vv5SPl4cmj6amVk/XXQRPw=="),
+"format": 34359742519,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQA"),
+"material": ExtResource("4_fm40f"),
+"name": "architectureBasic_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEy+zcxMvgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMPgAAAADNzEy+zcxMPgAAAADNzEw+zcxMPgAAAEDNzEw+zcxMvgAAAEDNzEw+zcxMvgAAAADNzEw+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPmZmBkBmZma+ZmZmvmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPjMz8z9mZma+ZmZmvjMz8z9mZma+ZmZmvjMz8z9mZmY+ZmZmPmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvjMz8z9mZmY+ZmZmvjMz8z9mZma+ZmZmvmZmBkBmZma+/3//f/3//r//f/9//f/+v/9//3/9//6//3//f/3//r//////AQD+v/////8BAP6//////wEA/r//////AQD+v////3/9/wCA////f/3/AID///9//f8AgP///3/9/wCAAAD/f/9//r8AAP9//3/+vwAA/3//f/6/AAD/f/9//r//f/9//P8AwP9//3/8/wDA/3//f/z/AMD/f/9//P8AwP9//////wDA/3//////AMD/f/////8AwP9//////wDA//////z//b///////P/9v//////8//2///////z//b//fwAA/P//v/9/AAD8//+//38AAPz//7//fwAA/P//v////3/8////////f/z///////9//P///////3/8////AAD/f/9/AMAAAP9//38AwAAA/3//fwDAAAD/f/9/AMA=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nlumo")
+
+[node name="RoomSaveRoom" type="Node3D"]
+
+[node name="Interactable" type="Node3D" parent="."]
+
+[node name="FloorCol" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+material_override = ExtResource("1_wlbv0")
+calculate_tangents = false
+use_collision = true
+size = Vector3(8, 0.5, 6)
+
+[node name="CeilingCol" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+material_override = ExtResource("1_wlbv0")
+transparency = 1.0
+size = Vector3(8, 0.1, 6)
+
+[node name="BackWallCol" type="CSGBox3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.25, -2.25)
+visible = false
+size = Vector3(20, 0.5, 5.5)
+
+[node name="Wall_DoorWay" parent="Interactable" instance=ExtResource("1_oo6ox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_oo6ox")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0)
+
+[node name="Ceiling" type="Node3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="StoneCeiling" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="StoneCeiling2" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+
+[node name="StoneCeiling3" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+
+[node name="StoneCeiling4" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -2)
+
+[node name="StoneCeiling5" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
+
+[node name="StoneCeiling6" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+
+[node name="StoneCeiling7" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
+
+[node name="StoneCeiling8" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+
+[node name="StoneCeiling9" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+
+[node name="StoneCeiling10" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
+
+[node name="StoneCeiling11" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 2)
+
+[node name="StoneCeiling12" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 2)
+
+[node name="stoneCeiling" parent="Interactable/Ceiling/StoneCeiling12/ArchitectureBasic/StoneCeiling" index="0"]
+cast_shadow = 1
+extra_cull_margin = 0.1
+
+[node name="StoneWall" parent="Interactable" instance=ExtResource("3_wlbv0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -2)
+
+[node name="stoneWall2" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall3" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall4" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2.38419e-07)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stonePillar1" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="4"]
+visible = false
+
+[node name="stonePillar3" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+mesh = SubResource("ArrayMesh_ip3ox")
+skeleton = NodePath("")
+
+[node name="stonePillar4" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic/StoneWall" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
+mesh = SubResource("ArrayMesh_ip3ox")
+skeleton = NodePath("")
+
+[node name="ArchitectureBasic2" type="Node3D" parent="Interactable/StoneWall"]
+transform = Transform3D(-1, 0, 1.03316e-07, 0, 1, 0, -1.03316e-07, 0, -1, -4, 0, 8)
+
+[node name="StoneWall" type="Node3D" parent="Interactable/StoneWall/ArchitectureBasic2"]
+
+[node name="stoneWall" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24345e-16)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall2" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall3" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall4" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2.38419e-07)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stonePillar1" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+visible = false
+mesh = SubResource("ArrayMesh_ip3ox")
+skeleton = NodePath("")
+
+[node name="stonePillar2" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("ArrayMesh_0rcot")
+skeleton = NodePath("")
+
+[node name="stonePillar3" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic2/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0)
+mesh = SubResource("ArrayMesh_0rcot")
+skeleton = NodePath("")
+
+[node name="ArchitectureBasic3" type="Node3D" parent="Interactable/StoneWall"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -3.57628e-07, 0, 6)
+
+[node name="StoneWall" type="Node3D" parent="Interactable/StoneWall/ArchitectureBasic3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="stoneWall" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24345e-16)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall2" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall5" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall6" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall3" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall4" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1.19209e-07)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall7" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -1.19209e-07)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall8" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.19209e-07)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stonePillar1" type="MeshInstance3D" parent="Interactable/StoneWall/ArchitectureBasic3/StoneWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+visible = false
+mesh = SubResource("ArrayMesh_ip3ox")
+skeleton = NodePath("")
+
+[node name="Floor2" type="Node3D" parent="Interactable"]
+
+[node name="StoneFloor" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="StoneFloor3" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="StoneFloor4" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="StoneFloor5" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="StoneFloor6" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="StoneFloor7" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="StoneFloor8" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="StoneFloor9" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="StoneFloor10" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="StoneFloor11" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="StoneFloor12" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="StoneFloor2" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="Cosmetic" type="Node3D" parent="."]
+
+[editable path="Interactable/Ceiling/StoneCeiling12"]
+[editable path="Interactable/StoneWall"]
