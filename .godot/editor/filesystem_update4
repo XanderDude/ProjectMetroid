@@ -7,6 +7,6 @@ res://Environment/Props/architectureBasic_mat.tres
 res://Environment/Materials/stoneWallBlank_mat.tres
 res://Environment/Lighting/FlickerLight.cs
 res://playerMovement/Player.cs
+res://playerMovement/player.tscn
 res://Environment/Models/PlayAnimation.cs
 res://Label.cs
-res://playerMovement/player.tscn
