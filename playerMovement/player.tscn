@@ -8,7 +8,6 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
-JumpVelocity = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4flbx")

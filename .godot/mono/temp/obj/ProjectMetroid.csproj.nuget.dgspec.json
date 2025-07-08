@@ -1,29 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\ProjectMetroid.csproj": {}
+    "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\ProjectMetroid.csproj": {}
   },
   "projects": {
-    "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\ProjectMetroid.csproj": {
+    "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\ProjectMetroid.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\ProjectMetroid.csproj",
+        "projectUniqueName": "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\ProjectMetroid.csproj",
         "projectName": "ProjectMetroid",
-        "projectPath": "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\ProjectMetroid.csproj",
-        "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-        "outputPath": "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\ProjectMetroid.csproj",
+        "packagesPath": "C:\\Users\\nem0s\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "C:\\Users\\nem0s\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,8 +39,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -77,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
