@@ -31,39 +31,65 @@ public partial class Player : CharacterBody3D
 	[Export] public float jumpVelocity = 9.0f;
 	[Export] public float jumpGravity = 9.8f;
 	
+	public float timer = 0.0f;
+	
+	
+	private bool isAscending(double delta, ref Vector3 velocity) {
+		if (Input.IsKeyPressed(Key.Space)) { return true; }
+		else return false;
+	}
+	
 	private void jumpState(double delta, ref Vector3 velocity) {
 		
-		velocity.Y -= jumpGravity * (float)delta;
+		if (isAscending(delta, ref velocity)) {
+			
+			if (velocity.Y < 6.5f) velocity.Y -= jumpGravity * (float)delta;
 		
-		if (velocity.Y < 6.5f) velocity.Y -= jumpGravity * (float)delta;
-		
-		if (Input.IsKeyPressed(Key.Left)) {
-			velocity.X = -jumpMaxSpeed;
+			if (Input.IsKeyPressed(Key.Left)) {
+				velocity.X = -jumpMaxSpeed;
+			}
+			else if (Input.IsKeyPressed(Key.Right)) {
+				velocity.X = jumpMaxSpeed;
+			}
+			else { 
+				if ( velocity.X > 0.1f) velocity.X = jumpMaxSpeed;
+				else if ( velocity.X < -0.1f) velocity.X = -jumpMaxSpeedf;
+				else { velocity.X = 0; }
+			}
 		}
-		else if (Input.IsKeyPressed(Key.Right)) {
-			velocity.X = jumpMaxSpeed;
-		}
 		
+		else {
+			velocity.Y -= jumpGravity * (float)delta;
 		
-		else { 
-			if ( velocity.X > 0.1f) velocity.X = jumpMaxSpeed;
-			else if ( velocity.X < -0.1f) velocity.X = -jumpMaxSpeed;
-			else { velocity.X = 0; }
+			if (velocity.Y < 6.5f) velocity.Y -= jumpGravity * (float)delta;
+		
+			if (Input.IsKeyPressed(Key.Left)) {
+				velocity.X = -jumpMaxSpeed / 2;
+			}
+			else if (Input.IsKeyPressed(Key.Right)) {
+				velocity.X = jumpMaxSpeed / 2;
+			}
+			else { 
+				if ( velocity.X > 0.1f) velocity.X = jumpMaxSpeed / 2;
+				else if ( velocity.X < -0.1f) velocity.X = -jumpMaxSpeed / 2;
+				else { velocity.X = 0; }
+			}
 		}
+	
 	}
+	
 	public override void _PhysicsProcess(double delta) {
 		Vector3 velocity = Velocity;
 		GD.Print("Velocity X " + velocity.X);
 		GD.Print("velocity.Y " + velocity.Y);
-		GD.Print("Time " + delta);
-	 
+	 	
 	if (IsOnFloor()) {
 		groundedState(delta, ref velocity);
 	}
 	else if (!IsOnFloor()) {
 		jumpState(delta, ref velocity);
 	}
-	if (Input.IsKeyPressed(Key.Space) &&   IsOnFloor()) { 
+	if (Input.IsKeyPressed(Key.Space) && IsOnFloor()) { 
 		velocity.Y = jumpVelocity;
 	}
 	
