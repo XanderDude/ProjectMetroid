@@ -384,6 +384,8 @@ data = ExtResource("13_8iu05")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_2o7o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+jumpGravity = 15.0
+jumpMaxHeight = 0.05
 
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Player" index="0"]
 visible = false

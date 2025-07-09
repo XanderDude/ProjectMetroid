@@ -6,7 +6,7 @@ res://Environment/Shaders/jitterTestShader_mat.tres
 res://Environment/Props/architectureBasic_mat.tres
 res://Environment/Materials/stoneWallBlank_mat.tres
 res://Environment/Lighting/FlickerLight.cs
-res://playerMovement/Player.cs
 res://playerMovement/player.tscn
+res://playerMovement/Player.cs
 res://Environment/Models/PlayAnimation.cs
 res://Label.cs
