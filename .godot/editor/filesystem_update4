@@ -8,3 +8,4 @@ res://Environment/Shaders/ps1Jitter.gdshader
 res://Environment/Shaders/jitterTestShader_mat.tres
 res://Environment/Props/architectureBasic_mat.tres
 res://Environment/Materials/stoneWallBlank_mat.tres
+res://.gitattributes.txt

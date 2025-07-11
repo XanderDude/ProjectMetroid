@@ -520,7 +520,7 @@ bones/64/position = Vector3(-1.97835e-08, 0.157216, -8.19806e-08)
 bones/64/rotation = Quaternion(0.247838, 0.0178551, 0.0400927, 0.967807)
 
 [node name="Arrow" parent="SubViewportContainer/SubViewport/Environment/Player/Idle/Skeleton3D" index="0"]
-transform = Transform3D(7.44721, -6.56147, -1.21912, 3.7943, 5.66557, -7.31468, 5.4902, 4.98482, 6.70889, -0.165901, 0.816559, 0.00634732)
+transform = Transform3D(7.44722, -6.56146, -1.21911, 3.79431, 5.66557, -7.31468, 5.49019, 4.98483, 6.70889, -0.165901, 0.816559, 0.00634752)
 bone_idx = 55
 
 [node name="Alpha_Surface" parent="SubViewportContainer/SubViewport/Environment/Player/Idle/Skeleton3D" index="1"]
