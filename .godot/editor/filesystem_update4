@@ -1,0 +1,12 @@
+res://Environment/Scenes/TexturesAndLighting.tscn
+res://Environment/Lighting/mainEnvLighting.tres
+res://Environment/Shaders/ps1PostProcess.gdshader
+res://Environment/Shaders/ps1Jitter.gdshader
+res://Environment/Shaders/jitterTestShader_mat.tres
+res://Environment/Props/architectureBasic_mat.tres
+res://Environment/Materials/stoneWallBlank_mat.tres
+res://Environment/Lighting/FlickerLight.cs
+res://playerMovement/Player.cs
+res://Environment/Models/PlayAnimation.cs
+res://Label.cs
+res://playerMovement/player.tscn
