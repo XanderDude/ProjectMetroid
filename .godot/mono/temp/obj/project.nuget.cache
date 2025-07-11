@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "u6vAtj20CRM=",
+  "dgSpecHash": "VcYdep4yrEA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nem0s\\Documents\\GitHub\\ProjectMetroid\\ProjectMetroid.csproj",
+  "projectFilePath": "H:\\GameDesign\\Projects\\GodotProjects\\ProjectMetroid\\ProjectMetroid.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nem0s\\.nuget\\packages\\godot.sourcegenerators\\4.4.1\\godot.sourcegenerators.4.4.1.nupkg.sha512",
-    "C:\\Users\\nem0s\\.nuget\\packages\\godotsharp\\4.4.1\\godotsharp.4.4.1.nupkg.sha512",
-    "C:\\Users\\nem0s\\.nuget\\packages\\godotsharpeditor\\4.4.1\\godotsharpeditor.4.4.1.nupkg.sha512"
+    "C:\\Users\\Alex\\.nuget\\packages\\godot.sourcegenerators\\4.4.1\\godot.sourcegenerators.4.4.1.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\godotsharp\\4.4.1\\godotsharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\godotsharpeditor\\4.4.1\\godotsharpeditor.4.4.1.nupkg.sha512"
   ],
   "logs": []
 }
