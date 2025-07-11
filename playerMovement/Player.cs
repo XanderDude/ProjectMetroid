@@ -7,7 +7,7 @@ public partial class Player : CharacterBody3D
 	[ExportSubgroup("Grounded State")]
 	[Export] public float groundInitSpeed = 1.0f;
 	[Export] public float groundMaxSpeed = 6.0f;
-	[Export] public float groundAcceleration = 3.0f;
+	[Export] public float groundAcceleration = 15.0f;
 	[Export] public float groundDeacceleration = 15.0f;
 	
 	private void groundedState(double delta, ref Vector3 velocity) {
@@ -27,7 +27,7 @@ public partial class Player : CharacterBody3D
 	[ExportSubgroup("Jump State")]
 	[Export] public float jumpInitSpeed = 1.0f;
 	[Export] public float jumpAcceleration = 3.0f;
-	[Export] public float jumpMaxSpeed = 3.0f;
+	[Export] public float jumpMaxSpeed = 5.0f;
 	[Export] public float jumpVelocity = 5.0f;
 	[Export] public float jumpGravity = 9.8f;
 	[Export] public float jumpMaxHeight = 0.4f;
@@ -67,14 +67,14 @@ public partial class Player : CharacterBody3D
 		else {
 			
 			if (Input.IsKeyPressed(Key.Left)) {
-				velocity.X = -jumpMaxSpeed / 2;
+				velocity.X = -jumpMaxSpeed;
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				velocity.X = jumpMaxSpeed / 2;
+				velocity.X = jumpMaxSpeed ;
 			}
 			else { 
-				if ( velocity.X > 0.1f) velocity.X = jumpMaxSpeed / 2;
-				else if ( velocity.X < -0.1f) velocity.X = -jumpMaxSpeed / 2;
+				if ( velocity.X > 0.1f) velocity.X = 0.5f;
+				else if ( velocity.X < -0.1f) velocity.X = -0.5f;
 				else { velocity.X = 0; }
 			}
 		}
