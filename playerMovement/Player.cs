@@ -8,7 +8,7 @@ public partial class Player : CharacterBody3D
 	[Export] public float groundInitSpeed = 1.0f;
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 3.0f;
-	[Export] public float groundDeacceleration = 6.0f;
+	[Export] public float groundDeacceleration = 15.0f;
 	
 	private void groundedState(double delta, ref Vector3 velocity) {
 			if (Input.IsKeyPressed(Key.Left)) {
