@@ -30,24 +30,25 @@ public partial class Player : CharacterBody3D
 	[Export] public float jumpMaxSpeed = 3.0f;
 	[Export] public float jumpVelocity = 5.0f;
 	[Export] public float jumpGravity = 9.8f;
-	[Export] public float jumpMaxHeight = 0.02f;
+	[Export] public float jumpMaxHeight = 0.4f;
 	public float jumpHeight = 0.0f;
 	
 	
 	private bool isAscending(double delta, ref Vector3 velocity) {
 		if (Input.IsKeyPressed(Key.Space) && jumpHeight < jumpMaxHeight) { 
+			velocity.Y = jumpVelocity;
 			jumpHeight += (float) delta; 
 			GD.Print("Jump Height: " + jumpHeight);
 			return true; 
 		}
 		else {
-			jumpHeight = 0.0f;
+			jumpHeight = jumpMaxHeight;
 			return false;
 		}
 	}
 	
 	private void jumpState(double delta, ref Vector3 velocity) {
-		
+		velocity.Y -= jumpGravity * (float)delta;
 		if (isAscending(delta, ref velocity)) {
 		
 			if (Input.IsKeyPressed(Key.Left)) {
@@ -57,16 +58,14 @@ public partial class Player : CharacterBody3D
 				velocity.X = jumpMaxSpeed;
 			}
 			else { 
-				if ( velocity.X > 0.3f) velocity.X = jumpMaxSpeed;
-				else if ( velocity.X < -0.3f) velocity.X = -jumpMaxSpeed;
+				if ( velocity.X > 0.1f) velocity.X -= 0.1f;
+				else if ( velocity.X < -0.1f) velocity.X += 0.1f;
 				else { velocity.X = 0; }
 			}
 		}
 		
 		else {
-			velocity.Y -= jumpGravity * (float)delta;
-		
-		
+			
 			if (Input.IsKeyPressed(Key.Left)) {
 				velocity.X = -jumpMaxSpeed / 2;
 			}
@@ -94,7 +93,9 @@ public partial class Player : CharacterBody3D
 		jumpState(delta, ref velocity);
 	}
 	if (Input.IsKeyPressed(Key.Space) && IsOnFloor()) { 
+		jumpHeight = 0.0f;
 		velocity.Y = jumpVelocity;
+		
 	}
 	
 	Velocity = velocity;
