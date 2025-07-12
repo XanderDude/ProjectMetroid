@@ -380,10 +380,6 @@ data = SubResource("VoxelGIData_8g18c")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_2o7o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-groundAcceleration = 15.0
-groundDeacceleration = 20.0
-jumpAcceleration = 20.0
-jumpMaxSpeed = 6.0
 
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Player" index="0"]
 visible = false
