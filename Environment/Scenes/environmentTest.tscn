@@ -176,8 +176,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6547, 2.00954, -0.0318565
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_klkam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.001, 0)
 axis_lock_linear_z = true
-JumpVelocity = 11.2
-gravity = 16.0
 
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player" index="0"]
 transparency = 1.0
@@ -192,7 +190,7 @@ fov = 32.0
 [node name="Idle" parent="SubViewportContainer/SubViewport/Player" instance=ExtResource("4_dlbrp")]
 transform = Transform3D(0.000274715, 2.72208e-05, 1, -0.00033787, 1, -2.71045e-05, -1, -0.00033786, 0.000274726, 0, -1, 0)
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/Idle" index="0"]
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/Idle" index="1"]
 bones/2/position = Vector3(0, 0.11732, 2.77556e-17)
 bones/2/rotation = Quaternion(0.000196092, 9.40267e-17, -9.31607e-06, 1)
 bones/3/position = Vector3(1.93149e-13, 0.134588, 6.31439e-15)
@@ -203,7 +201,6 @@ bones/8/rotation = Quaternion(-0.0104518, -0.00106272, 0.10115, 0.994816)
 bones/9/position = Vector3(1.38599e-07, 0.274047, -4.44089e-16)
 bones/10/position = Vector3(1.14254e-08, 0.276145, 2.33611e-09)
 bones/11/position = Vector3(-0.0300297, 0.0378881, 0.0216715)
-bones/11/scale = Vector3(1, 1, 1)
 bones/12/position = Vector3(5.72459e-17, 0.0474497, 1.11022e-15)
 bones/13/position = Vector3(-5.94663e-15, 0.0438213, 5.08482e-14)
 bones/13/rotation = Quaternion(-5.24673e-17, 5.46592e-17, 2.77556e-17, 1)
@@ -232,7 +229,6 @@ bones/33/position = Vector3(4.16425e-11, 0.274047, 0)
 bones/34/position = Vector3(1.28386e-07, 0.276145, 1.54924e-07)
 bones/35/position = Vector3(0.0300297, 0.0378881, 0.0216715)
 bones/35/rotation = Quaternion(0.251895, 0.0594643, -0.221923, 0.940087)
-bones/35/scale = Vector3(1, 1, 1)
 bones/36/position = Vector3(-1.21431e-17, 0.0474497, -8.88178e-16)
 bones/37/position = Vector3(-1.94983e-15, 0.0438214, -4.06342e-14)
 bones/37/rotation = Quaternion(-1.11192e-16, -5.51706e-17, 0, 1)
@@ -264,10 +260,14 @@ bones/61/position = Vector3(9.71445e-17, 0.405994, 2.67147e-16)
 bones/62/position = Vector3(-2.91434e-16, 0.42099, -6.245e-16)
 bones/63/position = Vector3(1.38778e-17, 0.157216, 1.38778e-17)
 
-[node name="Alpha_Surface" parent="SubViewportContainer/SubViewport/Player/Idle/Skeleton3D" index="0"]
+[node name="Arrow" parent="SubViewportContainer/SubViewport/Player/Idle/Skeleton3D" index="0"]
+transform = Transform3D(1.5358, -8.38786, -5.22352, 5.81256, 5.04179, -6.38705, 7.99095, -2.05528, 5.64982, -0.105791, 0.826779, -0.0391945)
+bone_idx = 55
+
+[node name="Alpha_Surface" parent="SubViewportContainer/SubViewport/Player/Idle/Skeleton3D" index="1"]
 mesh = SubResource("ArrayMesh_bp2iv")
 
-[node name="Alpha_Joints" parent="SubViewportContainer/SubViewport/Player/Idle/Skeleton3D" index="1"]
+[node name="Alpha_Joints" parent="SubViewportContainer/SubViewport/Player/Idle/Skeleton3D" index="2"]
 mesh = SubResource("ArrayMesh_1x7v8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://uo4qsemqc76j"
-path="res://.godot/imported/StoneFloor.fbx-6529fc1fad0b051205e2041acb778fbe.scn"
+path="res://.godot/imported/stoneFloor.fbx-fde60d0f8f06dcab44d86d63addd1718.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneFloor.fbx"
-dest_files=["res://.godot/imported/StoneFloor.fbx-6529fc1fad0b051205e2041acb778fbe.scn"]
+source_file="res://Environment/Models/stoneFloor.fbx"
+dest_files=["res://.godot/imported/stoneFloor.fbx-fde60d0f8f06dcab44d86d63addd1718.scn"]
 
 [params]
 

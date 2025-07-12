@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b76tbs2pco6n"
-path="res://.godot/imported/stoneDoorWayOpening.fbx-7816267dcfab6b05c0768fb40c9ae15d.scn"
+uid="uid://ib8owxp88p16"
+path="res://.godot/imported/stoneConnectedFloorCeiling.fbx-57ada4fd5bcc23c769b9e4861eea5917.scn"
 
 [deps]
 
-source_file="res://Environment/Models/stoneDoorWayOpening.fbx"
-dest_files=["res://.godot/imported/stoneDoorWayOpening.fbx-7816267dcfab6b05c0768fb40c9ae15d.scn"]
+source_file="res://Environment/Models/stoneConnectedFloorCeiling.fbx"
+dest_files=["res://.godot/imported/stoneConnectedFloorCeiling.fbx-57ada4fd5bcc23c769b9e4861eea5917.scn"]
 
 [params]
 
@@ -34,7 +34,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"architectureBasic_Mat": {
+"ArchitectureBasic_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://ducihyrqk73pc"
 }

@@ -2,4 +2,6 @@
 .godot/
 /android/
 *.translation
+.vscode/
+*.tmp
 

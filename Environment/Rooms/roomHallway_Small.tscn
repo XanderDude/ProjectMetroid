@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="1_oo6ox"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_wlbv0"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/StoneCeiling.fbx" id="2_hegf4"]
-[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/StoneFloor.fbx" id="2_ujff6"]
+[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/Models/stoneFloor.fbx" id="2_ujff6"]
 [ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/StoneWall.fbx" id="3_wlbv0"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Props/architectureBasic_mat.tres" id="4_fm40f"]
 
