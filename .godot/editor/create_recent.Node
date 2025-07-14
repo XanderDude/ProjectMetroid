@@ -1,9 +1,9 @@
-OmniLight3D
 Node3D
+CollisionShape3D
+CSGBox3D
+OmniLight3D
 LightmapGI
 VoxelGI
-CSGBox3D
-CollisionShape3D
 CSGPolygon3D
 SubViewport
 SubViewportContainer

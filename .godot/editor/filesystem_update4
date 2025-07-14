@@ -1,6 +1,5 @@
 res://Environment/Scenes/TexturesAndLighting.tscn
 res://Environment/Lighting/mainEnvLighting.tres
-res://Environment/Shaders/ps1PostProcess.gdshader
 res://Environment/Shaders/ps1Jitter.gdshader
 res://Environment/Shaders/jitterTestShader_mat.tres
 res://Environment/Props/architectureBasic_mat.tres

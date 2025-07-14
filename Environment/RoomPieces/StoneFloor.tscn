@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://di04tvelmmab5"]
+
+[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/Models/stoneFloor.fbx" id="1_auao5"]
+
+[node name="StoneFloor" instance=ExtResource("1_auao5")]
+
+[node name="stoneFloor" parent="ArchitectureBasic/StoneFloor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.86535e-14, 0)

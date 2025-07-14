@@ -5,7 +5,7 @@ using Godot.Collections;
 public partial class PlayAnimation : AnimationPlayer
 {
 	private AnimationPlayer anim;
-	public String idleAnim = "mixamo_com";
+	public String idleAnim = "Take 001";
 
 	public override void _Ready()
 	{
