@@ -103,8 +103,8 @@ public partial class Player : CharacterBody3D
 		
 		playerMesh.RotationDegrees = new Vector3(0, 0, 90);
 		if (slideEnter) { 
-		if (velocity.X > 0) velocity.X = groundMaxSpeed + 7.0f;
-		else if (velocity.X <= 0) { velocity.X = -groundMaxSpeed - 7.0f; }
+		if (velocity.X > 0) velocity.X = groundMaxSpeed + 6.0f;
+		else if (velocity.X <= 0) { velocity.X = -groundMaxSpeed - 6.0f; }
 		slideEnter = false;
 		}
 		if (velocity.X > 0.1f) velocity.X -= groundDeacceleration * (float)delta * 2;
