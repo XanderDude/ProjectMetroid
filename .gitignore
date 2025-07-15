@@ -23,3 +23,7 @@ mono_crash.*.json
 .godot/mono/temp/obj/Debug/ProjectMetroid.sourcelink.json
 .godot/mono/temp/obj/Debug/ref/ProjectMetroid.dll
 .godot/mono/temp/obj/Debug/refint/ProjectMetroid.dll
+
+# Maya-specific files
+/Environment/Materials/.mayaSwatches
+*.swatch
