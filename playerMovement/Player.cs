@@ -32,9 +32,9 @@ public partial class Player : CharacterBody3D
 	[Export] public float jumpInitSpeed = 1.0f;
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpMaxSpeed = 5.0f;
- 	 [Export] public float jumpVelocity = 8.0f;
+ 	 [Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpGravity = 9.8f;
-	[Export] public float jumpMaxHeight = 0.28f;
+	[Export] public float jumpMaxHeight = 0.17f;
 	public float jumpHeight = 0.0f;
 	
 
