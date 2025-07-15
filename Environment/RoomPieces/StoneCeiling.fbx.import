@@ -34,14 +34,9 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"architectureBasic_Mat": {
+"ArchitectureBasic_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://ducihyrqk73pc"
-}
-},
-"nodes": {
-"PATH:ArchitectureBasic/StoneCeiling/stoneCeiling": {
-"mesh_instance/cast_shadow": 2
 }
 }
 }

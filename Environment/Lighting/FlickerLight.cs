@@ -35,7 +35,7 @@ public partial class FlickerLight : OmniLight3D
 
         if (dimTimer >= flickerSpeed) //flicker is over
         {
-            GD.Print("Stop Dimming");
+            //GD.Print("Stop Dimming");
             dimTimer = -1; //stop dim timer
             delayTimer = 0; //start timer between flickers
             light.LightEnergy = defaultEnergy;//set light back to default
@@ -43,7 +43,7 @@ public partial class FlickerLight : OmniLight3D
         }
         else if (delayTimer >= flickerDelay) //start flicker
         {
-            GD.Print("Dimming");
+            //GD.Print("Dimming");
             delayTimer = -1; //stop timer between flickers
             dimTimer = 0; //dim timer starts
             light.LightEnergy = defaultEnergy - .1f; //dim light (begin flicker)

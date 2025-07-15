@@ -1,0 +1,60 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bff2odl55lq7e"
+path="res://.godot/imported/woodConnectedFloorCeiling.fbx-13cce62bdb7b7a12ad532afb455f2798.scn"
+
+[deps]
+
+source_file="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx"
+dest_files=["res://.godot/imported/woodConnectedFloorCeiling.fbx-13cce62bdb7b7a12ad532afb455f2798.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"WoodArchitecture_Mat": {
+"use_external/enabled": true,
+"use_external/path": "uid://b1lgdapp043ee"
+}
+},
+"meshes": {
+"collider": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:WoodInterior/woodConnectedFloorCeiling/collider": {
+"mesh_instance/layers": 0
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

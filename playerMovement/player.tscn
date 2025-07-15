@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=5 format=3 uid="uid://by3fw2kh7ot1a"]
 
 [ext_resource type="Script" uid="uid://dwnfdc3waco3y" path="res://playerMovement/Player.cs" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://playerMovement/MovementStateMachine.cs" id="2_bxhvo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
@@ -9,6 +10,8 @@ radius = 0.262883
 height = 1.69778
 
 [node name="Player" type="CharacterBody3D"]
+floor_max_angle = 0.872665
+floor_snap_length = 0.3
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -16,3 +19,8 @@ mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="movement_state_machine" type="Node" parent="."]
+script = ExtResource("2_bxhvo")
+
+[node name="grounded" type="Node" parent="movement_state_machine"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx6inaiw5kq1u"]
 
-[ext_resource type="PackedScene" uid="uid://b76tbs2pco6n" path="res://Environment/Models/stoneDoorWayOpening.fbx" id="1_1c3po"]
+[ext_resource type="PackedScene" uid="uid://b76tbs2pco6n" path="res://Environment/RoomPieces/Models/stoneDoorWayOpening.fbx" id="1_1c3po"]
 [ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/StoneWall.fbx" id="2_wdekh"]
 
 
