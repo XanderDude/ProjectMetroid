@@ -1,4 +1,0 @@
-StandardMaterial3D
-Shader
-ShaderMaterial
-ImageTexture
