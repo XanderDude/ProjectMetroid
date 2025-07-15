@@ -55,6 +55,8 @@ public partial class Player : CharacterBody3D
 	}
 	
 	private void jumpState(double delta, ref Vector3 velocity) {
+		if (velocity.X > jumpMaxSpeed) velocity.X = jumpMaxSpeed;
+		if (velocity.X < -jumpMaxSpeed) velocity.X = -jumpMaxSpeed;
 		playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 		velocity.Y -= jumpGravity * (float)delta;
 		
@@ -64,7 +66,7 @@ public partial class Player : CharacterBody3D
 			}
 		
 		if (isAscending(delta, ref velocity)) {
-		
+			
 			if (Input.IsKeyPressed(Key.Left)) {
 				if (velocity.X > -jumpMaxSpeed) velocity.X -= (jumpAcceleration) * (float)delta; 
 			}
@@ -106,7 +108,8 @@ public partial class Player : CharacterBody3D
 	[Export] public float slideMaxSpeed = 12.0f;
 	private bool slideEnter = false;
 	private void slideState(double delta, ref Vector3 velocity) {
-		
+		if (velocity.X > slideMaxSpeed) velocity.X = slideMaxSpeed;
+		if (velocity.X < -slideMaxSpeed) velocity.X = -slideMaxSpeed;
 		playerMesh.RotationDegrees = new Vector3(0, 0, 90);
 		if (slideEnter) { 
 		if (velocity.X > 0) velocity.X = slideMaxSpeed;
