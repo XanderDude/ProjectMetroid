@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=42 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Rooms/roomHallway_Small.tscn" id="14_8okvn"]
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="16_alqiq"]
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="17_f1y8r"]
+[ext_resource type="Texture2D" uid="uid://do8sobgqmye3g" path="res://Environment/Materials/MeasurementBox.jpg" id="19_f1y8r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -334,6 +335,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0i60c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tx1l"]
+albedo_texture = ExtResource("19_f1y8r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc1it"]
+albedo_color = Color(0.733022, 0, 0, 1)
 
 [node name="TexturesAndLighting" type="Node3D"]
 
@@ -1619,6 +1626,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("17_f1y8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
 
+[node name="StoneConnectedFloorCeiling9" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, -1)
+
+[node name="StoneConnectedFloorCeiling10" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3, -1)
+
+[node name="StoneConnectedFloorCeiling11" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 3.5, -1)
+
 [node name="BG" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
@@ -1652,8 +1668,122 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -25, 0)
 material_override = ExtResource("11_vlgid")
 size = Vector3(10, 50, 10)
 
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0.5, -1)
+material_override = SubResource("StandardMaterial3D_4tx1l")
+material = SubResource("StandardMaterial3D_kc1it")
+
 [editable path="SubViewportContainer/SubViewport/Environment/Player"]
 [editable path="SubViewportContainer/SubViewport/Environment/Player/Idle"]
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic"]
 [editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/FloorGroup/PropsBasic2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall4"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall8"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall10"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall11"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall13"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall23"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall25"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall16"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall17"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall19"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall20"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall22"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall4"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall31"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall32"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall33"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall39"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall40"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall46"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall47"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall7"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall8"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall9"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall10"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall11"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall12"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall13"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall15"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall16"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall17"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall18"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall19"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall20"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall21"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall22"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall23"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall24"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall25"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall26"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall27"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall28"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall29"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall30"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall34"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall35"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall41"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall48"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall36"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall37"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall38"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall42"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall43"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall44"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall45"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/Decorations/PropsBasic"]
