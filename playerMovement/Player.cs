@@ -35,7 +35,7 @@ public partial class Player : CharacterBody3D
 	[Export] public float jumpMaxSpeed = 5.0f;
  	 [Export] public float jumpVelocity = 5.0f;
 	[Export] public float jumpGravity = 9.8f;
-	[Export] public float jumpMaxHeight = 0.35f;
+	[Export] public float jumpMaxHeight = 0.45f;
 	public float jumpHeight = 0.0f;
 	
 
@@ -55,23 +55,24 @@ public partial class Player : CharacterBody3D
 	}
 	
 	private void jumpState(double delta, ref Vector3 velocity) {
+		
 		if (velocity.X > jumpMaxSpeed) velocity.X = jumpMaxSpeed;
 		if (velocity.X < -jumpMaxSpeed) velocity.X = -jumpMaxSpeed;
 		playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 		velocity.Y -= jumpGravity * (float)delta;
 		
-		if (Input.IsKeyPressed(Key.Down)) {
+		/*if (Input.IsKeyPressed(Key.Down)) {
 				velocity.Y -= (jumpGravity * 4) * (float)delta;
 				
 			}
-		
+		*/
 		if (isAscending(delta, ref velocity)) {
 			
 			if (Input.IsKeyPressed(Key.Left)) {
-				if (velocity.X > -jumpMaxSpeed) velocity.X -= (jumpAcceleration) * (float)delta; 
+				velocity.X = -jumpMaxSpeed; 
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				if (velocity.X < jumpMaxSpeed) velocity.X += (jumpAcceleration) * (float)delta; 
+				velocity.X = jumpMaxSpeed ;
 			}
 			else { 
 				if ( velocity.X > 0.3f) velocity.X -= 1.0f;
@@ -82,11 +83,12 @@ public partial class Player : CharacterBody3D
 		
 		else {
 			slideEnter = true;
+			velocity.Y -= jumpGravity * 2.5f * (float)delta;
 			if (Input.IsKeyPressed(Key.Left)) {
-				if (velocity.X > -jumpMaxSpeed) velocity.X -= (jumpAcceleration) * (float)delta; 
+				velocity.X = -jumpMaxSpeed;
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				if (velocity.X < jumpMaxSpeed) velocity.X += (jumpAcceleration) * (float)delta; 
+				velocity .X = jumpMaxSpeed;
 			}
 			else { 
 				if ( velocity.X > 0.1f) velocity.X = 0.5f;

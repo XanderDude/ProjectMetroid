@@ -19,7 +19,7 @@ public partial class MovementStateMachine : Node
 				s.msm = this;
 				s.Ready();
 				s.Exit();
-			}
+			} 
 		}
 		
 		_currentState = GetNode<State>(initialState);
