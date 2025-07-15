@@ -23,9 +23,8 @@ public partial class Player : CharacterBody3D
 				if (velocity.X <= groundMaxSpeed) velocity.X += (groundAcceleration) * (float)delta; 
 			}
 			else { 
-		  		if ( velocity.X > 0.1) velocity.X -= groundDeacceleration * (float)delta;
-				else if ( velocity.X < -0.1) velocity.X += groundDeacceleration * (float)delta;
-				else { velocity.X = 0; }
+		  		
+				velocity.X = 0; 
 			}
 		}
 	
@@ -53,6 +52,7 @@ public partial class Player : CharacterBody3D
 			return false;
 		}
 	}
+	
 	
 	private void jumpState(double delta, ref Vector3 velocity) {
 		
