@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjectMetroid")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdbf5eafb179c9123b5ee1e8d98af19cc5d57fcf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d147d2c520d22c34b250a206abb04f0b246e3eff")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjectMetroid")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjectMetroid")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
