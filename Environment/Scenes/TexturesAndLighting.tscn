@@ -1637,6 +1637,21 @@ transform = Transform3D(0.707107, -1.69706, 0, 0.707107, 1.69706, 0, 0, 0, 1, -4
 use_collision = true
 mesh = SubResource("BoxMesh_f1y8r")
 
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0.707107, -1.69706, 0, 0.707107, 1.69706, 0, 0, 0, 1, 17.8986, 0.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0, -2.4, 0, 1, 0, 0, 0, 0, 1, 16.2015, 1.19706, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0.707107, -1.69706, 0, 0.707107, 1.69706, 0, 0, 0, 1, 15.3705, 1.64975, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
 [node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("14_8okvn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
@@ -1738,6 +1753,8 @@ material = SubResource("StandardMaterial3D_kc1it")
 
 [editable path="SubViewportContainer/SubViewport/Environment/Player"]
 [editable path="SubViewportContainer/SubViewport/Environment/Player/Idle"]
+[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Decorations/PropsBasic"]
 [editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/LowLightTestRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]
