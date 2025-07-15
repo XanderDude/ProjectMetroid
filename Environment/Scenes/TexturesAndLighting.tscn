@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=43 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
@@ -335,6 +335,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0i60c")
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1y8r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tx1l"]
 albedo_texture = ExtResource("19_f1y8r")
@@ -1620,11 +1622,32 @@ omni_range = 7.352
 omni_attenuation = 0.346
 script = ExtResource("16_alqiq")
 
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0.707107, -1.69706, 0, 0.707107, 1.69706, 0, 0, 0, 1, -1.979, 0.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0, -2.4, 0, 1, 0, 0, 0, 0, 1, -3.67606, 1.19706, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/Environment/LowLightTestRoom"]
+transform = Transform3D(0.707107, -1.69706, 0, 0.707107, 1.69706, 0, 0, 0, 1, -4.50712, 1.64975, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_f1y8r")
+
 [node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("14_8okvn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("17_f1y8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
+
+[node name="GroundCollisionPlane2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.4333, -8.73584, -1.5)
+use_collision = true
+size = Vector3(35, 17.4717, 5)
+material = ExtResource("11_vlgid")
 
 [node name="StoneConnectedFloorCeiling9" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, -1)
