@@ -17,10 +17,10 @@ public partial class Player : CharacterBody3D
 			
 			playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 			if (Input.IsKeyPressed(Key.Left)) {
-				if (velocity.X > -groundMaxSpeed) velocity.X -= groundAcceleration * (float)delta; 
+				if (velocity.X > -groundMaxSpeed) velocity.X -= (groundAcceleration) * (float)delta; 
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				if (velocity.X <= groundMaxSpeed) velocity.X += groundAcceleration * (float)delta; 
+				if (velocity.X <= groundMaxSpeed) velocity.X += (groundAcceleration) * (float)delta; 
 			}
 			else { 
 		  		if ( velocity.X > 0.1) velocity.X -= groundDeacceleration * (float)delta;
@@ -31,18 +31,14 @@ public partial class Player : CharacterBody3D
 	
 	[ExportSubgroup("Jump State")]
 	[Export] public float jumpInitSpeed = 1.0f;
-	[Export] public float jumpAcceleration = 3.0f;
+	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpMaxSpeed = 5.0f;
  	 [Export] public float jumpVelocity = 5.0f;
 	[Export] public float jumpGravity = 9.8f;
 	[Export] public float jumpMaxHeight = 0.35f;
 	public float jumpHeight = 0.0f;
 	
-	private void diveState(double delta, ref Vector3 velocity) {
-		
-		
-		
-	}
+
 	
 	
 	private bool isAscending(double delta, ref Vector3 velocity) {
@@ -70,10 +66,10 @@ public partial class Player : CharacterBody3D
 		if (isAscending(delta, ref velocity)) {
 		
 			if (Input.IsKeyPressed(Key.Left)) {
-				velocity.X = -jumpMaxSpeed;
+				if (velocity.X > -jumpMaxSpeed) velocity.X -= (jumpAcceleration) * (float)delta; 
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				velocity.X = jumpMaxSpeed;
+				if (velocity.X < jumpMaxSpeed) velocity.X += (jumpAcceleration) * (float)delta; 
 			}
 			else { 
 				if ( velocity.X > 0.3f) velocity.X -= 1.0f;
@@ -83,12 +79,12 @@ public partial class Player : CharacterBody3D
 		}
 		
 		else {
-			
+			slideEnter = true;
 			if (Input.IsKeyPressed(Key.Left)) {
-				velocity.X = -jumpMaxSpeed;
+				if (velocity.X > -jumpMaxSpeed) velocity.X -= (jumpAcceleration) * (float)delta; 
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				velocity.X = jumpMaxSpeed ;
+				if (velocity.X < jumpMaxSpeed) velocity.X += (jumpAcceleration) * (float)delta; 
 			}
 			else { 
 				if ( velocity.X > 0.1f) velocity.X = 0.5f;
@@ -107,18 +103,19 @@ public partial class Player : CharacterBody3D
 		
 	}
 	
-	
-	private bool slideEnter = true;
+	[Export] public float slideMaxSpeed = 12.0f;
+	private bool slideEnter = false;
 	private void slideState(double delta, ref Vector3 velocity) {
 		
 		playerMesh.RotationDegrees = new Vector3(0, 0, 90);
 		if (slideEnter) { 
-		if (velocity.X > 0) velocity.X = groundMaxSpeed + 6.0f;
-		else if (velocity.X <= 0) { velocity.X = -groundMaxSpeed - 6.0f; }
+		if (velocity.X > 0) velocity.X = slideMaxSpeed;
+		else if (velocity.X <  0) { velocity.X = -slideMaxSpeed; }
+		else { velocity.X = 0; }
 		slideEnter = false;
 		}
-		if (velocity.X > 0.1f) velocity.X -= groundDeacceleration * (float)delta * 2;
-		else if ( velocity.X < -0.1f) velocity.X += groundDeacceleration * (float)delta * 2;
+		if (velocity.X > 0.1f) velocity.X -= groundDeacceleration * (float)delta;
+		else if ( velocity.X < -0.1f) velocity.X += groundDeacceleration * (float)delta;
 		else { velocity.X = 0; }
 		
 	}
@@ -130,10 +127,11 @@ public partial class Player : CharacterBody3D
 		//GD.Print("velocity.Y " + velocity.Y);
 	 	
 	if (IsOnFloor() && !Input.IsKeyPressed(Key.Down)) {
+		slideEnter = false;
 		groundedState(delta, ref velocity);
 	}
 	else if (!IsOnFloor()) {
-		slideEnter = true;
+		
 		jumpState(delta, ref velocity);
 	}
 	if (Input.IsKeyPressed(Key.Space) && IsOnFloor()) { 
@@ -145,9 +143,6 @@ public partial class Player : CharacterBody3D
 		slideState(delta, ref velocity);
 	}
 	
-	if (!IsOnFloor() && Input.IsKeyPressed(Key.Shift)) {
-		diveState(delta, ref velocity);
-	}
 	
 	Velocity = velocity;
 	MoveAndSlide();

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b76tbs2pco6n"
-path="res://.godot/imported/stoneDoorWayOpening.fbx-7816267dcfab6b05c0768fb40c9ae15d.scn"
+path="res://.godot/imported/StoneDoorWayOpening.fbx-52971688bdc15a2d1527374fc4296613.scn"
 
 [deps]
 
-source_file="res://Environment/Models/stoneDoorWayOpening.fbx"
-dest_files=["res://.godot/imported/stoneDoorWayOpening.fbx-7816267dcfab6b05c0768fb40c9ae15d.scn"]
+source_file="res://Environment/Models/StoneDoorWayOpening.fbx"
+dest_files=["res://.godot/imported/StoneDoorWayOpening.fbx-52971688bdc15a2d1527374fc4296613.scn"]
 
 [params]
 

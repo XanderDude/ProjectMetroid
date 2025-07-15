@@ -9,6 +9,8 @@ radius = 0.262883
 height = 1.69778
 
 [node name="Player" type="CharacterBody3D"]
+floor_max_angle = 0.872665
+floor_snap_length = 0.3
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
