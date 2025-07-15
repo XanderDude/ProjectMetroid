@@ -1,11 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://bpdtxa4qxfht3"]
+[gd_scene load_steps=16 format=4 uid="uid://bpdtxa4qxfht3"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/StoneDoorWay.tscn" id="1_oo6ox"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_wlbv0"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/StoneCeiling.fbx" id="2_hegf4"]
-[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/Models/stoneFloor.fbx" id="2_ujff6"]
+[ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="2_ujff6"]
 [ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/StoneWall.fbx" id="3_wlbv0"]
-[ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Props/architectureBasic_mat.tres" id="4_fm40f"]
+[ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="4_fm40f"]
+[ext_resource type="PackedScene" uid="uid://ib8owxp88p16" path="res://Environment/RoomPieces/Models/stoneConnectedFloorCeiling.fbx" id="4_ppqkt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l2why"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xgeom"]
 _surfaces = [{
@@ -117,16 +123,15 @@ calculate_tangents = false
 use_collision = true
 size = Vector3(8, 0.5, 6)
 
-[node name="CeilingCol" type="CSGBox3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
-material_override = ExtResource("1_wlbv0")
+[node name="CeilingCollider" type="MeshInstance3D" parent="Interactable"]
+transform = Transform3D(8, 0, 0, 0, 0.5, 0, 0, 0, 6, 0, 3.75, 0)
 transparency = 1.0
-size = Vector3(8, 0.1, 6)
+mesh = SubResource("BoxMesh_wlbv0")
 
-[node name="BackWallCol" type="CSGBox3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.25, -2.25)
-visible = false
-size = Vector3(20, 0.5, 5.5)
+[node name="StaticBody3D" type="StaticBody3D" parent="Interactable/CeilingCollider"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable/CeilingCollider/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_l2why")
 
 [node name="Wall_DoorWay" parent="Interactable" instance=ExtResource("1_oo6ox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
@@ -134,48 +139,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_oo6ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0)
 
-[node name="Ceiling" type="Node3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+[node name="StoneCeiling" type="Node3D" parent="Interactable"]
 
-[node name="StoneCeiling" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="StoneCeiling" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -1)
 
-[node name="StoneCeiling2" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+[node name="StoneCeiling2" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -1)
 
-[node name="StoneCeiling3" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+[node name="StoneCeiling3" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -1)
 
-[node name="StoneCeiling4" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -2)
+[node name="StoneCeiling4" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -3)
 
-[node name="StoneCeiling5" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
+[node name="StoneCeiling5" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -3)
 
-[node name="StoneCeiling6" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+[node name="StoneCeiling6" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -3)
 
-[node name="StoneCeiling7" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
+[node name="StoneCeiling7" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -3)
 
-[node name="StoneCeiling8" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+[node name="StoneCeiling8" parent="Interactable/StoneCeiling" instance=ExtResource("2_hegf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -1)
 
-[node name="StoneCeiling9" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+[node name="stoneConnectedFloorCeiling" parent="Interactable/StoneCeiling" instance=ExtResource("4_ppqkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 1)
 
-[node name="StoneCeiling10" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
+[node name="stoneConnectedFloorCeiling2" parent="Interactable/StoneCeiling" instance=ExtResource("4_ppqkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 1)
 
-[node name="StoneCeiling11" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 2)
+[node name="stoneConnectedFloorCeiling3" parent="Interactable/StoneCeiling" instance=ExtResource("4_ppqkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
 
-[node name="StoneCeiling12" parent="Interactable/Ceiling" instance=ExtResource("2_hegf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 2)
-
-[node name="stoneCeiling" parent="Interactable/Ceiling/StoneCeiling12/ArchitectureBasic/StoneCeiling" index="0"]
-cast_shadow = 1
-extra_cull_margin = 0.1
+[node name="stoneConnectedFloorCeiling4" parent="Interactable/StoneCeiling" instance=ExtResource("4_ppqkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, 1)
 
 [node name="StoneWall" parent="Interactable" instance=ExtResource("3_wlbv0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -2)
@@ -316,45 +316,44 @@ visible = false
 mesh = SubResource("ArrayMesh_ip3ox")
 skeleton = NodePath("")
 
-[node name="Floor2" type="Node3D" parent="Interactable"]
+[node name="StoneFloor" type="Node3D" parent="Interactable"]
 
-[node name="StoneFloor" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
-[node name="StoneFloor3" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor3" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
-[node name="StoneFloor4" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor4" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 
-[node name="StoneFloor5" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor5" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 
-[node name="StoneFloor6" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor6" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
-[node name="StoneFloor7" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor7" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="StoneFloor8" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor8" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 
-[node name="StoneFloor9" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor9" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="StoneFloor10" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor10" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="StoneFloor11" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor11" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
-[node name="StoneFloor12" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor12" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 
-[node name="StoneFloor2" parent="Interactable/Floor2" instance=ExtResource("2_ujff6")]
+[node name="StoneFloor2" parent="Interactable/StoneFloor" instance=ExtResource("2_ujff6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
 [node name="Cosmetic" type="Node3D" parent="."]
 
-[editable path="Interactable/Ceiling/StoneCeiling12"]
 [editable path="Interactable/StoneWall"]

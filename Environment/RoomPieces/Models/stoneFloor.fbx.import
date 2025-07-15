@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmdsxcfsomcpt"
-path="res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"
+uid="uid://uo4qsemqc76j"
+path="res://.godot/imported/stoneFloor.fbx-e2e8f1307768a4a9465531ed2b397fcf.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneCeiling.fbx"
-dest_files=["res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"]
+source_file="res://Environment/RoomPieces/Models/stoneFloor.fbx"
+dest_files=["res://.godot/imported/stoneFloor.fbx-e2e8f1307768a4a9465531ed2b397fcf.scn"]
 
 [params]
 
@@ -34,9 +34,24 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"ArchitectureBasic_Mat": {
+"architectureBasic_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://ducihyrqk73pc"
+}
+},
+"meshes": {
+"stoneFloor": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
+"generate/shadow_meshes": 1,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:ArchitectureBasic/StoneFloor/stoneFloor": {
+"mesh_instance/cast_shadow": 2
 }
 }
 }

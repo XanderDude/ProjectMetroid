@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmdsxcfsomcpt"
-path="res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"
+uid="uid://lrx0mqv6670s"
+path="res://.godot/imported/StonePlatformEdge.fbx-215628df5ac31205897976578f4a22ab.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneCeiling.fbx"
-dest_files=["res://.godot/imported/StoneCeiling.fbx-3417161709ad5e4f34b716abe62daef1.scn"]
+source_file="res://Environment/RoomPieces/StonePlatformEdge.fbx"
+dest_files=["res://.godot/imported/StonePlatformEdge.fbx-215628df5ac31205897976578f4a22ab.scn"]
 
 [params]
 

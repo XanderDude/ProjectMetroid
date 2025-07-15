@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ib8owxp88p16"
-path="res://.godot/imported/stoneConnectedFloorCeiling.fbx-57ada4fd5bcc23c769b9e4861eea5917.scn"
+path="res://.godot/imported/stoneConnectedFloorCeiling.fbx-d928b7a5be6517036fae08b7ecd296dd.scn"
 
 [deps]
 
-source_file="res://Environment/Models/stoneConnectedFloorCeiling.fbx"
-dest_files=["res://.godot/imported/stoneConnectedFloorCeiling.fbx-57ada4fd5bcc23c769b9e4861eea5917.scn"]
+source_file="res://Environment/RoomPieces/Models/stoneConnectedFloorCeiling.fbx"
+dest_files=["res://.godot/imported/stoneConnectedFloorCeiling.fbx-d928b7a5be6517036fae08b7ecd296dd.scn"]
 
 [params]
 
@@ -37,6 +37,21 @@ _subresources={
 "ArchitectureBasic_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://ducihyrqk73pc"
+}
+},
+"meshes": {
+"collider": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:StoneInterior/StonePlatformFull/collider": {
+"mesh_instance/layers": 0
 }
 }
 }
