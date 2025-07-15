@@ -17,10 +17,10 @@ public partial class Player : CharacterBody3D
 			
 			playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 			if (Input.IsKeyPressed(Key.Left)) {
-				if (velocity.X > -groundMaxSpeed) velocity.X -= (groundAcceleration) * (float)delta; 
+				velocity.X = -groundMaxSpeed;
 			}
 			else if (Input.IsKeyPressed(Key.Right)) {
-				if (velocity.X <= groundMaxSpeed) velocity.X += (groundAcceleration) * (float)delta; 
+				velocity.X = groundMaxSpeed;
 			}
 			else { 
 		  		
@@ -35,7 +35,7 @@ public partial class Player : CharacterBody3D
  	 [Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpGravity = 9.8f;
 	[Export] public float jumpMaxHeight = 0.17f;
-	public float jumpHeight = 0.0f;
+	 public float jumpHeight = 0.0f;
 	
 
 	
