@@ -9,7 +9,3 @@ res://Environment/Scenes/TexturesAndLighting.tscn
 res://playerMovement/Player.cs
 res://Environment/Models/PlayAnimation.cs
 res://Label.cs
-res://Environment/RoomPieces/StoneDoorWay.tscn
-res://Environment/Props/CandleTriple_Light.tscn
-res://Environment/RoomPieces/StoneConnectedFloorCeiling.tscn
-res://Environment/RoomPieces/StoneFloor.tscn
