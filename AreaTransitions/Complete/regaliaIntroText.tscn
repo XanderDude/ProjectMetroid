@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://dthh4s6ec6yvo"]
+
+[ext_resource type="Script" uid="uid://cwx1ob814lk66" path="res://Environment/Scenes/Area3d.cs" id="1_2g172"]
+[ext_resource type="Script" uid="uid://0f6grmjeg0a2" path="res://Environment/Scenes/CollisionShape3d.cs" id="2_ifmav"]
+[ext_resource type="Texture2D" uid="uid://b15c2gafyddj7" path="res://AreaTransitions/Text/RegaliaText.png" id="3_c8mjn"]
+[ext_resource type="Script" uid="uid://v8n8025l2v6n" path="res://Environment/Scenes/TextureRect.cs" id="4_s6sus"]
+[ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="5_emdfj"]
+[ext_resource type="Script" uid="uid://dgxhvtyilwl0c" path="res://Environment/Scenes/AudioStreamPlayer.cs" id="6_clpie"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0huq"]
+
+[sub_resource type="Animation" id="Animation_6d3tk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n0huq"]
+resource_name = "fade_in_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.1, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fixg"]
+_data = {
+&"RESET": SubResource("Animation_6d3tk"),
+&"fade_in_out": SubResource("Animation_n0huq")
+}
+
+[node name="AreaTextandMusic" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_2g172")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 2, 5.5, 1, 0)
+shape = SubResource("BoxShape3D_n0huq")
+script = ExtResource("2_ifmav")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -91.0
+offset_right = 104.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c8mjn")
+expand_mode = 1
+script = ExtResource("4_s6sus")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("5_emdfj")
+script = ExtResource("6_clpie")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_0fixg")
+}
+
+[connection signal="body_entered" from="Area3D" to="CanvasLayer/TextureRect" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="CanvasLayer/AudioStreamPlayer" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="CanvasLayer/TextureRect" method="_on_area_3d_body_exited"]

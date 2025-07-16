@@ -11,7 +11,6 @@ public partial class Player : CharacterBody3D
 	[Export] public float groundDeacceleration = 15.0f;
 	
 	private void groundedState(double delta, ref Vector3 velocity) {
-		
 			if (velocity.X > groundMaxSpeed) velocity.X = groundMaxSpeed;
 			else if (velocity.X < -groundMaxSpeed) velocity.X = -groundMaxSpeed;
 			
