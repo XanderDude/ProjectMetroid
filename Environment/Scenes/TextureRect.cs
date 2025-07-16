@@ -10,7 +10,7 @@ public partial class TextureRect : Godot.TextureRect
 	}
 	public void _on_area_3d_body_entered(Node3D body) {
 
-		if (body == GetNode<Node3D>("%Player")) {
+		if (body == GetNode<Node3D>("../../../Player")) {
 			 regaliaText.Play("fade_in_out");
 			
 		}
