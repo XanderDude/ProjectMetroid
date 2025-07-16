@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b15c2gafyddj7" path="res://RegaliaText.png" id="28_1crip"]
 [ext_resource type="Script" uid="uid://v8n8025l2v6n" path="res://Environment/Scenes/TextureRect.cs" id="29_c1sjx"]
 [ext_resource type="Script" uid="uid://du1qbtogkegu0" path="res://Environment/Scenes/Timer.cs" id="31_0fixg"]
-[ext_resource type="AudioStream" uid="uid://ewsdvgus2y47" path="res://Among us sound effect.mp3" id="31_6d3tk"]
+[ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://areasoundeffect.mp3" id="32_4qpb5"]
 [ext_resource type="Script" uid="uid://dgxhvtyilwl0c" path="res://Environment/Scenes/AudioStreamPlayer.cs" id="32_6d3tk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
@@ -2083,13 +2083,13 @@ expand_mode = 1
 script = ExtResource("29_c1sjx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AreaTextandMusic/CanvasLayer"]
-stream = ExtResource("31_6d3tk")
+stream = ExtResource("32_4qpb5")
 script = ExtResource("32_6d3tk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AreaTextandMusic/CanvasLayer"]
 
 [node name="Timer" type="Timer" parent="AreaTextandMusic"]
-wait_time = 3.0
+wait_time = 4.0
 autostart = true
 script = ExtResource("31_0fixg")
 
