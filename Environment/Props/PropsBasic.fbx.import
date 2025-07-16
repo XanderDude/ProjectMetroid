@@ -34,9 +34,51 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"PropsBasic_Material": {
+"PropsBasic_Mat": {
 "use_external/enabled": true,
-"use_external/path": "uid://cwp76vmvw1wlw"
+"use_external/path": "uid://8kxgx18h77cs"
+}
+},
+"meshes": {
+"Barrel": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Props/Models/propBarrel.res"
+},
+"BarrelWithRing": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Props/Models/propBarrel2.res"
+},
+"Box": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Props/Models/propCrate.res"
+},
+"Haybale": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Props/Models/propHaybale.res"
+},
+"Ladder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Props/Models/propLadder.res"
 }
 }
 }

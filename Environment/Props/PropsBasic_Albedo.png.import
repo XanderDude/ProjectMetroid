@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3nf4r1fvp6q"
-path.s3tc="res://.godot/imported/PropsBasic_Albedo.jpg-79595738a49db74eb1148f184691f535.s3tc.ctex"
+uid="uid://dtcfnkos37d0r"
+path.s3tc="res://.godot/imported/PropsBasic_Albedo.png-a8eb604c939493d5428f0474f7879bf8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Environment/Props/PropsBasic_Albedo.jpg"
-dest_files=["res://.godot/imported/PropsBasic_Albedo.jpg-79595738a49db74eb1148f184691f535.s3tc.ctex"]
+source_file="res://Environment/Props/PropsBasic_Albedo.png"
+dest_files=["res://.godot/imported/PropsBasic_Albedo.png-a8eb604c939493d5428f0474f7879bf8.s3tc.ctex"]
 
 [params]
 
@@ -24,7 +24,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
