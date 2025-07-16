@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=4 uid="uid://d1i66ayeg6n25"]
 
-[ext_resource type="PackedScene" uid="uid://lrx0mqv6670s" path="res://Environment/RoomPieces/StonePlatformEdge.fbx" id="1_ysmxu"]
+[ext_resource type="PackedScene" uid="uid://lrx0mqv6670s" path="res://Environment/RoomPieces/Stone/StonePlatformEdge.fbx" id="1_ysmxu"]
 [ext_resource type="PackedScene" uid="uid://ib8owxp88p16" path="res://Environment/RoomPieces/Models/stoneConnectedFloorCeiling.fbx" id="2_vg6uu"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="3_fnqy4"]
-[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/StoneFloor.tscn" id="4_cex5x"]
-[ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/StoneCeiling.fbx" id="5_w3uu2"]
+[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="4_cex5x"]
+[ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/Stone/StoneCeiling.fbx" id="5_w3uu2"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e2iv8"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)

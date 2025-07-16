@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://bi6oqvg3qqrev"]
 
-[ext_resource type="PackedScene" uid="uid://lrx0mqv6670s" path="res://Environment/RoomPieces/StonePlatformEdge.fbx" id="1_k2r5g"]
+[ext_resource type="PackedScene" uid="uid://lrx0mqv6670s" path="res://Environment/RoomPieces/Stone/StonePlatformEdge.fbx" id="1_k2r5g"]
 [ext_resource type="PackedScene" uid="uid://5pcwj76ej6yt" path="res://Environment/RoomPieces/Models/stoneConnectedFloorCeilingHalf.fbx" id="2_k2r5g"]
 [ext_resource type="PackedScene" uid="uid://4puyjy0xka7t" path="res://Environment/RoomPieces/Models/stoneFloorHalf.fbx" id="3_5gi5v"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="3_n1ea4"]

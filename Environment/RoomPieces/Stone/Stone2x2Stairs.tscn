@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxtejsd3feask"]
+
+[ext_resource type="PackedScene" uid="uid://w0cuv6tb5gcc" path="res://Environment/RoomPieces/Models/stoneStairs2x2.fbx" id="1_et65i"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdfn7"]
+points = PackedVector3Array(-0.000211, 2, 1, -0.000211, 2, -1, -0.152992, 2, 1, -0.000211, -7.62939e-08, 1, -0.000211, -7.62939e-08, -1, -0.152992, 2, -1, -2.15284, -7.62939e-08, 1, -2.15284, -7.62939e-08, -1)
+
+[node name="stoneStairs2x2" instance=ExtResource("1_et65i")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stoneStairs2x2/collider" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneStairs2x2/collider/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_jdfn7")

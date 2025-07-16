@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b8bdid4fmnh03"
-path="res://.godot/imported/StoneWindow.fbx-a06370218574f3c8553abcd3e0dfb32c.scn"
+uid="uid://w0cuv6tb5gcc"
+path="res://.godot/imported/stoneStairs2x2.fbx-b1b7f547baae63a2ff6978e5bfc00c76.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneWindow.fbx"
-dest_files=["res://.godot/imported/StoneWindow.fbx-a06370218574f3c8553abcd3e0dfb32c.scn"]
+source_file="res://Environment/RoomPieces/Models/stoneStairs2x2.fbx"
+dest_files=["res://.godot/imported/stoneStairs2x2.fbx-b1b7f547baae63a2ff6978e5bfc00c76.scn"]
 
 [params]
 
@@ -28,20 +28,20 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=false
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"architectureBasic_Mat": {
+"ArchitectureStone_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://ducihyrqk73pc"
 }
 },
 "nodes": {
-"PATH:ArchitectureBasic/StoneWindow/window": {
-"mesh_instance/cast_shadow": 2
+"PATH:stoneStairs2x2/collider": {
+"mesh_instance/layers": 0
 }
 }
 }

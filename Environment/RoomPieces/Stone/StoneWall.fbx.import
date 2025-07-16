@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://br0sukqymlrae"
-path="res://.godot/imported/StoneWall.fbx-f3aa573e04f8cea706452bd667c0c92d.scn"
+path="res://.godot/imported/StoneWall.fbx-b91ea2f96858578d93689d6273d13325.scn"
 
 [deps]
 
-source_file="res://Environment/RoomPieces/StoneWall.fbx"
-dest_files=["res://.godot/imported/StoneWall.fbx-f3aa573e04f8cea706452bd667c0c92d.scn"]
+source_file="res://Environment/RoomPieces/Stone/StoneWall.fbx"
+dest_files=["res://.godot/imported/StoneWall.fbx-b91ea2f96858578d93689d6273d13325.scn"]
 
 [params]
 
