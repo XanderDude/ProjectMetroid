@@ -1,10 +1,11 @@
-[gd_scene load_steps=58 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=59 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="Material" uid="uid://cwp76vmvw1wlw" path="res://Environment/Shaders/jitterTestShader_mat.tres" id="4_owwmw"]
+[ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://playerMovement/groundedState.cs" id="5_4qpb5"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="5_opqc5"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="5_q35ir"]
 [ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://playerMovement/player.tscn" id="6_2o7o6"]
@@ -441,8 +442,8 @@ visible = false
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Player" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.131832, 0)
 
-[node name="movement_state_machine" parent="SubViewportContainer/SubViewport/Environment/Player" index="2"]
-script = null
+[node name="grounded" parent="SubViewportContainer/SubViewport/Environment/Player/movement_state_machine" index="0"]
+script = ExtResource("5_4qpb5")
 
 [node name="Idle" parent="SubViewportContainer/SubViewport/Environment/Player" instance=ExtResource("7_l2ohs")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, 0)
@@ -2052,19 +2053,19 @@ transform = Transform3D(0.314572, 0, -0.949234, 0, 1, 0, 0.949234, 0, 0.314572, 
 [node name="doorRight" parent="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay/woodDoorway" index="4"]
 transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 0.799999, -0.001, 0.0999999)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="AreaTextandMusic" type="Node3D" parent="."]
 
-[node name="Area3D" type="Area3D" parent="Node3D"]
+[node name="Area3D" type="Area3D" parent="AreaTextandMusic"]
 script = ExtResource("27_1crip")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTextandMusic/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 2, 5.5, 1, 0)
 shape = SubResource("BoxShape3D_n0huq")
 script = ExtResource("27_c1sjx")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Node3D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="AreaTextandMusic"]
 
-[node name="TextureRect" type="TextureRect" parent="Node3D/CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="AreaTextandMusic/CanvasLayer"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -2081,21 +2082,21 @@ texture = ExtResource("28_1crip")
 expand_mode = 1
 script = ExtResource("29_c1sjx")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node3D/CanvasLayer"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AreaTextandMusic/CanvasLayer"]
 stream = ExtResource("31_6d3tk")
 script = ExtResource("32_6d3tk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/CanvasLayer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaTextandMusic/CanvasLayer"]
 
-[node name="Timer" type="Timer" parent="Node3D"]
+[node name="Timer" type="Timer" parent="AreaTextandMusic"]
 wait_time = 3.0
 autostart = true
 script = ExtResource("31_0fixg")
 
-[connection signal="body_entered" from="Node3D/Area3D" to="Node3D/CanvasLayer/TextureRect" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="Node3D/Area3D" to="Node3D/CanvasLayer/AudioStreamPlayer" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Node3D/Area3D" to="Node3D/CanvasLayer/TextureRect" method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="Node3D/Timer" to="Node3D/CanvasLayer/TextureRect" method="_on_timer_timeout"]
+[connection signal="body_entered" from="AreaTextandMusic/Area3D" to="AreaTextandMusic/CanvasLayer/TextureRect" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="AreaTextandMusic/Area3D" to="AreaTextandMusic/CanvasLayer/AudioStreamPlayer" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="AreaTextandMusic/Area3D" to="AreaTextandMusic/CanvasLayer/TextureRect" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="AreaTextandMusic/Timer" to="AreaTextandMusic/CanvasLayer/TextureRect" method="_on_timer_timeout"]
 
 [editable path="SubViewportContainer/SubViewport/Environment/Player"]
 [editable path="SubViewportContainer/SubViewport/Environment/Player/Idle"]
