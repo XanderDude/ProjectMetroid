@@ -579,7 +579,6 @@ skeleton = NodePath("")
 transform = Transform3D(-1.64203e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.999999, 1, 0)
 
 [node name="stonePillar1" parent="SideWallsAndFloors/PlatformGroup/StonePlatformEdge3/StoneWall/ArchitectureBasic/StoneWall" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 visible = false
 
 [node name="stonePillar2" parent="SideWallsAndFloors/PlatformGroup/StonePlatformEdge3/StoneWall/ArchitectureBasic/StoneWall" index="6"]

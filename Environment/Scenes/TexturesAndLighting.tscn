@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=58 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
@@ -25,7 +25,14 @@
 [ext_resource type="PackedScene" uid="uid://dbo60gtbhapjm" path="res://Environment/RoomPieces/Wood/woodWall.fbx" id="23_q155s"]
 [ext_resource type="PackedScene" uid="uid://bonnwsy0125i8" path="res://Environment/RoomPieces/Wood/woodWindow.fbx" id="24_cu406"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
+[ext_resource type="Script" uid="uid://cwx1ob814lk66" path="res://Environment/Scenes/Area3d.cs" id="27_1crip"]
+[ext_resource type="Script" uid="uid://0f6grmjeg0a2" path="res://Environment/Scenes/CollisionShape3d.cs" id="27_c1sjx"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
+[ext_resource type="Texture2D" uid="uid://b15c2gafyddj7" path="res://RegaliaText.png" id="28_1crip"]
+[ext_resource type="Script" uid="uid://v8n8025l2v6n" path="res://Environment/Scenes/TextureRect.cs" id="29_c1sjx"]
+[ext_resource type="Script" uid="uid://du1qbtogkegu0" path="res://Environment/Scenes/Timer.cs" id="31_0fixg"]
+[ext_resource type="AudioStream" uid="uid://ewsdvgus2y47" path="res://Among us sound effect.mp3" id="31_6d3tk"]
+[ext_resource type="Script" uid="uid://dgxhvtyilwl0c" path="res://Environment/Scenes/AudioStreamPlayer.cs" id="32_6d3tk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -378,6 +385,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u302v")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0huq"]
+
 [node name="TexturesAndLighting" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -422,6 +431,7 @@ data = SubResource("VoxelGIData_8g18c")
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Player" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_2o7o6")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 floor_constant_speed = true
 
@@ -2041,6 +2051,51 @@ transform = Transform3D(0.314572, 0, -0.949234, 0, 1, 0, 0.949234, 0, 0.314572, 
 
 [node name="doorRight" parent="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay/woodDoorway" index="4"]
 transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 0.799999, -0.001, 0.0999999)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Node3D"]
+script = ExtResource("27_1crip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 2, 5.5, 1, 0)
+shape = SubResource("BoxShape3D_n0huq")
+script = ExtResource("27_c1sjx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node3D"]
+
+[node name="TextureRect" type="TextureRect" parent="Node3D/CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -91.0
+offset_right = 104.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_1crip")
+expand_mode = 1
+script = ExtResource("29_c1sjx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node3D/CanvasLayer"]
+stream = ExtResource("31_6d3tk")
+script = ExtResource("32_6d3tk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/CanvasLayer"]
+
+[node name="Timer" type="Timer" parent="Node3D"]
+wait_time = 3.0
+autostart = true
+script = ExtResource("31_0fixg")
+
+[connection signal="body_entered" from="Node3D/Area3D" to="Node3D/CanvasLayer/TextureRect" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Node3D/Area3D" to="Node3D/CanvasLayer/AudioStreamPlayer" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Node3D/Area3D" to="Node3D/CanvasLayer/TextureRect" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Node3D/Timer" to="Node3D/CanvasLayer/TextureRect" method="_on_timer_timeout"]
 
 [editable path="SubViewportContainer/SubViewport/Environment/Player"]
 [editable path="SubViewportContainer/SubViewport/Environment/Player/Idle"]
