@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=42 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
+[ext_resource type="Script" uid="uid://b4osggcpft2nu" path="res://Environment/Scenes/TexturesAndLighting.cs" id="1_fakud"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dbo60gtbhapjm" path="res://Environment/RoomPieces/Wood/woodWall.fbx" id="23_q155s"]
 [ext_resource type="PackedScene" uid="uid://bonnwsy0125i8" path="res://Environment/RoomPieces/Wood/woodWindow.fbx" id="24_cu406"]
 [ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="25_arljb"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
 
@@ -236,6 +238,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u302v")
 
 [node name="TexturesAndLighting" type="Node3D"]
+script = ExtResource("1_fakud")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -1693,6 +1696,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51594, 0)
 
 [node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
+
+[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 25)
+playerPath = NodePath("../Player")
 
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]

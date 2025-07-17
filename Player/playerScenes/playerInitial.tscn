@@ -171,9 +171,4 @@ layers = 2
 [node name="AnimationPlayer" parent="Idle" index="2"]
 script = ExtResource("5_6vin4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 25)
-keep_aspect = 0
-fov = 32.0
-
 [editable path="Idle"]
