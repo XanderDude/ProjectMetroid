@@ -1692,15 +1692,14 @@ transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2o7o6")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51594, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110835, 0.26134, 0)
+
+[node name="Camera" parent="SubViewportContainer/SubViewport/Player" instance=ExtResource("25_fakud")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110835, 0.53866, 25)
 
 [node name="AreaEnteredEffect_RegaliaCathedral" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
-
-[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 25)
-playerPath = NodePath("../Player")
 
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]

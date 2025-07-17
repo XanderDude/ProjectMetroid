@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="3_m50b7"]
 [ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/playerMovement/slideState.cs" id="4_bjikg"]
 [ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="5_yn7do"]
-[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Environment/Models/PlayAnimation.cs" id="6_l5oxl"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="6_l5oxl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 

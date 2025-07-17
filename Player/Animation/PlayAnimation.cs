@@ -5,13 +5,13 @@ using Godot.Collections;
 public partial class PlayAnimation : AnimationPlayer
 {
 	private AnimationPlayer anim;
-	public String idleAnim = "Take 001";
+	[Export] private String idleAnim;
 
 	public override void _Ready()
 	{
 		anim = this;
-		anim.CurrentAnimation = idleAnim;
-		anim.Play("Take 001");
+		if (idleAnim == null) { anim.CurrentAnimation = idleAnim; }
+		anim.Play(idleAnim);
 	}
 
 }
