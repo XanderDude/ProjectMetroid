@@ -41,7 +41,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
         {
             Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0);
         }
+        if (currentSpeed > 1) currentSpeed = 1;
         animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
+        GD.Print(currentSpeed);
         if ((bool)player.Get("jumping")) BeginJump(); //run jump function
         if ((bool)player.Get("sliding")) BeginSlide();
         else animTree.Set("parameters/conditions/slideEnd", true);
