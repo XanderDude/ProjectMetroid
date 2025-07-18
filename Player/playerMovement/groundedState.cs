@@ -19,11 +19,11 @@ public partial class groundedState : State
 		GD.Print("Exited Grounded State");
 	}
 
-	public override void PhysicsUpdate(float delta)
+	public override void PhysicsUpdate(double delta)
 	{
 		if (!player.IsOnFloor()) //immediately switch to jump state
 		{
-			//msm.TransitionTo("jumpState");
+			msm.TransitionTo("jumpState");
 		}
 		HandleGroundedMovement(delta);
 		//CheckTransitions();
@@ -34,7 +34,7 @@ public partial class groundedState : State
 	{
 		if (@event.IsActionPressed("Jump") && player.IsOnFloor())
 		{
-			jumpQueued = true;
+			JumpQueued = true;
 			msm.TransitionTo("jumpState");
 		}
 		if (@event.IsActionPressed("Slide") && player.IsOnFloor()) {
@@ -42,7 +42,7 @@ public partial class groundedState : State
 		}
 	}
 
-	private void HandleGroundedMovement(float delta)
+	private void HandleGroundedMovement(double delta)
 	{
 		Vector3 velocity = player.Velocity;
 		if (velocity.X > groundMaxSpeed) velocity.X = groundMaxSpeed;

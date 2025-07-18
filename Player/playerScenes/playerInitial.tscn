@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=9 format=3 uid="uid://by3fw2kh7ot1a"]
 
-[ext_resource type="Script" uid="uid://dwnfdc3waco3y" path="res://Player/playerMovement/Player.cs" id="1_morwn"]
+[ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
+[ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
 [ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/MannequinMain.tscn" id="2_o1ik4"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
 [ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="4_morwn"]
@@ -25,8 +26,12 @@ mesh = SubResource("CapsuleMesh_4flbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842715, 0)
 shape = SubResource("CapsuleShape3D_onrkg")
 
-[node name="MovementStateMachine" type="Node" parent="."]
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "mesh")]
 unique_name_in_owner = true
+script = ExtResource("2_4mmid")
+initialState = NodePath("groundedState")
+parent = NodePath("..")
+mesh = NodePath("../PlayerMesh")
 
 [node name="groundedState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("3_lrbk8")

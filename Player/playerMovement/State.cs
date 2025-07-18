@@ -10,7 +10,7 @@ public partial class State : Node
 	public AnimationTree animTree;
 
 	[Export] public float gravity = 9.8f;
-	public bool jumpQueued = false;
+	[Export] public bool JumpQueued { get; set; }
 	public bool slideBoost = false;
 	
 	public virtual void Ready() //initialize the node
@@ -22,9 +22,8 @@ public partial class State : Node
 		
 	}
 	public virtual void Exit() {}
-	public virtual void Update(float delta) {}
-	public virtual void PhysicsUpdate(float delta) {
-	}
+	public virtual void Update(double delta) {}
+	public virtual void PhysicsUpdate(double delta) {}
 	public virtual void HandleInput(InputEvent @event) {}
 	
 }

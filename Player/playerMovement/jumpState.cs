@@ -8,7 +8,7 @@ public partial class jumpState : State
 	[Export] public float jumpInitSpeed = 1.0f;
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpMaxSpeed = 5.0f;
- 	 [Export] public float jumpVelocity = 10.0f;
+ 	[Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpGravity = 9.8f;
 	[Export] public float jumpMaxHeight = 0.17f;
 	 public float jumpHeight = 0.0f;
@@ -32,10 +32,11 @@ public partial class jumpState : State
 
     public override void Enter()
     {
-        GD.Print("Entered Jump State");
+        GD.Print("Entered Jump State " + JumpQueued);
+        //JumpQueued = true;
         //jump animation
         jumpHeight = 0.0f;
-        if (jumpQueued)
+        if (JumpQueued)
         {
             /*
             Vector3 velocity = player.Velocity;
@@ -44,7 +45,12 @@ public partial class jumpState : State
             player.MoveAndSlide();*/
         }
     }
-    public override void PhysicsUpdate(float delta)
+    public override void Exit()
+    {
+        GD.Print("Exited Jump State");
+    }
+
+    public override void PhysicsUpdate(double delta)
     {
         Vector3 velocity = player.Velocity;
         if (velocity.X > jumpMaxSpeed) velocity.X = jumpMaxSpeed;
@@ -54,11 +60,17 @@ public partial class jumpState : State
 
         /*if (Input.IsKeyPressed(Key.Down)) {
 				velocity.Y -= (jumpGravity * 4) * (float)delta;
-				
 			}
 		*/
-        GD.Print(jumpQueued);
-        if (jumpQueued && isAscending(delta, ref velocity))
+        GD.Print(JumpQueued);
+        HandleAirMovement(delta, ref velocity);
+        player.Velocity = velocity;
+        player.MoveAndSlide();
+    }
+
+    private void HandleAirMovement(double delta, ref Vector3 velocity)
+    {
+        if (JumpQueued && isAscending(delta, ref velocity))
         { //jump queued set true outside this state. if the player releases jump, the bool is set false 
             GD.Print("Jumping");
             if (Input.IsKeyPressed(Key.Left))
@@ -97,18 +109,20 @@ public partial class jumpState : State
             }
             if (player.IsOnFloor())
             {
-                //msm.TransitionTo("groundedState");
+                msm.TransitionTo("groundedState");
             }
         }
-        player.Velocity = velocity;
-        player.MoveAndSlide();
-	}
-    
+
+        //player.Velocity = velocity;
+    }
+
+
     public override void HandleInput(InputEvent @event)
     {
         if (@event.IsActionReleased("Jump"))
         {
-            jumpQueued = false;
+            GD.Print("Jump button not pressed");
+            JumpQueued = false;
         }
 		if (@event.IsActionPressed("Slide") && player.IsOnFloor())
         {
