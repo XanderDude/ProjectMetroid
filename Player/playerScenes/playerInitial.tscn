@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=8 format=3 uid="uid://by3fw2kh7ot1a"]
 
-[ext_resource type="Script" uid="uid://dwnfdc3waco3y" path="res://Player/playerMovement/Player.cs" id="1_4mmid"]
+[ext_resource type="Script" uid="uid://dwnfdc3waco3y" path="res://Player/playerMovement/Player.cs" id="1_morwn"]
 [ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/MannequinMain.tscn" id="2_o1ik4"]
+[ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
+[ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="4_morwn"]
+[ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/playerMovement/slideState.cs" id="5_morwn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
@@ -12,7 +15,7 @@ height = 1.69778
 [node name="Player" type="CharacterBody3D"]
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
-script = ExtResource("1_4mmid")
+script = ExtResource("1_morwn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -23,12 +26,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842715, 0)
 shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="MovementStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="groundedState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_lrbk8")
 
 [node name="jumpState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_morwn")
 
 [node name="slideState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("5_morwn")
 
 [node name="PlayerMesh" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_o1ik4")]
+unique_name_in_owner = true
 player = NodePath("..")

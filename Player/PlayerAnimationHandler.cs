@@ -3,18 +3,18 @@ using System;
 
 public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 {
-	[Export] private CharacterBody3D player;
-	[Export] private AnimationTree animTree;
-	[Export] private string playbackFilePath; //ref to where we are in the animation state machine
-	private AnimationNodeStateMachinePlayback playback;
-	[Export] private string WalkingBlendPath {get; set;}
-	[Export] private float transitionSpeed = 8f;
-	[Export] private string JumpStateName;
-	[Export] private string RunningStateName;
-	[Export] private string SlideStateName;
-	private float currentSpeed;
-	private int currentDirection = 90; //-90 for left, 90 for right
-	private Vector2 aimAngle; //angle to position shooting arm during aiming mode
+    [Export] private CharacterBody3D player;
+    [Export] public AnimationTree animTree;
+    [Export] private string playbackFilePath; //ref to where we are in the animation state machine
+    private AnimationNodeStateMachinePlayback playback;
+    [Export] private string WalkingBlendPath {get; set;}
+    [Export] private float transitionSpeed = 8f;
+    [Export] private string JumpStateName;
+    [Export] private string RunningStateName;
+    [Export] private string SlideStateName;
+    private float currentSpeed;
+    private int currentDirection = 90; //-90 for left, 90 for right
+    private Vector2 aimAngle; //angle to position shooting arm during aiming mode
 
 	public override void _Ready()
 	{
@@ -32,22 +32,22 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
 			newDelta = transitionSpeed * (float)delta;
 
-		currentSpeed += newDelta;
-		if (player.Velocity.X == 0)
-		{
-			//currentSpeed = 0;
-		}
-		else
-		{
-			Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0);
-		}
-		if (currentSpeed > 1) currentSpeed = 1;
-		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
-		GD.Print(currentSpeed);
-		if ((bool)player.Get("jumping")) BeginJump(); //run jump function
-		if ((bool)player.Get("sliding")) BeginSlide();
-		else animTree.Set("parameters/conditions/slideEnd", true);
-	}
+        currentSpeed += newDelta;
+        if (player.Velocity.X == 0)
+        {
+            //currentSpeed = 0;
+        }
+        else
+        {
+            Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0);
+        }
+        if (currentSpeed > 1) currentSpeed = 1;
+        animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
+        //GD.Print(currentSpeed);
+        if ((bool)player.Get("jumping")) BeginJump(); //run jump function
+        if ((bool)player.Get("sliding")) BeginSlide();
+        else animTree.Set("parameters/conditions/slideEnd", true);
+    }
 
 	private void BeginJump()
 	{
