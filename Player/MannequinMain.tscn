@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1x3v420gqfb7" path="res://Environment/Models/Mannequin/MannequinWithAnims.fbx" id="1_stf6f"]
 [ext_resource type="AnimationLibrary" uid="uid://83ag0ddq0alc" path="res://Player/Animation/PlayerAnimationsLib.res" id="2_kg5qm"]
-[ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/PlayerAnimationHandler.cs" id="2_kubct"]
+[ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="2_kubct"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="3_xdwog"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://233dtxdjern5" path="res://Player/Animation/PlayerAnimStateMachine.tres" id="4_scyyn"]
 

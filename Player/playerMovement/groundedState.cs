@@ -13,6 +13,12 @@ public partial class groundedState : State
 	public override void Enter()
 	{
 		GD.Print("Entered Grounded State");
+		if (msm.slideQueued && msm.slideBoost) //player wants to slide with a boost so let them
+		{
+			GD.Print("Slide Queued: " + msm.slideQueued);
+			msm.TransitionTo("slideState");
+		}
+		else msm.slideBoost = false;
 		//playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 	}
 	
@@ -38,9 +44,13 @@ public partial class groundedState : State
 			msm.jumpQueued = true;
 			msm.TransitionTo("jumpState");
 		}
-		if (@event.IsActionPressed("Slide") && player.IsOnFloor()) {
+		else msm.jumpQueued = false;
+		if (@event.IsActionPressed("Slide") && player.Velocity.X > 0)
+		{
+			msm.slideQueued = true;
 			msm.TransitionTo("slideState");
 		}
+		else msm.slideQueued = false;
 	}
 
 	private void HandleGroundedMovement(double delta)
@@ -52,27 +62,17 @@ public partial class groundedState : State
 		if (Input.IsKeyPressed(Key.Left))
 		{
 			velocity.X = -groundMaxSpeed;
-			GD.Print("Moving left, velocity.X = " + velocity.X);
+			//GD.Print("Moving left, velocity.X = " + velocity.X);
 		}
 		else if (Input.IsKeyPressed(Key.Right))
 		{
 			velocity.X = groundMaxSpeed;
-			GD.Print("Moving right, velocity.X = " + velocity.X);
+			//GD.Print("Moving right, velocity.X = " + velocity.X);
 		}
 		else
 		{
 			velocity.X = 0;
 		}
 		player.Velocity = velocity;
-	}
-	
-	private void CheckTransitions() {
-		if (!player.IsOnFloor()) {
-			//msm.TransitionTo("jumpState");
-		}
-		/*
-		if (player.IsOnFloor() && Input.IsKeyPressed(Key.Down)) {
-			msm.TransitionTo("slideState");
-		}*/
 	}
 }

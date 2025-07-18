@@ -18,7 +18,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public override void _Ready()
 	{
-		base._Ready();
 		//player = GetNode<Node3D>("%Player");
 		//currentDirection = (int)playerMesh.Rotation.Y;
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
@@ -44,21 +43,18 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
         if (currentSpeed > 1) currentSpeed = 1;
         animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
         //GD.Print(currentSpeed);
-        if ((bool)player.Get("jumping")) BeginJump(); //run jump function
-        if ((bool)player.Get("sliding")) BeginSlide();
-        else animTree.Set("parameters/conditions/slideEnd", true);
     }
 
-	private void BeginJump()
+	public void BeginJump()
 	{
-		if (player.IsOnFloor()) playback.Travel(RunningStateName);
-		else
-		{
-			playback.Travel(JumpStateName);
-		}
+		playback?.Travel(JumpStateName);
+	}
+	public void EndJump()
+	{
+		playback?.Travel(RunningStateName);
 	}
 
-	private void BeginSlide()
+	public void BeginSlide()
 	{
 		if (!player.IsOnFloor()) playback.Travel(JumpStateName);
 		else
@@ -66,6 +62,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 			animTree.Set("parameters/conditions/slideEnd", false);
 			playback.Travel(SlideStateName);
 		}
+	}
+	public void EndSlide()
+	{
+		animTree.Set("parameters/conditions/slideEnd", true);
 	}
 
 
