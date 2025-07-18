@@ -123,7 +123,6 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
-unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 

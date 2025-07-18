@@ -6,16 +6,16 @@ public partial class TextureRect : Godot.TextureRect
 {
 	AnimationPlayer regaliaText;
 	Area3D collider;
-	Timer timer;
+	Godot.Timer timers;
 	private int entranceCount = 0;
 	
 	public override void _Ready() {
 		regaliaText = GetNode<AnimationPlayer>("%AnimationPlayer"); 
 		collider = GetNode<Area3D>("%Area3D");
-		timer = GetNode<Timer>("%Timer"); 
+		timers = GetNode<Godot.Timer>("../Timer"); 
 		
-		timer.WaitTime = 5.0f;
-		timer.OneShot = true;
+		timers.WaitTime = 5.0f;
+		timers.OneShot = true;
 		
 	}
 	public void _on_area_3d_body_entered(Node3D body) {
@@ -29,7 +29,7 @@ public partial class TextureRect : Godot.TextureRect
 		}
 	}
 	public void _on_area_3d_body_exited(Node3D body) {
-			timer.Start();
+			timers.Start();
 			
 		}
 	
