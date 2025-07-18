@@ -7,10 +7,11 @@ public partial class groundedState : State
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	[Export] public float groundDeacceleration = 15.0f;
-	
+
 	//private Vector3 velocity;
-	
-	public override void Enter() {
+
+	public override void Enter()
+	{
 		GD.Print("Entered Grounded State");
 		//playerMesh.RotationDegrees = new Vector3(0, 0, 0);
 	}
@@ -34,7 +35,7 @@ public partial class groundedState : State
 	{
 		if (@event.IsActionPressed("Jump") && player.IsOnFloor())
 		{
-			JumpQueued = true;
+			msm.jumpQueued = true;
 			msm.TransitionTo("jumpState");
 		}
 		if (@event.IsActionPressed("Slide") && player.IsOnFloor()) {

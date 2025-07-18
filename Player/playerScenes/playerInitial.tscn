@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=8 format=3 uid="uid://by3fw2kh7ot1a"]
 
-[ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
 [ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
 [ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/MannequinMain.tscn" id="2_o1ik4"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
@@ -16,7 +15,6 @@ height = 1.69778
 [node name="Player" type="CharacterBody3D"]
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
-script = ExtResource("1_morwn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

@@ -12,12 +12,17 @@ public partial class MovementStateMachine : Node
 	private Dictionary<string, State> _states;
 	private State _currentState;
 
+	public bool jumpQueued;
+
 	//Purpose: This is called when opening the game for the first time
-	public override void _Ready() {
+	public override void _Ready()
+	{
 		animations = (AnimationTree)mesh.Get("animTree");
 		_states = new Dictionary<string, State>();
-		foreach (Node node in GetChildren()) {
-			if (node is State s) {
+		foreach (Node node in GetChildren())
+		{
+			if (node is State s)
+			{
 				_states[node.Name] = s;
 				s.msm = this; //assign self to the states
 				s.player = parent;

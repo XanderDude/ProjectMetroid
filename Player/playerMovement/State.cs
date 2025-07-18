@@ -9,11 +9,11 @@ public partial class State : Node
 	public Node3D playerMesh;
 	public AnimationTree animTree;
 
-	[Export] public float gravity = 9.8f;
-	[Export] public bool JumpQueued { get; set; }
+	public float gravity = 9.8f;
+	//public virtual bool JumpQueued { get; set; }
 	public bool slideBoost = false;
 	
-	public virtual void Ready() //initialize the node
+	new public virtual void Ready() //initialize the node
 	{
 		GD.Print("Test");
 	}

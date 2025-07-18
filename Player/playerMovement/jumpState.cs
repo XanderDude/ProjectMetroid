@@ -32,11 +32,11 @@ public partial class jumpState : State
 
     public override void Enter()
     {
-        GD.Print("Entered Jump State " + JumpQueued);
+        GD.Print("Entered Jump State " + msm.jumpQueued);
         //JumpQueued = true;
         //jump animation
         jumpHeight = 0.0f;
-        if (JumpQueued)
+        if (msm.jumpQueued)
         {
             /*
             Vector3 velocity = player.Velocity;
@@ -48,6 +48,7 @@ public partial class jumpState : State
     public override void Exit()
     {
         GD.Print("Exited Jump State");
+        msm.jumpQueued = false;
     }
 
     public override void PhysicsUpdate(double delta)
@@ -62,7 +63,6 @@ public partial class jumpState : State
 				velocity.Y -= (jumpGravity * 4) * (float)delta;
 			}
 		*/
-        GD.Print(JumpQueued);
         HandleAirMovement(delta, ref velocity);
         player.Velocity = velocity;
         player.MoveAndSlide();
@@ -70,7 +70,7 @@ public partial class jumpState : State
 
     private void HandleAirMovement(double delta, ref Vector3 velocity)
     {
-        if (JumpQueued && isAscending(delta, ref velocity))
+        if (msm.jumpQueued && isAscending(delta, ref velocity))
         { //jump queued set true outside this state. if the player releases jump, the bool is set false 
             GD.Print("Jumping");
             if (Input.IsKeyPressed(Key.Left))
@@ -122,7 +122,7 @@ public partial class jumpState : State
         if (@event.IsActionReleased("Jump"))
         {
             GD.Print("Jump button not pressed");
-            JumpQueued = false;
+            msm.jumpQueued = false;
         }
 		if (@event.IsActionPressed("Slide") && player.IsOnFloor())
         {
