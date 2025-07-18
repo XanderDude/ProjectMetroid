@@ -8,7 +8,8 @@ public partial class Camera3d : Camera3D
 	[Export] public float followSpeed = 4.0f;
 	[Export] public float lookAheadDistance = 3.0f; 
 	[Export] public float lookAheadSpeed = 2.0f; 
-
+	[Export] public float cameraYOffset = 1.5f;
+	
 	[ExportGroup("Room Boundaries")]
 	[Export] public float roomMinX = -10.0f;
 	[Export] public float roomMaxX = 10.0f;
@@ -16,6 +17,7 @@ public partial class Camera3d : Camera3D
 	[Export] public float roomMaxY = 5.0f;
 
 	[Export] public float minMoveThreshold = 0.1f; 
+
 
 	private Node3D player;
 	private Vector3 playerPosition;
@@ -56,7 +58,7 @@ public partial class Camera3d : Camera3D
 		playerPosition.Y = Mathf.Clamp(playerPosition.Y, roomMinY, roomMaxY);
 		
 		Vector3 currentPos = GlobalPosition;
-		Vector3 newPosition = new Vector3(playerPosition.X, playerPosition.Y + 2.0f, currentPos.Z);
+		Vector3 newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, currentPos.Z);
 
 		
 		GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
