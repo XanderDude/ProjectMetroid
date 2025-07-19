@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=9 format=3 uid="uid://by3fw2kh7ot1a"]
 
+[ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
 [ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
 [ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/MannequinMain.tscn" id="2_o1ik4"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
@@ -12,10 +13,16 @@
 radius = 0.262883
 height = 1.69778
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("StateMachine")]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 floor_constant_speed = true
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
+script = ExtResource("1_morwn")
+StateMachine = NodePath("MovementStateMachine")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -25,21 +32,23 @@ mesh = SubResource("CapsuleMesh_4flbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842715, 0)
 shape = SubResource("CapsuleShape3D_onrkg")
 
-[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "mesh")]
+[node name="MovementStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_4mmid")
 initialState = NodePath("groundedState")
-parent = NodePath("..")
-mesh = NodePath("../PlayerMesh")
 
 [node name="groundedState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("3_lrbk8")
+groundAcceleration = 2.0
 
 [node name="jumpState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("4_morwn")
 
 [node name="slideState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("5_morwn")
+slideMaxSpeed = 6.0
+boostMaxSpeed = 9.0
+slideDeceleration = 5.0
 
 [node name="PlayerMesh" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_o1ik4")]
 unique_name_in_owner = true

@@ -6,70 +6,78 @@ public partial class slideState : State
     //[Export] public float slideTime = 1.0f; //max time the player can stay in a slide before standing up/crouching
     [Export] public float slideMinTime = .2f; //min time the player has to stay in the slide state before standing up (can still jump)
    	[Export] public float slideMaxSpeed = 12.0f;
-	//[Export] public bool slideEnter = false;
-    [Export] public float groundInitSpeed = 1.0f;
-    [Export] public float groundMaxSpeed = 6.0f;
-    [Export] public float groundAcceleration = 15.0f;
-    [Export] public float groundDeacceleration = 15.0f;
-
+    [Export] public float boostMaxSpeed = 6.0f;
+    [Export] public float slideAcceleration = 15.0f;
+    [Export] public float slideDeceleration = 15.0f;
+    private float currentSlideSpeed;
+    private float input;
     private float slideTimer; //time in current slide
     public override void Enter()
     {
-        GD.Print("Entered Slide State");
+        input = Mathf.Sign(Input.GetAxis("Left", "Right"));
+        GD.Print("Entered Slide State. Facing " + input);
         slideTimer = 0;
-        playerMesh.GetNode<PlayerAnimationHandler>(playerMesh.GetPath()).BeginSlide();
-        //playerMesh.RotationDegrees = new Vector3(0, 0, 0);
+        if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+        {
+            GD.Print("Boosting");
+            currentSlideSpeed = boostMaxSpeed * input;
+        }
+        else
+        {
+            currentSlideSpeed = slideMaxSpeed * input;
+        }
+        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginSlide();
     }
 
     public override void Exit()
     {
+        player.Set(PlayerManager.PropertyName.slideQueued, false);
+        player.Set(PlayerManager.PropertyName.slideBoost, false);
         GD.Print("Exited Slide State");
-        playerMesh.GetNode<PlayerAnimationHandler>(playerMesh.GetPath()).EndSlide();
+        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).EndSlide();
     }
-    public override void PhysicsUpdate(double delta)
+    public override void PhysicsUpdate(float delta)
     {
-        slideTimer += (float)delta;
+        slideTimer += delta;
 
         if (!player.IsOnFloor()) //immediately switch to jump state
         {
             msm.TransitionTo("jumpState");
         }
-        if (!msm.slideQueued && slideTimer >= slideMinTime)
+        if (!Input.IsActionPressed("Slide") && slideTimer >= slideMinTime)
         {
-            msm.TransitionTo("groundedState");
+            msm.TransitionTo("groundedState"); //switch to grounded if slide is released
         }
         HandleSlidingMovement(delta);
-        //CheckTransitions();
         player.MoveAndSlide();
     }
 
-    private void HandleSlidingMovement(double delta)
+    private void HandleSlidingMovement(float delta)
     {
         Vector3 velocity = player.Velocity;
-        if (velocity.X > slideMaxSpeed) velocity.X = slideMaxSpeed;
-        if (velocity.X < -slideMaxSpeed) velocity.X = -slideMaxSpeed;
-        //playerMesh.RotationDegrees = new Vector3(0, 0, 90);
-        if (msm.slideBoost)
-        {
-            if (velocity.X > 0) velocity.X = slideMaxSpeed;
-            else if (velocity.X < 0) { velocity.X = -slideMaxSpeed; }
-            else { velocity.X = 0; }
-            msm.slideBoost = false;
-        }
-        if (velocity.X > 0.1f) velocity.X -= groundDeacceleration * (float)delta;
-        else if (velocity.X < -0.1f) velocity.X += groundDeacceleration * (float)delta;
-        else { velocity.X = 0; }
 
-        player.Velocity = velocity;
+        if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+        {
+            currentSlideSpeed = Mathf.MoveToward(currentSlideSpeed, 0, delta * slideDeceleration);
+        }
+        else //normal slide
+        {
+            currentSlideSpeed = Mathf.MoveToward(currentSlideSpeed, 0, delta * slideDeceleration);
+        }
+
+        //velocity.X = Mathf.MoveToward(slideMaxSpeed, 0, delta + slideDeceleration);
+        velocity.X = currentSlideSpeed;
+        player.Velocity = velocity; 
     }
 
     public override void HandleInput(InputEvent @event)
     {
         if (@event.IsActionPressed("Jump") && player.IsOnFloor()) //allow jumping out of slide
         {
-            msm.jumpQueued = true;
+            player.Set("jumpQueued", true);
             msm.TransitionTo("jumpState");
         }
+        /*
         if (@event.IsActionPressed("Slide")) //is slide being pressed
         {
             msm.slideQueued = true;
@@ -78,7 +86,7 @@ public partial class slideState : State
         else
         {
             msm.slideQueued = false;
-        }
+        }*/
     }
 
 }

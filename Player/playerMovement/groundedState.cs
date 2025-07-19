@@ -3,76 +3,57 @@ using System;
 
 public partial class groundedState : State
 {
-	[Export] public float groundInitSpeed = 1.0f;
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	[Export] public float groundDeacceleration = 15.0f;
 
-	//private Vector3 velocity;
-
 	public override void Enter()
 	{
 		GD.Print("Entered Grounded State");
-		if (msm.slideQueued && msm.slideBoost) //player wants to slide with a boost so let them
+		if (Input.GetAxis("Left", "Right") != 0 && Input.IsActionPressed("Slide")) //player wants to slide so let them
 		{
-			GD.Print("Slide Queued: " + msm.slideQueued);
+			GD.Print("Boost Slide");
 			msm.TransitionTo("slideState");
 		}
-		else msm.slideBoost = false;
-		//playerMesh.RotationDegrees = new Vector3(0, 0, 0);
+		else player.Set(PlayerManager.PropertyName.slideBoost, false); //player is not sliding so player cannot retain boost
 	}
 	
 	public override void Exit() {
-		GD.Print("Exited Grounded State");
+		GD.Print("Exited Grounded State.");
 	}
 
-	public override void PhysicsUpdate(double delta)
+	public override void PhysicsUpdate(float delta)
 	{
 		if (!player.IsOnFloor()) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
 		}
+		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
+		{
+			player.Set(PlayerManager.PropertyName.slideQueued, true);
+			msm.TransitionTo("slideState");
+		}
 		HandleGroundedMovement(delta);
-		//CheckTransitions();
 		player.MoveAndSlide();
+	}
+
+	private void HandleGroundedMovement(float delta)
+	{
+		float input = Input.GetAxis("Left", "Right");
+		Vector3 velocity = player.Velocity;
+		velocity.X = Mathf.MoveToward(velocity.X, input * groundMaxSpeed, delta + groundAcceleration);
+		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
+		player.Velocity = velocity;
 	}
 
 	public override void HandleInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("Jump") && player.IsOnFloor())
 		{
-			msm.jumpQueued = true;
+			player.Set("jumpQueued", true);
 			msm.TransitionTo("jumpState");
 		}
-		else msm.jumpQueued = false;
-		if (@event.IsActionPressed("Slide") && player.Velocity.X > 0)
-		{
-			msm.slideQueued = true;
-			msm.TransitionTo("slideState");
-		}
-		else msm.slideQueued = false;
+		else player.Set("jumpQueued", false);
 	}
 
-	private void HandleGroundedMovement(double delta)
-	{
-		Vector3 velocity = player.Velocity;
-		if (velocity.X > groundMaxSpeed) velocity.X = groundMaxSpeed;
-		else if (velocity.X < -groundMaxSpeed) velocity.X = -groundMaxSpeed;
-
-		if (Input.IsKeyPressed(Key.Left))
-		{
-			velocity.X = -groundMaxSpeed;
-			//GD.Print("Moving left, velocity.X = " + velocity.X);
-		}
-		else if (Input.IsKeyPressed(Key.Right))
-		{
-			velocity.X = groundMaxSpeed;
-			//GD.Print("Moving right, velocity.X = " + velocity.X);
-		}
-		else
-		{
-			velocity.X = 0;
-		}
-		player.Velocity = velocity;
-	}
 }
