@@ -26,15 +26,16 @@ public partial class slideState : State
         {
             currentSlideSpeed = slideMaxSpeed * input;
         }
-        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginSlide();
+        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
     }
 
     public override void Exit()
     {
         player.Set(PlayerManager.PropertyName.slideQueued, false);
         player.Set(PlayerManager.PropertyName.slideBoost, false);
+        if (Input.IsActionPressed("Crouch")) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+        else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false);
         GD.Print("Exited Slide State");
-        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).EndSlide();
     }
     public override void PhysicsUpdate(float delta)
     {

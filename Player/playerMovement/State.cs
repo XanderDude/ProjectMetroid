@@ -7,6 +7,7 @@ public partial class State : Node
 	public MovementStateMachine msm;
 	public CharacterBody3D player;
 	public Node3D parentMesh;
+	
 	public float _gravity = 9.8f;
 
 	public virtual void Enter() //runs first whenever msm transitions to this state

@@ -9034,6 +9034,12 @@ _subresources={
 "PATH:Skeleton3D": {
 "rest_pose/load_pose": 1,
 "rest_pose/selected_animation": "Aim"
+},
+"PATH:Skeleton3D/Alpha_Joints": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/Alpha_Surface": {
+"mesh_instance/layers": 2
 }
 }
 }

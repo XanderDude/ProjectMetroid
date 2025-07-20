@@ -10,7 +10,7 @@ public partial class groundedState : State
 	public override void Enter()
 	{
 		GD.Print("Entered Grounded State");
-		if (Input.GetAxis("Left", "Right") != 0 && Input.IsActionPressed("Slide")) //player wants to slide so let them
+		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) //player wants to slide so let them
 		{
 			GD.Print("Boost Slide");
 			msm.TransitionTo("slideState");
@@ -33,6 +33,11 @@ public partial class groundedState : State
 			player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
 		}
+		else if (player.Velocity.X == 0 && Input.IsActionPressed("Crouch"))
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+		}
+		else if (Mathf.Abs(player.Velocity.X) >= .1f) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
 	}
@@ -48,12 +53,18 @@ public partial class groundedState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("Jump") && player.IsOnFloor())
+		if (@event.IsActionPressed("Up"))
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+			//msm.TransitionTo("crouchState");
+		}
+		if (@event.IsActionPressed("Jump"))
 		{
 			player.Set("jumpQueued", true);
 			msm.TransitionTo("jumpState");
 		}
 		else player.Set("jumpQueued", false);
+
 	}
 
 }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
 [ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
-[ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/MannequinMain.tscn" id="2_o1ik4"]
+[ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/PlayerMesh.tscn" id="2_o1ik4"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
 [ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="4_morwn"]
 [ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/playerMovement/slideState.cs" id="5_morwn"]
@@ -25,6 +25,7 @@ script = ExtResource("1_morwn")
 StateMachine = NodePath("MovementStateMachine")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_4flbx")
 
@@ -53,3 +54,7 @@ slideDeceleration = 5.0
 [node name="PlayerMesh" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_o1ik4")]
 unique_name_in_owner = true
 player = NodePath("..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_cull_mask = 4294967293

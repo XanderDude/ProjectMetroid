@@ -45,7 +45,7 @@ public partial class jumpState : State
     {
         GD.Print("Exited Jump State");
         player.Set("jumpQueued", false); //don't jump on exit if holding jump
-        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).EndJump();
+        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
     }
 
     public override void PhysicsUpdate(float delta)

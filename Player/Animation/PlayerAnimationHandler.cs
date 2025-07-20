@@ -8,11 +8,15 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
     [Export] private string playbackFilePath; //ref to where we are in the animation state machine
     private AnimationNodeStateMachinePlayback playback;
     [Export] private string WalkingBlendPath {get; set;}
+	[Export] private string RunSpeedBlendPath {get; set;}
     [Export] private float transitionSpeed = 8f;
     [Export] private string JumpStateName;
     [Export] private string RunningStateName;
     [Export] private string SlideStateName;
+	[Export] private string CrouchStateName;
+
     private float currentSpeed;
+	private float runBlendSpeed; //run animation speed adjustment
     private int currentDirection = 90; //-90 for left, 90 for right
     private Vector2 aimAngle; //angle to position shooting arm during aiming mode
 
@@ -20,54 +24,49 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		//player = GetNode<Node3D>("%Player");
 		//currentDirection = (int)playerMesh.Rotation.Y;
+		runBlendSpeed = (float)animTree.Get(RunSpeedBlendPath);
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
 	}
 
 	public override void _Process(double delta)
 	{
-		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if playe hasn't been assigned 
+		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned 
 
-		float newDelta = Mathf.Abs(player.Velocity.X) - currentSpeed; //find the value between current speed and desired speed
-		if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
-			newDelta = transitionSpeed * (float)delta;
+		currentSpeed = Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed); //find the value between current speed and desired speed
+		//if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
+		//	newDelta = transitionSpeed * (float)delta;
 
-        currentSpeed += newDelta;
-        if (player.Velocity.X == 0)
-        {
-            //currentSpeed = 0;
-        }
-        else
-        {
-            Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0);
-        }
-        if (currentSpeed > 1) currentSpeed = 1;
-        animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
+		if (player.Velocity.X != 0)
+		{
+			Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //only rotate when moving
+		}
+		if (currentSpeed > 1) currentSpeed = 1;
+		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
+		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
         //GD.Print(currentSpeed);
-    }
+	}
 
 	public void BeginJump()
 	{
 		playback?.Travel(JumpStateName);
 	}
-	public void EndJump()
+	public void Grounded()
 	{
 		playback?.Travel(RunningStateName);
 	}
 
-	public void BeginSlide()
+	public void Sliding(bool value) //value = slide true or sliding false
 	{
-		if (!player.IsOnFloor()) playback.Travel(JumpStateName);
-		else
-		{
-			animTree.Set("parameters/conditions/slideEnd", false);
-			playback.Travel(SlideStateName);
-		}
+		if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
+		animTree.Set("parameters/conditions/slideEnd", !value); //slideEnd is true when Sliding(false)
+		if (value) playback?.Travel(SlideStateName); //only transition to slide when true
 	}
-	public void EndSlide()
+	
+	public void Crouch(bool value)
 	{
-		animTree.Set("parameters/conditions/slideEnd", true);
+		if (value) playback?.Travel(CrouchStateName);
+		else playback?.Travel(RunningStateName);
 	}
-
 
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -90,5 +89,4 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 			//remember to toggle mouse visiblity
 		}
 	}
-
 }
