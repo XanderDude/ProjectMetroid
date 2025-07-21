@@ -28,18 +28,24 @@ public partial class groundedState : State
 		{
 			msm.TransitionTo("jumpState");
 		}
-		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
+		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) //only slide when pressing a direction
 		{
 			player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
 		}
+
 		else if (player.Velocity.X == 0 && Input.IsActionPressed("Crouch"))
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 		}
 		else if (Mathf.Abs(player.Velocity.X) >= .1f) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+		//else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
+		if (Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0)
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided();
+		}
 	}
 
 	private void HandleGroundedMovement(float delta)

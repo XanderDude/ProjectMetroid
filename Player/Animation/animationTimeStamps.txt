@@ -3,3 +3,4 @@ aim 160
 run 165-194
 spin 200-204
 slide 210-215
+crouch 220-225

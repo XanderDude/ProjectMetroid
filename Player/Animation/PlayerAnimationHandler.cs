@@ -11,12 +11,13 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private string RunSpeedBlendPath {get; set;}
     [Export] private float transitionSpeed = 8f;
     [Export] private string JumpStateName;
-    [Export] private string RunningStateName;
+    [Export] private string RunningStateName, WallCollisionStateName;
+	[Export] private float runBlendSpeed = 2.3f; //run animation speed adjustment
     [Export] private string SlideStateName;
 	[Export] private string CrouchStateName;
 
     private float currentSpeed;
-	private float runBlendSpeed; //run animation speed adjustment
+
     private int currentDirection = 90; //-90 for left, 90 for right
     private Vector2 aimAngle; //angle to position shooting arm during aiming mode
 
@@ -24,7 +25,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		//player = GetNode<Node3D>("%Player");
 		//currentDirection = (int)playerMesh.Rotation.Y;
-		runBlendSpeed = (float)animTree.Get(RunSpeedBlendPath);
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
 	}
 
@@ -66,6 +66,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		if (value) playback?.Travel(CrouchStateName);
 		else playback?.Travel(RunningStateName);
+	}
+	public void WallCollided()
+	{
+		if (currentSpeed <= 0) playback?.Travel(WallCollisionStateName);
 	}
 
 	public override void _Input(InputEvent inputEvent)
