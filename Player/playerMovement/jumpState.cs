@@ -133,10 +133,11 @@ public partial class jumpState : State
 				playerTop = 0;
 				msm.TransitionTo("mantleState");
 			}
-			/*else if (isTouching() && !isSameHeight()) {
+			
+			else if (isTouching() && !isSameHeight()) {
 				msm.TransitionTo("walljumpState");
 			}
-			*/
+			
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
