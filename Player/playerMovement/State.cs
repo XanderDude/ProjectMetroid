@@ -12,7 +12,7 @@ public partial class State : Node
 
 	public virtual void Enter() //runs first whenever msm transitions to this state
 	{
-		
+
 	}
 	public virtual void Exit() {}
 	

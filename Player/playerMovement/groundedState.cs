@@ -9,13 +9,19 @@ public partial class groundedState : State
 
 	public override void Enter()
 	{
+		/*
 		GD.Print("Entered Grounded State");
-		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) //player wants to slide so let them
+		if (Input.IsActionPressed("Slide") && (bool)player.Get(PlayerManager.PropertyName.slideBoost) && Input.GetAxis("Left", "Right") != 0) //player wants to slide so let them
 		{
-			GD.Print("Boost Slide");
 			msm.TransitionTo("slideState");
 		}
-		else player.Set(PlayerManager.PropertyName.slideBoost, false); //player is not sliding so player cannot retain boost
+		else
+		{
+			//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+			player.Set(PlayerManager.PropertyName.slideBoost, false); //player is not sliding so player cannot retain boost
+		}*/
+		player.Set(PlayerManager.PropertyName.slideBoost, false);
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 	
 	public override void Exit() {
@@ -24,25 +30,26 @@ public partial class groundedState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
+		if (Mathf.Abs(player.Velocity.X) >= .1f) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		if (!player.IsOnFloor()) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
+			return;
 		}
-		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) //only slide when pressing a direction
+		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
 		{
-			player.Set(PlayerManager.PropertyName.slideQueued, true);
+			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
 		}
-
 		else if (player.Velocity.X == 0 && Input.IsActionPressed("Crouch"))
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+			//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 		}
-		else if (Mathf.Abs(player.Velocity.X) >= .1f) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+		
 		//else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
-		if (Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0)
+		if (Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0) //check if player is moving after MoveAndSlide
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided();
 		}

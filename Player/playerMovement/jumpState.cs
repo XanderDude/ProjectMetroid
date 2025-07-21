@@ -93,7 +93,8 @@ public partial class jumpState : State
             else velocity.X = input * airMaxSpeed;
             if (player.IsOnFloor())
             {
-                msm.TransitionTo("groundedState");
+                if (Input.IsActionPressed("Slide")) msm.TransitionTo("slideState");
+                else msm.TransitionTo("groundedState");
             }
         }
 
@@ -107,11 +108,6 @@ public partial class jumpState : State
         {
             player.Set(PlayerManager.PropertyName.jumpQueued, false);
         }
-        if (@event.IsActionPressed("Slide")) 
-        {
-            player.Set(PlayerManager.PropertyName.slideQueued, true);
-        }
-        else player.Set(PlayerManager.PropertyName.slideQueued, false);
 	}
     
 }

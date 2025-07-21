@@ -35,7 +35,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		currentSpeed = Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed); //find the value between current speed and desired speed
 		//if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
 		//	newDelta = transitionSpeed * (float)delta;
-
+		
 		if (player.Velocity.X != 0)
 		{
 			Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //only rotate when moving
@@ -57,9 +57,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void Sliding(bool value) //value = slide true or sliding false
 	{
+		animTree.Set("parameters/conditions/slideEnd", !value); //set slideEnd true when Sliding(false) is called
 		if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
-		animTree.Set("parameters/conditions/slideEnd", !value); //slideEnd is true when Sliding(false)
-		if (value) playback?.Travel(SlideStateName); //only transition to slide when true
+		else if (value) playback?.Travel(SlideStateName); //only transition to slide when true
 	}
 	
 	public void Crouch(bool value)
@@ -69,18 +69,18 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	}
 	public void WallCollided()
 	{
-		if (currentSpeed <= 0) playback?.Travel(WallCollisionStateName);
+		if (Mathf.Abs(player.Velocity.X) <= 0) playback?.Travel(WallCollisionStateName);
 	}
 
-	public override void _Input(InputEvent inputEvent)
+	public override void _UnhandledInput(InputEvent @inputEvent)
 	{
-		if (inputEvent is InputEventJoypadMotion stickMotionEvent) //left stick motion during aiming mode
+		if (@inputEvent is InputEventJoypadMotion stickMotionEvent) //left stick motion during aiming mode
 		{
 			//get aim direction x and y
 
 			//aimAngle = new Vector2(newX, newY);
 		}
-		if (inputEvent is InputEventMouseMotion mouseMotionEvent) //mouse motion during aiming mode
+		if (@inputEvent is InputEventMouseMotion mouseMotionEvent) //mouse motion during aiming mode
 		{
 			Vector2 delta = mouseMotionEvent.Relative;
 			aimAngle = delta;

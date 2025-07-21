@@ -41,8 +41,10 @@ public partial class MovementStateMachine : Node
 		_currentState.Enter(); //run initial state
 	}
 
-	public override void _UnhandledInput(InputEvent @event) {
+	public override void _UnhandledInput(InputEvent @event)
+	{
 		_currentState.HandleInput(@event);
+
 	}
 
 	//Purpose: This is called every frame. delta is time 
