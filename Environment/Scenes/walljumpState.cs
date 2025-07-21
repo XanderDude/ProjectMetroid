@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class mantleState : State
+public partial class walljumpState : State
 {
 
 	public override void Enter()
 	{
-		GD.Print("Entered Mantle State.");
+		GD.Print("Entered Wall Jump State.");
 		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Mantle();
 	}
 	

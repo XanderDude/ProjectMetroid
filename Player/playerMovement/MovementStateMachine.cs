@@ -29,7 +29,7 @@ public partial class MovementStateMachine : Node
 			if (node is State s)
 			{
 				_states[node.Name] = s;
-				s.msm = this; //assign self to the states
+				s.msm = this;  //assign self to the states
 				s.player = Parent;
 				s.parentMesh = parentMesh;
 				s.Ready();

@@ -10,7 +10,8 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] public bool jumpQueued; //player is holding the jump button
 	[Export] public bool slideQueued; //player is holding slide button
 	[Export] public bool slideBoost; //player is airborn/just landed
-	[Export]
+	
+		[Export]
 	private MovementStateMachine StateMachine //init StateMachine
 	{
 		get { return _stateMachine; }

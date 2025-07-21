@@ -9,14 +9,22 @@ public partial class jumpState : State
 	[Export] public float jumpDeceleration = 15f;
  	[Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpMaxHeight = 0.17f;
-	[Export] public float playerTop = 0.2f;
+	[Export] public float playerTop = 1.5f;
+
 	public float jumpHeight = 0.0f;
 	private bool neutralJump = false;
 	
+	private bool isTouching() {
+		if (player.GetSlideCollisionCount() != 0) {
+			return true;
+			}
+			return false;
+	}
 	private bool isSameHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
 			GD.Print("No Collision Detected");
+			playerTop = 1.5f;
 			return false;
 			}
 		KinematicCollision3D collision = player.GetSlideCollision(0);
@@ -24,7 +32,9 @@ public partial class jumpState : State
 		float playerHeight = player.GlobalPosition.Y + playerTop;
 		float meshTop = collider.GlobalPosition.Y;
 		
-		return Mathf.Abs(playerHeight - meshTop) < 0.1f;
+		if ((Mathf.Abs(playerHeight - meshTop) < 0.1f) && (Input.GetAxis("Left", "Right") != 0))
+			return true;
+		else return false;
 			
 		
 	}
@@ -65,12 +75,14 @@ public partial class jumpState : State
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 
+	
 	public override void PhysicsUpdate(float delta)
 	{
 		/*if (Input.IsKeyPressed(Key.Down)) {
 				velocity.Y -= (jumpGravity * 4) * (float)delta;
 			}
 		*/
+		
 		player.MoveAndSlide();
 		HandleAirMovement(delta);
 		
@@ -109,14 +121,22 @@ public partial class jumpState : State
 				*/
 			}
 			else velocity.X = input * airMaxSpeed;
-			if (isSameHeight()) {
-				GD.Print("Mantling");
-			}
+			
+			
 			if (player.IsOnFloor())
 			{
 				if (Input.IsActionPressed("Slide")) msm.TransitionTo("slideState");
 				else msm.TransitionTo("groundedState");
 			}
+			else if (isSameHeight() && playerTop != 0) {
+				GD.Print("Mantling");
+				playerTop = 0;
+				msm.TransitionTo("mantleState");
+			}
+			/*else if (isTouching() && !isSameHeight()) {
+				msm.TransitionTo("walljumpState");
+			}
+			*/
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
