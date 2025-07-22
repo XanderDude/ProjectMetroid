@@ -38,6 +38,26 @@ public partial class jumpState : State
 			
 		
 	}
+	
+	private bool isGreaterHeight()
+	{
+		if (player.GetSlideCollisionCount() == 0) {
+			GD.Print("No Collision Detected");
+			return false;
+		}
+		KinematicCollision3D collision = player.GetSlideCollision(0);
+		Node3D collider = collision.GetCollider() as Node3D;
+		float playerHeight = player.GlobalPosition.Y + playerTop;
+		float meshTop = collider.GlobalPosition.Y;
+		
+		if ((Mathf.Abs(playerHeight - meshTop) > 0.1f))
+			return true;
+		else return false;
+			
+		
+	}
+		
+	
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
 	{
 		if (jumpHeight < jumpMaxHeight)
@@ -134,9 +154,7 @@ public partial class jumpState : State
 				msm.TransitionTo("mantleState");
 			}
 			
-			else if (isTouching() && !isSameHeight()) {
-				msm.TransitionTo("walljumpState");
-			}
+			
 			
 		}
 
@@ -149,6 +167,9 @@ public partial class jumpState : State
 		if (@event.IsActionReleased("Jump")) //check when jump is released
 		{
 			player.Set(PlayerManager.PropertyName.jumpQueued, false);
+		}
+		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight()) {
+			msm.TransitionTo("walljumpState");
 		}
 	}
 	
