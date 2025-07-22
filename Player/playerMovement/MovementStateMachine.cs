@@ -11,6 +11,13 @@ public partial class MovementStateMachine : Node
 		get { return _parent; }
 		set { _parent = value; }
 	}
+	private PlayerManager _manager;
+	public PlayerManager ParentManager //assign from parent script prior to _ready
+	{
+		get { return _manager; }
+		set { _manager = value; }
+	}
+
 	private Node3D _mesh;
 	public Node3D parentMesh //assign from parent script prior to _ready
 	{
@@ -31,6 +38,7 @@ public partial class MovementStateMachine : Node
 				_states[node.Name] = s;
 				s.msm = this;  //assign self to the states
 				s.player = Parent;
+				s.pm = ParentManager;
 				s.parentMesh = parentMesh;
 				s.Ready();
 				s.Exit(); //reset all states

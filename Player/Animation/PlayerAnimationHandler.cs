@@ -15,6 +15,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private float runBlendSpeed = 2.3f; //run animation speed adjustment
     [Export] private string SlideStateName;
 	[Export] private string CrouchStateName;
+	[Export] private string HangingStateName;
 
     private float currentSpeed;
 
@@ -69,7 +70,12 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	}
 	public void WallCollided()
 	{
-		if (Mathf.Abs(player.Velocity.X) <= 0) playback?.Travel(WallCollisionStateName);
+		if (Mathf.Abs(player.Velocity.X) == 0) playback?.Travel(WallCollisionStateName);
+	}
+
+	public void Hanging()
+	{
+		playback?.Travel(HangingStateName);
 	}
 
 	public override void _UnhandledInput(InputEvent @inputEvent)

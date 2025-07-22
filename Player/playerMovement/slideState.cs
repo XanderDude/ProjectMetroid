@@ -37,30 +37,34 @@ public partial class slideState : State
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
 		//if (Input.IsActionPressed("Slide") && crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
-		GD.Print("Exited Slide State");
+        GD.Print("Exited Slide State");
 	}
-	public override void PhysicsUpdate(float delta)
-	{
-		slideTimer += delta;
-		GD.Print(slideTimer);
+    public override void PhysicsUpdate(float delta)
+    {
+        slideTimer += delta;
 
-		if (!player.IsOnFloor()) //immediately switch to jump state
-		{
-			msm.TransitionTo("jumpState");
-			return;
-		}
-		if ((Mathf.Sign(Input.GetAxis("Left", "Right")) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime) 
-		{ //if player is holding opposite direction of slide or is not holding slide button
-			msm.TransitionTo("groundedState"); //switch to grounded and reverse direction
-		}
+        if (!player.IsOnFloor()) //immediately switch to jump state
+        {
+            msm.TransitionTo("jumpState");
+            return;
+        }
+        if ((Mathf.Sign(Input.GetAxis("Left", "Right")) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
+        { //if player is holding opposite direction of slide or is not holding slide button
+            msm.TransitionTo("groundedState"); //switch to grounded and reverse direction
+        }
 
-		/*else if (slideTimer >= slideMaxTime) //end slide after allowed time
+        /*else if (slideTimer >= slideMaxTime) //end slide after allowed time
 		{
 			crouchQueued = true; //crouch is not techincally queued yet but it's possible
 			msm.TransitionTo("groundedState");
 		}*/
-		HandleSlidingMovement(delta);
-		player.MoveAndSlide();
+        HandleSlidingMovement(delta);
+        player.MoveAndSlide();
+        if (player.GetSlideCollisionCount() > 1 && currentSlideSpeed < slideMaxSpeed)
+        {
+            GD.Print("Can't Stand up");
+            currentSlideSpeed = slideMaxSpeed * input;
+        }
 	}
 
 	private void HandleSlidingMovement(float delta)
