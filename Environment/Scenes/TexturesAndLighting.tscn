@@ -1418,13 +1418,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 transform = Transform3D(1.29337, 0, 0, 0, 0.999417, 0, 0, 0, 0.999417, 9.5, -8.73584, -1.5)
 size = Vector3(54, 17.4717, 5)
 
-[node name="Wall_DoorWay3" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="3" instance=ExtResource("4_8iu05")]
+[node name="GroundCollisionPlane2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="1"]
+transform = Transform3D(0.258674, 0, 0, 0, 0.299825, 0, 0, 0, 0.999417, 18.0362, 0.348011, -1.5)
+use_collision = true
+size = Vector3(54, 16.5, 5)
+material = ExtResource("11_vlgid")
+
+[node name="Wall_DoorWay3" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="4" instance=ExtResource("4_8iu05")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16, 0, 2.18557e-07)
 
-[node name="Wall_DoorWay5" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="4" instance=ExtResource("4_8iu05")]
+[node name="Wall_DoorWay5" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="5" instance=ExtResource("4_8iu05")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16, 0, 2.18557e-07)
 
-[node name="Wall_DoorWay7" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="5" instance=ExtResource("4_8iu05")]
+[node name="Wall_DoorWay7" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="6" instance=ExtResource("4_8iu05")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.1241, 0, 2.18557e-07)
 
 [node name="Wall" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay7" index="0"]
@@ -1456,10 +1462,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9838, 0)
 [node name="StoneWall2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay7" instance=ExtResource("18_6d3tk")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 14.1294, 0, -1, 0, -4.37114e-08, 6.31107, 5.87002, -5.51731e-07)
 
-[node name="Wall_DoorWay6" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="6" instance=ExtResource("4_8iu05")]
+[node name="Wall_DoorWay6" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="7" instance=ExtResource("4_8iu05")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16, 0, 2.18557e-07)
 
-[node name="Wall_DoorWay4" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="7" instance=ExtResource("4_8iu05")]
+[node name="Wall_DoorWay4" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="8" instance=ExtResource("4_8iu05")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16, 0, 2.18557e-07)
 
 [node name="StonePlatformEdge12" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup" index="12"]
@@ -2016,6 +2022,8 @@ roomMaxY = 500.0
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge13/StoneWall"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge9"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge9/stoneConnectedFloorCeiling"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge16"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge16/stoneConnectedFloorCeiling"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge5/StoneRoom"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge5/StoneRoom/woodDoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall"]

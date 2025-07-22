@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://0b6xs6vcxttm"]
+
+[ext_resource type="Texture2D" uid="uid://b6d2yfaa8jk51" path="res://UI/HUD/HeartIcon.png" id="1_0ktxb"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 88.0
+offset_bottom = 88.0
+texture = ExtResource("1_0ktxb")
+expand_mode = 3
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -16.0
+offset_right = 105.0
+offset_bottom = 16.0
+grow_vertical = 2
+text = "x 100"
+horizontal_alignment = 2
+vertical_alignment = 1
