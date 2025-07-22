@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=51 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Script" uid="uid://b4osggcpft2nu" path="res://Environment/Scenes/TexturesAndLighting.cs" id="1_fakud"]
@@ -31,8 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
-[ext_resource type="Script" uid="uid://bmtdfvkahjerh" path="res://Environment/Scenes/mantleState.cs" id="28_1crip"]
-[ext_resource type="Script" uid="uid://dlloi8ffjlah4" path="res://Environment/Scenes/walljumpState.cs" id="29_n0huq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -1979,79 +1977,7 @@ transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2o7o6")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.2995, 0.268132, 0)
-slideBoost = true
-
-[node name="slideState" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="2"]
-slideMaxTime = 1.0
-
-[node name="mantleState" type="Node" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="3"]
-script = ExtResource("28_1crip")
-
-[node name="walljumpState" type="Node" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="4"]
-script = ExtResource("29_n0huq")
-
-[node name="PlayerMesh" parent="SubViewportContainer/SubViewport/Player" index="4"]
-WallCollisionStateName = ""
-runBlendSpeed = 2.3
-
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.00189089, 0.92893, -0.0008159)
-bones/0/rotation = Quaternion(-0.0372338, 0.360354, 0.0117215, 0.931999)
-bones/1/rotation = Quaternion(-0.0105876, -0.0397555, 0.0065309, 0.999132)
-bones/2/rotation = Quaternion(0.100237, -0.0809791, 0.00959438, 0.991616)
-bones/3/rotation = Quaternion(0.157088, -0.0803204, 0.0143648, 0.984208)
-bones/4/rotation = Quaternion(-0.0338424, 0.0160774, 0.00123944, 0.999297)
-bones/5/rotation = Quaternion(-0.0516813, -0.182196, 0.00670198, 0.98188)
-bones/7/rotation = Quaternion(0.539924, 0.486113, -0.531025, 0.436106)
-bones/8/rotation = Quaternion(0.438445, -0.0413344, -0.100329, 0.892184)
-bones/9/rotation = Quaternion(0.0427533, -0.0853215, 0.342024, 0.934832)
-bones/10/rotation = Quaternion(0.0909633, 0.0535054, 0.105906, 0.98876)
-bones/11/rotation = Quaternion(0.235713, -0.13358, 0.18885, 0.943892)
-bones/12/rotation = Quaternion(-0.024237, 0.0230566, -0.178459, 0.983379)
-bones/15/rotation = Quaternion(0.00371525, -0.0146415, -0.0160075, 0.999758)
-bones/16/rotation = Quaternion(0.182993, 0.00224331, -0.00486078, 0.9831)
-bones/19/rotation = Quaternion(0.0782803, -0.00762613, -0.0300525, 0.996449)
-bones/20/rotation = Quaternion(0.294419, -8.79516e-05, 0.0203029, 0.955461)
-bones/23/rotation = Quaternion(0.156682, 0.0150724, -0.0632119, 0.985509)
-bones/24/rotation = Quaternion(0.350499, -0.000891339, 0.0369279, 0.935834)
-bones/27/rotation = Quaternion(0.180727, 0.0216371, -0.0845576, 0.979653)
-bones/28/rotation = Quaternion(0.379804, 0.00591111, 0.0733298, 0.922137)
-bones/31/rotation = Quaternion(0.489451, -0.52558, 0.565787, 0.405078)
-bones/32/rotation = Quaternion(0.46782, 0.0747359, -0.114177, 0.873226)
-bones/33/rotation = Quaternion(-0.0119917, 0.00369511, -0.422086, 0.906469)
-bones/34/rotation = Quaternion(-0.158803, -0.143337, -0.0255184, 0.976517)
-bones/35/rotation = Quaternion(0.310265, -0.0117299, -0.163872, 0.936346)
-bones/36/rotation = Quaternion(-0.00784824, -0.0017694, 0.00617165, 0.999949)
-bones/39/rotation = Quaternion(0.0364196, 0.0202001, -0.0618455, 0.997217)
-bones/40/rotation = Quaternion(0.147719, -0.000961414, 0.00543891, 0.989014)
-bones/43/rotation = Quaternion(0.129777, -0.0145372, 0.0804653, 0.988166)
-bones/44/rotation = Quaternion(0.194946, 0.0027369, -0.0154385, 0.980689)
-bones/47/rotation = Quaternion(0.270031, -0.00389343, 0.132901, 0.953628)
-bones/48/rotation = Quaternion(0.280982, -0.00465087, -0.0243031, 0.959394)
-bones/51/rotation = Quaternion(0.293503, -0.00985923, 0.167778, 0.941068)
-bones/52/rotation = Quaternion(0.339659, -0.0158044, -0.0522569, 0.938963)
-bones/55/rotation = Quaternion(0, 0, -0.0702853, 0.997527)
-bones/56/rotation = Quaternion(0.131057, 0.0203889, 0.982782, -0.128637)
-bones/57/rotation = Quaternion(-0.307827, -0.0779672, 0.0209221, 0.948012)
-bones/58/rotation = Quaternion(0.683197, -0.0714667, -0.0996492, 0.719864)
-bones/59/rotation = Quaternion(0.242722, -0.0321346, -0.0144376, 0.969456)
-bones/60/rotation = Quaternion(3.81157e-10, -0.126882, -4.8756e-11, 0.991918)
-bones/61/rotation = Quaternion(-0.0787029, 0.218459, 0.967055, 0.104342)
-bones/62/rotation = Quaternion(-0.313051, -0.124486, 0.0410745, 0.940646)
-bones/63/rotation = Quaternion(0.577563, 0.0223805, 0.0305222, 0.815468)
-bones/64/rotation = Quaternion(0.248579, 0.0172853, 0.0406805, 0.967603)
-
-[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.56323, -0.0881209, 0.821588, 0.603125, -0.635802, -0.481659, 0.564812, 0.766805, -0.304955, -0.404479, 1.00516, 0.190415)
-
-[node name="OmniLight3D" parent="SubViewportContainer/SubViewport/Player" index="5"]
-light_energy = 0.5
-light_indirect_energy = 0.0
-light_specular = 0.0
-light_bake_mode = 0
-light_cull_mask = 4294967295
-omni_range = 6.629
-omni_attenuation = 0.0
+slideBoost = false
 
 [node name="AreaEnteredEffect_RegaliaCathedral" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
@@ -2164,5 +2090,3 @@ roomMaxY = 500.0
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall2"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]

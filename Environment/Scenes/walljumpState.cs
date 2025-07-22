@@ -12,7 +12,7 @@ public partial class walljumpState : State
 	[Export] public float playerTop = 1.5f;
 
 	public float jumpHeight = 0.0f;
-	
+	[Export] Godot.AudioStreamPlayer jumpySound;
 	private void checkDirection() {
 		KinematicCollision3D collision = player.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
@@ -41,7 +41,8 @@ public partial class walljumpState : State
 	{
 		airMaxSpeed = Mathf.Abs(airMaxSpeed);
 		checkDirection();
-		
+		jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
+		jumpySound.Play();
 		player.Set("jumpQueued", true);
 		GD.Print("Entered Wall Jump State. Jump queued: " + player.Get("jumpQueued"));
 		jumpHeight = 0.0f;
