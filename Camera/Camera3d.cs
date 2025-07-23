@@ -29,7 +29,7 @@ public partial class Camera3d : Camera3D
 			player = GetNode<Node3D>(playerPath);
 			if (player != null) {
 				playerPosition = player.GlobalPosition;
-				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, GlobalPosition.Z);
+				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
 			
 			} else {
 				GD.PrintErr("Player not found!");
@@ -64,6 +64,8 @@ public partial class Camera3d : Camera3D
 		GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
 		
 	}
+	
+
 
 	private Vector3 GetPlayerVelocity()
 	{

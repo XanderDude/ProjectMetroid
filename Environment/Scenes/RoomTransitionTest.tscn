@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx1ep0rw36acf"]
+
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="1_6syng"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="2_nyppi"]
+[ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/Complete/roomTeleportHitbox.tscn" id="3_htrpb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nyppi"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nyppi"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Game" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0318627)
+
+[node name="Room1" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129981, 2.38419e-07, 0.00272799)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(9.99702, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nyppi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nyppi")
+
+[node name="roomTeleportHitbox" parent="Room1" instance=ExtResource("3_htrpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68778, 1.33365, 0)
+
+[node name="CollisionShape3D" parent="Room1/roomTeleportHitbox/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63348, -0.618311, 0.0103785)
+
+[node name="ScreenTransitionScript" parent="Room1/roomTeleportHitbox/CanvasLayer" index="0"]
+roomPath = "%Room2"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(9.84185, 0.170669, -0.0530738, -1.75452, 0.957358, -0.297714, 0, 0.233106, 1.26156, 0, 2.89514, 0)
+mesh = SubResource("PlaneMesh_nyppi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nyppi")
+
+[node name="Room2" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6408, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room2"]
+transform = Transform3D(9.99702, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nyppi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room2/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nyppi")
+
+[node name="roomTeleportHitbox" parent="Room2" instance=ExtResource("3_htrpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81457, 0)
+
+[node name="Area3D" parent="Room2/roomTeleportHitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.914118, 0)
+
+[node name="CollisionShape3D" parent="Room2/roomTeleportHitbox/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.367193, 0)
+
+[node name="ScreenTransitionScript" parent="Room2/roomTeleportHitbox/CanvasLayer" index="0"]
+self_modulate = Color(0, 0, 0, 0)
+roomPath = "%Room1"
+
+[node name="Player" parent="." instance=ExtResource("1_6syng")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
+
+[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0101988, 0.919908, -0.00263997)
+bones/0/rotation = Quaternion(-0.0411624, 0.251562, 0.000799715, 0.966965)
+bones/1/rotation = Quaternion(-0.0116412, -0.0210711, 0.00273503, 0.999707)
+bones/2/rotation = Quaternion(0.0982119, -0.0433108, 0.0020084, 0.994221)
+bones/3/rotation = Quaternion(0.155233, -0.0431186, 0.0045257, 0.986926)
+bones/4/rotation = Quaternion(0.0464585, 0.2344, 0.0180847, 0.970861)
+bones/5/rotation = Quaternion(-0.0880406, 0.298846, -0.00245668, 0.950228)
+bones/7/rotation = Quaternion(0.547321, 0.476691, -0.51174, 0.459704)
+bones/8/rotation = Quaternion(0.470097, -0.0245104, -0.132425, 0.87228)
+bones/9/rotation = Quaternion(0.0273297, -0.105075, 0.467566, 0.877266)
+bones/10/rotation = Quaternion(-0.0999581, 0.0480646, 0.0685337, 0.991464)
+bones/11/rotation = Quaternion(0.360948, -0.0627005, 0.142583, 0.919486)
+bones/12/rotation = Quaternion(-0.0057786, 0.0233949, -0.177336, 0.983855)
+bones/15/rotation = Quaternion(0.337896, 0.00798201, -0.0263676, 0.94078)
+bones/16/rotation = Quaternion(0.477296, -0.00524212, 0.0271338, 0.878308)
+bones/19/rotation = Quaternion(0.325832, -0.0158965, -0.00606002, 0.945274)
+bones/20/rotation = Quaternion(0.622181, -0.00149689, 0.0516496, 0.781166)
+bones/23/rotation = Quaternion(0.390459, -0.0315307, -0.00246206, 0.920077)
+bones/24/rotation = Quaternion(0.667295, -0.00134218, 0.0630614, 0.742118)
+bones/27/rotation = Quaternion(0.39494, -0.0566171, 0.0135835, 0.91686)
+bones/28/rotation = Quaternion(0.690852, 0.0168992, 0.0921001, 0.716907)
+bones/31/rotation = Quaternion(0.467238, -0.545166, 0.564872, 0.406697)
+bones/32/rotation = Quaternion(0.451056, 0.0660637, -0.0860014, 0.885883)
+bones/33/rotation = Quaternion(0.0339542, 0.0649425, -0.449522, 0.890258)
+bones/34/rotation = Quaternion(-0.205182, -0.0216698, -0.0273376, 0.978102)
+bones/35/rotation = Quaternion(0.310425, -0.0246266, -0.137139, 0.940331)
+bones/36/rotation = Quaternion(-0.0104738, -0.0141546, 0.0758683, 0.996962)
+bones/39/rotation = Quaternion(0.347906, -0.0355981, -0.0176017, 0.936688)
+bones/40/rotation = Quaternion(0.468338, 0.0104237, -0.0355678, 0.882772)
+bones/43/rotation = Quaternion(0.430492, 0.0190296, 0.0400759, 0.901503)
+bones/44/rotation = Quaternion(0.509965, 0.00798741, -0.0510718, 0.858641)
+bones/47/rotation = Quaternion(0.536284, 0.0631405, 0.0659809, 0.839082)
+bones/48/rotation = Quaternion(0.588181, -0.0103736, -0.0427165, 0.807534)
+bones/51/rotation = Quaternion(0.569205, 0.0850017, -0.0104353, 0.817723)
+bones/52/rotation = Quaternion(0.634007, -0.035987, -0.0558396, 0.770469)
+bones/55/rotation = Quaternion(0, 0, -0.0310811, 0.999517)
+bones/56/rotation = Quaternion(0.12628, -0.0481178, 0.982986, -0.124407)
+bones/57/rotation = Quaternion(-0.284743, 0.105831, -0.0105096, 0.952686)
+bones/58/rotation = Quaternion(0.740347, -0.0182955, -0.00675316, 0.671942)
+bones/59/rotation = Quaternion(0.255345, -0.0752734, 0.0201772, 0.963704)
+bones/60/rotation = Quaternion(3.83657e-10, -0.0561526, -2.15774e-11, 0.998422)
+bones/61/rotation = Quaternion(-0.0421964, 0.250517, 0.965389, 0.0590353)
+bones/62/rotation = Quaternion(-0.327185, -0.185812, 0.0368456, 0.925779)
+bones/63/rotation = Quaternion(0.58014, 0.0176916, 0.0279098, 0.813847)
+bones/64/rotation = Quaternion(0.250894, 0.0139123, 0.043619, 0.966931)
+
+[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.466954, -0.233799, 0.852814, 0.603151, -0.621045, -0.500512, 0.646655, 0.748092, -0.148983, -0.43505, 1.04383, 0.153466)
+
+[node name="Camera3D" parent="." instance=ExtResource("2_nyppi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0468237, 1.48411, 9.36773)
+playerPath = NodePath("../Player")
+roomMaxX = 700.0
+roomMaxY = 50.0
+
+[editable path="Room1/roomTeleportHitbox"]
+[editable path="Room2/roomTeleportHitbox"]
+[editable path="Player"]
+[editable path="Player/PlayerMesh"]

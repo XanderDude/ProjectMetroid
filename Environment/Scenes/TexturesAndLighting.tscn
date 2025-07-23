@@ -54,7 +54,7 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2o7o6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6d3tk"]
 _surfaces = [{
 "aabb": AABB(-1, 0, -2.22045e-16, 2, 2, 1e-05),
 "format": 34359742465,
@@ -85,9 +85,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAgD8AAIAlAAAAAAAAAAAAAIClAACAvwAAAAAAAIClAACAvwAAgD8AAIAlAACAPwAAgD8AAIAlAACAPwAAAAAAAIClAAAAAAAAAAAAAIClAAAAAAAAgD8AAIAlAACAPwAAAEAAAIAlAACAPwAAgD8AAIClAAAAAAAAgD8AAIClAAAAAAAAAEAAAIAlAAAAAAAAAEAAAIAlAAAAAAAAgD8AAIClAACAvwAAgD8AAIClAACAvwAAAEAAAIAl/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////78=")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2o7o6")
+shadow_mesh = SubResource("ArrayMesh_6d3tk")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_l2ohs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0fixg"]
 resource_name = "wall1"
 lightmap_size_hint = Vector2i(14, 14)
 _surfaces = [{
@@ -121,9 +121,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEy+zcxMvgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMPgAAAADNzEy+zcxMPgAAAADNzEw+zcxMPgAAAEDNzEw+zcxMvgAAAEDNzEw+zcxMvgAAAADNzEw+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPmZmBkBmZma+ZmZmvmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPjMz8z9mZma+ZmZmvjMz8z9mZma+ZmZmvjMz8z9mZmY+ZmZmPmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvjMz8z9mZmY+ZmZmvjMz8z9mZma+ZmZmvmZmBkBmZma+/3//f/3//r//f/9//f/+v/9//3/9//6//3//f/3//r//////AQD+v/////8BAP6//////wEA/r//////AQD+v////3/9/wCA////f/3/AID///9//f8AgP///3/9/wCAAAD/f/9//r8AAP9//3/+vwAA/3//f/6/AAD/f/9//r//f/9//P8AwP9//3/8/wDA/3//f/z/AMD/f/9//P8AwP9//////wDA/3//////AMD/f/////8AwP9//////wDA//////z//b///////P/9v//////8//2///////z//b//fwAA/P//v/9/AAD8//+//38AAPz//7//fwAA/P//v////3/8////////f/z///////9//P///////3/8////AAD/f/9/AMAAAP9//38AwAAA/3//fwDAAAD/f/9/AMA=")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_l2ohs")
+shadow_mesh = SubResource("ArrayMesh_0fixg")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_60qv4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4qpb5"]
 resource_name = "pillar1"
 lightmap_size_hint = Vector2i(30, 22)
 _surfaces = [{
@@ -157,7 +157,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEy+zcxMvgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMPgAAAADNzEy+zcxMPgAAAADNzEw+zcxMPgAAAEDNzEw+zcxMvgAAAEDNzEw+zcxMvgAAAADNzEw+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPmZmBkBmZma+ZmZmvmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPjMz8z9mZma+ZmZmvjMz8z9mZma+ZmZmvjMz8z9mZmY+ZmZmPmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvjMz8z9mZmY+ZmZmvjMz8z9mZma+ZmZmvmZmBkBmZma+/3//f/3//r//f/9//f/+v/9//3/9//6//3//f/3//r//////AQD+v/////8BAP6//////wEA/r//////AQD+v////3/9/wCA////f/3/AID///9//f8AgP///3/9/wCAAAD/f/9//r8AAP9//3/+vwAA/3//f/6/AAD/f/9//r//f/9//P8AwP9//3/8/wDA/3//f/z/AMD/f/9//P8AwP9//////wDA/3//////AMD/f/////8AwP9//////wDA//////z//b///////P/9v//////8//2///////z//b//fwAA/P//v/9/AAD8//+//38AAPz//7//fwAA/P//v////3/8////////f/z///////9//P///////3/8////AAD/f/9/AMAAAP9//38AwAAA/3//fwDAAAD/f/9/AMA=")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_60qv4")
+shadow_mesh = SubResource("ArrayMesh_4qpb5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
 albedo_color = Color(1, 1, 0, 1)
@@ -175,7 +175,7 @@ emission_energy_multiplier = 2.08
 emission_on_uv2 = true
 disable_receive_shadows = true
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0i60c"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ji5m0"]
 _surfaces = [{
 "aabb": AABB(-0.360406, 0, -0.342085, 0.720812, 0.640752, 0.684171),
 "format": 34359742465,
@@ -206,7 +206,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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+C/gvc3sQzr6cYM9+C/gvZpeqz76cYM9N3ifvJpeqz7J3O09N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Vr+ivZpeqz7I3O09s5QsPJpeqz77cYM9s5QsPM3sQzr7cYM9N3ifvM3sQzrJ3O09N3ifvJpeqz7J3O09LnifvJpeqz5xOUg8LnifvM3sQzpxOUg8s5QsPM3sQzr7cYM9s5QsPJpeqz77cYM9Y51Kvc3sQzr7cYM9LnifvM3sQzpxOUg8VL+ivc3sQzphOUg8s5QsPM3sQzr7cYM9+C/gvc3sQzr6cYM9N3ifvM3sQzrJ3O09Vr+ivc3sQzrI3O09Y51KvZpeqz77cYM9VL+ivZpeqz5hOUg8LnifvJpeqz5xOUg8+C/gvZpeqz76cYM9s5QsPJpeqz77cYM9Vr+ivZpeqz7I3O09N3ifvJpeqz7J3O09oKchvVjU0j71cYM9oKchvTEVqD71cYM9JZNzvTEVqD71cYM9JZNzvVjU0j71cYM9N1n//////783Wf//////vzdZ//////+/N1n//////7//f///////v/9///////+//3///////78tUm7psfFR1i1SbukP7LLSLVJu6bHxUdYtUm7p8fax2f9///////+//3///////7//f///////vyFeIN7Jv3nLIV4g3qvVaM8hXiDeouT52SFeIN6r1WjP/3///////7//f///////v/9///////+/b2ks0lvTJcdvaSzSmsyFxG9pLNJb0yXHb2ks0pna9sn/f///////v/9///////+//3///////7//fzbZ////v/9/Ntn///+//3822f///7//fzbZ////v/9///////+//3///////7//f///////v4+WLNKx8a2pj5Ys0g/sTK2PlizSsfGtqY+WLNLx9k2m/3///////7//f///////v/9///////+/3aEg3qvVlbDdoSDeyb+FtN2hIN6r1ZWw3aEg3qLkBab/f///////v/9///////+//3///////7/RrW7pW9PYuNGtbumazHi70a1u6VvT2LjRrW7pmdoHtv9///////+//3///////7//f///////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3////7//7//f////v//v/9////+//+//3////7//7//f///////v/9////+//+//3///////7//f/9/////v/9//3////+//3//f////7//f/9/////v////v8AAP+////+/wAA/7////7/AAD/v////v8AAP+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/AADZriVR/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7/ZLv9/2a7/v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+/JdH/f///kugl0f9///+S6CXR/3///5LoJdH/f///kuj//9muAACS6P//2a4AAJLo///ZrgAAkuj//9muAACS6P9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3/+//7//7//f////v//v/9////+//+//3////7//7//f///////v/9//v/+//+//3/+//7//7//f/9/////v/9//3////+//3//f////7//f/9/////vw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_0i60c")
+shadow_mesh = SubResource("ArrayMesh_ji5m0")
 
 [sub_resource type="BoxMesh" id="BoxMesh_f1y8r"]
 
@@ -309,7 +309,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_r1hqo")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_u302v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6ndq2"]
 _surfaces = [{
 "aabb": AABB(-1, -2.86102e-08, -2.22045e-16, 2, 2, 1e-05),
 "format": 34359742465,
@@ -340,7 +340,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAgD8AAIAlAAAAAAAAAAAAAIClAACAvwAAAAAAAIClAACAvwAAgD8AAIAlAACAPwAAgD+PwnUyAACAP4/C9bKPwnUyAAAAAI/C9bKPwnUyAAAAAAAAgD+PwnUyAACAPwAAAEAAAIAlAACAPwAAgD8AAIClAAAAAAAAgD8AAIClAAAAAAAAAEAAAIAlAAAAAAAAAEAAAIAlAAAAAAAAgD8AAIClAACAvwAAgD8AAIClAACAvwAAAEAAAIAl/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////78=")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_u302v")
+shadow_mesh = SubResource("ArrayMesh_6ndq2")
 
 [node name="TexturesAndLighting" type="Node3D"]
 script = ExtResource("1_fakud")
@@ -2473,58 +2473,55 @@ transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.1332, 0.549017, 0)
 
-[node name="PlayerMesh" parent="SubViewportContainer/SubViewport/Player" index="4"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.00351083, 0.924823, 0.000661986)
-bones/0/rotation = Quaternion(-0.0267083, 0.295258, 0.00943476, 0.954998)
-bones/1/rotation = Quaternion(-0.00963984, -0.0312106, 0.00645112, 0.999446)
-bones/2/rotation = Quaternion(0.10263, -0.0630863, 0.0107743, 0.992659)
-bones/3/rotation = Quaternion(0.159554, -0.0623533, 0.0144221, 0.985112)
-bones/4/rotation = Quaternion(-0.0829649, -0.0566383, 0.00125688, 0.994941)
-bones/5/rotation = Quaternion(-0.0609309, -0.40595, 0.0661056, 0.909462)
-bones/7/rotation = Quaternion(0.558721, 0.465419, -0.525885, 0.441205)
-bones/8/rotation = Quaternion(0.427394, -0.0381702, -0.120306, 0.895212)
-bones/9/rotation = Quaternion(0.0538342, -0.0703788, 0.306826, 0.947632)
-bones/10/rotation = Quaternion(0.0808726, 0.0701761, 0.0904862, 0.990125)
-bones/11/rotation = Quaternion(0.282515, -0.0960603, 0.161922, 0.940606)
-bones/12/rotation = Quaternion(-0.0186943, 0.0274406, -0.177282, 0.9836)
-bones/15/rotation = Quaternion(0.035536, -0.0126037, -0.0131769, 0.999202)
-bones/16/rotation = Quaternion(0.136813, 0.0034546, -0.00962867, 0.990544)
-bones/19/rotation = Quaternion(0.107398, -0.0088388, -0.0270076, 0.99381)
-bones/20/rotation = Quaternion(0.252103, 0.000247628, 0.0163904, 0.967562)
-bones/23/rotation = Quaternion(0.182626, 0.0127975, -0.0610237, 0.981203)
-bones/24/rotation = Quaternion(0.309892, -0.000828371, 0.0335047, 0.950181)
-bones/27/rotation = Quaternion(0.205014, 0.0191573, -0.0830932, 0.975037)
-bones/28/rotation = Quaternion(0.339798, 0.00456983, 0.0705021, 0.937841)
-bones/31/rotation = Quaternion(0.473326, -0.539122, 0.561921, 0.41177)
-bones/32/rotation = Quaternion(0.47728, 0.073, -0.162524, 0.8605)
-bones/33/rotation = Quaternion(-0.000875678, 0.00279297, -0.423704, 0.905796)
-bones/34/rotation = Quaternion(-0.138705, -0.119464, -0.0346268, 0.982492)
-bones/35/rotation = Quaternion(0.301007, -0.0296893, -0.117522, 0.945887)
-bones/36/rotation = Quaternion(-0.0108256, -0.00953718, 0.0681562, 0.99757)
-bones/39/rotation = Quaternion(0.118224, 0.0152117, -0.070834, 0.99034)
-bones/40/rotation = Quaternion(0.230183, 0.00179041, -0.00486057, 0.973134)
-bones/43/rotation = Quaternion(0.212487, -0.00619736, 0.0736257, 0.974367)
-bones/44/rotation = Quaternion(0.276151, 0.00413231, -0.0245963, 0.960791)
-bones/47/rotation = Quaternion(0.34956, 0.007761, 0.126654, 0.928281)
-bones/48/rotation = Quaternion(0.359084, -0.00598433, -0.0292375, 0.932828)
-bones/51/rotation = Quaternion(0.37107, 0.0043739, 0.163257, 0.914131)
-bones/52/rotation = Quaternion(0.417108, -0.0210322, -0.053726, 0.907024)
-bones/55/rotation = Quaternion(0, 0, -0.00488483, 0.999988)
-bones/56/rotation = Quaternion(0.121105, 0.0071266, 0.987148, -0.104024)
-bones/57/rotation = Quaternion(-0.304123, -0.142446, 0.0460119, 0.940798)
-bones/58/rotation = Quaternion(0.686026, -0.0853581, -0.118605, 0.712752)
-bones/59/rotation = Quaternion(0.242639, -0.0445559, -0.0074201, 0.969065)
-bones/60/rotation = Quaternion(3.84249e-10, -0.00856862, -3.29261e-12, 0.999963)
-bones/61/rotation = Quaternion(-0.0390512, 0.249513, 0.964893, 0.0721128)
-bones/62/rotation = Quaternion(-0.324127, -0.153454, 0.0181252, 0.933309)
-bones/63/rotation = Quaternion(0.579758, 0.0260672, 0.0383264, 0.81347)
-bones/64/rotation = Quaternion(0.246018, 0.0174613, 0.0400679, 0.968279)
+bones/0/position = Vector3(0.00468144, 0.923135, 0.00215572)
+bones/0/rotation = Quaternion(-0.0256182, 0.255154, 0.00742292, 0.966533)
+bones/1/rotation = Quaternion(-0.01014, -0.0323839, 0.00646844, 0.999403)
+bones/2/rotation = Quaternion(0.101193, -0.0670114, 0.0105479, 0.992551)
+bones/3/rotation = Quaternion(0.158114, -0.0662849, 0.0144233, 0.985088)
+bones/4/rotation = Quaternion(-0.0870362, -0.059393, -0.00288451, 0.994429)
+bones/5/rotation = Quaternion(-0.0599263, -0.423943, 0.0693012, 0.901043)
+bones/7/rotation = Quaternion(0.56367, 0.460019, -0.526198, 0.440198)
+bones/8/rotation = Quaternion(0.426359, -0.0338629, -0.130305, 0.894479)
+bones/9/rotation = Quaternion(0.0536771, -0.0682467, 0.314273, 0.945354)
+bones/10/rotation = Quaternion(0.0775419, 0.0714723, 0.0846151, 0.990817)
+bones/11/rotation = Quaternion(0.287302, -0.0943074, 0.160228, 0.939623)
+bones/12/rotation = Quaternion(-0.0176253, 0.0268541, -0.177672, 0.983565)
+bones/15/rotation = Quaternion(0.0472827, -0.0127533, -0.0124151, 0.998723)
+bones/16/rotation = Quaternion(0.148451, 0.00312403, -0.00844242, 0.988879)
+bones/19/rotation = Quaternion(0.119161, -0.00942737, -0.0258238, 0.992494)
+bones/20/rotation = Quaternion(0.263658, 0.000229806, 0.0174929, 0.964458)
+bones/23/rotation = Quaternion(0.193561, 0.0118267, -0.0599567, 0.979183)
+bones/24/rotation = Quaternion(0.32105, -0.000847775, 0.034447, 0.946435)
+bones/27/rotation = Quaternion(0.215203, 0.0176898, -0.0818721, 0.972971)
+bones/28/rotation = Quaternion(0.350721, 0.00492891, 0.0713131, 0.933748)
+bones/31/rotation = Quaternion(0.46089, -0.549863, 0.563293, 0.409795)
+bones/32/rotation = Quaternion(0.489763, 0.0710979, -0.173103, 0.851535)
+bones/33/rotation = Quaternion(0.00211441, 0.00337978, -0.42374, 0.905775)
+bones/34/rotation = Quaternion(-0.128369, -0.112271, -0.0380801, 0.984615)
+bones/35/rotation = Quaternion(0.303087, -0.0303962, -0.119951, 0.944895)
+bones/36/rotation = Quaternion(-0.0108257, -0.0105379, 0.071232, 0.997345)
+bones/39/rotation = Quaternion(0.150133, 0.0124048, -0.0668822, 0.986323)
+bones/40/rotation = Quaternion(0.264991, 0.00301957, -0.00925502, 0.964202)
+bones/43/rotation = Quaternion(0.243568, -0.00305071, 0.0685941, 0.96745)
+bones/44/rotation = Quaternion(0.310258, 0.00469642, -0.0284402, 0.950215)
+bones/47/rotation = Quaternion(0.376931, 0.0125208, 0.11964, 0.918397)
+bones/48/rotation = Quaternion(0.392929, -0.00662327, -0.0312693, 0.919013)
+bones/51/rotation = Quaternion(0.402585, 0.0103663, 0.14943, 0.903044)
+bones/52/rotation = Quaternion(0.449724, -0.0232502, -0.0542441, 0.891216)
+bones/55/rotation = Quaternion(0, 0, -0.00595965, 0.999982)
+bones/56/rotation = Quaternion(0.122848, -0.0143929, 0.987257, -0.100121)
+bones/57/rotation = Quaternion(-0.296246, -0.126858, 0.0365053, 0.945945)
+bones/58/rotation = Quaternion(0.702715, -0.0736915, -0.09915, 0.700665)
+bones/59/rotation = Quaternion(0.238982, -0.0446204, -0.00838001, 0.969962)
+bones/60/rotation = Quaternion(3.84242e-10, -0.0105777, -4.06461e-12, 0.999944)
+bones/61/rotation = Quaternion(-0.0236708, 0.259963, 0.963704, 0.0559877)
+bones/62/rotation = Quaternion(-0.325472, -0.176579, 0.0174788, 0.928753)
+bones/63/rotation = Quaternion(0.576622, 0.0250019, 0.0368063, 0.815798)
+bones/64/rotation = Quaternion(0.245667, 0.0173705, 0.0400949, 0.968369)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.542592, -0.113678, 0.832269, 0.544831, -0.70649, -0.451697, 0.639337, 0.698533, -0.321401, -0.389039, 1.00026, 0.202079)
+transform = Transform3D(0.466377, -0.18045, 0.865985, 0.558488, -0.699121, -0.446454, 0.685991, 0.691858, -0.225275, -0.404322, 1.00335, 0.164184)
 
 [node name="AreaEnteredEffect_RegaliaCathedral" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
