@@ -123,6 +123,12 @@ Pause={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Ground"
+3d_physics/layer_2="Wall"
+3d_physics/layer_3="Player"
+
 [rendering]
 
 occlusion_culling/use_occlusion_culling=true
