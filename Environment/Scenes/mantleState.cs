@@ -19,7 +19,7 @@ public partial class mantleState : State
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		
+		player.MoveAndCollide(Vector3.Zero);
 	}
 	
 	public override void HandleInput(InputEvent @event)

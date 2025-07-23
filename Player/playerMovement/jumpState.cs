@@ -7,39 +7,41 @@ public partial class jumpState : State
 	[Export] public float airMaxSpeed = 5.0f;
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpDeceleration = 15f;
- 	[Export] public float jumpVelocity = 10.0f;
+	[Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpMaxHeight = 0.17f;
 	[Export] public float playerTop = 1.5f;
-
+	private float mantleCooldown = .2f;
+	private float mantleTimer = .2f;
 	public float jumpHeight = 0.0f;
 	private bool neutralJump = false;
+	private bool cancelVelocity = true;
 	[Export] Godot.AudioStreamPlayer jumpySound;
-	
+
 	private bool isTouching() {
 		if (player.GetSlideCollisionCount() != 0) {
 			return true;
-			}
-			return false;
+		}
+		return false;
 	}
 	private bool isSameHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
 			GD.Print("No Collision Detected");
-			playerTop = 1.5f;
+			//playerTop = _playerTop;
 			return false;
-			}
-		KinematicCollision3D collision = player.GetSlideCollision(0);
-		Node3D collider = collision.GetCollider() as Node3D;
-		var transform = GetNode<Node3D>(collider.GetParent().GetPath()).Transform;
-		var scaleY = new Vector3(transform.Basis.X.Y, transform.Basis.Y.Y, transform.Basis.Z.Y).Length();
-		float playerHeight = player.GlobalPosition.Y + playerTop;
-		float meshTop = collider.GlobalPosition.Y + scaleY / 2;
-		GD.Print(scaleY);
+		}
 		
-		if ((Mathf.Abs(playerHeight - meshTop) < 0.1f) && (Input.GetAxis("Left", "Right") != 0))
-			return true;
-		else return false;
-			
+		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
+		{
+			KinematicCollision3D collision = player.GetSlideCollision(i);
+			Node3D collider = collision.GetCollider() as Node3D;
+			var transform = GetNode<Node3D>(collider.GetParent().GetPath()).Transform; //reference Transform3D for local scale
+			var scaleY = new Vector3(transform.Basis.X.Y, transform.Basis.Y.Y, transform.Basis.Z.Y).Length(); //local y scale derived from scale and rotation matrix
+			float playerHeight = player.GlobalPosition.Y + playerTop;
+			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
+			if (Mathf.Abs(playerHeight - meshTop) < 0.1f) return true;
+		}
+		return false;		
 		
 	}
 	
@@ -58,10 +60,7 @@ public partial class jumpState : State
 		if (Mathf.Abs(playerHeight - meshTop) > 0.1f)
 			return true;
 		else return false;
-			
-		
 	}
-		
 	
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
 	{
@@ -79,22 +78,22 @@ public partial class jumpState : State
 			return false;
 		}
 	}
-
+	
 	public override void Enter()
 	{
 		GD.Print("Entered Jump State. Jump queued: " + player.Get("jumpQueued"));
+		cancelVelocity = true;
 		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
 		{
 			jumpHeight = 0.0f;
 			jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
 			jumpySound.Play();
-			if (Input.GetAxis("Left", "Right") == 0) neutralJump = true; //freeze horizontal velocity
+			if (Input.GetAxis("Left", "Right") == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
-
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
-		
 	}
+
 	public override void Exit()
 	{
 		GD.Print("Exited Jump State");
@@ -102,23 +101,28 @@ public partial class jumpState : State
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 
-	
+
 	public override void PhysicsUpdate(float delta)
 	{
+		if (cancelVelocity)
+		{
+			player.Velocity = Vector3.Zero;
+			cancelVelocity = false;
+		}
+		if (mantleTimer > 0) mantleTimer -= delta; //player can mantle again when mantleTimer = 0
+
 		/*if (Input.IsKeyPressed(Key.Down)) {
 				velocity.Y -= (jumpGravity * 4) * (float)delta;
 			}
 		*/
-		
-		player.MoveAndSlide();
+
 		HandleAirMovement(delta);
-		
+		player.MoveAndSlide();
 	}
 
 	private void HandleAirMovement(float delta)
 	{
 		Vector3 velocity = player.Velocity;
-		if (neutralJump) velocity.X = 0; neutralJump = false;
 		float input = Input.GetAxis("Left", "Right");
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
@@ -134,7 +138,6 @@ public partial class jumpState : State
 				else { velocity.X = 0; }*/
 			}
 			else velocity.X = input * airMaxSpeed;
-
 		}
 		else //must be falling
 		{
@@ -148,21 +151,21 @@ public partial class jumpState : State
 				*/
 			}
 			else velocity.X = input * airMaxSpeed;
-			
-			
+
 			if (player.IsOnFloor())
 			{
+				mantleTimer = 0;
 				if (Input.IsActionPressed("Slide")) msm.TransitionTo("slideState");
 				else msm.TransitionTo("groundedState");
 			}
-			else if (isSameHeight() && playerTop != 0) {
+			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
+			{
 				GD.Print("Mantling");
-				playerTop = 0;
+				mantleTimer = mantleCooldown;
+				cancelVelocity = true;
 				msm.TransitionTo("mantleState");
-			}
-			
-			
-			
+				return; //dont continue updating movement
+			}			
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
