@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cw7b55875r1t0"]
 
-[ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/Teleporter/ScreenTransitionScript.cs" id="1_g4cbb"]
+[ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="1_g4cbb"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="2_rsmho"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_1d5am"]
