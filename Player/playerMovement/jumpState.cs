@@ -30,8 +30,11 @@ public partial class jumpState : State
 			}
 		KinematicCollision3D collision = player.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
+		var transform = GetNode<Node3D>(collider.GetParent().GetPath()).Transform;
+		var scaleY = new Vector3(transform.Basis.X.Y, transform.Basis.Y.Y, transform.Basis.Z.Y).Length();
 		float playerHeight = player.GlobalPosition.Y + playerTop;
-		float meshTop = collider.GlobalPosition.Y;
+		float meshTop = collider.GlobalPosition.Y + scaleY / 2;
+		GD.Print(scaleY);
 		
 		if ((Mathf.Abs(playerHeight - meshTop) < 0.1f) && (Input.GetAxis("Left", "Right") != 0))
 			return true;
@@ -50,8 +53,9 @@ public partial class jumpState : State
 		Node3D collider = collision.GetCollider() as Node3D;
 		float playerHeight = player.GlobalPosition.Y + playerTop;
 		float meshTop = collider.GlobalPosition.Y;
+
 		
-		if ((Mathf.Abs(playerHeight - meshTop) > 0.1f))
+		if (Mathf.Abs(playerHeight - meshTop) > 0.1f)
 			return true;
 		else return false;
 			

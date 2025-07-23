@@ -39,7 +39,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		
 		if (player.Velocity.X != 0)
 		{
-			Rotation = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //only rotate when moving
+			RotationDegrees = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //only rotate when moving
 		}
 		if (currentSpeed > 1) currentSpeed = 1;
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
