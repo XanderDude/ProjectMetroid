@@ -6,7 +6,6 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 {
 	[Export] public string roomPath = "";
 	private AnimationPlayer blackScreen;
-
 	private Area3D collider;
 	private bool isEntering = false;
 	private Node3D player; 
@@ -20,7 +19,7 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 		
 		var currentRoomName = GetParent().GetParent().GetParent().Name; 
 		collider.Monitoring = (currentRoomName == "Room1");
-		Modulate = new Color(0, 0, 0, 0);
+	
 }
 	
 	private bool isEnterFromLeft() {
@@ -45,6 +44,7 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 }
 	
 	private void LoadRoom(string roomName) {
+		Modulate = new Color(0, 0, 0, 0);
 		GD.Print("Trying to load room: ", roomName);
 		UnloadCurrentRoom();
 		var newRoom = gameNode.GetNode<Node3D>(roomName);
@@ -54,7 +54,7 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 			newRoom.ProcessMode = Node.ProcessModeEnum.Inherit;
 		
 			var targetTeleporter = newRoom.GetNode<Node3D>("roomTeleportHitbox");
-				player.GlobalPosition = targetTeleporter.GlobalPosition + new Vector3(7, -1, 0);
+				player.GlobalPosition = targetTeleporter.GlobalPosition + new Vector3(7, 15, 0);
 				
 		
 			var newRoomArea = newRoom.GetNode<Area3D>("roomTeleportHitbox/Area3D");
@@ -81,12 +81,13 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 		isEntering = true;
 		
 		blackScreen.Play("fade_in_black_screen");
-		GetTree().CreateTimer(1.0f).Timeout += () => {
+		GetTree().CreateTimer(1.1f).Timeout += () => {
+		blackScreen.Play("fade_out_black_screen");
 		GD.Print("Playing Fade Out");
 		GD.Print("Loading Room");
 		LoadRoom(roomPath);
 		GD.Print("Setting Modulate to 0");
-		Modulate = new Color(0, 0, 0, 0);
+		
 		GD.Print("Getting Camera Node");
 		var camera = gameNode.GetNode<Camera3D>("Camera3D") as Camera3d;
 		camera.Position = new Vector3(player.Position.X, player.Position.Y + camera.cameraYOffset, 25.0f);
@@ -97,6 +98,8 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 	public void _on_area_3d_body_exited(Node3D body) {
 		GD.Print("I Exited");
 		isEntering = false;
+		blackScreen.ClearQueue();
+		
 	}
 		
 }
