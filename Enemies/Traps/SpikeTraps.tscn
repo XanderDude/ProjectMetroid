@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctl838fm51cgn"]
+
+[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="1_qc3pl"]
+[ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapTrigger.cs" id="1_yj3h8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qc3pl"]
+size = Vector3(2, 1.5, 2)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qc3pl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qc3pl"]
+albedo_color = Color(0.67069, 0.67069, 0.67069, 1)
+metallic = 1.0
+roughness = 0.35
+
+[sub_resource type="Animation" id="Animation_yj3h8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.935, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spikes:scale:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spikes:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spikes:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spikes:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qc3pl"]
+resource_name = "SpikeActivate"
+length = 0.4485
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Spikes")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.419857)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spikes:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 3, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 0.273999, 0.79997, -0.0654769, -0.0617303, 0.101435, 0.0956309, 0.868277, -0.0681019, 0, 0.0681019, 0, -0.00187427, -0.233333, -0.33934, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.433333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spikes:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.419857)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2hn8"]
+_data = {
+&"RESET": SubResource("Animation_yj3h8"),
+&"SpikeActivate": SubResource("Animation_qc3pl")
+}
+
+[node name="SpikeTraps" type="Node3D" node_paths=PackedStringArray("collider", "animPlayer")]
+script = ExtResource("1_yj3h8")
+collider = NodePath("Collider")
+animPlayer = NodePath("AnimationPlayer")
+
+[node name="StoneFloor" parent="." instance=ExtResource("1_qc3pl")]
+
+[node name="Collider" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_qc3pl")
+
+[node name="Spikes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.935, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1, 0, 0, 0, 0.275724, 0.294516, -0.704012, 0.43273)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1, 0, 0, 0, 0.275724, 1.10174, -0.704012, 0.793745)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1, 0, 0, 0, 0.275724, 0.500357, -0.704012, 1.07246)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1, 0, 0, 0, 0.275724, 0.82665, -0.704012, 1.61192)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1, 0, 0, 0, 0.275724, 1.52346, -0.704012, 1.63575)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="Spikes"]
+transform = Transform3D(0.203552, 0, 0, 0, 1.01509, 0, 0, 0, 0.275724, 1.78759, -0.704012, 0.482131)
+calculate_tangents = false
+mesh = SubResource("CapsuleMesh_qc3pl")
+material = SubResource("StandardMaterial3D_qc3pl")
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s2hn8")
+}
+playback_auto_capture = false
+
+[connection signal="body_entered" from="Collider" to="." method="_on_collider_body_entered"]
+[connection signal="body_exited" from="Collider" to="." method="_on_collider_body_exited"]

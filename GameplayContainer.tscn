@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3p56e8p07hea"]
+
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="2_4lvic"]
+[ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
+[ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
+[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="4_l5twc"]
+[ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
+shader = ExtResource("1_qbg50")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+
+[node name="Gameplay" type="Node3D"]
+process_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_itrsp")
+offset_left = 1.0
+offset_right = 641.0
+offset_bottom = 360.0
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+process_mode = 3
+
+[node name="HUD" parent="SubViewportContainer/SubViewport/CanvasLayer" instance=ExtResource("2_cilmm")]
+
+[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_l5twc")]
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(-0.00103751, 0.928688, -0.00170605)
+bones/0/rotation = Quaternion(-0.0348278, 0.369985, 0.0120452, 0.928307)
+bones/1/rotation = Quaternion(-0.0104212, -0.0397418, 0.00644284, 0.999135)
+bones/2/rotation = Quaternion(0.100555, -0.0809867, 0.00942216, 0.991585)
+bones/3/rotation = Quaternion(0.157421, -0.080302, 0.0141088, 0.98416)
+bones/4/rotation = Quaternion(-0.0371112, 0.00857852, -0.000254376, 0.999274)
+bones/5/rotation = Quaternion(-0.05102, -0.188531, 0.0178451, 0.980579)
+bones/7/rotation = Quaternion(0.542709, 0.483037, -0.531579, 0.435391)
+bones/8/rotation = Quaternion(0.428906, -0.04103, -0.105412, 0.896239)
+bones/9/rotation = Quaternion(0.0456847, -0.0800982, 0.345679, 0.933811)
+bones/10/rotation = Quaternion(0.101876, 0.056092, 0.101535, 0.988011)
+bones/11/rotation = Quaternion(0.242528, -0.127588, 0.18499, 0.943758)
+bones/12/rotation = Quaternion(-0.0233403, 0.0237574, -0.178631, 0.983352)
+bones/15/rotation = Quaternion(0.0334072, -0.0120235, -0.0139291, 0.999272)
+bones/16/rotation = Quaternion(0.141418, 0.00325419, -0.00918433, 0.989902)
+bones/19/rotation = Quaternion(0.104698, -0.00864924, -0.0275471, 0.994085)
+bones/20/rotation = Quaternion(0.256566, 8.60109e-05, 0.0167452, 0.966382)
+bones/23/rotation = Quaternion(0.18032, 0.0128241, -0.0611841, 0.981619)
+bones/24/rotation = Quaternion(0.313468, -0.000839709, 0.0338069, 0.948997)
+bones/27/rotation = Quaternion(0.203107, 0.0187823, -0.0826859, 0.975478)
+bones/28/rotation = Quaternion(0.343383, 0.00469352, 0.0707184, 0.936518)
+bones/31/rotation = Quaternion(0.489727, -0.525108, 0.563796, 0.40812)
+bones/32/rotation = Quaternion(0.465987, 0.0769932, -0.122349, 0.872903)
+bones/33/rotation = Quaternion(-0.0117204, 0.00361896, -0.411596, 0.911284)
+bones/34/rotation = Quaternion(-0.16248, -0.140588, -0.0297134, 0.976193)
+bones/35/rotation = Quaternion(0.309458, -0.0138353, -0.157833, 0.937621)
+bones/36/rotation = Quaternion(-0.00791317, -0.00295217, 0.0122184, 0.99989)
+bones/39/rotation = Quaternion(0.0409087, 0.0195874, -0.0614475, 0.997079)
+bones/40/rotation = Quaternion(0.152553, -0.000772296, 0.00486033, 0.988283)
+bones/43/rotation = Quaternion(0.13463, -0.0142818, 0.0799704, 0.98756)
+bones/44/rotation = Quaternion(0.199043, 0.00288529, -0.0159011, 0.979858)
+bones/47/rotation = Quaternion(0.27516, -0.00325932, 0.132437, 0.952227)
+bones/48/rotation = Quaternion(0.284846, -0.0046447, -0.0246238, 0.958246)
+bones/51/rotation = Quaternion(0.298079, -0.00910487, 0.167573, 0.939673)
+bones/52/rotation = Quaternion(0.343515, -0.0160634, -0.0523375, 0.93755)
+bones/55/rotation = Quaternion(0, 0, -0.00032787, 1)
+bones/56/rotation = Quaternion(0.124387, 0.0291628, 0.983611, -0.127228)
+bones/57/rotation = Quaternion(-0.311423, -0.0725389, 0.0217436, 0.947249)
+bones/58/rotation = Quaternion(0.682813, -0.0710709, -0.0990941, 0.720345)
+bones/59/rotation = Quaternion(0.242957, -0.0364425, -0.0126109, 0.96927)
+bones/60/rotation = Quaternion(3.84263e-10, -0.000436857, -1.67866e-13, 1)
+bones/61/rotation = Quaternion(-0.0775256, 0.219992, 0.966629, 0.105932)
+bones/62/rotation = Quaternion(-0.315162, -0.115299, 0.037747, 0.941251)
+bones/63/rotation = Quaternion(0.579966, 0.0242478, 0.0329873, 0.813611)
+bones/64/rotation = Quaternion(0.247674, 0.0178234, 0.040082, 0.96785)
+
+[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.568481, -0.151714, 0.808587, 0.497345, -0.719545, -0.484668, 0.655345, 0.677671, -0.333593, -0.402258, 1.00431, 0.204971)
+
+[node name="SpikeTraps" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_itrsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88443, 0.01934, -0.97117)
+
+[node name="Collider" parent="SubViewportContainer/SubViewport/SpikeTraps" index="1"]
+collision_layer = 4
+
+[node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
+playerPath = NodePath("../Player")
+
+[node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("5_cilmm")]
+
+[editable path="SubViewportContainer/SubViewport/AreaTextandMusic"]
+[editable path="SubViewportContainer/SubViewport/Player"]
+[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
+[editable path="SubViewportContainer/SubViewport/SpikeTraps"]
