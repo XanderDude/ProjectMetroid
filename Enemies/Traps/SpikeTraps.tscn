@@ -132,17 +132,21 @@ _data = {
 &"SpikeActivate": SubResource("Animation_qc3pl")
 }
 
-[node name="SpikeTraps" type="Node3D" node_paths=PackedStringArray("collider", "animPlayer")]
+[node name="SpikeTraps" type="Node3D" node_paths=PackedStringArray("animPlayer")]
 script = ExtResource("1_yj3h8")
-collider = NodePath("Collider")
 animPlayer = NodePath("AnimationPlayer")
+animationName = "SpikeActivate"
+damage = 20
+trapCooldown = 1.0
 
 [node name="StoneFloor" parent="." instance=ExtResource("1_qc3pl")]
 
-[node name="Collider" type="Area3D" parent="."]
+[node name="TriggerZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+collision_layer = 0
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_qc3pl")
 
@@ -197,5 +201,5 @@ libraries = {
 }
 playback_auto_capture = false
 
-[connection signal="body_entered" from="Collider" to="." method="_on_collider_body_entered"]
-[connection signal="body_exited" from="Collider" to="." method="_on_collider_body_exited"]
+[connection signal="body_entered" from="TriggerZone" to="." method="OnTrapTriggered"]
+[connection signal="body_exited" from="TriggerZone" to="." method="OnLeaveTrapTrigger"]
