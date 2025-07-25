@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_yw4gc"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_ekw2i"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="5_ekw2i"]
-[ext_resource type="PackedScene" uid="uid://do6ngna12n0vo" path="res://PauseManager.tscn" id="6_53xuj"]
+[ext_resource type="PackedScene" uid="uid://do6ngna12n0vo" path="res://UI/PauseManager.tscn" id="6_53xuj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nyppi"]
 

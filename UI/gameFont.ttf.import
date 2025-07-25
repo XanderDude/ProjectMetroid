@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dw06km6mru6fc"
-path="res://.godot/imported/FranklinGothic.ttf-c12083d608e7cc5021a92aff7f122056.fontdata"
+path="res://.godot/imported/gameFont.ttf-02d28ffae313c598b454db99fe06c19e.fontdata"
 
 [deps]
 
-source_file="res://UI/FranklinGothic.ttf"
-dest_files=["res://.godot/imported/FranklinGothic.ttf-c12083d608e7cc5021a92aff7f122056.fontdata"]
+source_file="res://UI/gameFont.ttf"
+dest_files=["res://.godot/imported/gameFont.ttf-02d28ffae313c598b454db99fe06c19e.fontdata"]
 
 [params]
 

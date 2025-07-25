@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8nvm3o54nxhg"
-path="res://.godot/imported/MainMenuBackground.jpg-d728103be5c50b7ff457d3ae098b5df9.ctex"
+uid="uid://xvb4j7g0tllk"
+path="res://.godot/imported/titlebuttonhover.png-687b2633d6f547150c18274397c000f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenuBackground.jpg"
-dest_files=["res://.godot/imported/MainMenuBackground.jpg-d728103be5c50b7ff457d3ae098b5df9.ctex"]
+source_file="res://UI/MainMenu/titlebuttonhover.png"
+dest_files=["res://.godot/imported/titlebuttonhover.png-687b2633d6f547150c18274397c000f7.ctex"]
 
 [params]
 

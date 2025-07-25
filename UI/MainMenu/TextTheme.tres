@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://8x355fjqwnwf"]
 
-[ext_resource type="FontFile" uid="uid://dw06km6mru6fc" path="res://UI/FranklinGothic.ttf" id="1_1gwpb"]
-[ext_resource type="Texture2D" uid="uid://danxek01nx6h5" path="res://UI/test.png" id="1_d24av"]
-[ext_resource type="Texture2D" uid="uid://xvb4j7g0tllk" path="res://UI/testhover.png" id="1_jsikh"]
+[ext_resource type="FontFile" uid="uid://dw06km6mru6fc" path="res://UI/gameFont.ttf" id="1_1gwpb"]
+[ext_resource type="Texture2D" uid="uid://danxek01nx6h5" path="res://UI/MainMenu/titlebutton.png" id="1_d24av"]
+[ext_resource type="Texture2D" uid="uid://xvb4j7g0tllk" path="res://UI/MainMenu/titlebuttonhover.png" id="1_jsikh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_67l7j"]
 texture = ExtResource("1_jsikh")

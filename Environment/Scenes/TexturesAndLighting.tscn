@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
-[ext_resource type="PackedScene" uid="uid://do6ngna12n0vo" path="res://PauseManager.tscn" id="33_0fixg"]
+[ext_resource type="PackedScene" uid="uid://do6ngna12n0vo" path="res://UI/PauseManager.tscn" id="33_0fixg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
