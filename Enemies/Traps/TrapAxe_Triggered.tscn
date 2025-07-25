@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://yjo28xsyc55e"]
+[gd_scene load_steps=8 format=3 uid="uid://yjo28xsyc55e"]
 
-[ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapTrigger.cs" id="1_ijmdm"]
+[ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapController.cs" id="1_ijmdm"]
 [ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="2_im0na"]
 [ext_resource type="PackedScene" uid="uid://c4utp8gfiho0h" path="res://Enemies/Traps/HalberdTrap.fbx" id="3_1bmn5"]
+[ext_resource type="Script" uid="uid://cg5kdqqoju602" path="res://Enemies/Traps/TrapDamage.cs" id="4_1bmn5"]
 [ext_resource type="AnimationLibrary" uid="uid://di3tv02aygqwl" path="res://Enemies/Traps/AxeTrapAnimationLib.res" id="4_im0na"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xkbg"]
@@ -11,13 +12,12 @@ size = Vector3(0.657593, 1, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qc3pl"]
 size = Vector3(2, 1.5, 2)
 
-[node name="TrapAxe_Triggered" type="Node3D" node_paths=PackedStringArray("collider", "animPlayer")]
+[node name="TrapAxe_Triggered" type="Node3D" node_paths=PackedStringArray("damageCollider", "animPlayer")]
 script = ExtResource("1_ijmdm")
-collider = NodePath("HalberdTrap/TrapPivot/AxeHurtBox")
+damageCollider = NodePath("HalberdTrap/TrapPivot/AxeHurtBox")
 animPlayer = NodePath("AnimationPlayer")
 animationName = "AxeSingleSwing"
-damage = 10
-trapCooldown = 1.0
+damage = 20
 
 [node name="StoneFloor" parent="." instance=ExtResource("2_im0na")]
 
@@ -31,6 +31,8 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 transform = Transform3D(-1, 0.000407306, 0, -0.000407306, -1, 0, 0, 0, 1, -0.499179, -1.99739, 0)
 collision_layer = 0
 collision_mask = 4
+monitoring = false
+script = ExtResource("4_1bmn5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HalberdTrap/TrapPivot/AxeHurtBox"]
 transform = Transform3D(1, -3.02686e-08, 0, 3.02686e-08, 1, 0, 0, 0, 1, -0.14752, 0.203617, 0)
@@ -51,7 +53,8 @@ libraries = {
 }
 playback_auto_capture = false
 
-[connection signal="body_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="." method="OnTrapCollide"]
+[connection signal="body_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnTrapCollide"]
+[connection signal="body_exited" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnLeaveTrapCollider"]
 [connection signal="body_entered" from="TriggerZone" to="." method="OnTrapTriggered"]
 [connection signal="body_exited" from="TriggerZone" to="." method="OnLeaveTrapTrigger"]
 
