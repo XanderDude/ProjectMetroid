@@ -3,68 +3,121 @@ using System;
 
 public partial class attackState : State
 {
+	[Export] private float projectileSpeed = 25.0f;
+	[Export] private float maxDistance = 50.0f;
+	[Export] private int maxProjectilesOnScreen = 3;
+	[Export] private PackedScene arrowScene;
+	[Export] private float fireRate = 0.3f;
+	private MovementStateMachine msm;
 	
-	[Export] private float projectileSpeed = -25.0f;
+	private SimpleProjectileManager projectileManager;
+	private float timeSinceLastShot = 0f;
 	
-	
-	public override void Enter() {
-		projectileArrow = GetNode<CharacterBody3D>("..//..//%Arrow");
-		if (projectileArrow == null) GD.Print( "CANT FIND ARROW");
-		GD.Print("In Attack State");
-		SetProjectileToPlayer();
-		projectileArrow.Visible = true;
+	public override void _Ready() 
+	{
+		projectileManager = GetNode<SimpleProjectileManager>("ProjectileManager");
 		
-	}
-	
-	public override void _Ready() {
-		
-		
-	}
-	
-	public void SetProjectileToPlayer() {
-		
-		projectileArrow.GlobalPosition = player.GlobalPosition + Vector3.Down;
-		
-		Vector3 offset = Vector3.Zero;
-		
-		if (parentMesch.RotationDegrees.Y > 0) offset.X = 0.5f;
-		else offset.X = -0.5f;
-		
-		projectileArrow.GlobalPosition = player.GlobalPosition + offset + Vector3.Down * 0.6f;
-	
-	}
-	
-	public void FireProjectile(float delta) {
-		if (parentMesh.RotationDegrees.Y > 0.0f) {
-			
-			projectileArrow.Velocity = new Vector3(Mathf.Abs(projectileSpeed),0, 0);
+		if (projectileManager == null)
+		{
+			GD.PrintErr("ProjectileManager not found!");
 		}
-		else {
-			projectileArrow.Velocity = new Vector3(projectileSpeed,0, 0); 
-			GD.Print("Facing Left");
+	}
+	
+	public override void Enter() 
+	{
+		if (projectileManager != null)
+		{
+			FireProjectile();
+			timeSinceLastShot = 0f;
 		}
-		
-		
 	}
 	
-	public override void PhysicsUpdate(float delta) {
-		FireProjectile(delta);
-	
-		projectileArrow.MoveAndSlide();
+	public override void Exit()
+	{
+		timeSinceLastShot = 0f;
 	}
 	
-	
-	public override void HandleInput(InputEvent @event) {
-			
-			
-			if (@event.IsActionReleased("Shoot")) {
-				GD.Print("Heading to groundedState");
-				asm.TransitionTo("noattackState");
+	private void FireProjectile()
+	{
+		if (projectileManager == null) return;
+		
+		bool facingRight = parentMesh.RotationDegrees.Y > 0;
+		bool aimingUp = Input.IsActionPressed("Aim");
+		bool pressingUp = Input.IsActionPressed("Up");
+		bool pressingDown = Input.IsActionPressed("Down");
+		
+		msm = GetNode<MovementStateMachine>("../../MovementStateMachine");
+		bool isCurrentlyJumping = (msm._currentState != null && msm._currentState.Name == "jumpState");
+		
+		if (pressingUp)
+		{
+			// Up arrow key = shoot straight up
+			projectileManager.CreateUpwardProjectile(
+				player,
+				projectileSpeed,
+				facingRight,
+				maxDistance * 2.0f
+			);
 		}
-		
-			
+		else if (pressingDown && isCurrentlyJumping)
+		{
+			// Down arrow key + was jumping = shoot straight down
+			projectileManager.CreateDownwardProjectile(
+				player,
+				projectileSpeed,
+				facingRight,
+				maxDistance * 1.5f
+			);
+		}
+		else if (aimingUp)
+		{
+			// Aim button = 45 degree angle
+			projectileManager.CreateAngledProjectile(
+				player,
+				projectileSpeed,
+				facingRight,
+				45.0f,
+				maxDistance * 1.5f
+			);
+		}
+		else
+		{
+			// Normal horizontal shot
+			projectileManager.CreateProjectile(
+				player, 
+				projectileSpeed, 
+				facingRight, 
+				maxDistance
+			);
+		}
 	}
+	
+	public override void PhysicsUpdate(float delta) 
+	{
+		timeSinceLastShot += delta;
 		
+		if (timeSinceLastShot >= fireRate)
+		{
+			FireProjectile();
+			timeSinceLastShot = 0f;
+		}
+	}
 	
+	public override void HandleInput(InputEvent @event) 
+	{
+		if (@event.IsActionReleased("Shoot")) 
+		{
+			asm.TransitionTo("noattackState");
+		}
+	}
 	
+	public void ClearAllProjectiles()
+	{
+		projectileManager?.ClearAllProjectiles();
+	}
+	
+	public int GetActiveProjectileCount()
+	{
+		return projectileManager?.GetActiveProjectileCount() ?? 0;
+	}
 }

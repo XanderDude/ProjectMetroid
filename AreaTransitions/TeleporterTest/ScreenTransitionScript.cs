@@ -54,20 +54,20 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 		UnloadCurrentRoom();
 		var newRoom = gameNode.GetNode<Node3D>(roomName);
 		if (newRoom != null)  {
-			GD.Print("Successfully found room: ", roomName);
+			//GD.Print("Successfully found room: ", roomName);
 			newRoom.Visible = true;
 			newRoom.ProcessMode = Node.ProcessModeEnum.Inherit;
 			
 			var newRoomTeleporter = newRoom.GetNode<Area3D>("roomTeleportHitbox/Area3D");
-				GD.Print("entering from left");
+				//GD.Print("entering from left");
 				player.GlobalPosition = newRoomTeleporter.GlobalPosition;
 			
 			 
 			newRoomTeleporter.Monitoring = true;
 	} 
 	else { 
-			GD.Print("Failed to find room: ", roomName);
-			GD.Print("Available rooms:");
+			//GD.Print("Failed to find room: ", roomName);
+			//GD.Print("Available rooms:");
 	}
 }
 	
@@ -84,7 +84,6 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 	if (body == player && !isEntering && !string.IsNullOrEmpty(roomPath)) {
 		isEntering = true;
 		lastRoomName = GetCurrentRoom()?.Name.ToString() ?? "";
-		GD.Print("I Entered from room: ", lastRoomName);
 		blackScreen.Play("fade_in_black_screen");
 		GetTree().CreateTimer(1.1f).Timeout += () => {
 		LoadRoom(roomPath);
@@ -98,9 +97,9 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 	}
 }
 	public void _on_area_3d_body_exited(Node3D body) {
-			GD.Print("roomPath: ", roomPath);
+			//GD.Print("roomPath: ", roomPath);
 		 	currentRoomName = GetCurrentRoom()?.Name.ToString() ?? "";
-		 	GD.Print("I Exited from current room: ", currentRoomName);
+		 
 			if (currentRoomName != lastRoomName) {
 				blackScreen.ClearQueue();
 				isEntering = false;

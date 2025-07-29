@@ -27,7 +27,7 @@ public partial class MovementStateMachine : Node
 		set { _mesh = value; }
 	}
 	private Dictionary<string, State> _states;
-	private State _currentState;
+	public State _currentState;
 	public  State _previousState;
 
 	//Purpose: This is called when opening the game for the first time, after all child nodes are in the scene

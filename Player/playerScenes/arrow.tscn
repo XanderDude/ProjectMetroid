@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3og3uwn1s88q"]
 
-[ext_resource type="Script" uid="uid://dckx441l5p0g3" path="res://Player/playerScenes/Projectile.cs" id="1_ev4wo"]
+[ext_resource type="Script" uid="uid://vjbdrxxrqeth" path="res://Player/playerScenes/ArrowProjectile.cs" id="1_ev4wo"]
 [ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/playerScenes/pCone2.tres" id="2_ppovc"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ev4wo"]
@@ -11,9 +11,9 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 2, -0.0181384, -1.04188, 0.00354
 script = ExtResource("1_ev4wo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.409881, 0)
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.409881, 0)
 mesh = ExtResource("2_ppovc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.409881, 0)
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.409881, 0)
 shape = SubResource("ConcavePolygonShape3D_ev4wo")
