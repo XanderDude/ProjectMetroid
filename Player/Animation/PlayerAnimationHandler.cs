@@ -3,24 +3,24 @@ using System;
 
 public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 {
-    [Export] private CharacterBody3D player;
-    [Export] public AnimationTree animTree;
-    [Export] private string playbackFilePath; //ref to where we are in the animation state machine
-    private AnimationNodeStateMachinePlayback playback;
-    [Export] private string WalkingBlendPath {get; set;}
+	[Export] private CharacterBody3D player;
+	[Export] public AnimationTree animTree;
+	[Export] private string playbackFilePath; //ref to where we are in the animation state machine
+	private AnimationNodeStateMachinePlayback playback;
+	[Export] private string WalkingBlendPath {get; set;}
 	[Export] private string RunSpeedBlendPath {get; set;}
-    [Export] private float transitionSpeed = 8f;
-    [Export] private string JumpStateName;
-    [Export] private string RunningStateName, WallCollisionStateName;
+	[Export] private float transitionSpeed = 8f;
+	[Export] private string JumpStateName;
+	[Export] private string RunningStateName, WallCollisionStateName;
 	[Export] private float runBlendSpeed = 2.3f; //run animation speed adjustment
-    [Export] private string SlideStateName;
+	[Export] private string SlideStateName;
 	[Export] private string CrouchStateName;
 	[Export] private string HangingStateName;
 
-    private float currentSpeed;
+	private float currentSpeed;
 
-    private int currentDirection = 90; //-90 for left, 90 for right
-    private Vector2 aimAngle; //angle to position shooting arm during aiming mode
+	private int currentDirection = 90; //-90 for left, 90 for right
+	private Vector2 aimAngle; //angle to position shooting arm during aiming mode
 
 	public override void _Ready()
 	{
@@ -44,7 +44,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		if (currentSpeed > 1) currentSpeed = 1;
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
 		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
-        //GD.Print(currentSpeed);
+		//GD.Print(currentSpeed);
 	}
 
 	public void BeginJump()
