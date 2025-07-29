@@ -6,7 +6,7 @@ public partial class TrapDamage : Area3D
     public int damage = 5;
     public float damageCooldown = 2f;
     private float _damageCooldown;
-    private Node3D target = null;
+    private PlayerManager target = null;
 
     private Area3D collider;
 
@@ -21,21 +21,22 @@ public partial class TrapDamage : Area3D
     public override void _PhysicsProcess(double delta)
     {
         if (damageCooldown > 0) damageCooldown -= (float)delta;
-        if (damageCooldown <= 0 && target != null) //trap is ready and there is a target
+        if (damageCooldown <= 0 && target != null && target.canBeDamaged) //trap is ready and there is a target
         {
             damageCooldown = _damageCooldown;
-            target.GetNode<PlayerManager>(target.GetPath()).Health -= damage;
+            target.Health -= damage;
         }
     }
 
-    public void OnLeaveTrapCollider(Node3D node)
+    public void OnLeaveCollider(Node3D node)
     {
         target = null;
     }
-    public void OnTrapCollide(Node3D node)
+
+    public void OnCollide(Node3D node)
     {
-        target = node;
-        if (damageCooldown <= 0) //damaging collider 
+        target = node.GetNode<PlayerManager>(node.GetPath());
+        if (damageCooldown <= 0 && target.canBeDamaged) //damaging collider 
         {
             damageCooldown = _damageCooldown;
             node.GetNode<PlayerManager>(node.GetPath()).Health -= damage;

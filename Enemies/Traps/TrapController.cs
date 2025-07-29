@@ -11,13 +11,13 @@ public partial class TrapController : Node3D
     [Export] private float _triggerCooldown = 2f;
     private float triggerCooldown = 0;
     [Export] private bool autoTrap = false; //trap doesn't need or have a trigger
-    private Node3D target = null;
+    private PlayerManager target = null;
 
     public override void _Ready()
     {
         if (autoTrap)
         {
-            animPlayer.Play(animationName);
+            animPlayer?.Play(animationName);
             if (damageCollider != null) damageCollider.Monitoring = true;
         }
         if (damageCollider != null) //set damage collider values
@@ -35,11 +35,11 @@ public partial class TrapController : Node3D
         
         if (triggerCooldown <= 0 && target != null) //trap is ready and there is a target
         {
-            animPlayer.Play(animationName);
+            animPlayer?.Play(animationName);
             triggerCooldown = _triggerCooldown;
-            if (damageCollider == null) //if there is not another collider, deal damage now
+            if (damageCollider == null && target.canBeDamaged) //if there is not another collider, deal damage now
             {
-                target.GetNode<PlayerManager>(target.GetPath()).Health -= damage;
+                target.Health -= damage;
             }
                 
         }
@@ -53,7 +53,7 @@ public partial class TrapController : Node3D
 
     public void OnTrapTriggered(Node3D node)
     {
-        target = node;
+        target = node.GetNode<PlayerManager>(node.GetPath());
     }
 
 }

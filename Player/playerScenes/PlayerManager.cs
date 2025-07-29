@@ -3,16 +3,19 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
-	private NodePath playerMesh = "%PlayerMesh"; //unique local node to the Player scene
-	private MovementStateMachine _stateMachine;
+    private NodePath playerMeshPath = "%PlayerMesh"; //unique local node to the Player scene
+    [Export] private GeometryInstance3D playerGeo;
+    private MovementStateMachine _stateMachine;
 
-
-	public bool jumpQueued; //player is holding the jump button
-	public bool slideQueued; //player is holding slide button
-	public bool slideBoost; //player is airborn/just landed
+    public bool jumpQueued; //player is holding the jump button
+    public bool slideQueued; //player is holding slide button
+    public bool slideBoost; //player is airborn/just landed
 
     private HUD hud;
     private int health = 100;
+
+    [Export] private Material invulnMat;
+    private PackedScene _projectile;
 
     private bool gamePaused;
     public bool GamePaused
@@ -30,6 +33,7 @@ public partial class PlayerManager : CharacterBody3D
         get { return health; }
         set
         {
+            if (value < health) invulnTimer = _invulnTimer; //player is hurt
             health = value;
             if (health <= 0)
             {
@@ -37,29 +41,66 @@ public partial class PlayerManager : CharacterBody3D
                 hud.PlayerDied();
                 GamePaused = true;
             }
-            hud.UpdateHealthBar(Health);
+            hud?.UpdateHealthBar(Health);
         }
     }
 
-	[Export]
-	private MovementStateMachine StateMachine //init StateMachine
-	{
-		get { return _stateMachine; }
-		set //assign self and mesh to state machine prior to _ready
-		{
-			_stateMachine = value;
-			StateMachine.Parent = this;
-			StateMachine.ParentManager = this;
-			StateMachine.parentMesh = GetNode<Node3D>(playerMesh);
-		}
-	}
+    [Export] public bool canBeDamaged = true;
+    [Export] private float invulnTimer = 1f; //time before player can be damaged again
+    private float _invulnTimer;
 
-	[Export] public Area3D slidingCollider;
+    [Export]
+    private MovementStateMachine StateMachine //init StateMachine
+    {
+        get { return _stateMachine; }
+        set //assign self and mesh to state machine prior to _ready
+        {
+            _stateMachine = value;
+            StateMachine.Parent = this;
+            StateMachine.ParentManager = this;
+            StateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
+        }
+    }
 
-	public override void _Ready()
-	{
-		
+    [Export] public Area3D slidingCollider;
+
+    public override void _Ready()
+    {
+        invulnMat = ResourceLoader.Load<Material>("res://Environment/Materials/glowingMaterial.tres");
+        _projectile = ResourceLoader.Load<PackedScene>("res://Environment/Props/Light_CandleTriple_Plate.tscn");
         hud = (HUD)GetTree().GetFirstNodeInGroup("hud");
-        hud.UpdateHealthBar(Health);
-	}
+        hud?.UpdateHealthBar(Health);
+        _invulnTimer = invulnTimer;
+        invulnTimer = 0; //reset timer
+        playerGeo.MaterialOverlay = null;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (invulnTimer > 0)
+        {
+            playerGeo.MaterialOverlay = invulnMat;
+            canBeDamaged = false;
+            invulnTimer -= (float)delta;
+        }
+        else
+        {
+            canBeDamaged = true;
+            playerGeo.MaterialOverlay = null;
+        }
+
+    }
+    public override void _UnhandledInput(InputEvent @event)
+    {
+       /* if (@event.IsActionPressed("Shoot"))
+        {
+            GD.Print("Spawning");
+            var newProj = _projectile.Instantiate();
+            GetParent().AddChild(newProj);
+            newProj.GetNode<Node3D>(newProj.GetPath()).Transform = this.Transform;
+        }*/
+        
+    } 
+
+
 }

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://h08w3a132xks"]
+
+[ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
+[ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
+size = Vector3(1.89575, 0.82019, 0.958557)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
+size = Vector3(0.743164, 0.723022, 1.56396)
+
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damageCollider")]
+collision_layer = 8
+script = ExtResource("1_tysk3")
+damageCollider = NodePath("HitBox")
+
+[node name="PatrolState" type="Node" parent="."]
+
+[node name="Rat" parent="." instance=ExtResource("2_okdv7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)
+shape = SubResource("BoxShape3D_icv41")
+
+[node name="DirectionTimer" type="Timer" parent="."]
+
+[node name="HitBox" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
+shape = SubResource("BoxShape3D_tysk3")
+debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
+
+[connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
+[connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

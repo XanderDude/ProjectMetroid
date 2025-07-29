@@ -41,7 +41,7 @@ libraries = {
 }
 playback_auto_capture = false
 
-[connection signal="body_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnTrapCollide"]
-[connection signal="body_exited" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnLeaveTrapCollider"]
+[connection signal="body_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnCollide"]
+[connection signal="body_exited" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnLeaveCollider"]
 
 [editable path="HalberdTrap"]
