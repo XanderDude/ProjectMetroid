@@ -15,7 +15,6 @@ public partial class PlayerManager : CharacterBody3D
     private int health = 100;
 
     [Export] private Material invulnMat;
-    private PackedScene _projectile;
 
     private bool gamePaused;
     public bool GamePaused
@@ -67,7 +66,6 @@ public partial class PlayerManager : CharacterBody3D
     public override void _Ready()
     {
         invulnMat = ResourceLoader.Load<Material>("res://Environment/Materials/glowingMaterial.tres");
-        _projectile = ResourceLoader.Load<PackedScene>("res://Environment/Props/Light_CandleTriple_Plate.tscn");
         hud = (HUD)GetTree().GetFirstNodeInGroup("hud");
         hud?.UpdateHealthBar(Health);
         _invulnTimer = invulnTimer;

@@ -4,7 +4,22 @@ using System.Collections.Generic;
 
 public partial class EnemyController : CharacterBody3D
 {
-    [Export] public int health = 30;
+    [Export]
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            if (value <= 0)
+            {
+                health = 0;
+                KillEnemy();
+            }
+            else health = value;
+
+        }
+    }
+    private int health;
     private int _healthMax;
     [Export] public float moveSpeed = 30;
     [Export] public int damage = 15;
@@ -24,17 +39,17 @@ public partial class EnemyController : CharacterBody3D
         _damageCooldown = damageCooldown;
 
         _states = new Dictionary<string, EnemyState>();
-		foreach (Node node in GetChildren())
-		{
-			if (node is EnemyState s)
-			{
-				_states[node.Name] = s;
-				s.controller = this;  //assign self to the states
+        foreach (Node node in GetChildren())
+        {
+            if (node is EnemyState s)
+            {
+                _states[node.Name] = s;
+                s.controller = this;  //assign self to the states
                 s.mesh = mesh;
-				s.Ready();
-				s.Exit(); //reset all states
-			}
-		}
+                s.Ready();
+                s.Exit(); //reset all states
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -48,11 +63,11 @@ public partial class EnemyController : CharacterBody3D
             target.Health -= damage;
         }
     }
-    	public override void _Process(double delta)
-	{
+    public override void _Process(double delta)
+    {
 
-		_currentState?.Update((float)delta);
-	}
+        _currentState?.Update((float)delta);
+    }
 
     public void OnLeaveCollider(Node3D node)
     {
@@ -69,14 +84,26 @@ public partial class EnemyController : CharacterBody3D
         }
     }
 
-	public void TransitionTo(string key) {
-		if (!_states.TryGetValue(key, out EnemyState value) || _currentState == value) //return if state doesn't exist in dictionary or we're already in requested state
-			return;
+    public void TransitionTo(string key)
+    {
+        if (!_states.TryGetValue(key, out EnemyState value) || _currentState == value) //return if state doesn't exist in dictionary or we're already in requested state
+            return;
 
-		_currentState.Exit();
-		_currentState = value;
-		_currentState.Enter();
-	}
+        _currentState.Exit();
+        _currentState = value;
+        _currentState.Enter();
+    }
 
+    public void DamagedRecieved(int damage)
+    {
+        Health -= damage;
+        GD.Print("YEOWWWW");
+    }
+
+    public void KillEnemy()
+    {
+        ProcessMode = ProcessModeEnum.Disabled;
+        Visible = false;
+    }
 
 }

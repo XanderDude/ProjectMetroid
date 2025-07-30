@@ -9,10 +9,11 @@ size = Vector3(1.89575, 0.82019, 0.958557)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
 size = Vector3(0.743164, 0.723022, 1.56396)
 
-[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damageCollider")]
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damageCollider", "mesh")]
 collision_layer = 8
 script = ExtResource("1_tysk3")
 damageCollider = NodePath("HitBox")
+mesh = NodePath("Rat")
 
 [node name="PatrolState" type="Node" parent="."]
 
