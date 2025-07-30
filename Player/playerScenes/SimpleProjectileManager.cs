@@ -6,9 +6,14 @@ public partial class SimpleProjectileManager : Node
 {
 	[Export] public int maxProjectiles = 5;
 	[Export] public float defaultMaxDistance = 50.0f;
+	[Export] public float defaultGravity = 30.0f;
 	[Export] public PackedScene arrowScene;
-	
+	Vector3 offset;
 	private List<ProjectileInfo> activeProjectiles = new List<ProjectileInfo>();
+	CharacterBody3D playerNode;
+	Node3D playerMesh;
+	Skeleton3D skeleton;
+	Node3D crossbow;
 	
 	public class ProjectileInfo
 	{
@@ -18,167 +23,99 @@ public partial class SimpleProjectileManager : Node
 		public float maxDistance;
 		public bool facingRight;
 		public float lifetime = 0f;
-		public Vector3 customVelocity = Vector3.Zero; // for angled shots
-		public bool useGravity = false; // make arrow drop down
+		public Vector3 customVelocity = Vector3.Zero;
+		public bool useGravity = false;
 	}
 	
-	// normal arrow shoots straight
+	public override void _Ready() {
+		playerNode = GetNode<CharacterBody3D>("../../../");
+		playerMesh = playerNode?.GetNode<Node3D>("PlayerMesh");
+		skeleton = playerMesh?.GetNode<Skeleton3D>("Skeleton3D");
+		crossbow = skeleton?.GetNode<Node3D>("Crossbow");
+	}
+	// Standard projectile - spawns from crossbow position
 	public bool CreateProjectile(CharacterBody3D shooter, float speed, bool facingRight, float maxDistance = 0)
 	{
-		Vector3 spawnPos = CalculateSpawnPosition(shooter.GlobalPosition, facingRight, false, false, false);
-		return CreateProjectileWithVelocity(spawnPos, speed, facingRight, maxDistance, Vector3.Zero, false, Vector3.Zero);
+		//offset = facingRight ? new Vector3(2,0,0) : new Vector3(-2,0,0);
+		Vector3 spawnPos = CalculateSpawnPosition();
+		return CreateProjectileWithVelocity(spawnPos, speed, facingRight, maxDistance, Vector3.Zero, false);
 	}
 	
-	// arrow goes down like rain
-	public bool CreateDownwardProjectile(CharacterBody3D shooter, float speed, bool facingRight, float maxDistance = 0)
+	private Vector3 CalculateSpawnPosition()
 	{
-		Vector3 spawnPos = CalculateSpawnPosition(shooter.GlobalPosition, facingRight, false, false, true);
 		
-		Vector3 velocity = new Vector3(0, -speed, 0); // straight down
-		Vector3 rotation = new Vector3(0, 0, -90); // point down
+		var playerNode = GetNode<CharacterBody3D>("../../../");
+		var playerMesh = playerNode.GetNode<Node3D>("PlayerMesh");
+		var skeleton = playerMesh.GetNode<Skeleton3D>("Skeleton3D");
+		var crossbow = skeleton.GetNode<Node3D>("Crossbow");
 		
-		return CreateProjectileWithVelocity(spawnPos, speed, facingRight, maxDistance, velocity, true, rotation);
+		
+		// Use crossbow position directly - animation handles everything
+		return crossbow.GlobalPosition;
 	}
 	
-	// angled shot for skilled players
-	public bool CreateAngledProjectile(CharacterBody3D shooter, float speed, bool facingRight, float angle, float maxDistance = 0)
-	{
-		Vector3 spawnPos = CalculateSpawnPosition(shooter.GlobalPosition, facingRight, true, false, false);
-		
-		float radians = Mathf.DegToRad(angle);
-		Vector3 velocity;
-		Vector3 rotation;
-		if (facingRight)
-		{
-			velocity = new Vector3(speed * Mathf.Cos(radians), speed * Mathf.Sin(radians), 0);
-			rotation = new Vector3(0, 0, angle);
-		}
-		else
-		{
-			velocity = new Vector3(-speed * Mathf.Cos(radians), speed * Mathf.Sin(radians), 0);
-			rotation = new Vector3(0, 180, angle);
-		}
-		
-		return CreateProjectileWithVelocity(spawnPos, speed, facingRight, maxDistance, velocity, true, rotation);
-	}
-	
-	// shoot arrow up to sky
-	public bool CreateUpwardProjectile(CharacterBody3D shooter, float speed, bool facingRight, float maxDistance = 0)
-	{
-		Vector3 spawnPos = CalculateSpawnPosition(shooter.GlobalPosition, facingRight, false, true, false);
-		
-		Vector3 velocity = new Vector3(0, speed, 0); // straight up
-		Vector3 rotation = new Vector3(0, 0, 90); // point up
-		
-		return CreateProjectileWithVelocity(spawnPos, speed, facingRight, maxDistance, velocity, true, rotation);
-	}
-	
-	// find where arrow should spawn near player
-	private Vector3 CalculateSpawnPosition(Vector3 playerPosition, bool facingRight, bool isAngled, bool isUpward = false, bool isDownward = false)
-	{
-		Vector3 position = playerPosition;
-		
-		if (isUpward)
-		{
-			position += Vector3.Up * 1.5f; // higher for up shots
-			if (facingRight)
-				position += Vector3.Right * 2.0f; // offset right
-			else
-				position += Vector3.Right * 0.5f; // offset left same distance
-		}
-		else if (isDownward)
-		{
-			position += Vector3.Down * 0.5f; // below player for down shots
-			if (facingRight)
-				position += Vector3.Left * 1.0f; // this looks wrong
-			else
-				position += Vector3.Left * 2.0f; // both go left because bug i think
-		}
-		else if (isAngled)
-		{
-			position += Vector3.Up * 1.0f; // higher for angled shots
-			if (facingRight)
-				position += Vector3.Right * 2.0f; // spread out more
-			else
-				position += Vector3.Left * 2.0f; // same but left
-		}
-		else
-		{
-			position += Vector3.Down * 0.1f; // normal shots slightly down
-			if (facingRight)
-				position += Vector3.Right * 1.5f;
-			else
-				position += Vector3.Left * 1.5f;
-		}
-		
-		return position;
-	}
-	
-	// main function that creates arrow in world
 	private bool CreateProjectileWithVelocity(Vector3 position, float speed, bool facingRight, float maxDistance, Vector3 customVelocity, bool useGravity, Vector3 rotation = default)
 	{
-		// too many arrows? remove oldest one
+		// Remove oldest projectile if at limit
 		if (activeProjectiles.Count >= maxProjectiles)
 		{
 			RemoveProjectile(0);
 		}
 		
-		// need arrow scene to make arrows
 		if (arrowScene == null)
 		{
 			GD.PrintErr("No arrow scene assigned to ProjectileManager!");
 			return false;
 		}
 		
-		// create new arrow from scene
-		ArrowProjectile newArrow = arrowScene.Instantiate<ArrowProjectile>();
+		// Create and setup new arrow
+		CharacterBody3D newArrow = arrowScene.Instantiate<CharacterBody3D>();
 		GetTree().CurrentScene.AddChild(newArrow);
 		
 		newArrow.GlobalPosition = position;
 		newArrow.Visible = true;
-		newArrow.Scale = new Vector3(3.0f, 3.0f, 3.0f); 
 		
-		float finalSpeed = speed > 0 ? speed : newArrow.speed;
-  		float finalMaxDistance = maxDistance > 0 ? maxDistance : newArrow.maxDistance;
-   		bool finalUseGravity = useGravity || newArrow.useGravity;
 		
-		// rotate arrow if needed
-		if (rotation != Vector3.Zero)
+		
+		// Get crossbow rotation for natural arrow orientation
+		
+		
+		if (crossbow != null)
 		{
-			newArrow.RotationDegrees = rotation;
+			// Use crossbow's rotation
+			newArrow.GlobalRotationDegrees = new Vector3(crossbow.GlobalRotationDegrees.X,crossbow.GlobalRotationDegrees.Y, -crossbow.GlobalRotationDegrees.Z);
 		}
 		
-		// disable collision at start so no hit player
+		// Start with collision disabled to avoid hitting the player
 		newArrow.SetCollisionLayerValue(1, false);
 		newArrow.SetCollisionMaskValue(1, false);
 		
-		// save arrow info for tracking
+		// Store projectile info
 		ProjectileInfo info = new ProjectileInfo
 		{
-		projectile = newArrow,
-		startPosition = position,
-		speed = finalSpeed, // use final calculated speed
-		maxDistance = finalMaxDistance, // use final calculated distance
-		facingRight = facingRight,
-		customVelocity = customVelocity,
-		useGravity = finalUseGravity // use final calculated gravity
+			projectile = newArrow,
+			startPosition = position,
+			speed = speed > 0 ? speed : defaultMaxDistance,
+			maxDistance = maxDistance > 0 ? maxDistance : defaultMaxDistance,
+			facingRight = facingRight,
+			customVelocity = customVelocity,
+			useGravity = useGravity
 		};
 		
 		activeProjectiles.Add(info);
 		return true;
 	}
 	
-	// update all arrows every frame
 	public override void _PhysicsProcess(double delta)
 	{
 		float deltaF = (float)delta;
 		
-		// loop backwards so we can remove safely
+		// Process all projectiles (backwards for safe removal)
 		for (int i = activeProjectiles.Count - 1; i >= 0; i--)
 		{
 			ProjectileInfo info = activeProjectiles[i];
 			
-			// arrow got deleted? remove from list
+			// Clean up invalid projectiles
 			if (!IsInstanceValid(info.projectile))
 			{
 				activeProjectiles.RemoveAt(i);
@@ -187,92 +124,65 @@ public partial class SimpleProjectileManager : Node
 			
 			info.lifetime += deltaF;
 			
-			// enable collision after half second
-			if (info.lifetime > 0.5f && !info.projectile.GetCollisionMaskValue(1))
+			// Enable collision after brief delay
+			if (info.lifetime > 0.1f && !info.projectile.GetCollisionMaskValue(1))
 			{
 				info.projectile.SetCollisionLayerValue(1, true);
 				info.projectile.SetCollisionMaskValue(1, true);
 			}
 			
-			Vector3 velocity = Vector3.Zero;
-			if (info.customVelocity != Vector3.Zero)
+			bool shouldRemove = false;
+			
+			// Update movement and check collisions
+			if (info.lifetime > 0.1f)
 			{
-				// use custom movement for special arrows
-				velocity = info.customVelocity;
-				if (info.useGravity)
+				Vector3 velocity = CalculateVelocity(info, deltaF);
+				info.projectile.Velocity = velocity;
+				info.projectile.MoveAndSlide();
+				
+				// Check for collision
+				if (info.projectile.GetSlideCollisionCount() > 0)
 				{
-					velocity.Y -= 9.8f * info.lifetime; // gravity pulls down
-				}
-			}
-			else
-			{
-				// normal left/right movement
-				if (info.facingRight)
-				{
-					velocity.X = Mathf.Abs(info.speed);
-				}
-				else
-				{
-					velocity.X = -Mathf.Abs(info.speed);
+					shouldRemove = ShouldRemoveOnCollision(info);
 				}
 			}
 			
-			// move the arrow
-			info.projectile.Velocity = velocity;
-			info.projectile.MoveAndSlide();
-			
+			// Check distance limit
 			float distance = info.startPosition.DistanceTo(info.projectile.GlobalPosition);
-			
-			bool hitWall = false;
-			// check wall collision after arrow becomes solid
-			if (info.lifetime > 0.5f && info.projectile.GetSlideCollisionCount() > 0)
+			if (distance >= info.maxDistance)
 			{
-				for (int c = 0; c < info.projectile.GetSlideCollisionCount(); c++)
-				{
-					KinematicCollision3D collision = info.projectile.GetSlideCollision(c);
-					Node collider = (Node)collision.GetCollider();
-					
-					// only care about solid things with visible mesh
-					if (collider is StaticBody3D || collider is RigidBody3D)
-					{
-						if (HasVisibleMesh(collider))
-						{
-							hitWall = true;
-							break;
-						}
-					}
-				}
+				shouldRemove = true;
 			}
 			
-			// remove if too far or hit wall
-			if (distance >= info.maxDistance || hitWall)
+			if (shouldRemove)
 			{
 				RemoveProjectile(i);
 			}
 		}
 	}
 	
-	// check if object has visible mesh
-	private bool HasVisibleMesh(Node node)
+	private Vector3 CalculateVelocity(ProjectileInfo info, float deltaF)
 	{
-		if (node is MeshInstance3D meshInstance)
-		{
-			return meshInstance.Visible && meshInstance.Mesh != null;
-		}
-		
-		// check children for mesh
-		foreach (Node child in node.GetChildren())
-		{
-			if (child is MeshInstance3D childMesh && childMesh.Visible && childMesh.Mesh != null)
-			{
-				return true;
-			}
-		}
-		
-		return false;
+
+			float horizontalSpeed = info.facingRight ? Mathf.Abs(info.speed) : -Mathf.Abs(info.speed);
+			return new Vector3(horizontalSpeed, 0, 0);
 	}
 	
-	// remove arrow from game
+	private bool ShouldRemoveOnCollision(ProjectileInfo info)
+	{
+		var collision = info.projectile.GetSlideCollision(0);
+		Vector3 normal = collision.GetNormal();
+		bool isGroundHit = normal.Y > 0.7f; // Ground has upward normal
+		
+		// For horizontal arrows, ignore ground hits
+		if (info.customVelocity == Vector3.Zero && isGroundHit)
+		{
+			return false; // Don't remove on ground hit for horizontal arrows
+		}
+		
+		return true; // Remove on any other collision
+	}
+	
 	private void RemoveProjectile(int index)
 	{
 		if (index >= 0 && index < activeProjectiles.Count)
@@ -285,7 +195,6 @@ public partial class SimpleProjectileManager : Node
 		}
 	}
 	
-	// delete all arrows at once
 	public void ClearAllProjectiles()
 	{
 		for (int i = activeProjectiles.Count - 1; i >= 0; i--)
@@ -294,10 +203,8 @@ public partial class SimpleProjectileManager : Node
 		}
 	}
 	
-	// count how many arrows are active
 	public int GetActiveProjectileCount()
 	{
 		return activeProjectiles.Count;
 	}
-
 }
