@@ -9,6 +9,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
     private AnimationNodeStateMachinePlayback playback;
     [Export] private string WalkingBlendPath {get; set;}
 	[Export] private string RunSpeedBlendPath {get; set;}
+	[Export] private string AimBlendBlendPath {get; set;}
     [Export] private float transitionSpeed = 8f;
     [Export] private string JumpStateName;
     [Export] private string RunningStateName, WallCollisionStateName;
@@ -34,9 +35,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned 
 
 		currentSpeed = Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed); //find the value between current speed and desired speed
-		//if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
-		//	newDelta = transitionSpeed * (float)delta;
-		
+																													 //if (newDelta > transitionSpeed * delta) //clamp new speed if it's greater than transition speed
+																													 //	newDelta = transitionSpeed * (float)delta;
+
 		if (player.Velocity.X != 0)
 		{
 			RotationDegrees = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //only rotate when moving
@@ -44,6 +45,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		if (currentSpeed > 1) currentSpeed = 1;
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
 		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
+		Vector2 aimDirect = new Vector2(Mathf.Abs(Input.GetAxis("Left", "Right")), Input.GetAxis("Down", "Up")); //get up or down (1, -1,) and if holding a direction
+		//only update aimBlend with aimDirection when in attack state
+		animTree.Set(AimBlendBlendPath, aimDirect);
         //GD.Print(currentSpeed);
 	}
 

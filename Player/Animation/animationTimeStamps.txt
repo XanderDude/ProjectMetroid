@@ -6,3 +6,7 @@ slide 210-215
 crouch 220-225
 wall collision 230-235
 mantle hang 240-245
+AimUpForward 250-255
+AimUp 260-265
+AimDownForward 270-275
+AimDown 280-285
