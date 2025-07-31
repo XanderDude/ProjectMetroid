@@ -6,7 +6,7 @@ public partial class attackState : State
 	[Export] private float maxDistance = 50.0f;
 	[Export] private int maxProjectilesOnScreen = 3;
 	[Export] private PackedScene arrowScene;
-	[Export] private float fireRate = 0.3f;
+
 	
 	private SimpleProjectileManager projectileManager;
 	private float timeSinceLastShot = 0f;
@@ -52,13 +52,10 @@ public partial class attackState : State
 	
 	public override void PhysicsUpdate(float delta) 
 	{
-		timeSinceLastShot += delta;
 		
-		if (timeSinceLastShot >= fireRate)
-		{
-			FireProjectile();
-			timeSinceLastShot = 0f;
-		}
+	
+			
+		
 	}
 	
 	public override void HandleInput(InputEvent @event) 
