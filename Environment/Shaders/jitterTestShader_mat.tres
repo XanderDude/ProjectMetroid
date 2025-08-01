@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cwp76vmvw1wlw"]
 
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="1_ojnir"]
-[ext_resource type="Texture2D" uid="uid://d3nf4r1fvp6q" path="res://Environment/Props/PropsBasic_Albedo.jpg" id="2_7yrky"]
+[ext_resource type="Texture2D" uid="uid://dtcfnkos37d0r" path="res://Environment/Props/PropsBasic_Albedo.png" id="2_7yrky"]
 
 [resource]
 render_priority = 0
