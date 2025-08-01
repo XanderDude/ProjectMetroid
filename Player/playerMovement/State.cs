@@ -5,9 +5,11 @@ public partial class State : Node
 {
 	//abstract class defining different states a character can be in
 	public MovementStateMachine msm;
+	public AttackStateMachine asm;
 	public CharacterBody3D player;
 	public PlayerManager pm;
 	public Node3D parentMesh;
+	public CharacterBody3D projectileArrow;
 	
 	public float _gravity = 9.8f;
 	public virtual void Enter() //runs first whenever msm transitions to this state

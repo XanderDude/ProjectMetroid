@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8x355fjqwnwf"]
+
+[ext_resource type="FontFile" uid="uid://dw06km6mru6fc" path="res://UI/gameFont.ttf" id="1_1gwpb"]
+[ext_resource type="Texture2D" uid="uid://danxek01nx6h5" path="res://UI/MainMenu/titlebutton.png" id="1_d24av"]
+[ext_resource type="Texture2D" uid="uid://xvb4j7g0tllk" path="res://UI/MainMenu/titlebuttonhover.png" id="1_jsikh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_67l7j"]
+texture = ExtResource("1_jsikh")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0.624, -7.513, 98.457, 117.575)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d24av"]
+texture = ExtResource("1_d24av")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0.624146, -7.51345, 98.4569, 117.575)
+
+[resource]
+default_font = ExtResource("1_1gwpb")
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/line_spacing = 0
+Button/constants/outline_size = 5
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxTexture_67l7j")
+Button/styles/normal = SubResource("StyleBoxTexture_d24av")

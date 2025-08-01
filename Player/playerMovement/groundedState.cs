@@ -6,6 +6,8 @@ public partial class groundedState : State
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	[Export] public float groundDeacceleration = 15.0f;
+	[Export] public float groundProjectileSpeed = 25.0f;
+	public bool isFirstTimeShoot = false;
 
 	public override void Enter()
 	{
@@ -30,7 +32,11 @@ public partial class groundedState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
-		if (Mathf.Abs(player.Velocity.X) >= .1f) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		
+		
+		if (Mathf.Abs(player.Velocity.X) >= .1f) {
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		}
 		if (!player.IsOnFloor()) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
@@ -63,13 +69,14 @@ public partial class groundedState : State
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
 		player.Velocity = velocity;
 	}
-
+	
+	
 	public override void HandleInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("Up"))
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			//msm.TransitionTo("crouchState");
+			msm.TransitionTo("crouchState");
 		}
 		if (@event.IsActionPressed("Jump"))
 		{
@@ -77,6 +84,12 @@ public partial class groundedState : State
 			msm.TransitionTo("jumpState");
 		}
 		else player.Set("jumpQueued", false);
+		
+		if (@event.IsActionPressed("Shoot"))
+		{
+			asm.TransitionTo("attackState");
+		}
+		
 
 	}
 

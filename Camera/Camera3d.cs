@@ -15,9 +15,10 @@ public partial class Camera3d : Camera3D
 	[Export] public float roomMaxX = 10.0f;
 	[Export] public float roomMinY = -5.0f;
 	[Export] public float roomMaxY = 5.0f;
-
+	
 	[Export] public float minMoveThreshold = 0.1f; 
 
+	[Export] public float cameraDistance = 25.0f;
 
 	private Node3D player;
 	private Vector3 playerPosition;
