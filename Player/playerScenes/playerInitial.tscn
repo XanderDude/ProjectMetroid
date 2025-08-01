@@ -1,0 +1,172 @@
+[gd_scene load_steps=18 format=3 uid="uid://by3fw2kh7ot1a"]
+
+[ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
+[ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
+[ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/PlayerMesh.tscn" id="2_o1ik4"]
+[ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
+[ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="4_morwn"]
+[ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/playerMovement/slideState.cs" id="5_morwn"]
+[ext_resource type="Script" uid="uid://bmtdfvkahjerh" path="res://Environment/Scenes/mantleState.cs" id="6_82et3"]
+[ext_resource type="Script" uid="uid://dlloi8ffjlah4" path="res://Environment/Scenes/walljumpState.cs" id="7_5cixj"]
+[ext_resource type="Script" uid="uid://c85uww7hrdt1j" path="res://Player/playerScenes/attackState.cs" id="8_yoi1y"]
+[ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="9_5cixj"]
+[ext_resource type="Script" uid="uid://6gcg572gqiwb" path="res://Player/playerScenes/AttackStateMachine.cs" id="10_n8qow"]
+[ext_resource type="Script" uid="uid://d0fuh6u8aahvr" path="res://Player/playerScenes/noattackState.cs" id="11_p1x4t"]
+[ext_resource type="Script" uid="uid://77pguq1jetoc" path="res://Player/playerScenes/SimpleProjectileManager.cs" id="12_oy2lr"]
+[ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/playerScenes/arrow.tscn" id="14_wmvv8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.25
+height = 1.7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cixj"]
+size = Vector3(0.5, 2.5, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("StateMachine", "aStateMachine")]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+floor_constant_speed = true
+floor_max_angle = 0.872665
+floor_snap_length = 0.3
+script = ExtResource("1_morwn")
+StateMachine = NodePath("MovementStateMachine")
+aStateMachine = NodePath("AttackStateMachine")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_4flbx")
+
+[node name="CollisionStanding" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="SlidingArea3D" type="Area3D" parent="."]
+
+[node name="SlidingCollisionShape3D" type="CollisionShape3D" parent="SlidingArea3D"]
+transform = Transform3D(-2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0, 0.5, 4.44089e-16, 0.160111, 0)
+shape = SubResource("BoxShape3D_5cixj")
+disabled = true
+
+[node name="MovementStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_4mmid")
+asmState = NodePath("../AttackStateMachine")
+initialState = NodePath("groundedState")
+
+[node name="groundedState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_lrbk8")
+groundAcceleration = 2.0
+
+[node name="jumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
+script = ExtResource("4_morwn")
+jumpySound = NodePath("../../jumpSound")
+
+[node name="slideState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("5_morwn")
+slideMinTime = 0.3
+slideMaxSpeed = 6.0
+boostMaxSpeed = 9.0
+slideDeceleration = 5.0
+
+[node name="mantleState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("6_82et3")
+
+[node name="walljumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
+script = ExtResource("7_5cixj")
+jumpySound = NodePath("../../jumpSound")
+
+[node name="PlayerMesh" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_o1ik4")]
+unique_name_in_owner = true
+player = NodePath("..")
+runBlendSpeed = 2.3
+HangingStateName = ""
+
+[node name="Skeleton3D" parent="PlayerMesh" index="1"]
+bones/0/position = Vector3(-0.00102264, 0.928626, -0.00205222)
+bones/0/rotation = Quaternion(-0.0387871, 0.0496855, 0.000948974, 0.998011)
+bones/1/rotation = Quaternion(0.0679906, -0.129748, -0.00423264, 0.989204)
+bones/2/rotation = Quaternion(0.130365, -0.000302446, 0.00375316, 0.991459)
+bones/3/rotation = Quaternion(0.199797, 0.246868, -0.0732058, 0.945398)
+bones/4/rotation = Quaternion(-0.0347333, 0.0110421, -0.00218471, 0.999333)
+bones/5/rotation = Quaternion(-0.0544359, -0.176961, 0.0129396, 0.982626)
+bones/7/rotation = Quaternion(0.441012, 0.422155, -0.531136, 0.587527)
+bones/8/rotation = Quaternion(0.443066, -0.420489, 0.609707, 0.505112)
+bones/9/rotation = Quaternion(0.370367, 0.32759, 0.594369, 0.634223)
+bones/10/rotation = Quaternion(0.105871, 0.053913, 0.105351, 0.987312)
+bones/11/rotation = Quaternion(0.236109, -0.132789, 0.188348, 0.944004)
+bones/12/rotation = Quaternion(-0.0242464, 0.0233384, -0.178566, 0.983352)
+bones/15/rotation = Quaternion(0.040303, -0.0120819, -0.0132336, 0.999027)
+bones/16/rotation = Quaternion(0.147395, 0.00306653, -0.0085799, 0.989036)
+bones/19/rotation = Quaternion(0.111644, -0.00878899, -0.0269629, 0.993344)
+bones/20/rotation = Quaternion(0.263605, 1.68878e-05, 0.0173997, 0.964474)
+bones/23/rotation = Quaternion(0.187242, 0.0122471, -0.060508, 0.980372)
+bones/24/rotation = Quaternion(0.32062, -0.000819175, 0.034413, 0.946582)
+bones/27/rotation = Quaternion(0.210486, 0.0177893, -0.0819483, 0.973994)
+bones/28/rotation = Quaternion(0.350429, 0.00492518, 0.0712309, 0.933864)
+bones/31/rotation = Quaternion(0.47726, -0.311223, 0.520807, 0.635706)
+bones/32/rotation = Quaternion(0.0255382, 0.0592866, -0.492521, 0.867903)
+bones/33/rotation = Quaternion(-0.162192, 0.317047, -0.0127212, 0.934352)
+bones/34/rotation = Quaternion(-0.163329, -0.140918, -0.0300768, 0.975992)
+bones/35/rotation = Quaternion(0.311065, -0.00847663, -0.169057, 0.935193)
+bones/36/rotation = Quaternion(-0.00722973, -0.00121474, -0.000810506, 0.999973)
+bones/39/rotation = Quaternion(0.0310026, 0.0204602, -0.0609014, 0.997452)
+bones/40/rotation = Quaternion(0.142708, -0.00114085, 0.00606372, 0.989746)
+bones/43/rotation = Quaternion(0.12437, -0.0152511, 0.0806697, 0.988834)
+bones/44/rotation = Quaternion(0.189557, 0.0026898, -0.0148868, 0.981753)
+bones/47/rotation = Quaternion(0.265412, -0.0047698, 0.133165, 0.954883)
+bones/48/rotation = Quaternion(0.275288, -0.00459455, -0.0238899, 0.961054)
+bones/51/rotation = Quaternion(0.288655, -0.01084, 0.168031, 0.942511)
+bones/52/rotation = Quaternion(0.334478, -0.0155167, -0.0521622, 0.940831)
+bones/55/rotation = Quaternion(0, 0, -0.0713718, 0.99745)
+bones/56/rotation = Quaternion(0.170385, 0.259882, 0.950489, 0.000305667)
+bones/57/rotation = Quaternion(-0.426826, 0.121049, 0.0249056, 0.89585)
+bones/58/rotation = Quaternion(0.620191, 0.026077, -0.0572553, 0.781924)
+bones/59/rotation = Quaternion(0.252643, -0.0332888, -0.0147541, 0.966874)
+bones/60/rotation = Quaternion(3.81065e-10, -0.128751, -4.94744e-11, 0.991677)
+bones/61/rotation = Quaternion(-0.204267, -0.304587, 0.927288, 0.0750975)
+bones/62/rotation = Quaternion(-0.490146, -0.0960403, -0.155802, 0.852208)
+bones/63/rotation = Quaternion(0.461758, -0.173529, -0.0308285, 0.86932)
+bones/64/rotation = Quaternion(0.190901, 0.015498, 0.0410699, 0.980627)
+
+[node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.641897, 0.0367944, 0.765907, 0.765687, 0.0228114, -0.642809, -0.0411231, 0.999062, -0.0135306, -0.181614, 1.20716, 0.621087)
+
+[node name="Alpha_Surface" parent="PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000689506, -1.19209e-07, 0.0054965)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_energy = 0.5
+light_indirect_energy = 0.0
+light_specular = 0.0
+light_bake_mode = 0
+light_cull_mask = 4294967293
+omni_range = 6.629
+omni_attenuation = 0.0
+
+[node name="jumpSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_5cixj")
+volume_db = -10.442
+
+[node name="AttackStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_n8qow")
+initialState = NodePath("noattackState")
+
+[node name="attackState" type="Node" parent="AttackStateMachine"]
+script = ExtResource("8_yoi1y")
+
+[node name="ProjectileManager" type="Node" parent="AttackStateMachine/attackState"]
+script = ExtResource("12_oy2lr")
+arrowScene = ExtResource("14_wmvv8")
+
+[node name="noattackState" type="Node" parent="AttackStateMachine"]
+script = ExtResource("11_p1x4t")
+
+[editable path="PlayerMesh"]

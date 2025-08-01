@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bastr8ufb4bi2"]
+
+[ext_resource type="Script" uid="uid://cry3xrh8jndrp" path="res://UI/PauseManager.cs" id="1_yna0v"]
+
+[node name="Pausing" type="Node2D"]
+
+[node name="PauseManager" type="CanvasLayer" parent="."]
+script = ExtResource("1_yna0v")
