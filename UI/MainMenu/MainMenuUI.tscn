@@ -1,0 +1,187 @@
+[gd_scene load_steps=11 format=3 uid="uid://c06v2ceauqlro"]
+
+[ext_resource type="Script" uid="uid://bt6rtr55pu8au" path="res://UI/MainMenu/MainMenuUi.cs" id="1_4tdpy"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_5lhe0"]
+[ext_resource type="Texture2D" uid="uid://8nvm3o54nxhg" path="res://UI/MainMenu/MainMenuBackground.jpg" id="3_bqg4p"]
+[ext_resource type="AudioStream" uid="uid://dr0htynt7sx8f" path="res://UI/MainMenu/titleMusic.mp3" id="4_bqg4p"]
+[ext_resource type="Texture2D" uid="uid://dbpef6x7hf8gq" path="res://UI/MainMenu/titleMist.png" id="4_ilsq7"]
+[ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="5_mgqhi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilsq7"]
+shader = ExtResource("2_5lhe0")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+
+[sub_resource type="Animation" id="Animation_74k3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fogImage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-490, -438)]
+}
+
+[sub_resource type="Animation" id="Animation_mgqhi"]
+resource_name = "fog_animation"
+length = 100.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fogImage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 99.0333, 99.9667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-946, -419), Vector2(-7, -400), Vector2(-946, -419)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tpha8"]
+_data = {
+&"RESET": SubResource("Animation_74k3h"),
+&"fog_animation": SubResource("Animation_mgqhi")
+}
+
+[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("titleMP3")]
+script = ExtResource("1_4tdpy")
+titleMP3 = NodePath("titleMusic")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_ilsq7")
+offset_left = -9.0
+offset_top = 2.0
+offset_right = 657.0
+offset_bottom = 368.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
+size = Vector2i(666, 366)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background Image" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.5
+offset_right = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bqg4p")
+
+[node name="fogImage" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.28176
+anchor_top = 0.466454
+anchor_right = 2.28176
+anchor_bottom = 0.466455
+offset_left = -1950.33
+offset_top = -605.923
+offset_right = -350.313
+offset_bottom = 294.073
+size_flags_vertical = 3
+texture = ExtResource("4_ilsq7")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonBlock" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -133.0
+offset_right = 53.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play" type="Button" parent="Control/ButtonBlock"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_mgqhi")
+text = "Play"
+
+[node name="Options" type="Button" parent="Control/ButtonBlock"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_mgqhi")
+text = "Options"
+
+[node name="Quit" type="Button" parent="Control/ButtonBlock"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_mgqhi")
+text = "Quit"
+
+[node name="GameTitleContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -127.0
+offset_right = 4.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" type="Label" parent="Control/GameTitleContainer"]
+layout_mode = 2
+text = "HI ALEX!!!!!!!!!!!!!!!!"
+horizontal_alignment = 1
+
+[node name="DeveloperBlock" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 193.0
+offset_bottom = 103.0
+
+[node name="Label" type="Label" parent="Control/DeveloperBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.529412)
+theme_override_font_sizes/font_size = 9
+text = "Developed by Alex Easter, Julian Nemo 2025"
+horizontal_alignment = 1
+
+[node name="titleMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_bqg4p")
+volume_db = -7.518
+parameters/looping = true
+
+[node name="titleFog" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../Control")
+libraries = {
+&"": SubResource("AnimationLibrary_tpha8")
+}
+
+[connection signal="pressed" from="Control/ButtonBlock/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/ButtonBlock/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/ButtonBlock/Quit" to="." method="_on_quit_pressed"]

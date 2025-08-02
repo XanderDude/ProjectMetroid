@@ -2,10 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class MovementStateMachine : Node
+public partial class AttackStateMachine : Node
 {
-	[Export] public NodePath asmState;
-	private AttackStateMachine asm; 
 	[Export] public NodePath initialState; //the node path to the starting state
 	private CharacterBody3D _parent;
 	public CharacterBody3D Parent //assign from parent script prior to _ready
@@ -27,21 +25,19 @@ public partial class MovementStateMachine : Node
 		set { _mesh = value; }
 	}
 	private Dictionary<string, State> _states;
-	public State _currentState;
+	private State _currentState;
 	public  State _previousState;
 
 	//Purpose: This is called when opening the game for the first time, after all child nodes are in the scene
 	public override void _Ready()
 	{
-		asm = GetNode<AttackStateMachine>(asmState);
 		_states = new Dictionary<string, State>();
 		foreach (Node node in GetChildren())
 		{
 			if (node is State s)
 			{
 				_states[node.Name] = s;
-				s.msm = this;  //assign self to the states
-				s.asm = asm;
+				s.asm = this;  //assign self to the states
 				s.player = Parent;
 				s.pm = ParentManager;
 				s.parentMesh = parentMesh;

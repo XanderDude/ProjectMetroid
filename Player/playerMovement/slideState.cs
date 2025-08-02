@@ -92,6 +92,11 @@ public partial class slideState : State
 			player.Set(PlayerManager.PropertyName.jumpQueued, true);
 			msm.TransitionTo("jumpState");
 		}
+		
+		if (@event.IsActionPressed("Shoot"))
+		{
+			asm.TransitionTo("attackState");
+		}
 		/*
 		if (@event.IsActionPressed("Slide")) //is slide being pressed
 		{

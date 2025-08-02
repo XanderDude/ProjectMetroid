@@ -181,6 +181,13 @@ public partial class jumpState : State
 		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight()) {
 			msm.TransitionTo("walljumpState");
 		}
+		
+		if (@event.IsActionPressed("Shoot"))
+		{
+			asm.TransitionTo("attackState");
+		}
+		
+		
 	}
 	
 	
