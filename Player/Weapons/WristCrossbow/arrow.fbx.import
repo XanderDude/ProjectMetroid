@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ba3dyf7vr6pua"
-path="res://.godot/imported/pmCrossBowArrowWristAttachment.fbx-ec0d5b4382b946b4f9a9663bd9fe7c01.scn"
+uid="uid://bil1ura0rj4wd"
+path="res://.godot/imported/arrow.fbx-dcd2d53c96a93e46046a9c51f65f6b6a.scn"
 
 [deps]
 
-source_file="res://Environment/Models/pmCrossBowArrowWristAttachment.fbx"
-dest_files=["res://.godot/imported/pmCrossBowArrowWristAttachment.fbx-ec0d5b4382b946b4f9a9663bd9fe7c01.scn"]
+source_file="res://Player/Weapons/WristCrossbow/arrow.fbx"
+dest_files=["res://.godot/imported/arrow.fbx-dcd2d53c96a93e46046a9c51f65f6b6a.scn"]
 
 [params]
 
@@ -32,7 +32,18 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"pCone2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Player/playerScenes/pCone2.tres"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
