@@ -1,0 +1,353 @@
+[gd_scene load_steps=18 format=3 uid="uid://et03prftbqt"]
+
+[ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/InventoryBackground.png" id="1_yc0b1"]
+[ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Blue-Border-Frame-PNG-Clipart.png" id="2_pjhye"]
+[ext_resource type="Texture2D" uid="uid://diyxuv8mb2f6k" path="res://Player/playerScenes/paintstroke.png" id="2_ucsoy"]
+[ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/InventoryCharacter.png" id="3_pjhye"]
+[ext_resource type="Texture2D" uid="uid://br734cwmf4i2t" path="res://UI/InventoryButtons.png" id="4_frlwg"]
+[ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="5_0gpq4"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="6_su3to"]
+[ext_resource type="Texture2D" uid="uid://b6cftlfnuoxp2" path="res://UI/inventoryhearticon (2).png" id="7_e57su"]
+[ext_resource type="Texture2D" uid="uid://ck8yepi1etd4y" path="res://UI/inventoryarrowicons.png" id="8_3dtbo"]
+[ext_resource type="Texture2D" uid="uid://d37fydoaq6s52" path="res://UI/ruby.png" id="9_ucsoy"]
+[ext_resource type="Texture2D" uid="uid://bfuebyer4o1pe" path="res://inventory raven.png" id="11_frlwg"]
+[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/arrow.png" id="12_su3to"]
+[ext_resource type="Texture2D" uid="uid://cx8gjxgmg7lrm" path="res://UI/crossbow.png" id="13_e57su"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udyo3"]
+
+[sub_resource type="Animation" id="Animation_0xmy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(44, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_dw5ng"]
+resource_name = "playerbob"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(44, 50), Vector2(44, 47), Vector2(44, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjyhv"]
+_data = {
+&"RESET": SubResource("Animation_0xmy5"),
+&"playerbob": SubResource("Animation_dw5ng")
+}
+
+[node name="Inventory" type="Node2D"]
+
+[node name="Background Image" type="TextureRect" parent="."]
+offset_left = -24.0
+offset_top = -6.0
+offset_right = 619.0
+offset_bottom = 351.0
+scale = Vector2(1.08983, 1.04)
+texture = ExtResource("1_yc0b1")
+expand_mode = 1
+
+[node name="Blue Normal Frame" type="TextureRect" parent="."]
+modulate = Color(0.125911, 0.125911, 0.125911, 1)
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 490.0
+offset_bottom = 363.0
+scale = Vector2(1.32184, 1.02368)
+texture = ExtResource("2_pjhye")
+
+[node name="PaintFrame" type="Node2D" parent="."]
+modulate = Color(0.280304, 0.266129, 0.228052, 1)
+position = Vector2(11, 6)
+
+[node name="Paintstroke" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(-44, 166)
+rotation = -1.33191
+scale = Vector2(1.12426, 0.90974)
+texture = ExtResource("2_ucsoy")
+
+[node name="Paintstroke3" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(657, 190)
+rotation = 1.57652
+texture = ExtResource("2_ucsoy")
+
+[node name="Inventory Character" type="TextureRect" parent="."]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+material = SubResource("ShaderMaterial_udyo3")
+offset_left = 44.0
+offset_top = 50.0
+offset_right = 363.0
+offset_bottom = 284.0
+texture = ExtResource("3_pjhye")
+expand_mode = 1
+
+[node name="Crossbow Frame" type="TextureRect" parent="."]
+offset_left = 375.0
+offset_top = 33.0
+offset_right = 539.0
+offset_bottom = 188.0
+scale = Vector2(0.336429, 0.370667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Line" type="TextureRect" parent="Crossbow Frame"]
+layout_mode = 0
+offset_left = 77.2822
+offset_top = 153.777
+offset_right = 241.282
+offset_bottom = 308.777
+scale = Vector2(0.0811822, 0.488893)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Line3" type="TextureRect" parent="Crossbow Frame"]
+layout_mode = 0
+offset_left = 89.4468
+offset_top = 229.141
+offset_right = 253.447
+offset_bottom = 384.141
+rotation = -1.5708
+scale = Vector2(0.0811822, 1.02846)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Line4" type="TextureRect" parent="Crossbow Frame"]
+layout_mode = 0
+offset_left = -80.2546
+offset_top = 229.141
+offset_right = 83.7454
+offset_bottom = 384.141
+rotation = -1.5708
+scale = Vector2(0.0811822, 1.02846)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Line5" type="TextureRect" parent="Crossbow Frame"]
+layout_mode = 0
+offset_left = -79.9802
+offset_top = 229.141
+offset_right = 84.0198
+offset_bottom = 384.141
+scale = Vector2(0.0811822, 0.38098)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Line6" type="TextureRect" parent="Crossbow Frame"]
+layout_mode = 0
+offset_left = 235.094
+offset_top = 229.141
+offset_right = 399.094
+offset_bottom = 384.141
+scale = Vector2(0.0811822, 0.38098)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame2" type="TextureRect" parent="."]
+offset_left = 333.0
+offset_top = 139.0
+offset_right = 497.0
+offset_bottom = 294.0
+scale = Vector2(0.216421, 0.210667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame3" type="TextureRect" parent="."]
+offset_left = 439.0
+offset_top = 139.0
+offset_right = 603.0
+offset_bottom = 294.0
+scale = Vector2(0.216421, 0.210667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame4" type="TextureRect" parent="."]
+offset_left = 535.0
+offset_top = 17.0
+offset_right = 699.0
+offset_bottom = 172.0
+scale = Vector2(0.336429, 0.370667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame5" type="TextureRect" parent="."]
+offset_left = 535.0
+offset_top = 95.0
+offset_right = 699.0
+offset_bottom = 250.0
+scale = Vector2(0.336429, 0.370667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame6" type="TextureRect" parent="."]
+offset_left = 535.0
+offset_top = 179.0
+offset_right = 699.0
+offset_bottom = 334.0
+scale = Vector2(0.336429, 0.370667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="Crossbow Frame7" type="TextureRect" parent="."]
+offset_left = 535.0
+offset_top = 261.0
+offset_right = 699.0
+offset_bottom = 416.0
+scale = Vector2(0.336429, 0.370667)
+texture = ExtResource("4_frlwg")
+expand_mode = 1
+
+[node name="hBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 47.0
+offset_top = 324.0
+offset_right = 510.0
+offset_bottom = 338.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.83
+theme_override_constants/separation = 46
+
+[node name="Resume" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_0gpq4")
+text = "   Resume   "
+
+[node name="Map" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "     Map     "
+
+[node name="Options" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "   Options   "
+
+[node name="Quit" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "     Quit     "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qjyhv")
+}
+script = ExtResource("6_su3to")
+idleAnim = "playerbob"
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_left = 152.0
+offset_top = 7.0
+offset_right = 3232.0
+offset_bottom = 1031.0
+scale = Vector2(0.0284924, 0.0310378)
+
+[node name="TextureRect" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="TextureRect2" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="TextureRect3" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="TextureRect4" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="TextureRect5" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="TextureRect6" type="TextureRect" parent="Hearts"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("7_e57su")
+
+[node name="Arrows" type="VBoxContainer" parent="."]
+offset_left = 68.0
+offset_top = 190.0
+offset_right = 1438.0
+offset_bottom = 4089.0
+scale = Vector2(0.0225088, 0.0256061)
+
+[node name="TextureRect" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+texture = ExtResource("8_3dtbo")
+
+[node name="TextureRect2" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+texture = ExtResource("8_3dtbo")
+
+[node name="TextureRect3" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+texture = ExtResource("8_3dtbo")
+
+[node name="Rubies" type="Node" parent="."]
+
+[node name="Ruby" type="Sprite2D" parent="Rubies"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(469, 232)
+scale = Vector2(0.0688762, 0.0610182)
+texture = ExtResource("9_ucsoy")
+
+[node name="Ruby2" type="Sprite2D" parent="Rubies"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(403, 232)
+scale = Vector2(0.0688762, 0.0610182)
+texture = ExtResource("9_ucsoy")
+
+[node name="Ruby3" type="Sprite2D" parent="Rubies"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(336, 232)
+scale = Vector2(0.0688762, 0.0610182)
+texture = ExtResource("9_ucsoy")
+
+[node name="Raven" type="TextureRect" parent="."]
+offset_left = 528.0
+offset_top = 7.0
+offset_right = 1164.0
+offset_bottom = 1074.0
+scale = Vector2(0.0917274, 0.0764161)
+texture = ExtResource("11_frlwg")
+
+[node name="Arrow" type="TextureRect" parent="."]
+offset_left = 294.0
+offset_top = 122.0
+offset_right = 1254.0
+offset_bottom = 662.0
+scale = Vector2(0.114469, 0.122691)
+texture = ExtResource("12_su3to")
+stretch_mode = 5
+
+[node name="Crossbow" type="TextureRect" parent="."]
+offset_left = 352.0
+offset_top = 22.0
+offset_right = 1312.0
+offset_bottom = 562.0
+scale = Vector2(0.126842, 0.139469)
+texture = ExtResource("13_e57su")
+stretch_mode = 5

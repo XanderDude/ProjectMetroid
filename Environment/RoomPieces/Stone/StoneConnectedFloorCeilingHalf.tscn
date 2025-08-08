@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvxhgjgauex4v"]
+
+[ext_resource type="PackedScene" uid="uid://5pcwj76ej6yt" path="res://Environment/RoomPieces/Models/stoneConnectedFloorCeilingHalf.fbx" id="2_fydwh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cu4oq"]
+points = PackedVector3Array(0, 0.25, 1, 0, -0.25, 1, 0, 0.25, -1, -1, 0.25, 1, -1, -0.25, 1, 0, -0.25, -1, -1, 0.25, -1, -1, -0.25, -1)
+
+[node name="stoneConnectedFloorCeilingHalf" instance=ExtResource("2_fydwh")]
+
+[node name="StonePlatformHalf" parent="StoneInterior" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="collider" parent="StoneInterior/StonePlatformHalf" index="0"]
+transparency = 1.0
+cast_shadow = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="StoneInterior/StonePlatformHalf/collider" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StoneInterior/StonePlatformHalf/collider/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_cu4oq")
