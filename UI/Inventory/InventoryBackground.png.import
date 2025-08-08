@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx8gjxgmg7lrm"
-path="res://.godot/imported/crossbow.png-fcc94492a1d4b8780eed6e7dde5738ec.ctex"
+uid="uid://c0pg02flk2qiy"
+path="res://.godot/imported/InventoryBackground.png-ad07b78dbbb5f9c74b30a035ab253967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/crossbow.png"
-dest_files=["res://.godot/imported/crossbow.png-fcc94492a1d4b8780eed6e7dde5738ec.ctex"]
+source_file="res://UI/Inventory/InventoryBackground.png"
+dest_files=["res://.godot/imported/InventoryBackground.png-ad07b78dbbb5f9c74b30a035ab253967.ctex"]
 
 [params]
 

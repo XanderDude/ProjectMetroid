@@ -58,8 +58,7 @@ public partial class SimpleProjectileManager : Node
 	{
 		// Remove oldest projectile if at limit
 		if (activeProjectiles.Count >= maxProjectiles)
-		{
-			RemoveProjectile(0);
+		{			RemoveProjectile(0);
 		}
 		
 		if (arrowScene == null)

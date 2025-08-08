@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6cftlfnuoxp2"
-path="res://.godot/imported/inventoryhearticon (2).png-18782252e15e42c64c554b095143e017.ctex"
+uid="uid://ck8yepi1etd4y"
+path="res://.godot/imported/inventoryarrowicons.png-5184b96e65a61896ccd37463aefc73dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/inventoryhearticon (2).png"
-dest_files=["res://.godot/imported/inventoryhearticon (2).png-18782252e15e42c64c554b095143e017.ctex"]
+source_file="res://UI/Inventory/inventoryarrowicons.png"
+dest_files=["res://.godot/imported/inventoryarrowicons.png-5184b96e65a61896ccd37463aefc73dd.ctex"]
 
 [params]
 
