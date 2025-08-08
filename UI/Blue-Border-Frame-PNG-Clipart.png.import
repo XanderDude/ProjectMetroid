@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d37fydoaq6s52"
-path="res://.godot/imported/ruby.png-5e7b72581b6fd65c3b27c83cb8c192a5.ctex"
+uid="uid://dj8k2k5nifepb"
+path="res://.godot/imported/Blue-Border-Frame-PNG-Clipart.png-d5e5592e22ee32091ef8593247e67f0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Inventory/ruby.png"
-dest_files=["res://.godot/imported/ruby.png-5e7b72581b6fd65c3b27c83cb8c192a5.ctex"]
+source_file="res://UI/Blue-Border-Frame-PNG-Clipart.png"
+dest_files=["res://.godot/imported/Blue-Border-Frame-PNG-Clipart.png-d5e5592e22ee32091ef8593247e67f0b.ctex"]
 
 [params]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ba3dyf7vr6pua"
-path="res://.godot/imported/WristCrossbow.fbx-c596f72a76ab2835e683d826052ff7bb.scn"
+path="res://.godot/imported/pmCrossBowArrowWristAttachment.fbx-ec0d5b4382b946b4f9a9663bd9fe7c01.scn"
 
 [deps]
 
-source_file="res://Weapons/WristCrossbow/WristCrossbow.fbx"
-dest_files=["res://.godot/imported/WristCrossbow.fbx-c596f72a76ab2835e683d826052ff7bb.scn"]
+source_file="res://Environment/Models/pmCrossBowArrowWristAttachment.fbx"
+dest_files=["res://.godot/imported/pmCrossBowArrowWristAttachment.fbx-ec0d5b4382b946b4f9a9663bd9fe7c01.scn"]
 
 [params]
 
