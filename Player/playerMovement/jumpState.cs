@@ -26,7 +26,6 @@ public partial class jumpState : State
 	private bool isSameHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
-			GD.Print("No Collision Detected");
 			//playerTop = _playerTop;
 			return false;
 		}
@@ -48,7 +47,6 @@ public partial class jumpState : State
 	private bool isGreaterHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
-			GD.Print("No Collision Detected");
 			return false;
 		}
 		KinematicCollision3D collision = player.GetSlideCollision(0);
@@ -73,7 +71,6 @@ public partial class jumpState : State
 		}
 		else
 		{
-			GD.Print("jump max height reached");
 			jumpHeight = jumpMaxHeight; //clamp
 			return false;
 		}
@@ -127,7 +124,6 @@ public partial class jumpState : State
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
-			GD.Print("Jumping");
 			velocity.Y -= _gravity * delta;
 			if (input == 0)
 			{

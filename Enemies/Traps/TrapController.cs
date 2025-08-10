@@ -4,7 +4,7 @@ using System;
 public partial class TrapController : Node3D
 {
     [Export] private Area3D damageCollider;
-    [Export] private AnimationPlayer animPlayer;
+    [Export] private Godot.AnimationPlayer animPlayer;
     [Export] private string animationName;
     [Export] private int damage = 5;
     [Export] private float _damageCooldown = .3f;
