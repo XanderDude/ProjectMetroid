@@ -1,10 +1,18 @@
 using Godot;
 using System;
 
+public enum ItemCategory
+{
+	None,
+	Ranged,
+	Melee,
+	Consumable
+}
+
 public partial class Inventory : ItemList
 {
-	[Export] int inventorySize = 20;
-	[Export] Texture2D blankIcon;
+	[Export] public int inventorySize = 20;
+	[Export] public Texture2D blankIcon;
 	
 	private Item[] items;
 	
@@ -12,8 +20,16 @@ public partial class Inventory : ItemList
 	{
 		items = new Item[inventorySize];
 		
-		for (int i =0; i< inventorySize; i++) {
-			AddItem(" ", blankIcon);
+		AddThemeConstantOverride("v_separation", 0);
+		AddThemeConstantOverride("h_separation", 0);
+		AddThemeConstantOverride("icon_margin", 0);
+		AddThemeConstantOverride("line_separation", 0);
+		
+		IconMode = ItemList.IconModeEnum.Top;
+		AddThemeConstantOverride("font_size", 0);
+		
+		for (int i = 0; i < inventorySize; i++) {
+			AddItem("", blankIcon); 
 		}
 		
 		ItemClicked += OnInventoryItemClicked;
@@ -92,44 +108,108 @@ public partial class Inventory : ItemList
 		return items[index];
 	}
 	
-	private void OnInventoryItemClicked(long index, Vector2 pos, long mouseButtonIndex)
+	// Equip an item and handle category logic
+	public void EquipItem(int index)
 	{
-		   GD.Print($"Signal fired! Index: {index}, Button: {mouseButtonIndex}");
+		if (index < 0 || index >= inventorySize || items[index] == null) return;
 		
-		if (mouseButtonIndex == 2)
+		var itemToEquip = items[index];
+		
+		// If it's a ranged weapon, unequip all other ranged weapons first
+		if (itemToEquip.Category == ItemCategory.Ranged)
 		{
-			Item item = GetInventoryItem((int)index);
-			
-			if (item == null)
-			{
-				GD.Print("No item here!");
-				return;
-			}
-			
-			RemoveInventoryItem((int) index);
-			
-			GD.Print($"You dropped {item.Qty} of {item.Name}");
+			UnequipItemsByCategory(ItemCategory.Ranged);
 		}
-		else if (mouseButtonIndex == 1)
+		// If it's a melee weapon, unequip all other melee weapons first
+		else if (itemToEquip.Category == ItemCategory.Melee)
 		{
-			Item item = GetInventoryItem((int) index);
-			
-			if (item == null) {
-				GD.Print("No item here!");
-				return;
+			UnequipItemsByCategory(ItemCategory.Melee);
+		}
+		
+		// Equip the new item
+		itemToEquip.Equipped = true;
+		GD.Print($"Equipped {itemToEquip.Name}");
+		
+		// Update visual indication (you can customize this)
+		UpdateItemDisplay(index);
+	}
+	
+	// Unequip all items of a specific category
+	public void UnequipItemsByCategory(ItemCategory category)
+	{
+		for (int i = 0; i < items.Length; i++)
+		{
+			if (items[i] != null && items[i].Category == category && items[i].Equipped)
+			{
+				items[i].Equipped = false;
+				GD.Print($"Unequipped {items[i].Name}");
+				UpdateItemDisplay(i);
 			}
-			
-			GD.Print($"You clicked {item.Name} and there is a total of {item.Qty} of them!");
 		}
 	}
 	
+	// Check if any item of a category is equipped
+	public bool IsAnyItemEquippedInCategory(ItemCategory category)
+	{
+		for (int i = 0; i < items.Length; i++)
+		{
+			if (items[i] != null && items[i].Category == category && items[i].Equipped)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	// Get the currently equipped item in a category
+	public Item GetEquippedItemInCategory(ItemCategory category)
+	{
+		for (int i = 0; i < items.Length; i++)
+		{
+			if (items[i] != null && items[i].Category == category && items[i].Equipped)
+			{
+				return items[i];
+			}
+		}
+		return null;
+	}
+	
+	// Update visual display of an item (add visual indication for equipped items)
+	private void UpdateItemDisplay(int index)
+	{
+		if (items[index] != null)
+		{
+			// You can change the background color or add a border for equipped items
+			if (items[index].Equipped)
+			{
+				// Visual indication that item is equipped (example: change item color)
+				SetItemMetadata(index, "equipped");
+			}
+			else
+			{
+				SetItemMetadata(index, "");
+			}
+		}
+	}
+	
+	private void OnInventoryItemClicked(long index, Vector2 pos, long mouseButtonIndex)
+	{
+		GD.Print($"Signal fired! Index: {index}, Button: {mouseButtonIndex}");
+		
+		if (mouseButtonIndex == 1 && items[index] != null) 
+		{
+			EquipItem((int)index);
+		}
+	}
 }
 
 public class Item
-	{
-		public int ID;
-		public string Name;
-		public Texture2D Icon;
-		public int MaxQty;
-		public int Qty;
-	}
+{
+	public int ID;
+	public string Name;
+	public Texture2D Icon;
+	public int MaxQty;
+	public int Qty;
+	public bool Equipped;
+	public ItemCategory Category; // Add category to items
+}

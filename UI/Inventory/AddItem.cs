@@ -9,7 +9,8 @@ public partial class AddItem : Button
 	[Export] Texture2D itemicon;
 	[Export] int maxQty;
 	[Export] int qty;
-	
+	[Export] bool isequip;
+	[Export] ItemCategory category;
 	public override void _Ready()
 	{
 		Pressed += () => AddNewItem();
@@ -22,7 +23,9 @@ public partial class AddItem : Button
 			Name = name,
 			Icon = itemicon,
 			MaxQty = maxQty,
-			Qty = qty
+			Qty = qty,
+			Equipped = isequip,
+			Category = category
 		};
 		
 		inv.AddInventoryItem(item);

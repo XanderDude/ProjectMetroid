@@ -3,8 +3,8 @@ using Godot;
 public partial class PauseManager : CanvasLayer {
 	[Export] public PackedScene inventoryScene;
 	
-	private bool _isPaused = false;
-	private Node _inventory;
+	public bool _isPaused = false;
+	public Node _inventory;
 	
 	public override void _Ready() {
 		ProcessMode = Node.ProcessModeEnum.Always;
@@ -14,7 +14,7 @@ public partial class PauseManager : CanvasLayer {
 	public override void _Input(InputEvent @event) {
 		if (@event.IsActionPressed("ui_cancel")) {
 			if (_isPaused) {
-				// Remove inventory and unpause
+				// Unpause
 				if (_inventory != null && _inventory.GetParent() != null) {
 					RemoveChild(_inventory);
 				}
@@ -22,7 +22,7 @@ public partial class PauseManager : CanvasLayer {
 				GetTree().Paused = false;
 				_isPaused = false;
 			} else {
-				// Create/add inventory and pause
+				// Pause
 				if (inventoryScene != null) {
 					if (_inventory == null) {
 						_inventory = inventoryScene.Instantiate();
