@@ -27,9 +27,9 @@ meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=15.0
+animation/fps=30.0
 animation/trimming=true
-animation/remove_immutable_tracks=true
+animation/remove_immutable_tracks=false
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
@@ -7235,6 +7235,20 @@ _subresources={
 "frankengirl_mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://cdiw6jfnws67w"
+}
+},
+"nodes": {
+"PATH:Skeleton3D/Arrow/Arrow": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/Crossbow/Crossbow": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/body": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/cloak": {
+"mesh_instance/layers": 2
 }
 }
 }

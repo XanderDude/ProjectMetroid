@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://by3fw2kh7ot1a"]
+[gd_scene load_steps=20 format=3 uid="uid://by3fw2kh7ot1a"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/playerScenes/PlayerManager.cs" id="1_morwn"]
 [ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/playerMovement/MovementStateMachine.cs" id="2_4mmid"]
-[ext_resource type="PackedScene" uid="uid://ddjlv3gpwknib" path="res://Player/PlayerMesh.tscn" id="2_o1ik4"]
 [ext_resource type="Material" uid="uid://b5ke0ib3gs3n0" path="res://Environment/Materials/glowingMaterial.tres" id="2_yoi1y"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/playerMovement/groundedState.cs" id="3_lrbk8"]
 [ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/playerMovement/jumpState.cs" id="4_morwn"]
@@ -12,6 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="9_5cixj"]
 [ext_resource type="Script" uid="uid://c36krmoqmog15" path="res://Player/playerScenes/AttackHandler.cs" id="9_p1x4t"]
 [ext_resource type="PackedScene" uid="uid://cbbhym4834a45" path="res://Player/playerScenes/Projectile.tscn" id="10_n8qow"]
+[ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Frankengirl.fbx" id="11_xyui3"]
+[ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="12_udrpx"]
+[ext_resource type="AnimationLibrary" uid="uid://cronlhr0poi6u" path="res://Player/Animation/FrankengirlAnimLib.res" id="13_h4aqx"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="14_edvbh"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cvi0r2cikoli1" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_j5x8i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
@@ -22,7 +26,7 @@ height = 1.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_5cixj"]
 size = Vector3(0.5, 2.5, 1)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerGeo", "StateMachine")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerGeo", "StateMachine") groups=["Player"]]
 collision_layer = 4
 collision_mask = 3
 axis_lock_linear_z = true
@@ -33,7 +37,7 @@ floor_constant_speed = true
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
 script = ExtResource("1_morwn")
-playerGeo = NodePath("PlayerMesh/Skeleton3D/Alpha_Surface")
+playerGeo = NodePath("PlayerMesh/Skeleton3D/body")
 invulnMat = ExtResource("2_yoi1y")
 StateMachine = NodePath("MovementStateMachine")
 
@@ -83,65 +87,74 @@ jumpySound = NodePath("../../jumpSound")
 [node name="AttackHandler" type="Node" parent="." node_paths=PackedStringArray("spawnPoint")]
 script = ExtResource("9_p1x4t")
 _projectile = ExtResource("10_n8qow")
-spawnPoint = NodePath("../PlayerMesh/Skeleton3D/Crossbow/spawnPoint")
+spawnPoint = NodePath("../PlayerMesh/FrankengirlCombined")
 
-[node name="PlayerMesh" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_o1ik4")]
+[node name="PlayerMesh" parent="." node_paths=PackedStringArray("player", "animTree") instance=ExtResource("11_xyui3")]
 unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("12_udrpx")
 player = NodePath("..")
-runBlendSpeed = 2.3
+animTree = NodePath("AnimationTree")
+playbackFilePath = "parameters/playback"
+WalkingBlendPath = "parameters/Running/IdleRunBlend/blend_amount"
+RunSpeedBlendPath = "parameters/Running/RunSpeed/scale"
+AimBlendBlendPath = "parameters/Running/LegAndArmBlend/blend_amount"
+transitionSpeed = 6.0
+JumpStateName = "Jumping"
+RunningStateName = "Running"
+WallCollisionStateName = "WallCollision"
+runBlendSpeed = 1.5
+SlideStateName = "SlideStart"
+CrouchStateName = "Crouching"
+HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.00695715, 0.929505, -0.000397376)
-bones/0/rotation = Quaternion(-0.0385611, 0.347494, 0.0103422, 0.936832)
-bones/1/rotation = Quaternion(-0.0106232, -0.0372651, 0.00610155, 0.99923)
-bones/2/rotation = Quaternion(0.100397, -0.0759479, 0.0090274, 0.992004)
-bones/3/rotation = Quaternion(0.157385, -0.0752637, 0.0134034, 0.984574)
-bones/4/rotation = Quaternion(-0.0340425, 0.0206541, 0.00700873, 0.999182)
-bones/5/rotation = Quaternion(-0.0479449, -0.188551, 0.00265831, 0.980889)
-bones/7/rotation = Quaternion(0.534601, 0.491848, -0.531951, 0.435104)
-bones/8/rotation = Quaternion(0.43879, -0.0468879, -0.091135, 0.892726)
-bones/9/rotation = Quaternion(0.039733, -0.0917438, 0.333082, 0.937582)
-bones/10/rotation = Quaternion(0.0427173, 0.0509111, 0.0985367, 0.992912)
-bones/11/rotation = Quaternion(0.236564, -0.132734, 0.189667, 0.943634)
-bones/12/rotation = Quaternion(-0.0247946, 0.0223335, -0.178718, 0.983334)
-bones/15/rotation = Quaternion(-0.03024, -0.01668, -0.0182866, 0.999236)
-bones/16/rotation = Quaternion(0.223282, 0.00125198, -0.000629203, 0.974753)
-bones/19/rotation = Quaternion(0.046461, -0.0062925, -0.0331813, 0.998349)
-bones/20/rotation = Quaternion(0.331376, -0.000246661, 0.0237914, 0.943199)
-bones/23/rotation = Quaternion(0.12658, 0.0177538, -0.0656187, 0.989625)
-bones/24/rotation = Quaternion(0.38678, -0.00094597, 0.0399741, 0.921305)
-bones/27/rotation = Quaternion(0.150896, 0.0254364, -0.0876454, 0.984328)
-bones/28/rotation = Quaternion(0.41554, 0.00693615, 0.0756949, 0.906393)
-bones/31/rotation = Quaternion(0.488384, -0.526771, 0.567663, 0.402184)
-bones/32/rotation = Quaternion(0.475719, 0.0692234, -0.10517, 0.870539)
-bones/33/rotation = Quaternion(-0.012656, -0.0011752, -0.432586, 0.901503)
-bones/34/rotation = Quaternion(-0.158533, -0.150849, -0.0189801, 0.975578)
-bones/35/rotation = Quaternion(0.310182, -0.0171221, -0.155056, 0.937791)
-bones/36/rotation = Quaternion(-0.00977855, -0.0033226, 0.0142758, 0.999845)
-bones/39/rotation = Quaternion(0.0404996, 0.019824, -0.0631015, 0.996988)
-bones/40/rotation = Quaternion(0.154184, -0.000740083, 0.00462901, 0.988031)
-bones/43/rotation = Quaternion(0.134029, -0.0140357, 0.0798678, 0.987654)
-bones/44/rotation = Quaternion(0.201341, 0.0028009, -0.0161499, 0.979384)
-bones/47/rotation = Quaternion(0.274407, -0.00300522, 0.133137, 0.952348)
-bones/48/rotation = Quaternion(0.287303, -0.00471843, -0.0246958, 0.95751)
-bones/51/rotation = Quaternion(0.298922, -0.00875053, 0.167406, 0.939438)
-bones/52/rotation = Quaternion(0.345465, -0.0161953, -0.0523778, 0.936829)
-bones/55/rotation = Quaternion(0, 0, -0.0686212, 0.997643)
-bones/56/rotation = Quaternion(0.138908, 0.0121429, 0.98236, -0.124601)
-bones/57/rotation = Quaternion(-0.303305, -0.0880222, 0.0281175, 0.948403)
-bones/58/rotation = Quaternion(0.683368, -0.074678, -0.103092, 0.718891)
-bones/59/rotation = Quaternion(0.242477, -0.0264684, -0.016608, 0.969654)
-bones/60/rotation = Quaternion(3.81304e-10, -0.123858, -4.75941e-11, 0.9923)
-bones/61/rotation = Quaternion(-0.0776321, 0.21802, 0.967583, 0.10111)
-bones/62/rotation = Quaternion(-0.310119, -0.135521, 0.0417046, 0.940064)
-bones/63/rotation = Quaternion(0.575939, 0.0225531, 0.0315345, 0.816573)
-bones/64/rotation = Quaternion(0.249736, 0.016483, 0.0415006, 0.967284)
+bones/0/position = Vector3(3.55271e-17, 0.924947, -0.04)
+bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/1/position = Vector3(0.0403507, -0.0253461, -0.00558281)
+bones/1/rotation = Quaternion(0.00670935, 0.0683595, 0.0974515, 0.992867)
+bones/3/rotation = Quaternion(2.16506e-07, -3.56651e-08, -0.032407, 0.999475)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/7/position = Vector3(0.0324921, 0.0596365, 8.07994e-16)
+bones/9/rotation = Quaternion(0.248565, 0.282585, 0.679656, 0.629626)
+bones/10/rotation = Quaternion(0.143893, 0.292313, -0.722639, 0.609624)
+bones/11/rotation = Quaternion(-2.77556e-16, -2.498e-16, -5.27356e-16, 1)
+bones/13/position = Vector3(-0.00103002, 0.0139757, -0.143857)
+bones/13/rotation = Quaternion(0.0746764, -0.0551499, -0.758797, 0.644677)
+bones/14/rotation = Quaternion(1.29536e-26, 0.00299866, 2.69634e-17, 0.999996)
+bones/15/rotation = Quaternion(4.16334e-16, 2.498e-16, 9.4369e-16, 1)
+bones/19/position = Vector3(0.0513148, -0.0253461, 0.0736623)
+bones/19/rotation = Quaternion(0.200636, 0.69761, 0.682851, 0.0824601)
+bones/20/rotation = Quaternion(0.980952, 0.000158272, -0.194171, -0.00553049)
+bones/21/rotation = Quaternion(0.493891, -0.506866, 0.505988, 0.493088)
+bones/23/position = Vector3(0.0293843, -0.0253461, -0.0848276)
+bones/23/rotation = Quaternion(0.707221, 0.051016, -0.0225969, 0.704788)
+bones/24/rotation = Quaternion(0.983989, 0.000142932, -0.178159, -0.00499445)
+bones/25/rotation = Quaternion(0.577509, -0.401451, 0.407145, 0.582713)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.555076, -0.0886183, 0.827066, 0.604318, -0.640272, -0.474185, 0.571568, 0.76302, -0.301846, -0.396411, 1.00526, 0.179091)
+transform = Transform3D(0.17998, -0.982493, 0.0481133, 0.983242, 0.178242, -0.038272, 0.0290261, 0.0541952, 0.998108, -0.194888, 1.3923, 0.433022)
+bone_idx = 17
 
-[node name="spawnPoint" type="Node3D" parent="PlayerMesh/Skeleton3D/Crossbow" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.05)
+[node name="Arrow" parent="PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.17998, -0.982493, 0.0481133, 0.983242, 0.178242, -0.038272, 0.0290261, 0.0541952, 0.998108, -0.252176, 1.40031, 0.516792)
+bone_idx = 18
+
+[node name="AnimationPlayerMain" type="AnimationPlayer" parent="PlayerMesh"]
+libraries = {
+&"FrankengirlAnimLib": ExtResource("13_h4aqx")
+}
+script = ExtResource("14_edvbh")
+idleAnim = "FrankengirlAnimLib/Aim"
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerMesh"]
+tree_root = ExtResource("15_j5x8i")
+anim_player = NodePath("../AnimationPlayerMain")
+parameters/conditions/slideEnd = false
+parameters/Running/AimBlend/blend_position = Vector2(0, 0)
+parameters/Running/IdleRunBlend/blend_amount = 0.0
+parameters/Running/LegAndArmBlend/blend_amount = 0.0
+parameters/Running/RunSpeed/scale = 1.5
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
