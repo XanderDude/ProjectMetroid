@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://5aw71wt3nhbe"]
+
+[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://Inventory.cs" id="1_8t0f6"]
+[ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="2_7035r"]
+[ext_resource type="Texture2D" uid="uid://cx8gjxgmg7lrm" path="res://Player/Weapons/WristCrossbow/crossbow.png" id="3_of7wf"]
+[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/arrow.png" id="4_of7wf"]
+
+[node name="Inventory" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 260.0
+offset_bottom = 356.0
+allow_rmb_select = true
+allow_search = false
+auto_height = true
+max_columns = 4
+same_column_width = true
+fixed_column_width = 55
+icon_mode = 0
+fixed_icon_size = Vector2i(50, 0)
+script = ExtResource("1_8t0f6")
+
+[node name="Crossbow" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 490.0
+offset_top = 9.0
+offset_right = 619.0
+offset_bottom = 61.0
+text = "Crossbow"
+script = ExtResource("2_7035r")
+inv = NodePath("../ItemList")
+name = "Crossbow"
+itemicon = ExtResource("3_of7wf")
+maxQty = 1
+qty = 1
+
+[node name="Arrows +1" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 514.0
+offset_top = 72.0
+offset_right = 592.0
+offset_bottom = 103.0
+text = "Arrow +1"
+script = ExtResource("2_7035r")
+inv = NodePath("../ItemList")
+id = 1
+name = "Arrow"
+itemicon = ExtResource("4_of7wf")
+maxQty = 99
+qty = 1

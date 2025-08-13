@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://3og3uwn1s88q"]
 
-[ext_resource type="Script" uid="uid://vjbdrxxrqeth" path="res://Player/playerScenes/ArrowProjectile.cs" id="1_ev4wo"]
+[ext_resource type="Script" uid="uid://dqmk84n1o081e" path="res://Player/Weapons/WristCrossbow/StandardArrow.cs" id="1_4ttjo"]
 [ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/playerScenes/pCone2.tres" id="2_ppovc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
 radius = 0.0310877
 height = 0.392946
 
-[node name="arrow" type="CharacterBody3D"]
+[node name="arrow" type="RigidBody3D"]
 collision_layer = 0
 collision_mask = 14
 collision_priority = 10.0
-script = ExtResource("1_ev4wo")
+script = ExtResource("1_4ttjo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)

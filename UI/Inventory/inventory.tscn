@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://et03prftbqt"]
+[gd_scene load_steps=19 format=3 uid="uid://et03prftbqt"]
 
 [ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/Inventory/InventoryBackground.png" id="1_yc0b1"]
 [ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Inventory/Blue-Border-Frame-PNG-Clipart.png" id="2_pjhye"]
@@ -13,6 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://co31mwly0jpkl" path="res://UI/Inventory/inventory raven.png" id="11_frlwg"]
 [ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/arrow.png" id="12_su3to"]
 [ext_resource type="Texture2D" uid="uid://cx8gjxgmg7lrm" path="res://Player/Weapons/WristCrossbow/crossbow.png" id="13_e57su"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_hp1si"]
+script/source = "using Godot;
+using System;
+
+public partial class Inventory : Node2D
+{
+	
+	
+	
+	
+	
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_udyo3"]
 
@@ -54,6 +68,7 @@ _data = {
 }
 
 [node name="Inventory" type="Node2D"]
+script = SubResource("CSharpScript_hp1si")
 
 [node name="Background Image" type="TextureRect" parent="."]
 offset_left = -24.0
