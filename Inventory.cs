@@ -17,23 +17,28 @@ public partial class Inventory : ItemList
 	private Item[] items;
 	
 	public override void _Ready() 
-	{
-		items = new Item[inventorySize];
-		
-		AddThemeConstantOverride("v_separation", 0);
-		AddThemeConstantOverride("h_separation", 0);
-		AddThemeConstantOverride("icon_margin", 0);
-		AddThemeConstantOverride("line_separation", 0);
-		
-		IconMode = ItemList.IconModeEnum.Top;
-		AddThemeConstantOverride("font_size", 0);
-		
-		for (int i = 0; i < inventorySize; i++) {
-			AddItem("", blankIcon); 
-		}
-		
-		ItemClicked += OnInventoryItemClicked;
+{
+	items = new Item[inventorySize];
+	
+	AddThemeConstantOverride("v_separation", 0);
+	AddThemeConstantOverride("h_separation", 0);
+	AddThemeConstantOverride("icon_margin", 0);
+	AddThemeConstantOverride("line_separation", 0);
+	
+	IconMode = ItemList.IconModeEnum.Top;
+	AddThemeConstantOverride("font_size", 0);
+	
+	// Remove the white outline around the entire ItemList box
+	var emptyStyle = new StyleBoxEmpty();
+	
+	AddThemeStyleboxOverride("focus", emptyStyle);
+	
+	for (int i = 0; i < inventorySize; i++) {
+		AddItem("", blankIcon); 
 	}
+	
+	ItemClicked += OnInventoryItemClicked;
+}
 	
 	public bool AddInventoryItem(Item item) 
 	{
@@ -108,19 +113,17 @@ public partial class Inventory : ItemList
 		return items[index];
 	}
 	
-	// Equip an item and handle category logic
+	
 	public void EquipItem(int index)
 	{
 		if (index < 0 || index >= inventorySize || items[index] == null) return;
 		
 		var itemToEquip = items[index];
 		
-		// If it's a ranged weapon, unequip all other ranged weapons first
 		if (itemToEquip.Category == ItemCategory.Ranged)
 		{
 			UnequipItemsByCategory(ItemCategory.Ranged);
 		}
-		// If it's a melee weapon, unequip all other melee weapons first
 		else if (itemToEquip.Category == ItemCategory.Melee)
 		{
 			UnequipItemsByCategory(ItemCategory.Melee);
@@ -130,11 +133,11 @@ public partial class Inventory : ItemList
 		itemToEquip.Equipped = true;
 		GD.Print($"Equipped {itemToEquip.Name}");
 		
-		// Update visual indication (you can customize this)
+	
 		UpdateItemDisplay(index);
 	}
 	
-	// Unequip all items of a specific category
+
 	public void UnequipItemsByCategory(ItemCategory category)
 	{
 		for (int i = 0; i < items.Length; i++)
@@ -161,7 +164,7 @@ public partial class Inventory : ItemList
 		return false;
 	}
 	
-	// Get the currently equipped item in a category
+	
 	public Item GetEquippedItemInCategory(ItemCategory category)
 	{
 		for (int i = 0; i < items.Length; i++)
@@ -174,7 +177,7 @@ public partial class Inventory : ItemList
 		return null;
 	}
 	
-	// Update visual display of an item (add visual indication for equipped items)
+
 	private void UpdateItemDisplay(int index)
 	{
 		if (items[index] != null)
@@ -211,5 +214,5 @@ public class Item
 	public int MaxQty;
 	public int Qty;
 	public bool Equipped;
-	public ItemCategory Category; // Add category to items
+	public ItemCategory Category; 
 }

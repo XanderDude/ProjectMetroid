@@ -2,14 +2,13 @@ using Godot;
 
 public partial class HudManager : CanvasLayer
 {
-	[Export] public PauseManager pauseManager; // Reference to pause manager
+	[Export] public PlayerManager player; // Direct reference to player
 	
 	private Label arrowCountLabel;
 	private Timer updateTimer;
 	
 	public override void _Ready()
 	{
-		
 		// Create arrow count display
 		arrowCountLabel = new Label();
 		arrowCountLabel.Text = "0";
@@ -24,37 +23,10 @@ public partial class HudManager : CanvasLayer
 		// Update every 100ms
 		updateTimer = new Timer();
 		updateTimer.WaitTime = 0.1f;
-		updateTimer.Timeout += UpdateArrowCount;
+		
 		updateTimer.Autostart = true;
 		AddChild(updateTimer);
 	}
 	
-	private void UpdateArrowCount()
-	{
-		if (pauseManager == null) return;
-		
-		int totalArrows = GetArrowCount();
-		arrowCountLabel.Text = $"{totalArrows}";
-	}
 	
-	private int GetArrowCount()
-	{
-		// Get the arrow inventory from pause manager
-		if (pauseManager._inventory == null) return 0;
-		
-		var arrowInventory = pauseManager._inventory.FindChild("Arrows", true, false) as Inventory;
-		if (arrowInventory == null) return 0;
-		
-		int total = 0;
-		for (int i = 0; i < arrowInventory.inventorySize; i++)
-		{
-			var item = arrowInventory.GetInventoryItem(i);
-			if (item != null)
-			{
-				total += item.Qty;
-			}
-		}
-		
-		return total;
-	}
 }

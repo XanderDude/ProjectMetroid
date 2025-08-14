@@ -195,6 +195,10 @@ shape = SubResource("ConcavePolygonShape3D_nyppi")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
 
+[node name="attackState" parent="Player/AttackStateMachine" index="1"]
+attackCooldown = null
+projectileSpeed = null
+
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
 bones/0/position = Vector3(-0.000587093, 0.927667, -0.000528642)
 bones/0/rotation = Quaternion(-0.0270659, 0.357738, 0.00856943, 0.93339)
