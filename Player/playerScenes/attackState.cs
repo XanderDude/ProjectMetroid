@@ -6,7 +6,9 @@ public partial class attackState : State
 	[Export] public PackedScene arrowScene;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.1f;
-	
+	[Export] public AudioStream shootSound; // instead of AudioStreamMP3
+	[Export] Godot.AudioStreamPlayer laserSound;
+
 	private float cooldownTimer = 0.0f;
 	private Node3D crossbowMesh;
 	private PlayerManager playerManager;
@@ -33,6 +35,9 @@ public partial class attackState : State
 		{
 			crossbowMesh = playerManager.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
 			GD.Print($"CrossbowMesh found: {crossbowMesh != null}");
+			
+		
+
 		}
 		
 		GD.Print($"ArrowScene assigned: {arrowScene != null}");
@@ -108,7 +113,10 @@ public partial class attackState : State
 
 		arrow.Scale *= 3f;
 		arrow.GravityScale = 0.3f;
-
+		
+		 laserSound = GetNode<Godot.AudioStreamPlayer>("da../../shootingsound");
+		laserSound.Play();
+		
 		GD.Print($"Shot arrow at {arrow.GlobalPosition} with velocity: {arrow.LinearVelocity}");
 	}
 }

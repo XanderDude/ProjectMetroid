@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=40 format=3 uid="uid://cvi0r2cikoli1"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=40 format=3 uid="uid://hofqrbo1bvp7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4bmw"]
 animation = &"FrankengirlAnimLib/Crouch"

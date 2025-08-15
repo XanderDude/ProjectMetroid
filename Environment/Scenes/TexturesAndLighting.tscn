@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=59 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://Environment/Scenes/GameManager.cs" id="1_ji5m0"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
 [ext_resource type="PackedScene" uid="uid://5aw71wt3nhbe" path="res://UI/Inventory/FunctionalInventory.tscn" id="30_6ndq2"]
 [ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/arrow.tscn" id="32_6ndq2"]
+[ext_resource type="AudioStream" uid="uid://llecxppw1kr4" path="res://laser_shoot.mp3" id="33_slrvu"]
 [ext_resource type="Script" uid="uid://bw8jxifi1y0kv" path="res://Environment/Scenes/HudManager.cs" id="34_4qpb5"]
 [ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/arrow.png" id="35_ji5m0"]
 
@@ -2482,27 +2483,46 @@ inventoryScene = ExtResource("30_6ndq2")
 
 [node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1"]
 arrowScene = ExtResource("32_6ndq2")
+shootSound = ExtResource("33_slrvu")
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178334, 0.895197, 0.0106972)
-bones/0/rotation = Quaternion(0.548366, 0.447306, 0.452814, 0.542375)
-bones/1/rotation = Quaternion(-0.0238243, 0.104895, -0.00550652, 0.994183)
-bones/4/rotation = Quaternion(-0.127386, 0.00554052, -0.0167827, 0.991696)
-bones/7/position = Vector3(0.0410772, 0.0607809, 0.00567596)
-bones/7/rotation = Quaternion(0.480767, 0.507697, 0.443492, -0.560733)
-bones/9/rotation = Quaternion(0.369722, -0.0319465, 0.927735, 0.0399145)
-bones/10/rotation = Quaternion(0.494, 0.5917, -0.434268, 0.466117)
-bones/11/rotation = Quaternion(0.0869864, -0.528797, -0.15746, 0.829466)
-bones/13/rotation = Quaternion(0.0181396, -0.10552, 0.0730642, 0.991564)
-bones/14/rotation = Quaternion(0.123164, 0.032841, -0.185502, 0.974341)
-bones/20/rotation = Quaternion(0.998712, -0.00957569, -0.0302451, 0.0395897)
-bones/21/rotation = Quaternion(0.527985, -0.489949, 0.496157, 0.484779)
+bones/0/position = Vector3(0.0178308, 0.895149, 0.0141531)
+bones/0/rotation = Quaternion(0.549356, 0.446385, 0.453724, 0.541372)
+bones/1/rotation = Quaternion(-0.0433034, 0.104985, -0.0034667, 0.993525)
+bones/3/position = Vector3(0.035671, 0.0139758, -3.37508e-16)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
+bones/4/rotation = Quaternion(-0.159375, 0.00662174, -0.0220905, 0.986949)
+bones/5/position = Vector3(0.0708221, -0.0208942, -7.99361e-16)
+bones/7/position = Vector3(0.0414526, 0.0608706, 0.00565848)
+bones/7/rotation = Quaternion(0.478145, 0.509516, 0.441053, -0.563243)
+bones/9/rotation = Quaternion(0.393479, -0.0323584, 0.917957, 0.0385059)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(0.497245, 0.590341, -0.438699, 0.460204)
+bones/11/rotation = Quaternion(0.0809702, -0.528064, -0.158787, 0.830288)
+bones/13/rotation = Quaternion(0.0120753, -0.105989, 0.0747784, 0.991478)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(0.148117, 0.0246357, -0.155904, 0.976293)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/19/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/19/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/20/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/20/rotation = Quaternion(0.998513, -0.00823303, -0.0303783, 0.0445191)
+bones/21/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/21/rotation = Quaternion(0.527136, -0.489123, 0.497113, 0.485557)
+bones/23/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/24/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/25/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/25/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.271798, -0.959513, -0.0738996, 0.185758, 0.127655, -0.974268, 0.944256, 0.251076, 0.212934, -0.252776, 1.04083, -0.0100718)
+transform = Transform3D(0.264679, -0.959041, -0.100923, 0.111365, 0.134353, -0.984656, 0.957885, 0.249379, 0.142364, -0.253634, 1.03902, -0.0241945)
 
 [node name="Arrow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.271798, -0.959513, -0.0738996, 0.185758, 0.127655, -0.974268, 0.944256, 0.251076, 0.212934, -0.315593, 1.00262, 0.0155563)
+transform = Transform3D(0.264679, -0.959041, -0.100923, 0.111365, 0.134353, -0.984656, 0.957885, 0.249379, 0.142364, -0.3177, 1.00073, -0.00201054)
+
+[node name="shootingsound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Player"]
+stream = ExtResource("33_slrvu")
 
 [node name="AreaEnteredEffect_RegaliaCathedral" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
