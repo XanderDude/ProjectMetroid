@@ -3,25 +3,25 @@ using System;
 
 public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 {
-    [Export] private CharacterBody3D player;
-    [Export] public AnimationTree animTree;
-    [Export] private string playbackFilePath; //ref to where we are in the animation state machine
-    private AnimationNodeStateMachinePlayback playback;
-    [Export] private string WalkingBlendPath {get; set;}
+	[Export] private CharacterBody3D player;
+	[Export] public AnimationTree animTree;
+	[Export] private string playbackFilePath; //ref to where we are in the animation state machine
+	private AnimationNodeStateMachinePlayback playback;
+	[Export] private string WalkingBlendPath {get; set;}
 	[Export] private string RunSpeedBlendPath {get; set;}
 	[Export] private string AimBlendBlendPath {get; set;}
-    [Export] private float transitionSpeed = 8f;
-    [Export] private string JumpStateName;
-    [Export] private string RunningStateName, WallCollisionStateName;
+	[Export] private float transitionSpeed = 8f;
+	[Export] private string JumpStateName;
+	[Export] private string RunningStateName, WallCollisionStateName;
 	[Export] private float runBlendSpeed = 2.3f; //run animation speed adjustment
-    [Export] private string SlideStateName;
+	[Export] private string SlideStateName;
 	[Export] private string CrouchStateName;
 	[Export] private string HangingStateName;
 
-    private float currentSpeed;
+	private float currentSpeed;
 
-    private int currentDirection = 90; //-90 for left, 90 for right
-    private Vector2 aimAngle; //angle to position shooting arm during aiming mode
+	private int currentDirection = 90; //-90 for left, 90 for right
+	private Vector2 aimAngle; //angle to position shooting arm during aiming mode
 
 	public override void _Ready()
 	{
@@ -48,7 +48,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		Vector2 aimDirect = new Vector2(Mathf.Abs(Input.GetAxis("Left", "Right")), Input.GetAxis("Down", "Up")); //get up or down (1, -1,) and if holding a direction
 		//only update aimBlend with aimDirection when in attack state
 		animTree.Set(AimBlendBlendPath, aimDirect);
-        //GD.Print(currentSpeed);
+		//GD.Print(currentSpeed);
 	}
 
 	public void BeginJump()

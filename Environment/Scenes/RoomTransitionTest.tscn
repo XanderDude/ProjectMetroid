@@ -195,10 +195,6 @@ shape = SubResource("ConcavePolygonShape3D_nyppi")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
 
-[node name="attackState" parent="Player/AttackStateMachine" index="1"]
-attackCooldown = null
-projectileSpeed = null
-
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
 bones/0/position = Vector3(-0.000587093, 0.927667, -0.000528642)
 bones/0/rotation = Quaternion(-0.0270659, 0.357738, 0.00856943, 0.93339)
@@ -219,32 +215,6 @@ bones/19/rotation = Quaternion(0.0890623, -0.00830685, -0.0289551, 0.995571)
 bones/20/rotation = Quaternion(0.240403, 0.000202512, 0.015269, 0.970553)
 bones/23/rotation = Quaternion(0.164573, 0.0144949, -0.0624672, 0.984278)
 bones/24/rotation = Quaternion(0.297932, -0.000792413, 0.032489, 0.954034)
-bones/27/rotation = Quaternion(0.187342, 0.0211415, -0.0844485, 0.97843)
-bones/28/rotation = Quaternion(0.327565, 0.00417059, 0.0695567, 0.942256)
-bones/31/rotation = Quaternion(0.484652, -0.529696, 0.563631, 0.40848)
-bones/32/rotation = Quaternion(0.467562, 0.0745517, -0.133977, 0.870562)
-bones/33/rotation = Quaternion(-0.0059201, -0.00221681, -0.407623, 0.913128)
-bones/34/rotation = Quaternion(-0.156672, -0.137886, -0.0290028, 0.977548)
-bones/35/rotation = Quaternion(0.302994, -0.027595, -0.123428, 0.944563)
-bones/36/rotation = Quaternion(-0.0100687, -0.00865007, 0.0572725, 0.99827)
-bones/39/rotation = Quaternion(0.0769243, 0.0175335, -0.0655853, 0.994723)
-bones/40/rotation = Quaternion(0.189106, 0.000385815, 0.000294397, 0.981957)
-bones/43/rotation = Quaternion(0.171436, -0.0106934, 0.0770748, 0.982118)
-bones/44/rotation = Quaternion(0.235182, 0.00345455, -0.0199847, 0.97174)
-bones/47/rotation = Quaternion(0.310103, 0.00182354, 0.12966, 0.941818)
-bones/48/rotation = Quaternion(0.319157, -0.00523627, -0.0268204, 0.947308)
-bones/51/rotation = Quaternion(0.332624, -0.0027937, 0.165813, 0.928364)
-bones/52/rotation = Quaternion(0.37814, -0.0183954, -0.0530271, 0.924046)
-bones/55/rotation = Quaternion(0, 0, -0.00269741, 0.999996)
-bones/56/rotation = Quaternion(0.122818, 0.0338034, 0.984686, -0.119023)
-bones/57/rotation = Quaternion(-0.31098, -0.0876456, 0.0353148, 0.945707)
-bones/58/rotation = Quaternion(0.682349, -0.0765988, -0.107263, 0.719046)
-bones/59/rotation = Quaternion(0.243803, -0.0387485, -0.011204, 0.968986)
-bones/60/rotation = Quaternion(3.84259e-10, -0.00490176, -1.88356e-12, 0.999988)
-bones/61/rotation = Quaternion(-0.062875, 0.232567, 0.966101, 0.0927776)
-bones/62/rotation = Quaternion(-0.319539, -0.114095, 0.0218781, 0.940425)
-bones/63/rotation = Quaternion(0.582688, 0.0270706, 0.03921, 0.811298)
-bones/64/rotation = Quaternion(0.246731, 0.0176413, 0.0400227, 0.968096)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
 transform = Transform3D(0.620303, -0.095709, 0.778501, 0.479369, -0.739335, -0.472852, 0.620829, 0.666501, -0.412732, -0.38134, 0.99961, 0.229659)
