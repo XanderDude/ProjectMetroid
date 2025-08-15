@@ -115,46 +115,37 @@ CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178282, 0.895099, 0.0177093)
-bones/0/rotation = Quaternion(0.550341, 0.445464, 0.45463, 0.540369)
-bones/1/rotation = Quaternion(-0.0654498, 0.105036, -0.00112758, 0.992312)
-bones/3/position = Vector3(0.035671, 0.0139758, -3.37508e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.184083, 0.00762162, -0.0276728, 0.982491)
-bones/5/position = Vector3(0.0708221, -0.0208942, -7.99361e-16)
-bones/7/position = Vector3(0.0414642, 0.0608683, 0.00544459)
-bones/7/rotation = Quaternion(0.477555, 0.509917, 0.440519, -0.563798)
-bones/9/rotation = Quaternion(0.404272, -0.0341756, 0.91321, 0.0379939)
+bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/1/rotation = Quaternion(5.85966e-26, 0.0686879, -5.16988e-25, 0.997638)
+bones/3/position = Vector3(0.035671, 0.0139758, -2.64238e-16)
+bones/9/rotation = Quaternion(0.190591, 1.05855e-16, 0.98167, 3.72905e-17)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.506927, 0.58256, -0.448841, 0.449656)
+bones/10/rotation = Quaternion(1.34028e-27, 0.00299866, 2.09521e-26, 0.999996)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.0740196, -0.527194, -0.16028, 0.831202)
-bones/13/rotation = Quaternion(0.00620789, -0.106438, 0.0764271, 0.991358)
+bones/13/rotation = Quaternion(0, -0.190591, 2.88964e-17, 0.98167)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.17312, 0.0165607, -0.129426, 0.976219)
+bones/14/rotation = Quaternion(1.29536e-26, 0.00299866, 2.69634e-17, 0.999996)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/19/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/19/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/19/rotation = Quaternion(0.060312, 0.70453, 0.70453, -0.060312)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/20/rotation = Quaternion(0.998336, -0.00549361, -0.0303914, 0.0487043)
+bones/20/rotation = Quaternion(0.999591, 6.29589e-17, -0.0286064, 6.29569e-17)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/21/rotation = Quaternion(0.525997, -0.488015, 0.49839, 0.486596)
-bones/23/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/24/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/21/rotation = Quaternion(0.506118, -0.493806, 0.493806, 0.506118)
+bones/23/rotation = Quaternion(0.706148, 0.0368139, -0.0368139, 0.706148)
+bones/24/rotation = Quaternion(0.999591, -5.40977e-18, -0.0286064, -6.131e-17)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/25/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/25/rotation = Quaternion(0.506118, -0.493806, 0.493806, 0.506118)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.252066, -0.959838, -0.123182, 0.0426439, 0.138186, -0.989488, 0.96677, 0.244163, 0.0757632, -0.253225, 1.03794, -0.0389732)
+transform = Transform3D(-1.19209e-07, -0.929578, -0.368626, -1.06803e-16, 0.368626, -0.929578, 1, -1.15791e-07, -2.83417e-08, -0.356403, 1.10028, -0.0102021)
 bone_idx = 17
 
 [node name="Arrow" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.252066, -0.959838, -0.123182, 0.0426439, 0.138186, -0.989488, 0.96677, 0.244163, 0.0757632, -0.318395, 0.999657, -0.0202633)
+transform = Transform3D(-1.19209e-07, -0.929578, -0.368626, -1.06803e-16, 0.368626, -0.929578, 1, -1.15791e-07, -2.83417e-08, -0.431324, 1.07908, -0.0101734)
 bone_idx = 18
 
 [node name="AnimationPlayer" parent="PlayerMesh" index="2"]
@@ -168,6 +159,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 deterministic = false
 root_node = NodePath("%PlayerMesh")
 tree_root = ExtResource("15_j5x8i")
