@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=57 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://Environment/Scenes/GameManager.cs" id="1_ji5m0"]
@@ -35,8 +35,6 @@
 [ext_resource type="PackedScene" uid="uid://5aw71wt3nhbe" path="res://UI/Inventory/FunctionalInventory.tscn" id="30_6ndq2"]
 [ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/arrow.tscn" id="32_6ndq2"]
 [ext_resource type="AudioStream" uid="uid://llecxppw1kr4" path="res://laser_shoot.mp3" id="33_slrvu"]
-[ext_resource type="Script" uid="uid://bw8jxifi1y0kv" path="res://Environment/Scenes/HudManager.cs" id="34_4qpb5"]
-[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/arrow.png" id="35_ji5m0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -2486,40 +2484,40 @@ arrowScene = ExtResource("32_6ndq2")
 shootSound = ExtResource("33_slrvu")
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178367, 0.895259, 0.00499372)
-bones/0/rotation = Quaternion(0.54679, 0.448768, 0.451364, 0.543966)
-bones/1/rotation = Quaternion(-0.00344314, 0.104756, -0.00762406, 0.994463)
+bones/0/position = Vector3(0.0178323, 0.895177, 0.012172)
+bones/0/rotation = Quaternion(0.548788, 0.446914, 0.453202, 0.541948)
+bones/1/rotation = Quaternion(-0.0317154, 0.104936, -0.00468204, 0.993962)
 bones/3/position = Vector3(0.035671, 0.0139758, -3.37508e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.065498, 0.00320494, -0.00831961, 0.997813)
+bones/4/rotation = Quaternion(-0.141725, 0.00602476, -0.0190268, 0.989705)
 bones/5/position = Vector3(0.0708221, -0.0208942, -7.99361e-16)
-bones/7/position = Vector3(0.0396667, 0.0604568, 0.00530679)
-bones/7/rotation = Quaternion(0.487651, 0.503061, 0.450681, -0.553185)
-bones/9/rotation = Quaternion(0.358782, -0.031628, 0.932032, 0.0399102)
+bones/7/position = Vector3(0.0413604, 0.0608502, 0.00573281)
+bones/7/rotation = Quaternion(0.479507, 0.508567, 0.442301, -0.561963)
+bones/9/rotation = Quaternion(0.379258, -0.0320448, 0.923896, 0.0394087)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.491354, 0.591527, -0.428243, 0.474631)
-bones/11/rotation = Quaternion(0.0953777, -0.529788, -0.155555, 0.82827)
-bones/13/rotation = Quaternion(0.0305562, -0.104724, 0.078239, 0.990948)
+bones/10/rotation = Quaternion(0.495099, 0.591314, -0.435829, 0.46398)
+bones/11/rotation = Quaternion(0.0845156, -0.528499, -0.158009, 0.829807)
+bones/13/rotation = Quaternion(0.0155412, -0.105721, 0.0737998, 0.991532)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.0855542, 0.050832, -0.240736, 0.965475)
+bones/14/rotation = Quaternion(0.133549, 0.029439, -0.173081, 0.975367)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/19/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/19/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/20/rotation = Quaternion(0.997791, -0.0289634, -0.0251277, -0.054242)
+bones/20/rotation = Quaternion(0.998627, -0.00909893, -0.03031, 0.0417526)
 bones/21/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/21/rotation = Quaternion(0.528708, -0.490653, 0.49534, 0.484113)
+bones/21/rotation = Quaternion(0.527649, -0.489622, 0.496536, 0.485087)
 bones/23/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
 bones/25/position = Vector3(-0.556281, -0.0174909, 0.0344341)
 bones/25/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.26546, -0.964017, -0.014233, 0.303128, 0.0974681, -0.947952, 0.915229, 0.247329, 0.318095, -0.248339, 1.04491, 0.00238407)
+transform = Transform3D(0.269327, -0.959234, -0.085631, 0.154621, 0.130833, -0.979273, 0.950555, 0.250504, 0.183554, -0.253257, 1.04, -0.015824)
 
 [node name="Arrow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.26546, -0.964017, -0.014233, 0.303128, 0.0974681, -0.947952, 0.915229, 0.247329, 0.318095, -0.308611, 1.00608, 0.0327562)
+transform = Transform3D(0.269327, -0.959234, -0.085631, 0.154621, 0.130833, -0.979273, 0.950555, 0.250504, 0.183554, -0.316612, 1.00175, 0.00837856)
 
 [node name="shootingsound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Player"]
 stream = ExtResource("33_slrvu")
@@ -2536,19 +2534,6 @@ roomMinX = 0.0
 roomMaxX = 500.0
 roomMinY = 1.5
 roomMaxY = 500.0
-
-[node name="HUDManager" type="CanvasLayer" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player")]
-script = ExtResource("34_4qpb5")
-player = NodePath("../Player")
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/HUDManager"]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 45.0
-offset_bottom = 45.0
-rotation = -0.221565
-texture = ExtResource("35_ji5m0")
-expand_mode = 1
 
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom/Interactable/Wall_DoorWay/StoneDoorWayOpening"]
