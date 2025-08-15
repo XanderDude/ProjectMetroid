@@ -22,3 +22,7 @@ mesh = ExtResource("2_ppovc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ev4wo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.0854202, 0.603356, 0.793167, 1)
+light_energy = 6.98
