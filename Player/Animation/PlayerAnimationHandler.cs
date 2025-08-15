@@ -28,7 +28,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		//player = GetNode<Node3D>("%Player");
 		//currentDirection = (int)playerMesh.Rotation.Y;
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
-		animTree.Active = true;
 	}
 
 	public override void _Process(double delta)
