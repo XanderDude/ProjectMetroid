@@ -9,7 +9,7 @@ public partial class attackState : State
 	[Export] public AudioStream shootSound; 
 	[Export] Godot.AudioStreamPlayer laserSound;
 
-	private float cooldownTimer = 0.0f;
+	private float cooldownTimer = 0.1f;
 	private Node3D crossbowMesh;
 	private PlayerManager playerManager;
 	
@@ -45,7 +45,7 @@ public partial class attackState : State
 	
 	public override void Enter() 
 	{
-		cooldownTimer = 0.0f;
+		cooldownTimer = 0.1f;
 		GD.Print("Entered ranged attack state");
 	}
 	

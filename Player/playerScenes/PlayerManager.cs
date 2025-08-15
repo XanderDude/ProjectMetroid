@@ -15,10 +15,10 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] private Material invulnMat;
 	private bool gamePaused;
 	
-	// Simple weapon system
+	
 	public Item equippedRangedWeapon;
 	
-	// Inventory management
+	
 	public Node _inventory;
 	private bool _inventoryInstantiated = false;
 	
@@ -95,7 +95,6 @@ public partial class PlayerManager : CharacterBody3D
 		
 		InitializeInventory();
 		
-		// Small delay to ensure inventory is ready, then sync
 		var timer = GetTree().CreateTimer(0.1f);
 		timer.Timeout += SyncWithInventory;
 	}
@@ -128,7 +127,6 @@ public partial class PlayerManager : CharacterBody3D
 		{
 			GD.Print("Found Crossbows inventory, checking for equipped items...");
 			
-			// Debug: Check all items in crossbows inventory
 			for (int i = 0; i < crossbowsInventory.inventorySize; i++)
 			{
 				var item = crossbowsInventory.GetInventoryItem(i);
