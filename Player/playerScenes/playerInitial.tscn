@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c85uww7hrdt1j" path="res://Player/playerScenes/attackState.cs" id="11_wmvv8"]
 [ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Frankengirl.fbx" id="11_xyui3"]
 [ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="12_udrpx"]
-[ext_resource type="AnimationLibrary" path="res://Player/Animation/FrankengirlAnimLib.res" id="13_h4aqx"]
+[ext_resource type="AnimationLibrary" uid="uid://dvm2b5mjyxuqq" path="res://Player/Animation/FrankengirlAnimLib.res" id="13_h4aqx"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_j5x8i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]

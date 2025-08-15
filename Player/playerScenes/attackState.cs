@@ -6,7 +6,7 @@ public partial class attackState : State
 	[Export] public PackedScene arrowScene;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.1f;
-	[Export] public AudioStream shootSound; // instead of AudioStreamMP3
+	[Export] public AudioStream shootSound; 
 	[Export] Godot.AudioStreamPlayer laserSound;
 
 	private float cooldownTimer = 0.0f;
@@ -84,39 +84,77 @@ public partial class attackState : State
 			   arrowScene != null;
 	}
 	
-	private void ShootArrow()
+	private Vector3 GetShootDirection()
+{
+	Vector3 direction = Vector3.Zero;
+	
+	
+	bool up = Input.IsActionPressed("Up");
+	bool down = Input.IsActionPressed("Down");
+	bool left = Input.IsActionPressed("Left");
+	bool right = Input.IsActionPressed("Right");
+	
+
+	GD.Print($"Input states - Up: {up}, Down: {down}, Left: {left}, Right: {right}");
+	
+	
+	if (up && left)
+		direction = new Vector3(-1, 1, 0).Normalized();  // Up-Left
+	else if (up && right)
+		direction = new Vector3(1, 1, 0).Normalized();   // Up-Right
+	else if (down && left)
+		direction = new Vector3(-1, -1, 0).Normalized(); // Down-Left
+	else if (down && right)
+		direction = new Vector3(1, -1, 0).Normalized();  // Down-Right
+	else if (up)
+		direction = new Vector3(0, 1, 0);                // Up
+	else if (down)
+		direction = new Vector3(0, -1, 0);               // Down
+	else if (left)
+		direction = new Vector3(-1, 0, 0);               // Left
+	else if (right)
+		direction = new Vector3(1, 0, 0);                // Right
+	else
+		direction = new Vector3(1, 0, 0);                // Default: Right
+	
+	GD.Print($"Final direction: {direction}");
+	return direction;
+}
+
+private void ShootArrow()
+{
+	if (arrowScene == null || crossbowMesh == null)
 	{
-		if (arrowScene == null || crossbowMesh == null)
-		{
-			GD.PrintErr("Arrow scene or crossbow mesh not found!");
-			return;
-		}
-
-		var arrow = arrowScene.Instantiate() as RigidBody3D;
-		if (arrow == null)
-		{
-			GD.PrintErr("Arrow scene must be a RigidBody3D!");
-			return;
-		}
-
-		GetTree().CurrentScene.AddChild(arrow);
-		arrow.GlobalPosition = crossbowMesh.GlobalPosition;
-
-		Vector3 shootDirection = crossbowMesh.GlobalTransform.Basis.Z.Normalized();
-		arrow.LinearVelocity = shootDirection * arrowSpeed;
-
-		if (arrow.LinearVelocity != Vector3.Zero)
-		{
-			arrow.LookAt(arrow.GlobalPosition + arrow.LinearVelocity, Vector3.Up);
-			arrow.RotateObjectLocal(Vector3.Up, Mathf.Pi / 2);
-		}
-
-		arrow.Scale *= 3f;
-		arrow.GravityScale = 0.3f;
-		
-		 laserSound = GetNode<Godot.AudioStreamPlayer>("da../../shootingsound");
-		laserSound.Play();
-		
-		GD.Print($"Shot arrow at {arrow.GlobalPosition} with velocity: {arrow.LinearVelocity}");
+		GD.PrintErr("Arrow scene or crossbow mesh not found!");
+		return;
 	}
+	
+	var arrow = arrowScene.Instantiate() as RigidBody3D;
+	if (arrow == null)
+	{
+		GD.PrintErr("Arrow scene must be a RigidBody3D!");
+		return;
+	}
+	
+	GetTree().CurrentScene.AddChild(arrow);
+	arrow.GlobalPosition = crossbowMesh.GlobalPosition;
+	
+
+	Vector3 shootDirection = GetShootDirection();
+	arrow.LinearVelocity = shootDirection * arrowSpeed;
+	
+	if (arrow.LinearVelocity != Vector3.Zero)
+	{
+		arrow.LookAt(arrow.GlobalPosition + arrow.LinearVelocity, Vector3.Up);
+		arrow.RotateObjectLocal(Vector3.Up, Mathf.Pi / 2);
+	}
+	
+	arrow.Scale *= 3f;
+	arrow.GravityScale = 0.3f;
+	
+	laserSound = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
+	laserSound.Play();
+	
+	GD.Print($"Shot arrow at {arrow.GlobalPosition} with velocity: {arrow.LinearVelocity}");
+}
 }
