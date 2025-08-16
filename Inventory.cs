@@ -114,11 +114,21 @@ public partial class Inventory : ItemList
 	}
 	
 	
-	public void EquipItem(int index)
+
+		public void EquipItem(int index)
+{
+	GD.Print($"EquipItem called with index: {index}");
+	
+	if (index < 0 || index >= inventorySize || items[index] == null) 
 	{
-		if (index < 0 || index >= inventorySize || items[index] == null) return;
-		
-		var itemToEquip = items[index];
+		GD.Print($"EquipItem: Invalid conditions - index: {index}, inventorySize: {inventorySize}, item is null: {items[index] == null}");
+		return;
+	}
+	
+	var itemToEquip = items[index];
+	GD.Print($"EquipItem: Found item to equip: {itemToEquip.Name}");
+	
+	
 		
 		if (itemToEquip.Category == ItemCategory.Ranged)
 		{
@@ -129,7 +139,7 @@ public partial class Inventory : ItemList
 			UnequipItemsByCategory(ItemCategory.Melee);
 		}
 		
-		// Equip the new item
+		
 		itemToEquip.Equipped = true;
 		GD.Print($"Equipped {itemToEquip.Name}");
 		

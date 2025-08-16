@@ -21,6 +21,7 @@ same_column_width = true
 icon_mode = 0
 script = ExtResource("1_r74un")
 inventorySize = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Standard Crossbow" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("inv")]
 offset_left = 367.0
@@ -35,6 +36,7 @@ itemicon = ExtResource("3_ky5w0")
 maxQty = 1
 qty = 1
 category = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Arrows" type="ItemList" parent="CanvasLayer"]
 offset_left = 80.0
@@ -51,6 +53,7 @@ icon_mode = 0
 fixed_icon_size = Vector2i(50, 0)
 script = ExtResource("1_r74un")
 inventorySize = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Arrows +1" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("inv")]
 offset_left = 487.0
@@ -65,6 +68,7 @@ name = "Arrow"
 itemicon = ExtResource("4_ehhp5")
 maxQty = 99
 qty = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Melees" type="ItemList" parent="CanvasLayer"]
 offset_left = 432.0
@@ -77,6 +81,7 @@ same_column_width = true
 icon_mode = 0
 script = ExtResource("1_r74un")
 inventorySize = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="+Raven Sword" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("inv")]
 offset_left = 445.0
@@ -91,3 +96,4 @@ name = "Arrow"
 itemicon = ExtResource("5_h054x")
 maxQty = 1
 qty = 1
+metadata/_edit_use_anchors_ = true

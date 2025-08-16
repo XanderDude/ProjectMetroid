@@ -1,24 +1,14 @@
-// Simple pause handler - put this on your MAIN SCENE (not in subviewport)
+
 using Godot;
 
 public partial class GameManager : Node
 {
 	[Export] public PlayerManager player;
-	[Export] public PackedScene pauseMenuScene;
 	
 	private bool isPaused = false;
-	private CanvasLayer pauseLayer;
-	private Node pauseMenu;
 	
 	public override void _Ready()
 	{
-		// Create pause layer
-		pauseLayer = new CanvasLayer();
-		pauseLayer.ProcessMode = Node.ProcessModeEnum.Always;
-		pauseLayer.Visible = false;
-		AddChild(pauseLayer);
-		
-		// Ensure this can process when paused
 		ProcessMode = Node.ProcessModeEnum.Always;
 	}
 	
@@ -45,29 +35,12 @@ public partial class GameManager : Node
 	{
 		GD.Print("PAUSING");
 		
-		// Show pause menu
-		if (pauseMenuScene != null && pauseMenu == null)
-		{
-			pauseMenu = pauseMenuScene.Instantiate();
-			pauseMenu.ProcessMode = Node.ProcessModeEnum.Always;
-		}
-		
-		if (pauseMenu != null && pauseMenu.GetParent() == null)
-		{
-			pauseLayer.AddChild(pauseMenu);
-		}
-		
-		// Show inventory
+		// Show player's inventory
 		if (player != null)
 		{
-			var inventory = player.GetInventory();
-			if (inventory != null && inventory.GetParent() == null)
-			{
-				pauseLayer.AddChild(inventory);
-			}
+			player.ShowInventory();
+			GD.Print("Player inventory shown");
 		}
-		
-		pauseLayer.Visible = true;
 		
 		// Pause the main tree
 		GetTree().Paused = true;
@@ -111,29 +84,15 @@ public partial class GameManager : Node
 		{
 			GD.Print("Calling player.SyncWithInventory()");
 			player.SyncWithInventory();
+			
+			// Hide player's inventory
+			player.HideInventory();
+			GD.Print("Player inventory hidden");
 		}
 		else
 		{
 			GD.Print("Player is null - cannot sync");
 		}
-		
-		// Hide inventory
-		if (player != null)
-		{
-			var inventory = player.GetInventory();
-			if (inventory != null && inventory.GetParent() != null)
-			{
-				inventory.GetParent().RemoveChild(inventory);
-			}
-		}
-		
-		// Hide pause menu
-		if (pauseMenu != null && pauseMenu.GetParent() != null)
-		{
-			pauseLayer.RemoveChild(pauseMenu);
-		}
-		
-		pauseLayer.Visible = false;
 		
 		// Unpause the main tree
 		GetTree().Paused = false;
