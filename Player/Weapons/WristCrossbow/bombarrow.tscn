@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://3og3uwn1s88q"]
+[gd_scene load_steps=4 format=3 uid="uid://bvvlrybffprx4"]
 
-[ext_resource type="Script" uid="uid://d4c5rjwm4l4cj" path="res://Player/Weapons/WristCrossbow/NormalArrow.cs" id="1_4ttjo"]
-[ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/playerScenes/pCone2.tres" id="2_ppovc"]
+[ext_resource type="Script" uid="uid://diwkr0368hqc3" path="res://Player/Weapons/WristCrossbow/BombArrowProjectile.cs" id="1_828ao"]
+[ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/playerScenes/pCone2.tres" id="1_qh25q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
 radius = 0.0310877
 height = 0.392946
 
-[node name="arrow" type="RigidBody3D"]
+[node name="bombarrow" type="RigidBody3D"]
 collision_layer = 0
 collision_mask = 14
 collision_priority = 10.0
 axis_lock_linear_z = true
 axis_lock_angular_z = true
-script = ExtResource("1_4ttjo")
+script = ExtResource("1_828ao")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)
-mesh = ExtResource("2_ppovc")
+mesh = ExtResource("1_qh25q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ev4wo")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.0854202, 0.603356, 0.793167, 1)
+light_color = Color(0.891492, 0.0523618, 0.877549, 1)
 light_energy = 6.98

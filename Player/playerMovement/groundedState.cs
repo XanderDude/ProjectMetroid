@@ -85,7 +85,7 @@ public partial class groundedState : State
 		}
 		else player.Set("jumpQueued", false);
 		
-		if (@event.IsActionPressed("Shoot"))
+		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("attackState");
 		}

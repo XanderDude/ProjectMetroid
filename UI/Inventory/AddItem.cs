@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial class AddItem : Button
 {
 	[Export] Inventory inv;
@@ -11,6 +9,9 @@ public partial class AddItem : Button
 	[Export] int qty;
 	[Export] bool isequip;
 	[Export] ItemCategory category;
+	[Export] bool isUnique;
+	[Export] bool isInfinite; 
+	
 	public override void _Ready()
 	{
 		Pressed += () => AddNewItem();
@@ -25,10 +26,11 @@ public partial class AddItem : Button
 			MaxQty = maxQty,
 			Qty = qty,
 			Equipped = isequip,
-			Category = category
+			Category = category,
+			IsUnique = isUnique, 
+			IsInfinite = isInfinite 
 		};
 		
 		inv.AddInventoryItem(item);
 	}
-	
 }

@@ -1,11 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=14 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
+[ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://Environment/Scenes/GameManager.cs" id="1_yv1x3"]
 [ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="2_4lvic"]
 [ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
+[ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/arrow.tscn" id="5_iviu7"]
+[ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="6_hnrdm"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
@@ -17,8 +20,10 @@ shader_parameter/dithering = true
 shader_parameter/colors = 16
 shader_parameter/dither_size = 1
 
-[node name="Gameplay" type="Node3D"]
+[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
+script = ExtResource("1_yv1x3")
+player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_itrsp")
@@ -39,8 +44,34 @@ render_target_update_mode = 4
 process_mode = 3
 
 [node name="HUD" parent="SubViewportContainer/SubViewport/CanvasLayer" instance=ExtResource("2_cilmm")]
+visible = false
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
+
+[node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1"]
+arrowScene = ExtResource("5_iviu7")
+bombArrowScene = ExtResource("6_hnrdm")
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0178195, 0.894937, 0.0248975)
+bones/0/rotation = Quaternion(0.551746, 0.444143, 0.455924, 0.538931)
+bones/1/rotation = Quaternion(-0.11637, 0.104944, 0.00432853, 0.987637)
+bones/4/rotation = Quaternion(-0.210798, 0.0124511, -0.0501466, 0.976163)
+bones/7/position = Vector3(0.0411207, 0.0607441, 0.00382982)
+bones/7/rotation = Quaternion(0.49532, 0.497019, 0.454986, -0.548286)
+bones/9/rotation = Quaternion(0.377121, -0.0403177, 0.924176, 0.045301)
+bones/10/rotation = Quaternion(0.524492, 0.561441, -0.460569, 0.444487)
+bones/11/rotation = Quaternion(0.0362003, -0.522031, -0.16767, 0.8355)
+bones/13/rotation = Quaternion(0.0115403, -0.106022, 0.075013, 0.991463)
+bones/14/rotation = Quaternion(0.225555, 0.0133991, -0.146452, 0.963067)
+bones/20/rotation = Quaternion(0.997546, 0.0147433, -0.0295752, 0.0617249)
+bones/21/rotation = Quaternion(0.518028, -0.480264, 0.507171, 0.493732)
+
+[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.270863, -0.955183, -0.119409, 0.0561243, 0.139506, -0.98863, 0.96098, 0.261082, 0.0913959, -0.243982, 1.03884, -0.0482297)
+
+[node name="Arrow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.270863, -0.955183, -0.119409, 0.0561243, 0.139506, -0.98863, 0.96098, 0.261082, 0.0913959, -0.308685, 1.00068, -0.027734)
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
@@ -71,7 +102,10 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 
 [node name="EnemyRat" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+Health = 100
 
+[editable path="SubViewportContainer/SubViewport/Player"]
+[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]

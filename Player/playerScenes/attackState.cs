@@ -4,11 +4,11 @@ using System;
 public partial class attackState : State
 {
 	[Export] public PackedScene arrowScene;
+	[Export] public PackedScene bombArrowScene;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.1f;
 	[Export] public AudioStream shootSound; 
 	[Export] Godot.AudioStreamPlayer laserSound;
-
 	private float cooldownTimer = 0.1f;
 	private Node3D crossbowMesh;
 	private PlayerManager playerManager;
@@ -24,34 +24,21 @@ public partial class attackState : State
 		if (current is PlayerManager)
 		{
 			playerManager = current as PlayerManager;
-			GD.Print($"PlayerManager found: {playerManager.Name}");
-		}
-		else
-		{
-			GD.PrintErr("Could not find PlayerManager in parent hierarchy!");
 		}
 		
 		if (playerManager != null)
 		{
 			crossbowMesh = playerManager.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
-			GD.Print($"CrossbowMesh found: {crossbowMesh != null}");
-			
-		
-
 		}
-		
-		GD.Print($"ArrowScene assigned: {arrowScene != null}");
 	}
 	
 	public override void Enter() 
 	{
 		cooldownTimer = 0.1f;
-		GD.Print("Entered ranged attack state");
 	}
 	
 	public override void Exit()
 	{
-		GD.Print("Exited ranged attack state");
 	}
 	
 	public override void PhysicsUpdate(float delta) 
@@ -63,14 +50,25 @@ public partial class attackState : State
 		
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
-			ShootArrow();
+			ShootArrow(false);
+			cooldownTimer = shootCooldown;
+		}
+		
+		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
+		{
+			ShootArrow(true);
 			cooldownTimer = shootCooldown;
 		}
 	}
 	
 	public override void HandleInput(InputEvent @event) 
 	{
-		if (@event.IsActionReleased("Shoot")) 
+		if (@event.IsActionReleased("Shoot") && !Input.IsActionPressed("SpecialShoot")) 
+		{
+			asm.TransitionTo("noattackState");
+		}
+		
+		if (@event.IsActionReleased("SpecialShoot") && !Input.IsActionPressed("Shoot")) 
 		{
 			asm.TransitionTo("noattackState");
 		}
@@ -80,66 +78,132 @@ public partial class attackState : State
 	{
 		return playerManager != null && 
 			   playerManager.HasRangedWeapon() && 
-			   cooldownTimer <= 0.0f && 
+			   cooldownTimer <= 0.0f &&
 			   arrowScene != null;
 	}
 	
-	private Vector3 GetShootDirection()
-{
-	Vector3 direction = Vector3.Zero;
-	
-	
-	bool up = Input.IsActionPressed("Up");
-	bool down = Input.IsActionPressed("Down");
-	bool left = Input.IsActionPressed("Left");
-	bool right = Input.IsActionPressed("Right");
-	
-
-	GD.Print($"Input states - Up: {up}, Down: {down}, Left: {left}, Right: {right}");
-	
-	
-	if (up && left)
-		direction = new Vector3(-1, 1, 0).Normalized();  // Up-Left
-	else if (up && right)
-		direction = new Vector3(1, 1, 0).Normalized();   // Up-Right
-	else if (down && left)
-		direction = new Vector3(-1, -1, 0).Normalized(); // Down-Left
-	else if (down && right)
-		direction = new Vector3(1, -1, 0).Normalized();  // Down-Right
-	else if (up)
-		direction = new Vector3(0, 1, 0);                // Up
-	else if (down)
-		direction = new Vector3(0, -1, 0);               // Down
-	else if (left)
-		direction = new Vector3(-1, 0, 0);               // Left
-	else if (right)
-		direction = new Vector3(1, 0, 0);                // Right
-	else
-		direction = new Vector3(1, 0, 0);                // Default: Right
-	
-	GD.Print($"Final direction: {direction}");
-	return direction;
-}
-
-private void ShootArrow()
-{
-	if (arrowScene == null || crossbowMesh == null)
+	private bool CanShootBomb()
 	{
-		GD.PrintErr("Arrow scene or crossbow mesh not found!");
+		if (!CanShoot() || bombArrowScene == null)
+		{
+			return false;
+		}
+		
+		var arrowsInventory = playerManager.GetArrowsInventory();
+		if (arrowsInventory == null)
+		{
+			return false;
+		}
+		
+		return HasBombArrows(arrowsInventory);
+	}
+	
+	private bool HasBombArrows(Inventory arrowsInventory)
+	{
+		for (int i = 0; i < arrowsInventory.inventorySize; i++)
+		{
+			var item = arrowsInventory.GetInventoryItem(i);
+			if (item != null && item.ID == 6 && item.Qty > 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private void ConsumeBombArrow()
+{
+	var arrowsInventory = playerManager.GetArrowsInventory();
+	if (arrowsInventory == null) return;
+	
+	for (int i = 0; i < arrowsInventory.inventorySize; i++)
+	{
+		var item = arrowsInventory.GetInventoryItem(i);
+		if (item != null && item.ID == 6 && item.Qty > 0)
+		{
+			item.Qty--;
+			
+			if (item.Qty <= 0)
+			{
+				arrowsInventory.RemoveInventoryItem(i);
+			}
+			else
+			{
+				// Only update text if the item still exists and should show quantity
+				if (!item.IsInfinite && item.MaxQty > 1)
+				{
+					arrowsInventory.SetItemText(i, item.Qty.ToString());
+				}
+			}
+			return;
+		}
+	}
+}
+	
+	private Vector3 GetShootDirection()
+	{
+		Vector3 direction = Vector3.Zero;
+		
+		bool up = Input.IsActionPressed("Up");
+		bool down = Input.IsActionPressed("Down");
+		bool left = Input.IsActionPressed("Left");
+		bool right = Input.IsActionPressed("Right");
+		
+		if (up && left)
+			direction = new Vector3(-1, 1, 0).Normalized();
+		else if (up && right)
+			direction = new Vector3(1, 1, 0).Normalized();
+		else if (down && left)
+			direction = new Vector3(-1, -1, 0).Normalized();
+		else if (down && right)
+			direction = new Vector3(1, -1, 0).Normalized();
+		else if (up)
+			direction = new Vector3(0, 1, 0);
+		else if (down)
+			direction = new Vector3(0, -1, 0);
+		else if (left)
+			direction = new Vector3(-1, 0, 0);
+		else if (right)
+			direction = new Vector3(1, 0, 0);
+		else
+		{
+			var mesh = playerManager?.GetNode<Node3D>("PlayerMesh");
+			if (mesh != null)
+			{
+				direction = mesh.Transform.Basis.Z.Normalized();
+			}
+			else
+			{
+				direction = new Vector3(1, 0, 0);
+			}
+		}
+		
+		return direction;
+	}
+	
+	private void ShootArrow(bool isBombArrow)
+{
+	PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
+	
+	if (projectileScene == null || crossbowMesh == null)
+	{
 		return;
 	}
 	
-	var arrow = arrowScene.Instantiate() as RigidBody3D;
+	if (isBombArrow)
+	{
+		ConsumeBombArrow();
+	}
+	
+	var arrow = projectileScene.Instantiate() as RigidBody3D;
 	if (arrow == null)
 	{
-		GD.PrintErr("Arrow scene must be a RigidBody3D!");
 		return;
 	}
 	
 	GetTree().CurrentScene.AddChild(arrow);
 	arrow.GlobalPosition = crossbowMesh.GlobalPosition;
 	
-
 	Vector3 shootDirection = GetShootDirection();
 	arrow.LinearVelocity = shootDirection * arrowSpeed;
 	
@@ -154,7 +218,5 @@ private void ShootArrow()
 	
 	laserSound = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
 	laserSound.Play();
-	
-	GD.Print($"Shot arrow at {arrow.GlobalPosition} with velocity: {arrow.LinearVelocity}");
 }
 }

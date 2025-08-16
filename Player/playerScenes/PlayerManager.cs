@@ -3,16 +3,14 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
-	private NodePath playerMeshPath = "%PlayerMesh";
+	[Export] private NodePath playerMeshPath = "%PlayerMesh";
 	[Export] private GeometryInstance3D playerGeo;
 	
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
-	private HUD hud;
 	private int health = 100;
 	[Export] private Material invulnMat;
-	private bool gamePaused;
 	
 	public Item equippedRangedWeapon;
 	
@@ -22,15 +20,7 @@ public partial class PlayerManager : CharacterBody3D
 	private Inventory _arrowsInventory;
 	private Inventory _meleesInventory;
 	
-	public bool GamePaused
-	{
-		get { return gamePaused; }
-		set
-		{
-			gamePaused = value;
-			GetTree().Paused = value;
-		}
-	}
+	
 	
 	public int Health
 	{
@@ -42,10 +32,10 @@ public partial class PlayerManager : CharacterBody3D
 			if (health <= 0)
 			{
 				health = 0;
-				hud?.PlayerDied();
-				GamePaused = true;
+				
+				
 			}
-			hud?.UpdateHealthBar(Health);
+		
 		}
 	}
 	
@@ -87,8 +77,6 @@ public partial class PlayerManager : CharacterBody3D
 	public override void _Ready()
 	{
 		invulnMat = ResourceLoader.Load<Material>("res://Environment/Materials/glowingMaterial.tres");
-		hud = (HUD)GetTree().GetFirstNodeInGroup("hud");
-		hud?.UpdateHealthBar(Health);
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
 		playerGeo.MaterialOverlay = null;
@@ -265,8 +253,6 @@ public partial class PlayerManager : CharacterBody3D
 				canvasLayer.Visible = false;
 			}
 		}
-		
-		// Sync whenever inventory is hidden (after potential changes)
 		SyncWithInventory();
 	}
 	

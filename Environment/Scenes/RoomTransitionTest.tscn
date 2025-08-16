@@ -240,4 +240,3 @@ roomMaxX = 60.0
 [editable path="Room2/roomTeleportHitbox"]
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]
-[editable path="Player/Inventory"]

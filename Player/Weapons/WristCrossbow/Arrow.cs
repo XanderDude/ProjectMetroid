@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Arrow : RigidBody2D 
+public partial class Arrow : Node
 {
 	
 	
