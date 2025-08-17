@@ -260,7 +260,10 @@ public partial class PlayerManager : CharacterBody3D
 	{
 		if (invulnTimer > 0)
 		{
-			playerGeo.MaterialOverlay = invulnMat;
+			
+			GetNode<Node3D>(playerMeshPath).Visible = false;
+			var timer = GetTree().CreateTimer(0.1f);
+			timer.Timeout += () => { GetNode<Node3D>(playerMeshPath).Visible = true; };
 			canBeDamaged = false;
 			invulnTimer -= (float)delta;
 		}

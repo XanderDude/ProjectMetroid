@@ -60,11 +60,6 @@ public partial class slideState : State
 		}*/
 		HandleSlidingMovement(delta);
 		player.MoveAndSlide();
-		if (player.GetSlideCollisionCount() > 1 && currentSlideSpeed < slideMaxSpeed)
-		{
-			GD.Print("Can't Stand up");
-			currentSlideSpeed = slideMaxSpeed * input;
-		}
 	}
 
 	private void HandleSlidingMovement(float delta)

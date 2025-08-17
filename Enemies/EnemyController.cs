@@ -97,7 +97,9 @@ public partial class EnemyController : CharacterBody3D
 	public void DamagedRecieved(int damage)
 	{
 		Health -= damage;
-		GD.Print("YEOWWWW");
+		mesh.Visible = false;
+		var timer = GetTree().CreateTimer(0.1f);
+		timer.Timeout += () => { mesh.Visible = true; };
 	}
 
 	public void KillEnemy()
