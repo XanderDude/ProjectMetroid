@@ -33,27 +33,23 @@ public partial class attackState : State
 	
 	public override void Enter() 
 	{
-	}
-	
-	public override void Exit()
-	{
-	}
-	
-	public override void PhysicsUpdate(float delta) 
-	{
-		
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
 			ShootArrow(false);
-			cooldownTimer = shootCooldown;
+			
 		}
 		
 		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
 			ShootArrow(true);
-			cooldownTimer = shootCooldown;
+			
 		}
 	}
+	
+	public override void Exit()
+	{
+	}
+
 	
 	public override void HandleInput(InputEvent @event) 
 	{
@@ -72,7 +68,6 @@ public partial class attackState : State
 	{
 		return playerManager != null && 
 			   playerManager.HasRangedWeapon() && 
-			   cooldownTimer <= 0.0f &&
 			   arrowScene != null;
 	}
 	

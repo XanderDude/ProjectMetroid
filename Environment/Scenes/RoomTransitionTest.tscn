@@ -195,6 +195,9 @@ shape = SubResource("ConcavePolygonShape3D_nyppi")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
 
+[node name="PlayerMesh" parent="Player" index="5"]
+LegAndArmBlendBlendPath = ""
+
 [node name="GlobalTransition" type="CanvasLayer" parent="."]
 
 [node name="ScreenTransitionScript" type="TextureRect" parent="GlobalTransition"]
