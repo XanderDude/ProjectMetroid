@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj8k2k5nifepb"
-path="res://.godot/imported/Blue-Border-Frame-PNG-Clipart.png-a11b10312a25ee995077aa9c1280fe5f.ctex"
+uid="uid://d11nhrkri1s1w"
+path="res://.godot/imported/PauseMenuWristCrossbowIcon.png-d3b00183588aefa4697153b7d1d6e8f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Inventory/Blue-Border-Frame-PNG-Clipart.png"
-dest_files=["res://.godot/imported/Blue-Border-Frame-PNG-Clipart.png-a11b10312a25ee995077aa9c1280fe5f.ctex"]
+source_file="res://UI/Inventory/PauseMenuWristCrossbowIcon.png"
+dest_files=["res://.godot/imported/PauseMenuWristCrossbowIcon.png-d3b00183588aefa4697153b7d1d6e8f7.ctex"]
 
 [params]
 

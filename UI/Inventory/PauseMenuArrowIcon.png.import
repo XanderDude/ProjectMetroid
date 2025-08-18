@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0pg02flk2qiy"
-path="res://.godot/imported/InventoryBackground.png-ad07b78dbbb5f9c74b30a035ab253967.ctex"
+uid="uid://ck8yepi1etd4y"
+path="res://.godot/imported/PauseMenuArrowIcon.png-5e7b5018f5a5efaa60951cb974d47ef0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Inventory/InventoryBackground.png"
-dest_files=["res://.godot/imported/InventoryBackground.png-ad07b78dbbb5f9c74b30a035ab253967.ctex"]
+source_file="res://UI/Inventory/PauseMenuArrowIcon.png"
+dest_files=["res://.godot/imported/PauseMenuArrowIcon.png-5e7b5018f5a5efaa60951cb974d47ef0.ctex"]
 
 [params]
 

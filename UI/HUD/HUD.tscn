@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0b6xs6vcxttm"]
 
-[ext_resource type="Texture2D" uid="uid://b6d2yfaa8jk51" path="res://UI/HUD/HeartIcon.png" id="1_0ktxb"]
+[ext_resource type="Texture2D" uid="uid://b6d2yfaa8jk51" path="res://UI/HUD/HUDHeartIcon.png" id="1_0ktxb"]
 [ext_resource type="Script" uid="uid://kkidyx6fbt32" path="res://UI/HUD/HUD.cs" id="1_53dev"]
 
 [sub_resource type="FontVariation" id="FontVariation_dm5mv"]

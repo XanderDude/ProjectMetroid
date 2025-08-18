@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://et03prftbqt"]
 
-[ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/Inventory/InventoryBackground.png" id="1_yc0b1"]
-[ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Inventory/Blue-Border-Frame-PNG-Clipart.png" id="2_pjhye"]
-[ext_resource type="Texture2D" uid="uid://diyxuv8mb2f6k" path="res://UI/paintstroke.png" id="2_ucsoy"]
-[ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/Inventory/InventoryCharacter.png" id="3_pjhye"]
+[ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/Inventory/PauseMenuBackground.png" id="1_yc0b1"]
+[ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Inventory/PauseMenuFrame.png" id="2_pjhye"]
+[ext_resource type="Texture2D" uid="uid://diyxuv8mb2f6k" path="res://UI/Inventory/PauseMenuFrame2.png" id="2_ucsoy"]
+[ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/Inventory/PauseMenuCharacterIcon.png" id="3_pjhye"]
 [ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="5_0gpq4"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="6_su3to"]
 [ext_resource type="PackedScene" uid="uid://5aw71wt3nhbe" path="res://UI/Inventory/FunctionalInventory.tscn" id="7_1iklk"]

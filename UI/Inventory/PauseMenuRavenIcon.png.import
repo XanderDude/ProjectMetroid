@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diyxuv8mb2f6k"
-path="res://.godot/imported/paintstroke.png-52b770691c2b961f53825f38a2da2b4a.ctex"
+uid="uid://co31mwly0jpkl"
+path="res://.godot/imported/PauseMenuRavenIcon.png-fe827cbad9d67409415aad4900031b7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/paintstroke.png"
-dest_files=["res://.godot/imported/paintstroke.png-52b770691c2b961f53825f38a2da2b4a.ctex"]
+source_file="res://UI/Inventory/PauseMenuRavenIcon.png"
+dest_files=["res://.godot/imported/PauseMenuRavenIcon.png-fe827cbad9d67409415aad4900031b7a.ctex"]
 
 [params]
 

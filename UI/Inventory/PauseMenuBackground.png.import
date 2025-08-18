@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d11nhrkri1s1w"
-path="res://.godot/imported/crossbowicontest.png-0a00c18ab579c7add336d14e45c1d438.ctex"
+uid="uid://c0pg02flk2qiy"
+path="res://.godot/imported/PauseMenuBackground.png-96256c9adb45b5fad197084eb0d5171a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://crossbowicontest.png"
-dest_files=["res://.godot/imported/crossbowicontest.png-0a00c18ab579c7add336d14e45c1d438.ctex"]
+source_file="res://UI/Inventory/PauseMenuBackground.png"
+dest_files=["res://.godot/imported/PauseMenuBackground.png-96256c9adb45b5fad197084eb0d5171a.ctex"]
 
 [params]
 
