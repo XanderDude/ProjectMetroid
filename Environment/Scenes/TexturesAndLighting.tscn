@@ -1,8 +1,9 @@
-[gd_scene load_steps=53 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=54 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
 [ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://GameManager.cs" id="1_ji5m0"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
+[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_6d3tk"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="5_opqc5"]
@@ -358,6 +359,9 @@ use_occlusion_culling = true
 anisotropic_filtering_level = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
+
+[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_6d3tk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, -2, 11, -8)
