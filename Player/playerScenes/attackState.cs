@@ -9,7 +9,6 @@ public partial class attackState : State
 	[Export] public float shootCooldown = 0.1f;
 	[Export] public AudioStream shootSound; 
 	[Export] Godot.AudioStreamPlayer laserSound;
-	private float cooldownTimer = 0.1f;
 	private Node3D crossbowMesh;
 	private PlayerManager playerManager;
 	
@@ -34,7 +33,6 @@ public partial class attackState : State
 	
 	public override void Enter() 
 	{
-		cooldownTimer = 0.1f;
 	}
 	
 	public override void Exit()
@@ -43,10 +41,6 @@ public partial class attackState : State
 	
 	public override void PhysicsUpdate(float delta) 
 	{
-		if (cooldownTimer > 0.0f)
-		{
-			cooldownTimer -= delta;
-		}
 		
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
@@ -129,7 +123,7 @@ public partial class attackState : State
 			}
 			else
 			{
-				// Only update text if the item still exists and should show quantity
+			
 				if (!item.IsInfinite && item.MaxQty > 1)
 				{
 					arrowsInventory.SetItemText(i, item.Qty.ToString());
