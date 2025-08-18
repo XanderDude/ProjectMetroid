@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
-[ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://GameManager.cs" id="1_yv1x3"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="2_4lvic"]
+[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_4lvic"]
 [ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]

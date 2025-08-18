@@ -1,13 +1,12 @@
-[gd_scene load_steps=53 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=52 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
-[ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://GameManager.cs" id="1_ji5m0"]
+[ext_resource type="Script" path="res://Environment/Scenes/GameManager.cs" id="1_ji5m0"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="5_opqc5"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="5_q35ir"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="6_2o7o6"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/Stone/StoneCeiling.fbx" id="6_3ugus"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_c1sjx"]
 [ext_resource type="PackedScene" uid="uid://cj5kcxxjw1b1d" path="res://Environment/RoomPieces/Stone/Stone1x1Stairs.tscn" id="10_c1sjx"]
@@ -2466,10 +2465,19 @@ transform = Transform3D(0.314572, 0, -0.949234, 0, 1, 0, 0.949234, 0, 0.314572, 
 [node name="doorRight" parent="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay/woodDoorway" index="4"]
 transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 0.799999, -0.001, 0.0999999)
 
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2o7o6")]
+[node name="Player" parent="SubViewportContainer/SubViewport"]
+_import_path = NodePath("")
 unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.1332, 0.549017, 0)
 playerMeshPath = NodePath("PlayerMesh")
+script = null
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
 unique_name_in_owner = true

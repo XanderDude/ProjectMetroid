@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/Inventory/PauseMenuCharacterIcon.png" id="4_jst3f"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="5_7qy6v"]
 [ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="6_h032j"]
-[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://UI/Inventory/Inventory.cs" id="7_e6gg1"]
+[ext_resource type="Script" path="res://Inventory.cs" id="7_e6gg1"]
 [ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="8_jjuev"]
 [ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="9_4vdyk"]
 [ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="10_xh3mb"]
