@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvvlrybffprx4"]
 
 [ext_resource type="Script" uid="uid://diwkr0368hqc3" path="res://Player/Weapons/WristCrossbow/BombArrowProjectile.cs" id="1_828ao"]
-[ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/playerScenes/pCone2.tres" id="1_qh25q"]
+[ext_resource type="ArrayMesh" uid="uid://bauejgpadul2e" path="res://Player/Weapons/pCone2.tres" id="1_qh25q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
 radius = 0.0310877

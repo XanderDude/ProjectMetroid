@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cx1ep0rw36acf"]
 
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/Player.tscn" id="1_6syng"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="1_6syng"]
 [ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/TeleporterTest/roomTeleportHitbox.tscn" id="3_htrpb"]
 [ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_yw4gc"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_ekw2i"]

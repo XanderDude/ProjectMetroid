@@ -1,13 +1,13 @@
-[gd_scene load_steps=56 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=53 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
-[ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://Environment/Scenes/GameManager.cs" id="1_ji5m0"]
+[ext_resource type="Script" uid="uid://rrkwveyyh32m" path="res://GameManager.cs" id="1_ji5m0"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="5_opqc5"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="5_q35ir"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/Player.tscn" id="6_2o7o6"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="6_2o7o6"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/Stone/StoneCeiling.fbx" id="6_3ugus"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_c1sjx"]
 [ext_resource type="PackedScene" uid="uid://cj5kcxxjw1b1d" path="res://Environment/RoomPieces/Stone/Stone1x1Stairs.tscn" id="10_c1sjx"]
@@ -31,9 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
-[ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="32_4qpb5"]
-[ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/arrow.tscn" id="32_6ndq2"]
-[ext_resource type="AudioStream" uid="uid://llecxppw1kr4" path="res://WristCrossbowShoot.mp3" id="33_slrvu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("1_nsplm")
@@ -1448,9 +1445,6 @@ size = Vector3(10, 0.5, 6)
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("17_f1y8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
 
-[node name="Idle" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
 [node name="GroundCollisionPlane" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="0"]
 transform = Transform3D(1.29337, 0, 0, 0, 0.999417, 0, 0, 0, 0.999417, 9.5, -8.73584, -1.5)
 size = Vector3(54, 17.4717, 5)
@@ -2477,35 +2471,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.1332, 0.549017, 0)
 playerMeshPath = NodePath("PlayerMesh")
 
-[node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1"]
-arrowScene = ExtResource("32_6ndq2")
-bombArrowScene = ExtResource("32_4qpb5")
-shootSound = ExtResource("33_slrvu")
-
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178289, 0.895112, -0.0172228)
-bones/0/rotation = Quaternion(0.540739, 0.454297, 0.445803, 0.549978)
-bones/1/rotation = Quaternion(0.0326903, 0.104409, -0.011452, 0.993931)
-bones/4/rotation = Quaternion(0.110268, 0.0279547, 0.063972, 0.991447)
-bones/7/position = Vector3(0.0368461, 0.0597796, -0.000114796)
-bones/7/rotation = Quaternion(0.514733, 0.484547, 0.475379, -0.523717)
-bones/9/rotation = Quaternion(0.369221, -0.110679, 0.922715, -0.00483521)
-bones/10/rotation = Quaternion(0.513232, 0.570129, -0.4359, 0.470677)
-bones/11/rotation = Quaternion(-0.00472567, -0.515659, -0.174279, 0.838868)
-bones/13/rotation = Quaternion(0.0603411, -0.103263, 0.0856323, 0.989122)
-bones/14/rotation = Quaternion(0.021309, 0.0423772, -0.167215, 0.984779)
-bones/20/rotation = Quaternion(0.998021, 0.0391666, -0.0282861, 0.0402606)
-bones/21/rotation = Quaternion(0.494894, -0.457796, 0.531203, 0.513154)
-
-[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.256811, -0.965127, -0.0507709, 0.179256, 0.0991878, -0.97879, 0.949692, 0.242262, 0.198478, -0.257349, 1.03813, -0.0240965)
-
-[node name="Arrow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.256811, -0.965127, -0.0507709, 0.179256, 0.0991878, -0.97879, 0.949692, 0.242262, 0.198478, -0.319419, 0.997948, 0.000302624)
-
-[node name="Inventory" parent="SubViewportContainer/SubViewport/Player" index="10"]
-visible = false
-
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1.5, 25)
@@ -2627,5 +2592,3 @@ roomMaxY = 500.0
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall2"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]

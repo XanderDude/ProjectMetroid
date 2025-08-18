@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cay82ous002ry"
-path="res://.godot/imported/Frankengirl.fbx-8d513f0df11f44ca4f9e9e236b01c19d.scn"
+path="res://.godot/imported/Frankengirl.fbx-2be518e9b69c67b3d504afbbf72ac61a.scn"
 
 [deps]
 
-source_file="res://Player/Frankengirl.fbx"
-dest_files=["res://.godot/imported/Frankengirl.fbx-8d513f0df11f44ca4f9e9e236b01c19d.scn"]
+source_file="res://Player/Mesh/Frankengirl.fbx"
+dest_files=["res://.godot/imported/Frankengirl.fbx-2be518e9b69c67b3d504afbbf72ac61a.scn"]
 
 [params]
 

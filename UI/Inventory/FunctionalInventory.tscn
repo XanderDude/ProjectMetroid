@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://5aw71wt3nhbe"]
 
-[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://Inventory.cs" id="1_r74un"]
+[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://UI/Inventory/Inventory.cs" id="1_r74un"]
 [ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="2_khc4f"]
 [ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="3_ky5w0"]
 [ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="4_ehhp5"]

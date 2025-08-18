@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqe7y7wrqtuqb"]
 
-[ext_resource type="Script" uid="uid://dbubg4fx3phkm" path="res://ArrowHud.cs" id="1_mpbtj"]
+[ext_resource type="Script" uid="uid://dbubg4fx3phkm" path="res://UI/HUD/ArrowHud.cs" id="1_mpbtj"]
 
 [node name="ArrowHUD" type="Control"]
 layout_mode = 3

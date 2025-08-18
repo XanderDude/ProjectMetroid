@@ -1,10 +1,9 @@
-[gd_scene load_steps=36 format=4 uid="uid://csl1058efko08"]
+[gd_scene load_steps=35 format=4 uid="uid://csl1058efko08"]
 
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="1_84pnw"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_a8mtv"]
 [ext_resource type="PackedScene" uid="uid://s5ligqpkbcxw" path="res://Environment/RoomPieces/Stone/StoneConnectedFloorCeiling.tscn" id="2_a8mtv"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_xbrmv"]
-[ext_resource type="PackedScene" uid="uid://qndukwj4r6uc" path="res://Environment/Models/Mannequin/Idle.fbx" id="3_a8mtv"]
 [ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="4_7fiwc"]
 [ext_resource type="PackedScene" uid="uid://br0sukqymlrae" path="res://Environment/RoomPieces/Stone/StoneWall.fbx" id="5_8umjy"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/Stone/StoneCeiling.fbx" id="7_4ymvy"]
@@ -201,8 +200,6 @@ albedo_color = Color(0.733022, 0, 0, 1)
 uv1_world_triplanar = true
 
 [node name="JungleGym1" type="Node3D"]
-
-[node name="Idle" parent="." instance=ExtResource("3_a8mtv")]
 
 [node name="SideWallsAndFloors" type="Node3D" parent="."]
 

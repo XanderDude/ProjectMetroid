@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bat0geqs25hgi"]
 
 [ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/TeleporterTest/roomTeleportHitbox.tscn" id="1_p45pg"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/Player.tscn" id="2_1n3uf"]
+[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="2_1n3uf"]
 [ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_qkgpk"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_5ifin"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="5_sce7f"]
