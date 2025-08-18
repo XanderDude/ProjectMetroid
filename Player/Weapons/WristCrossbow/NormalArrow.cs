@@ -33,13 +33,7 @@ public partial class NormalArrow : RigidBody3D
 			{
 				var collider = state.GetContactColliderObject(i);
 				
-				// Skip player collisions
-				if (collider is PlayerManager)
-				{
-					continue;
-				}
-				
-				GD.Print($"Arrow hit: {collider.GetType().Name}");
+				//GD.Print($"Arrow hit: {collider.GetType().Name}");
 				
 				if (collider is EnemyController enemy)
 				{
@@ -57,12 +51,7 @@ public partial class NormalArrow : RigidBody3D
 	}
 	
 	private void OnHitSurface()
-	{
-		//if (hasHit) return;
-		//hasHit = true;
-
-		GD.Print("Arrow despawning...");
-		
+	{		
 		if (hitSound != null)
 		{
 			var audioPlayer = new AudioStreamPlayer3D();
@@ -70,10 +59,10 @@ public partial class NormalArrow : RigidBody3D
 			audioPlayer.Stream = hitSound;
 			audioPlayer.GlobalPosition = GlobalPosition;
 			audioPlayer.Play();
-			audioPlayer.Finished += () => audioPlayer.QueueFree();
+			audioPlayer.Finished += audioPlayer.QueueFree;
 		}
 		
 		var timer = GetTree().CreateTimer(0.1f);
-		timer.Timeout += () => QueueFree();
+		timer.Timeout += QueueFree;
 	}
 }
