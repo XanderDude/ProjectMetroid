@@ -130,83 +130,57 @@ public partial class attackState : State
 	}
 }
 	
-	private Vector3 GetShootDirection()
-	{
-		Vector3 direction = Vector3.Zero;
+	private Vector2 GetShootDirection()
+	{		
+		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
+
+		if (direction == Vector2.Zero) direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
 		
-		bool up = Input.IsActionPressed("Up");
-		bool down = Input.IsActionPressed("Down");
-		bool left = Input.IsActionPressed("Left");
-		bool right = Input.IsActionPressed("Right");
-		
-		if (up && left)
-			direction = new Vector3(-1, 1, 0).Normalized();
-		else if (up && right)
-			direction = new Vector3(1, 1, 0).Normalized();
-		else if (down && left)
-			direction = new Vector3(-1, -1, 0).Normalized();
-		else if (down && right)
-			direction = new Vector3(1, -1, 0).Normalized();
-		else if (up)
-			direction = new Vector3(0, 1, 0);
-		else if (down)
-			direction = new Vector3(0, -1, 0);
-		else if (left)
-			direction = new Vector3(-1, 0, 0);
-		else if (right)
-			direction = new Vector3(1, 0, 0);
-		else
-		{
-			var mesh = playerManager?.GetNode<Node3D>("PlayerMesh");
-			if (mesh != null)
-			{
-				direction = mesh.Transform.Basis.Z.Normalized();
-			}
-			else
-			{
-				direction = new Vector3(1, 0, 0);
-			}
-		}
-		
-		return direction;
+		return direction.Normalized();
 	}
 	
 	private void ShootArrow(bool isBombArrow)
-{
-	PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
-	
-	if (projectileScene == null || crossbowMesh == null)
 	{
-		return;
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
+		
+		if (projectileScene == null || crossbowMesh == null)
+		{
+			return;
+		}
+		
+		if (isBombArrow)
+		{
+			ConsumeBombArrow();
+		}
+		
+		var arrow = projectileScene.Instantiate() as RigidBody3D;
+		if (arrow == null)
+		{
+			return;
+		}
+
+		GetTree().CurrentScene.AddChild(arrow);
+		arrow.GlobalPosition = crossbowMesh.GlobalPosition;
+
+		Vector2 shootDirection = GetShootDirection();
+		
+		float dot = shootDirection.Dot(new Vector2(Mathf.Abs(shootDirection.X), 0));
+		float rotation = (shootDirection.Y >= 0)
+		? (1f - dot) / 4f 
+		: (dot + 3f) / 4f;
+
+		if (float.IsNaN(rotation)) rotation = parentMesh.RotationDegrees.Y - 90;
+		else rotation *= 360f;
+
+		arrow.RotationDegrees = new(0, 0, rotation);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
+		GD.Print(arrow.LinearVelocity);
+
+		arrow.Scale *= 3f;
+		arrow.GravityScale = 0.3f;
+		
+		laserSound = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
+		laserSound.Play();
 	}
-	
-	if (isBombArrow)
-	{
-		ConsumeBombArrow();
-	}
-	
-	var arrow = projectileScene.Instantiate() as RigidBody3D;
-	if (arrow == null)
-	{
-		return;
-	}
-	
-	GetTree().CurrentScene.AddChild(arrow);
-	arrow.GlobalPosition = crossbowMesh.GlobalPosition;
-	
-	Vector3 shootDirection = GetShootDirection();
-	arrow.LinearVelocity = shootDirection * arrowSpeed;
-	
-	if (arrow.LinearVelocity != Vector3.Zero)
-	{
-		arrow.LookAt(arrow.GlobalPosition + arrow.LinearVelocity, Vector3.Up);
-		arrow.RotateObjectLocal(Vector3.Up, Mathf.Pi / 2);
-	}
-	
-	arrow.Scale *= 3f;
-	arrow.GravityScale = 0.3f;
-	
-	laserSound = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
-	laserSound.Play();
-}
 }

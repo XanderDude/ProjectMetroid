@@ -106,7 +106,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		if (@inputEvent.IsActionPressed("Shoot"))
 		{
-			shootingTimer = shootingAnimTime;
+			//shootingTimer = shootingAnimTime;
 		}
 	}
 }

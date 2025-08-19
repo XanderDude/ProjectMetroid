@@ -12,7 +12,6 @@ collision_layer = 0
 collision_mask = 11
 collision_priority = 10.0
 axis_lock_linear_z = true
-axis_lock_angular_z = true
 script = ExtResource("1_jo3q1")
 
 [node name="arrow" parent="." instance=ExtResource("2_yq1wc")]
