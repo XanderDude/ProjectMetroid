@@ -31,18 +31,19 @@ public partial class attackState : State
 		}
 	}
 	
-	public override void Enter() 
+	
+	public override void Enter()
 	{
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
 			ShootArrow(false);
-			
+
 		}
-		
+
 		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
 			ShootArrow(true);
-			
+
 		}
 	}
 	

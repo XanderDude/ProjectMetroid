@@ -18,7 +18,7 @@ public partial class PlayerManager : CharacterBody3D
 	private Node _inventory;
 	private Inventory _crossbowsInventory;
 	private Inventory _arrowsInventory;
-	private Inventory _meleesInventory;
+	public Inventory _meleesInventory;
 	
 	
 	

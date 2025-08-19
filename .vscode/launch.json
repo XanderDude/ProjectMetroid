@@ -1,61 +1,17 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // For these launch configurations to work, you need to setup a GODOT4
-    // environment variable. On mac or linux, this can be done by adding
-    // the following to your .zshrc, .bashrc, or .bash_profile file:
-    // export GODOT4="/Applications/Godot.app/Contents/MacOS/Godot"
     {
-      "name": "Play",
+      "name": "Play in Godot",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "H:/Apps/Godot/Godot_v4.4.1-stable_mono_win64_cSharp/Godot_v4.4.1-stable_mono_win64",
-      "args": [],
+      "program": "C:/Users/nem0s/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe",
+      "args": ["--path", "${workspaceFolder}"],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
-    },
-    {
-        "name": "Play in Editor",
-        "type": "godot-mono",
-        "mode": "playInEditor",
-        "request": "launch"
-    },
-    {
-        "name": "Launch",
-        "type": "godot-mono",
-        "request": "launch",
-        "mode": "executable",
-        "preLaunchTask": "build",
-        "executable": "C:/Users/nem0s/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe",
-        // See which arguments are available here:
-        // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
-        "executableArguments": [
-            "--path",
-            "${workspaceRoot}"
-        ]
-    },
-    {
-        "name": "Launch (Select Scene)",
-        "type": "godot-mono",
-        "request": "launch",
-        "mode": "executable",
-        "preLaunchTask": "build",
-        "executable": "C:/Users/nem0s/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe",
-        // See which arguments are available here:
-        // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
-        "executableArguments": [
-            "--path",
-            "${workspaceRoot}",
-            "${command:SelectLaunchScene}"
-        ]
-    },
-    {
-        "name": "Attach",
-        "type": "godot-mono",
-        "request": "attach",
-        "address": "localhost",
-        "port": 23685
+      "console": "internalConsole",
+      "requireExactSource": false
     }
   ]
 }

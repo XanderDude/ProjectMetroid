@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cx1ep0rw36acf"]
 
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/Player.tscn" id="1_6syng"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="1_6syng"]
 [ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/TeleporterTest/roomTeleportHitbox.tscn" id="3_htrpb"]
 [ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_yw4gc"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_ekw2i"]
@@ -195,8 +195,29 @@ shape = SubResource("ConcavePolygonShape3D_nyppi")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
 
-[node name="PlayerMesh" parent="Player" index="5"]
+[node name="PlayerMesh" parent="Player" index="4"]
 LegAndArmBlendBlendPath = ""
+
+[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0178314, 0.89516, 0.0133677)
+bones/0/rotation = Quaternion(0.54913, 0.446595, 0.453517, 0.541601)
+bones/1/rotation = Quaternion(-0.038595, 0.104967, -0.0039612, 0.993719)
+bones/4/rotation = Quaternion(-0.152655, 0.00639175, -0.0208703, 0.988039)
+bones/7/position = Vector3(0.04145, 0.0608711, 0.00570571)
+bones/7/rotation = Quaternion(0.478633, 0.509175, 0.441495, -0.562791)
+bones/9/rotation = Quaternion(0.387993, -0.0321939, 0.92028, 0.0388659)
+bones/10/rotation = Quaternion(0.496284, 0.590803, -0.437418, 0.461866)
+bones/11/rotation = Quaternion(0.0823903, -0.528239, -0.158476, 0.830097)
+bones/13/rotation = Quaternion(0.0134494, -0.105883, 0.0743906, 0.991501)
+bones/14/rotation = Quaternion(0.142351, 0.0265416, -0.162724, 0.975988)
+bones/20/rotation = Quaternion(0.998555, -0.00868658, -0.0303603, 0.04349)
+bones/21/rotation = Quaternion(0.527346, -0.489327, 0.496876, 0.485364)
+
+[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.26684, -0.959048, -0.0949893, 0.12856, 0.133105, -0.982729, 0.955128, 0.250019, 0.158813, -0.253524, 1.03939, -0.020804)
+
+[node name="Arrow" parent="Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.26684, -0.959048, -0.0949893, 0.12856, 0.133105, -0.982729, 0.955128, 0.250019, 0.158813, -0.317311, 1.00111, 0.00219791)
 
 [node name="GlobalTransition" type="CanvasLayer" parent="."]
 

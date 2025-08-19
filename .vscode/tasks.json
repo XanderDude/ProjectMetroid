@@ -9,7 +9,7 @@
             "--build-solutions",
             "--path",
             "${workspaceRoot}",
-            "--no-window",
+            "",
             "-q"
         ],
         "problemMatcher": "$msCompile"

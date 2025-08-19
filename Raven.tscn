@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpb8scx3a6ci6"]
+
+[ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Player/Weapons/Raven.cs" id="1_sgyn5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iqkuu"]
+
+[node name="Raven" type="CharacterBody3D"]
+script = ExtResource("1_sgyn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_iqkuu")
