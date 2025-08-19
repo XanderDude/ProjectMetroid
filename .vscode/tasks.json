@@ -2,21 +2,17 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build"
-      ],
-      "problemMatcher": "$msCompile",
-      "presentation": {
-        "echo": true,
-        "reveal": "silent",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      }
+        "label": "build",
+        "command": "C:/Users/nem0s/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe",
+        "type": "process",
+        "args": [
+            "--build-solutions",
+            "--path",
+            "${workspaceRoot}",
+            "--no-window",
+            "-q"
+        ],
+        "problemMatcher": "$msCompile"
     }
   ]
 }

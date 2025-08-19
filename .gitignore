@@ -27,3 +27,5 @@ mono_crash.*.json
 # Maya-specific files
 /Environment/Materials/.mayaSwatches
 *.swatch
+.vscode/launch.json
+.vscode/tasks.json
