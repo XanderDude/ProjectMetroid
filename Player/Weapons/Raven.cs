@@ -10,6 +10,7 @@ public partial class Raven : CharacterBody3D
     public Vector3 targetPosition = Vector3.Zero;
     public bool isInAction = false;
     public bool isLaunched = false;
+    public bool canTeleport = false;
 
    
     public override void _Ready()
@@ -36,23 +37,34 @@ public partial class Raven : CharacterBody3D
              if (Mathf.Abs(GlobalPosition.DistanceTo(player.GlobalPosition + Yoffset)) < 0.1f) { isLaunched = false; }
         }
 
-        if (Input.IsActionPressed("RavenTest") && !isLaunched)
+        if (player.IsOnFloor()) { canTeleport = true; } 
+
+        if (Input.IsActionPressed("RavenSpecial") && !isLaunched)
         {
             RavenLaunch();
         }
-        if (Input.IsActionJustReleased("RavenTest"))
+        if (Input.IsActionJustReleased("RavenSpecial"))
         {
             isLaunched = true;
             Velocity = Vector3.Zero;
         }
 
-        if (Input.IsActionJustPressed("RavenTest") && isLaunched)
+        if (Input.IsActionJustPressed("RavenSpecial") && isLaunched)
         {
             isInAction = false;
            
         }
 
+        if (Input.IsActionJustPressed("RavenSlash") && isLaunched && canTeleport)
+        {
+            player.GlobalPosition = GlobalPosition;
+            canTeleport = false;
+            isInAction = false;
+            player.Velocity = Vector3.Zero;
 
+            
+    
+        }
 
             MoveAndSlide();
     }
@@ -77,7 +89,7 @@ public partial class Raven : CharacterBody3D
 
     public void RavenLaunch()
     {
-
+        
 
         if (player == null)
         {
