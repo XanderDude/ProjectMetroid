@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=13 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
+[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven.tscn" id="11_qpe1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("1_qbg50")
@@ -75,6 +76,11 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 
 [node name="EnemyRat" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
+player = NodePath("../Player")
+speed = 10.0
+maxDistance = 2.7
 
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
