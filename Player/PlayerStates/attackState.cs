@@ -10,7 +10,7 @@ public partial class attackState : State
 	[Export] public AudioStream shootSound; 
 	[Export] Godot.AudioStreamPlayer laserSound;
 	private Node3D crossbowMesh;
-	private PlayerManager playerManager;
+	private Node3D arrowSpawnLoc;
 	
 	public override void _Ready() 
 	{
@@ -19,15 +19,14 @@ public partial class attackState : State
 		{
 			current = current.GetParent();
 		}
-		
 		if (current is PlayerManager)
 		{
-			playerManager = current as PlayerManager;
+			pm = current as PlayerManager;
 		}
-		
-		if (playerManager != null)
+		if (pm != null)
 		{
-			crossbowMesh = playerManager.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
+			crossbowMesh = pm.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
+			arrowSpawnLoc = (Node3D)crossbowMesh.GetChild(0);
 		}
 	}
 	
@@ -67,8 +66,8 @@ public partial class attackState : State
 	
 	private bool CanShoot()
 	{
-		return playerManager != null && 
-			   playerManager.HasRangedWeapon() && 
+		return pm != null && 
+			   pm.HasRangedWeapon() && 
 			   arrowScene != null;
 	}
 	
@@ -79,7 +78,7 @@ public partial class attackState : State
 			return false;
 		}
 		
-		var arrowsInventory = playerManager.GetArrowsInventory();
+		var arrowsInventory = pm.GetArrowsInventory();
 		if (arrowsInventory == null)
 		{
 			return false;
@@ -103,7 +102,7 @@ public partial class attackState : State
 	
 	private void ConsumeBombArrow()
 {
-	var arrowsInventory = playerManager.GetArrowsInventory();
+	var arrowsInventory = pm.GetArrowsInventory();
 	if (arrowsInventory == null) return;
 	
 	for (int i = 0; i < arrowsInventory.inventorySize; i++)
@@ -134,7 +133,10 @@ public partial class attackState : State
 	{		
 		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
 
-		if (direction == Vector2.Zero) direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
+		if (direction == Vector2.Zero || player.IsOnFloor() && direction == new Vector2(0, -1))
+		{
+			direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
+		}
 		
 		return direction.Normalized();
 	}
@@ -144,7 +146,7 @@ public partial class attackState : State
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
 		PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
 		
-		if (projectileScene == null || crossbowMesh == null)
+		if (projectileScene == null || arrowSpawnLoc == null)
 		{
 			return;
 		}
@@ -161,7 +163,7 @@ public partial class attackState : State
 		}
 
 		GetTree().CurrentScene.AddChild(arrow);
-		arrow.GlobalPosition = crossbowMesh.GlobalPosition;
+		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
 
 		Vector2 shootDirection = GetShootDirection();
 		
@@ -170,8 +172,7 @@ public partial class attackState : State
 		? (1f - dot) / 4f 
 		: (dot + 3f) / 4f;
 
-		if (float.IsNaN(rotation)) rotation = parentMesh.RotationDegrees.Y - 90;
-		else rotation *= 360f;
+		rotation *= 360f;
 
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
