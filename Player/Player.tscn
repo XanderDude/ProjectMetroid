@@ -145,10 +145,13 @@ bones/21/rotation = Quaternion(0.707221, 0.051016, -0.0225969, 0.704788)
 bones/22/rotation = Quaternion(0.983989, 0.000142932, -0.178159, -0.00499445)
 bones/23/rotation = Quaternion(0.577509, -0.401451, 0.407145, 0.582713)
 
-[node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
+bone_idx = 17
 
-[node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="4"]
+[node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
+bone_idx = 18
+
+[node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
 visible = false
 bone_idx = 19
 

@@ -31,7 +31,8 @@ public partial class Raven : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
 
-        MoveAndSlide();
+        MoveAndCollide(this.Velocity * (float)delta);
+        
     }
 
 

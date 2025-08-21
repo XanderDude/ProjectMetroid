@@ -220,9 +220,6 @@ bone_idx = 17
 [node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
 bone_idx = 18
 
-[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-bone_idx = 19
-
 [node name="GlobalTransition" type="CanvasLayer" parent="."]
 
 [node name="ScreenTransitionScript" type="TextureRect" parent="GlobalTransition"]
