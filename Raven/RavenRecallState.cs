@@ -25,10 +25,12 @@ public partial class RavenRecallState : State
         if (Input.GetAxis("Left", "Right") == 1)
         {
             raven.Xoffset = new Vector3(0.5f, 0, 0);
+            raven.RotationDegrees = new Vector3(0, 180, 0);
         }
         else if (Input.GetAxis("Left", "Right") == -1)
         {
-             raven.Xoffset = new Vector3(-0.5f, 0, 0);
+            raven.Xoffset = new Vector3(-0.5f, 0, 0);
+            raven.RotationDegrees = new Vector3(0, 0, 0);
         }
         
         raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset);
