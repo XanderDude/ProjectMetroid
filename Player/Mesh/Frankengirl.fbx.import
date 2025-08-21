@@ -7232,7 +7232,7 @@ _subresources={
 }
 },
 "materials": {
-"Crossbow_Mat": {
+"FrankengirlWeapons_Mat": {
 "use_external/enabled": true,
 "use_external/path": "uid://bwbcwsmcq4p6q"
 },
@@ -7242,10 +7242,13 @@ _subresources={
 }
 },
 "nodes": {
-"PATH:Skeleton3D/Arrow/Arrow": {
+"PATH:Skeleton3D/ArrowBomb": {
 "mesh_instance/layers": 2
 },
-"PATH:Skeleton3D/Crossbow/Crossbow": {
+"PATH:Skeleton3D/ArrowNormal": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/Crossbow": {
 "mesh_instance/layers": 2
 },
 "PATH:Skeleton3D/body": {
