@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpb8scx3a6ci6"]
+
+[ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
+[ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
+[ext_resource type="Script" uid="uid://du15n00akngi2" path="res://Raven/RavenIdleState.cs" id="3_14tcx"]
+[ext_resource type="Script" uid="uid://ddb5dnlbdwfkp" path="res://Raven/RavenRecallState.cs" id="3_oiwij"]
+[ext_resource type="Script" uid="uid://euohdexnkmw3" path="res://Raven/RavenLaunchState.cs" id="4_oiwij"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iqkuu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_14tcx"]
+radius = 0.260805
+height = 0.991965
+
+[node name="Raven" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_sgyn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_iqkuu")
+
+[node name="RavenStateMachine" type="Node" parent="."]
+script = ExtResource("2_1yirg")
+ravenPath = NodePath("..")
+initialState = NodePath("RavenRecallState")
+
+[node name="RavenIdleState" type="Node" parent="RavenStateMachine"]
+script = ExtResource("3_14tcx")
+
+[node name="RavenRecallState" type="Node" parent="RavenStateMachine"]
+script = ExtResource("3_oiwij")
+
+[node name="RavenLaunchState" type="Node" parent="RavenStateMachine"]
+script = ExtResource("4_oiwij")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_14tcx")

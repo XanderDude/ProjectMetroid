@@ -215,9 +215,13 @@ bones/21/rotation = Quaternion(0.527346, -0.489327, 0.496876, 0.485364)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
 transform = Transform3D(0.26684, -0.959048, -0.0949893, 0.12856, 0.133105, -0.982729, 0.955128, 0.250019, 0.158813, -0.253524, 1.03939, -0.020804)
+bone_idx = 17
 
-[node name="Arrow" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.26684, -0.959048, -0.0949893, 0.12856, 0.133105, -0.982729, 0.955128, 0.250019, 0.158813, -0.317311, 1.00111, 0.00219791)
+[node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
+bone_idx = 18
+
+[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
+bone_idx = 19
 
 [node name="GlobalTransition" type="CanvasLayer" parent="."]
 

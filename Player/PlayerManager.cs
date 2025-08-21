@@ -107,23 +107,24 @@ public partial class PlayerManager : CharacterBody3D
 		// Start with inventory hidden
 		HideInventory();
 		
-		GD.Print($"Inventory references initialized:");
+		/*GD.Print($"Inventory references initialized:");
 		GD.Print($"  Crossbows: {_crossbowsInventory?.Name ?? "null"}");
 		GD.Print($"  Arrows: {_arrowsInventory?.Name ?? "null"}");
 		GD.Print($"  Melees: {_meleesInventory?.Name ?? "null"}");
+		*/
 	}
 	
 	public void SyncWithInventory()
 	{
-		GD.Print("=== SyncWithInventory START ===");
+		//GD.Print("=== SyncWithInventory START ===");
 		
 		if (_crossbowsInventory == null) 
 		{
-			GD.Print("Crossbows inventory is null, cannot sync");
+			//GD.Print("Crossbows inventory is null, cannot sync");
 			return;
 		}
 		
-		GD.Print($"Crossbows inventory found: {_crossbowsInventory.Name}");
+		//GD.Print($"Crossbows inventory found: {_crossbowsInventory.Name}");
 		
 		// Check for equipped items in crossbows inventory
 		bool foundAnyItems = false;
@@ -133,26 +134,26 @@ public partial class PlayerManager : CharacterBody3D
 			if (item != null)
 			{
 				foundAnyItems = true;
-				GD.Print($"Slot {i}: {item.Name}, Category: {item.Category}, Equipped: {item.Equipped}");
+				//GD.Print($"Slot {i}: {item.Name}, Category: {item.Category}, Equipped: {item.Equipped}");
 			}
 		}
 		
 		if (!foundAnyItems)
 		{
-			GD.Print("No items found in any slots!");
+			//GD.Print("No items found in any slots!");
 		}
 		
 		// Check specifically for equipped ranged items
-		GD.Print("Checking for equipped items using GetEquippedItemInCategory...");
+		//GD.Print("Checking for equipped items using GetEquippedItemInCategory...");
 		var equippedCrossbow = _crossbowsInventory.GetEquippedItemInCategory(ItemCategory.Ranged);
 		if (equippedCrossbow != null)
 		{
 			equippedRangedWeapon = equippedCrossbow;
-			GD.Print($"SUCCESS: Synced equipped weapon: {equippedRangedWeapon.Name}");
+			//GD.Print($"SUCCESS: Synced equipped weapon: {equippedRangedWeapon.Name}");
 		}
 		else
 		{
-			GD.Print("No equipped crossbow found in category Ranged");
+			//GD.Print("No equipped crossbow found in category Ranged");
 			
 			// Let's also check if any items are equipped at all
 			bool foundEquippedItem = false;
@@ -162,19 +163,19 @@ public partial class PlayerManager : CharacterBody3D
 				if (item != null && item.Equipped)
 				{
 					foundEquippedItem = true;
-					GD.Print($"Found equipped item in slot {i}: {item.Name} (Category: {item.Category})");
+					//GD.Print($"Found equipped item in slot {i}: {item.Name} (Category: {item.Category})");
 				}
 			}
 			
 			if (!foundEquippedItem)
 			{
-				GD.Print("No equipped items found at all!");
+				//GD.Print("No equipped items found at all!");
 			}
 			
 			equippedRangedWeapon = null;
 		}
 		
-		GD.Print("=== SyncWithInventory END ===");
+		//GD.Print("=== SyncWithInventory END ===");
 	}
 	
 	public Inventory GetCrossbowsInventory()
@@ -201,13 +202,13 @@ public partial class PlayerManager : CharacterBody3D
 	public bool HasRangedWeapon()
 	{
 		bool hasWeapon = equippedRangedWeapon != null && equippedRangedWeapon.Category == ItemCategory.Ranged;
-		GD.Print($"HasRangedWeapon called: {hasWeapon} (weapon: {equippedRangedWeapon?.Name ?? "null"})");
+		//GD.Print($"HasRangedWeapon called: {hasWeapon} (weapon: {equippedRangedWeapon?.Name ?? "null"})");
 		return hasWeapon;
 	}
 	
 	public Item GetEquippedRangedWeapon()
 	{
-		GD.Print($"GetEquippedRangedWeapon called: {equippedRangedWeapon?.Name ?? "null"}");
+		//GD.Print($"GetEquippedRangedWeapon called: {equippedRangedWeapon?.Name ?? "null"}");
 		return equippedRangedWeapon;
 	}
 	

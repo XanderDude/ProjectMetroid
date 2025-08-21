@@ -206,6 +206,7 @@ uv1_world_triplanar = true
 [node name="GroundCollisionPlane" type="CSGBox3D" parent="SideWallsAndFloors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.73584, -1.5)
 use_collision = true
+collision_priority = 10.0
 size = Vector3(35, 17.4717, 5)
 material = ExtResource("1_a8mtv")
 

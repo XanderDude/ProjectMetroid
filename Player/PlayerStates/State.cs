@@ -6,8 +6,12 @@ public partial class State : Node
 	//abstract class defining different states a character can be in
 	public MovementStateMachine msm;
 	public AttackStateMachine asm;
+
+	public RavenStateMachine rsm;
 	public CharacterBody3D player;
 	public PlayerManager pm;
+
+	public Raven raven;
 	public Node3D parentMesh;
 	public CharacterBody3D projectileArrow;
 	

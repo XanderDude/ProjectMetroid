@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4c5rjwm4l4cj" path="res://Player/Weapons/WristCrossbow/NormalArrow.cs" id="1_jo3q1"]
 [ext_resource type="PackedScene" uid="uid://bil1ura0rj4wd" path="res://Player/Weapons/WristCrossbow/arrow.fbx" id="2_yq1wc"]
-[ext_resource type="ArrayMesh" uid="uid://ciab8p2xup0cp" path="res://Player/Weapons/WristCrossbow/ArrowNormalMesh.res" id="3_yq1wc"]
+[ext_resource type="ArrayMesh" uid="uid://bdhk7opdd6t44" path="res://Player/Weapons/WristCrossbow/ArrowNormalMesh.res" id="3_yq1wc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
 radius = 0.0310877

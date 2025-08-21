@@ -39,7 +39,7 @@ public partial class GameManager : Node
 		if (player != null)
 		{
 			player.ShowInventory();
-			GD.Print("Player inventory shown");
+			//GD.Print("Player inventory shown");
 		}
 		
 	

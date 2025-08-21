@@ -177,7 +177,7 @@ public partial class Inventory : ItemList
 	
 	public void EquipItem(int index)
 	{
-		GD.Print($"EquipItem called with index: {index}");
+		//GD.Print($"EquipItem called with index: {index}");
 		
 		if (index < 0 || index >= inventorySize || items[index] == null) 
 		{
