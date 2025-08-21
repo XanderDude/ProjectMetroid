@@ -7268,6 +7268,15 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:Skeleton3D/ArrowBomb/ArrowBomb": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/ArrowNormal/ArrowNormal": {
+"mesh_instance/layers": 2
+},
+"PATH:Skeleton3D/Crossbow/Crossbow": {
+"mesh_instance/layers": 2
+},
 "PATH:Skeleton3D/body": {
 "mesh_instance/layers": 2
 },

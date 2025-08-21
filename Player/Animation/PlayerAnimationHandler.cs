@@ -101,12 +101,4 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		shootingTimer = shootingAnimTime;
 	}
-
-	public override void _UnhandledInput(InputEvent @inputEvent)
-	{
-		if (@inputEvent.IsActionPressed("Shoot"))
-		{
-			//shootingTimer = shootingAnimTime;
-		}
-	}
 }
