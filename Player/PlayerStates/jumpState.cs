@@ -156,6 +156,7 @@ public partial class jumpState : State
 			}
 			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
 			{
+
 				GD.Print("Mantling");
 				mantleTimer = mantleCooldown;
 				cancelVelocity = true;

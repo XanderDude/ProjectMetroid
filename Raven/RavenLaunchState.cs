@@ -58,20 +58,20 @@ public partial class RavenLaunchState : State
         {
            
             
-            GD.Print("Raven: Launched in Direction:  " + raven.direction);
+           // GD.Print("Raven: Launched in Direction:  " + raven.direction);
             if (Mathf.Abs(raven.GlobalPosition.DistanceTo(raven.targetPosition)) < 0.1f)
             {
                 
-                GD.Print("Raven: Reached target position");
-                GD.Print("Raven: targetPosition: " + raven.targetPosition);
+                //GD.Print("Raven: Reached target position");
+                //GD.Print("Raven: targetPosition: " + raven.targetPosition);
                 raven.Velocity = Vector3.Zero;
             }
             else
             {
 
-                GD.Print("Raven: Moving towards target position");
-                GD.Print("Raven: Current Position: " + raven.GlobalPosition);
-                GD.Print("Raven: targetPosition: " + raven.targetPosition);
+              // GD.Print("Raven: Moving towards target position");
+                //GD.Print("Raven: Current Position: " + raven.GlobalPosition);
+                //GD.Print("Raven: targetPosition: " + raven.targetPosition);
                
             }
         }

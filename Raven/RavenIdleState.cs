@@ -29,7 +29,7 @@ public partial class RavenIdleState : State
 
     public override void HandleInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("RavenSpecial"))
+        if (@event.IsActionPressed("RavenSpecial") || (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 6.0f)
         {
             rsm.TransitionTo("RavenRecallState");
         }

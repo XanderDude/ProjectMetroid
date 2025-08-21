@@ -79,10 +79,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
 [node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
 player = NodePath("../Player")
-speed = 10.0
-maxDistance = 2.7
+speed = 20.0
+maxDistance = 3.0
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Raven" index="2"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Raven" index="1"]
 transform = Transform3D(0.992508, 0, 0, 0, 1.45135, 0, 0, 0, 0.992508, 0, -0.0082894, 0)
 
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
@@ -177,3 +177,4 @@ transform = Transform3D(0.992508, 0, 0, 0, 1.45135, 0, 0, 0, 0.992508, 0, -0.008
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat"]
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat/Rat"]
 [editable path="SubViewportContainer/SubViewport/Raven"]
+[editable path="SubViewportContainer/SubViewport/Raven/RavenFly"]
