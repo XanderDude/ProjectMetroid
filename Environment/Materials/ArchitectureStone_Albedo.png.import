@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch7n0dvwosxta"
-path.s3tc="res://.godot/imported/ArchitectureBasic_Albedo.png-af72315a12f38db9400080dbe43ff850.s3tc.ctex"
+path.s3tc="res://.godot/imported/ArchitectureStone_Albedo.png-2033985be6324a314f2b2cb1583c782d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Environment/Materials/ArchitectureBasic_Albedo.png"
-dest_files=["res://.godot/imported/ArchitectureBasic_Albedo.png-af72315a12f38db9400080dbe43ff850.s3tc.ctex"]
+source_file="res://Environment/Materials/ArchitectureStone_Albedo.png"
+dest_files=["res://.godot/imported/ArchitectureStone_Albedo.png-2033985be6324a314f2b2cb1583c782d.s3tc.ctex"]
 
 [params]
 

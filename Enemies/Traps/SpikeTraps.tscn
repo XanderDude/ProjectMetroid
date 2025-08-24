@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctl838fm51cgn"]
+[gd_scene load_steps=8 format=3 uid="uid://ctl838fm51cgn"]
 
-[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="1_qc3pl"]
 [ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapController.cs" id="1_yj3h8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qc3pl"]
@@ -137,8 +136,6 @@ script = ExtResource("1_yj3h8")
 animPlayer = NodePath("AnimationPlayer")
 animationName = "SpikeActivate"
 damage = 20
-
-[node name="StoneFloor" parent="." instance=ExtResource("1_qc3pl")]
 
 [node name="TriggerZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)

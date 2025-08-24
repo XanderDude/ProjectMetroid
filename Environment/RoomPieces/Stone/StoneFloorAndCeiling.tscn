@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://s5ligqpkbcxw"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="1_gd6xv"]
+[ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="2_psik1"]
+
+[node name="StoneFloorAndCeiling" type="Node3D"]
+
+[node name="StoneFloorMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gd6xv")
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = ExtResource("2_psik1")

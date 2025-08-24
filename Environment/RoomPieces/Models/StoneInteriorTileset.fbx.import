@@ -1,0 +1,167 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c61bxjkwhatvp"
+path="res://.godot/imported/StoneInteriorTileset.fbx-e5e792a4dca8e06ec2126e9aabb3122d.scn"
+
+[deps]
+
+source_file="res://Environment/RoomPieces/Models/StoneInteriorTileset.fbx"
+dest_files=["res://.godot/imported/StoneInteriorTileset.fbx-e5e792a4dca8e06ec2126e9aabb3122d.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"ArchitectureStone_Mat": {
+"use_external/enabled": true,
+"use_external/path": "uid://ducihyrqk73pc"
+}
+},
+"meshes": {
+"StonePlatformEdge": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformEdgeMesh.res"
+},
+"StonePlatformFull": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformMesh.res"
+},
+"StonePlatformHalf": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformHalfMesh.res"
+},
+"ceilingHalf": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res"
+},
+"doorLeft": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/reinforcedDoorMesh.res"
+},
+"floorHalf": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res"
+},
+"stone1x1Stairs": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stone1x1StairsMesh.res"
+},
+"stone2x2Stairs": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stone2x2StairsMesh.res"
+},
+"stoneCeiling": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneCeilingMesh.res"
+},
+"stoneDoorFrame": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res"
+},
+"stoneFloor": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneFloorMesh.res"
+},
+"stonePillar1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePillarMesh.res"
+},
+"stoneWall": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallMesh.res"
+},
+"stoneWallHalf": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res"
+},
+"stoneWindow": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWindowMesh.res"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

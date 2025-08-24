@@ -1,13 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxtejsd3feask"]
+[gd_scene load_steps=6 format=4 uid="uid://dxtejsd3feask"]
 
-[ext_resource type="PackedScene" uid="uid://w0cuv6tb5gcc" path="res://Environment/RoomPieces/Models/stoneStairs2x2.fbx" id="1_et65i"]
+[ext_resource type="ArrayMesh" uid="uid://djgltj2rthdqi" path="res://Environment/Models/StoneMeshes/stone2x2StairsMesh.res" id="1_et65i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11fey"]
+resource_name = "standardSurface1"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.665185, 0.665185, 0.665185, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0c4t8"]
+_surfaces = [{
+"aabb": AABB(-2.15284, -7.62939e-08, -1, 2.15284, 2, 2),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAAADAAQAAwACAAUABQAEAAMABQACAAEABAAGAAAABgAEAAUAAQAAAAYABQAHAAYABgAHAAEAAQAHAAUA"),
+"name": "standardSurface1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("CtcjtArXo7MAAIA/J8gJwArXo7MAAIA/doIcvgAAAEAAAIA/CtcjtAAAAEAAAIA/CtcjtAAAAEAAAIC/doIcvgAAAEAAAIC/CtcjtArXo7MAAIC/J8gJwArXo7MAAIC/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cetrk"]
+resource_name = "collider"
+lightmap_size_hint = Vector2i(46, 30)
+_surfaces = [{
+"aabb": AABB(-2.15284, -7.62939e-08, -1, 2.15284, 2, 2),
+"attribute_data": PackedByteArray("AAAgPwAAgD+c3jQ/zcwMP1ZVtT6rqoI/pzd9P83MDD8AACA/AABAP4MBOj+8u3s/AAAgPwAAQD+c3jQ/vLt7PwAAID8AAAA/WcjCPomIiDwAACA/AABAP1nIwj5mZuY+VlW1Pquqgj9DFjI8ZmbmPvxlvT420qE+QxYyPImIiDwAAGA/AACAP0MWMjy8u3s/AABgPwAAQD9DFjI8zcwMPwAAYD8AAEA/EWj9PM3MDD/8Zb0+NtKhPshClj68u3s/AABgPwAAgD+GLOQ+iYiIPPxlvT420qE+Tm86P4mIiDz//78+AAAAAE5vOj9mZuY+AAAgPwAAgD+GLOQ+ZmbmPgAAYD8AAEA/9aa3Ps3MDD8AAGA/AACAP4YsJD/NzAw/AAAgPwAAgD+GLCQ/vLt7PwAAID8AAEA/9aa3Pry7ez8AACA/AABAP2QhSz+JiIg8AAAgPwAAQD8WslA/iYiIPAAAYD8AAEA/FrJQP2Zm5j4AAGA/AABAP2QhSz9mZuY+"),
+"format": 34359742519,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_11fey"),
+"name": "standardSurface1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("CtcjtArXo7MAAIA/J8gJwArXo7MAAIA/doIcvgAAAEAAAIA/CtcjtAAAAEAAAIA/doIcvgAAAEAAAIC/doIcvgAAAEAAAIA/J8gJwArXo7MAAIA/J8gJwArXo7MAAIC/CtcjtArXo7MAAIC/CtcjtAAAAEAAAIC/doIcvgAAAEAAAIC/J8gJwArXo7MAAIC/CtcjtArXo7MAAIC/J8gJwArXo7MAAIC/J8gJwArXo7MAAIA/CtcjtArXo7MAAIA/CtcjtAAAAEAAAIC/CtcjtArXo7MAAIC/CtcjtArXo7MAAIA/CtcjtAAAAEAAAIA/CtcjtAAAAEAAAIA/doIcvgAAAEAAAIA/doIcvgAAAEAAAIC/CtcjtAAAAEAAAIC//3//f3TCxN7/f/9/2fZsu/9//3/6v/2f/3//fwAA/7//P/+/NdGa6P8//7+FxELi/z//v6611tr/P/+/hcRC4v////9KjVn5//////9/AID/////5skL2//////PnmcP/38AAP//AAD/fwAAK5L/v/9/AAB9oP+//38AACuS/7////9//////////3//////////f/////////9///////9//////////3//////xt7/f////3//v/9///+OPf+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0c4t8")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdfn7"]
 points = PackedVector3Array(-0.000211, 2, 1, -0.000211, 2, -1, -0.152992, 2, 1, -0.000211, -7.62939e-08, 1, -0.000211, -7.62939e-08, -1, -0.152992, 2, -1, -2.15284, -7.62939e-08, 1, -2.15284, -7.62939e-08, -1)
 
-[node name="stoneStairs2x2" instance=ExtResource("1_et65i")]
+[node name="stoneStairs2x2" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="stoneStairs2x2/collider" index="0"]
+[node name="Stone2x2StairsMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_et65i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneStairs2x2/collider/StaticBody3D" index="0"]
+[node name="collider" type="MeshInstance3D" parent="Stone2x2StairsMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.52588e-07)
+layers = 0
+mesh = SubResource("ArrayMesh_cetrk")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stone2x2StairsMesh/collider"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone2x2StairsMesh/collider/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_jdfn7")

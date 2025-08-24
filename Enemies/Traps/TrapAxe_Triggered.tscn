@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://yjo28xsyc55e"]
+[gd_scene load_steps=7 format=3 uid="uid://yjo28xsyc55e"]
 
 [ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapController.cs" id="1_ijmdm"]
-[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="2_im0na"]
 [ext_resource type="PackedScene" uid="uid://c4utp8gfiho0h" path="res://Enemies/Traps/HalberdTrap.fbx" id="3_1bmn5"]
 [ext_resource type="Script" uid="uid://cg5kdqqoju602" path="res://Enemies/Traps/TrapDamage.cs" id="4_1bmn5"]
 [ext_resource type="AnimationLibrary" uid="uid://di3tv02aygqwl" path="res://Enemies/Traps/AxeTrapAnimationLib.res" id="4_im0na"]
@@ -18,8 +17,6 @@ damageCollider = NodePath("HalberdTrap/TrapPivot/AxeHurtBox")
 animPlayer = NodePath("AnimationPlayer")
 animationName = "AxeSingleSwing"
 damage = 20
-
-[node name="StoneFloor" parent="." instance=ExtResource("2_im0na")]
 
 [node name="HalberdTrap" parent="." instance=ExtResource("3_1bmn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
