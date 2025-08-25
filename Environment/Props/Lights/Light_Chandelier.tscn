@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c51ajww7vd1ce"]
+
+[ext_resource type="ArrayMesh" uid="uid://bev2wemk3lno2" path="res://Environment/Models/PropLightMeshes/chandelierMesh.res" id="1_t0u80"]
+[ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_agu17"]
+[ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="2_sct2e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sct2e"]
+size = Vector3(1.5, 0.15, 1)
+
+[node name="LightChandelier" type="Node3D"]
+
+[node name="ChandelierMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = ExtResource("1_t0u80")
+
+[node name="candleLight1" type="OmniLight3D" parent="ChandelierMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.421, -0.01)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_energy = 0.851
+light_indirect_energy = 0.252
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 12.186
+omni_attenuation = 0.346
+script = ExtResource("2_agu17")
+
+[node name="candleLight2" type="OmniLight3D" parent="ChandelierMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.421, -0.01)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_energy = 0.851
+light_indirect_energy = 0.252
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 12.186
+omni_attenuation = 0.346
+script = ExtResource("2_agu17")
+
+[node name="ChainLongMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = ExtResource("2_sct2e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_sct2e")
+debug_fill = false

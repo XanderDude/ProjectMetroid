@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cinp6j7ntw5w2"]
+
+[ext_resource type="ArrayMesh" uid="uid://cqbdmkxcoqnmt" path="res://Environment/Models/WoodMeshes/wood2x2StairsMesh.res" id="1_lvpio"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdfn7"]
+points = PackedVector3Array(-0.000211, 2, 1, -0.000211, 2, -1, -0.152992, 2, 1, -0.000211, -7.62939e-08, 1, -0.000211, -7.62939e-08, -1, -0.152992, 2, -1, -2.15284, -7.62939e-08, 1, -2.15284, -7.62939e-08, -1)
+
+[node name="Wood2x2Stairs" type="Node3D"]
+
+[node name="Wood2x2StairsMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lvpio")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wood2x2StairsMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.52588e-07)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wood2x2StairsMesh/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jdfn7")
+debug_color = Color(0.918333, 0.95, 0, 0.564706)

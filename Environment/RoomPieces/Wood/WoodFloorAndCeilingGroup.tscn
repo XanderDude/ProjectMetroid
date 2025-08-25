@@ -1,0 +1,182 @@
+[gd_scene load_steps=4 format=3 uid="uid://c42erm0684l05"]
+
+[ext_resource type="ArrayMesh" uid="uid://bd0gavgvixkdq" path="res://Environment/Models/WoodMeshes/woodFloorMesh.res" id="1_r0qio"]
+[ext_resource type="ArrayMesh" uid="uid://cyflx3fwcwnf0" path="res://Environment/Models/WoodMeshes/woodCeilingMesh.res" id="2_wjpdm"]
+[ext_resource type="ArrayMesh" uid="uid://ta34kj56rh64" path="res://Environment/Models/WoodMeshes/woodPlatformEdgeMesh.res" id="3_hipi3"]
+
+[node name="WoodFloorAndCeilingGroup" type="Node3D"]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="WoodPlatformEdgeMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+mesh = ExtResource("3_hipi3")
+
+[node name="FloorMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="WoodPlatformEdgeMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+mesh = ExtResource("3_hipi3")
+
+[node name="FloorMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="WoodPlatformEdgeMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+mesh = ExtResource("3_hipi3")
+
+[node name="FloorMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, 2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 0)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 0)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, 0)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, -2)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -4)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -4)
+mesh = ExtResource("2_wjpdm")
+
+[node name="FloorMesh16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+mesh = ExtResource("1_r0qio")
+
+[node name="CeilingMesh16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, -4)
+mesh = ExtResource("2_wjpdm")
+
+[node name="WoodPlatformEdgeMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 0)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -2)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -4)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 2)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 0)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh10" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 2)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh11" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 4)
+mesh = ExtResource("3_hipi3")
+
+[node name="WoodPlatformEdgeMesh12" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, -2)
+mesh = ExtResource("3_hipi3")
