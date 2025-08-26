@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfkolgcfar5w3"]
+[gd_scene load_steps=13 format=3 uid="uid://dfkolgcfar5w3"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="1_6hvux"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_mbcg4"]
@@ -7,12 +7,16 @@
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="5_wnl3g"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="6_qu7ck"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="6_wnl3g"]
-[ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/Models/PropsBasic.fbx" id="9_mof18"]
+[ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="8_6hvux"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mbcg4"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6hvux"]
+resource_local_to_scene = true
+size = Vector3(0.2, 4, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
 albedo_color = Color(1, 1, 0, 1)
@@ -224,6 +228,9 @@ mesh = ExtResource("1_6hvux")
 skeleton = NodePath("../..")
 
 [node name="Wall_DoorWay" parent="stoneWallLeft" instance=ExtResource("1_mbcg4")]
+
+[node name="CollisionShape3D2" parent="stoneWallLeft/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_6hvux")
 
 [node name="stoneWallRight" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 0)
@@ -564,15 +571,7 @@ radius = 0.986816
 height = 0.331055
 material = SubResource("StandardMaterial3D_nilwv")
 
-[node name="PropsBasic" parent="Decorations" instance=ExtResource("9_mof18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666614, 4.76837e-07, -4.22301)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95795, 0.401645, -2.85822)
-light_color = Color(0.999999, 0.732094, 0.304035, 1)
-light_bake_mode = 1
-omni_range = 4.5
-omni_attenuation = -0.5
+[node name="LightChandelier" parent="Decorations" instance=ExtResource("8_6hvux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [editable path="stoneWallLeft/Wall_DoorWay"]
-[editable path="Decorations/PropsBasic"]

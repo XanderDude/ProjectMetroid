@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://bpdtxa4qxfht3"]
+[gd_scene load_steps=21 format=4 uid="uid://bpdtxa4qxfht3"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_oo6ox"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_wlbv0"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/ArchitectureStone_mat.tres" id="4_fm40f"]
+[ext_resource type="ArrayMesh" uid="uid://b312kef8i2oth" path="res://Environment/Models/PropHouseMeshes/tableSmallMesh.res" id="4_l2why"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="4_ppqkt"]
+[ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="5_gxnrm"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="6_fm40f"]
+[ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleTriple_Plate.tscn" id="6_gxnrm"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_fm40f"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="7_ppqkt"]
 
@@ -179,25 +182,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 3, 2.84217e-14)
 shape = SubResource("BoxShape3D_ppqkt")
 
 [node name="stoneWall" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -4, 0, 2)
+transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 0, 2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
 [node name="stoneWall2" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -4, 2, 2)
+transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 2, 2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
 [node name="stoneWall3" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -4, 2, -2)
+transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 2, -2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
 [node name="stoneWall4" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -4, 0, -2)
+transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 0, -2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
@@ -241,6 +244,25 @@ transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 4, 0, 
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
+
+[node name="TableSmallMesh" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2, 0, -2)
+mesh = ExtResource("4_l2why")
+
+[node name="ChairMesh" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(0.907543, 0, 0.419959, 0, 1, 0, -0.419959, 0, 0.907543, -2.58035, 0, -1.67521)
+mesh = ExtResource("5_gxnrm")
+
+[node name="ChairMesh2" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(-0.534736, 0, -0.845019, 0, 1, 0, 0.845019, 0, -0.534736, -1.35355, 0, -2.25764)
+mesh = ExtResource("5_gxnrm")
+
+[node name="ChairMesh3" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(4.36848e-08, 0.960001, -0.279997, 1, -4.14176e-08, 1.28824e-08, 1.86265e-09, -0.279997, -0.960001, 2.41755, 0.212272, -2.39131)
+mesh = ExtResource("5_gxnrm")
+
+[node name="CandleTriple" parent="Interactable/SideWalls" instance=ExtResource("6_gxnrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16835, 0.852074, -2.06015)
 
 [node name="Ceiling" type="Node3D" parent="Interactable"]
 

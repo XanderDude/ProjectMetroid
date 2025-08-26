@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://csl1058efko08"]
+[gd_scene load_steps=39 format=3 uid="uid://csl1058efko08"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_a8mtv"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_xbrmv"]
@@ -7,14 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_4tx1l"]
 [ext_resource type="PackedScene" uid="uid://cj5kcxxjw1b1d" path="res://Environment/RoomPieces/Stone/Stone1x1Stairs.tscn" id="9_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://cxmk0c6oino4b" path="res://Environment/Models/StoneMeshes/stoneWindowMesh.res" id="10_4tx1l"]
-[ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/Models/PropsBasic.fbx" id="11_fqo40"]
 [ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleTriple_Plate.tscn" id="13_4tx1l"]
 [ext_resource type="Texture2D" uid="uid://do8sobgqmye3g" path="res://Environment/Materials/MeasurementBox.jpg" id="13_kc0ob"]
+[ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="14_c52wn"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="15_kc1it"]
+[ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="15_pdtl0"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="16_7fiwc"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="16_kfjjt"]
+[ext_resource type="ArrayMesh" uid="uid://bm8t8x2nmpbmw" path="res://Environment/Models/PropHouseMeshes/tableLongMesh.res" id="16_pdtl0"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="17_b3g7q"]
+[ext_resource type="ArrayMesh" uid="uid://cekdpurcpayac" path="res://Environment/Models/PropHouseMeshes/bookshelfMesh.res" id="17_drp6y"]
+[ext_resource type="ArrayMesh" uid="uid://bdbt33h3t5okg" path="res://Environment/Models/PropsBasicMeshes/ladderMesh.res" id="17_jrnr3"]
 [ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="17_kfjjt"]
+[ext_resource type="ArrayMesh" uid="uid://btw6rnocf67dp" path="res://Environment/Models/PropsBasicMeshes/crateMesh.res" id="18_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="18_b3g7q"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="19_b1vnb"]
 
@@ -1673,12 +1678,6 @@ mesh = ExtResource("19_b1vnb")
 
 [node name="Decorations" type="Node3D" parent="."]
 
-[node name="PropsBasic" parent="Decorations" instance=ExtResource("11_fqo40")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
-
-[node name="Ladder" parent="Decorations/PropsBasic/PropsBasic" index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.996015, 0.0891898, 0, -0.0891898, 0.996015, -2.5, -0.503985, -0.383312)
-
 [node name="CandleTriple" parent="Decorations" instance=ExtResource("13_4tx1l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 5.01593, -2)
 
@@ -1698,16 +1697,61 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 3.03499, -2.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 3.53499, -2)
 
 [node name="CandleTriple7" parent="Decorations" instance=ExtResource("13_4tx1l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.0349855, -3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.857352, -3)
 
-[node name="PropsBasic2" parent="Decorations" instance=ExtResource("11_fqo40")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
+[node name="LadderMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -2.5, -2.55868, -4.24118)
+mesh = ExtResource("17_jrnr3")
+skeleton = NodePath("../..")
 
-[node name="PropsBasic" parent="Decorations/PropsBasic2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.41016e-13, 0)
+[node name="LadderMesh2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -2.5, -0.626829, -4.75882)
+mesh = ExtResource("17_jrnr3")
+skeleton = NodePath("../..")
 
-[node name="Ladder" parent="Decorations/PropsBasic2/PropsBasic" index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.996015, 0.0891898, 0, -0.0891898, 0.996015, -8, -2.49601, -0.204932)
+[node name="BarrelMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -4.5)
+mesh = ExtResource("14_c52wn")
+
+[node name="BarrelMesh2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -4.5)
+mesh = ExtResource("14_c52wn")
+
+[node name="BarrelMesh3" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7034, 0, -4.5)
+mesh = ExtResource("14_c52wn")
+
+[node name="BarrelMesh4" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0827, 0.903386, -4.5)
+mesh = ExtResource("14_c52wn")
+
+[node name="ChairMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1, 0, -4.5)
+mesh = ExtResource("15_pdtl0")
+
+[node name="TableLongMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.0839908, 0, -0.996467, 0, 1, 0, 0.996467, 0, 0.0839908, 15, 0, -3)
+mesh = ExtResource("16_pdtl0")
+
+[node name="ChairMesh2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3881, 0, -3.5)
+mesh = ExtResource("15_pdtl0")
+
+[node name="ChairMesh3" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 14.3828, 0, -2.5)
+mesh = ExtResource("15_pdtl0")
+
+[node name="BookshelfMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2689, 0, -4.98136)
+mesh = ExtResource("17_drp6y")
+
+[node name="CrateMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88911, 0, -4.5994)
+mesh = ExtResource("18_b1vnb")
+
+[node name="CrateMesh2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.807496, 0, 0.589873, 0, 1, 0, -0.589873, 0, 0.807496, 6.89605, 0, -4.5994)
+mesh = ExtResource("18_b1vnb")
 
 [node name="Guides" type="Node3D" parent="."]
 visible = false
@@ -1859,7 +1903,5 @@ mesh = ExtResource("17_kfjjt")
 [editable path="PlatformGroup/StonePlatformEdge5"]
 [editable path="SideWallsAndFloors/Wall_DoorWay"]
 [editable path="SideWallsAndFloors/Wall_DoorWay2"]
-[editable path="Decorations/PropsBasic"]
-[editable path="Decorations/PropsBasic2"]
 [editable path="StonePlatformEdge"]
 [editable path="StonePlatformEdge2"]

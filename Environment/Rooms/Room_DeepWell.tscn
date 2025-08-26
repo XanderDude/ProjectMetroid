@@ -1,20 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfuqhq4krsq54"]
+[gd_scene load_steps=18 format=3 uid="uid://cfuqhq4krsq54"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="1_q8u21"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="2_odwd3"]
+[ext_resource type="PackedScene" uid="uid://dhrd3n0oqqhuk" path="res://Environment/RoomPieces/Wood/WoodDoorWay.tscn" id="4_odwd3"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_poa3r"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="5_3yurf"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="6_0sob7"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="7_0txx1"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_gs60o"]
+[ext_resource type="PackedScene" uid="uid://bfw31nl8kpm6" path="res://Environment/Rooms/WoodHouseSmall.tscn" id="8_c2r2e"]
+[ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="9_c2r2e"]
+[ext_resource type="ArrayMesh" uid="uid://dtdhrpbq0uc63" path="res://Environment/Models/WoodMeshes/woodPlatformMesh.res" id="9_poa3r"]
+[ext_resource type="ArrayMesh" uid="uid://bkuulp8qn8u7q" path="res://Environment/Models/WoodMeshes/woodWallMesh.res" id="10_3yurf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0txx1"]
 resource_local_to_scene = true
 size = Vector3(0.2, 22, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_poa3r"]
+resource_local_to_scene = true
+size = Vector3(0.2, 4, 2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
-size = Vector3(0.2, 22, 2)
+size = Vector3(0.2, 18, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -797,11 +806,30 @@ mesh = ExtResource("2_odwd3")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 22, 0)
 mesh = ExtResource("2_odwd3")
 
+[node name="Wall_DoorWay" parent="." instance=ExtResource("4_odwd3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 20, -2.98023e-08)
+
+[node name="CollisionShape3D2" parent="Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_poa3r")
+
+[node name="WoodWallMesh" parent="Wall_DoorWay" index="3"]
+visible = false
+
+[node name="WoodWallMesh2" parent="Wall_DoorWay" index="4"]
+visible = false
+
 [node name="stoneWallRight" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 0)
 
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("4_poa3r")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="StaticBody3D" parent="stoneWallRight/Wall_DoorWay2" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 13, 0)
+
+[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_q8u21")
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)
@@ -831,19 +859,9 @@ mesh = ExtResource("2_odwd3")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 18, 0)
 mesh = ExtResource("2_odwd3")
 
-[node name="StoneWallMesh10" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 20, 0)
-mesh = ExtResource("2_odwd3")
-
 [node name="StoneWallMesh11" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 22, 0)
 mesh = ExtResource("2_odwd3")
-
-[node name="StaticBody3D" parent="stoneWallRight/Wall_DoorWay2" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 13, 0)
-
-[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_q8u21")
 
 [node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
@@ -1416,10 +1434,92 @@ light_bake_mode = 1
 omni_range = 4.5
 omni_attenuation = -0.5
 
+[node name="WoodHouse" parent="." instance=ExtResource("8_c2r2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 20, -1)
+
+[node name="WoodPlatformMesh9" type="MeshInstance3D" parent="WoodHouse/Ceiling" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+mesh = ExtResource("9_poa3r")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh10" type="MeshInstance3D" parent="WoodHouse/Ceiling" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+mesh = ExtResource("9_poa3r")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh11" type="MeshInstance3D" parent="WoodHouse/Ceiling" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+mesh = ExtResource("9_poa3r")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh12" type="MeshInstance3D" parent="WoodHouse/Ceiling" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+mesh = ExtResource("9_poa3r")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh16" parent="WoodHouse/Walls" index="7"]
+visible = false
+
+[node name="WoodWallMesh17" parent="WoodHouse/Walls" index="8"]
+visible = false
+
+[node name="WoodWallMesh18" parent="WoodHouse/Walls" index="9"]
+visible = false
+
+[node name="WoodWallMesh20" parent="WoodHouse/Walls" index="10"]
+visible = false
+
+[node name="WoodWallMesh19" parent="WoodHouse/Walls" index="11"]
+visible = false
+
+[node name="WoodWallMesh10" parent="WoodHouse/Walls" index="14"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -4, 0, -6)
+
+[node name="WoodWallMesh21" type="MeshInstance3D" parent="WoodHouse/Walls" index="15"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -4, 2, -6)
+mesh = ExtResource("10_3yurf")
+skeleton = NodePath("../..")
+
+[node name="WoodWindowMesh" parent="WoodHouse/Walls" index="21"]
+visible = false
+
+[node name="WoodWindowMesh2" parent="WoodHouse/Walls" index="22"]
+visible = false
+
+[node name="WoodFloorMesh" parent="WoodHouse/Floor" index="0"]
+visible = false
+
+[node name="WoodFloorMesh2" parent="WoodHouse/Floor" index="1"]
+visible = false
+
+[node name="WoodFloorMesh3" parent="WoodHouse/Floor" index="2"]
+visible = false
+
+[node name="WoodFloorMesh4" parent="WoodHouse/Floor" index="3"]
+visible = false
+
+[node name="WoodDoorFrameMesh" parent="WoodHouse/Floor" index="8"]
+visible = false
+
+[node name="WoodDoorMesh" parent="WoodHouse/Floor" index="9"]
+visible = false
+
 [node name="PlatformGroup" type="Node3D" parent="."]
 
 [node name="StonePlatformEdge" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -1)
+
+[node name="StonePlatformEdge4" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 11, -1)
+
+[node name="StonePlatformEdge5" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
+transform = Transform3D(-8.74228e-08, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -1, 8.74228e-08, 4.37114e-08, 0.5, 12, 1)
+
+[node name="StonePlatformEdge7" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
+transform = Transform3D(-8.74228e-08, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -1, 8.74228e-08, 4.37114e-08, -4, 17, 1)
+
+[node name="StonePlatformEdge6" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
+transform = Transform3D(-8.74228e-08, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -1, 8.74228e-08, 4.37114e-08, 0.5, 18, 1)
 
 [node name="StonePlatformEdge2" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7, -1)
@@ -1427,5 +1527,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7, -1)
 [node name="StonePlatformEdge3" parent="PlatformGroup" instance=ExtResource("7_0txx1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -1)
 
+[node name="WoodPlatformEdge" parent="PlatformGroup" instance=ExtResource("9_c2r2e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 20, -1)
+
+[node name="WoodPlatformEdge2" parent="PlatformGroup" instance=ExtResource("9_c2r2e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 20, -1)
+
+[node name="WoodPlatformEdge3" parent="PlatformGroup" instance=ExtResource("9_c2r2e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 20, -1)
+
 [editable path="stoneWallLeft/Wall_DoorWay"]
+[editable path="Wall_DoorWay"]
 [editable path="stoneWallRight/Wall_DoorWay2"]
+[editable path="WoodHouse"]

@@ -1,4 +1,11 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bm4c0ci186op8"]
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://bm4c0ci186op8"]
+
+[sub_resource type="Gradient" id="Gradient_if77r"]
+offsets = PackedFloat32Array(0, 0.243028, 0.681275, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.170213, 0.170213, 0.170213, 1, 0.811233, 0.811233, 0.811233, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k51wu"]
+gradient = SubResource("Gradient_if77r")
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_macrl"]
 turbidity = 1.0
@@ -23,9 +30,12 @@ tonemap_white = 1.25
 ssao_enabled = true
 ssao_radius = 1.69
 ssao_intensity = 1.54
-glow_intensity = 0.5
-glow_bloom = 0.2
-glow_hdr_threshold = 0.9
+glow_enabled = true
+glow_levels/1 = 0.44
+glow_intensity = 1.29
+glow_strength = 0.65
+glow_bloom = 0.23
+glow_blend_mode = 1
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
@@ -35,3 +45,8 @@ fog_density = 0.3286
 fog_sky_affect = 0.31
 fog_depth_curve = 2.46229
 fog_depth_end = 40.0
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.05
+adjustment_saturation = 1.15
+adjustment_color_correction = SubResource("GradientTexture1D_k51wu")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bdc0p7x0rwiqp"
-path="res://.godot/imported/PropsLights_Meshes.fbx-8d976b0af5e55c43c3b75483daf48914.scn"
+uid="uid://p8mimslbmkkm"
+path="res://.godot/imported/PropsBasic_Meshes.fbx-78fd18667b7e2656fb1e5f0c723fbb5c.scn"
 
 [deps]
 
-source_file="res://Environment/Models/PropsLights_Meshes.fbx"
-dest_files=["res://.godot/imported/PropsLights_Meshes.fbx-8d976b0af5e55c43c3b75483daf48914.scn"]
+source_file="res://Environment/Models/PropsBasic_Meshes.fbx"
+dest_files=["res://.godot/imported/PropsBasic_Meshes.fbx-78fd18667b7e2656fb1e5f0c723fbb5c.scn"]
 
 [params]
 
@@ -20,13 +20,13 @@ nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=false
+meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=true
 animation/remove_immutable_tracks=true
@@ -40,69 +40,45 @@ _subresources={
 }
 },
 "meshes": {
-"cande1": {
+"Barrel": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/CandleSingle.res"
+"save_to_file/path": "res://Environment/Models/PropsBasicMeshes/barrelMesh.res"
 },
-"candleTriple_Stand": {
+"BarrelWithRing": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleTripleStandMesh.res"
+"save_to_file/path": "res://Environment/Models/PropsBasicMeshes/barrelHookMesh.res"
 },
-"candleTriple_Wall": {
+"Box": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleTripleWallMesh.res"
+"save_to_file/path": "res://Environment/Models/PropsBasicMeshes/crateMesh.res"
 },
-"chainLong": {
+"Haybale": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/chainLongMesh.res"
+"save_to_file/path": "res://Environment/Models/PropsBasicMeshes/haybaleMesh.res"
 },
-"chainShort": {
+"Ladder": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "uid://bnrrq8ugaq0to"
-},
-"chandelierFrameShape": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/chandelierMesh.res"
-},
-"lanternLit": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": false,
-"save_to_file/path": "uid://bn08oh3s1tpve"
-},
-"litMesh": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "uid://db2cf80ojcx60"
+"save_to_file/path": "res://Environment/Models/PropsBasicMeshes/ladderMesh.res"
 }
 }
 }
