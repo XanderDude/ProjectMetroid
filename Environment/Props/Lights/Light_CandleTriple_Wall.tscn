@@ -1,19 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhpj2fjcx3qu3"]
+[gd_scene load_steps=4 format=3 uid="uid://dhpj2fjcx3qu3"]
 
-[ext_resource type="PackedScene" uid="uid://my6fnpbfhrmt" path="res://Environment/Props/Models/candleTriple_Wall.fbx" id="1_msrbx"]
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_3e8l2"]
+[ext_resource type="ArrayMesh" uid="uid://cm2vhaia7fu0x" path="res://Environment/Models/PropLightMeshes/candleTripleWallMesh.res" id="2_4y7ej"]
+[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_mcwhn"]
 
-[node name="CandleTriple" type="Node3D"]
-
-[node name="candleTriple_Wall" parent="." instance=ExtResource("1_msrbx")]
+[node name="Light_CandleTriple_Wall" type="Node3D"]
 
 [node name="candleLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00984955, 1.54921, 0.333808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00984955, 2.24992, 0.333808)
 light_color = Color(0.94902, 0.768627, 0.137255, 1)
-light_energy = 0.851
 light_indirect_energy = 0.252
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 12.186
-omni_attenuation = 0.346
+omni_range = 8.0
 script = ExtResource("2_3e8l2")
+
+[node name="CandleTripleWallMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = ExtResource("2_4y7ej")
+
+[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleTripleWallMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.334687)
+mesh = ExtResource("3_mcwhn")
+skeleton = NodePath("../..")
+
+[node name="CandleFlameMesh2" type="MeshInstance3D" parent="CandleTripleWallMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200304, 0.5, 0.334687)
+mesh = ExtResource("3_mcwhn")
+skeleton = NodePath("../..")
+
+[node name="CandleFlameMesh3" type="MeshInstance3D" parent="CandleTripleWallMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, 0.335)
+mesh = ExtResource("3_mcwhn")
+skeleton = NodePath("../..")

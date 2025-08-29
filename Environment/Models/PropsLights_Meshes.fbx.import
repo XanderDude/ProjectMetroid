@@ -40,13 +40,37 @@ _subresources={
 }
 },
 "meshes": {
-"cande1": {
+"candleFlame": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropLightMeshes/CandleSingle.res"
+"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleFlameMesh.res"
+},
+"candleSingle": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleStickMesh.res"
+},
+"candleSingle_Plate": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleSingle_PlateMesh.res"
+},
+"candleTriple_Plate": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleTriple_PlateMesh.res"
 },
 "candleTriple_Stand": {
 "generate/lightmap_uv": 0,
@@ -63,6 +87,14 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Environment/Models/PropLightMeshes/candleTripleWallMesh.res"
+},
+"candlesTriple": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropLightMeshes/candleSticksMesh.res"
 },
 "chainLong": {
 "generate/lightmap_uv": 0,
@@ -87,22 +119,6 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Environment/Models/PropLightMeshes/chandelierMesh.res"
-},
-"lanternLit": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": false,
-"save_to_file/path": "uid://bn08oh3s1tpve"
-},
-"litMesh": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "uid://db2cf80ojcx60"
 }
 }
 }

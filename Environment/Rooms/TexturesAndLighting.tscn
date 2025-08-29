@@ -1,25 +1,21 @@
-[gd_scene load_steps=38 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=36 format=4 uid="uid://bj04crs2qg4xo"]
 
-[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
-[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_ji5m0"]
-[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
-[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_6d3tk"]
-[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="6_2o7o6"]
-[ext_resource type="PackedScene" uid="uid://dfkolgcfar5w3" path="res://Environment/Rooms/Room_SaveRoom.tscn" id="6_d1s1x"]
-[ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="10_iqjbu"]
-[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="11_alqiq"]
-[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="11_vlgid"]
-[ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="12_vlgid"]
-[ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="13_8g18c"]
-[ext_resource type="VoxelGIData" uid="uid://cnr8x1xpy8fko" path="res://Environment/Scenes/TexturesAndLighting.VoxelGI_data.res" id="13_8iu05"]
-[ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="13_f1y8r"]
-[ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Rooms/roomHallway_Small.tscn" id="14_8okvn"]
-[ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="17_f1y8r"]
-[ext_resource type="PackedScene" uid="uid://cfuqhq4krsq54" path="res://Environment/Rooms/Room_DeepWell.tscn" id="19_a53um"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
+[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
+[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_w5r6f"]
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="4_v1d21"]
+[ext_resource type="VoxelGIData" uid="uid://cnr8x1xpy8fko" path="res://Environment/Scenes/TexturesAndLighting.VoxelGI_data.res" id="5_x6fto"]
+[ext_resource type="PackedScene" uid="uid://dfkolgcfar5w3" path="res://Environment/Rooms/Room_SaveRoom.tscn" id="6_tw3t2"]
+[ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Rooms/roomHallway_Small.tscn" id="7_olupi"]
+[ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="8_cuncf"]
+[ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="9_g1r6t"]
+[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="10_bgal7"]
+[ext_resource type="PackedScene" uid="uid://cfuqhq4krsq54" path="res://Environment/Rooms/Room_DeepWell.tscn" id="11_bcc5k"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="12_0pxb8"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="13_clrjg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
-shader = ExtResource("1_nsplm")
+shader = ExtResource("2_ypo2y")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 16
@@ -53,13 +49,12 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uc2gq"]
-resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vlgid"]
+size = Vector3(40, 0.2, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8iu05"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_v1d21"]
 resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
+size = Vector3(2, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_arljb"]
 resource_local_to_scene = true
@@ -93,8 +88,6 @@ size = Vector3(0.2, 8, 2)
 resource_local_to_scene = true
 size = Vector3(0.2, 8, 2)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_iqjbu"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_alqiq"]
 resource_local_to_scene = true
 size = Vector3(1, 6, 0.5)
@@ -103,23 +96,36 @@ size = Vector3(1, 6, 0.5)
 resource_local_to_scene = true
 size = Vector3(1, 6, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_d1s1x"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uc2gq"]
 resource_local_to_scene = true
-size = Vector3(0.2, 24, 2)
+size = Vector3(0.2, 2, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8g18c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8iu05"]
+resource_local_to_scene = true
+size = Vector3(0.2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dhbn4"]
+resource_local_to_scene = true
+size = Vector3(0.2, 22, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypo2y"]
 resource_local_to_scene = true
 size = Vector3(0.2, 4, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b5liq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5r6f"]
 resource_local_to_scene = true
 size = Vector3(0.2, 18, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vlgid"]
-size = Vector3(40, 0.2, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6fto"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tw3t2"]
+resource_local_to_scene = true
+size = Vector3(2, 6, 2)
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
-script = ExtResource("1_ji5m0")
+script = ExtResource("1_dhbn4")
 player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -136,7 +142,7 @@ anisotropic_filtering_level = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_6d3tk")]
+[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_w5r6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
@@ -153,12 +159,12 @@ directional_shadow_split_2 = 0.4
 directional_shadow_pancake_size = 2.3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = ExtResource("1_28ia1")
+environment = ExtResource("4_v1d21")
 
 [node name="VoxelGI_SaveRoom" type="VoxelGI" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52298, 3, 0)
 size = Vector3(19.8169, 8, 12)
-data = ExtResource("13_8iu05")
+data = ExtResource("5_x6fto")
 
 [node name="VoxelGI_Well" type="VoxelGI" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.023, 12, 0)
@@ -172,10 +178,123 @@ data = SubResource("VoxelGIData_8g18c")
 
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_d1s1x")]
+[node name="CatchAllCollider" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -0.1, 0)
+collision_layer = 2
+collision_mask = 2
 
-[node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("14_8okvn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/CatchAllCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
+shape = SubResource("BoxShape3D_vlgid")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/CatchAllCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 0)
+shape = SubResource("BoxShape3D_vlgid")
+
+[node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("8_cuncf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_v1d21")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge/StaticBody3D" index="1"]
+shape = SubResource("BoxShape3D_v1d21")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_arljb")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_fakud")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_q155s")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_cu406")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_cu406")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_c1sjx")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_1crip")
+
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_a53um")
+
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ibps2")
+
+[node name="LightLantern2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="138" instance=ExtResource("9_g1r6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 4, 0)
+
+[node name="LightLantern" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="139" instance=ExtResource("9_g1r6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4, 0)
+
+[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="8"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.25768, -3.19821, -0.5)
+
+[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_alqiq")
+
+[node name="StonePlatformHalfMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, 0, 1, 0, 0.25, 1)
+
+[node name="StoneFloorHalfMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, 0, 1, 0, 0.25, -1)
+
+[node name="StoneFloorHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, 0, 1, 0, 0.25, -3)
+
+[node name="StoneCeilingHalfMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, 0, 1, 0, -0.25, -1)
+
+[node name="StoneCeilingHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, 0, 1, 0, -0.25, -3)
+
+[node name="StonePlatformEdgeMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="5"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1.67037e-22, 1, -4.23516e-22, 1, 0, -4.37114e-08, 0, 0.25, 1)
+
+[node name="StonePlatformEdgeMesh2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="6"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1.67037e-22, 1, -4.23516e-22, 1, 0, -4.37114e-08, 0, 0.25, -1)
+
+[node name="StonePlatformEdgeMesh3" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="7"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1.67037e-22, 1, -4.23516e-22, 1, 0, -4.37114e-08, 0, 0.25, -3)
+
+[node name="StonePlatformEdgeMesh4" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="8"]
+transform = Transform3D(1.31134e-07, 0, 1, 3.34075e-22, 1, 2.11758e-22, -1, 0, 1.31134e-07, 1, 0.25, 3)
+
+[node name="StonePlatformEdgeMesh5" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="9"]
+transform = Transform3D(1.31134e-07, 0, 1, 3.34075e-22, 1, 2.11758e-22, -1, 0, 1.31134e-07, 1, 0.25, 1)
+
+[node name="StonePlatformEdgeMesh6" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge/Meshes" index="10"]
+transform = Transform3D(1.31134e-07, 0, 1, 3.34075e-22, 1, 2.11758e-22, -1, 0, 1.31134e-07, 1, 0.25, -1)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_iqjbu")
+
+[node name="StoneCeilingHalfMesh3" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="25"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, -0.0080961, -1.1345)
+
+[node name="StoneCeilingHalfMesh4" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="26"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, -0.0080961, -1.1345)
+
+[node name="StoneCeilingHalfMesh5" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="29"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, -0.0080961, 0.117595)
+
+[node name="StoneCeilingHalfMesh6" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="30"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, -0.0080961, 0.117595)
+
+[node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_tw3t2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_uc2gq")
@@ -184,17 +303,7 @@ shape = SubResource("BoxShape3D_uc2gq")
 shape = SubResource("BoxShape3D_8iu05")
 
 [node name="stoneWall" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls" index="2"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 0, 2)
 visible = false
-
-[node name="stoneWall2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls" index="3"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 2, 2)
-
-[node name="stoneWall3" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls" index="4"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 2, -2)
-
-[node name="stoneWall4" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls" index="5"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 0, -2)
 
 [node name="stonePillar2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls" index="7"]
 visible = false
@@ -223,349 +332,82 @@ cast_shadow = 2
 [node name="StoneWallMesh8" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/Backwall" index="7"]
 cast_shadow = 2
 
-[node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall" instance=ExtResource("17_f1y8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
-
-[node name="FloorCollider" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.7358, -0.5)
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_arljb")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_fakud")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge6/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_q155s")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge14/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_cu406")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge21/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_cu406")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge9/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_c1sjx")
-
-[node name="StonePlatformEdge12" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup" index="12"]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15.0145, 5, -1)
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_1crip")
-
-[node name="stoneStairs1x1" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge16" index="2"]
-transform = Transform3D(-4.37114e-08, 0, 0.963501, 0, 1, 0, -1, 0, -4.2116e-08, 6.5, -0.993626, -4)
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/SideWallsAndFloors/Wall_DoorWay/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_a53um")
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/SideWallsAndFloors/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_ibps2")
-
-[node name="StoneWallMesh87" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="73"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, 0)
-
-[node name="StoneWallMesh88" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="74"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, -2)
-
-[node name="StoneWallMesh89" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="75"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, -4)
-
-[node name="StoneWallMesh90" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="76"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -4, 0)
-
-[node name="StoneWallMesh93" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="77"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, 2)
-
-[node name="StoneWallMesh94" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="78"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -4, 2)
-
-[node name="StoneWallMesh91" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="79"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -4, -2)
-
-[node name="StoneWallMesh92" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="80"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -4, -4)
-
-[node name="StoneWallMesh95" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="81"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, -2)
-
-[node name="StoneWallMesh96" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="82"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, 0)
-
-[node name="StoneWallMesh97" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="83"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, 2)
-
-[node name="StoneWallMesh98" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="84"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, -2)
-
-[node name="StoneWallMesh99" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="85"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, -4)
-
-[node name="StoneWallMesh100" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="86"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, -4)
-
-[node name="StoneWallMesh101" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="87"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, 0)
-
-[node name="StoneWallMesh102" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="88"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, 2)
-
-[node name="LightLantern2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="138" instance=ExtResource("10_iqjbu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 4, 0)
-
-[node name="candleLight1" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall/LightLantern2/ChainShortMesh/LanternMesh" index="0"]
-light_energy = 0.953
-light_specular = 0.0
-omni_range = 4.603
-omni_attenuation = 0.255
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall/LightLantern2/ChainShortMesh" index="1"]
-transform = Transform3D(9.36, 0, 0, 0, 0.6, 0, 0, 0, 5.51, 4, -5.09306, 1)
-mesh = SubResource("CapsuleMesh_iqjbu")
-
-[node name="LightLantern" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall" index="139" instance=ExtResource("10_iqjbu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4, 0)
-
-[node name="CandleTriple4" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/Decorations" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -3.4271, -4)
-
-[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="8"]
-transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -7.5, -2, -0.5)
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.25, -1)
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35189e-23, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_alqiq")
-
-[node name="StonePlatformEdge2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="9"]
-transform = Transform3D(-8.74228e-08, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -1, 8.74228e-08, 4.37114e-08, -2.5, -2, 0.5)
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge2" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.25, -1)
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge2/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.23516e-22, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_iqjbu")
-
-[node name="StonePlatformEdge3" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="10"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, -3.5, -0.5)
-
-[node name="StoneCeilingHalfMesh3" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="25"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, -0.0080961, -1.1345)
-
-[node name="StoneCeilingHalfMesh4" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="26"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, -0.0080961, -1.1345)
-
-[node name="StoneCeilingHalfMesh7" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="27"]
-transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 5, 0, -0.134498)
-
-[node name="StoneCeilingHalfMesh8" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="28"]
-transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 3, 0, -0.134498)
-
-[node name="StoneCeilingHalfMesh5" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="29"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, -0.0080961, 0.117595)
-
-[node name="StoneCeilingHalfMesh6" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1" index="30"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, -0.0080961, 0.117595)
-
 [node name="BG" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 16, -16, -15)
-material_override = ExtResource("11_vlgid")
+material_override = ExtResource("10_bgal7")
 size = Vector3(1, 5, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20, -16, -25)
-material_override = ExtResource("11_vlgid")
+material_override = ExtResource("10_bgal7")
 size = Vector3(1, 5, 1)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1, -13, -25)
-material_override = ExtResource("11_vlgid")
+material_override = ExtResource("10_bgal7")
 size = Vector3(1, 5, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(80.64, 0, 0, 0, 22, 0, 0, 0, 67.5, -5, -71, -15)
-material_override = ExtResource("11_vlgid")
+material_override = ExtResource("10_bgal7")
 use_collision = true
 size = Vector3(1, 5, 1)
 
-[node name="DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("19_a53um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
+[node name="Room_DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_bcc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 0)
 
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallLeft/Wall_DoorWay/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("BoxShape3D_d1s1x")
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_dhbn4")
 
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/Wall_DoorWay/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_8g18c")
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ypo2y")
 
-[node name="ReinforcedDoorMesh" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/Wall_DoorWay2" index="1"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.2, 0, 1)
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_w5r6f")
 
-[node name="ReinforcedDoorMesh2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/Wall_DoorWay2" index="2"]
-visible = false
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_x6fto")
 
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_b5liq")
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/StonePillar/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_tw3t2")
 
-[node name="ChairMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/Wall_DoorWay2" index="14"]
-transform = Transform3D(-1, 0, 8.74232e-08, 0, 1, 0, -8.74232e-08, 0, -1, 2, 0, -1)
-mesh = ExtResource("13_f1y8r")
-
-[node name="StoneWallMesh" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="1"]
-visible = false
-
-[node name="StoneWallMesh2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="2"]
-visible = false
-
-[node name="StoneWallMesh49" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="4"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 1)
-mesh = ExtResource("11_alqiq")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh50" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="5"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 2, 1)
-mesh = ExtResource("11_alqiq")
-skeleton = NodePath("")
-
-[node name="StonePillarMesh4" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="15"]
-visible = false
-
-[node name="stoneStairs2x2" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="63" instance=ExtResource("12_vlgid")]
-transform = Transform3D(1, 7.64274e-15, -1.74846e-07, -7.64274e-15, -1, -8.74228e-08, -1.74846e-07, 8.74228e-08, -1, -1.04127, 4, 9.10311e-08)
-
-[node name="stoneStairs2x3" parent="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight" index="64" instance=ExtResource("12_vlgid")]
-transform = Transform3D(-1, -1.69407e-21, 8.74228e-08, -7.64274e-15, -1, -8.74228e-08, 8.74228e-08, -8.74228e-08, 1, -1.04127, 4, -0.0126075)
-
-[node name="StoneFloorMesh21" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/DeepWell/Floor2" index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
-mesh = ExtResource("13_8g18c")
-skeleton = NodePath("../..")
-
-[node name="WoodPlatformMesh9" parent="SubViewportContainer/SubViewport/Environment/DeepWell/WoodHouse/Ceiling" index="4"]
-visible = false
-
-[node name="WoodPlatformMesh10" parent="SubViewportContainer/SubViewport/Environment/DeepWell/WoodHouse/Ceiling" index="5"]
-visible = false
-
-[node name="WoodPlatformMesh11" parent="SubViewportContainer/SubViewport/Environment/DeepWell/WoodHouse/Ceiling" index="6"]
-visible = false
-
-[node name="WoodPlatformMesh12" parent="SubViewportContainer/SubViewport/Environment/DeepWell/WoodHouse/Ceiling" index="7"]
-visible = false
-
-[node name="CatchAllCollider" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -0.1, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/CatchAllCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
-shape = SubResource("BoxShape3D_vlgid")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/CatchAllCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 0)
-shape = SubResource("BoxShape3D_vlgid")
-
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2o7o6")]
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8668, 0.549017, 0)
 playerMeshPath = NodePath("PlayerMesh")
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178274, 0.895085, 0.0186033)
-bones/0/rotation = Quaternion(0.550579, 0.44524, 0.454849, 0.540126)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.0711802, 0.10504, -0.000520355, 0.991917)
-bones/1/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.035671, 0.0139758, -3.37508e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.188508, 0.00789196, -0.0291277, 0.981608)
-bones/5/position = Vector3(0.0708221, -0.0208942, -7.99361e-16)
-bones/7/position = Vector3(0.0414672, 0.0608677, 0.00538931)
-bones/7/rotation = Quaternion(-0.477669, -0.509831, -0.440615, 0.563706)
-bones/7/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.40014, -0.0353271, 0.914938, 0.0391028)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.513561, 0.575064, -0.453413, 0.447183)
-bones/11/rotation = Quaternion(0.0721265, -0.526953, -0.16068, 0.831445)
-bones/13/rotation = Quaternion(0.00480788, -0.106545, 0.076819, 0.991324)
-bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.17876, 0.0148946, -0.124809, 0.975831)
-bones/14/scale = Vector3(1, 1, 1)
-bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/17/position = Vector3(-0.0714717, 0.0173125, -0.158172)
-bones/17/rotation = Quaternion(0.477449, 0.661101, -0.520647, -0.252814)
-bones/18/rotation = Quaternion(0, 0, 0, 1)
-bones/19/rotation = Quaternion(0, 0, 0, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.998295, -0.00457609, -0.030373, 0.0496357)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.52565, -0.487677, 0.498778, 0.486912)
-bones/22/scale = Vector3(1, 1, 1)
-bones/23/rotation = Quaternion(3.26961e-14, 7.49401e-16, 0, 1)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/25/scale = Vector3(1, 1, 1)
-bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
-
-[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0123477, -0.845706, -0.533506, -0.362871, 0.493384, -0.790504, 0.931757, 0.203355, -0.30079, -0.351516, 1.10266, -0.0209789)
-
-[node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0123477, -0.845706, -0.533506, -0.362871, 0.493384, -0.790504, 0.931757, 0.203355, -0.30079, -0.413981, 1.11808, -0.0141156)
-
-[node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0123477, -0.845706, -0.533506, -0.362871, 0.493384, -0.790504, 0.931757, 0.203355, -0.30079, -0.413981, 1.11808, -0.0141156)
-
-[node name="OmniLight3D" parent="SubViewportContainer/SubViewport/Player" index="7"]
-light_color = Color(0.703808, 0.703808, 0.703808, 1)
-light_energy = 0.25
-omni_range = 6.628
-
-[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
+[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, 25)
 playerPath = NodePath("../Player")
 lookAheadDistance = 1.5
 roomMinX = -25.0
 roomMaxX = 60.0
 roomMaxY = 500.0
 
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/LightLantern2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/StonePlatformEdge2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay2"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge2"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge3"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge6"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge14"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge21"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge9"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/PlatformGroup/StonePlatformEdge5"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/SideWallsAndFloors/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/SideWallsAndFloors/Wall_DoorWay2"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/BackWall/LightLantern2"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/JungleGym1/StonePlatformEdge2"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallLeft/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/Wall_DoorWay2"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell/stoneWallRight/stoneStairs2x3"]
-[editable path="SubViewportContainer/SubViewport/Environment/DeepWell/WoodHouse"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/StonePillar"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Light_Lantern"]

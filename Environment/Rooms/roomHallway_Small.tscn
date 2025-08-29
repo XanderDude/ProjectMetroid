@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="4_ppqkt"]
 [ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="5_gxnrm"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="6_fm40f"]
-[ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleTriple_Plate.tscn" id="6_gxnrm"]
+[ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleSingle_Plate.tscn" id="6_gxnrm"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_fm40f"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="7_ppqkt"]
 

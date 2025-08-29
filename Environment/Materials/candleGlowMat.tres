@@ -1,13 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ce87ffs021alc"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ce87ffs021alc"]
 
-[sub_resource type="Gradient" id="Gradient_40h8f"]
-offsets = PackedFloat32Array(0, 0.345679, 0.510288, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.9, 0, 1, 1, 0.861151, 0, 1, 1, 0.3, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_nlw7w"]
-gradient = SubResource("Gradient_40h8f")
+[ext_resource type="Texture2D" uid="uid://dtcfnkos37d0r" path="res://Environment/Materials/PropsBasic_Albedo.png" id="1_nlw7w"]
 
 [resource]
-emission_enabled = true
-emission_energy_multiplier = 6.0
-emission_texture = SubResource("GradientTexture1D_nlw7w")
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+albedo_texture = ExtResource("1_nlw7w")
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 2
+billboard_keep_scale = true
+point_size = 25.0
+use_particle_trails = true

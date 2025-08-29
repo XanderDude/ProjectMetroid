@@ -1,19 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://c772rw3w84oa1"]
+[gd_scene load_steps=4 format=3 uid="uid://t5tpmrwm71la"]
 
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_r4r1t"]
-[ext_resource type="PackedScene" uid="uid://csf7ko488w7f8" path="res://Environment/Props/Models/candleSingle_Plate.fbx" id="2_rctha"]
+[ext_resource type="ArrayMesh" uid="uid://wu3mp41wl4vh" path="res://Environment/Models/PropLightMeshes/candleSingle_PlateMesh.res" id="2_rm36r"]
+[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_tghhl"]
 
-[node name="CandleTriple" type="Node3D"]
-
-[node name="candleSingle_Plate" parent="." instance=ExtResource("2_rctha")]
+[node name="Light_CandleSingle_Plate" type="Node3D"]
 
 [node name="candleLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00984955, 0.578816, -0.0097506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759075, 0)
 light_color = Color(0.94902, 0.768627, 0.137255, 1)
-light_energy = 0.851
+light_energy = 0.8
 light_indirect_energy = 0.252
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 12.186
-omni_attenuation = 0.346
+omni_range = 8.0
 script = ExtResource("2_r4r1t")
+
+[node name="CandleSinglePlateMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_rm36r")
+
+[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleSinglePlateMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518441, 0)
+mesh = ExtResource("3_tghhl")
+skeleton = NodePath("../..")

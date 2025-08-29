@@ -1,91 +1,92 @@
-[gd_scene load_steps=7 format=3 uid="uid://c51ajww7vd1ce"]
+[gd_scene load_steps=6 format=3 uid="uid://c51ajww7vd1ce"]
 
 [ext_resource type="ArrayMesh" uid="uid://bev2wemk3lno2" path="res://Environment/Models/PropLightMeshes/chandelierMesh.res" id="1_t0u80"]
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_agu17"]
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="2_sct2e"]
-[ext_resource type="Material" uid="uid://ce87ffs021alc" path="res://Environment/Materials/candleGlowMat.tres" id="4_6lv60"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_6lv60"]
-material = ExtResource("4_6lv60")
+[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_6lv60"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sct2e"]
 size = Vector3(1.5, 0.15, 1)
 
-[node name="LightChandelier" type="Node3D"]
+[node name="Light_Chandelier" type="Node3D"]
+
+[node name="ChainLongMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = ExtResource("2_sct2e")
 
 [node name="ChandelierMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 mesh = ExtResource("1_t0u80")
 
 [node name="candleLight1" type="OmniLight3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.421, -0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.45521, 0)
 light_color = Color(0.998006, 0.926767, 0.72727, 1)
-light_energy = 0.5
 light_indirect_energy = 0.252
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 8.0
-omni_attenuation = 0.15
 script = ExtResource("2_agu17")
 
 [node name="candleLight2" type="OmniLight3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.421, -0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.45521, 0)
 light_color = Color(0.998006, 0.926767, 0.72727, 1)
-light_energy = 0.5
 light_indirect_energy = 0.252
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 8.0
-omni_attenuation = 0.15
 script = ExtResource("2_agu17")
 
 [node name="flame" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, -0.702978, -0.540473, 0)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.7, -0.55, 0)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame2" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, 0.694245, -0.540473, 0)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.7, -0.55, 0)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame3" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, 0.493686, -0.540473, 0.513036)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.5, -0.55, 0.5)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame4" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, -0.501676, -0.540473, 0.509408)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, -0.5, -0.55, 0.5)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame5" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, -0.00167572, -0.540473, 0.709465)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, 0.7)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame6" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, -0.00167572, -0.540473, -0.683692)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, -0.7)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame7" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, 0.497959, -0.540473, -0.495955)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.5, -0.55, -0.5)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame8" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(-4.6592e-09, -0.0673199, 5.47837e-08, 0.10659, -2.94265e-09, -4.37114e-08, 4.6592e-09, 3.68804e-09, 0.999999, -0.503354, -0.540473, -0.484974)
-mesh = SubResource("QuadMesh_6lv60")
-skeleton = NodePath("../../StaticBody3D/CollisionShape3D")
+transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, -0.5, -0.55, -0.5)
+cast_shadow = 0
+mesh = ExtResource("3_6lv60")
+skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
-[node name="ChainLongMesh" type="MeshInstance3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="ChandelierMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = ExtResource("2_sct2e")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChandelierMesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_sct2e")
 debug_fill = false

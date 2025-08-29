@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_4tx1l"]
 [ext_resource type="PackedScene" uid="uid://cj5kcxxjw1b1d" path="res://Environment/RoomPieces/Stone/Stone1x1Stairs.tscn" id="9_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://cxmk0c6oino4b" path="res://Environment/Models/StoneMeshes/stoneWindowMesh.res" id="10_4tx1l"]
-[ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleTriple_Plate.tscn" id="13_4tx1l"]
+[ext_resource type="PackedScene" uid="uid://t5tpmrwm71la" path="res://Environment/Props/Lights/Light_CandleSingle_Plate.tscn" id="13_4tx1l"]
 [ext_resource type="Texture2D" uid="uid://do8sobgqmye3g" path="res://Environment/Materials/MeasurementBox.jpg" id="13_kc0ob"]
 [ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="14_c52wn"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="15_kc1it"]
@@ -74,7 +74,7 @@ uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85ew7"]
 resource_local_to_scene = true
-size = Vector3(1, 6, 0.5)
+size = Vector3(1, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u02m0"]
 resource_local_to_scene = true
@@ -1804,14 +1804,17 @@ material_override = SubResource("StandardMaterial3D_4tx1l")
 material = SubResource("StandardMaterial3D_kc1it")
 
 [node name="StonePlatformEdge" parent="." instance=ExtResource("16_7fiwc")]
-transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -7.5, -2, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.5, -2, -0.5)
 
 [node name="StaticBody3D" parent="StonePlatformEdge" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.25, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0.25)
 
 [node name="CollisionShape3D" parent="StonePlatformEdge/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.35188e-23, 0, -8.35189e-23, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_85ew7")
+
+[node name="Meshes" parent="StonePlatformEdge" index="1"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="StonePlatformEdge2" parent="." instance=ExtResource("16_7fiwc")]
 transform = Transform3D(-8.74228e-08, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -1, 8.74228e-08, 4.37114e-08, -2.5, -2, 0.5)

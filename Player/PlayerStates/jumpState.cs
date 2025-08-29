@@ -33,9 +33,12 @@ public partial class jumpState : State
 		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
 		{
 			KinematicCollision3D collision = player.GetSlideCollision(i);
-			Node3D collider = collision.GetCollider() as Node3D;
-			var transform = GetNode<Node3D>(collider.GetParent().GetPath()).Transform; //reference Transform3D for local scale
-			var scaleY = new Vector3(transform.Basis.X.Y, transform.Basis.Y.Y, transform.Basis.Z.Y).Length(); //local y scale derived from scale and rotation matrix
+			StaticBody3D collider = collision.GetCollider() as StaticBody3D;
+			var boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
+			//var scaleY = boxShape.Size.Y;
+			var scaleY = new Vector3(collider.Transform.Basis.X.Y * boxShape.Size.Y,
+			collider.Transform.Basis.Y.Y  * boxShape.Size.Y,
+			collider.Transform.Basis.Z.Y  * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
 			float playerHeight = player.GlobalPosition.Y + playerTop;
 			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
 			if (Mathf.Abs(playerHeight - meshTop) < 0.1f) return true;
