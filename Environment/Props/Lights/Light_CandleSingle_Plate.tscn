@@ -13,6 +13,7 @@ light_energy = 0.8
 light_indirect_energy = 0.252
 light_bake_mode = 1
 shadow_enabled = true
+shadow_blur = 3.0
 omni_range = 8.0
 script = ExtResource("2_r4r1t")
 

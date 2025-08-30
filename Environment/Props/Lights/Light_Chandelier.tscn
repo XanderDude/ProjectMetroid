@@ -18,22 +18,30 @@ mesh = ExtResource("2_sct2e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 mesh = ExtResource("1_t0u80")
 
-[node name="candleLight1" type="OmniLight3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.45521, 0)
-light_color = Color(0.998006, 0.926767, 0.72727, 1)
-light_indirect_energy = 0.252
+[node name="SpotLight3D" type="SpotLight3D" parent="ChandelierMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.425508, 0)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_energy = 1.2
+light_indirect_energy = 1.5
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 8.0
-script = ExtResource("2_agu17")
+shadow_caster_mask = 4294967293
+spot_attenuation = 0.2
+spot_angle = 103.9
+spot_angle_attenuation = 0.258817
 
-[node name="candleLight2" type="OmniLight3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.45521, 0)
-light_color = Color(0.998006, 0.926767, 0.72727, 1)
-light_indirect_energy = 0.252
+[node name="candleLight1" type="OmniLight3D" parent="ChandelierMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.925915, 0)
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_indirect_energy = 4.0
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 8.0
+shadow_caster_mask = 4294967293
+omni_range = 4.0
+omni_attenuation = 0.5
 script = ExtResource("2_agu17")
 
 [node name="flame" type="MeshInstance3D" parent="ChandelierMesh"]
@@ -64,7 +72,6 @@ skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, 0.7)
 cast_shadow = 0
 mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
 
 [node name="flame6" type="MeshInstance3D" parent="ChandelierMesh"]
 transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, -0.7)

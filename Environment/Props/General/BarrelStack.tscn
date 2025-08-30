@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddufwddp2dik1"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="1_y6lj4"]
+
+[node name="BarrelStack" type="Node3D"]
+
+[node name="BarrelMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.942589, 0, -0.333955, 0, 1, 0, 0.333955, 0, 0.942589, -0.391447, 0, 0.302178)
+mesh = ExtResource("1_y6lj4")
+
+[node name="BarrelMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.969663, 0, 0.244444, 0, 1, 0, -0.244444, 0, 0.969663, 0.402012, 0, 0.24848)
+mesh = ExtResource("1_y6lj4")
+
+[node name="BarrelMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.699401, 0, 0.714729, 0, 1, 0, -0.714729, 0, 0.699401, -0.0522452, 0, -0.457295)
+mesh = ExtResource("1_y6lj4")
+
+[node name="BarrelMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.870321, 0, 0.492484, 0, 1, 0, -0.492484, 0, 0.870321, 0, 0.899015, 0)
+mesh = ExtResource("1_y6lj4")

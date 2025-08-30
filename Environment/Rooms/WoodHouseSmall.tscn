@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfw31nl8kpm6"]
+[gd_scene load_steps=15 format=3 uid="uid://bfw31nl8kpm6"]
 
 [ext_resource type="ArrayMesh" uid="uid://dtdhrpbq0uc63" path="res://Environment/Models/WoodMeshes/woodPlatformMesh.res" id="1_djaya"]
 [ext_resource type="ArrayMesh" uid="uid://ta34kj56rh64" path="res://Environment/Models/WoodMeshes/woodPlatformEdgeMesh.res" id="2_jl3b1"]
@@ -12,9 +12,8 @@
 [ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="10_rggpv"]
 [ext_resource type="ArrayMesh" uid="uid://cekdpurcpayac" path="res://Environment/Models/PropHouseMeshes/bookshelfMesh.res" id="11_co2lr"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="12_d6rhr"]
-[ext_resource type="ArrayMesh" uid="uid://bm8t8x2nmpbmw" path="res://Environment/Models/PropHouseMeshes/tableLongMesh.res" id="13_a5gog"]
+[ext_resource type="PackedScene" uid="uid://bj348herb58si" path="res://Environment/Props/General/LargeTableSet.tscn" id="13_blxny"]
 [ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="14_blxny"]
-[ext_resource type="ArrayMesh" uid="uid://ci2sw6t7kpk66" path="res://Environment/Models/PropLightMeshes/candleTripleStandMesh.res" id="15_rggpv"]
 
 [node name="WoodHouse" type="Node3D"]
 
@@ -255,64 +254,44 @@ mesh = ExtResource("7_djaya")
 [node name="GrandfatherClockMesh" type="MeshInstance3D" parent="Decorations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 mesh = ExtResource("8_q73ww")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
 [node name="DeskMesh" type="MeshInstance3D" parent="Decorations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257078, 0, -2)
 mesh = ExtResource("9_blxny")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
 [node name="ChairMesh" type="MeshInstance3D" parent="Decorations"]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.00057295, 0, -1.33003)
 mesh = ExtResource("10_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
 [node name="BookshelfMesh" type="MeshInstance3D" parent="Decorations"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3.95883, 0, -0.477325)
 mesh = ExtResource("11_co2lr")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
 [node name="BookshelfMesh2" type="MeshInstance3D" parent="Decorations"]
 transform = Transform3D(1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, 1, -3.5, 0, -1.97733)
 mesh = ExtResource("11_co2lr")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
-
-[node name="TableLongMesh" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(-0.059951, 0, 0.998201, 0, 1, 0, -0.998201, 0, -0.059951, 3.39363, 0, 0.301303)
-mesh = ExtResource("13_a5gog")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
-
-[node name="ChairMesh2" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.14781, 0, -0.813346)
-mesh = ExtResource("10_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
-
-[node name="ChairMesh3" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69219, 0, -0.373892)
-mesh = ExtResource("10_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
-
-[node name="ChairMesh4" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(0.919876, 0, 0.392209, 0, 1, 0, -0.392209, 0, 0.919876, 2.76408, -1.19209e-07, 0.728597)
-mesh = ExtResource("10_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
-
-[node name="ChairMesh5" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(-0.329295, 0, 0.944227, 0, 1, 0, -0.944227, 0, -0.329295, 3.39902, -2.38419e-07, 1.44109)
-mesh = ExtResource("10_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
 [node name="BarrelMesh" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.61518)
 mesh = ExtResource("14_blxny")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
 
-[node name="CandleTripleStandMesh" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.73161, 0.845892, 0.412676)
-mesh = ExtResource("15_rggpv")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/WoodHouse")
+[node name="LargeTableSet" parent="Decorations" instance=ExtResource("13_blxny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43406, 0, 0.389945)
+
+[node name="ChairMesh2" parent="Decorations/LargeTableSet" index="2"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, -1.12442)
+
+[node name="ChairMesh6" parent="Decorations/LargeTableSet" index="5"]
+visible = false
+
+[node name="ChairMesh7" parent="Decorations/LargeTableSet" index="6"]
+visible = false
+
+[node name="ChairMesh5" parent="Decorations/LargeTableSet" index="7"]
+transform = Transform3D(-0.364259, 0, 0.931298, 0, 1, 0, -0.931298, 0, -0.364259, 0.0652568, -2.38419e-07, 1.1716)
 
 [node name="LightLantern" parent="." instance=ExtResource("12_d6rhr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, 0)
 
+[editable path="Decorations/LargeTableSet"]
 [editable path="LightLantern"]

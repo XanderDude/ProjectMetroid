@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6u0n7fc4bxj"]
+
+[ext_resource type="ArrayMesh" uid="uid://b312kef8i2oth" path="res://Environment/Models/PropHouseMeshes/tableSmallMesh.res" id="1_tgvyk"]
+[ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="2_wkkjw"]
+[ext_resource type="ArrayMesh" uid="uid://bo32autu7geu" path="res://Environment/Models/PropLightMeshes/candleStickMesh.res" id="4_ift4v"]
+[ext_resource type="ArrayMesh" uid="uid://r0fexw8e5max" path="res://Environment/Models/PropHouseMeshes/plateMesh.res" id="4_wkkjw"]
+[ext_resource type="ArrayMesh" uid="uid://b16le8ja86a1w" path="res://Environment/Models/PropHouseMeshes/mugMesh.res" id="5_ift4v"]
+
+[node name="SmallTableSet" type="Node3D"]
+
+[node name="TableSmallMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999954, 0, -0.0095468, 0, 1, 0, 0.0095468, 0, 0.999954, -0.00290175, -0.000237927, 0.00819776)
+mesh = ExtResource("1_tgvyk")
+
+[node name="ChairMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.995974, 0, -0.0896419, 0, 1, 0, 0.0896419, 0, 0.995974, -0.530936, 0.00107062, -0.000368595)
+mesh = ExtResource("2_wkkjw")
+
+[node name="ChairMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.885339, 0, -0.464945, 0, 1, 0, 0.464945, 0, -0.885339, 0.685805, -0.00364266, 0.107933)
+mesh = ExtResource("2_wkkjw")
+
+[node name="PlateMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.00810669, 0, -0.499934, 0, 1, 0, 0.499934, 0, 0.00810669, 0.30947, 0.847443, 0.256707)
+mesh = ExtResource("4_wkkjw")
+
+[node name="CandleStickMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75387, 0, 0, 0, 0.449745, 0, 0, 0, 0.691151, -0.13523, 0.849671, -0.326485)
+mesh = ExtResource("4_ift4v")
+
+[node name="CandleStickMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.6336, 0, 0, 0, 1, -0.269757, 0.844691, -0.382617)
+mesh = ExtResource("4_ift4v")
+
+[node name="MugMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253893, 0.851591, 0.334041)
+mesh = ExtResource("5_ift4v")
+
+[node name="MugMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31621, 0.851591, -0.168245)
+mesh = ExtResource("5_ift4v")

@@ -25,7 +25,7 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=true
+skins/use_named_skins=false
 animation/import=false
 animation/fps=30
 animation/trimming=true
@@ -62,7 +62,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/PropHouseMeshes/deskMesh.res"
+"save_to_file/path": "uid://b705bfm5rbgyk"
 },
 "grandfatherClock": {
 "generate/lightmap_uv": 0,
@@ -71,6 +71,22 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Environment/Models/PropHouseMeshes/grandfatherClockMesh.res"
+},
+"mug": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropHouseMeshes/mugMesh.res"
+},
+"plate": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/PropHouseMeshes/plateMesh.res"
 },
 "tableMedium": {
 "generate/lightmap_uv": 0,

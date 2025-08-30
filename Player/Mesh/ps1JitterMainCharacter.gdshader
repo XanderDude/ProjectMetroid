@@ -4,7 +4,7 @@ render_mode blend_mix,
 	depth_prepass_alpha,
 	//shadows_disabled,
 	//ambient_light_disabled,
-	//vertex_lighting;
+	vertex_lighting,
 	specular_disabled;
 
 uniform bool affine_mapping = false;
