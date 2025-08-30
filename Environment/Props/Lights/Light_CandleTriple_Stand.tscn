@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://ci2sw6t7kpk66" path="res://Environment/Models/PropLightMeshes/candleTripleStandMesh.res" id="2_x2kc7"]
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_xte3b"]
-[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_4ltgd"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="3_4ltgd"]
 
 [node name="Light_CandleTriple_Stand" type="Node3D"]
 
@@ -18,17 +18,11 @@ script = ExtResource("2_xte3b")
 [node name="CandleTripleStandMesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_x2kc7")
 
-[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleTripleStandMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.764101, 0)
-mesh = ExtResource("3_4ltgd")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX" parent="CandleTripleStandMesh" instance=ExtResource("3_4ltgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75575, 0)
 
-[node name="CandleFlameMesh2" type="MeshInstance3D" parent="CandleTripleStandMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.764, 0)
-mesh = ExtResource("3_4ltgd")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX2" parent="CandleTripleStandMesh" instance=ExtResource("3_4ltgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.755649, 0)
 
-[node name="CandleFlameMesh3" type="MeshInstance3D" parent="CandleTripleStandMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.764, 0)
-mesh = ExtResource("3_4ltgd")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX3" parent="CandleTripleStandMesh" instance=ExtResource("3_4ltgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.755649, 0)

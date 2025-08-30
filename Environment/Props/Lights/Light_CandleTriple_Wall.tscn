@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6v3hjo3nqwfn" path="res://Environment/Lighting/candleLight_OmniLight3D.tscn" id="1_mcwhn"]
 [ext_resource type="ArrayMesh" uid="uid://cm2vhaia7fu0x" path="res://Environment/Models/PropLightMeshes/candleTripleWallMesh.res" id="2_4y7ej"]
-[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_mcwhn"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="3_mcwhn"]
 
 [node name="Light_CandleTriple_Wall" type="Node3D"]
 
@@ -16,17 +16,11 @@ omni_range = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 mesh = ExtResource("2_4y7ej")
 
-[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleTripleWallMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.334687)
-mesh = ExtResource("3_mcwhn")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX" parent="CandleTripleWallMesh" instance=ExtResource("3_mcwhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.491489, 0.335)
 
-[node name="CandleFlameMesh2" type="MeshInstance3D" parent="CandleTripleWallMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200304, 0.5, 0.334687)
-mesh = ExtResource("3_mcwhn")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX2" parent="CandleTripleWallMesh" instance=ExtResource("3_mcwhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000225574, 0.491447, 0.334519)
 
-[node name="CandleFlameMesh3" type="MeshInstance3D" parent="CandleTripleWallMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, 0.335)
-mesh = ExtResource("3_mcwhn")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX3" parent="CandleTripleWallMesh" instance=ExtResource("3_mcwhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.491489, 0.335)

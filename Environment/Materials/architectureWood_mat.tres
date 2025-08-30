@@ -6,7 +6,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_jg5ur")
-shader_parameter/affine_mapping = true
+shader_parameter/affine_mapping = false
 shader_parameter/albedo = ExtResource("2_jg5ur")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25

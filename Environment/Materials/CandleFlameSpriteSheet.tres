@@ -2,29 +2,35 @@
 
 [ext_resource type="Texture2D" uid="uid://dtcfnkos37d0r" path="res://Environment/Materials/PropsBasic_Albedo.png" id="1_pnikj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2xyx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnikj"]
 atlas = ExtResource("1_pnikj")
-region = Rect2(40, 133, 8, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cevdp"]
-atlas = ExtResource("1_pnikj")
-region = Rect2(49, 133, 8, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_as7p3"]
-atlas = ExtResource("1_pnikj")
-region = Rect2(58, 133, 8, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3wghh"]
-atlas = ExtResource("1_pnikj")
-region = Rect2(67, 133, 8, 20)
+region = Rect2(33, 144, 8, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjwve"]
 atlas = ExtResource("1_pnikj")
-region = Rect2(31, 133, 8, 20)
+region = Rect2(44, 144, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2xyx"]
+atlas = ExtResource("1_pnikj")
+region = Rect2(55, 144, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cevdp"]
+atlas = ExtResource("1_pnikj")
+region = Rect2(66, 144, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as7p3"]
+atlas = ExtResource("1_pnikj")
+region = Rect2(77, 144, 8, 16)
 
 [resource]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnikj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjwve")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h2xyx")
 }, {
@@ -33,12 +39,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_as7p3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3wghh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjwve")
 }],
 "loop": true,
 "name": &"default",

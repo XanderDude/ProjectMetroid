@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6v3hjo3nqwfn" path="res://Environment/Lighting/candleLight_OmniLight3D.tscn" id="1_ryoxa"]
 [ext_resource type="ArrayMesh" uid="uid://ccolx8x1dinrv" path="res://Environment/Models/PropLightMeshes/candleTriple_PlateMesh.res" id="2_ryoxa"]
-[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_6yp8f"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="3_ryoxa"]
 
 [node name="Light_CandleTriple_Plate" type="Node3D"]
 
@@ -12,20 +12,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.678396, 0)
 [node name="CandleTriplePlateMesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_ryoxa")
 
-[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleTriplePlateMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0769755, 0.446748, -0.0183137)
-cast_shadow = 0
-mesh = ExtResource("3_6yp8f")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX" parent="CandleTriplePlateMesh" instance=ExtResource("3_ryoxa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0769755, 0.437286, -0.0183137)
 
-[node name="CandleFlameMesh3" type="MeshInstance3D" parent="CandleTriplePlateMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0569014, 0.52099, -0.0923251)
-cast_shadow = 0
-mesh = ExtResource("3_6yp8f")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX2" parent="CandleTriplePlateMesh" instance=ExtResource("3_ryoxa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0569014, 0.511528, -0.0923251)
 
-[node name="CandleFlameMesh2" type="MeshInstance3D" parent="CandleTriplePlateMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0473681, 0.38651, 0.0692998)
-cast_shadow = 0
-mesh = ExtResource("3_6yp8f")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX3" parent="CandleTriplePlateMesh" instance=ExtResource("3_ryoxa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0473681, 0.377048, 0.0692998)

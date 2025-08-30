@@ -1307,7 +1307,7 @@ mesh = ExtResource("6_0sob7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
 
 [node name="CeilingCollider" type="MeshInstance3D" parent="Ceiling"]
-transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 8.75, 0)
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 5.75, 0)
 transparency = 1.0
 mesh = SubResource("BoxMesh_6hvux")
 skeleton = NodePath("../../FloorCollider")

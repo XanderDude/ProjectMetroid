@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bev2wemk3lno2" path="res://Environment/Models/PropLightMeshes/chandelierMesh.res" id="1_t0u80"]
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_agu17"]
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="2_sct2e"]
-[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_6lv60"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="4_6lv60"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sct2e"]
 size = Vector3(1.5, 0.15, 1)
@@ -44,56 +44,33 @@ omni_range = 4.0
 omni_attenuation = 0.5
 script = ExtResource("2_agu17")
 
-[node name="flame" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.7, -0.55, 0)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame2" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.7, -0.55, 0)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame3" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.5, -0.55, 0.5)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame4" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, -0.5, -0.55, 0.5)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame5" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, 0.7)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-
-[node name="flame6" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0, -0.55, -0.7)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame7" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, 0.5, -0.55, -0.5)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
-[node name="flame8" type="MeshInstance3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 2.39468e-15, 5.47838e-08, 0, 1, -4.37114e-08, -5.47838e-08, 4.37114e-08, 0.999999, -0.5, -0.55, -0.5)
-cast_shadow = 0
-mesh = ExtResource("3_6lv60")
-skeleton = NodePath("../StaticBody3D/CollisionShape3D")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="ChandelierMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChandelierMesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_sct2e")
 debug_fill = false
+
+[node name="CandleFlameVFX" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.55, 0)
+
+[node name="CandleFlameVFX2" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -2.11758e-22, 0, -2.11758e-22, 1, 0, 3.55271e-15, -3.55271e-15, 1, 0.7, -0.55, 0)
+
+[node name="CandleFlameVFX3" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -4.23516e-22, 0, -4.23516e-22, 1, 0, 7.10543e-15, -7.10543e-15, 1, 0.5, -0.55, 0.5)
+
+[node name="CandleFlameVFX4" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -6.35275e-22, 0, -6.35275e-22, 1, 0, 1.06581e-14, -1.06581e-14, 1, -0.5, -0.55, 0.5)
+
+[node name="CandleFlameVFX5" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -8.47033e-22, 0, -8.47033e-22, 1, 0, 1.42109e-14, -1.42109e-14, 1, 0, -0.55, 0.7)
+
+[node name="CandleFlameVFX6" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -1.05879e-21, 0, -1.05879e-21, 1, 0, 1.77636e-14, -1.77636e-14, 1, 0, -0.55, -0.7)
+
+[node name="CandleFlameVFX7" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -1.27055e-21, 0, -1.05879e-21, 1, 0, 2.13163e-14, -2.13163e-14, 1, 0.5, -0.55, -0.5)
+
+[node name="CandleFlameVFX8" parent="ChandelierMesh" instance=ExtResource("4_6lv60")]
+transform = Transform3D(1, -1.48231e-21, 0, -1.27055e-21, 1, 0, 2.4869e-14, -2.4869e-14, 1, -0.5, -0.55, -0.5)

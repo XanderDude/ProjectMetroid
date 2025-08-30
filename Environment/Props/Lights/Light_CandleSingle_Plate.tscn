@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_r4r1t"]
 [ext_resource type="ArrayMesh" uid="uid://wu3mp41wl4vh" path="res://Environment/Models/PropLightMeshes/candleSingle_PlateMesh.res" id="2_rm36r"]
-[ext_resource type="ArrayMesh" uid="uid://c3yo62w22te48" path="res://Environment/Models/PropLightMeshes/candleFlameMesh.res" id="3_tghhl"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="3_tghhl"]
 
 [node name="Light_CandleSingle_Plate" type="Node3D"]
 
@@ -20,7 +20,5 @@ script = ExtResource("2_r4r1t")
 [node name="CandleSinglePlateMesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_rm36r")
 
-[node name="CandleFlameMesh" type="MeshInstance3D" parent="CandleSinglePlateMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518441, 0)
-mesh = ExtResource("3_tghhl")
-skeleton = NodePath("../..")
+[node name="CandleFlameVFX" parent="CandleSinglePlateMesh" instance=ExtResource("3_tghhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51437, 0)
