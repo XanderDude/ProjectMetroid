@@ -26,7 +26,7 @@ public partial class RavenLaunchState : State
         }
     }
 
-    
+
 
     public Vector3 RavenDirection()
     {
@@ -37,7 +37,9 @@ public partial class RavenLaunchState : State
         if (Input.IsActionPressed("Right")) dir.X += 1;
         if (dir != Vector3.Zero)
             return new Vector3(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"), 0).Normalized();
-        return Vector3.Zero;
+
+        else
+            return new Vector3(Mathf.Sign(raven.player.GetNode<Node3D>("%PlayerMesh").RotationDegrees.Y), 0, 0);  
     }
 
     public void RavenLaunch()

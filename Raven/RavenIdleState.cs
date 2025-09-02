@@ -7,10 +7,6 @@ public partial class RavenIdleState : State
     {
         //GD.Print("Raven: Entered Idle State");
 
-        if (raven.player.IsOnFloor())
-        {
-            raven.canTeleport = true;
-        }
         
     }
 
@@ -36,25 +32,26 @@ public partial class RavenIdleState : State
 
         if (@event.IsActionPressed("RavenSlash"))
         {
-        
 
-                var collision = raven.player.GetLastSlideCollision();
-                if (collision != null && ((collision.GetCollider() as CollisionObject3D)?.CollisionLayer & (1 << 0)) != 0 && raven.player.StateMachine._currentState.Name != "mantleState")
+
+                if (raven.canTeleport)
                 {
-                    if (raven.canTeleport)
-                    {
                     //GD.Print("Raven: Teleported to player position" + raven.player.StateMachine._currentState.Name);
 
                     raven.player.GlobalPosition = raven.GlobalPosition;
                     raven.canTeleport = false;
                     raven.player.Velocity = Vector3.Zero;
-                    }
                 }
-                else
-                {
-                    //GD.Print("Raven: Teleport failed, no valid collision");
-                    rsm.TransitionTo("RavenRecallState");
-                }
+
+
+            if (raven.player.StateMachine._currentState.Name == "mantleState")
+            {
+                raven.player.StateMachine.TransitionTo("jumpState");  
+            }
+
+                rsm.TransitionTo("RavenRecallState");
+        
+                
                 
                 
                 
