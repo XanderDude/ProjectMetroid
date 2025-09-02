@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=13 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="2_4lvic"]
+[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_4lvic"]
 [ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
+[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="11_qpe1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("1_qbg50")
@@ -17,8 +19,10 @@ shader_parameter/dithering = true
 shader_parameter/colors = 16
 shader_parameter/dither_size = 1
 
-[node name="Gameplay" type="Node3D"]
+[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
+script = ExtResource("1_yv1x3")
+player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_itrsp")
@@ -39,6 +43,7 @@ render_target_update_mode = 4
 process_mode = 3
 
 [node name="HUD" parent="SubViewportContainer/SubViewport/CanvasLayer" instance=ExtResource("2_cilmm")]
+visible = false
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
 
@@ -72,9 +77,104 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 [node name="EnemyRat" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
+[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
+player = NodePath("../Player")
+speed = 20.0
+maxDistance = 3.0
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Raven" index="1"]
+transform = Transform3D(0.992508, 0, 0, 0, 1.45135, 0, 0, 0, 0.992508, 0, -0.0082894, 0)
+
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay/StoneDoorWayOpening"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/FloorGroup/PropsBasic2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge3/stoneConnectedFloorCeiling"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge3/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge6/stoneConnectedFloorCeiling"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge13"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge13/stoneConnectedFloorCeilingHalf"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge13/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge9"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge9/stoneConnectedFloorCeiling"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge5/StoneRoom"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/PlatformGroup/StonePlatformEdge5/StoneRoom/woodDoorWay"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall4"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall8"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall10"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall11"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall13"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall23"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall25"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall16"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall17"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall19"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall20"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/SideWalls/StoneWall22"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall4"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall31"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall32"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall33"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall39"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall40"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall46"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall47"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall7"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall8"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall9"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall10"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall11"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall12"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall13"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall15"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall16"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall17"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall18"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall19"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall20"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall21"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall22"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall23"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall24"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall25"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall26"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall27"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall28"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall29"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall30"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall34"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall35"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall41"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall48"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall36"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall37"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall38"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall42"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall43"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall44"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall/StoneWall45"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling/StoneConnectedFloorCeiling18"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/Decorations/PropsBasic"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat/Rat"]
+[editable path="SubViewportContainer/SubViewport/Raven"]
+[editable path="SubViewportContainer/SubViewport/Raven/RavenFly"]

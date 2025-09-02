@@ -1,0 +1,214 @@
+[gd_scene load_steps=16 format=3 uid="uid://dry06vsglbpg1"]
+
+[ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/Inventory/PauseMenuBackground.png" id="1_v4gc1"]
+[ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Inventory/PauseMenuFrame.png" id="2_2km18"]
+[ext_resource type="Texture2D" uid="uid://diyxuv8mb2f6k" path="res://UI/Inventory/PauseMenuFrame2.png" id="3_8ltts"]
+[ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/Inventory/PauseMenuCharacterIcon.png" id="4_jst3f"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="5_7qy6v"]
+[ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="6_h032j"]
+[ext_resource type="Script" path="res://Inventory.cs" id="7_e6gg1"]
+[ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="8_jjuev"]
+[ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="9_4vdyk"]
+[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="10_xh3mb"]
+[ext_resource type="Texture2D" uid="uid://co31mwly0jpkl" path="res://UI/Inventory/PauseMenuRavenIcon.png" id="11_ohhn5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udyo3"]
+
+[sub_resource type="Animation" id="Animation_0xmy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(44, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_dw5ng"]
+resource_name = "playerbob"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(230, 100), Vector2(230, 97), Vector2(230, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjyhv"]
+_data = {
+&"RESET": SubResource("Animation_0xmy5"),
+&"playerbob": SubResource("Animation_dw5ng")
+}
+
+[node name="Inventory" type="Node2D"]
+
+[node name="Background Image" type="TextureRect" parent="."]
+offset_left = -24.0
+offset_top = -6.0
+offset_right = 619.0
+offset_bottom = 351.0
+scale = Vector2(1.08983, 1.04)
+texture = ExtResource("1_v4gc1")
+expand_mode = 1
+
+[node name="Blue Normal Frame" type="TextureRect" parent="."]
+modulate = Color(0.125911, 0.125911, 0.125911, 1)
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 490.0
+offset_bottom = 363.0
+scale = Vector2(1.32184, 1.02368)
+texture = ExtResource("2_2km18")
+
+[node name="PaintFrame" type="Node2D" parent="."]
+modulate = Color(0.280304, 0.266129, 0.228052, 1)
+position = Vector2(11, 6)
+
+[node name="Paintstroke" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(-44, 166)
+rotation = -1.33191
+scale = Vector2(1.12426, 0.90974)
+texture = ExtResource("3_8ltts")
+
+[node name="Paintstroke3" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(657, 190)
+rotation = 1.57652
+texture = ExtResource("3_8ltts")
+
+[node name="Crossbows" type="ItemList" parent="."]
+offset_left = 79.0
+offset_top = 52.0
+offset_right = 227.0
+offset_bottom = 119.0
+allow_rmb_select = true
+allow_search = false
+same_column_width = true
+icon_mode = 0
+script = ExtResource("7_e6gg1")
+inventorySize = 3
+
+[node name="Standard Crossbow" type="Button" parent="."]
+offset_left = 367.0
+offset_top = 50.0
+offset_right = 629.0
+offset_bottom = 81.0
+text = "\"You got the standard crossbow\""
+script = ExtResource("8_jjuev")
+name = "Crossbow"
+itemicon = ExtResource("9_4vdyk")
+maxQty = 1
+qty = 1
+category = 1
+
+[node name="Arrows" type="ItemList" parent="."]
+offset_left = 80.0
+offset_top = 197.0
+offset_right = 265.0
+offset_bottom = 254.0
+allow_rmb_select = true
+allow_search = false
+max_columns = 3
+same_column_width = true
+fixed_column_width = 55
+icon_mode = 0
+fixed_icon_size = Vector2i(50, 0)
+script = ExtResource("7_e6gg1")
+inventorySize = 3
+
+[node name="Arrows +1" type="Button" parent="."]
+offset_left = 487.0
+offset_top = 8.0
+offset_right = 622.0
+offset_bottom = 39.0
+text = "Arrow picked up"
+script = ExtResource("8_jjuev")
+id = 1
+name = "Arrow"
+itemicon = ExtResource("10_xh3mb")
+maxQty = 99
+qty = 1
+
+[node name="Melees" type="ItemList" parent="."]
+offset_left = 432.0
+offset_top = 140.0
+offset_right = 580.0
+offset_bottom = 207.0
+allow_rmb_select = true
+allow_search = false
+same_column_width = true
+icon_mode = 0
+script = ExtResource("7_e6gg1")
+inventorySize = 3
+
+[node name="+Raven Sword" type="Button" parent="."]
+offset_left = 445.0
+offset_top = 87.0
+offset_right = 630.0
+offset_bottom = 118.0
+text = "Raven Sword Obtained"
+script = ExtResource("8_jjuev")
+id = 1
+name = "Raven Sword"
+itemicon = ExtResource("11_ohhn5")
+maxQty = 1
+qty = 1
+category = 2
+
+[node name="Inventory Character" type="TextureRect" parent="."]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+material = SubResource("ShaderMaterial_udyo3")
+offset_left = 44.0
+offset_top = 50.0
+offset_right = 257.0
+offset_bottom = 207.0
+texture = ExtResource("4_jst3f")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Inventory Character"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qjyhv")
+}
+script = ExtResource("5_7qy6v")
+idleAnim = "playerbob"
+
+[node name="hBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 47.0
+offset_top = 324.0
+offset_right = 510.0
+offset_bottom = 338.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.83
+theme_override_constants/separation = 46
+
+[node name="Resume" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("6_h032j")
+text = "   Resume   "
+
+[node name="Map" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_h032j")
+text = "     Map     "
+
+[node name="Options" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_h032j")
+text = "   Options   "
+
+[node name="Quit" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_h032j")
+text = "     Quit     "

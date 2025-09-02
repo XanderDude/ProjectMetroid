@@ -1,0 +1,305 @@
+[gd_scene load_steps=28 format=3 uid="uid://bexgm8f7ve0mw"]
+
+[ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
+[ext_resource type="Material" uid="uid://b5ke0ib3gs3n0" path="res://Environment/Materials/glowingMaterial.tres" id="2_7uipr"]
+[ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/PlayerStates/MovementStateMachine.cs" id="3_yifbt"]
+[ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/PlayerStates/groundedState.cs" id="4_s0mko"]
+[ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/PlayerStates/jumpState.cs" id="5_hqjia"]
+[ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/PlayerStates/slideState.cs" id="6_x70vp"]
+[ext_resource type="Script" uid="uid://bmtdfvkahjerh" path="res://Player/PlayerStates/mantleState.cs" id="7_wo5nf"]
+[ext_resource type="Script" uid="uid://dlloi8ffjlah4" path="res://Player/PlayerStates/walljumpState.cs" id="8_croik"]
+[ext_resource type="Script" uid="uid://6gcg572gqiwb" path="res://Player/PlayerStates/AttackStateMachine.cs" id="9_bgaaw"]
+[ext_resource type="Script" uid="uid://d0fuh6u8aahvr" path="res://Player/PlayerStates/noattackState.cs" id="10_gv3fu"]
+[ext_resource type="Script" uid="uid://c85uww7hrdt1j" path="res://Player/PlayerStates/attackState.cs" id="11_xu7fl"]
+[ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Mesh/Frankengirl.fbx" id="12_78fhc"]
+[ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/NormalArrow.tscn" id="12_yifbt"]
+[ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="13_4n5ed"]
+[ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="13_s0mko"]
+[ext_resource type="AnimationLibrary" uid="uid://dvm2b5mjyxuqq" path="res://Player/Animation/FrankengirlAnimLib.res" id="14_yf47d"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_jvfa1"]
+[ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="16_ib3vm"]
+[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://UI/Inventory/Inventory.cs" id="17_vtj8b"]
+[ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="18_rqaa0"]
+[ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="19_o1b5h"]
+[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="20_7w4lt"]
+[ext_resource type="Texture2D" uid="uid://co31mwly0jpkl" path="res://UI/Inventory/PauseMenuRavenIcon.png" id="21_ww5s2"]
+[ext_resource type="Texture2D" uid="uid://cx8gjxgmg7lrm" path="res://Player/Weapons/WristCrossbow/crossbow.png" id="22_xw4su"]
+[ext_resource type="AudioStream" uid="uid://llecxppw1kr4" path="res://Sounds/WristCrossbowShoot.mp3" id="23_x2ho1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.25
+height = 1.7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cixj"]
+size = Vector3(0.5, 2.5, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerGeo", "StateMachine", "AttackStateMachine")]
+collision_layer = 4
+collision_mask = 3
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+floor_constant_speed = true
+floor_max_angle = 0.872665
+floor_snap_length = 0.3
+script = ExtResource("1_ps8ct")
+playerGeo = NodePath("PlayerMesh/Skeleton3D/body")
+invulnMat = ExtResource("2_7uipr")
+StateMachine = NodePath("MovementStateMachine")
+AttackStateMachine = NodePath("AttackStateMachine")
+
+[node name="CollisionStanding" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="SlidingArea3D" type="Area3D" parent="."]
+
+[node name="SlidingCollisionShape3D" type="CollisionShape3D" parent="SlidingArea3D"]
+transform = Transform3D(-2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0, 0.5, 4.44089e-16, 0.160111, 0)
+shape = SubResource("BoxShape3D_5cixj")
+disabled = true
+
+[node name="MovementStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_yifbt")
+asmState = NodePath("../AttackStateMachine")
+initialState = NodePath("groundedState")
+
+[node name="groundedState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_s0mko")
+groundAcceleration = 2.0
+
+[node name="jumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
+script = ExtResource("5_hqjia")
+jumpySound = NodePath("../../jumpSound")
+
+[node name="slideState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("6_x70vp")
+slideMinTime = 0.3
+slideMaxSpeed = 6.0
+boostMaxSpeed = 9.0
+slideDeceleration = 5.0
+
+[node name="mantleState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("7_wo5nf")
+
+[node name="walljumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
+script = ExtResource("8_croik")
+jumpySound = NodePath("../../jumpSound")
+
+[node name="AttackStateMachine" type="Node" parent="."]
+script = ExtResource("9_bgaaw")
+initialState = NodePath("noattackState")
+
+[node name="noattackState" type="Node" parent="AttackStateMachine"]
+script = ExtResource("10_gv3fu")
+
+[node name="attackState" type="Node" parent="AttackStateMachine"]
+script = ExtResource("11_xu7fl")
+arrowScene = ExtResource("12_yifbt")
+bombArrowScene = ExtResource("13_s0mko")
+shootSound = ExtResource("23_x2ho1")
+
+[node name="PlayerMesh" parent="." node_paths=PackedStringArray("player", "animTree") instance=ExtResource("12_78fhc")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("13_4n5ed")
+player = NodePath("..")
+animTree = NodePath("../AnimationTree")
+playbackFilePath = "parameters/playback"
+WalkingBlendPath = "parameters/Running/IdleRunBlend/blend_amount"
+RunSpeedBlendPath = "parameters/Running/RunSpeed/scale"
+AimBlendBlendPath = "parameters/Running/AimBlend/blend_position"
+LegAndArmBlendBlendPath = "parameters/Running/LegAndArmBlend/blend_amount"
+JumpStateName = "Jumping"
+RunningStateName = "Running"
+WallCollisionStateName = "WallCollision"
+runBlendSpeed = 1.5
+SlideStateName = "SlideStart"
+CrouchStateName = "Crouching"
+HangingStateName = "Hanging"
+
+[node name="Skeleton3D" parent="PlayerMesh" index="1"]
+bones/0/position = Vector3(3.55271e-17, 0.924947, -0.04)
+bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/1/position = Vector3(0.0403507, -0.0253461, -0.00558281)
+bones/1/rotation = Quaternion(0.00670959, 0.0683594, 0.0974515, 0.992867)
+bones/3/position = Vector3(0.035671, 0.0139758, -1.46819e-16)
+bones/3/rotation = Quaternion(-6.56333e-26, 8.32667e-17, -0.032407, 0.999475)
+bones/4/position = Vector3(0.117899, 0.0191126, 3.66596e-17)
+bones/5/position = Vector3(0.0708221, -0.0208942, -8.03982e-16)
+bones/7/position = Vector3(0.0324921, 0.0596365, 8.07994e-16)
+bones/9/rotation = Quaternion(0.248565, 0.282585, 0.679656, 0.629626)
+bones/10/rotation = Quaternion(0.143893, 0.292313, -0.722639, 0.609624)
+bones/11/rotation = Quaternion(-2.77556e-16, -2.498e-16, -5.27356e-16, 1)
+bones/13/rotation = Quaternion(0.0746763, -0.05515, -0.758797, 0.644677)
+bones/14/rotation = Quaternion(1.29536e-26, 0.00299866, 2.69634e-17, 0.999996)
+bones/15/rotation = Quaternion(4.16334e-16, 2.498e-16, 9.4369e-16, 1)
+bones/17/position = Vector3(0.0513148, -0.0253461, 0.0736623)
+bones/17/rotation = Quaternion(0.200636, 0.69761, 0.682851, 0.0824601)
+bones/18/rotation = Quaternion(0.980952, 0.000158272, -0.194171, -0.00553049)
+bones/19/rotation = Quaternion(0.493891, -0.506866, 0.505988, 0.493088)
+bones/21/position = Vector3(0.0293843, -0.0253461, -0.0848276)
+bones/21/rotation = Quaternion(0.707221, 0.051016, -0.0225969, 0.704788)
+bones/22/rotation = Quaternion(0.983989, 0.000142932, -0.178159, -0.00499445)
+bones/23/rotation = Quaternion(0.577509, -0.401451, 0.407145, 0.582713)
+
+[node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
+bone_idx = 17
+
+[node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
+bone_idx = 18
+
+[node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
+visible = false
+bone_idx = 19
+
+[node name="AnimationPlayer" parent="PlayerMesh" index="2"]
+active = false
+libraries = {}
+
+[node name="AnimationPlayerMain" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PlayerMesh")
+libraries = {
+&"FrankengirlAnimLib": ExtResource("14_yf47d")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
+root_node = NodePath("%PlayerMesh")
+tree_root = ExtResource("15_jvfa1")
+anim_player = NodePath("../AnimationPlayerMain")
+parameters/conditions/slideEnd = false
+parameters/Running/AimBlend/blend_position = Vector2(0, 0)
+parameters/Running/IdleRunBlend/blend_amount = 0.0
+parameters/Running/LegAndArmBlend/blend_amount = 0.0
+parameters/Running/RunSpeed/scale = 2.3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_energy = 0.5
+light_indirect_energy = 0.0
+light_specular = 0.0
+light_bake_mode = 0
+light_cull_mask = 4294967293
+omni_range = 6.629
+omni_attenuation = 0.0
+
+[node name="jumpSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_ib3vm")
+volume_db = -10.442
+
+[node name="shootingsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_x2ho1")
+
+[node name="Inventory" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
+
+[node name="Crossbows" type="ItemList" parent="Inventory/CanvasLayer"]
+offset_left = 79.0
+offset_top = 52.0
+offset_right = 227.0
+offset_bottom = 119.0
+allow_rmb_select = true
+allow_search = false
+same_column_width = true
+icon_mode = 0
+script = ExtResource("17_vtj8b")
+inventorySize = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Standard Crossbow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 367.0
+offset_top = 50.0
+offset_right = 629.0
+offset_bottom = 81.0
+text = "\"You got the standard crossbow\""
+script = ExtResource("18_rqaa0")
+inv = NodePath("../Crossbows")
+name = "Crossbow"
+itemicon = ExtResource("19_o1b5h")
+maxQty = 1
+qty = 1
+category = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Arrows" type="ItemList" parent="Inventory/CanvasLayer"]
+offset_left = 80.0
+offset_top = 197.0
+offset_right = 265.0
+offset_bottom = 254.0
+allow_rmb_select = true
+allow_search = false
+auto_height = true
+max_columns = 3
+same_column_width = true
+fixed_column_width = 55
+icon_mode = 0
+fixed_icon_size = Vector2i(50, 0)
+script = ExtResource("17_vtj8b")
+inventorySize = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Add Normal Arrow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 487.0
+offset_top = 8.0
+offset_right = 622.0
+offset_bottom = 39.0
+text = "Add Normal Arrow
+"
+script = ExtResource("18_rqaa0")
+inv = NodePath("../Arrows")
+id = 1
+name = "Arrow"
+itemicon = ExtResource("20_7w4lt")
+maxQty = 99
+qty = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Melees" type="ItemList" parent="Inventory/CanvasLayer"]
+offset_left = 432.0
+offset_top = 140.0
+offset_right = 580.0
+offset_bottom = 207.0
+allow_rmb_select = true
+allow_search = false
+same_column_width = true
+icon_mode = 0
+script = ExtResource("17_vtj8b")
+inventorySize = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="+Raven Sword" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 445.0
+offset_top = 87.0
+offset_right = 630.0
+offset_bottom = 118.0
+text = "Raven Sword Obtained"
+script = ExtResource("18_rqaa0")
+inv = NodePath("../Melees")
+id = 1
+name = "Arrow"
+itemicon = ExtResource("21_ww5s2")
+maxQty = 1
+qty = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Add Bomb Arrow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
+offset_left = 326.0
+offset_top = 9.0
+offset_right = 466.0
+offset_bottom = 40.0
+text = "Add Bomb Arrow"
+script = ExtResource("18_rqaa0")
+inv = NodePath("../Arrows")
+id = 6
+name = "Arrow"
+itemicon = ExtResource("22_xw4su")
+maxQty = 99
+qty = 1
+metadata/_edit_use_anchors_ = true
+
+[editable path="PlayerMesh"]

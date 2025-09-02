@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cx1ep0rw36acf"]
+[gd_scene load_steps=16 format=3 uid="uid://cx1ep0rw36acf"]
 
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="1_6syng"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="1_6syng"]
 [ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/TeleporterTest/roomTeleportHitbox.tscn" id="3_htrpb"]
 [ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_yw4gc"]
 [ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_ekw2i"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="5_ekw2i"]
-[ext_resource type="PackedScene" uid="uid://do6ngna12n0vo" path="res://UI/PauseManager.tscn" id="6_53xuj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nyppi"]
 
@@ -149,7 +148,7 @@ _data = {
 &"fade_out_black_screen": SubResource("Animation_1d5am")
 }
 
-[node name="Game" type="Node3D"]
+[node name="Game2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0318627)
 
 [node name="Room1" type="Node3D" parent="."]
@@ -196,55 +195,26 @@ shape = SubResource("ConcavePolygonShape3D_nyppi")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
 
+[node name="PlayerMesh" parent="Player" index="4"]
+LegAndArmBlendBlendPath = ""
+
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.00401319, 0.924449, 0.000956735)
-bones/0/rotation = Quaternion(-0.0265994, 0.284404, 0.00891836, 0.958294)
-bones/1/rotation = Quaternion(-0.00973791, -0.03143, 0.00644935, 0.999438)
-bones/2/rotation = Quaternion(0.102394, -0.0640294, 0.0107668, 0.992623)
-bones/3/rotation = Quaternion(0.159316, -0.0632953, 0.0144692, 0.98509)
-bones/4/rotation = Quaternion(-0.0840295, -0.0573351, 0.000189744, 0.994812)
-bones/5/rotation = Quaternion(-0.0609705, -0.4106, 0.0672398, 0.907287)
-bones/7/rotation = Quaternion(0.560277, 0.463741, -0.526127, 0.440708)
-bones/8/rotation = Quaternion(0.427399, -0.03683, -0.123042, 0.894894)
-bones/9/rotation = Quaternion(0.0531732, -0.0689241, 0.308434, 0.947254)
-bones/10/rotation = Quaternion(0.0791877, 0.0716719, 0.0876451, 0.990409)
-bones/11/rotation = Quaternion(0.28383, -0.0955163, 0.161148, 0.940398)
-bones/12/rotation = Quaternion(-0.0182831, 0.0273624, -0.177359, 0.983596)
-bones/15/rotation = Quaternion(0.0390313, -0.0126574, -0.0129287, 0.999074)
-bones/16/rotation = Quaternion(0.140431, 0.00335086, -0.00926078, 0.990042)
-bones/19/rotation = Quaternion(0.110795, -0.00895295, -0.0267528, 0.993443)
-bones/20/rotation = Quaternion(0.255048, 0.000247176, 0.0166721, 0.966785)
-bones/23/rotation = Quaternion(0.185855, 0.012531, -0.0607229, 0.980619)
-bones/24/rotation = Quaternion(0.312682, -0.000834355, 0.0337402, 0.949258)
-bones/27/rotation = Quaternion(0.207956, 0.0187264, -0.0826894, 0.974457)
-bones/28/rotation = Quaternion(0.342576, 0.00466021, 0.070711, 0.936814)
-bones/31/rotation = Quaternion(0.469882, -0.542045, 0.561921, 0.411879)
-bones/32/rotation = Quaternion(0.480563, 0.0722856, -0.165849, 0.858096)
-bones/33/rotation = Quaternion(3.8581e-05, 0.00252371, -0.424592, 0.905382)
-bones/34/rotation = Quaternion(-0.136812, -0.11746, -0.0358363, 0.982955)
-bones/35/rotation = Quaternion(0.301582, -0.0309408, -0.117009, 0.945727)
-bones/36/rotation = Quaternion(-0.0112279, -0.00978448, 0.0686839, 0.997527)
-bones/39/rotation = Quaternion(0.126196, 0.014937, -0.0716819, 0.989299)
-bones/40/rotation = Quaternion(0.238086, 0.0020673, -0.00585588, 0.971224)
-bones/43/rotation = Quaternion(0.220068, -0.00540157, 0.0727402, 0.972754)
-bones/44/rotation = Quaternion(0.284182, 0.0042653, -0.0255008, 0.958422)
-bones/47/rotation = Quaternion(0.356727, 0.00876204, 0.125911, 0.925643)
-bones/48/rotation = Quaternion(0.366663, -0.00612723, -0.0296937, 0.92986)
-bones/51/rotation = Quaternion(0.378306, 0.0056861, 0.162754, 0.911243)
-bones/52/rotation = Quaternion(0.424378, -0.0215258, -0.0538469, 0.903627)
-bones/55/rotation = Quaternion(0, 0, -0.0051979, 0.999987)
-bones/56/rotation = Quaternion(0.122046, 0.00101682, 0.987147, -0.103176)
-bones/57/rotation = Quaternion(-0.302186, -0.13688, 0.0431622, 0.942383)
-bones/58/rotation = Quaternion(0.691118, -0.0816857, -0.112791, 0.709198)
-bones/59/rotation = Quaternion(0.241871, -0.0451612, -0.00676739, 0.969233)
-bones/60/rotation = Quaternion(3.84247e-10, -0.00915382, -3.51747e-12, 0.999958)
-bones/61/rotation = Quaternion(-0.0348271, 0.25211, 0.964696, 0.0677516)
-bones/62/rotation = Quaternion(-0.324302, -0.159822, 0.0177285, 0.932186)
-bones/63/rotation = Quaternion(0.578885, 0.0258982, 0.0381073, 0.814106)
-bones/64/rotation = Quaternion(0.245916, 0.0174349, 0.0400757, 0.968305)
+bones/0/position = Vector3(0.0178314, 0.89516, 0.0133677)
+bones/0/rotation = Quaternion(0.54913, 0.446595, 0.453517, 0.541601)
+bones/1/rotation = Quaternion(-0.038595, 0.104967, -0.0039612, 0.993719)
+bones/4/rotation = Quaternion(-0.152655, 0.00639175, -0.0208703, 0.988039)
+bones/7/position = Vector3(0.04145, 0.0608711, 0.00570571)
+bones/7/rotation = Quaternion(0.478633, 0.509175, 0.441495, -0.562791)
+bones/9/rotation = Quaternion(0.387993, -0.0321939, 0.92028, 0.0388659)
+bones/10/rotation = Quaternion(0.496284, 0.590803, -0.437418, 0.461866)
+bones/11/rotation = Quaternion(0.0823903, -0.528239, -0.158476, 0.830097)
+bones/13/rotation = Quaternion(0.0134494, -0.105883, 0.0743906, 0.991501)
+bones/14/rotation = Quaternion(0.142351, 0.0265416, -0.162724, 0.975988)
+bones/20/rotation = Quaternion(0.998555, -0.00868658, -0.0303603, 0.04349)
+bones/21/rotation = Quaternion(0.527346, -0.489327, 0.496876, 0.485364)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.525185, -0.128327, 0.841256, 0.549617, -0.703577, -0.450444, 0.649693, 0.698936, -0.298978, -0.392784, 1.00139, 0.192998)
+transform = Transform3D(0.26684, -0.959048, -0.0949893, 0.12856, 0.133105, -0.982729, 0.955128, 0.250019, 0.158813, -0.253524, 1.03939, -0.020804)
 
 [node name="GlobalTransition" type="CanvasLayer" parent="."]
 
@@ -284,9 +254,6 @@ one_shot = true
 
 [node name="Camera3D" parent="." instance=ExtResource("5_ekw2i")]
 roomMaxX = 60.0
-
-[node name="PauseManager" parent="." instance=ExtResource("6_53xuj")]
-pauseText = "HI ALEX"
 
 [connection signal="body_entered" from="Room2/roomTeleportHitbox/Area3D" to="GlobalTransition/ScreenTransitionScript" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Room2/roomTeleportHitbox/Area3D" to="GlobalTransition/ScreenTransitionScript" method="_on_area_3d_body_exited"]

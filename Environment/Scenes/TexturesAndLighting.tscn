@@ -1,12 +1,14 @@
-[gd_scene load_steps=53 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=54 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="1_28ia1"]
+[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_ji5m0"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_nsplm"]
+[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_6d3tk"]
 [ext_resource type="PackedScene" uid="uid://dq4o2pndprgm3" path="res://Environment/Props/PropsBasic.fbx" id="3_owwmw"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="4_8iu05"]
 [ext_resource type="PackedScene" uid="uid://uo4qsemqc76j" path="res://Environment/RoomPieces/Models/stoneFloor.fbx" id="5_opqc5"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="5_q35ir"]
-[ext_resource type="PackedScene" uid="uid://by3fw2kh7ot1a" path="res://Player/playerScenes/playerInitial.tscn" id="6_2o7o6"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="6_2o7o6"]
 [ext_resource type="PackedScene" uid="uid://dmdsxcfsomcpt" path="res://Environment/RoomPieces/Stone/StoneCeiling.fbx" id="6_3ugus"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_c1sjx"]
 [ext_resource type="PackedScene" uid="uid://cj5kcxxjw1b1d" path="res://Environment/RoomPieces/Stone/Stone1x1Stairs.tscn" id="10_c1sjx"]
@@ -27,7 +29,6 @@
 [ext_resource type="Material" uid="uid://b1lgdapp043ee" path="res://Environment/Materials/architectureWood_mat.tres" id="23_arljb"]
 [ext_resource type="PackedScene" uid="uid://dbo60gtbhapjm" path="res://Environment/RoomPieces/Wood/woodWall.fbx" id="23_q155s"]
 [ext_resource type="PackedScene" uid="uid://bonnwsy0125i8" path="res://Environment/RoomPieces/Wood/woodWindow.fbx" id="24_cu406"]
-[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="25_arljb"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="25_fakud"]
 [ext_resource type="PackedScene" uid="uid://bff2odl55lq7e" path="res://Environment/RoomPieces/Wood/woodConnectedFloorCeiling.fbx" id="26_q155s"]
 [ext_resource type="PackedScene" uid="uid://bgf7wck73ncl3" path="res://Environment/RoomPieces/Wood/woodDoorWay.fbx" id="27_cu406"]
@@ -341,7 +342,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6ndq2")
 
-[node name="TexturesAndLighting" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_ji5m0")
+player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -356,6 +359,9 @@ use_occlusion_culling = true
 anisotropic_filtering_level = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
+
+[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_6d3tk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, -2, 11, -8)
@@ -1443,9 +1449,6 @@ size = Vector3(10, 0.5, 6)
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("17_f1y8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
 
-[node name="Idle" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
 [node name="GroundCollisionPlane" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors" index="0"]
 transform = Transform3D(1.29337, 0, 0, 0, 0.999417, 0, 0, 0, 0.999417, 9.5, -8.73584, -1.5)
 size = Vector3(54, 17.4717, 5)
@@ -2470,63 +2473,12 @@ transform = Transform3D(0.503231, 0, 0.864152, 0, 1, 0, -0.864152, 0, 0.503231, 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2o7o6")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.1332, 0.549017, 0)
-
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.00550891, 0.905234, 0.0137619)
-bones/0/rotation = Quaternion(-0.0252634, -0.0834088, -0.0164517, 0.996059)
-bones/1/rotation = Quaternion(-0.0154853, -0.0501496, 0.0115684, 0.998555)
-bones/2/rotation = Quaternion(0.0902102, -0.106444, 0.0154619, 0.990097)
-bones/3/rotation = Quaternion(0.147008, -0.105367, 0.0216125, 0.98327)
-bones/4/rotation = Quaternion(-0.0999494, -0.0615763, -0.0146808, 0.992977)
-bones/5/rotation = Quaternion(-0.0230457, -0.479674, 0.0656309, 0.874686)
-bones/7/rotation = Quaternion(0.574743, 0.446715, -0.516827, 0.450562)
-bones/8/rotation = Quaternion(0.41858, -0.00549525, -0.207158, 0.884221)
-bones/9/rotation = Quaternion(0.066452, -0.0566022, 0.371277, 0.92441)
-bones/10/rotation = Quaternion(0.00117841, 0.0749103, 0.0659846, 0.995004)
-bones/11/rotation = Quaternion(0.317539, -0.077643, 0.153041, 0.932587)
-bones/12/rotation = Quaternion(-0.0172949, 0.0255356, -0.175214, 0.984047)
-bones/15/rotation = Quaternion(0.0785297, -0.0129523, -0.00957087, 0.996782)
-bones/16/rotation = Quaternion(0.257194, 0.000522229, 0.00301674, 0.966355)
-bones/19/rotation = Quaternion(0.157886, -0.0113612, -0.0212371, 0.987164)
-bones/20/rotation = Quaternion(0.364543, -0.000220226, 0.0270326, 0.930794)
-bones/23/rotation = Quaternion(0.228612, 0.00826435, -0.0560236, 0.971869)
-bones/24/rotation = Quaternion(0.420501, -0.000995776, 0.0427947, 0.906282)
-bones/27/rotation = Quaternion(0.248671, 0.0125792, -0.0766139, 0.965471)
-bones/28/rotation = Quaternion(0.450765, 0.00851898, 0.078025, 0.889185)
-bones/31/rotation = Quaternion(0.413956, -0.591142, 0.591318, 0.35991)
-bones/32/rotation = Quaternion(0.505464, 0.0563379, -0.203878, 0.83652)
-bones/33/rotation = Quaternion(0.0205302, 0.0183063, -0.450737, 0.892233)
-bones/34/rotation = Quaternion(-0.105568, -0.0658918, -0.0344684, 0.991628)
-bones/35/rotation = Quaternion(0.335226, -0.00427534, -0.197296, 0.921238)
-bones/36/rotation = Quaternion(-0.0127273, -0.0201252, 0.0677643, 0.997417)
-bones/39/rotation = Quaternion(0.350721, -0.0270033, -0.00252652, 0.936087)
-bones/40/rotation = Quaternion(0.551597, 0.0135669, -0.0467935, 0.832686)
-bones/43/rotation = Quaternion(0.439519, 0.0272703, 0.0116618, 0.897744)
-bones/44/rotation = Quaternion(0.590677, 0.00934786, -0.0603895, 0.804591)
-bones/47/rotation = Quaternion(0.511174, 0.0490818, 0.0428158, 0.857006)
-bones/48/rotation = Quaternion(0.664693, -0.0118116, -0.0471144, 0.745536)
-bones/51/rotation = Quaternion(0.608134, 0.0915586, 0.00837122, 0.788492)
-bones/52/rotation = Quaternion(0.705132, -0.0410227, -0.0556833, 0.705695)
-bones/55/rotation = Quaternion(0, 0, -0.0124553, 0.999922)
-bones/56/rotation = Quaternion(0.0737438, -0.122504, 0.989463, -0.0227398)
-bones/57/rotation = Quaternion(-0.271137, -0.272167, 0.0100998, 0.923205)
-bones/58/rotation = Quaternion(0.740853, -0.045605, -0.0432092, 0.668722)
-bones/59/rotation = Quaternion(0.317069, -0.11362, 0.0475437, 0.940371)
-bones/60/rotation = Quaternion(3.84166e-10, -0.0225261, -8.65597e-12, 0.999746)
-bones/61/rotation = Quaternion(0.0703651, 0.30726, 0.945562, -0.0809465)
-bones/62/rotation = Quaternion(-0.324151, -0.367722, 0.0579756, 0.869681)
-bones/63/rotation = Quaternion(0.536701, 0.0138026, 0.016651, 0.843495)
-bones/64/rotation = Quaternion(0.247681, 0.00393113, 0.0508839, 0.967497)
-
-[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(-0.254061, -0.712822, 0.653711, 0.652326, -0.625306, -0.428326, 0.714089, 0.317612, 0.623858, -0.364016, 1.00953, -0.220188)
-
-[node name="AreaEnteredEffect_RegaliaCathedral" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_arljb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61572, 1.14323, 0)
+playerMeshPath = NodePath("PlayerMesh")
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("25_fakud")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1.5, 25)
+playerPath = NodePath("../Player")
 lookAheadDistance = 1.5
 roomMinX = 0.0
 roomMaxX = 500.0
@@ -2644,5 +2596,3 @@ roomMaxY = 500.0
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/Walls/woodWall2"]
 [editable path="SubViewportContainer/SubViewport/Environment/WoodHouse/woodDoorWay"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]

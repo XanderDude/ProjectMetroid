@@ -1,0 +1,166 @@
+[gd_scene load_steps=13 format=3 uid="uid://et03prftbqt"]
+
+[ext_resource type="Texture2D" uid="uid://c0pg02flk2qiy" path="res://UI/Inventory/PauseMenuBackground.png" id="1_yc0b1"]
+[ext_resource type="Texture2D" uid="uid://dj8k2k5nifepb" path="res://UI/Inventory/PauseMenuFrame.png" id="2_pjhye"]
+[ext_resource type="Texture2D" uid="uid://diyxuv8mb2f6k" path="res://UI/Inventory/PauseMenuFrame2.png" id="2_ucsoy"]
+[ext_resource type="Texture2D" uid="uid://djpea4tcfpgx0" path="res://UI/Inventory/PauseMenuCharacterIcon.png" id="3_pjhye"]
+[ext_resource type="Theme" uid="uid://8x355fjqwnwf" path="res://UI/MainMenu/TextTheme.tres" id="5_0gpq4"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="6_su3to"]
+[ext_resource type="PackedScene" uid="uid://5aw71wt3nhbe" path="res://UI/Inventory/FunctionalInventory.tscn" id="7_1iklk"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_hp1si"]
+script/source = "using Godot;
+using System;
+
+public partial class Inventory : Node2D
+{
+	
+	
+	
+	
+	
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udyo3"]
+
+[sub_resource type="Animation" id="Animation_0xmy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(44, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_dw5ng"]
+resource_name = "playerbob"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(230, 100), Vector2(230, 97), Vector2(230, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjyhv"]
+_data = {
+&"RESET": SubResource("Animation_0xmy5"),
+&"playerbob": SubResource("Animation_dw5ng")
+}
+
+[node name="Inventory" type="Node2D"]
+script = SubResource("CSharpScript_hp1si")
+
+[node name="Background Image" type="TextureRect" parent="."]
+offset_left = -24.0
+offset_top = -6.0
+offset_right = 619.0
+offset_bottom = 351.0
+scale = Vector2(1.08983, 1.04)
+texture = ExtResource("1_yc0b1")
+expand_mode = 1
+
+[node name="Blue Normal Frame" type="TextureRect" parent="."]
+modulate = Color(0.125911, 0.125911, 0.125911, 1)
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 490.0
+offset_bottom = 363.0
+scale = Vector2(1.32184, 1.02368)
+texture = ExtResource("2_pjhye")
+
+[node name="PaintFrame" type="Node2D" parent="."]
+modulate = Color(0.280304, 0.266129, 0.228052, 1)
+position = Vector2(11, 6)
+
+[node name="Paintstroke" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(-44, 166)
+rotation = -1.33191
+scale = Vector2(1.12426, 0.90974)
+texture = ExtResource("2_ucsoy")
+
+[node name="Paintstroke3" type="Sprite2D" parent="PaintFrame"]
+position = Vector2(657, 190)
+rotation = 1.57652
+texture = ExtResource("2_ucsoy")
+
+[node name="Inventory Character" type="TextureRect" parent="."]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+material = SubResource("ShaderMaterial_udyo3")
+offset_left = 230.0
+offset_top = 97.9011
+offset_right = 443.0
+offset_bottom = 254.901
+texture = ExtResource("3_pjhye")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Inventory Character"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qjyhv")
+}
+script = ExtResource("6_su3to")
+idleAnim = "playerbob"
+
+[node name="hBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 47.0
+offset_top = 324.0
+offset_right = 510.0
+offset_bottom = 338.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.83
+theme_override_constants/separation = 46
+
+[node name="Resume" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_0gpq4")
+text = "   Resume   "
+
+[node name="Map" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "     Map     "
+
+[node name="Options" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "   Options   "
+
+[node name="Quit" type="Button" parent="hBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_0gpq4")
+text = "     Quit     "
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_left = 152.0
+offset_top = 7.0
+offset_right = 3232.0
+offset_bottom = 1031.0
+scale = Vector2(0.0284924, 0.0310378)
+
+[node name="Arrows" type="VBoxContainer" parent="."]
+offset_left = 68.0
+offset_top = 190.0
+offset_right = 1438.0
+offset_bottom = 4089.0
+scale = Vector2(0.0225088, 0.0256061)
+
+[node name="Rubies" type="Node" parent="."]
+
+[node name="ItemSlots" parent="." instance=ExtResource("7_1iklk")]
+
+[editable path="ItemSlots"]
