@@ -26,16 +26,25 @@ public partial class jumpState : State
 	private bool isSameHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
-			//playerTop = _playerTop;
 			return false;
 		}
 		
 		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
 		{
 			KinematicCollision3D collision = player.GetSlideCollision(i);
-			Node3D collider = collision.GetCollider() as Node3D;
-			var transform = GetNode<Node3D>(collider.GetParent().GetPath()).Transform; //reference Transform3D for local scale
-			var scaleY = new Vector3(transform.Basis.X.Y, transform.Basis.Y.Y, transform.Basis.Z.Y).Length(); //local y scale derived from scale and rotation matrix
+			BoxShape3D boxShape;
+			StaticBody3D collider;
+			try
+			{
+				collider = collision.GetCollider() as StaticBody3D;
+				if (!collider.GetCollisionLayerValue(1)) continue;
+				boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
+			}
+			catch { continue; }
+
+			var scaleY = new Vector3(collider.Transform.Basis.X.Y * boxShape.Size.Y,
+			collider.Transform.Basis.Y.Y  * boxShape.Size.Y,
+			collider.Transform.Basis.Z.Y  * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
 			float playerHeight = player.GlobalPosition.Y + playerTop;
 			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
 			if (Mathf.Abs(playerHeight - meshTop) < 0.1f) return true;

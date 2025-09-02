@@ -6,8 +6,8 @@
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="3_n1ea4"]
 [ext_resource type="PackedScene" uid="uid://dhg000x8n700m" path="res://Environment/RoomPieces/Models/stoneCeilingHalf.fbx" id="5_k2r5g"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k2r5g"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yuilt"]
+size = Vector3(1, 0.5, 6)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bjinx"]
 _surfaces = [{
@@ -45,12 +45,13 @@ shadow_mesh = SubResource("ArrayMesh_bjinx")
 [node name="StonePlatformEdge" instance=ExtResource("1_k2r5g")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 6, 0.5, -0.25, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
-shape = SubResource("ConvexPolygonShape3D_k2r5g")
+shape = SubResource("BoxShape3D_yuilt")
 
 [node name="stoneConnectedFloorCeilingHalf" parent="." index="1" instance=ExtResource("2_k2r5g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
