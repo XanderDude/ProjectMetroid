@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=5 format=3 uid="uid://bm4c0ci186op8"]
+[gd_resource type="Environment" load_steps=7 format=3 uid="uid://bm4c0ci186op8"]
 
 [sub_resource type="Gradient" id="Gradient_if77r"]
 offsets = PackedFloat32Array(0, 0.243028, 0.681275, 1)
@@ -7,22 +7,36 @@ colors = PackedColorArray(0, 0, 0, 1, 0.170213, 0.170213, 0.170213, 1, 0.811233,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_k51wu"]
 gradient = SubResource("Gradient_if77r")
 
+[sub_resource type="Gradient" id="Gradient_k51wu"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.491525, 1)
+colors = PackedColorArray(0.331332, 0.129811, 0, 1, 0.259342, 0.127211, 0.0959198, 1, 0.00256803, 7.14975e-05, 0.0519748, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gsdq5"]
+gradient = SubResource("Gradient_k51wu")
+fill_from = Vector2(0, 0.456044)
+fill_to = Vector2(0, 0.274725)
+
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_macrl"]
-turbidity = 1.0
-sun_disk_scale = 25.0
+rayleigh_coefficient = 0.0
+rayleigh_color = Color(0, 0, 0.184314, 1)
+mie_eccentricity = -1.0
+mie_color = Color(1, 1, 1, 1)
+turbidity = 60.0
+energy_multiplier = 0.5
+use_debanding = false
+night_sky = SubResource("GradientTexture2D_gsdq5")
 
 [sub_resource type="Sky" id="Sky_imyq5"]
 sky_material = SubResource("PhysicalSkyMaterial_macrl")
 radiance_size = 4
 
 [resource]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.0149845, 0.00428292, 0.0943889, 1)
-background_energy_multiplier = 1.87
 sky = SubResource("Sky_imyq5")
-ambient_light_source = 2
+ambient_light_source = 3
 ambient_light_color = Color(0.435192, 0.435192, 0.435192, 1)
-ambient_light_energy = 0.4
 reflected_light_source = 1
 tonemap_mode = 3
 tonemap_exposure = 1.25
@@ -39,12 +53,11 @@ glow_blend_mode = 1
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
-fog_light_energy = 3.58
-fog_sun_scatter = 0.2
-fog_density = 0.3286
-fog_sky_affect = 0.31
-fog_depth_curve = 2.46229
-fog_depth_end = 40.0
+fog_light_energy = 2.0
+fog_density = 0.9
+fog_sky_affect = 0.0
+fog_depth_curve = 1.93187
+fog_depth_end = 50.0
 adjustment_enabled = true
 adjustment_brightness = 0.9
 adjustment_contrast = 1.05

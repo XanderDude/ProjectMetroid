@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfkolgcfar5w3"]
+[gd_scene load_steps=14 format=3 uid="uid://dfkolgcfar5w3"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="1_6hvux"]
+[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_kfo3i"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_mbcg4"]
 [ext_resource type="ArrayMesh" uid="uid://cxmk0c6oino4b" path="res://Environment/Models/StoneMeshes/stoneWindowMesh.res" id="2_qu7ck"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="4_6hvux"]
@@ -38,6 +39,7 @@ shape = SubResource("ConvexPolygonShape3D_mbcg4")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.25, -0.0146484)
+material_override = ExtResource("1_kfo3i")
 cast_shadow = 0
 use_collision = true
 size = Vector3(10, 8.5, 9.9707)
