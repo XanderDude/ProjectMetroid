@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://hate0nlnfe0p"]
+
+[ext_resource type="Shader" uid="uid://ttg20nhy81by" path="res://Player/Mesh/ps1JitterMainCharacter.gdshader" id="1_ye4qh"]
+[ext_resource type="Texture2D" uid="uid://bv62rhums0xr2" path="res://Player/Mesh/FrankengirlTextures_1024.png" id="2_o2g06"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ye4qh")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_o2g06")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(640, 480)

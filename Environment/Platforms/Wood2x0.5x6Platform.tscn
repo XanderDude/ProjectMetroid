@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://ylvrs4frhhf"]
+
+[ext_resource type="ArrayMesh" uid="uid://dtdhrpbq0uc63" path="res://Environment/Models/WoodMeshes/woodPlatformMesh.res" id="1_2p51y"]
+[ext_resource type="ArrayMesh" uid="uid://cyflx3fwcwnf0" path="res://Environment/Models/WoodMeshes/woodCeilingMesh.res" id="2_lomh5"]
+[ext_resource type="ArrayMesh" uid="uid://bd0gavgvixkdq" path="res://Environment/Models/WoodMeshes/woodFloorMesh.res" id="3_33gfc"]
+[ext_resource type="ArrayMesh" uid="uid://ta34kj56rh64" path="res://Environment/Models/WoodMeshes/woodPlatformEdgeMesh.res" id="4_lomh5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkffd"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[node name="WoodPlatformEdge" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.25, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_pkffd")
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="WoodPlatformMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = ExtResource("1_2p51y")
+
+[node name="WoodCeilingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
+mesh = ExtResource("2_lomh5")
+
+[node name="WoodCeilingMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4)
+mesh = ExtResource("2_lomh5")
+
+[node name="WoodFloorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("3_33gfc")
+
+[node name="WoodFloorMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+mesh = ExtResource("3_33gfc")
+
+[node name="WoodPlatformEdgeMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("4_lomh5")
+
+[node name="WoodPlatformEdgeMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -2)
+mesh = ExtResource("4_lomh5")
+
+[node name="WoodPlatformEdgeMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -4)
+mesh = ExtResource("4_lomh5")
+
+[node name="WoodPlatformEdgeMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -2)
+mesh = ExtResource("4_lomh5")
+
+[node name="WoodPlatformEdgeMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 0)
+mesh = ExtResource("4_lomh5")
+
+[node name="WoodPlatformEdgeMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 2)
+mesh = ExtResource("4_lomh5")

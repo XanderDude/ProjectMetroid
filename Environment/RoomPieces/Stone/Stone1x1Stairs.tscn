@@ -1,13 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj5kcxxjw1b1d"]
 
-[ext_resource type="PackedScene" uid="uid://ctpvv30euxq8a" path="res://Environment/RoomPieces/Models/stoneStairs1x1.fbx" id="1_oa8qp"]
+[ext_resource type="ArrayMesh" uid="uid://d2rxbbmsd1u8h" path="res://Environment/Models/StoneMeshes/stone1x1StairsMesh.res" id="1_cunq7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cunq7"]
 points = PackedVector3Array(-0.000112891, 0.999902, 1, -0.000112891, -1.52588e-07, 1, -0.000112891, 0.999902, -1, -0.152907, 0.999902, 1, -1.15284, -1.52588e-07, 1, -0.000112891, -1.52588e-07, -1, -0.152907, 0.999902, -1, -1.15284, -1.52588e-07, -1)
 
-[node name="stoneStairs1x1" instance=ExtResource("1_oa8qp")]
+[node name="Stone1x1Stairs" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="stoneStairs1x1/collider" index="0"]
+[node name="Stone1x1StairsMesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cunq7")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneStairs1x1/collider/StaticBody3D" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Stone1x1StairsMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6294e-08, 0, -1.52588e-07)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone1x1StairsMesh/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_cunq7")
+debug_color = Color(0.918333, 0.95, 0, 0.564706)

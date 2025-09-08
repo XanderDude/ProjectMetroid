@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc5p23c5rrma5"]
+[gd_scene load_steps=6 format=3 uid="uid://bc5p23c5rrma5"]
 
 [ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapController.cs" id="1_38gbr"]
-[ext_resource type="PackedScene" uid="uid://di04tvelmmab5" path="res://Environment/RoomPieces/Stone/StoneFloor.tscn" id="2_jjyyq"]
 [ext_resource type="PackedScene" uid="uid://c4utp8gfiho0h" path="res://Enemies/Traps/HalberdTrap.fbx" id="3_38gbr"]
 [ext_resource type="Script" uid="uid://cg5kdqqoju602" path="res://Enemies/Traps/TrapDamage.cs" id="3_jjyyq"]
 [ext_resource type="AnimationLibrary" uid="uid://di3tv02aygqwl" path="res://Enemies/Traps/AxeTrapAnimationLib.res" id="4_jjyyq"]
@@ -16,8 +15,6 @@ animPlayer = NodePath("AnimationPlayer")
 animationName = "AxeConstantSwing"
 damage = 10
 autoTrap = true
-
-[node name="StoneFloor" parent="." instance=ExtResource("2_jjyyq")]
 
 [node name="HalberdTrap" parent="." instance=ExtResource("3_38gbr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)

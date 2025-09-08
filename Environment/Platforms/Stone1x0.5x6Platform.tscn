@@ -1,118 +1,71 @@
-[gd_scene load_steps=9 format=4 uid="uid://bi6oqvg3qqrev"]
+[gd_scene load_steps=6 format=3 uid="uid://bi6oqvg3qqrev"]
+[ext_resource type="ArrayMesh" uid="uid://db17s870n78gj" path="res://Environment/Models/StoneMeshes/stonePlatformHalfMesh.res" id="4_21hof"]
+[ext_resource type="ArrayMesh" uid="uid://0tey36fa4hxo" path="res://Environment/Models/StoneMeshes/stonePlatformEdgeMesh.res" id="4_x5fhq"]
+[ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="5_l6d3r"]
+[ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="6_okdsr"]
 
-[ext_resource type="PackedScene" uid="uid://lrx0mqv6670s" path="res://Environment/RoomPieces/Stone/StonePlatformEdge.fbx" id="1_k2r5g"]
-[ext_resource type="PackedScene" uid="uid://5pcwj76ej6yt" path="res://Environment/RoomPieces/Models/stoneConnectedFloorCeilingHalf.fbx" id="2_k2r5g"]
-[ext_resource type="PackedScene" uid="uid://4puyjy0xka7t" path="res://Environment/RoomPieces/Models/stoneFloorHalf.fbx" id="3_5gi5v"]
-[ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/architectureBasic_mat.tres" id="3_n1ea4"]
-[ext_resource type="PackedScene" uid="uid://dhg000x8n700m" path="res://Environment/RoomPieces/Models/stoneCeilingHalf.fbx" id="5_k2r5g"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yuilt"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5fhq"]
+resource_local_to_scene = true
 size = Vector3(1, 0.5, 6)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bjinx"]
-_surfaces = [{
-"aabb": AABB(0, -0.499263, 0, 2, 0.499263, 1e-05),
-"format": 34359742465,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAgADAAAAAQAAAAQABAAFAAEA"),
-"name": "ArchitectureBasic_Mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAAAAAACAP3af/74AAAAAAAAAAHaf/74AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQHaf/74AAAAA")
-}]
-blend_shape_mode = 0
+[node name="StonePlatformEdge" type="Node3D"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_o5njb"]
-resource_name = "StonePlatformEdge"
-lightmap_size_hint = Vector2i(14, 6)
-_surfaces = [{
-"aabb": AABB(0, -0.499263, 0, 2, 0.499263, 1e-05),
-"attribute_data": PackedByteArray("VD3APugElT0AAAA/q6pqP/4nwD4E0xE+AAAAP6uqqj0QeXE+eH0RPm7bdj+rqqo9vKNxPvBZlD1u23Y/q6pqP/YxwD7IqZQ9JUkSPauqaj9mM8A+cKURPiVJEj2rqqo9zI9xPiSrET4AAAA/q6qqPeyMcT4otZQ9AAAAP6uqaj8="),
-"format": 34359742519,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQA"),
-"material": ExtResource("3_n1ea4"),
-"name": "ArchitectureBasic_Mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AACAPwAAAAAAAAAAAACAP3af/74AAAAAAAAAAHaf/74AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQHaf/74AAAAAAACAP3af/74AAAAAAACAPwAAAAAAAAAA/3//f7L/JcD/f/9/sv8lwP9//3+y/yXA/3//f7L/JcD/f/9/+f/8v/9//3/5//y//3//f/n//L//f/9/+f/8vw==")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bjinx")
-
-[node name="StonePlatformEdge" instance=ExtResource("1_k2r5g")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -1)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="0"]
-collision_mask = 0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_x5fhq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_yuilt")
+[node name="Meshes" type="Node3D" parent="."]
 
-[node name="stoneConnectedFloorCeilingHalf" parent="." index="1" instance=ExtResource("2_k2r5g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
-
-[node name="collider" parent="stoneConnectedFloorCeilingHalf/StoneInterior/StonePlatformHalf" index="0"]
-transparency = 1.0
-cast_shadow = 0
-
-[node name="StoneInterior" parent="." index="2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 1)
-
-[node name="StoneInterior6" type="Node3D" parent="." index="3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1)
-
-[node name="StonePlatformEdge" type="MeshInstance3D" parent="StoneInterior6" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-mesh = SubResource("ArrayMesh_o5njb")
+[node name="StonePlatformHalfMesh" type="MeshInstance3D" parent="Meshes"]
+mesh = ExtResource("4_21hof")
 skeleton = NodePath("")
 
-[node name="StoneInterior2" type="Node3D" parent="." index="4"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1)
+[node name="StoneFloorHalfMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("5_l6d3r")
+skeleton = NodePath("../..")
 
-[node name="StonePlatformEdge" type="MeshInstance3D" parent="StoneInterior2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-mesh = SubResource("ArrayMesh_o5njb")
-skeleton = NodePath("")
+[node name="StoneFloorHalfMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+mesh = ExtResource("5_l6d3r")
+skeleton = NodePath("../..")
 
-[node name="StoneInterior3" type="Node3D" parent="." index="5"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -3)
+[node name="StoneCeilingHalfMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
+mesh = ExtResource("6_okdsr")
 
-[node name="StonePlatformEdge" type="MeshInstance3D" parent="StoneInterior3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-mesh = SubResource("ArrayMesh_o5njb")
-skeleton = NodePath("")
+[node name="StoneCeilingHalfMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4)
+mesh = ExtResource("6_okdsr")
 
-[node name="StoneInterior4" type="Node3D" parent="." index="6"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
+[node name="StonePlatformEdgeMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 2.18557e-08)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")
 
-[node name="StonePlatformEdge" type="MeshInstance3D" parent="StoneInterior4" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-mesh = SubResource("ArrayMesh_o5njb")
-skeleton = NodePath("")
+[node name="StonePlatformEdgeMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -2)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")
 
-[node name="StoneInterior5" type="Node3D" parent="." index="7"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -1)
+[node name="StonePlatformEdgeMesh3" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -4)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")
 
-[node name="StonePlatformEdge" type="MeshInstance3D" parent="StoneInterior5" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-mesh = SubResource("ArrayMesh_o5njb")
-skeleton = NodePath("")
+[node name="StonePlatformEdgeMesh4" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1, 0, 2)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")
 
-[node name="stoneFloorHalf" parent="." index="8" instance=ExtResource("3_5gi5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+[node name="StonePlatformEdgeMesh5" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1, 0, 5.36422e-08)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")
 
-[node name="stoneFloorHalf2" parent="." index="9" instance=ExtResource("3_5gi5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
-
-[node name="stoneCeilingHalf" parent="." index="10" instance=ExtResource("5_k2r5g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
-
-[node name="stoneCeilingHalf2" parent="." index="11" instance=ExtResource("5_k2r5g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
-
-[editable path="stoneConnectedFloorCeilingHalf"]
+[node name="StonePlatformEdgeMesh6" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1, 0, -2)
+mesh = ExtResource("4_x5fhq")
+skeleton = NodePath("../..")

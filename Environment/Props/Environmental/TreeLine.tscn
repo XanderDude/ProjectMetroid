@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=4 uid="uid://bvw8jjowu62a0"]
+
+[ext_resource type="PackedScene" uid="uid://dvdvwneoqbhmf" path="res://Environment/Models/TreeLinePlanes.glb" id="1_uaxt1"]
+[ext_resource type="Material" uid="uid://mfnek0rv47j4" path="res://Environment/Materials/BGEnvironmentMat.tres" id="2_c0qr3"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0p1bm"]
+_surfaces = [{
+"aabb": AABB(-5.50315, 8.35018e-09, -1.07102e-07, 12.0818, 4.8949, 1e-05),
+"format": 34359742465,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("Z2YGQIB0DzIAAOazMITSQAijnEAAAOUzMITSQIB0DzIAAOazamYGQAijnEAAAOUzMjPzv4B0DzIAAOazMjPzvwijnEAAAOUzzhmwwIB0DzIAAOazzhmwwAijnEAAAOUz")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tb85l"]
+resource_name = "TreeLinePlanes_Plane_001"
+_surfaces = [{
+"aabb": AABB(-5.50315, 8.35018e-09, -1.07102e-07, 12.0818, 4.8949, 1e-05),
+"attribute_data": PackedByteArray("OdcgPxNYeT9Kl30/IPkTP0qXfT8TWHk/OtcgPyD5Ez9oAZw+E1h5P2gBnD4g+RM/2ohYPBNYeT/aiFg8IPkTPw=="),
+"format": 34359742487,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUA"),
+"material": ExtResource("2_c0qr3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("Z2YGQIB0DzIAAOazMITSQAijnEAAAOUzMITSQIB0DzIAAOazamYGQAijnEAAAOUzMjPzv4B0DzIAAOazMjPzvwijnEAAAOUzzhmwwIB0DzIAAOazzhmwwAijnEAAAOUz/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0p1bm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uaxt1"]
+albedo_color = Color(0.293289, 0.192176, 0.0678528, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c0qr3"]
+
+[node name="TreeLine" type="Node3D"]
+
+[node name="TreeLinePlanes" parent="." instance=ExtResource("1_uaxt1")]
+
+[node name="treeLineMesh" parent="TreeLinePlanes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.489894, 0, 1)
+mesh = SubResource("ArrayMesh_tb85l")
+
+[node name="treeLineMesh2" type="MeshInstance3D" parent="TreeLinePlanes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0117, 0, 0)
+mesh = SubResource("ArrayMesh_tb85l")
+skeleton = NodePath("")
+
+[node name="treeLineMesh4" type="MeshInstance3D" parent="TreeLinePlanes"]
+transform = Transform3D(1.29317, 0, 0, 0, 1.21546, 0, 0, 0, 1, -9, 0, -2)
+mesh = SubResource("ArrayMesh_tb85l")
+skeleton = NodePath("")
+
+[node name="treeLineMesh5" type="MeshInstance3D" parent="TreeLinePlanes"]
+transform = Transform3D(1.29317, 0, 0, 0, 1.21546, 0, 0, 0, 1, 8, 0, -2)
+mesh = SubResource("ArrayMesh_tb85l")
+skeleton = NodePath("")
+
+[node name="treeLineMesh3" type="MeshInstance3D" parent="TreeLinePlanes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8353, 0, 0)
+mesh = SubResource("ArrayMesh_tb85l")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(18, 0, 0, 0, 1, 0, 0, 0, 6.157, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_uaxt1")
+mesh = SubResource("PlaneMesh_c0qr3")
+
+[editable path="TreeLinePlanes"]

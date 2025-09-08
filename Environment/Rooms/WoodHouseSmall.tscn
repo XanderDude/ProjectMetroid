@@ -1,0 +1,297 @@
+[gd_scene load_steps=15 format=3 uid="uid://bfw31nl8kpm6"]
+
+[ext_resource type="ArrayMesh" uid="uid://dtdhrpbq0uc63" path="res://Environment/Models/WoodMeshes/woodPlatformMesh.res" id="1_djaya"]
+[ext_resource type="ArrayMesh" uid="uid://ta34kj56rh64" path="res://Environment/Models/WoodMeshes/woodPlatformEdgeMesh.res" id="2_jl3b1"]
+[ext_resource type="ArrayMesh" uid="uid://bkuulp8qn8u7q" path="res://Environment/Models/WoodMeshes/woodWallMesh.res" id="3_8d15i"]
+[ext_resource type="ArrayMesh" uid="uid://de0awk5e7b7gu" path="res://Environment/Models/WoodMeshes/woodWindowMesh.res" id="4_35cgt"]
+[ext_resource type="ArrayMesh" uid="uid://bd0gavgvixkdq" path="res://Environment/Models/WoodMeshes/woodFloorMesh.res" id="5_8d15i"]
+[ext_resource type="ArrayMesh" uid="uid://oang1vjclu3i" path="res://Environment/Models/WoodMeshes/woodDoorFrameMesh.res" id="6_qlqx3"]
+[ext_resource type="ArrayMesh" uid="uid://dc7fjdtwce8ro" path="res://Environment/Models/WoodMeshes/woodDoorMesh.res" id="7_djaya"]
+[ext_resource type="ArrayMesh" uid="uid://cqff185xrr8bh" path="res://Environment/Models/PropHouseMeshes/grandfatherClockMesh.res" id="8_q73ww"]
+[ext_resource type="ArrayMesh" uid="uid://b705bfm5rbgyk" path="res://Environment/Models/PropHouseMeshes/deskMesh.res" id="9_blxny"]
+[ext_resource type="ArrayMesh" uid="uid://5lsiusi53ioy" path="res://Environment/Models/PropHouseMeshes/chairMesh.res" id="10_rggpv"]
+[ext_resource type="ArrayMesh" uid="uid://cekdpurcpayac" path="res://Environment/Models/PropHouseMeshes/bookshelfMesh.res" id="11_co2lr"]
+[ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="12_d6rhr"]
+[ext_resource type="PackedScene" uid="uid://bj348herb58si" path="res://Environment/Props/General/LargeTableSet.tscn" id="13_blxny"]
+[ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="14_blxny"]
+
+[node name="WoodHouse" type="Node3D"]
+
+[node name="Ceiling" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="WoodPlatformMesh" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh2" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh3" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh4" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh5" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh6" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh7" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformMesh8" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 4.5, -6)
+mesh = ExtResource("1_djaya")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformEdgeMesh" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 4.5, -8)
+mesh = ExtResource("2_jl3b1")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformEdgeMesh2" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 4.5, -6)
+mesh = ExtResource("2_jl3b1")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformEdgeMesh3" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5, 4.5, -4)
+mesh = ExtResource("2_jl3b1")
+skeleton = NodePath("../..")
+
+[node name="WoodPlatformEdgeMesh4" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5, 4.5, -6)
+mesh = ExtResource("2_jl3b1")
+skeleton = NodePath("../..")
+
+[node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="WoodWallMesh" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh5" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh6" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh7" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -8)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh16" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -4)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh17" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -4)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh18" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh20" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh19" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh8" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh9" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 2, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh10" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh11" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 2, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh12" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh13" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 2, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh14" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh15" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 2, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWindowMesh" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+mesh = ExtResource("4_35cgt")
+skeleton = NodePath("../..")
+
+[node name="WoodWindowMesh2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+mesh = ExtResource("4_35cgt")
+skeleton = NodePath("../..")
+
+[node name="WoodWindowMesh3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+mesh = ExtResource("4_35cgt")
+skeleton = NodePath("../..")
+
+[node name="Floor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="WoodFloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -6)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh3" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh4" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh5" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -8)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh6" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh7" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodFloorMesh8" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -8)
+mesh = ExtResource("5_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodDoorFrameMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+mesh = ExtResource("6_qlqx3")
+
+[node name="WoodDoorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 1.5, 0, -3.81469)
+mesh = ExtResource("7_djaya")
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="GrandfatherClockMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+mesh = ExtResource("8_q73ww")
+
+[node name="DeskMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257078, 0, -2)
+mesh = ExtResource("9_blxny")
+
+[node name="ChairMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.00057295, 0, -1.33003)
+mesh = ExtResource("10_rggpv")
+
+[node name="BookshelfMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3.95883, 0, -0.477325)
+mesh = ExtResource("11_co2lr")
+
+[node name="BookshelfMesh2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, 1, -3.5, 0, -1.97733)
+mesh = ExtResource("11_co2lr")
+
+[node name="BarrelMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.61518)
+mesh = ExtResource("14_blxny")
+
+[node name="LargeTableSet" parent="Decorations" instance=ExtResource("13_blxny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43406, 0, 0.389945)
+
+[node name="ChairMesh2" parent="Decorations/LargeTableSet" index="2"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, -1.12442)
+
+[node name="ChairMesh6" parent="Decorations/LargeTableSet" index="5"]
+visible = false
+
+[node name="ChairMesh7" parent="Decorations/LargeTableSet" index="6"]
+visible = false
+
+[node name="ChairMesh5" parent="Decorations/LargeTableSet" index="7"]
+transform = Transform3D(-0.364259, 0, 0.931298, 0, 1, 0, -0.931298, 0, -0.364259, 0.0652568, -2.38419e-07, 1.1716)
+
+[node name="LightLantern" parent="." instance=ExtResource("12_d6rhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, 0)
+
+[editable path="Decorations/LargeTableSet"]
+[editable path="LightLantern"]
