@@ -5,6 +5,8 @@ public partial class Raven : CharacterBody3D
     [Export] public PlayerManager player = null;
     [Export] public float speed = 0.0f;
     [Export] public float maxDistance = 0.0f;
+    
+
 
     public Vector3 direction = Vector3.Zero;
     public Vector3 targetPosition = Vector3.Zero;
@@ -21,7 +23,7 @@ public partial class Raven : CharacterBody3D
 
     public bool isOnPlayer = false;
     public bool isLaunching = false;
-    public bool canTeleport = true;
+    public bool canTeleport = false;
     public float ravenMeleeDamage = 0.0f;
 
     public override void _Ready()
@@ -51,6 +53,11 @@ public partial class Raven : CharacterBody3D
             this.CollisionMask = 0;
         }
     }
+
+    if (player.IsOnFloor())
+        {
+        canTeleport = true;
+        }
     
     MoveAndCollide(this.Velocity * (float)delta);
 }

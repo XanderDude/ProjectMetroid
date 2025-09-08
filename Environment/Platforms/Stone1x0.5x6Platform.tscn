@@ -1,5 +1,4 @@
 [gd_scene load_steps=6 format=3 uid="uid://bi6oqvg3qqrev"]
-
 [ext_resource type="ArrayMesh" uid="uid://db17s870n78gj" path="res://Environment/Models/StoneMeshes/stonePlatformHalfMesh.res" id="4_21hof"]
 [ext_resource type="ArrayMesh" uid="uid://0tey36fa4hxo" path="res://Environment/Models/StoneMeshes/stonePlatformEdgeMesh.res" id="4_x5fhq"]
 [ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="5_l6d3r"]
