@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=13 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://euohdexnkmw3" path="res://Raven/RavenLaunchState.cs" id="4_oiwij"]
 [ext_resource type="PackedScene" uid="uid://cfqx3x3003wu0" path="res://Bird/RavenFly.fbx" id="6_d3jmq"]
 [ext_resource type="Script" uid="uid://brlcdyahxifgc" path="res://Raven/RavenAttackState.cs" id="6_w2qnq"]
+[ext_resource type="Script" uid="uid://da0xs4ba0tw6o" path="res://Raven/RavenOnPlayerState.cs" id="7_840d0"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="8_be226"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_14tcx"]
@@ -39,6 +40,9 @@ script = ExtResource("4_oiwij")
 
 [node name="RavenAttackState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("6_w2qnq")
+
+[node name="RavenOnPlayerState" type="Node" parent="RavenStateMachine"]
+script = ExtResource("7_840d0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_14tcx")
