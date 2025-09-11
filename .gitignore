@@ -1,0 +1,32 @@
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+.godot/mono/temp/bin/Debug/ProjectMetroid.dll
+.godot/mono/temp/bin/Debug/ProjectMetroid.pdb
+.godot/mono/temp/obj/Debug/ProjectMetroid.AssemblyInfo.cs
+.godot/mono/temp/obj/Debug/ProjectMetroid.AssemblyInfoInputs.cache
+.godot/mono/temp/obj/Debug/ProjectMetroid.dll
+.godot/mono/temp/obj/Debug/ProjectMetroid.pdb
+.godot/mono/temp/obj/Debug/ProjectMetroid.sourcelink.json
+.godot/mono/temp/obj/Debug/ref/ProjectMetroid.dll
+.godot/mono/temp/obj/Debug/refint/ProjectMetroid.dll
+
+# Maya-specific files
+/Environment/Materials/.mayaSwatches
+*.swatch
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/tasks.json

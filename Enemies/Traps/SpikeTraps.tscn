@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctl838fm51cgn"]
+
+[ext_resource type="Script" uid="uid://y7sr70o16ch7" path="res://Enemies/Traps/TrapController.cs" id="1_yj3h8"]
+[ext_resource type="ArrayMesh" uid="uid://cq6ghprmkvs8q" path="res://Enemies/Traps/Meshes/SpikesMesh.res" id="2_yj3h8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qc3pl"]
+size = Vector3(2, 1.5, 2)
+
+[sub_resource type="Animation" id="Animation_yj3h8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spikes:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qc3pl"]
+resource_name = "SpikeActivate"
+length = 0.4485
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Spikes")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spikes:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.419857)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spikes:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 3, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 0.273999, 0.45, -0.0654769, -0.0617303, 0.101435, 0.0956309, 0.5, -0.0681019, 0, 0.0681019, 0, -0.00187427, -0.233333, -0.33934, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.433333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spikes:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.419857)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2hn8"]
+_data = {
+&"RESET": SubResource("Animation_yj3h8"),
+&"SpikeActivate": SubResource("Animation_qc3pl")
+}
+
+[node name="SpikeTraps" type="Node3D" node_paths=PackedStringArray("animPlayer")]
+script = ExtResource("1_yj3h8")
+animPlayer = NodePath("AnimationPlayer")
+animationName = "SpikeActivate"
+damage = 20
+
+[node name="TriggerZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_qc3pl")
+
+[node name="Spikes" type="Node3D" parent="."]
+
+[node name="SpikesMesh" type="MeshInstance3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.534759, 1)
+mesh = ExtResource("2_yj3h8")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s2hn8")
+}
+playback_auto_capture = false
+
+[connection signal="body_entered" from="TriggerZone" to="." method="OnTrapTriggered"]
+[connection signal="body_exited" from="TriggerZone" to="." method="OnLeaveTrapTrigger"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1i66ayeg6n25"]
+[ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="1_4tci2"]
+[ext_resource type="ArrayMesh" uid="uid://0tey36fa4hxo" path="res://Environment/Models/StoneMeshes/stonePlatformEdgeMesh.res" id="2_n74f7"]
+[ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="3_pkffd"]
+[ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="4_yb41l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkffd"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[node name="StonePlatformEdge" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.25, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_pkffd")
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="StonePlatformMesh" type="MeshInstance3D" parent="Meshes"]
+mesh = ExtResource("1_4tci2")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 2.18557e-08)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.74228e-08, 0, -2)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh3" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.74846e-07, 0, -4)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh4" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh5" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 1.19209e-07)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformEdgeMesh6" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, -2)
+mesh = ExtResource("2_n74f7")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
+mesh = ExtResource("3_pkffd")
+
+[node name="StoneCeilingMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4)
+mesh = ExtResource("3_pkffd")
+
+[node name="StoneFloorMesh" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("4_yb41l")
+
+[node name="StoneFloorMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+mesh = ExtResource("4_yb41l")

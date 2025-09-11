@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://3og3uwn1s88q"]
+
+[ext_resource type="Script" uid="uid://d4c5rjwm4l4cj" path="res://Player/Weapons/WristCrossbow/NormalArrow.cs" id="1_jo3q1"]
+[ext_resource type="PackedScene" uid="uid://bil1ura0rj4wd" path="res://Player/Weapons/WristCrossbow/arrow.fbx" id="2_yq1wc"]
+[ext_resource type="ArrayMesh" uid="uid://bdhk7opdd6t44" path="res://Player/Weapons/WristCrossbow/ArrowNormalMesh.res" id="3_yq1wc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
+radius = 0.0310877
+height = 0.392946
+
+[node name="arrow" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 11
+collision_priority = 10.0
+axis_lock_linear_z = true
+script = ExtResource("1_jo3q1")
+
+[node name="arrow" parent="." instance=ExtResource("2_yq1wc")]
+transform = Transform3D(-3.71547e-07, 0, 8.5, 0, 8.5, 0, -8.5, 0, -3.71547e-07, -0.0548004, -0.359202, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ev4wo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.0854202, 0.603356, 0.793167, 1)
+light_energy = 6.98
+
+[node name="ArrowNormalMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.24569e-08, 0, 1, 1.88639, -1.07254e-07, 4.37114e-08, 8.24569e-08, 2.45369, 1.91069e-15, -0.000376441, 0, 0)
+mesh = ExtResource("3_yq1wc")

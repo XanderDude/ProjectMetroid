@@ -1,0 +1,309 @@
+[gd_scene load_steps=16 format=3 uid="uid://cx1ep0rw36acf"]
+
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="1_6syng"]
+[ext_resource type="PackedScene" uid="uid://c32y8w7fej1cs" path="res://AreaTransitions/TeleporterTest/roomTeleportHitbox.tscn" id="3_htrpb"]
+[ext_resource type="Script" uid="uid://cvytply0jol11" path="res://AreaTransitions/TeleporterTest/ScreenTransitionScript.cs" id="3_yw4gc"]
+[ext_resource type="AudioStream" uid="uid://bd80535gy6gil" path="res://AreaTransitions/Sounds/regaliaAreaIntro.mp3" id="4_ekw2i"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="5_ekw2i"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nyppi"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nyppi"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_53xuj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_53xuj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1d5am"]
+
+[sub_resource type="Animation" id="Animation_6d3tk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenTransitionScript:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nhj42"]
+resource_name = "fade_in_out_mute"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenTransitionScript:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenTransitionScript:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScreenTransitionScript:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n0huq"]
+resource_name = "fade_in_out"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenTransitionScript:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4.1, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenTransitionScript/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1d5am"]
+resource_name = "fade_in_out_black_screen"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenTransitionScript:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenTransitionScript:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScreenTransitionScript:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fixg"]
+_data = {
+&"RESET": SubResource("Animation_6d3tk"),
+&"fade_in_black_screen": SubResource("Animation_nhj42"),
+&"fade_in_out": SubResource("Animation_n0huq"),
+&"fade_out_black_screen": SubResource("Animation_1d5am")
+}
+
+[node name="Game2" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0318627)
+
+[node name="Room1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129981, 2.38419e-07, 0.00272799)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1"]
+transform = Transform3D(9.99702, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nyppi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nyppi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room1"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 4.48026, 0, 0, 0, 2.85529, 6.46519, 1.77403, 0)
+mesh = SubResource("SphereMesh_53xuj")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 4.48026, 0, 0, 0, 4.0572, 6.46519, 1.77403, 0)
+shape = SubResource("CapsuleShape3D_53xuj")
+
+[node name="Room2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6408, 0, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room2"]
+transform = Transform3D(9.99702, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nyppi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room2/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nyppi")
+
+[node name="roomTeleportHitbox" parent="Room2" instance=ExtResource("3_htrpb")]
+
+[node name="Player" parent="." instance=ExtResource("1_6syng")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00111699, 0.445021, -0.0125146)
+
+[node name="PlayerMesh" parent="Player" index="4"]
+AimBlendBlendPath = ""
+LegAndArmBlendBlendPath = ""
+
+[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0178308, 0.895148, 0.0142322)
+bones/0/rotation = Quaternion(0.549378, 0.446364, 0.453745, 0.541349)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(-0.0437845, 0.104987, -0.00341612, 0.993503)
+bones/1/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(0.035671, 0.0139758, -3.37508e-16)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
+bones/4/rotation = Quaternion(-0.16003, 0.00664452, -0.0222138, 0.98684)
+bones/5/position = Vector3(0.0708221, -0.0208942, -7.99361e-16)
+bones/7/position = Vector3(0.0414528, 0.0608705, 0.00565372)
+bones/7/rotation = Quaternion(-0.478106, -0.509543, -0.441019, 0.563278)
+bones/7/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.394002, -0.0323785, 0.917733, 0.0384711)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(0.49735, 0.590289, -0.43884, 0.460023)
+bones/11/rotation = Quaternion(0.0808217, -0.528046, -0.15882, 0.830308)
+bones/13/rotation = Quaternion(0.0119369, -0.105999, 0.0748175, 0.991476)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(0.148698, 0.0244435, -0.155216, 0.976319)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/21/rotation = Quaternion(0.998508, -0.00818733, -0.0303801, 0.0446228)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.527112, -0.4891, 0.49714, 0.485579)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/rotation = Quaternion(3.26961e-14, 7.49401e-16, 0, 1)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+
+[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.164298, 0.958967, 0.23106, -0.870493, 0.0307831, 0.491216, 0.463948, -0.281842, 0.839832, -0.129952, 1.18801, -0.122196)
+
+[node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.0662459, -0.961731, -0.265865, -0.991904, -0.034542, -0.122203, 0.108343, 0.271808, -0.956234, -0.0662462, 1.19926, -0.123591)
+
+[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
+transform = Transform3D(0.22512, -0.170128, -0.959363, 0.513522, 0.857496, -0.0315628, 0.82802, -0.485548, 0.280404, -0.0662462, 1.19926, -0.123591)
+
+[node name="Standard Crossbow" parent="Player/Inventory/CanvasLayer" index="1"]
+name = ""
+
+[node name="Add Normal Arrow" parent="Player/Inventory/CanvasLayer" index="3"]
+name = ""
+
+[node name="+Raven Sword" parent="Player/Inventory/CanvasLayer" index="5"]
+name = ""
+
+[node name="Add Bomb Arrow" parent="Player/Inventory/CanvasLayer" index="6"]
+name = ""
+
+[node name="GlobalTransition" type="CanvasLayer" parent="."]
+
+[node name="ScreenTransitionScript" type="TextureRect" parent="GlobalTransition"]
+visible = false
+modulate = Color(0, 0, 0, 0)
+self_modulate = Color(0, 0, 0, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -180.0
+offset_right = 318.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_1d5am")
+expand_mode = 3
+script = ExtResource("3_yw4gc")
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalTransition/ScreenTransitionScript"]
+stream = ExtResource("4_ekw2i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GlobalTransition"]
+unique_name_in_owner = true
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_0fixg")
+}
+
+[node name="Timer" type="Timer" parent="GlobalTransition"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Camera3D" parent="." instance=ExtResource("5_ekw2i")]
+roomMaxX = 60.0
+
+[connection signal="body_entered" from="Room2/roomTeleportHitbox/Area3D" to="GlobalTransition/ScreenTransitionScript" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Room2/roomTeleportHitbox/Area3D" to="GlobalTransition/ScreenTransitionScript" method="_on_area_3d_body_exited"]
+
+[editable path="Room2/roomTeleportHitbox"]
+[editable path="Player"]
+[editable path="Player/PlayerMesh"]

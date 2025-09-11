@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://xbqb3ncnwmbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74xnp"]
+shading_mode = 2
+diffuse_mode = 3
+albedo_color = Color(0.205658, 0.129881, 0.0366762, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_thg0d"]
+
+[node name="UndergroundForeground" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, -4.37114e-08, -5, 0, 1, -2.18557e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_74xnp")
+mesh = SubResource("PlaneMesh_thg0d")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6v3hjo3nqwfn"]
+
+[ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="1_6soa8"]
+
+[node name="candleLight" type="OmniLight3D"]
+light_color = Color(0.94902, 0.768627, 0.137255, 1)
+light_indirect_energy = 0.5
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+shadow_caster_mask = 4294967293
+omni_range = 4.0
+omni_attenuation = 0.0
+script = ExtResource("1_6soa8")

@@ -1,0 +1,104 @@
+using Godot;
+
+using SVector2 = System.Numerics.Vector2;
+
+public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
+{
+	[Export] private CharacterBody3D player;
+	[Export] public AnimationTree animTree;
+	[Export] private string playbackFilePath; //ref to where we are in the animation state machine
+	private AnimationNodeStateMachinePlayback playback;
+	[Export] private string WalkingBlendPath { get; set; }
+	[Export] private string RunSpeedBlendPath { get; set; }
+	[Export] private string AimBlendBlendPath { get; set; } //for blending the different aim directions
+	[Export] private string LegAndArmBlendBlendPath { get; set; } //or choosing when to blend between normal animations and aiming
+	[Export] private float transitionSpeed = 8f;
+	[Export] private string JumpStateName;
+	[Export] private string RunningStateName, WallCollisionStateName;
+	[Export] private float runBlendSpeed = 2.3f; //run animation speed adjustment
+	[Export] private string SlideStateName;
+	[Export] private string CrouchStateName;
+	[Export] private string HangingStateName;
+
+	[Export] private float shootingAnimTime = 2f; //how long shoot anim lasts before resetting to default
+	private float shootingTimer = 0;
+
+	private float currentSpeed;
+
+	private int currentDirection = 90; //-90 for left, 90 for right
+	private SVector2 aimDirection = SVector2.Zero; //angle to position shooting arm during aiming mode
+
+	public override void _Ready()
+	{
+		currentDirection *= Mathf.Sign(GlobalRotation.Y);
+		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
+	}
+
+	public override void _Process(double delta)
+	{
+		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned 
+
+		if (shootingTimer > 0) shootingTimer -= (float)delta;
+
+		//find the value between current speed and desired speed
+		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed), 0, 1f);
+		//if (currentSpeed > 1) currentSpeed = 1;
+
+		if (player.Velocity.X != 0)
+		{
+			RotationDegrees = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //rotate mesh
+		}
+
+		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
+		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
+		SVector2 newAimDirect = new SVector2(Mathf.Abs(Input.GetAxis("Left", "Right")), Input.GetAxis("Down", "Up")); //get up or down (1, -1,) and if holding a direction
+
+		if (newAimDirect != aimDirection)
+		{
+			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, (float)delta * transitionSpeed);
+			animTree.Set(AimBlendBlendPath, new Vector2(aimDirection.X, aimDirection.Y * 2));
+		}
+
+		//only blend upper body when shooting
+		if (shootingTimer > 0) animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 1, (float)delta * transitionSpeed));
+		else animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 0, (float)delta * transitionSpeed));
+	}
+
+	public void BeginJump()
+	{
+		playback?.Travel(JumpStateName);
+	}
+
+	public void Grounded()
+	{
+		playback?.Travel(RunningStateName);
+	}
+
+	public void Sliding(bool value) //value = slide true or sliding false
+	{
+		animTree.Set("parameters/conditions/slideEnd", !value); //set slideEnd true when Sliding(false) is called
+		if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
+		else if (value) playback?.Travel(SlideStateName); //only transition to slide when true
+	}
+
+	public void Crouch(bool value)
+	{
+		if (value) playback?.Travel(CrouchStateName);
+		else playback?.Travel(RunningStateName);
+	}
+
+	public void WallCollided()
+	{
+		if (Mathf.Abs(player.Velocity.X) == 0) playback?.Travel(WallCollisionStateName);
+	}
+
+	public void Hanging()
+	{
+		playback?.Travel(HangingStateName);
+	}
+
+	public void Shoot()
+	{
+		shootingTimer = shootingAnimTime;
+	}
+}

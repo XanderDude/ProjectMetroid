@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx6inaiw5kq1u"]
+
+[ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
+[ext_resource type="ArrayMesh" uid="uid://bk1osfmy5eve1" path="res://Environment/Models/StoneMeshes/reinforcedDoorMesh.res" id="2_bauuh"]
+[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="3_bauuh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ht27"]
+resource_local_to_scene = true
+size = Vector3(0.2, 4, 2)
+
+[node name="Wall_DoorWay" type="Node3D"]
+
+[node name="StoneDoorFrameMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("1_irt8q")
+
+[node name="ReinforcedDoorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2, 0, 1)
+mesh = ExtResource("2_bauuh")
+
+[node name="ReinforcedDoorMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.2, 0, -1)
+mesh = ExtResource("2_bauuh")
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
+mesh = ExtResource("3_bauuh")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 0)
+mesh = ExtResource("3_bauuh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 4, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2ht27")
+debug_color = Color(0.665, 0.7, 0, 1)

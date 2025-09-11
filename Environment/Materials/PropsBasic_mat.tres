@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8kxgx18h77cs"]
+
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="1_a41aw"]
+[ext_resource type="Texture2D" uid="uid://dtcfnkos37d0r" path="res://Environment/Materials/PropsBasic_Albedo.png" id="2_6itjn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a41aw")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_6itjn")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(640, 480)

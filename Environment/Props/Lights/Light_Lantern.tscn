@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://1rkoiwbsujql"]
+
+[ext_resource type="ArrayMesh" uid="uid://boal3eyvblo0v" path="res://Environment/Models/PropLightMeshes/lanternMesh.res" id="1_eejql"]
+[ext_resource type="ArrayMesh" uid="uid://db2cf80ojcx60" path="res://Environment/Models/PropLightMeshes/lanternLitMesh.res" id="2_1oux7"]
+[ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_nridg"]
+[ext_resource type="ArrayMesh" uid="uid://bnrrq8ugaq0to" path="res://Environment/Models/PropLightMeshes/chainShortMesh.res" id="3_eejql"]
+
+[node name="Light_Lantern" type="Node3D"]
+
+[node name="ChainShortMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("3_eejql")
+
+[node name="LanternMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+cast_shadow = 0
+mesh = ExtResource("1_eejql")
+
+[node name="lanternOmniLight" type="OmniLight3D" parent="LanternMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.373, 0)
+light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_size = 0.2
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+shadow_caster_mask = 4294967293
+omni_range = 8.0
+script = ExtResource("2_nridg")
+
+[node name="glassMesh" type="MeshInstance3D" parent="LanternMesh"]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+mesh = ExtResource("2_1oux7")
+skeleton = NodePath("../..")

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://8a15cimxh6tw"]
+
+[node name="PlayerLight" type="OmniLight3D"]
+light_color = Color(0.129559, 0.129559, 0.129558, 1)
+light_energy = 3.5
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
+light_specular = 0.0
+light_bake_mode = 0
+omni_range = 4.0
+omni_attenuation = -1.0
