@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv62rhums0xr2"
-path.s3tc="res://.godot/imported/FrankengirlTextures_1024.png-95b66d00453fa139bb18ddd1b993f8b6.s3tc.ctex"
+uid="uid://vxs676ck0fqd"
+path.s3tc="res://.godot/imported/TreeIndividuals_BackgroundEnvironment_Albedo.png-5547d52d537041c9c0285bff38430a64.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "f4a86bedbd2bc72d94962a8341c8183f"
+}
 
 [deps]
 
-source_file="res://Player/FrankengirlTextures_1024.png"
-dest_files=["res://.godot/imported/FrankengirlTextures_1024.png-95b66d00453fa139bb18ddd1b993f8b6.s3tc.ctex"]
+source_file="res://Environment/Props/Environmental/TreeIndividuals_BackgroundEnvironment_Albedo.png"
+dest_files=["res://.godot/imported/TreeIndividuals_BackgroundEnvironment_Albedo.png-5547d52d537041c9c0285bff38430a64.s3tc.ctex"]
 
 [params]
 

@@ -7232,9 +7232,13 @@ _subresources={
 }
 },
 "materials": {
+"Crossbow_Mat": {
+"use_external/enabled": true,
+"use_external/path": "uid://bwbcwsmcq4p6q"
+},
 "frankengirl_mat": {
 "use_external/enabled": true,
-"use_external/path": "uid://cdiw6jfnws67w"
+"use_external/path": "uid://hate0nlnfe0p"
 }
 },
 "nodes": {

@@ -8,20 +8,25 @@
 [node name="Light_Lantern" type="Node3D"]
 
 [node name="ChainShortMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = ExtResource("3_eejql")
 
 [node name="LanternMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+cast_shadow = 0
 mesh = ExtResource("1_eejql")
 
 [node name="lanternOmniLight" type="OmniLight3D" parent="LanternMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.373, 0)
 light_color = Color(0.997038, 0.897511, 0.617295, 1)
-light_indirect_energy = 0.252
+light_size = 0.2
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+shadow_caster_mask = 4294967293
 omni_range = 8.0
-omni_shadow_mode = 0
 script = ExtResource("2_nridg")
 
 [node name="glassMesh" type="MeshInstance3D" parent="LanternMesh"]
