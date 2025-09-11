@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c51ajww7vd1ce"]
 
 [ext_resource type="ArrayMesh" uid="uid://bev2wemk3lno2" path="res://Environment/Models/PropLightMeshes/chandelierMesh.res" id="1_t0u80"]
-[ext_resource type="Script" uid="uid://chgy41vmlsya2" path="res://Environment/Lighting/FlickerLight.cs" id="2_agu17"]
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="2_sct2e"]
+[ext_resource type="PackedScene" uid="uid://c6v3hjo3nqwfn" path="res://Environment/Lighting/candleLight_OmniLight3D.tscn" id="3_6lv60"]
 [ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="4_6lv60"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sct2e"]
@@ -31,18 +31,8 @@ spot_attenuation = 0.2
 spot_angle = 103.9
 spot_angle_attenuation = 0.258817
 
-[node name="candleLight1" type="OmniLight3D" parent="ChandelierMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.925915, 0)
-light_color = Color(0.94902, 0.768627, 0.137255, 1)
-light_indirect_energy = 4.0
-light_volumetric_fog_energy = 0.0
-light_size = 1.0
-light_bake_mode = 1
-shadow_enabled = true
-shadow_caster_mask = 4294967293
-omni_range = 4.0
-omni_attenuation = 0.5
-script = ExtResource("2_agu17")
+[node name="candleLight" parent="ChandelierMesh" instance=ExtResource("3_6lv60")]
+omni_range = 6.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ChandelierMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

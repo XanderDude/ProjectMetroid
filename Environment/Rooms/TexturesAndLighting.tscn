@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=43 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
-[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="18_cuncf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -128,14 +127,6 @@ shader_parameter/albedo = SubResource("GradientTexture1D_bgal7")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(640, 360)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bcc5k"]
-resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0pxb8"]
-resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_apwq5"]
 _surfaces = [{
@@ -345,6 +336,10 @@ shape = SubResource("BoxShape3D_g1r6t")
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_bgal7")
 
+[node name="Light_Lantern" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Lights" index="1"]
+swingSpeed = 2.0
+swingDistance = 5.0
+
 [node name="WoodHouse" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_ypo2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -3)
 
@@ -368,11 +363,6 @@ transform = Transform3D(0.310269, 0.950287, -0.0262329, -0.000731304, -0.0273561
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_4wuno")
-
-[node name="lanternOmniLight" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Decorations/Light_Lantern/LanternMesh" index="0"]
-distance_fade_begin = 1.0
-distance_fade_shadow = 20.0
-distance_fade_length = 5.0
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
@@ -465,27 +455,9 @@ material_override = SubResource("ShaderMaterial_bcc5k")
 [node name="HallwaySmall2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, -20, 0)
 
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_bcc5k")
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_0pxb8")
-
-[node name="StoneWallMesh10" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="5"]
-mesh = ExtResource("18_cuncf")
-
-[node name="StoneWallMesh11" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="6"]
-mesh = ExtResource("18_cuncf")
-
-[node name="StoneWallMesh14" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="9"]
-mesh = ExtResource("18_cuncf")
-
-[node name="StoneWallMesh15" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="10"]
-mesh = ExtResource("18_cuncf")
-
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7561, 0.222552, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3658, 0.222552, 0)
 playerMeshPath = NodePath("PlayerMesh")
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
@@ -551,6 +523,7 @@ skeleton = NodePath("")
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Lights/Light_Lantern"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay"]
@@ -565,6 +538,3 @@ skeleton = NodePath("")
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral2"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral3"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay2"]
