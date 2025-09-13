@@ -10,8 +10,8 @@
 [node name="Light_Lantern" type="Node3D" node_paths=PackedStringArray("obj")]
 script = ExtResource("1_80w12")
 obj = NodePath(".")
-swingSpeed = 0.1
-swingDistance = 0.0
+swingSpeed = 0.0
+swingDistance = 3.0
 
 [node name="ChainShortMesh" type="MeshInstance3D" parent="."]
 cast_shadow = 0

@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhrd3n0oqqhuk"]
+[gd_scene load_steps=8 format=3 uid="uid://dhrd3n0oqqhuk"]
 
 [ext_resource type="ArrayMesh" uid="uid://oang1vjclu3i" path="res://Environment/Models/WoodMeshes/woodDoorFrameMesh.res" id="1_4actu"]
 [ext_resource type="ArrayMesh" uid="uid://bkuulp8qn8u7q" path="res://Environment/Models/WoodMeshes/woodWallMesh.res" id="3_4actu"]
 [ext_resource type="ArrayMesh" uid="uid://dc7fjdtwce8ro" path="res://Environment/Models/WoodMeshes/woodDoorMesh.res" id="3_l45tk"]
+[ext_resource type="ArrayMesh" uid="uid://bvuod850g2ijc" path="res://Environment/Models/WoodMeshes/woodWallHalfMesh.res" id="4_l45tk"]
+[ext_resource type="ArrayMesh" uid="uid://dig3cff05ysna" path="res://Environment/Models/WoodMeshes/woodCeilingHalfMesh.res" id="5_hq13g"]
+[ext_resource type="ArrayMesh" uid="uid://1mhubwpkoar4" path="res://Environment/Models/WoodMeshes/woodFloorHalfMesh.res" id="6_dsddf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ht27"]
 resource_local_to_scene = true
-size = Vector3(0.2, 4, 2)
+size = Vector3(1, 4, 2)
 
 [node name="Wall_DoorWay" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, 0)
 collision_layer = 2
 collision_mask = 0
 
@@ -24,13 +27,61 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 mesh = ExtResource("1_4actu")
 
 [node name="WoodDoorMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.166019, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.5)
 mesh = ExtResource("3_l45tk")
 
 [node name="WoodWallMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
 mesh = ExtResource("3_4actu")
 
 [node name="WoodWallMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 0)
+mesh = ExtResource("3_4actu")
+
+[node name="WoodWallHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, -0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2, -0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodWallHalfMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, -0.75)
+mesh = ExtResource("4_l45tk")
+
+[node name="WoodCeilingHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.75, -1, 2, -0.75)
+mesh = ExtResource("5_hq13g")
+
+[node name="WoodFloorHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.75, -0.999908, 0, -0.756159)
+mesh = ExtResource("6_dsddf")
+
+[node name="WoodWallMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2, 0)
+mesh = ExtResource("3_4actu")
+
+[node name="WoodWallMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4, 0)
 mesh = ExtResource("3_4actu")

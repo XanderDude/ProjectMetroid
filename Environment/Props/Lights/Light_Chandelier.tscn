@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c51ajww7vd1ce"]
+[gd_scene load_steps=7 format=3 uid="uid://c51ajww7vd1ce"]
 
 [ext_resource type="ArrayMesh" uid="uid://bev2wemk3lno2" path="res://Environment/Models/PropLightMeshes/chandelierMesh.res" id="1_t0u80"]
+[ext_resource type="Script" uid="uid://88shoatnqabt" path="res://Environment/Props/SwingingProp.cs" id="1_xf5fc"]
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="2_sct2e"]
 [ext_resource type="PackedScene" uid="uid://c6v3hjo3nqwfn" path="res://Environment/Lighting/candleLight_OmniLight3D.tscn" id="3_6lv60"]
 [ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="4_6lv60"]
@@ -9,6 +10,8 @@
 size = Vector3(1.5, 0.15, 1)
 
 [node name="Light_Chandelier" type="Node3D"]
+script = ExtResource("1_xf5fc")
+swingSpeed = 0.0
 
 [node name="ChainLongMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -36,6 +39,8 @@ omni_range = 6.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ChandelierMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChandelierMesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_sct2e")

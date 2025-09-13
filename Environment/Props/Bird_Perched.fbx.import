@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cueyo20ficc6"
-path="res://.godot/imported/BirdCompanion.fbx-d8add05fa60761bc2cc67403677f78aa.scn"
+uid="uid://c7yrrcujeu14d"
+path="res://.godot/imported/Bird_Perched.fbx-db045722303618189c41471a53c94eac.scn"
 
 [deps]
 
-source_file="res://Bird/BirdCompanion.fbx"
-dest_files=["res://.godot/imported/BirdCompanion.fbx-d8add05fa60761bc2cc67403677f78aa.scn"]
+source_file="res://Environment/Props/Bird_Perched.fbx"
+dest_files=["res://.godot/imported/Bird_Perched.fbx-db045722303618189c41471a53c94eac.scn"]
 
 [params]
 
@@ -32,7 +32,14 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"FrankengirlWeapons_Mat": {
+"use_external/enabled": true,
+"use_external/path": "uid://bwbcwsmcq4p6q"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

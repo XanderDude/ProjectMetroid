@@ -183,6 +183,46 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 2, 
 mesh = ExtResource("3_8d15i")
 skeleton = NodePath("../..")
 
+[node name="WoodWallMesh21" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.00196, 0, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh22" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.00196, 2, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh23" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.00196, 0, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh24" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.00196, 2, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh25" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.00641, 0, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh26" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.00641, 2, -5)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh27" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.00641, 0, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
+[node name="WoodWallMesh28" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.00641, 2, -7)
+mesh = ExtResource("3_8d15i")
+skeleton = NodePath("../..")
+
 [node name="WoodWindowMesh" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 mesh = ExtResource("4_35cgt")

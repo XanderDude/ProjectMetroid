@@ -1,11 +1,11 @@
 shader_type spatial;
 render_mode blend_mix,
-	cull_disabled,
+	cull_back,
 	depth_prepass_alpha,
 	//shadows_disabled,
 	//ambient_light_disabled,
-	//vertex_lighting;
 	specular_disabled;
+	//vertex_lighting;
 
 uniform bool affine_mapping = false;
 uniform sampler2D albedo : source_color, filter_nearest;

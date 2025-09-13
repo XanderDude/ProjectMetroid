@@ -1,26 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx6inaiw5kq1u"]
+[gd_scene load_steps=12 format=4 uid="uid://dx6inaiw5kq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
-[ext_resource type="ArrayMesh" uid="uid://bk1osfmy5eve1" path="res://Environment/Models/StoneMeshes/reinforcedDoorMesh.res" id="2_bauuh"]
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="2_2ht27"]
+[ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="3_amw8g"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="3_bauuh"]
+[ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="4_ecxvq"]
+[ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="5_k4pst"]
+[ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="6_2ht27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nx6tq"]
+render_priority = 0
+shader = ExtResource("2_2ht27")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_amw8g")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(640, 360)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4huis"]
+_surfaces = [{
+"aabb": AABB(0, 0, -1.90735e-08, 1, 2.08875, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAABSuBUAK16Oy+v9/PxSuBUAK16Oy+v9/PwAAAAAAAAAAAAAAAAAAAAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2ht27"]
+resource_name = "doorLeft"
+lightmap_size_hint = Vector2i(22, 14)
+_surfaces = [{
+"aabb": AABB(0, 0, -1.90735e-08, 1, 2.08875, 1e-05),
+"attribute_data": PackedByteArray("XDguPxxTlT6MLno/JUkSPcTJSj8kVZU+jC56P27bdj+kx0o/clYGP4wuujxu23Y/PDYuP21VBj+MLro8JUkSPQ=="),
+"format": 34359742519,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"material": SubResource("ShaderMaterial_nx6tq"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAABSuBUAK16Oy+v9/PxSuBUAK16Oy+v9/PwAAAAAAAAAAAAAAAAAAAAAAAAAA/3//f/r/AcD/f/9/+v8BwP9//3/6/wHA/3//f/r/AcA=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4huis")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ht27"]
 resource_local_to_scene = true
-size = Vector3(0.2, 4, 2)
+size = Vector3(1, 4, 2)
 
 [node name="Wall_DoorWay" type="Node3D"]
 
 [node name="StoneDoorFrameMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.28372e-08, 0, 1, 0, 1, 0, -0.98, 0, -4.37114e-08, 0, 0, 0)
 mesh = ExtResource("1_irt8q")
 
 [node name="ReinforcedDoorMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2, 0, 1)
-mesh = ExtResource("2_bauuh")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.950392, 0, -1, 0, -4.37114e-08, 0, 0.0035969, 1)
+mesh = SubResource("ArrayMesh_2ht27")
 
 [node name="ReinforcedDoorMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.2, 0, -1)
-mesh = ExtResource("2_bauuh")
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.950392, 0, 1, 0, -4.37114e-08, 0, 0.0035969, -1)
+mesh = SubResource("ArrayMesh_2ht27")
 
 [node name="StoneWallMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
@@ -31,10 +77,50 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 
 mesh = ExtResource("3_bauuh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, 0)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_2ht27")
 debug_color = Color(0.665, 0.7, 0, 1)
+
+[node name="StoneWallHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, -2, -1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, 2, -1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, 4, -1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneWallHalfMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1)
+mesh = ExtResource("4_ecxvq")
+
+[node name="StoneFloorHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+mesh = ExtResource("6_2ht27")
+
+[node name="StoneFloorHalfMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -1)
+mesh = ExtResource("5_k4pst")

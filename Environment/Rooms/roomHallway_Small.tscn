@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bpdtxa4qxfht3"]
+[gd_scene load_steps=25 format=4 uid="uid://bpdtxa4qxfht3"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_oo6ox"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_wlbv0"]
@@ -21,13 +21,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fm40f"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wlbv0"]
-resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ppqkt"]
-resource_local_to_scene = true
-size = Vector3(0.2, 2, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_v3yoy"]
+size = Vector3(26, 0.5, 2)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xgeom"]
 _surfaces = [{
@@ -61,39 +56,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xgeom")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_7kn4d"]
-_surfaces = [{
-"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
-"format": 34359742465,
-"index_count": 60,
-"index_data": PackedByteArray("AAABAAIAAQAAAAMAAgAEAAAAAwAFAAEABAACAAYABQADAAcABgAHAAQABwAGAAUACAAJAAoACgALAAgACQAIAAwADAAIAAsADQAKAAkACwAKAA0ADAAOAAkACQAOAA0ACwAPAAwADgAMAA8ADQAPAAsADwANAA4A"),
-"name": "architectureBasic_Mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 16,
-"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZma+ZmZmvmZmBkBmZma+")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ip3ox"]
-resource_name = "stonePillar1"
-lightmap_size_hint = Vector2i(30, 22)
-_surfaces = [{
-"aabb": AABB(-0.225, 0, -0.225, 0.45, 2.1, 0.45),
-"attribute_data": PackedByteArray("ZkwyPgAq9Dp3dzc/RhcdPwJQMj4uy48+d3c3P4wuujxkWvI9jMuPPs3MDD+MLro8LFPyPQCG9DrNzAw/RhcdP0Dy3DtMzI8+iYiIPIwuujyAftw7AD71OmZm5j6MLro8jA2APQDi9DpmZuY+AACAPsQUgD3qy48+iYiIPAAAgD42b2s+AMrzOomIiDwAAEA/0nJrPtTKjz5mZuY+AABAPwJQMj4uy48+ZmbmPowuej9mTDI+ACr0OomIiDyMLno/LFPyPQCG9DpmZuY+RhcdP2Ra8j2My48+iYiIPEYXHT/EFIA96suPPomIiDx00cU+jA2APQDi9DpmZuY+dNHFPlrGqT7GHZo+vLt7P4wuej8Hxqk+emaoPry7ez+ji24/cqKJPsZlqD4REVE/o4tuP8KiiT4WHZo+ERFRP4wuej8Mx6k+ZPRzPnd3Nz8AAEA/WsapPsYdmj53dzc/jC56P8KiiT4WHZo+zcwMP4wuej94o4k+7PJzPs3MDD8AAEA/W8epPvRiVz68u3s/dNHFPgzHqT5k9HM+vLt7P0YX3T54o4k+7PJzPhERUT9GF90+xqOJPoRhVz4REVE/dNHFPhLIqT7YGxc+ERFRPwAAgD5bx6k+9GJXPhERUT+MLro8xqOJPoRhVz68u3s/jC66PHykiT5oGhc+vLt7PwAAgD7u6ck+eB6aPjMzcz9ddBE/nOnJPi5nqD68u3s/XXQRPwfGqT56Zqg+vLt7P+miSz9axqk+xh2aPjMzcz/poks/wqKJPhYdmj6amVk/6aJLP3KiiT7GZag+ERFRP+miSz+4/VI+EmWoPhERUT9ddBE/WP5SPlocmj6amVk/XXQRPw=="),
-"format": 34359742519,
-"index_count": 60,
-"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQA"),
-"material": ExtResource("4_fm40f"),
-"name": "architectureBasic_Mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 40,
-"vertex_data": PackedByteArray("zcxMPgAAAEDNzEw+zcxMPgAAAADNzEw+zcxMvgAAAADNzEw+zcxMvgAAAEDNzEw+zcxMPgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMvgAAAEDNzEy+zcxMvgAAAADNzEy+zcxMPgAAAEDNzEy+zcxMPgAAAADNzEy+zcxMPgAAAADNzEw+zcxMPgAAAEDNzEw+zcxMvgAAAEDNzEw+zcxMvgAAAADNzEw+zcxMvgAAAADNzEy+zcxMvgAAAEDNzEy+ZmZmPmZmBkBmZmY+ZmZmPjMz8z9mZmY+ZmZmvjMz8z9mZmY+ZmZmvmZmBkBmZmY+ZmZmPmZmBkBmZma+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPmZmBkBmZma+ZmZmvmZmBkBmZma+ZmZmvjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPjMz8z9mZma+ZmZmvjMz8z9mZma+ZmZmvjMz8z9mZmY+ZmZmPmZmBkBmZma+ZmZmPjMz8z9mZma+ZmZmPjMz8z9mZmY+ZmZmPmZmBkBmZmY+ZmZmvmZmBkBmZmY+ZmZmvjMz8z9mZmY+ZmZmvjMz8z9mZma+ZmZmvmZmBkBmZma+/3//f/3//r//f/9//f/+v/9//3/9//6//3//f/3//r//////AQD+v/////8BAP6//////wEA/r//////AQD+v////3/9/wCA////f/3/AID///9//f8AgP///3/9/wCAAAD/f/9//r8AAP9//3/+vwAA/3//f/6/AAD/f/9//r//f/9//P8AwP9//3/8/wDA/3//f/z/AMD/f/9//P8AwP9//////wDA/3//////AMD/f/////8AwP9//////wDA//////z//b///////P/9v//////8//2///////z//b//fwAA/P//v/9/AAD8//+//38AAPz//7//fwAA/P//v////3/8////////f/z///////9//P///////3/8////AAD/f/9/AMAAAP9//38AwAAA/3//fwDAAAD/f/9/AMA=")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_7kn4d")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nlumo"]
 _surfaces = [{
@@ -147,10 +109,10 @@ interior = true
 [node name="Interactable" type="Node3D" parent="."]
 
 [node name="FloorCol" type="CSGBox3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.5, 0)
 material_override = ExtResource("1_wlbv0")
 calculate_tangents = false
-size = Vector3(24, 14.5, 5.966)
+size = Vector3(24, 14, 5.966)
 
 [node name="CeilingColliderCenter" type="MeshInstance3D" parent="Interactable"]
 transform = Transform3D(8, 0, 0, 0, 0.5, 0, 0, 0, 6, 0, 3.75, 0)
@@ -163,15 +125,11 @@ mesh = SubResource("BoxMesh_wlbv0")
 shape = SubResource("BoxShape3D_fm40f")
 debug_fill = false
 
-[node name="FloorCollider" type="MeshInstance3D" parent="Interactable"]
-transform = Transform3D(23.712, 0, 0, 0, 0.5, 0, 0, 0, 6, 0, -0.25, 0)
-visible = false
-mesh = SubResource("BoxMesh_wlbv0")
+[node name="FloorCollider" type="StaticBody3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Interactable/FloorCollider"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable/FloorCollider/StaticBody3D"]
-shape = SubResource("BoxShape3D_fm40f")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable/FloorCollider"]
+shape = SubResource("BoxShape3D_v3yoy")
 debug_fill = false
 
 [node name="CeilingColliderRight" type="MeshInstance3D" parent="Interactable"]
@@ -205,58 +163,8 @@ debug_fill = false
 [node name="Wall_DoorWay" parent="Interactable/SideWalls" instance=ExtResource("1_oo6ox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
 
-[node name="ReinforcedDoorMesh" parent="Interactable/SideWalls/Wall_DoorWay" index="1"]
-visible = false
-
-[node name="ReinforcedDoorMesh2" parent="Interactable/SideWalls/Wall_DoorWay" index="2"]
-visible = false
-
-[node name="StoneWallMesh2" parent="Interactable/SideWalls/Wall_DoorWay" index="4"]
-visible = false
-
-[node name="StaticBody3D" parent="Interactable/SideWalls/Wall_DoorWay" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 3, 0)
-
-[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_wlbv0")
-
-[node name="StoneDoorFrameMesh4" type="MeshInstance3D" parent="Interactable/SideWalls/Wall_DoorWay"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 2.5, 0)
-mesh = ExtResource("6_fm40f")
-
-[node name="Wall_DoorWay2" parent="Interactable/SideWalls" instance=ExtResource("1_oo6ox")]
+[node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("1_oo6ox")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
-
-[node name="ReinforcedDoorMesh" parent="Interactable/SideWalls/Wall_DoorWay2" index="1"]
-visible = false
-
-[node name="ReinforcedDoorMesh2" parent="Interactable/SideWalls/Wall_DoorWay2" index="2"]
-visible = false
-
-[node name="StoneWallMesh2" parent="Interactable/SideWalls/Wall_DoorWay2" index="4"]
-visible = false
-
-[node name="StaticBody3D" parent="Interactable/SideWalls/Wall_DoorWay2" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 3, 2.84217e-14)
-
-[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_ppqkt")
-
-[node name="StoneWall" type="MeshInstance3D" parent="Interactable/SideWalls/Wall_DoorWay2"]
-transform = Transform3D(-4.37114e-08, -1.52855e-14, 1, 1.74846e-07, 1, 2.29282e-14, -1, 1.74846e-07, -4.37114e-08, 8, 2.5, 0)
-mesh = ExtResource("6_fm40f")
-
-[node name="stoneWall" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, 0, 2)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_wdl2r")
-skeleton = NodePath("")
-
-[node name="stoneWall11" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, -2, 2)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_wdl2r")
-skeleton = NodePath("")
 
 [node name="stoneWall12" type="MeshInstance3D" parent="Interactable/SideWalls"]
 transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, -2, 0)
@@ -264,62 +172,26 @@ cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
-[node name="stoneWall2" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, 2, 2)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_wdl2r")
-skeleton = NodePath("")
-
 [node name="stoneWall3" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 2, -2)
+transform = Transform3D(1.56011e-07, 0, 1, 0, 1, 0, -1.0611, 0, 1.47027e-07, -4, 2, -2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
 [node name="stoneWall4" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -4, 0, -2)
+transform = Transform3D(1.56011e-07, 0, 1, 0, 1, 0, -1.0611, 0, 1.47027e-07, -4, 0, -2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
-skeleton = NodePath("")
-
-[node name="stonePillar1" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -2, 3)
-mesh = SubResource("ArrayMesh_ip3ox")
-skeleton = NodePath("")
-
-[node name="stonePillar4" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 3)
-mesh = SubResource("ArrayMesh_ip3ox")
-skeleton = NodePath("")
-
-[node name="stonePillar2" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -2, 3)
-mesh = SubResource("ArrayMesh_0rcot")
-skeleton = NodePath("")
-
-[node name="stonePillar3" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 3)
-mesh = SubResource("ArrayMesh_0rcot")
-skeleton = NodePath("")
-
-[node name="stonePillar5" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 3)
-mesh = SubResource("ArrayMesh_ip3ox")
-skeleton = NodePath("")
-
-[node name="stonePillar6" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 3)
-mesh = SubResource("ArrayMesh_0rcot")
 skeleton = NodePath("")
 
 [node name="stoneWall5" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 12, 0, 2)
+transform = Transform3D(1.56011e-07, 0, 1, 0, 1, 0, -1.0611, 0, 1.47027e-07, -4, 2, 2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
-[node name="stoneWall9" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 12, -2, 2)
+[node name="stoneWall6" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(1.56011e-07, 0, 1, 0, 1, 0, -1.0611, 0, 1.47027e-07, -4, 0, 2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
@@ -330,20 +202,26 @@ cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
-[node name="stoneWall6" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 12, 2, 2)
-cast_shadow = 2
-mesh = SubResource("ArrayMesh_wdl2r")
-skeleton = NodePath("")
-
 [node name="stoneWall7" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 4, 2, -2)
+transform = Transform3D(-6.43559e-08, 0, -1, 0, 1, 0, 1.07971, 0, -5.96046e-08, 4, 2, -2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
 
 [node name="stoneWall8" type="MeshInstance3D" parent="Interactable/SideWalls"]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 4, 0, -2)
+transform = Transform3D(-6.43559e-08, 0, -1, 0, 1, 0, 1.07971, 0, -5.96046e-08, 4, 0, -2)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall13" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(-6.43559e-08, 0, -1, 0, 1, 0, 1.07971, 0, -5.96046e-08, 4, 2, 2)
+cast_shadow = 2
+mesh = SubResource("ArrayMesh_wdl2r")
+skeleton = NodePath("")
+
+[node name="stoneWall14" type="MeshInstance3D" parent="Interactable/SideWalls"]
+transform = Transform3D(-6.43559e-08, 0, -1, 0, 1, 0, 1.07971, 0, -5.96046e-08, 4, 0, 2)
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_wdl2r")
 skeleton = NodePath("")
@@ -530,6 +408,179 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2.5, 1)
 mesh = ExtResource("6_fm40f")
 skeleton = NodePath("../..")
 
+[node name="Roof" type="Node3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -2, 4.5, -3)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh2" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1.78814e-07, 4.5, -3)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh3" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 2, 4.5, -3)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh4" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4, 4.5, -3)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh5" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -2, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh6" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1.78814e-07, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh7" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 2, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh8" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh17" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -2, 4.5, 1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh18" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1.78814e-07, 4.5, 1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh19" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 2, 4.5, 1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh20" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4, 4.5, 1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh9" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 6, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh10" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 8, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh11" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 10, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh12" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 12, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh13" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -10, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh14" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -8, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh15" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -6, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneCeilingMesh16" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4, 4.5, -1)
+mesh = ExtResource("7_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformMesh" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, 1)
+mesh = ExtResource("4_ppqkt")
+skeleton = NodePath("../../..")
+
+[node name="StonePlatformMesh2" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 1)
+mesh = ExtResource("4_ppqkt")
+skeleton = NodePath("../../..")
+
+[node name="StonePlatformMesh3" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 1)
+mesh = ExtResource("4_ppqkt")
+skeleton = NodePath("../../..")
+
+[node name="StonePlatformMesh4" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 1)
+mesh = ExtResource("4_ppqkt")
+skeleton = NodePath("../../..")
+
+[node name="StoneWallMesh16" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.99, 4.5, 1)
+mesh = ExtResource("8_3yuy2")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh15" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 3.99, 4.5, 3)
+mesh = ExtResource("8_3yuy2")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh17" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh18" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh19" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh20" type="MeshInstance3D" parent="Interactable/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2.5, 1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
 [node name="Backwall" type="Node3D" parent="Interactable"]
 
 [node name="StoneWallMesh" type="MeshInstance3D" parent="Interactable/Backwall"]
@@ -658,6 +709,135 @@ transparency = 1.0
 mesh = SubResource("BoxMesh_wlbv0")
 skeleton = NodePath("../..")
 
+[node name="Frontwall" type="Node3D" parent="Interactable"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh3" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh4" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh13" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh14" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh15" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh16" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh17" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh18" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh19" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh20" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh21" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh22" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh23" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh24" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -1)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh6" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh7" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -3)
+mesh = ExtResource("6_fm40f")
+skeleton = NodePath("../..")
+
+[node name="BackwallMesh" type="MeshInstance3D" parent="Interactable/Frontwall"]
+transform = Transform3D(8, 0, 0, 0, -2.18557e-08, 4.32, 0, -0.5, -1.88833e-07, 0, 1.96889, -3.25)
+transparency = 1.0
+mesh = SubResource("BoxMesh_wlbv0")
+skeleton = NodePath("../..")
+
 [node name="Floor" type="Node3D" parent="Interactable"]
 
 [node name="StonePlatformMesh" type="MeshInstance3D" parent="Interactable/Floor"]
@@ -761,64 +941,68 @@ mesh = ExtResource("7_ppqkt")
 skeleton = NodePath("../../..")
 
 [node name="StoneWallMesh5" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh6" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh7" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh8" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh9" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh10" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh11" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh12" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2.5, 0.942027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2.5, 1)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh13" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2.5, 2.94203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2.5, 3)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh17" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, -2, 1.941)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, -2.5, 2)
 mesh = ExtResource("6_fm40f")
 
+[node name="StoneWallMesh19" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
+mesh = ExtResource("8_3yuy2")
+
 [node name="StoneWallMesh14" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.5, 2.94203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.5, 3)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh15" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2.5, 2.94203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2.5, 3)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh16" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2.5, 2.94203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2.5, 3)
 mesh = ExtResource("6_fm40f")
 
 [node name="StoneWallMesh18" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, -2, 1.94085)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, -2.5, 2)
 mesh = ExtResource("6_fm40f")
 
-[node name="stonePillar2" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2, 2.94203)
-mesh = SubResource("ArrayMesh_0rcot")
+[node name="StoneWallMesh20" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 3)
+mesh = ExtResource("8_3yuy2")
 
 [node name="stonePillar6" type="MeshInstance3D" parent="Interactable/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1.05797)
@@ -828,32 +1012,92 @@ mesh = SubResource("ArrayMesh_0rcot")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1.05797)
 mesh = SubResource("ArrayMesh_0rcot")
 
-[node name="stonePillar5" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4, 4.5, 1)
+[node name="stonePillar16" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0.94203)
 mesh = SubResource("ArrayMesh_0rcot")
 
-[node name="stonePillar3" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -2, 2.94203)
+[node name="stonePillar26" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -4, 0, 0.94203)
 mesh = SubResource("ArrayMesh_0rcot")
 
-[node name="stonePillar10" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -4, 5.5, 2.94203)
+[node name="stonePillar28" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 4, 0, 0.94203)
 mesh = SubResource("ArrayMesh_0rcot")
 
-[node name="stonePillar11" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 4, 5.5, 2.94203)
+[node name="stonePillar29" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 12, 0, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar27" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -12, 0, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar17" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar19" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar20" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -1.05797)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar14" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 1)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar15" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, 1)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar21" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, -1)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar22" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, -1)
 mesh = SubResource("ArrayMesh_0rcot")
 
 [node name="stonePillar8" type="MeshInstance3D" parent="Interactable/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1.05797)
 mesh = SubResource("ArrayMesh_0rcot")
 
+[node name="stonePillar12" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
 [node name="stonePillar9" type="MeshInstance3D" parent="Interactable/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -1.05797)
 mesh = SubResource("ArrayMesh_0rcot")
 
-[node name="stonePillar4" type="MeshInstance3D" parent="Interactable/Floor"]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 4, 4.5, 1)
+[node name="stonePillar13" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar24" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar25" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -1.05797)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar10" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -1.05797)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar11" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, -1.05797)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar18" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 0.94203)
+mesh = SubResource("ArrayMesh_0rcot")
+
+[node name="stonePillar23" type="MeshInstance3D" parent="Interactable/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 0.94203)
 mesh = SubResource("ArrayMesh_0rcot")
 
 [node name="Decorations" type="Node3D" parent="."]
@@ -913,6 +1157,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85237, -0.0819313, -0.9230
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_v3yoy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
-
-[editable path="Interactable/SideWalls/Wall_DoorWay"]
-[editable path="Interactable/SideWalls/Wall_DoorWay2"]

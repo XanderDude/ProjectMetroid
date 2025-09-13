@@ -4,13 +4,12 @@ using System;
 public partial class PlayerManager : CharacterBody3D
 {
 	[Export] private NodePath playerMeshPath = "%PlayerMesh";
-	[Export] private GeometryInstance3D playerGeo;
 	
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
 	private int health = 100;
-	[Export] private Material invulnMat;
+	[Export] private ShaderMaterial invulnMat;
 	
 	public Item equippedRangedWeapon;
 	
@@ -76,10 +75,9 @@ public partial class PlayerManager : CharacterBody3D
 	
 	public override void _Ready()
 	{
-		invulnMat = ResourceLoader.Load<Material>("res://Environment/Materials/glowingMaterial.tres");
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
-		playerGeo.MaterialOverlay = null;
+		invulnMat?.SetShaderParameter("alpha", 0f);
 		
 		InitializeInventory();
 		
@@ -261,7 +259,7 @@ public partial class PlayerManager : CharacterBody3D
 	{
 		if (invulnTimer > 0)
 		{
-			
+			invulnMat?.SetShaderParameter("alpha", 1f);
 			GetNode<Node3D>(playerMeshPath).Visible = false;
 			var timer = GetTree().CreateTimer(0.1f);
 			timer.Timeout += () => { GetNode<Node3D>(playerMeshPath).Visible = true; };
@@ -271,7 +269,7 @@ public partial class PlayerManager : CharacterBody3D
 		else
 		{
 			canBeDamaged = true;
-			playerGeo.MaterialOverlay = null;
+			invulnMat?.SetShaderParameter("alpha", 0f);
 		}
 	}
 }

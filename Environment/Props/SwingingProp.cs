@@ -10,7 +10,7 @@ public partial class SwingingProp : Node3D
 
 	public override void _Ready()
 	{
-		if (swingDistance <= 0) return;
+		if (swingSpeed == 0) return;
 		RotateObject();
 	}
 
@@ -24,7 +24,7 @@ public partial class SwingingProp : Node3D
 			timer = 0;
 		}
 		float newZRot = (float)Mathf.Lerp(obj.RotationDegrees.Z, swingDistance, timer * Mathf.Abs(swingSpeed));
-		obj.RotationDegrees = new Vector3(0, 0, Mathf.Ceil( newZRot * 10)/10);
+		obj.RotationDegrees = new Vector3(0, 0, Mathf.Ceil( newZRot * 100)/100);
 		RotateObject();
 	}
 }
