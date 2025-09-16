@@ -146,7 +146,9 @@ public partial class jumpState : State
 		}
 		else //must be falling
 		{
-			velocity.Y -= _gravity * 2.5f * delta; //faster falling speed
+			if (velocity.Y > -14.0f)
+				velocity.Y -= _gravity * 2.5f * delta; //faster falling speed
+			
 			if (input == 0)
 			{
 				velocity.X = Mathf.MoveToward(velocity.X, 0, jumpDeceleration);

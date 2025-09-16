@@ -11,13 +11,19 @@ public partial class GameManager : Node
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		
+    }
+
 	
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("ui_cancel"))
 		{
-			
-			
+
+
 			if (isPaused)
 			{
 				Unpause();
@@ -26,7 +32,7 @@ public partial class GameManager : Node
 			{
 				Pause();
 			}
-			
+
 			GetViewport().SetInputAsHandled();
 		}
 	}

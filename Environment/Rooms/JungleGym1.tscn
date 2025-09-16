@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://csl1058efko08"]
+[gd_scene load_steps=41 format=3 uid="uid://csl1058efko08"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_a8mtv"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_xbrmv"]
@@ -25,7 +25,6 @@
 [ext_resource type="ArrayMesh" uid="uid://btw6rnocf67dp" path="res://Environment/Models/PropsBasicMeshes/crateMesh.res" id="18_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="18_b3g7q"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="19_b1vnb"]
-[ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="20_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="24_85ew7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jrnr3"]
@@ -39,6 +38,7 @@ size = Vector3(9, 0.5, 2)
 size = Vector3(19, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85ew7"]
+resource_local_to_scene = true
 size = Vector3(6, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kc1it"]
@@ -2016,11 +2016,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, -1)
 material_override = SubResource("StandardMaterial3D_4tx1l")
 material = SubResource("StandardMaterial3D_kc1it")
 
-[node name="StonePillar" parent="." instance=ExtResource("20_b1vnb")]
+[node name="StonePillar" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -9.5, -3, -1)
+script = null
 
-[node name="StonePillar2" parent="." instance=ExtResource("20_b1vnb")]
+[node name="StonePillar2" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -2.5, -3, -1)
+script = null
 
 [node name="Traps" type="Node3D" parent="."]
 

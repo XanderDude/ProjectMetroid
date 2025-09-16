@@ -21,6 +21,10 @@ shader_parameter/dithering = true
 shader_parameter/colors = 16
 shader_parameter/dither_size = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
+resource_local_to_scene = true
+size = Vector3(6, 0.5, 2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnrdm"]
 resource_local_to_scene = true
 size = Vector3(2, 0.5, 6)
@@ -45,13 +49,9 @@ size = Vector3(2, 0.5, 6)
 resource_local_to_scene = true
 size = Vector3(2, 0.5, 6)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
-resource_local_to_scene = true
-size = Vector3(0.2, 8, 2)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl22h"]
 resource_local_to_scene = true
-size = Vector3(0.2, 8, 2)
+size = Vector3(1, 8, 2)
 
 [node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
@@ -95,7 +95,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88443, 0.01934, -0.97117)
 
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("5_cilmm")]
 
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/FloorColliderPit" index="0"]
+shape = SubResource("BoxShape3D_4v3gg")
+
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hnrdm")
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
@@ -103,6 +107,9 @@ shape = SubResource("BoxShape3D_rh8vc")
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_cmioc")
+
+[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14" index="0"]
+collision_mask = 1
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_0uqro")
@@ -116,11 +123,35 @@ shape = SubResource("BoxShape3D_dvh2n")
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_0eabh")
 
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_4v3gg")
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay2/StaticBody3D" index="0"]
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_tl22h")
+
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_tl22h")
+
+[node name="StonePillar" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="13"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
+
+[node name="StonePillar2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1" index="14"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="TrapAxe_Triggered" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("9_j5m4r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 3, -1)
@@ -172,8 +203,8 @@ texture = ExtResource("12_iviu7")
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/SideWallsAndFloors/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant"]

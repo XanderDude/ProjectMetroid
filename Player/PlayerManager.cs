@@ -8,7 +8,9 @@ public partial class PlayerManager : CharacterBody3D
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
-	private int health = 100;
+	public int health = 1;
+
+	public bool isDead = false;
 	[Export] private ShaderMaterial invulnMat;
 	
 	public Item equippedRangedWeapon;
@@ -254,7 +256,7 @@ public partial class PlayerManager : CharacterBody3D
 		}
 		SyncWithInventory();
 	}
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (invulnTimer > 0)
@@ -271,5 +273,64 @@ public partial class PlayerManager : CharacterBody3D
 			canBeDamaged = true;
 			invulnMat?.SetShaderParameter("alpha", 0f);
 		}
+
+
+
+	if (health <= 0 && !isDead)
+{
+    ProcessMode = Node.ProcessModeEnum.Always;
+    void MakeNodeBlack(Node node)
+    {
+        if (node is MeshInstance3D mesh)
+        {
+            var material = new StandardMaterial3D();
+            material.AlbedoColor = Colors.Black;
+            material.Emission = Colors.Black;
+            mesh.MaterialOverride = material;
+        }
+        foreach (Node child in node.GetChildren())
+            MakeNodeBlack(child);
+    }
+
+    void MakeNodeWhite(Node node)
+    {
+        if (node is MeshInstance3D mesh)
+        {
+            var material = new StandardMaterial3D();
+            material.AlbedoColor = Colors.White;
+            material.EmissionEnabled = true;
+            material.Emission = Colors.White;
+            mesh.MaterialOverride = material;
+        }
+        foreach (Node child in node.GetChildren())
+            MakeNodeWhite(child);
+    }
+
+    MakeNodeBlack(GetTree().CurrentScene);
+    MakeNodeWhite(GetNode<Node3D>("%PlayerMesh"));
+    GetTree().Paused = true;
+			_movementStateMachine.TransitionTo("deathState");
+    isDead = true;
+}
+else if (health > 0 && isDead)
+{
+    GetTree().Paused = false;
+    ProcessMode = Node.ProcessModeEnum.Inherit;
+    SetPhysicsProcess(true);
+    SetProcess(true);
+    
+    void RestoreMaterials(Node node)
+    {
+        if (node is MeshInstance3D mesh)
+        {
+            mesh.MaterialOverride = null;
+        }
+        foreach (Node child in node.GetChildren())
+            RestoreMaterials(child);
+    }
+
+    RestoreMaterials(GetTree().CurrentScene);
+    isDead = false;
+}
 	}
 }

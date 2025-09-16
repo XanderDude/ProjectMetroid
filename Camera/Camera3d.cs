@@ -5,7 +5,8 @@ public partial class Camera3d : Camera3D
 {
 	[ExportGroup("Follow Settings")]
 	[Export] public NodePath playerPath = ("%Player");
-	[Export] public float followSpeed = 4.0f;
+
+	[Export] public float followSpeed = 8.0f;
 	[Export] public float lookAheadDistance = 3.0f; 
 	[Export] public float lookAheadSpeed = 2.0f; 
 	[Export] public float cameraYOffset = 1.5f;
@@ -24,17 +25,24 @@ public partial class Camera3d : Camera3D
 	private Vector3 playerPosition;
 	private float lastPlayerDirection = 1.0f;
 	private Vector3 lookAheadOffset = Vector3.Zero;
+	private PlayerManager pm;
 
-	public override void _Ready() {
-		if (playerPath != null) {
+	public override void _Ready()
+	{
+		pm = GetNode<PlayerManager>(playerPath);
+		if (playerPath != null)
+		{
 			player = GetNode<Node3D>(playerPath);
-			if (player != null) {
+			if (player != null)
+			{
 				playerPosition = player.GlobalPosition;
 				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
-			
-			} else {
+
+			}
+			else
+			{
 				GD.PrintErr("Player not found!");
-				}
+			}
 		}
 	}
 
@@ -59,11 +67,26 @@ public partial class Camera3d : Camera3D
 		playerPosition.Y = Mathf.Clamp(playerPosition.Y, roomMinY, roomMaxY);
 		
 		Vector3 currentPos = GlobalPosition;
-		Vector3 newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, currentPos.Z);
 
-		
-		GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
-		
+		if (playerVelocity.Y > -14.0f) {
+			cameraYOffset = 1.5f;
+		} else {
+			cameraYOffset = -0.5f;
+		}
+
+		Vector3 newPosition;
+
+		if (pm.StateMachine._currentState.Name == "deathState")
+		{
+			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
+			GlobalPosition = newPosition;
+			GD.Print("Death State - Camera Locked to Player");
+		}
+		else
+		{
+			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, currentPos.Z);
+			GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
+		}
 	}
 	
 
