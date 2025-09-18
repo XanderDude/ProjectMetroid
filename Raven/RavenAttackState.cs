@@ -10,9 +10,14 @@ public partial class RavenAttackState : State
 	private float attackTimer = 0.0f;
 	private bool hasDealtDamage = false;
 
+	private Vector3 playerPos = Vector3.Zero;
+	private Vector3 slashOffset = Vector3.Zero;
 	
+	private Vector2 attackDirection = Vector2.Zero;
 	public override void Enter()
 	{
+		parentMesh = raven.player.GetNode<Node3D>("PlayerMesh");
+		attackDirection = GetAttackDirection();
 		raven.Visible = false;
 		CreateSlashMesh();
 		attackTimer = 0.0f;
@@ -33,15 +38,12 @@ public partial class RavenAttackState : State
 	public override void Update(float delta)
 	{
 		attackTimer += delta;
-
 		if (slashArea != null && IsInstanceValid(slashArea))
 		{
-			Vector3 playerPos = raven.player.GlobalPosition;
-			Vector3 slashOffset = new Vector3(GetAttackDirection().X * 1.0f, GetAttackDirection().Y + 1.0f, 0.0f);
-
+			playerPos = raven.player.GlobalPosition;
+			slashOffset = new Vector3(attackDirection.X * 1.0f, attackDirection.Y + 1.0f, 0.0f);
 			slashArea.GlobalPosition = playerPos + slashOffset;
 		}
-		
 	
 
 		if (attackTimer >= attackDuration)
@@ -56,8 +58,7 @@ public partial class RavenAttackState : State
 	private Vector2 GetAttackDirection()
 	{
 
-	
-		parentMesh = raven.player.GetNode<Node3D>("PlayerMesh");
+
 		
 	
 		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
