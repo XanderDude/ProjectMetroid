@@ -37,22 +37,9 @@ public partial class RavenOnPlayerState : State
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		Vector3 baseTarget = raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset;
-		
-		float bobOffset = Mathf.Sin(timeAccumulator * bobSpeed) * bobAmount;
-		Vector3 targetPosition = baseTarget + new Vector3(0, bobOffset, 0);
-		
-		raven.direction = raven.GlobalPosition.DirectionTo(targetPosition);
-		float distanceToTarget = raven.GlobalPosition.DistanceTo(targetPosition);
-		
-		if (distanceToTarget > 0.2f)
-		{
-			raven.Velocity = raven.direction * followSpeed;
-		}
-		else
-		{
-			raven.Velocity = raven.Velocity.MoveToward(Vector3.Zero, followSpeed * delta * 3);
-		}
+	    Vector3 targetPosition = raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset;
+        raven.GlobalPosition = targetPosition;
+        raven.Velocity = Vector3.Zero;
 	}
 	
 	public override void HandleInput(InputEvent @event)

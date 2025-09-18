@@ -2016,32 +2016,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, -1)
 material_override = SubResource("StandardMaterial3D_4tx1l")
 material = SubResource("StandardMaterial3D_kc1it")
 
-[node name="StonePillar" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -9.5, -3, -1)
-script = null
-
-[node name="StonePillar2" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -2.5, -3, -1)
-script = null
-
 [node name="Traps" type="Node3D" parent="."]
 
 [node name="SpikeTraps" parent="Traps" instance=ExtResource("15_kc1it")]

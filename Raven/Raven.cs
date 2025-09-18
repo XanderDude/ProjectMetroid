@@ -29,7 +29,6 @@ public partial class Raven : CharacterBody3D
     public override void _Ready()
     {
         rsm = GetNode<RavenStateMachine>("RavenStateMachine");
-        
         if (player == null)
         {
             GD.PrintErr("Raven: player not found");

@@ -3,7 +3,7 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
-	[Export] private NodePath playerMeshPath = "%PlayerMesh";
+	[Export] public NodePath playerMeshPath = "%PlayerMesh";
 	
 	public bool jumpQueued;
 	public bool slideQueued;

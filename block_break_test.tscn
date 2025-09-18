@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dggq8jcdtoryn"]
+[gd_scene load_steps=13 format=3 uid="uid://dggq8jcdtoryn"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_3u8no"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="1_cvalj"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="2_pcrqu"]
 [ext_resource type="Script" uid="uid://c6wwlhgua54jy" path="res://BreakableBlock.cs" id="4_ymjb5"]
+[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="5_ymjb5"]
+[ext_resource type="Texture2D" uid="uid://gnwg70uj5o6n" path="res://Environment/Models/StoneMeshes/BreakableHit2.png" id="6_eor34"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pcrqu"]
 
@@ -12,7 +14,16 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rnpba"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_txkf5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eor34"]
+transparency = 1
+albedo_color = Color(0.670588, 0.0666667, 0, 1)
+albedo_texture = ExtResource("6_eor34")
+normal_scale = -16.0
+
 [sub_resource type="BoxMesh" id="BoxMesh_ymjb5"]
+material = SubResource("StandardMaterial3D_eor34")
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_3u8no")
@@ -50,8 +61,14 @@ shape = SubResource("BoxShape3D_rnpba")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Breakable Block"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Breakable Block/StaticBody3D"]
+[node name="Breaking0" type="MeshInstance3D" parent="Breakable Block/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93211, 1.20197, 0.00472736)
+mesh = SubResource("BoxMesh_txkf5")
+skeleton = NodePath("../../Area3D")
+
+[node name="Breaking1" type="MeshInstance3D" parent="Breakable Block/StaticBody3D"]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3.93211, 1.20197, 0.00472736)
+visible = false
 mesh = SubResource("BoxMesh_ymjb5")
 skeleton = NodePath("../../Area3D")
 
@@ -59,4 +76,13 @@ skeleton = NodePath("../../Area3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93211, 1.20197, 0.00472736)
 shape = SubResource("BoxShape3D_rnpba")
 
+[node name="Raven" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ymjb5")]
+player = NodePath("../Player")
+speed = 5.0
+maxDistance = 8.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
 [editable path="Player"]
+[editable path="Raven"]
+[editable path="Raven/RavenFly"]

@@ -9,9 +9,11 @@ public partial class RavenAttackState : State
 	private float attackDuration = 0.3f;
 	private float attackTimer = 0.0f;
 	private bool hasDealtDamage = false;
+
 	
 	public override void Enter()
 	{
+		raven.Visible = false;
 		CreateSlashMesh();
 		attackTimer = 0.0f;
 		hasDealtDamage = false;
@@ -20,34 +22,61 @@ public partial class RavenAttackState : State
 	
 	public override void Exit()
 	{
+		raven.Visible = true;
 		if (slashArea != null && IsInstanceValid(slashArea))
 		{
 			slashArea.QueueFree();
 		}
 		raven.isInAction = false;
 	}
-	
+
 	public override void Update(float delta)
 	{
 		attackTimer += delta;
-		
+
 		if (slashArea != null && IsInstanceValid(slashArea))
 		{
 			Vector3 playerPos = raven.player.GlobalPosition;
-			Vector3 slashOffset = new Vector3(1.0f, 0.5f, 0);
-			
-			if (Input.GetAxis("Left", "Right") == -1)
-			{
-				slashOffset.X = -1.0f;
-			}
-			
+			Vector3 slashOffset = new Vector3(GetAttackDirection().X * 1.0f, GetAttackDirection().Y + 1.0f, 0.0f);
+
 			slashArea.GlobalPosition = playerPos + slashOffset;
 		}
 		
+	
+
 		if (attackTimer >= attackDuration)
 		{
 			rsm.TransitionTo("RavenOnPlayerState");
 		}
+
+
+
+	}
+	
+	private Vector2 GetAttackDirection()
+	{
+
+	
+		parentMesh = raven.player.GetNode<Node3D>("PlayerMesh");
+		
+	
+		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
+
+		if (direction == Vector2.Zero)
+		{
+			if (Input.IsActionPressed("Up") || Input.IsActionPressed("Down"))
+			{
+				direction = new Vector2(0, Input.GetAxis("Down", "Up"));
+			}
+			else
+			{
+				direction = new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 0);
+			}
+			
+			direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
+		}
+		
+		return direction.Normalized();
 	}
 	
 	public override void PhysicsUpdate(float delta)
