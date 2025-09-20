@@ -87,7 +87,7 @@ public partial class jumpState : State
 	
 	public override void Enter()
 	{
-		GD.Print("Entered Jump State. Jump queued: " + player.Get("jumpQueued"));
+		//GD.Print("Entered Jump State. Jump queued: " + player.Get("jumpQueued"));
 		cancelVelocity = true;
 		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
 		{
@@ -102,7 +102,7 @@ public partial class jumpState : State
 
 	public override void Exit()
 	{
-		GD.Print("Exited Jump State");
+		//GD.Print("Exited Jump State");
 		player.Set("jumpQueued", false); //don't jump on exit if holding jump
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
@@ -168,7 +168,7 @@ public partial class jumpState : State
 			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
 			{
 
-				GD.Print("Mantling");
+				//GD.Print("Mantling");
 				mantleTimer = mantleCooldown;
 				cancelVelocity = true;
 				msm.TransitionTo("mantleState");

@@ -24,7 +24,7 @@ public partial class State : Node
 	
 	new public virtual void Ready() //First time run by msm
 	{
-		GD.Print("Loaded: " + Name);
+		//GD.Print("Loaded: " + Name);
 	}
 	public virtual void Update(float delta) { }
 	public virtual void PhysicsUpdate(float delta) {}

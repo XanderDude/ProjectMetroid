@@ -16,9 +16,9 @@ public partial class PlayerManager : CharacterBody3D
 	public Item equippedRangedWeapon;
 	
 	// Reference to the inventory node in the scene tree
-	private Node _inventory;
+	public Node _inventory;
 	private Inventory _crossbowsInventory;
-	private Inventory _arrowsInventory;
+	public Inventory _arrowsInventory;
 	public Inventory _meleesInventory;
 	
 	

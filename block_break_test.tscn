@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dggq8jcdtoryn"]
+[gd_scene load_steps=14 format=3 uid="uid://dggq8jcdtoryn"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_3u8no"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="1_cvalj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c6wwlhgua54jy" path="res://BreakableBlock.cs" id="4_ymjb5"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="5_ymjb5"]
 [ext_resource type="Texture2D" uid="uid://gnwg70uj5o6n" path="res://Environment/Models/StoneMeshes/BreakableHit2.png" id="6_eor34"]
+[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="7_eor34"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pcrqu"]
 
@@ -82,6 +83,9 @@ speed = 5.0
 maxDistance = 8.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="EnemyRat" parent="." instance=ExtResource("7_eor34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24106, 0, 0)
 
 [editable path="Player"]
 [editable path="Raven"]
