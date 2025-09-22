@@ -12,6 +12,7 @@ public partial class RavenOnPlayerState : State
 	{
 		raven.isInAction = false;
 		raven.isOnPlayer = true;
+		
 	}
 	
 	public override void Exit()
@@ -38,15 +39,22 @@ public partial class RavenOnPlayerState : State
 	public override void PhysicsUpdate(float delta)
 	{
 	    Vector3 targetPosition = raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset;
-        raven.GlobalPosition = targetPosition;
-        raven.Velocity = Vector3.Zero;
+		raven.GlobalPosition = targetPosition;
+		raven.Velocity = Vector3.Zero;
+		
+		if (raven.player.IsOnFloor())
+        {
+			raven.canLaunch = true;
+		}
 	}
 	
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("RavenSpecial"))
+		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch)
 		{
+			
 			raven.GlobalPosition = raven.player.GlobalPosition + raven.Yoffset;
+			
 			rsm.TransitionTo("RavenLaunchState");
 		}
 		else if (@event.IsActionPressed("RavenSlash"))

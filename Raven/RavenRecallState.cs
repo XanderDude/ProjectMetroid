@@ -48,22 +48,4 @@ public partial class RavenRecallState : State
 
 	}
 
-	public override void HandleInput(InputEvent @event)
-	{
-		
-
-		if (@event.IsActionPressed("RavenSpecial") && raven.isOnPlayer)
-		{
-			rsm.TransitionTo("RavenLaunchState");
-		}
-
-		else if (@event.IsActionPressed("RavenSlash") && raven.isOnPlayer)
-		{
-
-			rsm.TransitionTo("RavenAttackState");
-			
-		}
-
-	}
-
 }

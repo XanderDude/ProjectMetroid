@@ -3,8 +3,8 @@ using System;
 public partial class Raven : CharacterBody3D
 {
     [Export] public PlayerManager player = null;
-    [Export] public float speed = 0.0f;
-    [Export] public float maxDistance = 0.0f;
+    [Export] public float speed = 10.0f;
+    [Export] public float maxDistance = 6.0f;
     
 
 
@@ -24,6 +24,8 @@ public partial class Raven : CharacterBody3D
     public bool isOnPlayer = false;
     public bool isLaunching = false;
     public bool canTeleport = false;
+
+    public bool canLaunch = false;
     public float ravenMeleeDamage = 0.0f;
 
     public override void _Ready()
@@ -38,7 +40,8 @@ public partial class Raven : CharacterBody3D
     }
 
     public override void _PhysicsProcess(double delta)
-{
+    {
+    //GD.Print("Raven launch state: " + canLaunch);
     if (rsm != null && rsm._currentState != null)
     {
         if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
@@ -53,12 +56,12 @@ public partial class Raven : CharacterBody3D
         }
     }
 
-    if (player.IsOnFloor())
+        if (player.IsOnFloor())
         {
-        canTeleport = true;
+            canTeleport = true;
         }
     
-    MoveAndCollide(this.Velocity * (float)delta);
+        MoveAndCollide(this.Velocity * (float)delta);
 }
     
 

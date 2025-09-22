@@ -8,7 +8,7 @@ public partial class PlayerManager : CharacterBody3D
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
-	public int health = 1;
+	public int health = 100;
 
 	public bool isDead = false;
 	[Export] private ShaderMaterial invulnMat;

@@ -17,6 +17,8 @@ public partial class jumpState : State
 	private bool cancelVelocity = true;
 	[Export] Godot.AudioStreamPlayer jumpySound;
 
+	[Export] Raven rav; 
+
 	private bool isTouching() {
 		if (player.GetSlideCollisionCount() != 0) {
 			return true;
@@ -129,6 +131,9 @@ public partial class jumpState : State
 	private void HandleAirMovement(float delta)
 	{
 		Vector3 velocity = player.Velocity;
+
+		
+
 		float input = Input.GetAxis("Left", "Right");
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
@@ -146,6 +151,9 @@ public partial class jumpState : State
 		}
 		else //must be falling
 		{
+
+			
+			
 			if (velocity.Y > -14.0f)
 				velocity.Y -= _gravity * 2.5f * delta; //faster falling speed
 			
@@ -173,7 +181,14 @@ public partial class jumpState : State
 				cancelVelocity = true;
 				msm.TransitionTo("mantleState");
 				return; //dont continue updating movement
-			}			
+			}	
+
+			
+			if (rav.rsm._currentState.Name == "RavenLaunchState")
+			{
+				velocity.Y = velocity.Y / 4;
+				velocity.X = velocity.X / 10;
+			}		
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed

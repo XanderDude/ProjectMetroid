@@ -21,16 +21,17 @@ public partial class RavenIdleState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		raven.Velocity = Vector3.Zero;
+		if ((raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 4.0f)
+		{
+			rsm.TransitionTo("RavenRecallState");
+		}
 	}
 
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("RavenSpecial") || (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 6.0f)
-		{
-			rsm.TransitionTo("RavenRecallState");
-		}
+		
 
-		if (@event.IsActionPressed("RavenSlash"))
+		if (@event.IsActionPressed("RavenSpecial"))
 		{
 
 
