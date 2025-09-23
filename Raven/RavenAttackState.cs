@@ -124,11 +124,11 @@ public partial class RavenAttackState : State
 	{
 		if (hasDealtDamage) return;
 		
-		GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
+		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
 		
 		if (body is EnemyController enemy)
 		{
-			GD.Print("Dealing damage to enemy!");
+			//GD.Print("Dealing damage to enemy!");
 			enemy.DamagedRecieved(15);
 			hasDealtDamage = true;
 		}
@@ -138,12 +138,12 @@ public partial class RavenAttackState : State
 	{
 		if (hasDealtDamage) return;
 		
-		GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
+		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
 		
 		Node3D parent = area.GetParent<Node3D>();
 		if (parent != null && parent is EnemyController enemy)
 		{
-			GD.Print("Dealing damage to enemy via area!");
+			//GD.Print("Dealing damage to enemy via area!");
 			enemy.DamagedRecieved(15);
 			hasDealtDamage = true;
 		}

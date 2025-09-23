@@ -6,14 +6,14 @@ public partial class mantleState : State
 
 	public override void Enter()
 	{
-		GD.Print("Entered Mantle State.");
+		//GD.Print("Entered Mantle State.");
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Hanging();
 		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Mantle();
 	}
 	
 	public override void Exit()
 	{
-		GD.Print("Exited Mantle State");
+		//GD.Print("Exited Mantle State");
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
 	}
 	

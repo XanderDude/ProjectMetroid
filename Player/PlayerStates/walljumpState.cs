@@ -31,7 +31,7 @@ public partial class walljumpState : State
 		}
 		else
 		{
-			GD.Print("jump max height reached");
+			//GD.Print("jump max height reached");
 			jumpHeight = jumpMaxHeight; 
 			return false;
 		}
@@ -44,7 +44,7 @@ public partial class walljumpState : State
 		jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
 		jumpySound.Play();
 		player.Set("jumpQueued", true);
-		GD.Print("Entered Wall Jump State. Jump queued: " + player.Get("jumpQueued"));
+		//GD.Print("Entered Wall Jump State. Jump queued: " + player.Get("jumpQueued"));
 		jumpHeight = 0.0f;
 
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
@@ -53,7 +53,7 @@ public partial class walljumpState : State
 	}
 	public override void Exit()
 	{
-		GD.Print("Exited Wall Jump State");
+		//GD.Print("Exited Wall Jump State");
 		player.Set("jumpQueued", false); //don't jump on exit if holding jump
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
@@ -73,7 +73,7 @@ public partial class walljumpState : State
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
-			GD.Print("Jumping");
+			//GD.Print("Jumping");
 			velocity.X = airMaxSpeed;
 
 			velocity.Y -= _gravity * delta;

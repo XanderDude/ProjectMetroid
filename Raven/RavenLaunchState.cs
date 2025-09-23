@@ -3,22 +3,32 @@ using Godot;
 
 public partial class RavenLaunchState : State
 {
+
+
+
+
 	public override void Enter()
 	{
 		//GD.Print("Raven: Entered Launch State");
 		raven.canLaunch = false;
+		raven.timer = 0.0f;
 		
+	
 
 	}
 	public override void Exit()
 	{
 	}
+
+	
+
+
 	public override void Update(float delta)
 	{
 	}
 	public override void PhysicsUpdate(float delta)
 	{
-		RavenLaunch();
+		RavenLaunch(delta);
 	}
 
 	public override void HandleInput(InputEvent @event)
@@ -27,30 +37,31 @@ public partial class RavenLaunchState : State
 		{
 
 
-			if (raven.canTeleport)
-			{
-				//GD.Print("Raven: Teleported to player position" + raven.player.StateMachine._currentState.Name);
-
-				raven.player.GlobalPosition = raven.GlobalPosition;
-				raven.canTeleport = false;
-				raven.player.Velocity = Vector3.Zero;
-			}
+				if (raven.canTeleport)
+				{
+					//GD.Print("Raven: Teleported to player position" + raven.player.StateMachine._currentState.Name);
+					// Define start and end points for the ray
+					
+					raven.player.GlobalPosition = new Vector3(raven.GlobalPosition.X, raven.GlobalPosition.Y - 1.0f, raven.GlobalPosition.Z);
+					raven.canTeleport = false;
+					raven.player.Velocity = Vector3.Zero;
+				}
 
 
 			if (raven.player.StateMachine._currentState.Name == "mantleState")
 			{
-				raven.player.StateMachine.TransitionTo("jumpState");
+				raven.player.StateMachine.TransitionTo("jumpState");  
 			}
 
-			rsm.TransitionTo("RavenRecallState");
+				rsm.TransitionTo("RavenRecallState");
+		
+				
+				
+				
+				
+			
 
-
-
-
-
-
-
-
+		   
 		}
 	}
 
@@ -69,7 +80,7 @@ public partial class RavenLaunchState : State
 			return new Vector3(Mathf.Sign(raven.player.GetNode<Node3D>("%PlayerMesh").RotationDegrees.Y), 0, 0);  
 	}
 
-	public void RavenLaunch()
+	public void RavenLaunch(float delta)
 	{
 
 	
@@ -82,7 +93,6 @@ public partial class RavenLaunchState : State
 		if (!raven.isInAction)
 		{
 			raven.direction = RavenDirection();
-			raven.targetPosition = raven.GlobalPosition + (raven.direction * raven.maxDistance);
 			raven.Velocity = raven.direction * raven.speed;
 
 		}
@@ -92,26 +102,17 @@ public partial class RavenLaunchState : State
 
 		if (raven.direction != Vector3.Zero)
 		{
-		   
+
+			raven.timer += delta;
+
+			//check collision of top collider
+
 			
-		   // GD.Print("Raven: Launched in Direction:  " + raven.direction);
-			if (Mathf.Abs(raven.GlobalPosition.DistanceTo(raven.targetPosition)) < 0.1f)
+
+
+			if (raven.timer >= 0.6f)
 			{
-				
-				//GD.Print("Raven: Reached target position");
-				//GD.Print("Raven: targetPosition: " + raven.targetPosition);
-				raven.Velocity = Vector3.Zero;
 				rsm.TransitionTo("RavenRecallState");
-
-			}
-			else
-			{
-
-
-			  // GD.Print("Raven: Moving towards target position");
-				//GD.Print("Raven: Current Position: " + raven.GlobalPosition);
-				//GD.Print("Raven: targetPosition: " + raven.targetPosition);
-			   
 			}
 		}
 	}

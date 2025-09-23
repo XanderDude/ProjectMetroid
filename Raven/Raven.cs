@@ -4,15 +4,16 @@ public partial class Raven : CharacterBody3D
 {
     [Export] public PlayerManager player = null;
     [Export] public float speed = 10.0f;
-    [Export] public float maxDistance = 6.0f;
     
-
+    [Export] public float timer = 0.0f;
 
     public Vector3 direction = Vector3.Zero;
     public Vector3 targetPosition = Vector3.Zero;
-
     public Area3D swordHitbox;
     public RavenStateMachine rsm;
+
+    [Export] public CollisionShape3D topCollider = null;
+    [Export] public CollisionShape3D bottomCollider = null;
 
 
 
@@ -36,6 +37,7 @@ public partial class Raven : CharacterBody3D
             GD.PrintErr("Raven: player not found");
         }
 
+        
 
     }
 
@@ -60,8 +62,11 @@ public partial class Raven : CharacterBody3D
         {
             canTeleport = true;
         }
-    
-        MoveAndCollide(this.Velocity * (float)delta);
+
+        
+            MoveAndSlide();
+        
+        
 }
     
 

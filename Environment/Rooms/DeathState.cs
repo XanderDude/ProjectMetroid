@@ -28,7 +28,7 @@ public partial class DeathState : State
    
     public override void Exit()
     {
-        GD.Print("Exited Death State");
+        //GD.Print("Exited Death State");
         
         UnpauseGame();
         ProcessMode = Node.ProcessModeEnum.Inherit;

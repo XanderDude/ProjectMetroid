@@ -184,11 +184,7 @@ public partial class jumpState : State
 			}	
 
 			
-			if (rav.rsm._currentState.Name == "RavenLaunchState")
-			{
-				velocity.Y = velocity.Y / 4;
-				velocity.X = velocity.X / 10;
-			}		
+			
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
