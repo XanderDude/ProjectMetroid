@@ -3,6 +3,7 @@ using Godot;
 public partial class BombArrowProjectile : RigidBody3D
 {
 	[Export] public AudioStream explosionSound;
+	[Export] private PackedScene explosionVFX;
 	[Export] public float explosionRadius = 5.0f;
 	[Export] public float explosionDuration = 2.0f;
 	private bool hasExploded = false;
@@ -40,9 +41,12 @@ public partial class BombArrowProjectile : RigidBody3D
 	{
 		if (hasExploded) return;
 		hasExploded = true;
-		
-		CreateExplosionSphere();
-		
+
+		var explosion = explosionVFX.Instantiate() as Node3D;
+		GetTree().CurrentScene.AddChild(explosion);
+		explosion.GlobalPosition = GlobalPosition;
+		//CreateExplosionSphere();
+
 		if (explosionSound != null)
 		{
 			var audioPlayer = new AudioStreamPlayer3D();
