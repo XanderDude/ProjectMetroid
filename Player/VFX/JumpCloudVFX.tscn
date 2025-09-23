@@ -183,6 +183,5 @@ lifetime = 0.15
 one_shot = true
 explosiveness = 1.0
 interpolate = false
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_de2xf")
 draw_pass_1 = SubResource("QuadMesh_o4hwq")
