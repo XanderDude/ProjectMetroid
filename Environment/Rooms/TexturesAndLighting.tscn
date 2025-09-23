@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
+[ext_resource type="PackedScene" uid="uid://dgblq3x3dqyob" path="res://Raven/VFX/RavenSlash.tscn" id="23_bcc5k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -52,6 +53,10 @@ size = Vector3(0.5, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wuno"]
 resource_local_to_scene = true
 size = Vector3(0.2, 14, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iq2j"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s13j"]
 resource_local_to_scene = true
@@ -489,6 +494,9 @@ shape = SubResource("BoxShape3D_4wuno")
 [node name="StoneWallHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2" index="13"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004, 0, 1.1)
 
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_3iq2j")
+
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
 
@@ -650,14 +658,13 @@ material_override = SubResource("ShaderMaterial_bcc5k")
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
-playerMeshPath = NodePath("PlayerMesh")
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5714, 2.5, 25)
 playerPath = NodePath("../Player")
 lookAheadDistance = 1.5
-roomMinX = -60.0
+roomMinX = -52.5
 roomMaxX = 60.0
 roomMinY = -18.0
 roomMaxY = 500.0
@@ -695,6 +702,9 @@ visible = false
 size = Vector3(33, 15.1328, 8.39844)
 data = SubResource("VoxelGIData_8g18c")
 
+[node name="RavenSlash" parent="." instance=ExtResource("23_bcc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2855, 1.06212, 0.171305)
+
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay"]
@@ -704,6 +714,7 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Decorations/Light_Lantern"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2"]
