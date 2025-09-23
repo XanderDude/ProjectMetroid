@@ -12,9 +12,9 @@
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_gs60o"]
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="8_gs60o"]
 [ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="9_c2r2e"]
-[ext_resource type="ArrayMesh" uid="uid://cpj6cyfj4ui3d" path="res://Environment/Models/StoneMeshes/stoneWallDestroyedMesh.res" id="10_0yfrp"]
+[ext_resource type="ArrayMesh" uid="uid://bvwnj64yutec" path="res://Environment/Models/StoneMeshes/stoneWallDestroyedMesh.res" id="10_0yfrp"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="10_c2r2e"]
-[ext_resource type="ArrayMesh" uid="uid://6ck4j8bmixq3" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="11_7bwnk"]
+[ext_resource type="ArrayMesh" uid="uid://b3ghn1a5lir6p" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="11_7bwnk"]
 [ext_resource type="ArrayMesh" uid="uid://djgltj2rthdqi" path="res://Environment/Models/StoneMeshes/stone2x2StairsMesh.res" id="11_hd1gt"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="11_poa3r"]
 

@@ -152,6 +152,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.5, -1)
 [node name="CollisionShape3D" parent="PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_7fiwc")
 
+[node name="StonePlatformMesh" parent="PlatformGroup/StonePlatformEdge3/Meshes" index="0"]
+visible = false
+
 [node name="stoneStairs1x1" parent="PlatformGroup/StonePlatformEdge3" instance=ExtResource("9_b1vnb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -2)
 
