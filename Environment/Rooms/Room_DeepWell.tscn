@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cfuqhq4krsq54"]
+[gd_scene load_steps=33 format=3 uid="uid://cfuqhq4krsq54"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="1_q8u21"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="2_odwd3"]
@@ -23,6 +23,28 @@ size = Vector3(26, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0sob7"]
 size = Vector3(0.4, 2.61719, 2.86)
+
+[sub_resource type="Gradient" id="Gradient_0yfrp"]
+colors = PackedColorArray(1, 1, 1, 0, 0.811765, 0.811765, 0.811765, 0.321569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t5foc"]
+gradient = SubResource("Gradient_0yfrp")
+width = 128
+height = 128
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o76fq"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 1, 0.886275, 1)
+albedo_texture = SubResource("GradientTexture2D_t5foc")
+texture_filter = 0
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fr3lq"]
+material = SubResource("StandardMaterial3D_o76fq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4fql"]
 size = Vector3(4, 0.5, 10)
@@ -143,6 +165,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170254, 0)
 shape = SubResource("BoxShape3D_0sob7")
 debug_color = Color(0.918333, 0.95, 0, 0.564706)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, -1.05, -2, 0.2)
+visible = false
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-0.258819, 0.965926, -8.74228e-08, 0.965926, 0.258819, 0, 2.26267e-08, -8.44439e-08, -1, 1.05, -2, 0.2)
+visible = false
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-8.70798e-08, -0.932038, 0, 1.99215, -4.07407e-08, 0, 0, 0, 0.930303, -0.74563, -0.850206, 0.170585)
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(8.70798e-08, 0.932038, -1.40472e-07, 1.99215, -4.07407e-08, 0, -1.31487e-14, -1.40734e-07, -0.930303, 0.74563, -0.850206, 0.170585)
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-1.69551e-14, -1.81137e-07, -0.74563, 1.99215, -4.06648e-08, -7.88592e-22, -8.70798e-08, -0.930303, 1.4518e-07, 0, -0.850206, -0.759717)
+mesh = SubResource("PlaneMesh_fr3lq")
 
 [node name="Ceiling" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)

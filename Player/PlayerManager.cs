@@ -4,23 +4,23 @@ using System;
 public partial class PlayerManager : CharacterBody3D
 {
 	[Export] private NodePath playerMeshPath = "%PlayerMesh";
-	
+
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
 	private int health = 100;
 	[Export] private ShaderMaterial invulnMat;
-	
+
 	public Item equippedRangedWeapon;
-	
+
 	// Reference to the inventory node in the scene tree
 	private Node _inventory;
 	private Inventory _crossbowsInventory;
 	private Inventory _arrowsInventory;
 	public Inventory _meleesInventory;
-	
-	
-	
+
+
+
 	public int Health
 	{
 		get { return health; }
@@ -31,18 +31,18 @@ public partial class PlayerManager : CharacterBody3D
 			if (health <= 0)
 			{
 				health = 0;
-				
-				
+
+
 			}
-		
+
 		}
 	}
-	
+
 	[Export] public bool canBeDamaged = true;
 	[Export] private float invulnTimer = 1f;
 	private float _invulnTimer;
 	private MovementStateMachine _movementStateMachine;
-	
+
 	[Export]
 	public MovementStateMachine StateMachine
 	{
@@ -55,9 +55,9 @@ public partial class PlayerManager : CharacterBody3D
 			StateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
 		}
 	}
-	
+
 	private AttackStateMachine _attackStateMachine;
-	
+
 	[Export]
 	private AttackStateMachine AttackStateMachine
 	{
@@ -70,27 +70,28 @@ public partial class PlayerManager : CharacterBody3D
 			AttackStateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
 		}
 	}
-	
+
 	[Export] public Area3D slidingCollider;
-	
+	[Export] public PackedScene jumpVFX;
+
 	public override void _Ready()
 	{
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
 		invulnMat?.SetShaderParameter("alpha", 0f);
-		
+
 		InitializeInventory();
-		
+
 		// Small delay to ensure all nodes are ready
 		var timer = GetTree().CreateTimer(0.1f);
 		timer.Timeout += SyncWithInventory;
 	}
-	
+
 	private void InitializeInventory()
 	{
 		// Get the inventory that's already a child of this player
 		_inventory = GetNode("Inventory");
-		
+
 		if (_inventory != null)
 		{
 			var canvasLayer = _inventory.GetNode("CanvasLayer");
@@ -101,29 +102,29 @@ public partial class PlayerManager : CharacterBody3D
 				_meleesInventory = canvasLayer.GetNode("Melees") as Inventory;
 			}
 		}
-		
+
 		// Start with inventory hidden
 		HideInventory();
-		
+
 		/*GD.Print($"Inventory references initialized:");
 		GD.Print($"  Crossbows: {_crossbowsInventory?.Name ?? "null"}");
 		GD.Print($"  Arrows: {_arrowsInventory?.Name ?? "null"}");
 		GD.Print($"  Melees: {_meleesInventory?.Name ?? "null"}");
 		*/
 	}
-	
+
 	public void SyncWithInventory()
 	{
 		//GD.Print("=== SyncWithInventory START ===");
-		
-		if (_crossbowsInventory == null) 
+
+		if (_crossbowsInventory == null)
 		{
 			//GD.Print("Crossbows inventory is null, cannot sync");
 			return;
 		}
-		
+
 		//GD.Print($"Crossbows inventory found: {_crossbowsInventory.Name}");
-		
+
 		// Check for equipped items in crossbows inventory
 		bool foundAnyItems = false;
 		for (int i = 0; i < _crossbowsInventory.inventorySize; i++)
@@ -135,12 +136,12 @@ public partial class PlayerManager : CharacterBody3D
 				//GD.Print($"Slot {i}: {item.Name}, Category: {item.Category}, Equipped: {item.Equipped}");
 			}
 		}
-		
+
 		if (!foundAnyItems)
 		{
 			//GD.Print("No items found in any slots!");
 		}
-		
+
 		// Check specifically for equipped ranged items
 		//GD.Print("Checking for equipped items using GetEquippedItemInCategory...");
 		var equippedCrossbow = _crossbowsInventory.GetEquippedItemInCategory(ItemCategory.Ranged);
@@ -152,7 +153,7 @@ public partial class PlayerManager : CharacterBody3D
 		else
 		{
 			//GD.Print("No equipped crossbow found in category Ranged");
-			
+
 			// Let's also check if any items are equipped at all
 			bool foundEquippedItem = false;
 			for (int i = 0; i < _crossbowsInventory.inventorySize; i++)
@@ -164,52 +165,52 @@ public partial class PlayerManager : CharacterBody3D
 					//GD.Print($"Found equipped item in slot {i}: {item.Name} (Category: {item.Category})");
 				}
 			}
-			
+
 			if (!foundEquippedItem)
 			{
 				//GD.Print("No equipped items found at all!");
 			}
-			
+
 			equippedRangedWeapon = null;
 		}
-		
+
 		//GD.Print("=== SyncWithInventory END ===");
 	}
-	
+
 	public Inventory GetCrossbowsInventory()
 	{
 		return _crossbowsInventory;
 	}
-	
+
 	public Inventory GetArrowsInventory()
 	{
 		return _arrowsInventory;
 	}
-	
+
 	public Inventory GetMeleesInventory()
 	{
 		return _meleesInventory;
 	}
-	
+
 	// Keep this method for backward compatibility with existing code
 	public Node GetInventory()
 	{
 		return _inventory;
 	}
-	
+
 	public bool HasRangedWeapon()
 	{
 		bool hasWeapon = equippedRangedWeapon != null && equippedRangedWeapon.Category == ItemCategory.Ranged;
 		//GD.Print($"HasRangedWeapon called: {hasWeapon} (weapon: {equippedRangedWeapon?.Name ?? "null"})");
 		return hasWeapon;
 	}
-	
+
 	public Item GetEquippedRangedWeapon()
 	{
 		//GD.Print($"GetEquippedRangedWeapon called: {equippedRangedWeapon?.Name ?? "null"}");
 		return equippedRangedWeapon;
 	}
-	
+
 	// Method to add items to appropriate inventory
 	public bool AddItemToInventory(Item item)
 	{
@@ -227,7 +228,7 @@ public partial class PlayerManager : CharacterBody3D
 				return false;
 		}
 	}
-	
+
 	// Helper methods to show/hide inventory
 	public void ShowInventory()
 	{
@@ -241,7 +242,7 @@ public partial class PlayerManager : CharacterBody3D
 			}
 		}
 	}
-	
+
 	public void HideInventory()
 	{
 		if (_inventory != null)
@@ -254,7 +255,7 @@ public partial class PlayerManager : CharacterBody3D
 		}
 		SyncWithInventory();
 	}
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (invulnTimer > 0)
@@ -271,5 +272,12 @@ public partial class PlayerManager : CharacterBody3D
 			canBeDamaged = true;
 			invulnMat?.SetShaderParameter("alpha", 0f);
 		}
+	}
+	public void SpawnJumpCloud(float rotation)
+	{
+		var jumpCloud = jumpVFX.Instantiate() as Node3D;
+		this.AddChild(jumpCloud, true);
+		jumpCloud.GlobalPosition = GlobalPosition;
+		jumpCloud.RotationDegrees = new(rotation, 0, 0);
 	}
 }

@@ -14,11 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/NormalArrow.tscn" id="12_yifbt"]
 [ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="13_4n5ed"]
 [ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="13_s0mko"]
-[ext_resource type="AnimationLibrary" uid="uid://dvm2b5mjyxuqq" path="res://Player/Animation/FrankengirlAnimLib.res" id="14_yf47d"]
 [ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Frankengirl.fbx" id="15_hqjia"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_jvfa1"]
 [ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="16_ib3vm"]
 [ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://UI/Inventory/Inventory.cs" id="17_vtj8b"]
+[ext_resource type="AnimationLibrary" uid="uid://depi7daem64rk" path="res://Player/Animation/FrankengirlAnimLib2.res" id="18_hqjia"]
 [ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="18_rqaa0"]
 [ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="19_o1b5h"]
 [ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="20_7w4lt"]
@@ -123,10 +123,72 @@ SlideStateName = "SlideStart"
 CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
+[node name="Skeleton3D" parent="PlayerMesh" index="1"]
+bones/0/position = Vector3(3.55271e-17, 0.924947, 0)
+bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(5.85966e-26, 0.0686879, -5.16988e-25, 0.997638)
+bones/1/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(0.035671, 0.0139758, -2.70345e-16)
+bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -5.37647e-16)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/5/position = Vector3(0.0708221, -0.0208942, -8.79249e-16)
+bones/7/position = Vector3(0.0324921, 0.0596365, 5.0183e-16)
+bones/9/rotation = Quaternion(0.190591, 1.05855e-16, 0.98167, 3.72905e-17)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(1.34028e-27, 0.00299866, 2.09521e-26, 0.999996)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-5.55112e-17, 2.77556e-17, 2.22045e-16, 1)
+bones/13/rotation = Quaternion(0, -0.190591, 2.88964e-17, 0.98167)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(1.29536e-26, 0.00299866, 2.69634e-17, 0.999996)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/19/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/19/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/20/position = Vector3(0.088461, -0.0253461, 0.0685229)
+bones/20/rotation = Quaternion(0.060312, 0.70453, 0.70453, -0.060312)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/21/rotation = Quaternion(0.999591, 6.29589e-17, -0.0286064, 6.29569e-17)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.506118, -0.493806, 0.493806, 0.506118)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.706148, 0.0368139, -0.0368139, 0.706148)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
+bones/25/rotation = Quaternion(0.999591, -5.40977e-18, -0.0286064, -6.131e-17)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.506118, -0.493806, 0.493806, 0.506118)
+bones/26/scale = Vector3(1, 1, 1)
+
+[node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(-0.304867, -0.728662, -0.613276, -0.326894, 0.68487, -0.651224, 0.894537, 0.0019398, -0.446989, -0.439104, 1.18716, -0.0120656)
+bone_idx = 17
+
+[node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(-0.304867, -0.728662, -0.613276, -0.326894, 0.68487, -0.651224, 0.894537, 0.0019398, -0.446989, -0.495863, 1.21707, -0.0204454)
+bone_idx = 18
+
+[node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
+transform = Transform3D(0.1399, -0.670432, -0.728662, 0.151617, -0.712717, 0.68487, -0.978489, -0.20629, 0.00193984, -0.500557, 1.08455, 0.0624646)
+bone_idx = 19
+
+[node name="body" parent="PlayerMesh/Skeleton3D" index="3"]
+material_overlay = ExtResource("2_s0mko")
+
+[node name="cloak" parent="PlayerMesh/Skeleton3D" index="4"]
+material_overlay = ExtResource("2_s0mko")
+
 [node name="AnimationPlayerMain" type="AnimationPlayer" parent="."]
 root_node = NodePath("../PlayerMesh")
 libraries = {
-&"FrankengirlAnimLib": ExtResource("14_yf47d")
+&"": ExtResource("18_hqjia")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -135,7 +197,7 @@ root_node = NodePath("%PlayerMesh")
 tree_root = ExtResource("15_jvfa1")
 anim_player = NodePath("../AnimationPlayerMain")
 parameters/conditions/slideEnd = false
-parameters/Running/AimBlend/blend_position = Vector2(0, 0)
+parameters/Running/AimBlend/blend_position = Vector2(0.0988764, 0.0557029)
 parameters/Running/IdleRunBlend/blend_amount = 0.0
 parameters/Running/LegAndArmBlend/blend_amount = 0.0
 parameters/Running/RunSpeed/scale = 2.3
@@ -254,3 +316,5 @@ itemicon = ExtResource("22_xw4su")
 maxQty = 99
 qty = 1
 metadata/_edit_use_anchors_ = true
+
+[editable path="PlayerMesh"]

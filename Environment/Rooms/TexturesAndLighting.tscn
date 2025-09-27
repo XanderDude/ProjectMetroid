@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
-[ext_resource type="PackedScene" uid="uid://dgblq3x3dqyob" path="res://Raven/VFX/RavenSlash.tscn" id="23_bcc5k"]
+[ext_resource type="PackedScene" uid="uid://dgblq3x3dqyob" path="res://Raven/VFX/RavenSlashVFX.tscn" id="23_bcc5k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -436,6 +436,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)
 [node name="Room_DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_bcc5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, -20, 0)
 
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="15"]
+visible = true
+
+[node name="MeshInstance3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="16"]
+visible = true
+
+[node name="MeshInstance3D3" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="17"]
+visible = false
+
+[node name="MeshInstance3D4" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="18"]
+visible = false
+
+[node name="MeshInstance3D5" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="19"]
+visible = false
+
 [node name="StoneDoorFrameMesh" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.129881, 0, 0)
 
@@ -670,7 +685,7 @@ roomMinY = -18.0
 roomMaxY = 500.0
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866026, 0.5, 8.74228e-08, 0.5, -0.866026, -14.7046, 19, -11)
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)
 light_energy = 0.8
 light_indirect_energy = 0.333
 light_bake_mode = 1

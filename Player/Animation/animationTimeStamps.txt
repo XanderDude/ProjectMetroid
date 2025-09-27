@@ -1,12 +1,20 @@
+Frankengirl Animations:
 idle 1-152
 aim 160
 run 165-194
 spin 200-204
-slide 210-215
-crouch 220-225
-wall collision 230-235
-mantle hang 240-245
-AimUpForward 250-255
-AimUp 260-265
-AimDownForward 270-275
-AimDown 280-285
+slide 215-220
+crouch 225-230
+wall collision 235-240
+mantle hang 245-250
+AimUpForward 255-260
+AimUp 265-270
+AimDownForward 275-280
+AimDown 285-290
+Death 300-350
+
+Raven Animations:
+0 idle
+1-10 flying
+15-30 hovering
+40-45 launching

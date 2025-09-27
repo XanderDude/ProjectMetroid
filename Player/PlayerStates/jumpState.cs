@@ -28,7 +28,7 @@ public partial class jumpState : State
 		if (player.GetSlideCollisionCount() == 0) {
 			return false;
 		}
-		
+
 		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
 		{
 			KinematicCollision3D collision = player.GetSlideCollision(i);
@@ -43,16 +43,16 @@ public partial class jumpState : State
 			catch { continue; }
 
 			var scaleY = new Vector3(collider.Transform.Basis.X.Y * boxShape.Size.Y,
-			collider.Transform.Basis.Y.Y  * boxShape.Size.Y,
-			collider.Transform.Basis.Z.Y  * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
+			collider.Transform.Basis.Y.Y * boxShape.Size.Y,
+			collider.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
 			float playerHeight = player.GlobalPosition.Y + playerTop;
 			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
 			if (Mathf.Abs(playerHeight - meshTop) < 0.1f) return true;
 		}
-		return false;		
-		
+		return false;
+
 	}
-	
+
 	private bool isGreaterHeight()
 	{
 		if (player.GetSlideCollisionCount() == 0) {
@@ -63,12 +63,12 @@ public partial class jumpState : State
 		float playerHeight = player.GlobalPosition.Y + playerTop;
 		float meshTop = collider.GlobalPosition.Y;
 
-		
+
 		if (Mathf.Abs(playerHeight - meshTop) > 0.1f)
 			return true;
 		else return false;
 	}
-	
+
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
 	{
 		if (jumpHeight < jumpMaxHeight)
@@ -84,13 +84,14 @@ public partial class jumpState : State
 			return false;
 		}
 	}
-	
+
 	public override void Enter()
 	{
 		GD.Print("Entered Jump State. Jump queued: " + player.Get("jumpQueued"));
 		cancelVelocity = true;
 		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
 		{
+			if (pm.jumpVFX != null) pm.SpawnJumpCloud(0);
 			jumpHeight = 0.0f;
 			jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
 			jumpySound.Play();
@@ -171,7 +172,7 @@ public partial class jumpState : State
 				cancelVelocity = true;
 				msm.TransitionTo("mantleState");
 				return; //dont continue updating movement
-			}			
+			}
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
@@ -187,16 +188,13 @@ public partial class jumpState : State
 		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight()) {
 			msm.TransitionTo("walljumpState");
 		}
-		
+
 		if (@event.IsActionPressed("Shoot"))
 		{
 			asm.TransitionTo("attackState");
 		}
-		
-		
-	}
-	
-	
-	
+
+
+	}	
 	
 }

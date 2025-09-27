@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dq0eyflucqbl0"]
+
+[ext_resource type="Shader" uid="uid://batqp4ecrskan" path="res://Environment/Shaders/ps1JitterBacksideCull.gdshader" id="1_ojvad"]
+[ext_resource type="Texture2D" uid="uid://gy53jwqcdste" path="res://Environment/Materials/ArchitectureStone_Weathered_Albedo.png" id="2_2b8c3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ojvad")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_2b8c3")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(640, 360)
