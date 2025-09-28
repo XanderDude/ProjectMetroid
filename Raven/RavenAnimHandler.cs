@@ -20,7 +20,7 @@ public partial class RavenAnimHandler : AnimationTree
 		{
 			playback?.Travel("Launching");
 		}
-		else if (rsm._currentState.Name == "RavenIdleState")
+		else if (rsm._currentState.Name == "RavenRecallState")
 		{
 			playback?.Travel("Flying");
 		}

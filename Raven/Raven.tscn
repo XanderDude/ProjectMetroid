@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=26 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
@@ -8,7 +8,20 @@
 [ext_resource type="Script" uid="uid://brlcdyahxifgc" path="res://Raven/RavenAttackState.cs" id="6_w2qnq"]
 [ext_resource type="Script" uid="uid://da0xs4ba0tw6o" path="res://Raven/RavenOnPlayerState.cs" id="7_840d0"]
 [ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="10_8hq1b"]
+[ext_resource type="PackedScene" uid="uid://buw56jcoae1g1" path="res://Raven/VFX/SparklesVFX.tscn" id="10_60uyt"]
 [ext_resource type="Script" uid="uid://dsfn1qod8j0wc" path="res://Raven/RavenAnimHandler.cs" id="10_h7rtg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_840d0"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+grow = true
+grow_amount = 0.008
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7ypt"]
 animation = &"Flying"
@@ -85,13 +98,22 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.042012, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.000510865, 0)
+material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(1.14459, -0.281626, -0.927691, 0.956, 0.566523, 1.00753, 0.161207, -1.36005, 0.611779, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.378599, -0.710293, -1.26576, 1.44804, 0.274224, 0.279238, 0.0991741, -1.2924, 0.754903, 0.0374537, 0.136378, 0.0803157)
+material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(1.14994, 0.27599, 0.922751, -0.948997, 0.570058, 1.01215, -0.164453, -1.35973, 0.61163, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.398796, 0.706031, 1.26194, -1.4425, 0.285408, 0.296179, -0.100704, -1.29231, 0.754848, -0.0374537, 0.136378, 0.0803157)
+material_overlay = SubResource("StandardMaterial3D_840d0")
+
+[node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]
+material_overlay = SubResource("StandardMaterial3D_840d0")
+
+[node name="BeakBottom" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="1"]
+material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("rsm")]
 root_node = NodePath("../RavenAnimation")
@@ -115,5 +137,8 @@ shape = SubResource("ConcavePolygonShape3D_w2qnq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0952756, 0.0583441, 0)
 shape = SubResource("SphereShape3D_8hq1b")
+
+[node name="SparklesVFX" parent="." instance=ExtResource("10_60uyt")]
+transform = Transform3D(1, -1.78814e-07, 7.10542e-15, 1.78814e-07, 1, 1.33227e-14, -7.10543e-15, -1.33227e-14, 1, -0.0127826, 0.136123, -5.58747e-10)
 
 [editable path="RavenAnimation"]
