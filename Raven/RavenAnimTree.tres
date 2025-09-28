@@ -1,0 +1,35 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=12 format=3 uid="uid://ccc63jh4mm1ov"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7ypt"]
+animation = &"Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7eqd3"]
+animation = &"Hovering"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ykaf"]
+animation = &"Launching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qudj1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vpkx7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agfuo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_knubt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uy6lg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1tg2a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kujn5"]
+
+[resource]
+states/Flying/node = SubResource("AnimationNodeAnimation_t7ypt")
+states/Flying/position = Vector2(609, 100)
+states/Hovering/node = SubResource("AnimationNodeAnimation_7eqd3")
+states/Hovering/position = Vector2(381, 100)
+states/Launching/node = SubResource("AnimationNodeAnimation_4ykaf")
+states/Launching/position = Vector2(498, 248)
+transitions = ["Start", "Hovering", SubResource("AnimationNodeStateMachineTransition_qudj1"), "Hovering", "Launching", SubResource("AnimationNodeStateMachineTransition_vpkx7"), "Launching", "Hovering", SubResource("AnimationNodeStateMachineTransition_agfuo"), "Hovering", "Flying", SubResource("AnimationNodeStateMachineTransition_knubt"), "Flying", "Launching", SubResource("AnimationNodeStateMachineTransition_uy6lg"), "Launching", "Flying", SubResource("AnimationNodeStateMachineTransition_1tg2a"), "Flying", "Hovering", SubResource("AnimationNodeStateMachineTransition_kujn5")]
+graph_offset = Vector2(61, -36)

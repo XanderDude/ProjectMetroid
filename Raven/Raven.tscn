@@ -1,14 +1,48 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=24 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
 [ext_resource type="Script" uid="uid://du15n00akngi2" path="res://Raven/RavenIdleState.cs" id="3_14tcx"]
 [ext_resource type="Script" uid="uid://ddb5dnlbdwfkp" path="res://Raven/RavenRecallState.cs" id="3_oiwij"]
 [ext_resource type="Script" uid="uid://euohdexnkmw3" path="res://Raven/RavenLaunchState.cs" id="4_oiwij"]
-[ext_resource type="PackedScene" uid="uid://cfqx3x3003wu0" path="res://Bird/RavenFly.fbx" id="6_d3jmq"]
 [ext_resource type="Script" uid="uid://brlcdyahxifgc" path="res://Raven/RavenAttackState.cs" id="6_w2qnq"]
 [ext_resource type="Script" uid="uid://da0xs4ba0tw6o" path="res://Raven/RavenOnPlayerState.cs" id="7_840d0"]
-[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="8_be226"]
+[ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="10_8hq1b"]
+[ext_resource type="Script" uid="uid://dsfn1qod8j0wc" path="res://Raven/RavenAnimHandler.cs" id="10_h7rtg"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7ypt"]
+animation = &"Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7eqd3"]
+animation = &"Hovering"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ykaf"]
+animation = &"Launching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qudj1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vpkx7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agfuo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_knubt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uy6lg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1tg2a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kujn5"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_840d0"]
+states/Flying/node = SubResource("AnimationNodeAnimation_t7ypt")
+states/Flying/position = Vector2(609, 100)
+states/Hovering/node = SubResource("AnimationNodeAnimation_7eqd3")
+states/Hovering/position = Vector2(381, 100)
+states/Launching/node = SubResource("AnimationNodeAnimation_4ykaf")
+states/Launching/position = Vector2(498, 248)
+transitions = ["Start", "Hovering", SubResource("AnimationNodeStateMachineTransition_qudj1"), "Hovering", "Launching", SubResource("AnimationNodeStateMachineTransition_vpkx7"), "Launching", "Hovering", SubResource("AnimationNodeStateMachineTransition_agfuo"), "Hovering", "Flying", SubResource("AnimationNodeStateMachineTransition_knubt"), "Flying", "Launching", SubResource("AnimationNodeStateMachineTransition_uy6lg"), "Launching", "Flying", SubResource("AnimationNodeStateMachineTransition_1tg2a"), "Flying", "Hovering", SubResource("AnimationNodeStateMachineTransition_kujn5")]
+graph_offset = Vector2(61, -36)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d3jmq"]
 
@@ -44,18 +78,27 @@ script = ExtResource("6_w2qnq")
 [node name="RavenOnPlayerState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("7_840d0")
 
-[node name="RavenFly" parent="." instance=ExtResource("6_d3jmq")]
+[node name="RavenAnimation" parent="." instance=ExtResource("10_8hq1b")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="WingLeft" parent="RavenFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(1.15413, -0.214856, -0.933712, 0.940722, 0.531367, 1.04052, 0.18172, -1.38618, 0.543591, 0.0374537, 0.136378, 0.0803157)
+[node name="Weapons" parent="RavenAnimation" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="WingRight" parent="RavenFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(1.15413, 0.214856, 0.933712, -0.940722, 0.531367, 1.04052, -0.18172, -1.38618, 0.543591, -0.0374537, 0.136378, 0.0803157)
+[node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.042012, 0)
 
-[node name="AnimationPlayer" parent="RavenFly" index="1"]
-script = ExtResource("8_be226")
-idleAnim = "Take 001"
+[node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
+transform = Transform3D(1.14459, -0.281626, -0.927691, 0.956, 0.566523, 1.00753, 0.161207, -1.36005, 0.611779, 0.0374537, 0.136378, 0.0803157)
+
+[node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
+transform = Transform3D(1.14994, 0.27599, 0.922751, -0.948997, 0.570058, 1.01215, -0.164453, -1.35973, 0.61163, -0.0374537, 0.136378, 0.0803157)
+
+[node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("rsm")]
+root_node = NodePath("../RavenAnimation")
+tree_root = SubResource("AnimationNodeStateMachine_840d0")
+anim_player = NodePath("../RavenAnimation/AnimationPlayer")
+script = ExtResource("10_h7rtg")
+rsm = NodePath("../RavenStateMachine")
 
 [node name="Sword" type="Area3D" parent="."]
 
@@ -73,4 +116,4 @@ shape = SubResource("ConcavePolygonShape3D_w2qnq")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0952756, 0.0583441, 0)
 shape = SubResource("SphereShape3D_8hq1b")
 
-[editable path="RavenFly"]
+[editable path="RavenAnimation"]
