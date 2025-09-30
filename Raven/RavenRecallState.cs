@@ -22,24 +22,24 @@ public partial class RavenRecallState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
-		//test
-		if (Input.GetAxis("Left", "Right") == 1)
-		{
-			raven.Xoffset = new Vector3(0.5f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 180, 0);
-		}
-		else if (Input.GetAxis("Left", "Right") == -1)
-		{
-			raven.Xoffset = new Vector3(-0.5f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 0, 0);
-		}
+		
 	   
 		raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset);
 
 		raven.Velocity = (raven.direction) * raven.speed;
 
 		raven.isOnPlayer = (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) < 1.2f;
-	   
+
+		if (raven.player.GlobalPosition > raven.GlobalPosition)
+		{
+
+			raven.RotationDegrees = new Vector3(0, 180, 0);
+		}
+		else if (raven.player.GlobalPosition < raven.GlobalPosition)
+		{
+			raven.RotationDegrees = new Vector3(0, 0, 0);
+		}
+		
 		if (raven.isOnPlayer)
 		{
 			rsm.TransitionTo("RavenOnPlayerState");
