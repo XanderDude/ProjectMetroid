@@ -43,31 +43,30 @@ public partial class Raven : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-    //GD.Print("Raven launch state: " + canLaunch);
-    if (rsm != null && rsm._currentState != null)
-    {
-        if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
+        //GD.Print("Raven launch state: " + canLaunch);
+        if (rsm != null && rsm._currentState != null)
         {
-            this.CollisionLayer = 1 << 4;
-            this.CollisionMask = (1 << 0) | (1 << 1);
+            if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
+            {
+                this.CollisionLayer = 1 << 4;
+                this.CollisionMask = (1 << 0) | (1 << 1);
+            }
+            else
+            {
+                this.CollisionLayer = 0;
+                this.CollisionMask = 0;
+            }
         }
-        else
-        {
-            this.CollisionLayer = 0;
-            this.CollisionMask = 0;
-        }
-    }
 
         if (player.IsOnFloor())
         {
             canTeleport = true;
         }
 
-        
-            MoveAndSlide();
-        
-        
-}
+            
+        MoveAndSlide();
+            
+    }
     
 
 

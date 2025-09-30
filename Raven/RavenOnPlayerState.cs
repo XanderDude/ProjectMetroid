@@ -3,9 +3,7 @@ using System;
 
 public partial class RavenOnPlayerState : State
 {
-	private float followSpeed = 3.0f;
-	private float bobAmount = 0.3f;
-	private float bobSpeed = 2.0f;
+	
 	private float timeAccumulator = 0.0f;
 	
 	public override void Enter()
@@ -24,26 +22,33 @@ public partial class RavenOnPlayerState : State
 	{
 		timeAccumulator += delta;
 		
-		if (Input.GetAxis("Left", "Right") == 1)
-		{
-			raven.Xoffset = new Vector3(-1.0f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 180, 0);
-		}
-		else if (Input.GetAxis("Left", "Right") == -1)
-		{
-			raven.Xoffset = new Vector3(1.0f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 0, 0);
-		}
+
+
+		
 	}
 	
 	public override void PhysicsUpdate(float delta)
 	{
-	    Vector3 targetPosition = raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset;
-		raven.GlobalPosition = targetPosition;
-		raven.Velocity = Vector3.Zero;
-		
+		var followlocation = raven.player.GetNode<MeshInstance3D>("PlayerMesh/PlayerRavenFollow");
+		Vector3 targetPosition = followlocation.GlobalPosition;
+		Vector3 slope = (targetPosition - raven.GlobalPosition).Normalized();
+
+		if (raven.GlobalPosition.DistanceTo(targetPosition) > 0.2f)
+		{
+			raven.GlobalPosition += slope * (raven.speed / 2) * delta;
+			raven.Velocity = Vector3.Zero;
+			if (raven.player.GlobalPosition > raven.GlobalPosition)
+			{
+				
+				raven.RotationDegrees = new Vector3(0, 180, 0);
+			}
+			else if (raven.player.GlobalPosition < raven.GlobalPosition)
+			{
+				raven.RotationDegrees = new Vector3(0, 0, 0);
+			}
+		}
 		if (raven.player.IsOnFloor())
-        {
+		{
 			raven.canLaunch = true;
 		}
 	}

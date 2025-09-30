@@ -149,7 +149,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.607974, 0.861252, 0)
 player = NodePath("../Player")
 speed = 12.0
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Raven" index="1"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Raven" index="4"]
 transform = Transform3D(0.992508, 0, 0, 0, 1.45135, 0, 0, 0, 0.992508, 0, -0.0082894, 0)
 
 [node name="Foreground" type="Area3D" parent="SubViewportContainer/SubViewport"]
@@ -188,4 +188,4 @@ texture = ExtResource("12_nvc7y")
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat"]
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat/Rat"]
 [editable path="SubViewportContainer/SubViewport/Raven"]
-[editable path="SubViewportContainer/SubViewport/Raven/RavenFly"]
+[editable path="SubViewportContainer/SubViewport/Raven/RavenAnimation"]

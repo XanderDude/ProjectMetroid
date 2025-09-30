@@ -81,8 +81,9 @@ visible = false
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
 
-[node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1"]
+[node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1" node_paths=PackedStringArray("laserSound")]
 shootSound = ExtResource("5_hnrdm")
+laserSound = NodePath("../../shootingsound")
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
