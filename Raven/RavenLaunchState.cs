@@ -12,6 +12,9 @@ public partial class RavenLaunchState : State
 		//GD.Print("Raven: Entered Launch State");
 		raven.canLaunch = false;
 		raven.timer = 0.0f;
+
+		raven.sound.Stream = GD.Load<AudioStream>("res://Raven/Sounds/LaunchSound.mp3");
+		raven.sound.Play();
 		
 	
 
@@ -24,8 +27,17 @@ public partial class RavenLaunchState : State
 
 
 	public override void Update(float delta)
-	{
-	}
+    {
+        if (raven.player.GlobalPosition < raven.GlobalPosition)
+			{
+				
+				raven.RotationDegrees = new Vector3(0, 180, 0);
+			}
+			else if (raven.player.GlobalPosition > raven.GlobalPosition)
+			{
+				raven.RotationDegrees = new Vector3(0, 0, 0);
+			}
+    }
 	public override void PhysicsUpdate(float delta)
 	{
 		RavenLaunch(delta);
@@ -110,7 +122,7 @@ public partial class RavenLaunchState : State
 			
 
 
-			if (raven.timer >= 0.6f)
+			if (raven.timer >= 0.8f)
 			{
 				rsm.TransitionTo("RavenRecallState");
 			}

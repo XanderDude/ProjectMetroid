@@ -3,6 +3,8 @@ using System;
 public partial class Raven : CharacterBody3D
 {
     [Export] public PlayerManager player = null;
+
+    [Export] public Godot.AudioStreamPlayer sound = null;
     [Export] public float speed = 10.0f;
     
     [Export] public float timer = 0.0f;
@@ -31,6 +33,7 @@ public partial class Raven : CharacterBody3D
 
     public override void _Ready()
     {
+        sound = GetNode<Godot.AudioStreamPlayer>("Sound");
         rsm = GetNode<RavenStateMachine>("RavenStateMachine");
         if (player == null)
         {

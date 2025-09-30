@@ -24,21 +24,21 @@ public partial class RavenRecallState : State
 	{
 		
 	   
-		raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset);
+		raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).Normalized();
 
 		raven.Velocity = (raven.direction) * raven.speed;
 
-		raven.isOnPlayer = (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) < 1.2f;
-
+		raven.isOnPlayer = (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) < 0.1f;
+	    
 		if (raven.player.GlobalPosition > raven.GlobalPosition)
-		{
-
-			raven.RotationDegrees = new Vector3(0, 180, 0);
-		}
-		else if (raven.player.GlobalPosition < raven.GlobalPosition)
-		{
-			raven.RotationDegrees = new Vector3(0, 0, 0);
-		}
+			{
+				
+				raven.RotationDegrees = new Vector3(0, 180, 0);
+			}
+			else if (raven.player.GlobalPosition < raven.GlobalPosition)
+			{
+				raven.RotationDegrees = new Vector3(0, 0, 0);
+			}
 		
 		if (raven.isOnPlayer)
 		{

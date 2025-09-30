@@ -98,15 +98,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0385369, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0222805, 0)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(1.04137, -0.360646, -1.01759, 1.06887, 0.543312, 0.901292, 0.15188, -1.35083, 0.634181, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.117711, -0.796842, -1.26538, 1.49343, 0.127354, 0.0587275, 0.0762364, -1.26445, 0.803346, 0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(1.04984, 0.354368, 1.01107, -1.06013, 0.54808, 0.908693, -0.154756, -1.35057, 0.63405, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.133611, 0.795344, 1.26474, -1.49203, 0.136902, 0.07153, -0.077503, -1.26439, 0.803311, -0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]
@@ -140,5 +140,7 @@ shape = SubResource("SphereShape3D_8hq1b")
 
 [node name="SparklesVFX" parent="." instance=ExtResource("10_60uyt")]
 transform = Transform3D(1, -1.78814e-07, 7.10542e-15, 1.78814e-07, 1, 1.33227e-14, -7.10543e-15, -1.33227e-14, 1, -0.0127826, 0.136123, -5.58747e-10)
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
 
 [editable path="RavenAnimation"]
