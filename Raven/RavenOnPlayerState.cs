@@ -47,7 +47,7 @@ public partial class RavenOnPlayerState : State
 				raven.RotationDegrees = new Vector3(0, 0, 0);
 			}
 		}
-		if (raven.player.IsOnFloor())
+		if (raven.player.IsOnFloor() || raven.player.StateMachine._currentState.Name == "mantleState")
 		{
 			raven.canLaunch = true;
 		}

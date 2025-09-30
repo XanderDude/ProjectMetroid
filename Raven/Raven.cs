@@ -61,7 +61,7 @@ public partial class Raven : CharacterBody3D
             }
         }
 
-        if (player.IsOnFloor())
+        if (player.IsOnFloor() || player.StateMachine._currentState.Name == "mantleState")
         {
             canTeleport = true;
         }
