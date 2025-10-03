@@ -146,6 +146,21 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 [node name="EnemyRat" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
+[node name="EnemyRat2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.5, 4, 0)
+
+[node name="EnemyRat6" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2.5, 4, 0)
+
+[node name="EnemyRat3" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2, 0)
+
+[node name="EnemyRat4" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, 0)
+
+[node name="EnemyRat5" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.5, 0)
+
 [node name="Foreground" type="Area3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Foreground"]
@@ -171,6 +186,18 @@ platform_floor_layers = 4294967041
 platform_wall_layers = 2
 player = NodePath("../Player")
 
+[node name="RavenAnimated" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0105176, 0)
+
+[node name="WingLeft" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="0"]
+transform = Transform3D(1.31024, -0.129814, -0.718627, 0.708667, 0.582315, 1.18689, 0.176262, -1.37625, 0.569977, 0.0374537, 0.136378, 0.0803157)
+
+[node name="WingRight" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="1"]
+transform = Transform3D(1.30981, 0.126492, 0.720001, -0.708433, 0.584106, 1.18615, -0.180346, -1.3758, 0.569785, -0.0374537, 0.136378, 0.0803157)
+
+[node name="Beak" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.920567, -0.390584, 0, 0.390584, 0.920567, 0, 0.0931786, -0.0738197)
+
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
@@ -189,3 +216,15 @@ player = NodePath("../Player")
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat"]
 [editable path="SubViewportContainer/SubViewport/Environment/EnemyRat/Rat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat2"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat2/Rat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat6"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat6/Rat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat3"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat3/Rat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat4"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat4/Rat"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat5"]
+[editable path="SubViewportContainer/SubViewport/Environment/EnemyRat5/Rat"]
+[editable path="SubViewportContainer/SubViewport/Raven"]
+[editable path="SubViewportContainer/SubViewport/Raven/RavenAnimation"]

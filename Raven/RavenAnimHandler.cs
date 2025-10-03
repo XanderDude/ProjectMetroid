@@ -5,12 +5,13 @@ using System;
 public partial class RavenAnimHandler : AnimationTree
 {
 	[Export] private RavenStateMachine rsm;
-	private AnimationNodeStateMachinePlayback playback;
+	private AnimationNodeStateMachinePlayback playbackStates;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		playback = (AnimationNodeStateMachinePlayback)Get("parameters/playback");
+		playbackStates = (AnimationNodeStateMachinePlayback)Get("parameters/playback");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,12 +19,12 @@ public partial class RavenAnimHandler : AnimationTree
 	{
 		if (rsm._currentState.Name == "RavenLaunchState")
 		{
-			playback?.Travel("Launching");
+			playbackStates?.Travel("Launching");
 		}
 		else if (rsm._currentState.Name == "RavenRecallState")
 		{
-			playback?.Travel("Flying");
+			playbackStates?.Travel("Flying");
 		}
-		else playback?.Travel("Hovering");
+		else playbackStates?.Travel("Hovering");
 	}
 }
