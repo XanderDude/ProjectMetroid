@@ -10,8 +10,10 @@ public partial class State : Node
 	public RavenStateMachine rsm;
 	public CharacterBody3D player;
 	public PlayerManager pm;
-
 	public Raven raven;
+	public EnemyController Controller;
+
+	public EnemyStateMachine StateMachine;
 	public Node3D parentMesh;
 	public CharacterBody3D projectileArrow;
 	

@@ -191,13 +191,13 @@ player = NodePath("../Player")
 slashVFX = ExtResource("14_rh8vc")
 
 [node name="RavenAnimated" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0120001, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.042012, 0)
 
 [node name="WingLeft" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(0.229275, -0.763059, -1.27089, 1.47988, 0.192344, 0.151492, 0.0859009, -1.27701, 0.782225, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.28408, -0.155425, -0.759589, 0.755394, 0.581871, 1.15793, 0.174674, -1.37378, 0.576385, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(0.247742, 0.760393, 1.26903, -1.47682, 0.203016, 0.166662, -0.0872692, -1.27694, 0.782175, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.28503, 0.15128, 0.758821, -0.752865, 0.583965, 1.15852, -0.178576, -1.37335, 0.576205, -0.0374537, 0.136378, 0.0803157)
 
 [node name="Beak" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.920567, -0.390584, 0, 0.390584, 0.920567, 0, 0.0931786, -0.0738197)

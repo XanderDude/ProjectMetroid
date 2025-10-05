@@ -35,7 +35,7 @@ size = Vector3(2, 0.5, 6)
 resource_local_to_scene = true
 size = Vector3(1, 8, 2)
 
-[node name="Game" type="Node3D"]
+[node name="Game2" type="Node3D"]
 script = ExtResource("1_wnea7")
 
 [node name="Room1" parent="." instance=ExtResource("2_4ane5")]

@@ -14,7 +14,7 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b3un6"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Game2" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_f07w4")
 player = NodePath("Player")
 

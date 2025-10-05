@@ -10,7 +10,7 @@
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pcrqu"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Game2" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_qvhpd")
 player = NodePath("Player")
 
@@ -36,6 +36,5 @@ shape = SubResource("ConcavePolygonShape3D_pcrqu")
 [node name="EnemyRat" parent="." instance=ExtResource("7_0eied")]
 transform = Transform3D(1.00385, 0, 0, 0, 1.00385, 0, 0, 0, 1.00385, -4.24106, 0, 0)
 Health = 1
-itemdropamount = 10
 
 [editable path="Player"]
