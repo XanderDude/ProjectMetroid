@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=24 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="11_qpe1i"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
+[ext_resource type="PackedScene" uid="uid://dif7w5ngagq42" path="res://Raven/VFX/RavenSlashAnimation.tscn" id="14_rh8vc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("1_qbg50")
@@ -186,14 +187,17 @@ platform_floor_layers = 4294967041
 platform_wall_layers = 2
 player = NodePath("../Player")
 
+[node name="RavenAttackState" parent="SubViewportContainer/SubViewport/Raven/RavenStateMachine" index="3"]
+slashVFX = ExtResource("14_rh8vc")
+
 [node name="RavenAnimated" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0105176, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0120001, 0)
 
 [node name="WingLeft" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(1.31024, -0.129814, -0.718627, 0.708667, 0.582315, 1.18689, 0.176262, -1.37625, 0.569977, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.229275, -0.763059, -1.27089, 1.47988, 0.192344, 0.151492, 0.0859009, -1.27701, 0.782225, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(1.30981, 0.126492, 0.720001, -0.708433, 0.584106, 1.18615, -0.180346, -1.3758, 0.569785, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.247742, 0.760393, 1.26903, -1.47682, 0.203016, 0.166662, -0.0872692, -1.27694, 0.782175, -0.0374537, 0.136378, 0.0803157)
 
 [node name="Beak" parent="SubViewportContainer/SubViewport/Raven/RavenAnimation/Weapons/RavenAnimated" index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.920567, -0.390584, 0, 0.390584, 0.920567, 0, 0.0931786, -0.0738197)

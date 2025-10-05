@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=24 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="10_8hq1b"]
 [ext_resource type="PackedScene" uid="uid://buw56jcoae1g1" path="res://Raven/VFX/SparklesVFX.tscn" id="10_60uyt"]
 [ext_resource type="Script" uid="uid://dsfn1qod8j0wc" path="res://Raven/RavenAnimHandler.cs" id="10_h7rtg"]
-[ext_resource type="PackedScene" uid="uid://dif7w5ngagq42" path="res://Raven/VFX/RavenSlashAnimation.tscn" id="10_swnu4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_840d0"]
 blend_mode = 1
@@ -84,8 +83,6 @@ script = ExtResource("4_oiwij")
 
 [node name="RavenAttackState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("6_w2qnq")
-slashVFX = ExtResource("10_swnu4")
-attackSpeed = 0.2
 
 [node name="RavenOnPlayerState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("7_840d0")

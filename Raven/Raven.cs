@@ -17,9 +17,6 @@ public partial class Raven : CharacterBody3D
     [Export] public CollisionShape3D topCollider = null;
     [Export] public CollisionShape3D bottomCollider = null;
 
-
-
-
     public Vector3 Yoffset = new Vector3(0, 1.5f, 0);
     public Vector3 Xoffset = new Vector3(0, 0, 0);
     public bool isInAction = false;

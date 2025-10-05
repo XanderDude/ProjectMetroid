@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://enp8p8e46444"]
+[gd_scene load_steps=48 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
