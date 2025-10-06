@@ -7241,39 +7241,7 @@ _subresources={
 "use_external/path": "uid://hate0nlnfe0p"
 }
 },
-"meshes": {
-"ArrowBomb": {
-"generate/lightmap_uv": 0,
-"generate/lods": 2,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": false,
-"save_to_file/path": "uid://ionphwu52m4c"
-},
-"ArrowNormal": {
-"generate/lightmap_uv": 0,
-"generate/lods": 2,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": false,
-"save_to_file/path": "uid://dnthpsyvr7koy"
-},
-"Crossbow": {
-"generate/lightmap_uv": 0,
-"generate/lods": 2,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": false,
-"save_to_file/path": "res://Player/Weapons/WristCrossbow/CrossbowMesh.res"
-}
-},
 "nodes": {
-"PATH:Skeleton3D/ArrowBomb/ArrowBomb": {
-"mesh_instance/layers": 2
-},
-"PATH:Skeleton3D/ArrowNormal/ArrowNormal": {
-"mesh_instance/layers": 2
-},
 "PATH:Skeleton3D/Crossbow/Crossbow": {
 "mesh_instance/layers": 2
 },
@@ -7287,4 +7255,4 @@ _subresources={
 }
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=0
+fbx/embedded_image_handling=1

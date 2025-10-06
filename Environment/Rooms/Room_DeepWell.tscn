@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cfuqhq4krsq54"]
+[gd_scene load_steps=33 format=3 uid="uid://cfuqhq4krsq54"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="1_q8u21"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="2_odwd3"]
@@ -12,7 +12,9 @@
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_gs60o"]
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="8_gs60o"]
 [ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="9_c2r2e"]
+[ext_resource type="ArrayMesh" uid="uid://bvwnj64yutec" path="res://Environment/Models/StoneMeshes/stoneWallDestroyedMesh.res" id="10_0yfrp"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="10_c2r2e"]
+[ext_resource type="ArrayMesh" uid="uid://b3ghn1a5lir6p" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="11_7bwnk"]
 [ext_resource type="ArrayMesh" uid="uid://djgltj2rthdqi" path="res://Environment/Models/StoneMeshes/stone2x2StairsMesh.res" id="11_hd1gt"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="11_poa3r"]
 
@@ -21,6 +23,28 @@ size = Vector3(26, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0sob7"]
 size = Vector3(0.4, 2.61719, 2.86)
+
+[sub_resource type="Gradient" id="Gradient_0yfrp"]
+colors = PackedColorArray(1, 1, 1, 0, 0.811765, 0.811765, 0.811765, 0.321569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t5foc"]
+gradient = SubResource("Gradient_0yfrp")
+width = 128
+height = 128
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o76fq"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 1, 0.886275, 1)
+albedo_texture = SubResource("GradientTexture2D_t5foc")
+texture_filter = 0
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fr3lq"]
+material = SubResource("StandardMaterial3D_o76fq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4fql"]
 size = Vector3(4, 0.5, 10)
@@ -41,6 +65,10 @@ size = Vector3(0.2, 14, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hd1gt"]
 size = Vector3(0.2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5foc"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7bwnk"]
 size = Vector3(16, 0.5, 2)
@@ -137,6 +165,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170254, 0)
 shape = SubResource("BoxShape3D_0sob7")
 debug_color = Color(0.918333, 0.95, 0, 0.564706)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, -1.05, -2, 0.2)
+visible = false
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-0.258819, 0.965926, -8.74228e-08, 0.965926, 0.258819, 0, 2.26267e-08, -8.44439e-08, -1, 1.05, -2, 0.2)
+visible = false
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-8.70798e-08, -0.932038, 0, 1.99215, -4.07407e-08, 0, 0, 0, 0.930303, -0.74563, -0.850206, 0.170585)
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(8.70798e-08, 0.932038, -1.40472e-07, 1.99215, -4.07407e-08, 0, -1.31487e-14, -1.40734e-07, -0.930303, 0.74563, -0.850206, 0.170585)
+mesh = SubResource("PlaneMesh_fr3lq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Well"]
+transform = Transform3D(-1.69551e-14, -1.81137e-07, -0.74563, 1.99215, -4.06648e-08, -7.88592e-22, -8.70798e-08, -0.930303, 1.4518e-07, 0, -0.850206, -0.759717)
+mesh = SubResource("PlaneMesh_fr3lq")
 
 [node name="Ceiling" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
@@ -708,11 +758,11 @@ mesh = ExtResource("2_odwd3")
 
 [node name="StoneWallMesh4" type="MeshInstance3D" parent="stoneWallLeft/Wall_DoorWay"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, 0)
-mesh = ExtResource("2_odwd3")
+mesh = ExtResource("11_7bwnk")
 
 [node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallLeft/Wall_DoorWay"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 0)
-mesh = ExtResource("2_odwd3")
+mesh = ExtResource("10_0yfrp")
 
 [node name="StoneWallMesh6" type="MeshInstance3D" parent="stoneWallLeft/Wall_DoorWay"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 12, 0)
@@ -759,8 +809,6 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 
 [node name="StaticBody3D" parent="stoneWallRight/Wall_DoorWay2" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 13, 0)
-collision_layer = 1
-collision_mask = 1
 
 [node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
@@ -772,7 +820,7 @@ mesh = ExtResource("2_odwd3")
 
 [node name="StoneWallMesh4" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, 0)
-mesh = ExtResource("2_odwd3")
+mesh = ExtResource("11_7bwnk")
 
 [node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 0)
@@ -785,6 +833,14 @@ mesh = ExtResource("2_odwd3")
 [node name="StoneWallMesh7" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 14, 0)
 mesh = ExtResource("2_odwd3")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 16, 0)
+mesh = ExtResource("10_0yfrp")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 16, 0)
+mesh = ExtResource("10_0yfrp")
 
 [node name="StoneWallMesh9" type="MeshInstance3D" parent="stoneWallRight/Wall_DoorWay2"]
 transform = Transform3D(-1, -2.64811e-14, -8.74232e-08, 0, -1, 2.62269e-07, -8.74232e-08, 2.62269e-07, 1, 1, 20, -2.84217e-14)
@@ -1117,10 +1173,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 mesh = ExtResource("2_odwd3")
 skeleton = NodePath("../../stoneWallRight/Wall_DoorWay2")
 
-[node name="StoneWallMesh10" type="MeshInstance3D" parent="Secret1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="Secret1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 mesh = ExtResource("2_odwd3")
 skeleton = NodePath("../../stoneWallRight/Wall_DoorWay2")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="Secret1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 1)
+mesh = ExtResource("2_odwd3")
+skeleton = NodePath("../../stoneWallRight/Wall_DoorWay2")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="Secret1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, 1)
+mesh = ExtResource("2_odwd3")
+skeleton = NodePath("../../stoneWallRight/Wall_DoorWay2")
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="Secret1"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 2, -1)
+mesh = ExtResource("7_gs60o")
+
+[node name="StoneCeilingMesh2" type="MeshInstance3D" parent="Secret1"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 2, 2, -1)
+mesh = ExtResource("7_gs60o")
+
+[node name="StonePlatformEdge" parent="Secret1" instance=ExtResource("7_0txx1")]
+transform = Transform3D(1.31135e-07, 0, 1, 0, 1, 0, -1, 0, 1.31135e-07, 4, 0, 1)
+
+[node name="StaticBody3D" parent="Secret1/StonePlatformEdge" index="0"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" parent="Secret1/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_t5foc")
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -2233,5 +2317,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 17, -1)
 [editable path="stoneWallLeft/Wall_DoorWay"]
 [editable path="stoneWallRight/Wall_DoorWay"]
 [editable path="stoneWallRight/Wall_DoorWay2"]
+[editable path="Secret1/StonePlatformEdge"]
 [editable path="Decorations/Light_Lantern"]
 [editable path="PlatformGroup/StonePlatformEdge2"]

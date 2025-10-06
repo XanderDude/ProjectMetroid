@@ -40,38 +40,6 @@ _subresources={
 }
 },
 "meshes": {
-"StonePlatformEdge": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformEdgeMesh.res"
-},
-"StonePlatformFull": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformMesh.res"
-},
-"StonePlatformHalf": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/StoneMeshes/stonePlatformHalfMesh.res"
-},
-"ceilingHalf": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res"
-},
 "doorLeft": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -136,6 +104,14 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Environment/Models/StoneMeshes/stonePillarMesh.res"
 },
+"stoneWalDestroyed": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallDestroyedMesh.res"
+},
 "stoneWall": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -144,13 +120,21 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallMesh.res"
 },
+"stoneWallCracked": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res"
+},
 "stoneWallHalf": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res"
+"save_to_file/path": "uid://m4hpucjpwv3d"
 },
 "stoneWindow": {
 "generate/lightmap_uv": 0,
