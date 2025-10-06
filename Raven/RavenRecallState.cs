@@ -22,47 +22,29 @@ public partial class RavenRecallState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
-		//test
-		if (Input.GetAxis("Left", "Right") == 1)
-		{
-			raven.Xoffset = new Vector3(0.5f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 180, 0);
-		}
-		else if (Input.GetAxis("Left", "Right") == -1)
-		{
-			raven.Xoffset = new Vector3(-0.5f, 0, 0);
-			raven.RotationDegrees = new Vector3(0, 0, 0);
-		}
+		
 	   
-		raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset);
+		raven.direction = raven.GlobalPosition.DirectionTo(raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).Normalized();
 
 		raven.Velocity = (raven.direction) * raven.speed;
 
-		raven.isOnPlayer = (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) < 1.2f;
-	   
+		raven.isOnPlayer = (raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) < 0.1f;
+	    
+		if (raven.player.GlobalPosition > raven.GlobalPosition)
+			{
+				
+				raven.RotationDegrees = new Vector3(0, 180, 0);
+			}
+			else if (raven.player.GlobalPosition < raven.GlobalPosition)
+			{
+				raven.RotationDegrees = new Vector3(0, 0, 0);
+			}
+		
 		if (raven.isOnPlayer)
 		{
 			rsm.TransitionTo("RavenOnPlayerState");
 		}
 		
-
-	}
-
-	public override void HandleInput(InputEvent @event)
-	{
-		
-
-		if (@event.IsActionPressed("RavenSpecial") && raven.isOnPlayer)
-		{
-			rsm.TransitionTo("RavenLaunchState");
-		}
-
-		else if (@event.IsActionPressed("RavenSlash") && raven.isOnPlayer)
-		{
-
-			rsm.TransitionTo("RavenAttackState");
-			
-		}
 
 	}
 

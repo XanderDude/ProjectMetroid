@@ -176,7 +176,7 @@ public partial class attackState : State
 
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
-		GD.Print(arrow.LinearVelocity);
+		//GD.Print(arrow.LinearVelocity);
 
 		arrow.Scale *= 3f;
 		arrow.GravityScale = 0.3f;

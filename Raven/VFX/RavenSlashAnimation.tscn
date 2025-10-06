@@ -1,0 +1,393 @@
+[gd_scene load_steps=29 format=3 uid="uid://dif7w5ngagq42"]
+
+[ext_resource type="Shader" uid="uid://g6sbfy7cpan4" path="res://Raven/VFX/RavenSlashShaderGraph.tres" id="1_r5qca"]
+[ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="2_r5qca"]
+[ext_resource type="ArrayMesh" uid="uid://bgwchmarv8vnu" path="res://Raven/VFX/RavenSlashMesh.res" id="3_r5qca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8hb8"]
+render_priority = 0
+shader = ExtResource("1_r5qca")
+shader_parameter/Gradient1_Slider = 1.4
+
+[sub_resource type="Gradient" id="Gradient_57nnq"]
+offsets = PackedFloat32Array(0.462963, 0.574074, 0.656085)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.486275, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5qca"]
+gradient = SubResource("Gradient_57nnq")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.491, 0.8)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8hb8"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_r5qca")
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="Curve" id="Curve_57nnq"]
+_data = [Vector2(0, 0.839901), 0.0, 2.51034, 0, 0, Vector2(0.0816326, 1), 0.0, 0.0, 0, 0, Vector2(0.193878, 0.859113), 0.0, 0.0, 0, 0, Vector2(0.293367, 1), 0.0, 0.0, 0, 0, Vector2(0.352041, 0.871921), 0.0, 0.0, 0, 0, Vector2(0.438776, 0.987192), 0.0, 0.0, 0, 0, Vector2(0.487245, 0.859113), 0.0, 0.0, 0, 0, Vector2(0.533163, 1), 0.0, 0.0, 0, 0, Vector2(0.65051, 0.852709), 0.0, 0.0, 0, 0, Vector2(0.693878, 0.948768), 0.0, 0.0, 0, 0, Vector2(0.734694, 0.833498), 0.0, 0.0, 0, 0, Vector2(0.767857, 0.987192), 0.0, 0.0, 0, 0, Vector2(0.84949, 0.852709), 0.0, 0.0, 0, 0, Vector2(0.862245, 0.980788), 0.0, 0.0, 0, 0, Vector2(0.946429, 0.82069), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.34713, 0.0, 1, 0]
+point_count = 16
+
+[sub_resource type="Curve" id="Curve_r5qca"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_o8hb8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_wd32c"]
+curve_x = SubResource("Curve_57nnq")
+curve_y = SubResource("Curve_r5qca")
+curve_z = SubResource("Curve_o8hb8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r5qca"]
+emission_shape_offset = Vector3(0, -0.09, 0)
+emission_shape_scale = Vector3(1, 1, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 0.9
+scale_curve = SubResource("CurveXYZTexture_wd32c")
+color = Color(0, 0.552941, 0.403922, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_r5qca"]
+
+[sub_resource type="Gradient" id="Gradient_o8hb8"]
+offsets = PackedFloat32Array(0, 0.309524, 0.669312, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.962366, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wd32c"]
+gradient = SubResource("Gradient_o8hb8")
+width = 16
+height = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8prm"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_wd32c")
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="Gradient" id="Gradient_r5qca"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.196721, 1)
+colors = PackedColorArray(0, 0.552941, 0.403922, 0, 0, 0.552941, 0.403922, 1, 0, 0.552941, 0.403922, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o8hb8"]
+gradient = SubResource("Gradient_r5qca")
+width = 16
+
+[sub_resource type="Curve" id="Curve_wd32c"]
+_data = [Vector2(1, 0.148276), 0.0, 0.0, 1, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_e8prm"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2tldb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_80ptq"]
+curve_x = SubResource("Curve_wd32c")
+curve_y = SubResource("Curve_e8prm")
+curve_z = SubResource("Curve_2tldb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_io35j"]
+emission_shape_offset = Vector3(0, 0.295, 0)
+emission_shape_scale = Vector3(1, 1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(0.33, 0.5, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveXYZTexture_80ptq")
+color_ramp = SubResource("GradientTexture1D_o8hb8")
+
+[sub_resource type="Animation" id="Animation_e8prm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlashVFX:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.488692)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlashMeshPivot/slashMesh:surface_material_override/0:shader_parameter/Gradient1_Slider")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlashVFX:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashVFX/RavenAnimation:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlashVFX/RavenAnimation:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area3D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area3D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.488692)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area3D:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wd32c"]
+resource_name = "RavenAttack1"
+length = 0.26667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlashVFX:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, -1.02974), Vector3(0, 3.14159, 0.523599), Vector3(0, 3.14159, 1.68075)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlashMeshPivot/slashMesh:surface_material_override/0:shader_parameter/Gradient1_Slider")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.4, 1.661, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlashVFX:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashVFX/RavenAnimation:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlashVFX/RavenAnimation:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area3D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area3D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.488692), Vector3(0, 0, 0), Vector3(0, 0, -0.488692)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area3D:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tldb"]
+_data = {
+&"RESET": SubResource("Animation_e8prm"),
+&"RavenAttack1": SubResource("Animation_wd32c")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r5qca"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o8hb8"]
+radius = 0.4
+
+[node name="RavenSlashAnimation" type="Node3D"]
+
+[node name="SlashMeshPivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="slashMesh" type="MeshInstance3D" parent="SlashMeshPivot"]
+transform = Transform3D(-4.37114e-08, 0, -1.44, 0, 1.155, 0, 1, 0, -6.29444e-08, -0.75, 0, 0)
+transparency = 1.0
+mesh = ExtResource("3_r5qca")
+surface_material_override/0 = SubResource("ShaderMaterial_o8hb8")
+
+[node name="SlashVFX" type="Node3D" parent="."]
+transform = Transform3D(0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 0, 0, 1, -1, 0, 0)
+visible = false
+
+[node name="RavenAnimation" parent="SlashVFX" instance=ExtResource("2_r5qca")]
+transform = Transform3D(-1, 1.07284e-07, 4.37114e-08, -1.0677e-07, -0.707107, -0.707107, -4.49529e-08, -0.707107, 0.707107, -2, 0.634201, 0.498321)
+
+[node name="SlashMeshVFX" type="GPUParticles3D" parent="SlashVFX/RavenAnimation"]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, -0.707106, 0.707107, -2.98023e-08, -0.707106, -0.707107, -1.19209e-07, 0.433511, -0.197981)
+sorting_offset = -1.0
+material_override = SubResource("StandardMaterial3D_o8hb8")
+cast_shadow = 0
+amount = 1
+lifetime = 0.5
+fixed_fps = 15
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_r5qca")
+draw_pass_1 = SubResource("QuadMesh_r5qca")
+
+[node name="SlashTrailVFX" type="GPUParticles3D" parent="SlashVFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01781, 0.193304, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_e8prm")
+cast_shadow = 0
+amount = 12
+lifetime = 0.2
+fixed_fps = 15
+process_material = SubResource("ParticleProcessMaterial_io35j")
+draw_pass_1 = SubResource("QuadMesh_r5qca")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2tldb")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.882948, -0.469472, 0, 0.469472, 0.882948, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+collision_layer = 0
+collision_mask = 11
+monitorable = false
+
+[node name="OuterHitbox" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+shape = SubResource("SphereShape3D_r5qca")
+debug_color = Color(0.991774, 0, 0.261108, 0.42)
+
+[node name="InnerHitbox" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("SphereShape3D_o8hb8")
+debug_color = Color(0.991774, 0, 0.261108, 0.42)

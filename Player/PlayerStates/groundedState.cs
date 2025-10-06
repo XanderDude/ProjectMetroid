@@ -27,7 +27,7 @@ public partial class groundedState : State
 	}
 	
 	public override void Exit() {
-		GD.Print("Exited Grounded State.");
+		//GD.Print("Exited Grounded State.");
 	}
 
 	public override void PhysicsUpdate(float delta)

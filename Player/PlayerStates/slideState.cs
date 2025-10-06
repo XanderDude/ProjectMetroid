@@ -17,11 +17,11 @@ public partial class slideState : State
 	public override void Enter()
 	{
 		input = Mathf.Sign(Input.GetAxis("Left", "Right"));
-		GD.Print("Entered Slide State. Facing " + input);
+		//GD.Print("Entered Slide State. Facing " + input);
 		slideTimer = 0;
 		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
 		{
-			GD.Print("Boosting");
+			//GD.Print("Boosting");
 			currentSlideSpeed = boostMaxSpeed * input;
 		}
 		else
@@ -37,7 +37,7 @@ public partial class slideState : State
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
 		//if (Input.IsActionPressed("Slide") && crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
-		GD.Print("Exited Slide State");
+		//GD.Print("Exited Slide State");
 	}
 	public override void PhysicsUpdate(float delta)
 	{

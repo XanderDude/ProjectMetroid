@@ -101,4 +101,23 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		shootingTimer = shootingAnimTime;
 	}
+
+	public void StopAllAnimations()
+{
+    if (playback != null)
+    {
+        playback.Stop();
+    }
+    
+    // Reset all blend values to 0
+    animTree.Set(WalkingBlendPath, 0f);
+    animTree.Set(RunSpeedBlendPath, 0f);
+    animTree.Set(AimBlendBlendPath, Vector2.Zero);
+    animTree.Set(LegAndArmBlendBlendPath, 0f);
+    
+    // Reset internal values
+    currentSpeed = 0f;
+    shootingTimer = 0f;
+    aimDirection = SVector2.Zero;
+}
 }

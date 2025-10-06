@@ -7,7 +7,7 @@ public partial class crouchState : State
 
 	public override void Enter()
 	{
-		GD.Print("Entered Crouch State");
+		//GD.Print("Entered Crouch State");
 		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) //player wants to slide so let them
 		{
 			msm.TransitionTo("slideState");
@@ -17,7 +17,7 @@ public partial class crouchState : State
 
 	public override void Exit()
 	{
-		GD.Print("Exited Crouch State.");
+		//GD.Print("Exited Crouch State.");
 	}
 
 	public override void PhysicsUpdate(float delta)

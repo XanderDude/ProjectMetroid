@@ -4,38 +4,24 @@ using System.Collections.Generic;
 
 public partial class EnemyController : CharacterBody3D
 {
-	[Export]
-	public int Health
-	{
-		get { return health; }
-		set
-		{
-			if (value <= 0)
-			{
-				health = 0;
-				KillEnemy();
-			}
-			else health = value;
+	[Export] public int Health = 100;
 
-		}
-	}
-	private int health;
-	private int _healthMax;
+	[Export] public int itemdropamount = 0;
 	[Export] public float moveSpeed = 30;
 	[Export] public int damage = 15;
 	[Export] public float damageCooldown = .5f;
 	private float _damageCooldown;
-	[Export] private Area3D damageCollider;
-	[Export] private Node3D mesh;
+	[Export] public Area3D damageCollider;
+	[Export] public Node3D mesh;
 
-	private PlayerManager target;
+	public PlayerManager target;
 
 	private Dictionary<string, EnemyState> _states;
 	private EnemyState _currentState;
 
 	public override void _Ready()
 	{
-		_healthMax = health;
+		
 		_damageCooldown = damageCooldown;
 
 		_states = new Dictionary<string, EnemyState>();
@@ -51,6 +37,7 @@ public partial class EnemyController : CharacterBody3D
 			}
 		}
 	}
+
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -103,9 +90,31 @@ public partial class EnemyController : CharacterBody3D
 	}
 
 	public void KillEnemy()
-	{
-		ProcessMode = ProcessModeEnum.Disabled;
-		Visible = false;
-	}
+{
+   
+    Vector3 dropPosition = GlobalPosition;
+
+		for (int i = 0; i < itemdropamount; i++)
+		{
+			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop.tscn");
+			var itemDropNode = itemDropScene.Instantiate();
+			var itemDrop = itemDropNode as ItemDrop;
+
+			if (itemDrop != null)
+			{
+				GetParent().AddChild(itemDrop);
+				itemDrop.GlobalPosition = dropPosition;
+			}
+			else
+			{
+				GD.PrintErr("ItemDrop.tscn root node is not an ItemDrop!");
+				itemDropNode.QueueFree();
+			}
+
+		}
+    
+    
+    QueueFree();
+}
 
 }

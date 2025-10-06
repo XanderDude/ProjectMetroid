@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8bnwccyhnt1"]
+
+[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_qvhpd"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_djujn"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_buoy2"]
+[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="7_0eied"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pcrqu"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pcrqu"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_qvhpd")
+player = NodePath("Player")
+
+[node name="Player" parent="." instance=ExtResource("2_djujn")]
+unique_name_in_owner = true
+
+[node name="Camera3D" parent="." instance=ExtResource("3_buoy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34028, 4.11145)
+
+[node name="Ground" type="Area3D" parent="."]
+collision_mask = 0
+
+[node name="Ground" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(7.29455, 0, 0, 0, 1, 0, 0, 0, 2.30703, -0.0859861, -0.146268, 0)
+mesh = SubResource("PlaneMesh_pcrqu")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_pcrqu")
+
+[node name="EnemyRat" parent="." instance=ExtResource("7_0eied")]
+transform = Transform3D(1.00385, 0, 0, 0, 1.00385, 0, 0, 0, 1.00385, -4.24106, 0, 0)
+Health = 1
+itemdropamount = 10
+
+[editable path="Player"]

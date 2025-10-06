@@ -13,13 +13,34 @@ public partial class RavenStateMachine : Node
         get { return _raven; }
         set { _raven = value; }
     }
+    private PlayerManager _manager;
+	public PlayerManager ParentManager //assign from parent script prior to _ready
+	{
+		get { return _manager; }
+		set { _manager = value; }
+	}
+    private Node3D _mesh;
+	public Node3D parentMesh //assign from parent script prior to _ready
+    {
+        get { return _mesh; }
+        set { _mesh = value; }
+    }
+    
+    private CharacterBody3D _parent;
+	public CharacterBody3D Parent //assign from parent script prior to _ready
+	{
+		get { return _parent; }
+		set { _parent = value; }
+	}
 
     private Dictionary<string, State> _states;
     public State _currentState;
     public State _previousState;
 
+    
     public override void _Ready()
     {
+        
         if (ravenPath != null && !ravenPath.IsEmpty)
         {
             _raven = GetNode<Raven>(ravenPath);
@@ -34,9 +55,12 @@ public partial class RavenStateMachine : Node
         {
             if (node is State s)
             {
-                _states[node.Name] = s; 
-                s.rsm = this; 
+                _states[node.Name] = s;
+                s.rsm = this;
                 s.raven = _raven;
+                s.pm = ParentManager;
+                s.player = Parent;
+                s.parentMesh = parentMesh;
                 s.Ready();
                 s.Exit();
             }
