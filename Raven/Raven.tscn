@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=25 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://euohdexnkmw3" path="res://Raven/RavenLaunchState.cs" id="4_oiwij"]
 [ext_resource type="Script" uid="uid://brlcdyahxifgc" path="res://Raven/RavenAttackState.cs" id="6_w2qnq"]
 [ext_resource type="Script" uid="uid://da0xs4ba0tw6o" path="res://Raven/RavenOnPlayerState.cs" id="7_840d0"]
+[ext_resource type="PackedScene" uid="uid://dif7w5ngagq42" path="res://Raven/VFX/RavenSlashAnimation.tscn" id="7_h7rtg"]
 [ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="10_8hq1b"]
 [ext_resource type="PackedScene" uid="uid://buw56jcoae1g1" path="res://Raven/VFX/SparklesVFX.tscn" id="10_60uyt"]
 [ext_resource type="Script" uid="uid://dsfn1qod8j0wc" path="res://Raven/RavenAnimHandler.cs" id="10_h7rtg"]
@@ -83,6 +84,7 @@ script = ExtResource("4_oiwij")
 
 [node name="RavenAttackState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("6_w2qnq")
+slashVFX = ExtResource("7_h7rtg")
 
 [node name="RavenOnPlayerState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("7_840d0")
@@ -94,15 +96,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0497322, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.00100131, 0)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(-0.10558, -0.853995, -1.22864, 1.49525, -0.0144952, -0.118416, 0.0555446, -1.23308, 0.85231, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.385642, -0.707635, -1.26512, 1.44615, 0.277859, 0.285405, 0.0997089, -1.29308, 0.753666, 0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(-0.105578, 0.854003, 1.22863, -1.49524, -0.0142925, -0.118554, -0.0557902, -1.23308, 0.852299, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.40582, 0.703313, 1.26121, -1.44051, 0.289014, 0.302343, -0.101245, -1.29299, 0.75361, -0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_840d0")
 
 [node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]
