@@ -1,10 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://dgblq3x3dqyob"]
+[gd_scene load_steps=40 format=3 uid="uid://dgblq3x3dqyob"]
 
-[ext_resource type="Shader" uid="uid://cym6xm4evevoe" path="res://Raven/VFX/SlashShader.tres" id="1_41rek"]
-[ext_resource type="Shader" uid="uid://bxrph2skrmb18" path="res://Raven/VFX/TextureScroll.tres" id="2_41rek"]
-[ext_resource type="ArrayMesh" uid="uid://dpervdsxxnva2" path="res://Raven/VFX/RavenSlashBase_Mesh.res" id="2_e61cu"]
-[ext_resource type="Texture2D" uid="uid://khmfbpulopcv" path="res://Raven/VFX/streaks.png" id="3_jg42f"]
-[ext_resource type="ArrayMesh" uid="uid://bs7m78qckgr6w" path="res://Raven/VFX/RavenSlashTrail_Mesh.res" id="3_q8xsx"]
+[ext_resource type="Shader" uid="uid://cym6xm4evevoe" path="res://Raven/VFX/SlashShader.tres" id="1_l7mru"]
+[ext_resource type="ArrayMesh" uid="uid://dpervdsxxnva2" path="res://Raven/VFX/RavenSlashBase_Mesh.res" id="2_y6uyt"]
+[ext_resource type="ArrayMesh" uid="uid://bs7m78qckgr6w" path="res://Raven/VFX/RavenSlashTrail_Mesh.res" id="3_t25cg"]
+[ext_resource type="Shader" uid="uid://bxrph2skrmb18" path="res://Raven/VFX/TextureScroll.tres" id="4_f2rnp"]
+[ext_resource type="Texture2D" uid="uid://khmfbpulopcv" path="res://Raven/VFX/streaks.png" id="5_ytj66"]
 
 [sub_resource type="Gradient" id="Gradient_6q7cb"]
 interpolation_mode = 1
@@ -20,7 +20,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ib4eu"]
 render_priority = 0
-shader = ExtResource("1_41rek")
+shader = ExtResource("1_l7mru")
 shader_parameter/Texture = SubResource("GradientTexture2D_yuljm")
 
 [sub_resource type="Gradient" id="Gradient_2qdu7"]
@@ -85,7 +85,7 @@ fill_to = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_04pjs"]
 render_priority = 0
-shader = ExtResource("1_41rek")
+shader = ExtResource("1_l7mru")
 shader_parameter/Texture = SubResource("GradientTexture2D_340t1")
 
 [sub_resource type="Gradient" id="Gradient_5sbrd"]
@@ -230,10 +230,10 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_plgg7"]
 render_priority = 0
-shader = ExtResource("2_41rek")
+shader = ExtResource("4_f2rnp")
 shader_parameter/Texture_Tiling_01 = Vector2(0.5, 2)
 shader_parameter/TextureSpeed = Vector2(0, -3)
-shader_parameter/MainText = ExtResource("3_jg42f")
+shader_parameter/MainText = ExtResource("5_ytj66")
 shader_parameter/Gradient = SubResource("GradientTexture2D_5sbrd")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e61cu"]
@@ -244,74 +244,13 @@ sub_emitter_amount_at_start = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_imwov"]
 render_priority = 0
-shader = ExtResource("2_41rek")
+shader = ExtResource("4_f2rnp")
 shader_parameter/Texture_Tiling_01 = Vector2(-0.5, 2)
 shader_parameter/TextureSpeed = Vector2(0, -3)
-shader_parameter/MainText = ExtResource("3_jg42f")
+shader_parameter/MainText = ExtResource("5_ytj66")
 shader_parameter/Gradient = SubResource("GradientTexture2D_5sbrd")
 
-[sub_resource type="Animation" id="Animation_5mavl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("birdPivot:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("birdPivot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_dk6hk"]
-resource_name = "slash"
-length = 0.133337
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("birdPivot:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.523599), Vector3(0, 0, -0.523599)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("birdPivot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_omkfb"]
-_data = {
-&"RESET": SubResource("Animation_5mavl"),
-&"RavenSlash1": SubResource("Animation_dk6hk")
-}
-
-[node name="RavenSlash" type="Node3D"]
+[node name="RavenLaunchVFX" type="Node3D"]
 
 [node name="sparks" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.293289, 0)
@@ -335,7 +274,7 @@ amount = 1
 lifetime = 0.7
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rmg3j")
-draw_pass_1 = ExtResource("2_e61cu")
+draw_pass_1 = ExtResource("2_y6uyt")
 
 [node name="birdTrail" type="GPUParticles3D" parent="birdPivot/birdMesh"]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 2.43308, 0.0225255, 0.00630259, -0.228553)
@@ -346,7 +285,7 @@ amount = 1
 lifetime = 0.7
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_cm7j0")
-draw_pass_1 = ExtResource("3_q8xsx")
+draw_pass_1 = ExtResource("3_t25cg")
 
 [node name="scrollingTrail" type="GPUParticles3D" parent="birdPivot/birdMesh"]
 transform = Transform3D(1, 0, 0, 0, 2.10724, 0, 0, 0, 1, 0.0225255, 0.00630259, -0.0165462)
@@ -357,7 +296,7 @@ amount = 1
 lifetime = 0.7
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_e61cu")
-draw_pass_1 = ExtResource("3_q8xsx")
+draw_pass_1 = ExtResource("3_t25cg")
 
 [node name="scrollingTrail2" type="GPUParticles3D" parent="birdPivot/birdMesh"]
 transform = Transform3D(1, 0, 0, 0, 2.10724, 0, 0, 0, 1, 0.0225255, 0.00630259, -0.0165462)
@@ -366,10 +305,4 @@ amount = 1
 lifetime = 0.7
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_e61cu")
-draw_pass_1 = ExtResource("3_q8xsx")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
-libraries = {
-&"": SubResource("AnimationLibrary_omkfb")
-}
+draw_pass_1 = ExtResource("3_t25cg")

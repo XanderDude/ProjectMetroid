@@ -2,12 +2,13 @@
 
 [resource]
 blend_mode = 1
-cull_mode = 1
+cull_mode = 2
 shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
 disable_ambient_light = true
-albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
+albedo_color = Color(0.881937, 0.881937, 0.881936, 1)
 grow = true
-grow_amount = 0.02
+grow_amount = 0.01
 proximity_fade_enabled = true
+proximity_fade_distance = 0.1

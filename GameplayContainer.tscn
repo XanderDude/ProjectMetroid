@@ -24,7 +24,7 @@ shader_parameter/dither_size = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
 resource_local_to_scene = true
-size = Vector3(6, 0.5, 2)
+size = Vector3(1, 8, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnrdm"]
 resource_local_to_scene = true
@@ -49,10 +49,6 @@ size = Vector3(2, 0.5, 6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0eabh"]
 resource_local_to_scene = true
 size = Vector3(2, 0.5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
-resource_local_to_scene = true
-size = Vector3(1, 8, 2)
 
 [node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
@@ -85,6 +81,49 @@ visible = false
 [node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1" node_paths=PackedStringArray("laserSound")]
 shootSound = ExtResource("5_hnrdm")
 laserSound = NodePath("../../shootingsound")
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0178242, 0.895024, 0.0214128)
+bones/0/rotation = Quaternion(0.551365, 0.444502, 0.455573, 0.539322)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(-0.114467, 0.104953, 0.00412825, 0.987859)
+bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
+bones/4/rotation = Quaternion(-0.211568, 0.0131258, -0.0531109, 0.975831)
+bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
+bones/7/position = Vector3(0.0406713, 0.0606075, 0.00279701)
+bones/7/rotation = Quaternion(0.495643, 0.497605, 0.454341, -0.547998)
+bones/9/rotation = Quaternion(0.377087, -0.0403204, 0.92419, 0.0453)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(0.524478, 0.561454, -0.460534, 0.444522)
+bones/11/rotation = Quaternion(0.0242939, -0.52026, -0.169736, 0.836618)
+bones/13/rotation = Quaternion(0.0403243, -0.103747, 0.0667965, 0.991539)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(0.23046, 0.0148237, -0.153957, 0.960711)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/21/rotation = Quaternion(0.997295, 0.0221645, -0.0291262, 0.0637475)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.514977, -0.477298, 0.510462, 0.496402)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+
+[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.110889, -0.831663, -0.544097, -0.311346, 0.490844, -0.813717, 0.943805, 0.259634, -0.204506, -0.33946, 1.10246, -0.00970873)
+
+[node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.110889, -0.831663, -0.544097, -0.311346, 0.490844, -0.813717, 0.943805, 0.259634, -0.204506, -0.401257, 1.11728, 0.00247117)
+
+[node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
+transform = Transform3D(0.110889, -0.831663, -0.544097, -0.311346, 0.490844, -0.813717, 0.943805, 0.259634, -0.204506, -0.401257, 1.11728, 0.00247117)
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
@@ -267,10 +306,6 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 [node name="EnemyRat" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
-[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
-player = NodePath("../Player")
-speed = 20.0
-
 [node name="EnemyRat2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.5, 4, 0)
 
@@ -285,6 +320,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, 0)
 
 [node name="EnemyRat5" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_yv1x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.5, 0)
+
+[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736634, 0, 0)
+player = NodePath("../Player")
+speed = 20.0
 
 [node name="Foreground" type="Area3D" parent="SubViewportContainer/SubViewport"]
 
@@ -303,15 +343,8 @@ transform = Transform3D(3, 0, 0, 0, 4.03, 0, 0, 0, 1, 7.58705, 4.68006, 3.75513)
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("12_iviu7")
 
-[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.789477, 0.339863, -0.00191188)
-motion_mode = 1
-wall_min_slide_angle = 0.0
-platform_floor_layers = 4294967041
-platform_wall_layers = 2
-player = NodePath("../Player")
-
 [editable path="SubViewportContainer/SubViewport/Player"]
+[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2"]
