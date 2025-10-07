@@ -6,13 +6,13 @@ public partial class attackState : State
 	[Export] public PackedScene arrowScene;
 	[Export] public PackedScene bombArrowScene;
 	[Export] public float arrowSpeed = 20.0f;
-	[Export] public float shootCooldown = 0.1f;
-	[Export] public AudioStream shootSound; 
-	[Export] Godot.AudioStreamPlayer laserSound;
+	[Export] public float shootCooldown = 0.12f;
+	private float shootCooldownTimer = 0.0f;
+	private Godot.AudioStreamPlayer shootSoundNormal, shootSoundBomb;
 	private Node3D crossbowMesh;
 	private Node3D arrowSpawnLoc;
-	
-	public override void _Ready() 
+
+	public override void _Ready()
 	{
 		Node current = this;
 		while (current != null && !(current is PlayerManager))
@@ -28,21 +28,20 @@ public partial class attackState : State
 			crossbowMesh = pm.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
 			arrowSpawnLoc = (Node3D)crossbowMesh.GetChild(0);
 		}
+		shootSoundNormal = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
 	}
-	
 	
 	public override void Enter()
 	{
+		shootCooldownTimer = 0.0f;
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
 			ShootArrow(false);
-
 		}
 
 		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
 			ShootArrow(true);
-
 		}
 	}
 	
@@ -50,18 +49,26 @@ public partial class attackState : State
 	{
 	}
 
+    public override void PhysicsUpdate(float delta)
+    {
+        shootCooldownTimer += delta;
+		if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
+    }
+
+
 	
-	public override void HandleInput(InputEvent @event) 
+	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionReleased("Shoot") && !Input.IsActionPressed("SpecialShoot")) 
+		/*
+		if (@event.IsActionReleased("Shoot") && !Input.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("noattackState");
 		}
-		
-		if (@event.IsActionReleased("SpecialShoot") && !Input.IsActionPressed("Shoot")) 
+
+		if (@event.IsActionReleased("SpecialShoot") && !Input.IsActionPressed("Shoot"))
 		{
 			asm.TransitionTo("noattackState");
-		}
+		}*/
 	}
 	
 	private bool CanShoot()
@@ -151,18 +158,15 @@ public partial class attackState : State
 			return;
 		}
 		
+		var arrow = projectileScene.Instantiate() as RigidBody3D;
+		arrow.GravityScale = 0.0f;
 		if (isBombArrow)
 		{
 			ConsumeBombArrow();
+			arrow.GravityScale = 0.5f;
 		}
 		
-		var arrow = projectileScene.Instantiate() as RigidBody3D;
-		if (arrow == null)
-		{
-			return;
-		}
-
-		GetTree().CurrentScene.AddChild(arrow);
+		player.GetParent().AddChild(arrow);
 		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
 
 		Vector2 shootDirection = GetShootDirection();
@@ -177,11 +181,7 @@ public partial class attackState : State
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
 		//GD.Print(arrow.LinearVelocity);
-
-		arrow.Scale *= 3f;
-		arrow.GravityScale = 0.3f;
 		
-		laserSound = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
-		laserSound.Play();
+		shootSoundNormal?.Play();
 	}
 }

@@ -88,7 +88,7 @@ public partial class slideState : State
 			msm.TransitionTo("jumpState");
 		}
 		
-		if (@event.IsActionPressed("Shoot"))
+		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("attackState");
 		}

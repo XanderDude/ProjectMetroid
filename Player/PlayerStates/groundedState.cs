@@ -5,9 +5,6 @@ public partial class groundedState : State
 {
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
-	[Export] public float groundDeacceleration = 15.0f;
-	[Export] public float groundProjectileSpeed = 25.0f;
-	public bool isFirstTimeShoot = false;
 
 	public override void Enter()
 	{
@@ -23,7 +20,7 @@ public partial class groundedState : State
 			player.Set(PlayerManager.PropertyName.slideBoost, false); //player is not sliding so player cannot retain boost
 		}*/
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded(); //could be crouching
 	}
 	
 	public override void Exit() {
@@ -42,11 +39,6 @@ public partial class groundedState : State
 			msm.TransitionTo("jumpState");
 			return;
 		}
-		else if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
-		{
-			//player.Set(PlayerManager.PropertyName.slideQueued, true);
-			msm.TransitionTo("slideState");
-		}
 		else if (player.Velocity.X == 0 && Input.IsActionPressed("Crouch"))
 		{
 			//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
@@ -55,7 +47,7 @@ public partial class groundedState : State
 		//else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
-		if (Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0) //check if player is moving after MoveAndSlide
+		if (msm._currentState.Name == "groundedState" && Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0) //check if player is trying to move
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided();
 		}
@@ -69,14 +61,24 @@ public partial class groundedState : State
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
 		player.Velocity = velocity;
 	}
-	
-	
+
+
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("Up"))
+		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0) //only crouch when not moving
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+			msm.TransitionTo("crouchState");
+		}
+		if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			msm.TransitionTo("crouchState");
+			msm.TransitionTo("groundedState");
+		}
+		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
+		{
+			//player.Set(PlayerManager.PropertyName.slideQueued, true);
+			msm.TransitionTo("slideState");
 		}
 		if (@event.IsActionPressed("Jump"))
 		{
@@ -84,8 +86,12 @@ public partial class groundedState : State
 			msm.TransitionTo("jumpState");
 		}
 		else player.Set("jumpQueued", false);
-		
-		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
+
+		if (@event.IsActionPressed("Shoot"))
+		{
+			asm.TransitionTo("attackState");
+		}
+		else if (@event.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("attackState");
 		}

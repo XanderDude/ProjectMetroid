@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvvlrybffprx4"]
+[gd_scene load_steps=8 format=3 uid="uid://bvvlrybffprx4"]
 
 [ext_resource type="Script" uid="uid://diwkr0368hqc3" path="res://Player/Weapons/WristCrossbow/BombArrowProjectile.cs" id="1_jrn6s"]
 [ext_resource type="PackedScene" uid="uid://5b2aci4nglrg" path="res://Player/VFX/BombExplosionVFX.tscn" id="2_bfbit"]
 [ext_resource type="ArrayMesh" uid="uid://c3hwc1tptwycd" path="res://Player/Weapons/WristCrossbow/ArrowBombMesh.res" id="3_5scrf"]
+[ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="4_bfbit"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
-radius = 0.0310877
-height = 0.392946
+radius = 0.0425374
+height = 0.463733
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfbit"]
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+albedo_color = Color(0.733333, 0, 0.00392157, 1)
+grow = true
+grow_amount = 0.002
+proximity_fade_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu680"]
 shading_mode = 0
@@ -26,21 +38,24 @@ script = ExtResource("1_jrn6s")
 explosionVFX = ExtResource("2_bfbit")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-visible = false
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.000577286, 0, 0)
 shape = SubResource("CapsuleShape3D_ev4wo")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183698, 0, 0)
-light_color = Color(0.95838, 0.24592, 0.324662, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159552, 0.0352097, 0)
+light_color = Color(0.708416, 0.516527, 0, 1)
 light_energy = 0.2
 omni_range = 2.0
 
 [node name="ArrowBombMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1.27268, 0, 1.27268, 0, -1, 0, -5.56306e-08, -0.0402033, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_bfbit")
 mesh = ExtResource("3_5scrf")
 
 [node name="ArrowBombOutline" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 0.96418, 0, 1.13973, 0, -1, 0, -4.21457e-08, 0, 0, 0.00776944)
+transform = Transform3D(-4.37114e-08, 0, 1.22709, 0, 1.45051, 0, -1, 0, -5.3638e-08, -0.0402033, 0, 0.00776944)
 material_override = SubResource("StandardMaterial3D_eu680")
 mesh = ExtResource("3_5scrf")
+
+[node name="CandleFlameVFX" parent="." instance=ExtResource("4_bfbit")]
+transform = Transform3D(0.685, 0, 0, 0, 0.685, 0, 0, 0, 0.685, 0.194713, 0.0271309, 0)

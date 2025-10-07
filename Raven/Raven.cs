@@ -4,10 +4,10 @@ public partial class Raven : CharacterBody3D
 {
     [Export] public PlayerManager player = null;
 
-    [Export] public Godot.AudioStreamPlayer sound = null;
+    public Godot.AudioStreamPlayer sound = null;
     [Export] public float speed = 10.0f;
     
-    [Export] public float timer = 0.0f;
+    [Export] public float launchTimer = 0.8f;
 
     public Vector3 direction = Vector3.Zero;
     public Vector3 targetPosition = Vector3.Zero;
