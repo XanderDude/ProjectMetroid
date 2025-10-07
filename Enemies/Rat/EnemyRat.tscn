@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=8 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_icv41"]
 [ext_resource type="Script" uid="uid://dj5wpwl3j6gqi" path="res://Enemies/walkState.cs" id="4_vjw4v"]
+[ext_resource type="Script" uid="uid://cyyxdldsmcbwc" path="res://Enemies/targetState.cs" id="5_vjw4v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
 size = Vector3(1.89575, 0.82019, 0.958557)
@@ -40,6 +41,15 @@ initialState = NodePath("walkState")
 
 [node name="walkState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("4_vjw4v")
+
+[node name="targetState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_vjw4v")
+
+[node name="Beam" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 3
+hit_from_inside = true
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

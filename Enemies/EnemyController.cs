@@ -12,7 +12,11 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public Area3D DamageCollider { get; set; }
 	[Export] public Node3D Mesh;
 
+
+	public RayCast3D Beam;
+
 	public float timer = 0f;
+
 	public PlayerManager player { get; set; }
 	public EnemyStateMachine StateMachine { get; private set; }
 
@@ -22,6 +26,8 @@ public partial class EnemyController : CharacterBody3D
 	private float _damageCooldownTimer;
 
 	public bool jumpTrap = false;
+
+	public bool isLeft = false;
 	public override void _Ready()
 	{
 		jumpTrap = true;
@@ -30,6 +36,8 @@ public partial class EnemyController : CharacterBody3D
 
 		Mesh ??= GetNodeOrNull<Node3D>("Mesh");
 		DamageCollider ??= GetNodeOrNull<Area3D>("DamageCollider");
+		Beam ??= GetNodeOrNull<RayCast3D>("Beam");
+		player = GetNode<PlayerManager>("../Player");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -44,6 +52,9 @@ public partial class EnemyController : CharacterBody3D
 			_damageCooldownTimer = DamageCooldown;
 			player.Health -= Damage;
 		}
+
+
+
 
 		MoveAndSlide();
 	}
@@ -74,7 +85,7 @@ public partial class EnemyController : CharacterBody3D
 	}
 
 	public void KillEnemy()
-	{ 
+	{
 		DropItems();
 		QueueFree();
 	}
@@ -99,55 +110,39 @@ public partial class EnemyController : CharacterBody3D
 			}
 		}
 	}
-	
+
 	public bool isPlayerInRange(float range)
 	{
 		if (player == null) return false;
-		return GlobalPosition.DistanceTo(player.GlobalPosition) <= range;
+		if (GlobalPosition.DistanceTo(player.GlobalPosition) <= range && player.GlobalPosition.Y - GlobalPosition.Y < 0.2f)
+			return true;
+		else
+			return false;
+
 	}
 
-	public bool IsAtMeshEdge(float checkDistance = 0.5f)
+	public bool isAtMeshEdge()
 	{
-		// 1. Check directly below
-		var spaceState = GetWorld3D().DirectSpaceState;
-		Vector3 down = -GlobalTransform.Basis.Y.Normalized();
-		Vector3 origin = GlobalPosition;
-		Vector3 to = origin + down * checkDistance;
-
-		var query = new PhysicsRayQueryParameters3D
+		if (Beam == null)
 		{
-			From = origin,
-			To = to,
-			CollisionMask = CollisionMask
-		};
+			return false;
+		}
 
-		var result = spaceState.IntersectRay(query);
-
-		// 2. Check slightly ahead and down (to catch edge while moving)
-		Vector3 ahead = Direction.Normalized() * checkDistance * 0.5f;
-		Vector3 aheadOrigin = origin + ahead;
-		Vector3 aheadTo = aheadOrigin + down * checkDistance;
-
-		var aheadQuery = new PhysicsRayQueryParameters3D
+		if (Beam.IsColliding())
 		{
-			From = aheadOrigin,
-			To = aheadTo,
-			CollisionMask = CollisionMask
-		};
-
-		var aheadResult = spaceState.IntersectRay(aheadQuery);
-
-		// 3. Check if current Y is much higher than previous frame (falling off)
-		// You may want to store previous Y in a field, e.g. prevY
-		bool falling = false;
-		if (prevY.HasValue && GlobalPosition.Y < prevY.Value - 0.2f)
-			falling = true;
-		prevY = GlobalPosition.Y;
-
-		// Return true if no ground below, no ground ahead, or falling
-		return result.Count == 0 || aheadResult.Count == 0 || falling;
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
-	// Add this field to your class:
-	private float? prevY = null;
+
+	public int GetRandomSign()
+	{
+    	Random rand = new Random();
+    	return rand.Next(0, 2) == 0 ? -1 : 1;
+	}
+
 }
