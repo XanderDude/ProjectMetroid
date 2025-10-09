@@ -9,8 +9,8 @@
 resource_local_to_scene = true
 size = Vector3(1, 0.5, 6)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7t6li"]
-size = Vector3(11.6248, 3.71869, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t6li"]
+albedo_color = Color(0.25098, 1, 1, 1)
 
 [node name="EnemyTestersAnyTesters" type="Node3D"]
 
@@ -35,12 +35,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05135, 3.02859, 0)
 [node name="Beam" parent="EnemyRat" index="4"]
 collide_with_areas = true
 
-[node name="CollisionShape3D" parent="EnemyRat/ActiveRange" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401765, 0)
-
-[node name="PatrolCollision" parent="EnemyRat/PatrolRange" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97389, 1.17531, -0.0527737)
-shape = SubResource("BoxShape3D_7t6li")
+[node name="PatrolCollision" parent="EnemyRat" index="7"]
+transform = Transform3D(5.04838, 0, 0, 0, 4.36372, 0, 0, 0, 0.998562, -0.864393, 1, 0)
+material_override = SubResource("StandardMaterial3D_7t6li")
+transparency = 0.88
 
 [node name="WoodPlatformEdge3" parent="." instance=ExtResource("1_m88j1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.91922, 2.86761, 0.405871)

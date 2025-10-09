@@ -20,8 +20,7 @@ size = Vector3(8.91235, 3.67188, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
 size = Vector3(2.38171, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vjw4v"]
-size = Vector3(11.6261, 3.71869, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_ut63f"]
 
 [node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damagecollider", "mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance", "attackrange")]
 collision_layer = 8
@@ -31,7 +30,7 @@ damagecollider = NodePath("HitBox")
 mesh = NodePath("Rat")
 pathfindingray = NodePath("Beam")
 statemachine = NodePath("EnemyStateMachine")
-passivepatroldistance = NodePath("PatrolRange")
+passivepatroldistance = NodePath("PatrolCollision")
 activepatroldistance = NodePath("ActiveRange")
 attackrange = NodePath("AttackRange")
 
@@ -91,15 +90,10 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
 shape = SubResource("BoxShape3D_ut63f")
 
-[node name="PatrolRange" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117307, -1.19209e-07, -0.000644684)
-collision_layer = 0
-collision_mask = 0
-
-[node name="PatrolCollision" type="CollisionShape3D" parent="PatrolRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340099, 0)
-shape = SubResource("BoxShape3D_vjw4v")
-debug_color = Color(0.57197, 0.555292, 0, 0.42)
+[node name="PatrolCollision" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
+transparency = 0.95
+mesh = SubResource("BoxMesh_ut63f")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

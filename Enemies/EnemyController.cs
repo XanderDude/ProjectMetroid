@@ -8,7 +8,11 @@ public partial class EnemyController : CharacterBody3D
 	[ExportGroup("Enemy Stats")]
 	[Export] public int health = 100;
 	[Export] public int itemdropamount = 0;
-	[Export] public float movespeed { get; set; } = 2.5f;
+	[Export] public float runspeed { get; set; } = 2.5f;
+
+	[Export] public float walkspeed { get; set; } = 1.0f;
+
+	public float idle { get; set; } = 0.00000000000001f;
 	
 	[Export] public float acceleration { get; set; } = 0.1f;
 	[Export] public float jumpheight { get; set; } = 5.0f;
@@ -28,7 +32,7 @@ public partial class EnemyController : CharacterBody3D
 	public PlayerManager player;
 	[Export] public RayCast3D pathfindingray;
 	[Export] public EnemyStateMachine statemachine { get; private set; }
-	[Export] public Area3D passivepatroldistance { get; set; } //The area that the enemy walks passively (no aggro)
+	[Export] public MeshInstance3D passivepatroldistance { get; set; } //The area that the enemy walks passively (no aggro)
 	[Export] public Area3D activepatroldistance { get; set; } //The area that the enemy can detect the player in
 	[Export] public Area3D attackrange { get; set; } // The area that the enemy can enter their attack state in
 	[Export] public PackedScene projectilescene = null;
@@ -57,8 +61,16 @@ public partial class EnemyController : CharacterBody3D
 
 
 
+	
+
+	public Vector3 currentPos;
+
+
+
 	public Vector3 direction { get; set; } = Vector3.Zero;
 	public Vector3 targetposition { get; set; } = Vector3.Zero;
+
+	
 
 	private float _damageCooldownTimer;
 
@@ -67,15 +79,16 @@ public partial class EnemyController : CharacterBody3D
 
 	public override async void _Ready()
 	{
-
+		
 		
 		player = GetNode<PlayerManager>("%Player");
 		if (!ValidateExports()) GD.PrintErr("EnemyController: missing required exports, check inspector."); //validate exports
 		SetGravity();
-		
+
 		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		passivepatroldistance.Reparent(GetTree().Root, keepGlobalTransform: true);
     	GD.Print("Passive Patrol Distance New Parent = " + passivepatroldistance.GetParent().Name);
+
 		_damageCooldownTimer = damagecooldown;
 
 		
@@ -86,6 +99,8 @@ public partial class EnemyController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		currentPos = GlobalPosition;
+
 		statemachine?._currentState?.PhysicsUpdate((float)delta);
 
 		if (_damageCooldownTimer > 0)
@@ -180,6 +195,14 @@ public partial class EnemyController : CharacterBody3D
 		return rand.Next(0, 2) == 0 ? -1 : 1;
 	}
 
+	public int GetRandom1234()
+	{
+    	Random rnd = new Random();
+    
+    	return rnd.Next(1, 5); 
+	}
+
+
 	private bool ValidateExports()
 	{
 		bool ok = true;
@@ -224,6 +247,34 @@ public partial class EnemyController : CharacterBody3D
 		else gravity = -9.8f;
 	}
 
-	
+	public void initBounds()
+	{
+
+		
+
+
+
+	}
+	public bool isLeavingPatrolBounds()
+	{
+
+
+
+		bool isOutside =
+		mesh.GlobalPosition.X < passivepatroldistance.Position.X - passivepatroldistance.Scale.X / 2 ||
+		mesh.GlobalPosition.X > passivepatroldistance.Position.X + passivepatroldistance.Scale.X / 2 ||
+		mesh.GlobalPosition.Y < passivepatroldistance.Position.Y - passivepatroldistance.Scale.Y / 2 ||
+		mesh.GlobalPosition.Y > passivepatroldistance.Position.Y + passivepatroldistance.Scale.Y / 2;
+
+
+
+		
+		return isOutside;
+
+
+
+
+	}
+
 
 }
