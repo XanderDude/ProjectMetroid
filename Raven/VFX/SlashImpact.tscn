@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://bt7683j3qg736"]
+
+[sub_resource type="Curve" id="Curve_0cr73"]
+_data = [Vector2(0, 0), 0.0, 2.85514, 0, 0, Vector2(0.970724, 0.989082), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p2tw6"]
+curve = SubResource("Curve_0cr73")
+
+[sub_resource type="Gradient" id="Gradient_p2tw6"]
+offsets = PackedFloat32Array(0.433387, 1)
+colors = PackedColorArray(0.898625, 0.920024, 0.941004, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_73nk0"]
+gradient = SubResource("Gradient_p2tw6")
+
+[sub_resource type="Curve" id="Curve_p2tw6"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.502311, 0.643898), 0.0, 0.0, 0, 0, Vector2(1, 26.8477), 152.834, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_73nk0"]
+curve = SubResource("Curve_p2tw6")
+
+[sub_resource type="Curve" id="Curve_73nk0"]
+_data = [Vector2(0, 0), 0.0, 1.00728, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gupam"]
+curve = SubResource("Curve_73nk0")
+
+[sub_resource type="Curve" id="Curve_gupam"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0.00154083, 0.914614), 0.0, 0.0, 0, 0, Vector2(1, 1.25308), 0.186472, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rmg3j"]
+curve = SubResource("Curve_gupam")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmg3j"]
+lifetime_randomness = 0.3
+emission_shape_scale = Vector3(1, 1, 0)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.0999978
+damping_max = 0.3
+damping_curve = SubResource("CurveTexture_73nk0")
+attractor_interaction_enabled = false
+scale_min = 2.0
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_gupam")
+scale_over_velocity_min = 0.8
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_rmg3j")
+color_ramp = SubResource("GradientTexture1D_73nk0")
+alpha_curve = SubResource("CurveTexture_p2tw6")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="Gradient" id="Gradient_73nk0"]
+offsets = PackedFloat32Array(0.473684, 0.553429)
+colors = PackedColorArray(0.134505, 0.811313, 0.626309, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gupam"]
+gradient = SubResource("Gradient_73nk0")
+fill = 1
+fill_from = Vector2(0.504274, 0.495726)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmg3j"]
+transparency = 4
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_gupam")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_n6f1i"]
+material = SubResource("StandardMaterial3D_rmg3j")
+
+[node name="Steam" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+emitting = false
+amount = 2
+lifetime = 0.3
+one_shot = true
+interpolate = false
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rmg3j")
+draw_pass_1 = SubResource("QuadMesh_n6f1i")

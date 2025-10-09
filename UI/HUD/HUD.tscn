@@ -5,7 +5,7 @@
 
 [sub_resource type="FontVariation" id="FontVariation_dm5mv"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("healthBarLabel", "youDiedLabel") groups=["hud"]]
+[node name="HUD" type="Control" groups=["hud"]]
 process_mode = 3
 physics_interpolation_mode = 1
 layout_mode = 3
@@ -15,8 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_53dev")
-healthBarLabel = NodePath("Health/HealthBarLabel")
-youDiedLabel = NodePath("YouDiedLabel")
 
 [node name="Health" type="TextureRect" parent="."]
 layout_mode = 1

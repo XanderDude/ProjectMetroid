@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpb8scx3a6ci6"]
+[gd_scene load_steps=26 format=3 uid="uid://bpb8scx3a6ci6"]
 
 [ext_resource type="Script" uid="uid://tfls4d1gb6j3" path="res://Raven/Raven.cs" id="1_sgyn5"]
 [ext_resource type="Script" uid="uid://cly0ygrym6hgp" path="res://Raven/RavenStateMachine.cs" id="2_1yirg"]
@@ -7,21 +7,12 @@
 [ext_resource type="Script" uid="uid://euohdexnkmw3" path="res://Raven/RavenLaunchState.cs" id="4_oiwij"]
 [ext_resource type="Script" uid="uid://brlcdyahxifgc" path="res://Raven/RavenAttackState.cs" id="6_w2qnq"]
 [ext_resource type="Script" uid="uid://da0xs4ba0tw6o" path="res://Raven/RavenOnPlayerState.cs" id="7_840d0"]
+[ext_resource type="PackedScene" uid="uid://dif7w5ngagq42" path="res://Raven/VFX/RavenSlashAnimation.tscn" id="7_h7rtg"]
 [ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="10_8hq1b"]
 [ext_resource type="PackedScene" uid="uid://buw56jcoae1g1" path="res://Raven/VFX/SparklesVFX.tscn" id="10_60uyt"]
 [ext_resource type="Script" uid="uid://dsfn1qod8j0wc" path="res://Raven/RavenAnimHandler.cs" id="10_h7rtg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_840d0"]
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-diffuse_mode = 3
-specular_mode = 2
-disable_ambient_light = true
-grow = true
-grow_amount = 0.008
-proximity_fade_enabled = true
-proximity_fade_distance = 0.1
+[ext_resource type="Material" uid="uid://bbbiwnk5avsf4" path="res://Raven/VFX/ravenGlowMaterial.tres" id="10_swnu4"]
+[ext_resource type="Material" uid="uid://blj73bjm1pk31" path="res://Environment/Materials/OutlineBasic.tres" id="10_t7mr6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7ypt"]
 animation = &"Flying"
@@ -83,6 +74,7 @@ script = ExtResource("4_oiwij")
 
 [node name="RavenAttackState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("6_w2qnq")
+slashVFX = ExtResource("7_h7rtg")
 
 [node name="RavenOnPlayerState" type="Node" parent="RavenStateMachine"]
 script = ExtResource("7_840d0")
@@ -94,22 +86,22 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0346055, 0)
-material_overlay = SubResource("StandardMaterial3D_840d0")
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0413148, 0)
+material_overlay = ExtResource("10_t7mr6")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(1.31195, -0.126228, -0.716133, 0.705135, 0.581761, 1.18926, 0.177667, -1.37682, 0.568167, 0.0374537, 0.136378, 0.0803157)
-material_overlay = SubResource("StandardMaterial3D_840d0")
+transform = Transform3D(-0.0833165, -0.844734, -1.23672, 1.49653, 0.00169866, -0.10198, 0.058831, -1.23952, 0.842685, 0.0374537, 0.136378, 0.0803157)
+material_overlay = ExtResource("10_t7mr6")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(1.31204, 0.122491, 0.716631, -0.703944, 0.58363, 1.18905, -0.181733, -1.37636, 0.56798, -0.0374537, 0.136378, 0.0803157)
-material_overlay = SubResource("StandardMaterial3D_840d0")
+transform = Transform3D(-0.0759799, 0.844735, 1.23719, -1.49689, 0.006344, -0.0962604, -0.0594422, -1.23951, 0.842665, -0.0374537, 0.136378, 0.0803157)
+material_overlay = ExtResource("10_t7mr6")
 
 [node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]
-material_overlay = SubResource("StandardMaterial3D_840d0")
+material_overlay = ExtResource("10_swnu4")
 
 [node name="BeakBottom" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="1"]
-material_overlay = SubResource("StandardMaterial3D_840d0")
+material_overlay = ExtResource("10_swnu4")
 
 [node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("rsm")]
 root_node = NodePath("../RavenAnimation")

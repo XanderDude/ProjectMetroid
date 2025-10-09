@@ -1,7 +1,6 @@
-[gd_scene load_steps=41 format=3 uid="uid://csl1058efko08"]
+[gd_scene load_steps=42 format=3 uid="uid://csl1058efko08"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_a8mtv"]
-[ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="2_vcyh3"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_xbrmv"]
 [ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="4_7fiwc"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="4_b1vnb"]
@@ -26,6 +25,8 @@
 [ext_resource type="ArrayMesh" uid="uid://btw6rnocf67dp" path="res://Environment/Models/PropsBasicMeshes/crateMesh.res" id="18_b1vnb"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="18_b3g7q"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="19_b1vnb"]
+[ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="20_b1vnb"]
+[ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="24_85ew7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jrnr3"]
 
@@ -38,7 +39,6 @@ size = Vector3(9, 0.5, 2)
 size = Vector3(19, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85ew7"]
-resource_local_to_scene = true
 size = Vector3(6, 0.5, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kc1it"]
@@ -97,12 +97,6 @@ collision_priority = 10.0
 size = Vector3(33, 17.4717, 6)
 material = ExtResource("1_a8mtv")
 
-[node name="StonePillar" parent="." instance=ExtResource("2_vcyh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -3, -1)
-
-[node name="StonePillar2" parent="." instance=ExtResource("2_vcyh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, -1)
-
 [node name="FloorColliderLeft" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.25, 0)
 collision_layer = 2
@@ -121,7 +115,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_52tqf")
 
 [node name="FloorColliderPit" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -3.75, 0)
 collision_layer = 2
 collision_mask = 2
 
@@ -157,6 +151,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.5, -1)
 
 [node name="CollisionShape3D" parent="PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_7fiwc")
+
+[node name="StonePlatformMesh" parent="PlatformGroup/StonePlatformEdge3/Meshes" index="0"]
+visible = false
 
 [node name="stoneStairs1x1" parent="PlatformGroup/StonePlatformEdge3" instance=ExtResource("9_b1vnb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -2)
@@ -1304,6 +1301,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -7.5, 3)
 mesh = ExtResource("17_b3g7q")
 skeleton = NodePath("../..")
 
+[node name="StoneWallMesh87" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, 0)
+mesh = ExtResource("17_b3g7q")
+skeleton = NodePath("../..")
+
 [node name="StoneWallMesh88" type="MeshInstance3D" parent="BackWall"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, -2)
 mesh = ExtResource("17_b3g7q")
@@ -1311,6 +1313,11 @@ skeleton = NodePath("../..")
 
 [node name="StoneWallMesh89" type="MeshInstance3D" parent="BackWall"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -2, -4)
+mesh = ExtResource("17_b3g7q")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh90" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -4, 0)
 mesh = ExtResource("17_b3g7q")
 skeleton = NodePath("../..")
 
@@ -1339,6 +1346,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2
 mesh = ExtResource("17_b3g7q")
 skeleton = NodePath("../..")
 
+[node name="StoneWallMesh96" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, 0)
+mesh = ExtResource("17_b3g7q")
+skeleton = NodePath("../..")
+
 [node name="StoneWallMesh97" type="MeshInstance3D" parent="BackWall"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -2, 2)
 mesh = ExtResource("17_b3g7q")
@@ -1356,6 +1368,11 @@ skeleton = NodePath("../..")
 
 [node name="StoneWallMesh100" type="MeshInstance3D" parent="BackWall"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, -4)
+mesh = ExtResource("17_b3g7q")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh101" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, -4, 0)
 mesh = ExtResource("17_b3g7q")
 skeleton = NodePath("../..")
 
@@ -2002,6 +2019,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, -1)
 material_override = SubResource("StandardMaterial3D_4tx1l")
 material = SubResource("StandardMaterial3D_kc1it")
 
+[node name="StonePillar" parent="." instance=ExtResource("20_b1vnb")]
+transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -9.5, -3, -1)
+
+[node name="StonePillar2" parent="." instance=ExtResource("20_b1vnb")]
+transform = Transform3D(1, 0, -4.23516e-22, 0, 1, 0, -2.11758e-22, 0, 1, -2.5, -3, -1)
+
 [node name="Traps" type="Node3D" parent="."]
 
 [node name="SpikeTraps" parent="Traps" instance=ExtResource("15_kc1it")]
@@ -2048,36 +2071,38 @@ mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh3" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(-4.37114e-08, 0, -1, 8.74228e-08, -1, -3.82137e-15, -1, -8.74228e-08, 4.37114e-08, 5, -0.00638306, -0.1345)
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 5, 0.00560987, -0.1345)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh4" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(-4.37114e-08, 0, -1, 8.74228e-08, -1, -3.82137e-15, -1, -8.74228e-08, 4.37114e-08, 3, -0.00638306, -0.1345)
-sorting_offset = -2.825
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 3, 0.00560987, -0.1345)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh7" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(4.37114e-08, -4.37114e-08, 1, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 3, 0, -0.134498)
+transform = Transform3D(4.37114e-08, 4.37114e-08, -1, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 5, -1, -0.134498)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh8" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(4.37114e-08, -4.37114e-08, 1, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 0, -0.134498)
+transform = Transform3D(4.37114e-08, 4.37114e-08, -1, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 3, -1, -0.134498)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh5" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 3, -0.00638306, 1.118)
-sorting_offset = -2.0
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 3, 0.00560987, 1.11759)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
 
 [node name="StoneCeilingHalfMesh6" type="MeshInstance3D" parent="Traps"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 5, -0.00638306, 1.11759)
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 5, 0.00560987, 1.11759)
 mesh = ExtResource("17_kfjjt")
 skeleton = NodePath("../..")
+
+[node name="StoneFloorHalfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.00449342, -1)
+mesh = ExtResource("24_85ew7")
 
 [editable path="PlatformGroup/StonePlatformEdge2"]
 [editable path="PlatformGroup/StonePlatformEdge3"]

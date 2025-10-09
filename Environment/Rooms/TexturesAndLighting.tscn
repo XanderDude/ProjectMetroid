@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -53,6 +53,10 @@ size = Vector3(0.5, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wuno"]
 resource_local_to_scene = true
 size = Vector3(0.2, 14, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iq2j"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s13j"]
 resource_local_to_scene = true
@@ -268,8 +272,9 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_dhbn4")
+player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -374,6 +379,11 @@ transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117
 mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
+[node name="LightChandelier" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/Decorations" index="1" node_paths=PackedStringArray("obj")]
+obj = NodePath(".")
+swingSpeed = 3.0
+swingDistance = 10.0
+
 [node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 0)
 
@@ -394,7 +404,10 @@ mesh = ExtResource("9_bgal7")
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_g1r6t")
 
-[node name="StoneFloorHalfMesh3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="7"]
+[node name="StoneFloorHalfMesh" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04, 0, -1.009)
+
+[node name="StoneFloorHalfMesh3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="17"]
 transform = Transform3D(1, 8.74228e-08, 1.50996e-07, 8.74228e-08, -1, 8.74228e-08, 1.50996e-07, -8.74228e-08, -1, -1, 6, 1)
 mesh = ExtResource("10_bcc5k")
 
@@ -423,6 +436,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)
 [node name="Room_DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_bcc5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, -20, 0)
 
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="15"]
+visible = true
+
+[node name="MeshInstance3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="16"]
+visible = true
+
+[node name="MeshInstance3D3" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="17"]
+visible = false
+
+[node name="MeshInstance3D4" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="18"]
+visible = false
+
+[node name="MeshInstance3D5" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="19"]
+visible = false
+
 [node name="StoneDoorFrameMesh" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.129881, 0, 0)
 
@@ -434,6 +462,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.950392, 0, 1, 0, -4.37114e-08,
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_0pxb8")
+
+[node name="StoneWallHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay" index="13"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004, 0, 1.1)
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -1.00095, -9.09495e-13)
@@ -474,6 +505,12 @@ transform = Transform3D(0.498745, 0.866724, -0.00650479, 0, 0.00750483, 0.999972
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_4wuno")
+
+[node name="StoneWallHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2" index="13"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004, 0, 1.1)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_3iq2j")
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
@@ -634,24 +671,25 @@ transform = Transform3D(-9.62065e-08, 0, 2.20095, 0, 2.20095, 0, -2.20095, 0, -9
 material_override = SubResource("ShaderMaterial_bcc5k")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26039, 0, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5714, 2.5, 25)
 playerPath = NodePath("../Player")
 lookAheadDistance = 1.5
-roomMinX = -60.0
+roomMinX = -52.5
 roomMaxX = 60.0
 roomMinY = -18.0
 roomMaxY = 500.0
 
 [node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("21_bcc5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86851, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4921, 0, 0)
 player = NodePath("../Player")
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866026, 0.5, 8.74228e-08, 0.5, -0.866026, -14.7046, 19, -11)
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)
 light_energy = 0.8
 light_indirect_energy = 0.333
 light_bake_mode = 1
@@ -692,11 +730,11 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Decorations/Light_Lantern"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Lights/Light_CandleTriple_Wall"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLinePlanes"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine/TreeLinePlanes"]
