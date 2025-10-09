@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=51 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -22,7 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
+[ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="19_clrjg"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="21_bcc5k"]
+[ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="22_0pxb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -309,7 +311,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 2, 0)
 shape = SubResource("BoxShape3D_vlgid")
 
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("8_cuncf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9901, 0.0176075, -0.00160432)
 
 [node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
@@ -673,6 +675,9 @@ transform = Transform3D(-9.62065e-08, 0, 2.20095, 0, 2.20095, 0, -2.20095, 0, -9
 [node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG/Cathedral3" index="0"]
 material_override = SubResource("ShaderMaterial_bcc5k")
 
+[node name="TrapAxe_Constant" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("19_clrjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -1)
+
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
@@ -690,6 +695,9 @@ roomMaxY = 500.0
 [node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("21_bcc5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4921, 0, 0)
 player = NodePath("../Player")
+
+[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport" instance=ExtResource("22_0pxb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1857, 1.66723, -0.734134)
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)

@@ -6,7 +6,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://di3tv02aygqwl" path="res://Enemies/Traps/AxeTrapAnimationLib.res" id="4_im0na"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xkbg"]
-size = Vector3(0.657593, 1, 2)
+size = Vector3(0.657593, 0.712646, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qc3pl"]
 size = Vector3(2, 1.5, 2)
