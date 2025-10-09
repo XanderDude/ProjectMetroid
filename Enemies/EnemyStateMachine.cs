@@ -20,7 +20,7 @@ public partial class EnemyStateMachine : Node
                 _states[node.Name] = s;
                 s.StateMachine = this;
                 s.Controller = GetParent<EnemyController>();
-                s.parentMesh = s.Controller.Mesh;
+                s.parentMesh = s.Controller.mesh;
                 s.Ready();
                 s.Exit();
             }

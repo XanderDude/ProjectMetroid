@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class targetState : State
+public partial class aggroState : State
 {
     public override void Enter()
     {
@@ -20,7 +20,7 @@ public partial class targetState : State
         Controller.timer += delta;
         if (Controller.player != null && !Controller.isPlayerInRange(5.0f))
         {
-            Controller.StateMachine.TransitionTo("recoverState");
+            Controller.statemachine.TransitionTo("recoverState");
         }
 
 
@@ -32,11 +32,11 @@ public partial class targetState : State
         if (Controller.player != null && Controller.player.GlobalPosition.X < Controller.GlobalPosition.X)
         {
             
-            Controller.Velocity = new Vector3(-Controller.MoveSpeed, -9.8f, 0);
+            Controller.Velocity = new Vector3(-Controller.movespeed, -9.8f, 0);
         }
         else if (Controller.player != null && Controller.player.GlobalPosition.X > Controller.GlobalPosition.X)
         {
-            Controller.Velocity = new Vector3(Controller.MoveSpeed * 2, -9.8f, 0);
+            Controller.Velocity = new Vector3(Controller.movespeed * 2, -9.8f, 0);
         }
     
         

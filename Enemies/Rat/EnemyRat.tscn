@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=13 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_icv41"]
-[ext_resource type="Script" uid="uid://dj5wpwl3j6gqi" path="res://Enemies/walkState.cs" id="4_vjw4v"]
-[ext_resource type="Script" uid="uid://cyyxdldsmcbwc" path="res://Enemies/targetState.cs" id="5_vjw4v"]
+[ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="4_ut63f"]
+[ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_tu7f2"]
+[ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_oempk"]
+[ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_wwosr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
 size = Vector3(1.89575, 0.82019, 0.958557)
@@ -12,11 +14,26 @@ size = Vector3(1.89575, 0.82019, 0.958557)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
 size = Vector3(0.743164, 0.723022, 1.56396)
 
-[node name="EnemyRat" type="CharacterBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
+size = Vector3(8.91235, 3.67188, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
+size = Vector3(2.38171, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjw4v"]
+size = Vector3(11.7611, 3.71869, 1)
+
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damagecollider", "mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance", "attackrange")]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tysk3")
-Health = 50
+damagecollider = NodePath("HitBox")
+mesh = NodePath("Rat")
+pathfindingray = NodePath("Beam")
+statemachine = NodePath("EnemyStateMachine")
+passivepatroldistance = NodePath("PatrolRange")
+activepatroldistance = NodePath("ActiveRange")
+attackrange = NodePath("AttackRange")
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -37,19 +54,46 @@ debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("3_icv41")
-initialState = NodePath("walkState")
+initialState = NodePath("patrolState")
 
-[node name="walkState" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("4_vjw4v")
+[node name="patrolState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_ut63f")
 
-[node name="targetState" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_vjw4v")
+[node name="aggroState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_tu7f2")
+
+[node name="recoverState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("6_oempk")
+
+[node name="enemyattackState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_wwosr")
 
 [node name="Beam" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)
 target_position = Vector3(0, -0.5, 0)
 collision_mask = 3
 hit_from_inside = true
+
+[node name="ActiveRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActiveRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401765, 0)
+shape = SubResource("BoxShape3D_tu7f2")
+debug_color = Color(0.958362, 0.0292344, 0.511633, 0.42)
+
+[node name="AttackRange" type="Area3D" parent="."]
+
+[node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
+shape = SubResource("BoxShape3D_ut63f")
+
+[node name="PatrolRange" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117307, -1.19209e-07, -0.000644684)
+
+[node name="PatrolCollision" type="CollisionShape3D" parent="PatrolRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340099, 0)
+shape = SubResource("BoxShape3D_vjw4v")
+debug_color = Color(0.57197, 0.555292, 0, 0.42)
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

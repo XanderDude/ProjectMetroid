@@ -673,6 +673,7 @@ material_override = SubResource("ShaderMaterial_bcc5k")
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
+jumpVFX = null
 
 [node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
 unique_name_in_owner = true
