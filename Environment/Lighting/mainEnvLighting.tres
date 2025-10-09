@@ -64,6 +64,6 @@ fog_depth_curve = 4.14105
 fog_depth_begin = 4.0
 fog_depth_end = 40.0
 adjustment_enabled = true
-adjustment_contrast = 1.1
+adjustment_contrast = 1.02
 adjustment_saturation = 1.2
 adjustment_color_correction = SubResource("GradientTexture1D_k51wu")

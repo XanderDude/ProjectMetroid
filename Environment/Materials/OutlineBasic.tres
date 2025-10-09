@@ -9,6 +9,5 @@ specular_mode = 2
 disable_ambient_light = true
 albedo_color = Color(0.881937, 0.881937, 0.881936, 1)
 grow = true
-grow_amount = 0.01
+grow_amount = 0.005
 proximity_fade_enabled = true
-proximity_fade_distance = 0.1

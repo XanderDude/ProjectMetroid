@@ -6,25 +6,29 @@ public partial class SwingingProp : Node3D
 	[Export] Node3D obj;
 	[Export] float swingSpeed = 5f;
 	[Export] float swingDistance = 15f;
+	[Export] float rotateUpdateSpeed = .5f; //seconds
 	float timer = 0;
 
-	public override void _Ready()
+	public override void _PhysicsProcess(double delta)
 	{
 		if (swingSpeed == 0) return;
-		RotateObject();
+		timer += (float)delta;
+		if (timer >= rotateUpdateSpeed)
+		{
+			timer = 0;
+			float newZRot = (float)Mathf.Lerp(obj.RotationDegrees.Z, swingDistance, swingSpeed);
+			obj.RotationDegrees = new Vector3(0, 0, newZRot);
+		}
 	}
 
-	private async void RotateObject()
+	private void RotateObject()
 	{
-		await Task.Delay(100);
-		timer += .01f;
 		if (Mathf.Abs(swingDistance - obj.RotationDegrees.Z ) <= .5f)
 		{
 			swingDistance *= -1;
-			timer = 0;
 		}
-		float newZRot = (float)Mathf.Lerp(obj.RotationDegrees.Z, swingDistance, timer * Mathf.Abs(swingSpeed));
-		obj.RotationDegrees = new Vector3(0, 0, Mathf.Ceil( newZRot * 100)/100);
-		RotateObject();
+		float newZRot = (float)Mathf.Lerp(obj.RotationDegrees.Z, swingDistance, swingSpeed);
+		obj.RotationDegrees = new Vector3(0, 0, newZRot);
+		//obj.RotationDegrees = new Vector3(0, 0, Mathf.Ceil( newZRot * 100)/100);
 	}
 }

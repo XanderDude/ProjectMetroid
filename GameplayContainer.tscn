@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=14 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
@@ -7,10 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
-[ext_resource type="AudioStream" uid="uid://lmc7aeplmkff" path="res://Sounds/WristCrossbowShoot.mp3.mp3" id="5_hnrdm"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
-[ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="9_rh8vc"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="11_qpe1i"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
@@ -21,34 +19,6 @@ shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 16
 shader_parameter/dither_size = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
-resource_local_to_scene = true
-size = Vector3(1, 8, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hnrdm"]
-resource_local_to_scene = true
-size = Vector3(2, 0.5, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rh8vc"]
-resource_local_to_scene = true
-size = Vector3(2, 0.5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cmioc"]
-resource_local_to_scene = true
-size = Vector3(2, 0.5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0uqro"]
-resource_local_to_scene = true
-size = Vector3(1, 0.5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dvh2n"]
-resource_local_to_scene = true
-size = Vector3(2, 0.5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0eabh"]
-resource_local_to_scene = true
-size = Vector3(2, 0.5, 6)
 
 [node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
@@ -77,40 +47,34 @@ process_mode = 3
 visible = false
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
-unique_name_in_owner = true
-jumpVFX = null
-
-[node name="attackState" parent="SubViewportContainer/SubViewport/Player/AttackStateMachine" index="1" node_paths=PackedStringArray("laserSound")]
-shootSound = ExtResource("5_hnrdm")
-laserSound = NodePath("../../shootingsound")
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178347, 0.895222, -0.00963257)
-bones/0/rotation = Quaternion(0.542663, 0.452552, 0.447571, 0.548082)
+bones/0/position = Vector3(0.0178248, 0.895036, 0.0208927)
+bones/0/rotation = Quaternion(0.551218, 0.44464, 0.455437, 0.539473)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(0.0299984, 0.104445, -0.0112437, 0.994015)
+bones/1/rotation = Quaternion(-0.0865148, 0.105033, 0.00111412, 0.990698)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(0.0840037, 0.0226576, 0.0361053, 0.995553)
+bones/4/rotation = Quaternion(-0.196281, 0.00874306, -0.0332346, 0.979945)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0389065, 0.060099, -0.000677051)
-bones/7/rotation = Quaternion(0.493912, 0.501852, 0.449639, -0.549563)
-bones/9/rotation = Quaternion(0.377879, -0.115385, 0.918633, -0.00272054)
+bones/7/position = Vector3(0.0414757, 0.0608661, 0.00523393)
+bones/7/rotation = Quaternion(0.478194, 0.509436, 0.441059, -0.56327)
+bones/9/rotation = Quaternion(0.382263, -0.0391421, 0.922187, 0.0437472)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524427, 0.561508, -0.460397, 0.444657)
-bones/11/rotation = Quaternion(-0.0119135, -0.514459, -0.175292, 0.839323)
-bones/13/rotation = Quaternion(0.0780248, -0.101032, 0.0612147, 0.989928)
+bones/10/rotation = Quaternion(0.524526, 0.561405, -0.46066, 0.444398)
+bones/11/rotation = Quaternion(0.0665939, -0.526237, -0.161829, 0.832136)
+bones/13/rotation = Quaternion(0.00135493, -0.106807, 0.0777841, 0.991232)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.0626198, 0.0242348, -0.0840768, 0.994195)
+bones/14/rotation = Quaternion(0.191592, 0.0119193, -0.119291, 0.974125)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
 bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.996469, 0.0432493, -0.0277394, 0.0664125)
+bones/21/rotation = Quaternion(0.998172, -0.0019968, -0.0303211, 0.0522535)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.502631, -0.465305, 0.523396, 0.506863)
+bones/22/rotation = Quaternion(0.52464, -0.486695, 0.499904, 0.487829)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
@@ -119,13 +83,13 @@ bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
 bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.117986, -0.826577, -0.550319, -0.356292, 0.482051, -0.800427, 0.926896, 0.290513, -0.237627, -0.355292, 1.09659, 0.0206388)
+transform = Transform3D(-0.00255501, -0.84561, -0.533796, -0.380707, 0.494422, -0.781415, 0.924692, 0.201223, -0.323193, -0.349847, 1.10292, -0.028549)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.117986, -0.826577, -0.550319, -0.356292, 0.482051, -0.800427, 0.926896, 0.290513, -0.237627, -0.416893, 1.11112, 0.0340958)
+transform = Transform3D(-0.00255501, -0.84561, -0.533796, -0.380707, 0.494422, -0.781415, 0.924692, 0.201223, -0.323193, -0.412313, 1.11857, -0.022245)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.117986, -0.826577, -0.550319, -0.356292, 0.482051, -0.800427, 0.926896, 0.290513, -0.237627, -0.416893, 1.11112, 0.0340958)
+transform = Transform3D(-0.00255501, -0.84561, -0.533796, -0.380707, 0.494422, -0.781415, 0.924692, 0.201223, -0.323193, -0.412313, 1.11857, -0.022245)
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
@@ -137,160 +101,6 @@ playerPath = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88443, 0.01934, -0.97117)
 
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("5_cilmm")]
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/FloorColliderPit" index="0"]
-shape = SubResource("BoxShape3D_4v3gg")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_hnrdm")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_rh8vc")
-
-[node name="Stone1x1StairsMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/stoneStairs1x1" index="0"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="Stone2x2StairsMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/stoneStairs2x2" index="0"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_cmioc")
-
-[node name="StoneFloorMesh2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6/Meshes" index="10"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_0uqro")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_0uqro")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_dvh2n")
-
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_0eabh")
-
-[node name="StoneFloorMesh" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/Meshes" index="9"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneFloorMesh2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/Meshes" index="10"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneFloorMesh9" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/FloorGroup" index="9"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_4v3gg")
-
-[node name="StoneWallMesh10" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="10"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh13" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="13"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh14" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="14"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePillarMesh10" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="28"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePillarMesh11" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="29"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePillarMesh12" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall" index="30"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_4v3gg")
-
-[node name="StoneWallMesh3" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="2"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh4" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="3"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh5" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="4"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh7" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="6"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh8" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="7"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh9" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="8"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh10" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="9"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh11" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="10"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh12" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="11"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh13" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="12"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh14" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="13"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh15" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="14"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh17" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="16"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh18" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="17"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh19" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="18"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh20" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="19"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh23" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="22"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh24" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="23"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh25" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="24"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh29" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="28"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StoneWallMesh30" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/BackWall" index="29"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh33" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="33"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh34" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="34"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh35" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="35"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh49" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="49"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh50" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="50"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh51" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="51"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh52" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="52"]
-material_override = ExtResource("9_rh8vc")
-
-[node name="StonePlatformMesh53" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/Ceiling" index="53"]
-material_override = ExtResource("9_rh8vc")
 
 [node name="TrapAxe_Triggered" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("9_j5m4r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 3, -1)
@@ -326,7 +136,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.5, 0)
 [node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736634, 0, 0)
 player = NodePath("../Player")
-speed = 20.0
 
 [node name="Foreground" type="Area3D" parent="SubViewportContainer/SubViewport"]
 
@@ -348,18 +157,6 @@ texture = ExtResource("12_iviu7")
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/stoneStairs1x1"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/stoneStairs2x2"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2"]
-[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant"]

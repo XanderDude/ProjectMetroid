@@ -381,7 +381,6 @@ skeleton = NodePath("../..")
 
 [node name="LightChandelier" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/Decorations" index="1" node_paths=PackedStringArray("obj")]
 obj = NodePath(".")
-swingSpeed = 3.0
 swingDistance = 10.0
 
 [node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
@@ -414,6 +413,9 @@ mesh = ExtResource("10_bcc5k")
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay1/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_bcc5k")
 
+[node name="BackwallMesh" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/Frontwall" index="24"]
+transform = Transform3D(7.99999, 0.000784394, -0.00161397, 0.0030097, -0.000822517, 4.31999, 0.0125453, -0.499999, -0.00710911, 0, 1.96889, -3.25)
+
 [node name="stonePillar14" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/Floor" index="46"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 1)
 
@@ -427,8 +429,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, -1)
 
 [node name="Light_Lantern" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Lights" index="1"]
-swingSpeed = 2.0
-swingDistance = 5.0
+swingSpeed = 0.1
+swingDistance = 0.6
+rotateUpdateSpeed = 0.3
 
 [node name="WoodHouse" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_ypo2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)

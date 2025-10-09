@@ -5,13 +5,13 @@ public partial class RavenLaunchState : State
 {
 
 
-
+	private float timer = 0f;
 
 	public override void Enter()
 	{
 		//GD.Print("Raven: Entered Launch State");
 		raven.canLaunch = false;
-		raven.timer = 0.0f;
+		timer = 0f;
 
 		raven.sound.Stream = GD.Load<AudioStream>("res://Raven/Sounds/LaunchSound.mp3");
 		raven.sound.Play();
@@ -115,14 +115,12 @@ public partial class RavenLaunchState : State
 		if (raven.direction != Vector3.Zero)
 		{
 
-			raven.timer += delta;
+			timer += delta;
 
 			//check collision of top collider
 
-			
 
-
-			if (raven.timer >= 0.8f)
+			if (timer >= raven.launchTimer)
 			{
 				rsm.TransitionTo("RavenRecallState");
 			}

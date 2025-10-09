@@ -12,7 +12,7 @@ public partial class jumpState : State
 	[Export] public float playerTop = 1.5f;
 	private float mantleCooldown = .2f;
 	private float mantleTimer = .2f;
-	public float jumpHeight = 0.0f;
+	public float jumpHeight = 0.0f; //player's current jump height position
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
 	[Export] Godot.AudioStreamPlayer jumpySound;
@@ -91,7 +91,7 @@ public partial class jumpState : State
 		cancelVelocity = true;
 		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
 		{
-			if (pm.jumpVFX != null) pm.SpawnJumpCloud(0);
+			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0);
 			jumpHeight = 0.0f;
 			jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
 			jumpySound.Play();
@@ -189,7 +189,7 @@ public partial class jumpState : State
 			msm.TransitionTo("walljumpState");
 		}
 
-		if (@event.IsActionPressed("Shoot"))
+		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("attackState");
 		}

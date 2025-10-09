@@ -42,11 +42,15 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 		//find the value between current speed and desired speed
 		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed), 0, 1f);
-		//if (currentSpeed > 1) currentSpeed = 1;
 
-		if (player.Velocity.X != 0)
+
+		if (player.Velocity.X != 0) //direction has changed
 		{
 			RotationDegrees = new Vector3(0, currentDirection * Mathf.Sign(player.Velocity.X), 0); //rotate mesh
+		}
+		else if (playback.GetCurrentNode() == "Crouching" && Input.GetAxis("Left", "Right") != 0) //holding a direction while crouching
+		{
+			RotationDegrees = new Vector3(0, currentDirection * Mathf.Sign(Input.GetAxis("Left", "Right")), 0);
 		}
 
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
