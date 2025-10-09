@@ -21,7 +21,7 @@ size = Vector3(8.91235, 3.67188, 1)
 size = Vector3(2.38171, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjw4v"]
-size = Vector3(11.7611, 3.71869, 1)
+size = Vector3(11.6261, 3.71869, 1)
 
 [node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damagecollider", "mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance", "attackrange")]
 collision_layer = 8
@@ -75,6 +75,8 @@ collision_mask = 3
 hit_from_inside = true
 
 [node name="ActiveRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActiveRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401765, 0)
@@ -82,6 +84,8 @@ shape = SubResource("BoxShape3D_tu7f2")
 debug_color = Color(0.958362, 0.0292344, 0.511633, 0.42)
 
 [node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
@@ -89,6 +93,8 @@ shape = SubResource("BoxShape3D_ut63f")
 
 [node name="PatrolRange" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117307, -1.19209e-07, -0.000644684)
+collision_layer = 0
+collision_mask = 0
 
 [node name="PatrolCollision" type="CollisionShape3D" parent="PatrolRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340099, 0)

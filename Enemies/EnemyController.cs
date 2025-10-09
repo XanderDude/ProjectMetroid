@@ -9,6 +9,8 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public int health = 100;
 	[Export] public int itemdropamount = 0;
 	[Export] public float movespeed { get; set; } = 2.5f;
+	
+	[Export] public float acceleration { get; set; } = 0.1f;
 	[Export] public float jumpheight { get; set; } = 5.0f;
 	[Export] public int  damagedealt { get; set; } = 15;
 	[Export] public float damagecooldown { get; set; } = 0.5f;
@@ -22,6 +24,7 @@ public partial class EnemyController : CharacterBody3D
 	[ExportGroup("Node References")]
 	[Export] public Area3D damagecollider { get; set; }
 	[Export] public Node3D mesh;
+	
 	public PlayerManager player;
 	[Export] public RayCast3D pathfindingray;
 	[Export] public EnemyStateMachine statemachine { get; private set; }
@@ -46,10 +49,11 @@ public partial class EnemyController : CharacterBody3D
 		Ranged
 	
 	}
-	
+
 
 
 	public float timer = 0f;
+	public float timer2 = 0f;
 
 
 
@@ -63,7 +67,7 @@ public partial class EnemyController : CharacterBody3D
 
 	public override async void _Ready()
 	{
-		
+
 		
 		player = GetNode<PlayerManager>("%Player");
 		if (!ValidateExports()) GD.PrintErr("EnemyController: missing required exports, check inspector."); //validate exports
@@ -95,7 +99,7 @@ public partial class EnemyController : CharacterBody3D
 
 
 
-
+		
 		MoveAndSlide();
 	}
 
@@ -163,19 +167,10 @@ public partial class EnemyController : CharacterBody3D
 
 	public bool isAtMeshEdge()
 	{
-		if (pathfindingray == null)
-		{
-			return false;
-		}
-
-		if (pathfindingray.IsColliding())
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		
+		return !pathfindingray.IsColliding();
+		
+		
 	}
 
 
@@ -217,11 +212,18 @@ public partial class EnemyController : CharacterBody3D
 
 		return ok;
 	}
-	
+
+	public float GetRandomNumber()
+	{
+    return GD.RandRange(1, 5);
+	}
+
 	public void SetGravity()
-    {
-        if (Type == EnemyType.Flying) gravity = 0;
+	{
+		if (Type == EnemyType.Flying) gravity = 0;
 		else gravity = -9.8f;
-    }
+	}
+
+	
 
 }
