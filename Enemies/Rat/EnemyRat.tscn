@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=15 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
@@ -14,13 +14,18 @@ size = Vector3(1.89575, 0.82019, 0.958557)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
 size = Vector3(0.743164, 0.723022, 1.56396)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
-size = Vector3(8.91235, 3.67188, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
 size = Vector3(2.38171, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu7f2"]
+albedo_color = Color(0.242411, 0.949085, 0.721341, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ut63f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut63f"]
+albedo_color = Color(1, 0.392157, 1, 0.0705882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tu7f2"]
 
 [node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("damagecollider", "mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance", "attackrange")]
 collision_layer = 8
@@ -31,7 +36,7 @@ mesh = NodePath("Rat")
 pathfindingray = NodePath("Beam")
 statemachine = NodePath("EnemyStateMachine")
 passivepatroldistance = NodePath("PatrolCollision")
-activepatroldistance = NodePath("ActiveRange")
+activepatroldistance = NodePath("ActiveCollision")
 attackrange = NodePath("AttackRange")
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
@@ -73,15 +78,6 @@ target_position = Vector3(0, -0.5, 0)
 collision_mask = 3
 hit_from_inside = true
 
-[node name="ActiveRange" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ActiveRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401765, 0)
-shape = SubResource("BoxShape3D_tu7f2")
-debug_color = Color(0.958362, 0.0292344, 0.511633, 0.42)
-
 [node name="AttackRange" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
@@ -92,8 +88,15 @@ shape = SubResource("BoxShape3D_ut63f")
 
 [node name="PatrolCollision" type="MeshInstance3D" parent="."]
 transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
-transparency = 0.95
+material_override = SubResource("StandardMaterial3D_tu7f2")
+transparency = 0.83
 mesh = SubResource("BoxMesh_ut63f")
+
+[node name="ActiveCollision" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.4, 0, 0, 0, 2.64, 0, 0, 0, 1, 0, 0.925972, 0)
+material_override = SubResource("StandardMaterial3D_ut63f")
+transparency = 0.87
+mesh = SubResource("BoxMesh_tu7f2")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

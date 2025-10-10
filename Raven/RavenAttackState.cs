@@ -63,6 +63,7 @@ public partial class RavenAttackState : State
 		}
 
 
+	
 
 	}
 
@@ -155,6 +156,14 @@ public partial class RavenAttackState : State
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
 
+			if (GetAttackDirection().Y < 0 && raven.player.StateMachine._currentState.Name == "jumpState")
+				{
+				raven.player.Set("jumpQueued", true);
+				raven.player.StateMachine._currentState.Enter();
+					
+				}
+
+
 		if (targetsDamaged.Contains(body)) return;
 
 		if (body is EnemyController enemy)
@@ -162,6 +171,7 @@ public partial class RavenAttackState : State
 				//GD.Print("Dealing damage to enemy!");
 				enemy.DamagedRecieved(damage);
 				targetsDamaged.Add(body);
+				
 			}
 	}
 	

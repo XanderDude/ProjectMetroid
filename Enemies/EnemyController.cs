@@ -33,9 +33,13 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public RayCast3D pathfindingray;
 	[Export] public EnemyStateMachine statemachine { get; private set; }
 	[Export] public MeshInstance3D passivepatroldistance { get; set; } //The area that the enemy walks passively (no aggro)
-	[Export] public Area3D activepatroldistance { get; set; } //The area that the enemy can detect the player in
+	[Export] public MeshInstance3D activepatroldistance { get; set; } //The area that the enemy can detect the player in
 	[Export] public Area3D attackrange { get; set; } // The area that the enemy can enter their attack state in
 	[Export] public PackedScene projectilescene = null;
+
+	public float speed;
+
+	public float currentDirection;
 
 	[ExportGroup("Enemy Type")]
 	
@@ -268,13 +272,30 @@ public partial class EnemyController : CharacterBody3D
 
 
 
-		
+
 		return isOutside;
 
 
 
 
 	}
+	
+	public bool isPlayerInAggroBounds()
+	{
+        bool isOutside = 
+		player.GlobalPosition.X < activepatroldistance.GlobalPosition.X - activepatroldistance.Scale.X / 2 ||
+		player.GlobalPosition.X > activepatroldistance.GlobalPosition.X + activepatroldistance.Scale.X / 2 ||
+		player.GlobalPosition.Y < activepatroldistance.GlobalPosition.Y - activepatroldistance.Scale.Y / 2 ||
+		player.GlobalPosition.Y > activepatroldistance.GlobalPosition.Y + activepatroldistance.Scale.Y / 2;
+
+
+
+
+		return !isOutside;
+
+		
+
+    }
 
 
 }
