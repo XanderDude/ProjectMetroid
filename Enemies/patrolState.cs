@@ -10,8 +10,8 @@ public partial class patrolState : State
     {
 
         GD.Print($"{Controller.Name} entered patrol State");
-        Controller.speed = Controller.walkspeed;
-            
+        Controller.speed = Controller.walkspeed * Mathf.Sign(Controller.speed);
+        
 
 
         
@@ -34,35 +34,29 @@ public partial class patrolState : State
     {
         Controller.timer2 += delta;
         Controller.timer += delta;
-        
+
         if (Controller.isLeavingPatrolBounds() && Controller.timer >= 0.5f)
         {
-            Controller.mesh.RotateY(Mathf.Pi);
             Controller.speed = -Controller.speed;
             Controller.timer = 0;
         }
+    
         
     
         if (Controller.timer2 >= 8.0f)
         {
             var num = Controller.GetRandom1234();
             GD.Print($"Random behavior: {num}");
-            
-            float currentDirection = Mathf.Sign(Controller.speed);
-            
+
+
             if (num == 1 || num == 2)
             {
-                
-                Controller.speed = Controller.walkspeed * currentDirection;
+
+                Controller.speed = Controller.walkspeed * Mathf.Sign(Controller.speed);
             }
             else if (num == 3)
-            { 
-                Controller.speed = Controller.idle * currentDirection;
-            }
-            else if (num == 4)
             {
-                Controller.mesh.RotateY(Mathf.Pi);
-                Controller.speed = -(Controller.idle * currentDirection);
+                Controller.speed = Controller.idle * Mathf.Sign(Controller.speed);
             }
             
             Controller.timer2 = 0;

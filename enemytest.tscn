@@ -33,7 +33,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.9192
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10221, 3.33505, 0)
 
 [node name="PatrolCollision" parent="EnemyRat" index="6"]
-transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 0.604383, 0)
+transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, -0.0339317, 0.604383, -0.0025835)
 
 [editable path="WoodPlatformEdge"]
 [editable path="EnemyRat"]

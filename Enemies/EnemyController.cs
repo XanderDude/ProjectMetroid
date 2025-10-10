@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Numerics;
 
 public partial class EnemyController : CharacterBody3D
 {
@@ -37,9 +38,9 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public Area3D attackrange { get; set; } // The area that the enemy can enter their attack state in
 	[Export] public PackedScene projectilescene = null;
 
-	public float speed;
+	public float speed = 0.0001f;
 
-	public float currentDirection;
+	public float originalMeshY;
 
 	[ExportGroup("Enemy Type")]
 	
@@ -67,12 +68,12 @@ public partial class EnemyController : CharacterBody3D
 
 	
 
-	public Vector3 currentPos;
+	public Godot.Vector3 currentPos;
 
 
 
-	public Vector3 direction { get; set; } = Vector3.Zero;
-	public Vector3 targetposition { get; set; } = Vector3.Zero;
+	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
+	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
 	
 
@@ -103,9 +104,19 @@ public partial class EnemyController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		currentPos = GlobalPosition;
+		originalMeshY = this.RotationDegrees.Y;
 
-		statemachine?._currentState?.PhysicsUpdate((float)delta);
+		currentPos = GlobalPosition;
+		if (CurrentDirection())
+		{
+			this.RotationDegrees = new Godot.Vector3(0, 0, 0);
+		}
+		else
+		{
+			this.RotationDegrees = new Godot.Vector3(0, 180, 0);
+        }
+
+			statemachine?._currentState?.PhysicsUpdate((float)delta);
 
 		if (_damageCooldownTimer > 0)
 			_damageCooldownTimer -= (float)delta;
@@ -156,7 +167,7 @@ public partial class EnemyController : CharacterBody3D
 
 	public void DropItems()
 	{
-		Vector3 dropPosition = GlobalPosition;
+		Godot.Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
 		{
 			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop.tscn");
@@ -242,7 +253,7 @@ public partial class EnemyController : CharacterBody3D
 
 	public float GetRandomNumber()
 	{
-    return GD.RandRange(1, 5);
+    return GD.RandRange(5, 9);
 	}
 
 	public void SetGravity()
@@ -279,10 +290,10 @@ public partial class EnemyController : CharacterBody3D
 
 
 	}
-	
+
 	public bool isPlayerInAggroBounds()
 	{
-        bool isOutside = 
+		bool isOutside =
 		player.GlobalPosition.X < activepatroldistance.GlobalPosition.X - activepatroldistance.Scale.X / 2 ||
 		player.GlobalPosition.X > activepatroldistance.GlobalPosition.X + activepatroldistance.Scale.X / 2 ||
 		player.GlobalPosition.Y < activepatroldistance.GlobalPosition.Y - activepatroldistance.Scale.Y / 2 ||
@@ -293,8 +304,14 @@ public partial class EnemyController : CharacterBody3D
 
 		return !isOutside;
 
-		
 
+
+	}
+	
+	public bool CurrentDirection()
+    {
+		if (this.Velocity.X >= 0) return true;
+		else return false;
     }
 
 
