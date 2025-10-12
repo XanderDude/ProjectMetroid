@@ -92,7 +92,7 @@ public partial class EnemyController : CharacterBody3D
 
 		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		passivepatroldistance.Reparent(GetTree().Root, keepGlobalTransform: true);
-    	GD.Print("Passive Patrol Distance New Parent = " + passivepatroldistance.GetParent().Name);
+		GD.Print("Passive Patrol Distance New Parent = " + passivepatroldistance.GetParent().Name);
 
 		_damageCooldownTimer = damagecooldown;
 
@@ -114,7 +114,7 @@ public partial class EnemyController : CharacterBody3D
 		else
 		{
 			this.RotationDegrees = new Godot.Vector3(0, 180, 0);
-        }
+		}
 
 			statemachine?._currentState?.PhysicsUpdate((float)delta);
 
@@ -212,9 +212,9 @@ public partial class EnemyController : CharacterBody3D
 
 	public int GetRandom1234()
 	{
-    	Random rnd = new Random();
-    
-    	return rnd.Next(1, 5); 
+		Random rnd = new Random();
+	
+		return rnd.Next(1, 5); 
 	}
 
 
@@ -253,7 +253,7 @@ public partial class EnemyController : CharacterBody3D
 
 	public float GetRandomNumber()
 	{
-    return GD.RandRange(5, 9);
+	return GD.RandRange(5, 9);
 	}
 
 	public void SetGravity()
@@ -298,21 +298,24 @@ public partial class EnemyController : CharacterBody3D
 		player.GlobalPosition.X > activepatroldistance.GlobalPosition.X + activepatroldistance.Scale.X / 2 ||
 		player.GlobalPosition.Y < activepatroldistance.GlobalPosition.Y - activepatroldistance.Scale.Y / 2 ||
 		player.GlobalPosition.Y > activepatroldistance.GlobalPosition.Y + activepatroldistance.Scale.Y / 2;
-
-
-
-
 		return !isOutside;
-
-
-
-	}
+		}
 	
 	public bool CurrentDirection()
-    {
+	{
 		if (this.Velocity.X >= 0) return true;
 		else return false;
-    }
+	}
+	
+	public int MoveToCenterCollisionX() //passive collision
+	{
+		if (GlobalPosition.X < activepatroldistance.GlobalPosition.X) //needs to move right if true
+			return 1;
+		else if (GlobalPosition.X > activepatroldistance.GlobalPosition.X)
+			return 2;
+		else
+			return 0;
+	}
 
 
 }

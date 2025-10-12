@@ -2,14 +2,14 @@ using Godot;
 using System;
 using System.Numerics;
 
-public partial class patrolState : State
+public partial class postpatrolState : State
 {
 
    
 	public override void Enter()
 	{
 
-		GD.Print($"{Controller.Name} entered patrol State");
+		GD.Print($"{Controller.Name} entered postpatrolState");
 		Controller.speed = Controller.walkspeed * Mathf.Sign(Controller.speed);
 		
 
@@ -20,6 +20,7 @@ public partial class patrolState : State
 
 	public override void Exit()
 	{
+	
 	}
 
 	public override void Update(float delta)
@@ -35,9 +36,14 @@ public partial class patrolState : State
 		Controller.timer2 += delta;
 		Controller.timer += delta;
 
-		if (Controller.isLeavingPatrolBounds() && Controller.timer >= 0.5f)
+		if (Controller.timer >= 5.0f)
 		{
+			var num = Controller.GetRandom1234();
+			if (num == 1 || num == 2)
+			{
 			Controller.speed = -Controller.speed;
+			}
+				
 			Controller.timer = 0;
 		}
 	
@@ -64,6 +70,4 @@ public partial class patrolState : State
 		
 		Controller.Velocity = new Godot.Vector3(Controller.speed, Controller.gravity, 0);
 	}
-
-
 }

@@ -49,11 +49,11 @@ public partial class attackState : State
 	{
 	}
 
-    public override void PhysicsUpdate(float delta)
-    {
-        shootCooldownTimer += delta;
+	public override void PhysicsUpdate(float delta)
+	{
+		shootCooldownTimer += delta;
 		if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
-    }
+	}
 
 
 	

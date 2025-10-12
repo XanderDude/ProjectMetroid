@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public partial class RavenAttackState : State
 {
-    [Export] private int damage = 15;
-    private Area3D slashArea;
+	[Export] private int damage = 15;
+	private Area3D slashArea;
 	private Area3D slashHitboxes;
 	private List<Node3D> targetsDamaged = new();
 	private MeshInstance3D slashMesh;
