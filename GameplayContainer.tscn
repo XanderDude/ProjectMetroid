@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=22 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
-[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="10_yv1x3"]
-[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="11_qpe1i"]
+[ext_resource type="PackedScene" uid="uid://5hvtb5yfddrm" path="res://Enemies/Rat/PathfindingEnemy.tscn" id="12_hnrdm"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
@@ -19,6 +18,42 @@ shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 16
 shader_parameter/dither_size = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iviu7"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hnrdm"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rh8vc"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cmioc"]
+resource_local_to_scene = true
+size = Vector3(1, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uqro"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4v3gg"]
+resource_local_to_scene = true
+size = Vector3(4, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl22h"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dvh2n"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0eabh"]
+resource_local_to_scene = true
+size = Vector3(1, 8, 2)
 
 [node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
 process_mode = 1
@@ -48,35 +83,36 @@ visible = false
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_4lvic")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83642, 6.56469, 0)
 jumpVFX = null
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178292, 0.895119, 0.0162825)
-bones/0/rotation = Quaternion(0.549954, 0.445826, 0.454274, 0.540763)
+bones/0/position = Vector3(0.0178192, 0.894931, 0.0251306)
+bones/0/rotation = Quaternion(0.551811, 0.444082, 0.455983, 0.538865)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.0565134, 0.105022, -0.00207308, 0.992861)
+bones/1/rotation = Quaternion(-0.116574, 0.104942, 0.0043494, 0.987613)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.175447, 0.00722072, -0.0254239, 0.984134)
+bones/4/rotation = Quaternion(-0.210331, 0.0121898, -0.0490023, 0.976325)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0414595, 0.0608692, 0.0055304)
-bones/7/rotation = Quaternion(0.47738, 0.510051, 0.440371, -0.563941)
-bones/9/rotation = Quaternion(0.403967, -0.0331656, 0.91339, 0.0378061)
+bones/7/position = Vector3(0.0412326, 0.0607781, 0.00408697)
+bones/7/rotation = Quaternion(0.494412, 0.497576, 0.454379, -0.549104)
+bones/9/rotation = Quaternion(0.377029, -0.0403175, 0.924214, 0.0452949)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.500654, 0.588492, -0.443378, 0.454355)
-bones/11/rotation = Quaternion(0.076898, -0.527558, -0.159668, 0.830828)
-bones/13/rotation = Quaternion(0.00844888, -0.106267, 0.0757991, 0.991408)
+bones/10/rotation = Quaternion(0.524495, 0.561437, -0.460578, 0.444478)
+bones/11/rotation = Quaternion(0.039219, -0.522469, -0.167124, 0.835199)
+bones/13/rotation = Quaternion(0.005976, -0.106451, 0.0765639, 0.991348)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.163516, 0.01959, -0.138781, 0.976534)
+bones/14/rotation = Quaternion(0.223541, 0.0129522, -0.143751, 0.963949)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
 bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.998398, -0.00686401, -0.0304141, 0.0472189)
+bones/21/rotation = Quaternion(0.997607, 0.0129022, -0.0296801, 0.0610971)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.526479, -0.488484, 0.49785, 0.486157)
+bones/22/rotation = Quaternion(0.518754, -0.48097, 0.506382, 0.493092)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
@@ -85,13 +121,13 @@ bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
 bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0261678, -0.849022, -0.527709, -0.328686, 0.491232, -0.806633, 0.944077, 0.194558, -0.266207, -0.352731, 1.10273, -0.0132637)
+transform = Transform3D(0.0204634, -0.845775, -0.533148, -0.345728, 0.494376, -0.797537, 0.938112, 0.200644, -0.282291, -0.343128, 1.10387, -0.0302082)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0261678, -0.849022, -0.527709, -0.328686, 0.491232, -0.806633, 0.944077, 0.194558, -0.266207, -0.415291, 1.11771, -0.0062843)
+transform = Transform3D(0.0204634, -0.845775, -0.533148, -0.345728, 0.494376, -0.797537, 0.938112, 0.200644, -0.282291, -0.405591, 1.11921, -0.0231595)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0261678, -0.849022, -0.527709, -0.328686, 0.491232, -0.806633, 0.944077, 0.194558, -0.266207, -0.415291, 1.11771, -0.0062843)
+transform = Transform3D(0.0204634, -0.845775, -0.533148, -0.345728, 0.494376, -0.797537, 0.938112, 0.200644, -0.282291, -0.405591, 1.11921, -0.0231595)
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
@@ -103,6 +139,43 @@ playerPath = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88443, 0.01934, -0.97117)
 
 [node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("5_cilmm")]
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_iviu7")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_hnrdm")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_rh8vc")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_cmioc")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_cmioc")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_0uqro")
+
+[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge10" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05253, -0.25, -1)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge10/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_4v3gg")
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge11/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_tl22h")
+disabled = true
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_dvh2n")
+
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_0eabh")
+
+[node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_0eabh")
 
 [node name="TrapAxe_Triggered" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("9_j5m4r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 3, -1)
@@ -116,10 +189,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -1)
 
 [node name="TrapPivot" parent="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant/HalberdTrap" index="0"]
 transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 0)
-
-[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("11_qpe1i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736634, 0, 0)
-player = NodePath("../Player")
 
 [node name="Foreground" type="Area3D" parent="SubViewportContainer/SubViewport"]
 
@@ -138,31 +207,26 @@ transform = Transform3D(3, 0, 0, 0, 4.03, 0, 0, 0, 1, 7.58705, 4.68006, 3.75513)
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("12_iviu7")
 
-[node name="EnemyRat" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_yv1x3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0581, 0, 0)
-
-[node name="EnemyRat2" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_yv1x3")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -3.33287, 6.66785, 0)
-
-[node name="PatrolCollision" parent="SubViewportContainer/SubViewport/EnemyRat2" index="6"]
-transform = Transform3D(8.74079, 0, 0, 0, 15.1875, 0, 0, 0, 1, 2.07715, 0.352108, 0)
-
-[node name="EnemyRat3" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_yv1x3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2535, 5.48561, 0)
-
-[node name="PatrolCollision" parent="SubViewportContainer/SubViewport/EnemyRat3" index="6"]
-transform = Transform3D(9.76557, 0, 0, 0, 10.4173, 0, 0, 0, 1, -0.0593157, -1.14709, 0)
+[node name="EnemyRat" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_hnrdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90633, 6.4554, -0.00885105)
+jumpmaxheight = 5.0
 
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge3"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge6"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge14"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge21"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge9"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge10"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge11"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant/HalberdTrap"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat/Rat"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat2"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat2/Rat"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat3"]
-[editable path="SubViewportContainer/SubViewport/EnemyRat3/Rat"]

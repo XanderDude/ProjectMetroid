@@ -1,69 +1,71 @@
 using Godot;
 using System;
-using System.Numerics;
 
 public partial class patrolState : State
 {
-
-   
-	public override void Enter()
-	{
-
-		GD.Print($"{Controller.Name} entered patrol State");
-		Controller.speed = Controller.walkspeed * Mathf.Sign(Controller.speed);
-		
-
-
-		
-		
-	}
-
-	public override void Exit()
-	{
-	}
-
-	public override void Update(float delta)
-	{
-		if (Controller.isPlayerInAggroBounds())
+    private float patrolTimer = 0f;
+    private float patrolDuration = 0f;
+    private Godot.Vector3 patrolDirection = Godot.Vector3.Zero;
+    
+    public override void Enter()
+    {
+        GD.Print("Entered Patrol State");
+        Controller.speed = Controller.walkspeed;
+        SetNewPatrolDirection();
+    }
+    
+    public override void Exit()
+    {
+        patrolTimer = 0f;
+    }
+    
+    public override void Update(float delta)
+    {
+		if (Controller.isPlayerInRange(Controller.detectionrange))
 		{
-			Controller.statemachine.TransitionTo("aggroState");
+			StateMachine.TransitionTo("aggroState");
 		}
 		
-	}
-	public override void PhysicsUpdate(float delta)
-	{
-		Controller.timer2 += delta;
-		Controller.timer += delta;
-
-		if (Controller.isLeavingPatrolBounds() && Controller.timer >= 0.5f)
-		{
-			Controller.speed = -Controller.speed;
-			Controller.timer = 0;
-		}
-	
-		
-	
-		if (Controller.timer2 >= 8.0f)
-		{
-			var num = Controller.GetRandom1234();
-			GD.Print($"Random behavior: {num}");
-
-
-			if (num == 1 || num == 2)
-			{
-
-				Controller.speed = Controller.walkspeed * Mathf.Sign(Controller.speed);
-			}
-			else if (num == 3)
-			{
-				Controller.speed = Controller.idle * Mathf.Sign(Controller.speed);
-			}
-			
-			Controller.timer2 = 0;
-		}
-		
-		Controller.Velocity = new Godot.Vector3(Controller.speed, Controller.gravity, 0);
-	}
-
-
+        patrolTimer += delta;
+        
+    
+        if (patrolTimer >= patrolDuration)
+        {
+            SetNewPatrolDirection();
+        }
+    }
+    
+    public override void PhysicsUpdate(float delta)
+    {
+        Controller.direction = patrolDirection;
+        Controller.Velocity = new Godot.Vector3(
+            patrolDirection.X * Controller.speed,
+            Controller.Velocity.Y + Controller.gravity * delta,
+            0 // NEVER use Z axis
+        );
+    }
+    
+    private void SetNewPatrolDirection()
+    {
+        patrolTimer = 0f;
+        patrolDuration = Controller.GetRandomNumber(); 
+        
+        
+        int randomChoice = GD.RandRange(0, 2); 
+        
+        switch (randomChoice)
+        {
+            case 0: // Move left
+                patrolDirection = Godot.Vector3.Left;
+                break;
+            case 1: // Move right
+                patrolDirection = Godot.Vector3.Right;
+                break;
+            case 2: // Idle
+                patrolDirection = Godot.Vector3.Zero;
+                break;
+        }
+        
+        GD.Print($"New patrol direction: {patrolDirection}, duration: {patrolDuration}");
+    }
 }

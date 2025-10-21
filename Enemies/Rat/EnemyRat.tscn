@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=15 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_tu7f2"]
 [ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_oempk"]
 [ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_wwosr"]
-[ext_resource type="Script" uid="uid://cfnrh38sbmojt" path="res://Enemies/Rat/postpatrolState.cs" id="8_tu7f2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
 size = Vector3(1.89575, 0.82019, 0.958557)
@@ -28,15 +27,11 @@ albedo_color = Color(1, 0.392157, 1, 0.0705882)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tu7f2"]
 
-[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance")]
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tysk3")
 mesh = NodePath("Rat")
-pathfindingray = NodePath("Beam")
-statemachine = NodePath("EnemyStateMachine")
-passivepatroldistance = NodePath("PatrolCollision")
-activepatroldistance = NodePath("ActiveCollision")
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -70,9 +65,6 @@ script = ExtResource("6_oempk")
 
 [node name="enemyattackState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("7_wwosr")
-
-[node name="postpatrolState" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("8_tu7f2")
 
 [node name="Beam" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)
