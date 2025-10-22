@@ -21,7 +21,7 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public float attackknockback { get; set; } = 5;
 	[Export] public float damageovertime { get; set; } = 0f;
 	[Export] public float detectionrange { get; set; } = 10f;
-
+	[Export] public bool isFlying = false;
 
 	[ExportGroup("Node References")]
 	[Export] public MeshInstance3D mesh;

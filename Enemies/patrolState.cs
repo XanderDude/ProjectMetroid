@@ -21,10 +21,14 @@ public partial class patrolState : State
     
     public override void Update(float delta)
     {
-		if (Controller.isPlayerInRange(Controller.detectionrange))
-		{
-			StateMachine.TransitionTo("aggroState");
-		}
+        if (Controller.isPlayerInRange(Controller.detectionrange) && !Controller.isFlying)
+        {
+            StateMachine.TransitionTo("aggroState");
+        }
+        else if (Controller.isPlayerInRange(Controller.detectionrange) && Controller.isFlying)
+        {
+            StateMachine.TransitionTo("flyingaggroState");
+        }
 		
         patrolTimer += delta;
         
@@ -37,12 +41,17 @@ public partial class patrolState : State
     
     public override void PhysicsUpdate(float delta)
     {
-        Controller.direction = patrolDirection;
-        Controller.Velocity = new Godot.Vector3(
-            patrolDirection.X * Controller.speed,
-            Controller.Velocity.Y + Controller.gravity * delta,
-            0 // NEVER use Z axis
-        );
+    Controller.direction = patrolDirection;
+    
+    float verticalVelocity = Controller.isFlying ? 
+        0 : // Flying enemies maintain Y velocity
+        Controller.Velocity.Y + Controller.gravity * delta; // Grounded enemies use gravity
+    
+    Controller.Velocity = new Godot.Vector3(
+        patrolDirection.X * Controller.speed,
+        verticalVelocity,
+        0
+    );
     }
     
     private void SetNewPatrolDirection()

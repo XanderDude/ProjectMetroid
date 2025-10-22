@@ -7,8 +7,7 @@ public partial class aggroState : State
     private float outOfRangeTimer = 0f;
 	private float outOfRangeDelay = 2f;
 	private float jumpForce = 0f;
-
-	 private float edgeTurnCooldown = 0f;  
+	private float edgeTurnCooldown = 0f;  
     private const float EDGE_TURN_DELAY = 3.0f; 
     public override void Enter()
     {
