@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://daouess8sa8mu"]
+
+[ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_3tf5w"]
+[ext_resource type="PackedScene" uid="uid://q47wtuuk24e5" path="res://Enemies/Rat/RatSmall.glb" id="2_3tf5w"]
+[ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_6dlny"]
+[ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="4_huw1y"]
+[ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_p0le0"]
+[ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_56j6h"]
+[ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_gl83p"]
+[ext_resource type="Script" uid="uid://cfnrh38sbmojt" path="res://Enemies/Rat/postpatrolState.cs" id="8_cg5jo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
+size = Vector3(0.956543, 0.406158, 0.511475)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
+size = Vector3(0.419678, 0.360534, 0.852661)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
+size = Vector3(2.38171, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu7f2"]
+albedo_color = Color(0.242411, 0.949085, 0.721341, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ut63f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut63f"]
+albedo_color = Color(1, 0.392157, 1, 0.0705882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tu7f2"]
+
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "pathfindingray", "statemachine", "passivepatroldistance", "activepatroldistance")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_3tf5w")
+health = 20
+mesh = NodePath("RatSmall")
+pathfindingray = NodePath("Beam")
+statemachine = NodePath("EnemyStateMachine")
+passivepatroldistance = NodePath("PatrolCollision")
+activepatroldistance = NodePath("ActiveCollision")
+
+[node name="RatSmall" parent="." instance=ExtResource("2_3tf5w")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0395498, 0.192984, 0)
+shape = SubResource("BoxShape3D_icv41")
+
+[node name="HitBox" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22045e-16, -0.319733, 0.0510255)
+shape = SubResource("BoxShape3D_tysk3")
+debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_6dlny")
+initialState = NodePath("patrolState")
+
+[node name="patrolState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_huw1y")
+
+[node name="aggroState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_p0le0")
+
+[node name="recoverState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("6_56j6h")
+
+[node name="enemyattackState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_gl83p")
+
+[node name="postpatrolState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("8_cg5jo")
+
+[node name="Beam" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375528, 0.16849, 0)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
+shape = SubResource("BoxShape3D_ut63f")
+
+[node name="PatrolCollision" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_tu7f2")
+transparency = 0.83
+mesh = SubResource("BoxMesh_ut63f")
+
+[node name="ActiveCollision" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.4, 0, 0, 0, 2.64, 0, 0, 0, 1, 0, 0.925972, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_ut63f")
+transparency = 0.87
+mesh = SubResource("BoxMesh_tu7f2")
+
+[connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
+[connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]
