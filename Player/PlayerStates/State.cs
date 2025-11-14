@@ -3,32 +3,37 @@ using System;
 
 public partial class State : Node
 {
-	//abstract class defining different states a character can be in
+	//Player related
 	public MovementStateMachine msm;
 	public AttackStateMachine asm;
-
-	public RavenStateMachine rsm;
 	public CharacterBody3D player;
 	public PlayerManager pm;
-	public Raven raven;
-	public EnemyController Controller;
 
-	public EnemyStateMachine StateMachine;
-	public Node3D parentMesh;
 	public CharacterBody3D projectileArrow;
-	
+
+	//idk????
+	public Node3D parentMesh;
+
+	//Raven related
+	public RavenStateMachine rsm;
+	public Raven raven;
+
+	//Enemy related
+	public EnemyController ec;
+	public EnemyStateMachine esm;
+
+	//Room related
+	public RoomController rc;
+
+
+	public RoomStateMachine rosm;
+
 	public float _gravity = 9.8f;
-	public virtual void Enter() //runs first whenever msm transitions to this state
-	{
-		
-	}
+
+	public virtual void Enter(){}
 	public virtual void Exit() {}
-	
-	new public virtual void Ready() //First time run by msm
-	{
-		//GD.Print("Loaded: " + Name);
-	}
-	public virtual void Update(float delta) { }
+	new public virtual void Ready() {}
+	public virtual void Update(float delta) {}
 	public virtual void PhysicsUpdate(float delta) {}
 	public virtual void HandleInput(InputEvent @event) {}
 	

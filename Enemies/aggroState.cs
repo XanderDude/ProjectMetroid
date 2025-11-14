@@ -12,12 +12,12 @@ public partial class aggroState : State
     public override void Enter()
     {
         GD.Print("Entered Aggro State");
-        Controller.speed = Controller.runspeed;
+        ec.speed = ec.runspeed;
         outOfRangeTimer = 0f;
 
-		if (Controller.ray != null)
+		if (ec.ray != null)
 		{
-			Controller.ray.Enabled = true;
+			ec.ray.Enabled = true;
 
 		}
 		
@@ -25,9 +25,9 @@ public partial class aggroState : State
     
     public override void Exit()
     {
-        if (Controller.ray != null)
+        if (ec.ray != null)
         {
-            Controller.ray.Enabled = false;
+            ec.ray.Enabled = false;
         }
         outOfRangeTimer = 0f;
     }
@@ -35,14 +35,14 @@ public partial class aggroState : State
     public override void Update(float delta)
     {
         // Check if player is out of range
-        if (!Controller.isPlayerInRange(Controller.detectionrange))
+        if (!ec.isPlayerInRange(ec.detectionrange))
         {
             outOfRangeTimer += delta;
             
             if (outOfRangeTimer >= outOfRangeDelay)
             {
                 
-                StateMachine.TransitionTo("patrolState");
+                esm.TransitionTo("patrolState");
             }
         }
         else
@@ -53,13 +53,13 @@ public partial class aggroState : State
     
    public override void PhysicsUpdate(float delta)
     {
-        if (Controller.player != null)
+        if (ec.player != null)
         {
             UpdateRaycastDirection();
             
-            float directionToPlayer = Mathf.Sign(Controller.player.GlobalPosition.X - Controller.GlobalPosition.X);
+            float directionToPlayer = Mathf.Sign(ec.player.GlobalPosition.X - ec.GlobalPosition.X);
             bool shouldJump = ShouldJumpOverObstacle();
-            float verticalVelocity = Controller.Velocity.Y + Controller.gravity * delta;
+            float verticalVelocity = ec.Velocity.Y + ec.gravity * delta;
             
             // Decrease cooldown timer
             if (edgeTurnCooldown > 0)
@@ -68,12 +68,12 @@ public partial class aggroState : State
             }
 
 			// JUMP CASE
-			if (Controller.ray.IsColliding() && shouldJump && Controller.IsOnFloor() && !isUnderObstacle(Controller.ray))
+			if (ec.ray.IsColliding() && shouldJump && ec.IsOnFloor() && !isUnderObstacle(ec.ray))
 			{
 				verticalVelocity = jumpForce;
 
-				Controller.Velocity = new Godot.Vector3(
-					directionToPlayer * Controller.speed,
+				ec.Velocity = new Godot.Vector3(
+					directionToPlayer * ec.speed,
 					verticalVelocity,
 					0
 				);
@@ -82,16 +82,16 @@ public partial class aggroState : State
 				edgeTurnCooldown = 0f;  // Reset cooldown
 			}
 			// UNDER OBSTACLE CASE
-			else if (Controller.ray.IsColliding() && isUnderObstacle(Controller.ray) && Controller.IsOnFloor())
+			else if (ec.ray.IsColliding() && isUnderObstacle(ec.ray) && ec.IsOnFloor())
 			{
-				bool tryingToGoRight = isUnderObstacleLeadingDirection(Controller.ray);
+				bool tryingToGoRight = isUnderObstacleLeadingDirection(ec.ray);
 
 				// If moving LEFT and hit edge, turn around (only if cooldown expired)
-				if (!tryingToGoRight && isHitEdge(Controller.edgeray) && edgeTurnCooldown <= 0)
+				if (!tryingToGoRight && isHitEdge(ec.edgeray) && edgeTurnCooldown <= 0)
 				{
 					// Turn around and go right
-					Controller.Velocity = new Godot.Vector3(
-						Mathf.Abs(Controller.speed),
+					ec.Velocity = new Godot.Vector3(
+						Mathf.Abs(ec.speed),
 						verticalVelocity,
 						0
 					);
@@ -101,8 +101,8 @@ public partial class aggroState : State
 				else if (tryingToGoRight)
 				{
 					// Move right
-					Controller.Velocity = new Godot.Vector3(
-						Mathf.Abs(Controller.speed),
+					ec.Velocity = new Godot.Vector3(
+						Mathf.Abs(ec.speed),
 						verticalVelocity,
 						0
 					);
@@ -112,8 +112,8 @@ public partial class aggroState : State
 					// Move left (but only if not in cooldown)
 					if (edgeTurnCooldown <= 0)
 					{
-						Controller.Velocity = new Godot.Vector3(
-							-Mathf.Abs(Controller.speed),
+						ec.Velocity = new Godot.Vector3(
+							-Mathf.Abs(ec.speed),
 							verticalVelocity,
 							0
 						);
@@ -121,8 +121,8 @@ public partial class aggroState : State
 					else
 					{
 						// Still in cooldown - keep moving right
-						Controller.Velocity = new Godot.Vector3(
-							Mathf.Abs(Controller.speed),
+						ec.Velocity = new Godot.Vector3(
+							Mathf.Abs(ec.speed),
 							verticalVelocity,
 							0
 						);
@@ -130,12 +130,12 @@ public partial class aggroState : State
 				}
 			}
 			//JUMP ACROSS GAP CASE
-			else if (isHitEdge(Controller.edgeray) && Controller.IsOnFloor())
+			else if (isHitEdge(ec.edgeray) && ec.IsOnFloor())
 			{
-				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(Controller.gravity) * Controller.jumpmaxheight);
+				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * ec.jumpmaxheight);
 
-				Controller.Velocity = new Godot.Vector3(
-					directionToPlayer * Controller.speed,
+				ec.Velocity = new Godot.Vector3(
+					directionToPlayer * ec.speed,
 					verticalVelocity,
 					0
 				);
@@ -146,8 +146,8 @@ public partial class aggroState : State
 			// NORMAL CASE
 			else
 			{
-				Controller.Velocity = new Godot.Vector3(
-					directionToPlayer * Controller.speed,
+				ec.Velocity = new Godot.Vector3(
+					directionToPlayer * ec.speed,
 					verticalVelocity,
 					0
 				);
@@ -160,26 +160,26 @@ public partial class aggroState : State
 	private bool ShouldJumpOverObstacle()
 	{
 
-		Controller.ray.ForceRaycastUpdate();
+		ec.ray.ForceRaycastUpdate();
 
-		bool isColliding = Controller.ray.IsColliding();
+		bool isColliding = ec.ray.IsColliding();
 
 		if (isColliding)
 		{
-			var collider = Controller.ray.GetCollider() as Node3D;
+			var collider = ec.ray.GetCollider() as Node3D;
 			var boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
 
 			// Don't jump if we hit the player or wall (layer 2)
-			if (collider == Controller.player || (collider is PhysicsBody3D body && body.CollisionLayer == 2))
+			if (collider == ec.player || (collider is PhysicsBody3D body && body.CollisionLayer == 2))
 			{
 				return false;
 			}
 
-			float obstacleHeight = collider.GlobalPosition.Y + (boxShape.Size.Y / 2) - Controller.GlobalPosition.Y;
-			if (Controller.jumpmaxheight > obstacleHeight && Controller.player.GlobalPosition.Y - Controller.GlobalPosition.Y > 0.0f)
+			float obstacleHeight = collider.GlobalPosition.Y + (boxShape.Size.Y / 2) - ec.GlobalPosition.Y;
+			if (ec.jumpmaxheight > obstacleHeight && ec.player.GlobalPosition.Y - ec.GlobalPosition.Y > 0.0f)
 			{
 				
-				jumpForce = Mathf.Sqrt(2 * Mathf.Abs(Controller.gravity) * (obstacleHeight + 5.0f));
+				jumpForce = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * (obstacleHeight + 5.0f));
 				return true;
 			}
 		}
@@ -232,10 +232,10 @@ public partial class aggroState : State
     float obstacleRight = collider.GlobalPosition.X + (boxShape.Size.X / 2);
     float obstacleLeft = collider.GlobalPosition.X - (boxShape.Size.X / 2);
 
-    if (Controller.GlobalPosition.X <= obstacleRight + 1.0f && Controller.GlobalPosition.X >= obstacleLeft - 1.0f)
+    if (ec.GlobalPosition.X <= obstacleRight + 1.0f && ec.GlobalPosition.X >= obstacleLeft - 1.0f)
     {
         float obstacleTop = collider.GlobalPosition.Y + (boxShape.Size.Y / 2);
-        if (Controller.GlobalPosition.Y < obstacleTop)
+        if (ec.GlobalPosition.Y < obstacleTop)
         {
             return true;
         }
@@ -246,17 +246,17 @@ public partial class aggroState : State
 
 	private bool isUnderObstacleLeadingDirection(RayCast3D ray)
 	{
-		var collider = Controller.ray.GetCollider() as Node3D;
+		var collider = ec.ray.GetCollider() as Node3D;
 		var boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
 
 		float obstacleRight = collider.GlobalPosition.X + (boxShape.Size.X / 2);
 		float obstacleLeft = collider.GlobalPosition.X - (boxShape.Size.X / 2);
 
-		if (Controller.player.GlobalPosition.X <= obstacleRight + 1.0f && Controller.player.GlobalPosition.X >= collider.GlobalPosition.X)
+		if (ec.player.GlobalPosition.X <= obstacleRight + 1.0f && ec.player.GlobalPosition.X >= collider.GlobalPosition.X)
 		{
 			return true; //right side
 		}
-		else if (Controller.player.GlobalPosition.X >= obstacleLeft - 1.0f && Controller.player.GlobalPosition.X <= collider.GlobalPosition.X)
+		else if (ec.player.GlobalPosition.X >= obstacleLeft - 1.0f && ec.player.GlobalPosition.X <= collider.GlobalPosition.X)
 		{
 			return false; //left side
 		}
@@ -278,19 +278,19 @@ public partial class aggroState : State
     private void UpdateRaycastDirection()
     {
        
-        Godot.Vector3 rayStart = Controller.ray.GlobalPosition;
-        Godot.Vector3 playerPos = Controller.player.GlobalPosition;
+        Godot.Vector3 rayStart = ec.ray.GlobalPosition;
+        Godot.Vector3 playerPos = ec.player.GlobalPosition;
         
         
         Godot.Vector3 worldDirection = (playerPos - rayStart).Normalized();
         
        
-        Godot.Vector3 localDirection = Controller.ray.GlobalTransform.Basis.Inverse() * worldDirection;
+        Godot.Vector3 localDirection = ec.ray.GlobalTransform.Basis.Inverse() * worldDirection;
         
         
         float distance = rayStart.DistanceTo(playerPos);
         
-        Controller.ray.TargetPosition = localDirection * distance;
+        ec.ray.TargetPosition = localDirection * distance;
         
        
     }

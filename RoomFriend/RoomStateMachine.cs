@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class EnemyStateMachine : Node
+public partial class RoomStateMachine : Node
 {
     [Export] public NodePath initialState;
 
@@ -18,9 +18,8 @@ public partial class EnemyStateMachine : Node
             if (node is State s)
             {
                 _states[node.Name] = s;
-                s.esm = this;
-                s.ec = GetParent<EnemyController>();
-                s.parentMesh = s.ec.mesh;
+                s.rosm = this;
+                s.rc = GetParent<RoomController>();
                 s.Ready();
                 s.Exit();
             }
@@ -33,7 +32,7 @@ public partial class EnemyStateMachine : Node
         }
         else
         {
-            GD.PrintErr("EnemyStateMachine: initialState is not set!");
+            GD.PrintErr("RoomStateMachine: initialState is not set!");
         }
     }
 
@@ -51,7 +50,6 @@ public partial class EnemyStateMachine : Node
     {
         if (!_states.TryGetValue(key, out State value) || _currentState == value)
             return;
-        _currentState.Exit();
         _previousState = _currentState;
         _currentState = value;
         _currentState.Enter();

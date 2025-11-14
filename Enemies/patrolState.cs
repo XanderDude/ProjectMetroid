@@ -12,7 +12,7 @@ public partial class patrolState : State
     public override void Enter()
     {
         GD.Print("Entered Patrol State");
-        Controller.speed = Controller.walkspeed;
+        ec.speed = ec.walkspeed;
         SetNewPatrolDirection();
     }
    
@@ -23,13 +23,13 @@ public partial class patrolState : State
    
     public override void Update(float delta)
     {
-        if (Controller.isPlayerInRange(Controller.detectionrange) && !Controller.isFlying)
+        if (ec.isPlayerInRange(ec.detectionrange) && !ec.isFlying)
         {
-            StateMachine.TransitionTo("aggroState");
+            esm.TransitionTo("aggroState");
         }
-        else if (Controller.isPlayerInRange(Controller.detectionrange) && Controller.isFlying)
+        else if (ec.isPlayerInRange(ec.detectionrange) && ec.isFlying)
         {
-            StateMachine.TransitionTo("flyingaggroState");
+            esm.TransitionTo("flyingaggroState");
         }
        
         patrolTimer += delta;
@@ -42,23 +42,23 @@ public partial class patrolState : State
    
     public override void PhysicsUpdate(float delta)
     {
-        Controller.direction = patrolDirection;
+        ec.direction = patrolDirection;
         
         float verticalVelocity;
         
-        if (Controller.isFlying)
+        if (ec.isFlying)
         {
             bobTimer += delta;
             float bobOffset = Mathf.Sin(bobTimer * bobSpeed) * bobAmount;
-            verticalVelocity = patrolDirection.Y * Controller.speed + bobOffset;
+            verticalVelocity = patrolDirection.Y * ec.speed + bobOffset;
         }
         else
         {
-            verticalVelocity = Controller.Velocity.Y + Controller.gravity * delta;
+            verticalVelocity = ec.Velocity.Y + ec.gravity * delta;
         }
        
-        Controller.Velocity = new Godot.Vector3(
-            patrolDirection.X * Controller.speed,
+        ec.Velocity = new Godot.Vector3(
+            patrolDirection.X * ec.speed,
             verticalVelocity,
             0
         );
@@ -67,9 +67,9 @@ public partial class patrolState : State
     private void SetNewPatrolDirection()
     {
         patrolTimer = 0f;
-        patrolDuration = Controller.GetRandomNumber();
+        patrolDuration = ec.GetRandomNumber();
         
-        if (Controller.isFlying)
+        if (ec.isFlying)
         {
             int randomChoice = GD.RandRange(0, 8);
             

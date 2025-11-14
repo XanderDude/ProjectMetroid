@@ -78,6 +78,8 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _Ready()
 	{
+
+		
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
 		invulnMat?.SetShaderParameter("alpha", 0f);

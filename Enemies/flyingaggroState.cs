@@ -9,7 +9,7 @@ public partial class flyingaggroState : State
     public override void Enter()
     {
         GD.Print("Entered Flying Aggro State");
-        Controller.speed = Controller.runspeed;
+        ec.speed = ec.runspeed;
         outOfRangeTimer = 0f;
     }
     
@@ -20,13 +20,13 @@ public partial class flyingaggroState : State
     
     public override void Update(float delta)
     {
-        if (!Controller.isPlayerInRange(Controller.detectionrange))
+        if (!ec.isPlayerInRange(ec.detectionrange))
         {
             outOfRangeTimer += delta;
             
             if (outOfRangeTimer >= outOfRangeDelay)
             {
-                StateMachine.TransitionTo("patrolState");
+                esm.TransitionTo("patrolState");
             }
         }
         else
@@ -37,11 +37,11 @@ public partial class flyingaggroState : State
     
     public override void PhysicsUpdate(float delta)
     {
-        if (Controller.player != null)
+        if (ec.player != null)
         {
-            Vector3 directionToPlayer = (Controller.player.GlobalPosition - Controller.GlobalPosition).Normalized();
+            Vector3 directionToPlayer = (ec.player.GlobalPosition - ec.GlobalPosition).Normalized();
             
-            Controller.Velocity = directionToPlayer * Controller.speed;
+            ec.Velocity = directionToPlayer * ec.speed;
         }
     }
 }
