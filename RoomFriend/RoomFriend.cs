@@ -5,8 +5,6 @@ using System.ComponentModel;
 using System.Numerics;
 
 
-// TLDR :  RoomFriend finds room folder -> scans every room that contains the given prefix into a dictionary -> uses sorting algorithm to sort door id's sequentially 
-
 
 	public partial class RoomFriend : Node3D
 	{
