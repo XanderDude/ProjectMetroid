@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="ProjectMetroid"
 
+[global_group]
+
+doors="Every type of door "
+
 [input]
 
 ui_accept={

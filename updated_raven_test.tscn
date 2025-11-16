@@ -14,12 +14,13 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b3un6"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Game2" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_f07w4")
 player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("2_233h1")]
 unique_name_in_owner = true
+jumpVFX = null
 
 [node name="Camera3D" parent="." instance=ExtResource("3_mrguo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34028, 4.11145)
@@ -58,3 +59,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09497, 0.950838, 0)
 player = NodePath("../Player")
 
 [editable path="Player"]
+[editable path="Player/PlayerMesh"]

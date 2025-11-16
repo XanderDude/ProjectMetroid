@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://cw0tot4q4y1mv"]
+[gd_scene load_steps=50 format=4 uid="uid://cw0tot4q4y1mv"]
 
 [ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yt33h"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_scv3a"]
@@ -54,6 +54,10 @@ size = Vector3(0.5, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wuno"]
 resource_local_to_scene = true
 size = Vector3(0.2, 14, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scv3a"]
+resource_local_to_scene = true
+size = Vector3(2, 0.5, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s13j"]
 resource_local_to_scene = true
@@ -477,6 +481,9 @@ transform = Transform3D(0.498745, 0.866724, -0.00650479, 0, 0.00750483, 0.999972
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_4wuno")
 
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_scv3a")
+
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
 
@@ -644,6 +651,7 @@ material_override = SubResource("ShaderMaterial_bcc5k")
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("19_bi0qg")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.3466, 0.240937, 0)
+jumpVFX = null
 
 [node name="deathState2" type="Node" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="5"]
 script = ExtResource("20_5ps7j")
@@ -700,6 +708,7 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2"]
+[editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Decorations/Light_Lantern"]
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2"]
@@ -714,3 +723,4 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral2"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral3"]
 [editable path="SubViewportContainer/SubViewport/Player"]
+[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]

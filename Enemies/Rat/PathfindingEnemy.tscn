@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://5hvtb5yfddrm"]
+
+[ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_x5qum"]
+[ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_jv7vr"]
+[ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="4_44fwv"]
+[ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="4_xafej"]
+[ext_resource type="Script" uid="uid://q8c5wnqw785t" path="res://Enemies/flyingaggroState.cs" id="5_qhb77"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j1m8w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
+size = Vector3(0.743164, 0.723022, 1.56396)
+
+[sub_resource type="SphereMesh" id="SphereMesh_x5qum"]
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "edgeray", "statemachine")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113359, 0, 0)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_x5qum")
+mesh = NodePath("Blob")
+ray = NodePath("Beam")
+edgeray = NodePath("EdgeBeam")
+statemachine = NodePath("EnemyStateMachine")
+
+[node name="mesh" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)
+shape = SubResource("SphereShape3D_j1m8w")
+
+[node name="HitBox" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.051921, 0.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
+shape = SubResource("BoxShape3D_tysk3")
+debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_jv7vr")
+initialState = NodePath("patrolState")
+
+[node name="patrolState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_44fwv")
+
+[node name="aggroState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_xafej")
+
+[node name="flyingaggroState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_qhb77")
+
+[node name="Beam" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.657952, 0.735805, 0)
+collision_mask = 3
+hit_from_inside = true
+debug_shape_custom_color = Color(0.78977, 0.350233, 0.181749, 1)
+debug_shape_thickness = 5
+
+[node name="Blob" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.169242, 0.364897, 0)
+mesh = SubResource("SphereMesh_x5qum")
+
+[node name="EdgeBeam" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0506273, 0.161237, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 3
+hit_from_inside = true
+debug_shape_custom_color = Color(0.384314, 0.34902, 0, 1)
+debug_shape_thickness = 5
+
+[connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
+[connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

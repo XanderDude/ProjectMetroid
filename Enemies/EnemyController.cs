@@ -1,106 +1,89 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Numerics;
 
 public partial class EnemyController : CharacterBody3D
 {
-	[Export] public int Health = 100;
-
+	[ExportGroup("Enemy Stats")]
+	[Export] public int health = 100;
 	[Export] public int itemdropamount = 0;
-	[Export] public float moveSpeed = 30;
-	[Export] public int damage = 15;
-	[Export] public float damageCooldown = .5f;
-	private float _damageCooldown;
-	[Export] public Area3D damageCollider;
-	[Export] public Node3D mesh;
+	[Export] public float runspeed { get; set; } = 2.5f;
+	[Export] public float walkspeed { get; set; } = 1.0f;
+	[Export] public float idle { get; set; } = 0f;
+	[Export] public float acceleration { get; set; } = 0.1f;
+	[Export] public float jumpmaxheight { get; set; } = 10.0f;
+	[Export] public int  damagedealt { get; set; } = 15;
+	[Export] public float damagecooldown { get; set; } = 0.5f;
+	[Export] public float gravity { get; set; } = -9.8f;
+	[Export] public float attackspeed { get; set; } = 1.0f;
+	[Export] public float attackknockback { get; set; } = 5;
+	[Export] public float damageovertime { get; set; } = 0f;
+	[Export] public float detectionrange { get; set; } = 10f;
+	[Export] public bool isFlying = false;
 
-	public PlayerManager target;
+	[ExportGroup("Node References")]
+	[Export] public MeshInstance3D mesh;
+	public PlayerManager player;
+	[Export] public RayCast3D ray;
 
-	private Dictionary<string, EnemyState> _states;
-	private EnemyState _currentState;
+	[Export] public RayCast3D edgeray;
+	[Export] public EnemyStateMachine statemachine { get; private set; }
+	[Export] public PackedScene projectilescene = null;
+	public float speed = 0.0f;
+	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
+	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
-	public override void _Ready()
+	
+
+	
+
+	
+
+
+	public override async void _Ready()
 	{
+		player = GetNode<PlayerManager>("%Player");
 		
-		_damageCooldown = damageCooldown;
-
-		_states = new Dictionary<string, EnemyState>();
-		foreach (Node node in GetChildren())
-		{
-			if (node is EnemyState s)
-			{
-				_states[node.Name] = s;
-				s.controller = this;  //assign self to the states
-				s.mesh = mesh;
-				s.Ready();
-				s.Exit(); //reset all states
-			}
-		}
 	}
-
 
 	public override void _PhysicsProcess(double delta)
 	{
-		_currentState?.PhysicsUpdate((float)delta);
-		if (damageCooldown > 0) damageCooldown -= (float)delta;
-
-		if (damageCooldown <= 0 && target != null && target.canBeDamaged) //trap is ready and there is a target
-		{
-			damageCooldown = _damageCooldown;
-			target.Health -= damage;
-		}
+		statemachine?._currentState?.PhysicsUpdate((float)delta);
+		MoveAndSlide();
 	}
+
 	public override void _Process(double delta)
 	{
-
-		_currentState?.Update((float)delta);
-	}
-
-	public void OnLeaveCollider(Node3D node)
-	{
-		target = null;
+		statemachine?._currentState?.Update((float)delta);
 	}
 
 	public void OnCollide(Node3D node)
 	{
-		target = node.GetNode<PlayerManager>(node.GetPath());
-		if (damageCooldown <= 0 && target.canBeDamaged) //damaging collider 
-		{
-			damageCooldown = _damageCooldown;
-			node.GetNode<PlayerManager>(node.GetPath()).Health -= damage;
-		}
-	}
-
-	public void TransitionTo(string key)
-	{
-		if (!_states.TryGetValue(key, out EnemyState value) || _currentState == value) //return if state doesn't exist in dictionary or we're already in requested state
-			return;
-
-		_currentState.Exit();
-		_currentState = value;
-		_currentState.Enter();
+		GD.Print($"Collided with {node.Name}");
 	}
 
 	public void DamagedRecieved(int damage)
 	{
-		Health -= damage;
-		mesh.Visible = false;
-		var timer = GetTree().CreateTimer(0.1f);
-		timer.Timeout += () => { mesh.Visible = true; };
+		
 	}
 
 	public void KillEnemy()
-{
-   
-    Vector3 dropPosition = GlobalPosition;
+	{
+		DropItems();
+		QueueFree();
+	}
 
+
+	public void DropItems()
+	{
+		Godot.Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
 		{
 			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop.tscn");
 			var itemDropNode = itemDropScene.Instantiate();
-			var itemDrop = itemDropNode as ItemDrop;
-
-			if (itemDrop != null)
+			if (itemDropNode is ItemDrop itemDrop)
 			{
 				GetParent().AddChild(itemDrop);
 				itemDrop.GlobalPosition = dropPosition;
@@ -110,11 +93,59 @@ public partial class EnemyController : CharacterBody3D
 				GD.PrintErr("ItemDrop.tscn root node is not an ItemDrop!");
 				itemDropNode.QueueFree();
 			}
-
 		}
-    
-    
-    QueueFree();
-}
+	}
 
-}
+	public bool isPlayerInRange(float range)
+	{
+		float distance = GlobalPosition.DistanceTo(player.GlobalPosition);
+		float yDifference = Mathf.Abs(player.GlobalPosition.Y - GlobalPosition.Y);
+		
+		
+		if (distance <= range && yDifference < 3f) 
+		{
+			//GD.Print("Player IN RANGE!");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+
+	public int GetRandomSign()
+	{
+		Random rand = new Random();
+		return rand.Next(0, 2) == 0 ? -1 : 1;
+	}
+
+	public int GetRandom1234()
+	{
+		Random rnd = new Random();
+	
+		return rnd.Next(1, 5); 
+	}
+
+
+	public float GetRandomNumber()
+	{
+	return GD.RandRange(5, 9);
+	}
+
+
+	public void initBounds()
+	{
+
+		
+	}
+	
+	public bool CurrentDirection()
+	{
+		if (this.Velocity.X >= 0) return true;
+		else return false;
+	}
+	
+	}

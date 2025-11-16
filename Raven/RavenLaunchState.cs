@@ -27,8 +27,8 @@ public partial class RavenLaunchState : State
 
 
 	public override void Update(float delta)
-    {
-        if (raven.player.GlobalPosition < raven.GlobalPosition)
+	{
+		if (raven.player.GlobalPosition < raven.GlobalPosition)
 			{
 				
 				raven.RotationDegrees = new Vector3(0, 180, 0);
@@ -37,7 +37,7 @@ public partial class RavenLaunchState : State
 			{
 				raven.RotationDegrees = new Vector3(0, 0, 0);
 			}
-    }
+	}
 	public override void PhysicsUpdate(float delta)
 	{
 		RavenLaunch(delta);

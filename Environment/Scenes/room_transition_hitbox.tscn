@@ -13,6 +13,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_xhs4x")]
 unique_name_in_owner = true
+jumpVFX = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_8sidx")

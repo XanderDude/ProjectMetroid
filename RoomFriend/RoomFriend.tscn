@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://nac012gj8bwb"]
+
+[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://RoomFriend/RoomFriend.cs" id="1_khxmk"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="4_66ymm"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="5_4rfxh"]
+
+[node name="Game" type="Node3D"]
+
+[node name="RoomFriend" type="Node3D" parent="."]
+script = ExtResource("1_khxmk")
+roomfolder = "RoomFriend"
+roomprefix = "mr"
+playerpath = NodePath("../Player")
+
+[node name="Camera3D" parent="." instance=ExtResource("4_66ymm")]
+
+[node name="Player" parent="." instance=ExtResource("5_4rfxh")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0585608, 0)
+
+[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.0178374, 0.895272, 0.000355691)
+bones/0/rotation = Quaternion(0.545518, 0.449941, 0.450194, 0.545242)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(-0.00210709, 0.104745, -0.00776227, 0.994467)
+bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
+bones/4/rotation = Quaternion(-0.00258513, 0.000196634, -0.000449355, 0.999997)
+bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
+bones/7/position = Vector3(0.036695, 0.0599018, 0.00399931)
+bones/7/rotation = Quaternion(0.499461, 0.495596, 0.466964, -0.5356)
+bones/9/rotation = Quaternion(0.353831, -0.0314747, 0.933933, 0.0397843)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(0.475688, 0.587979, -0.398637, 0.518739)
+bones/11/rotation = Quaternion(0.101353, -0.53047, -0.15416, 0.827384)
+bones/13/rotation = Quaternion(0.0468846, -0.10428, 0.101613, 0.988232)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(0.0271165, 0.0762068, -0.312271, 0.946543)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/21/rotation = Quaternion(0.999503, -0.0112569, -0.0282362, -0.0084142)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.495039, -0.457937, 0.531058, 0.513037)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+
+[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.0185569, -0.929695, -0.367864, 0.00104928, 0.367945, -0.929847, 0.999827, 0.016869, 0.00780338, -0.354918, 1.10012, -0.00819251)
+
+[node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.0185569, -0.929695, -0.367864, 0.00104928, 0.367945, -0.929847, 0.999827, 0.016869, 0.00780338, -0.419418, 1.10514, -0.00697197)
+
+[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
+transform = Transform3D(0.0185569, -0.929695, -0.367864, 0.00104928, 0.367945, -0.929847, 0.999827, 0.016869, 0.00780338, -0.419418, 1.10514, -0.00697197)
+
+[editable path="Player"]
+[editable path="Player/PlayerMesh"]
