@@ -22,12 +22,6 @@ public partial class State : Node
 	public EnemyController ec;
 	public EnemyStateMachine esm;
 
-	//Room related
-	public RoomController rc;
-
-
-	public RoomStateMachine rosm;
-
 	public float _gravity = 9.8f;
 
 	public virtual void Enter(){}
