@@ -27,8 +27,8 @@ public partial class Door : Node3D
        
           rc.currentDoorNumber = DoorNumber;
           rc.isTransitioning = true; 
-          GD.Print("Player entered door number: " + DoorNumber);
-          GD.Print("RC current door number set to: " + rc.currentDoorNumber);
+          //GD.Print("Player entered door number: " + DoorNumber);
+         // GD.Print("RC current door number set to: " + rc.currentDoorNumber);
     }
 
     public void _on_door_transport_body_exited(Node3D body)
@@ -36,7 +36,7 @@ public partial class Door : Node3D
         var rc = GetTree().GetCurrentScene().GetNode<RoomFriend>("RoomFriend");
         
             rc.isTransitioning = false; 
-            GD.Print("Player exited door number: " + DoorNumber);
+            //GD.Print("Player exited door number: " + DoorNumber);
     }
 
 

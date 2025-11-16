@@ -135,7 +135,7 @@ using System.Numerics;
 			var dir = DirAccess.Open(roomfolder);
 			if (dir == null)
 			{
-				GD.PrintErr($"Failed to open directory: {roomfolder}");
+				//GD.PrintErr($"Failed to open directory: {roomfolder}");
 				return roomFiles;
 			}
 			
@@ -153,7 +153,7 @@ using System.Numerics;
 			}
 			dir.ListDirEnd();
 			
-			GD.Print($"Found {roomCount} rooms with prefix '{roomprefix}'");
+			//GD.Print($"Found {roomCount} rooms with prefix '{roomprefix}'");
 			return roomFiles;
 		}
 
@@ -163,7 +163,7 @@ using System.Numerics;
 			var roomScene = ResourceLoader.Load<PackedScene>($"{roomfolder}/{roomName}.tscn");
 			if (roomScene == null)
 			{
-				GD.PrintErr($"Failed to load room: {roomName}");
+				//GD.PrintErr($"Failed to load room: {roomName}");
 				return;
 			}
 			
@@ -188,12 +188,12 @@ using System.Numerics;
 			if (!tab1.ContainsKey(doorID))
 			{
 				tab1[doorID] = roomName;
-				GD.Print($"Added door {doorID} to tab1 (Room: {roomName})");
+				//GD.Print($"Added door {doorID} to tab1 (Room: {roomName})");
 			}
 			else
 			{
 				tab2[doorID] = roomName;
-				GD.Print($"Added door {doorID} to tab2 (Room: {roomName}) - links to {tab1[doorID]}");
+				//GD.Print($"Added door {doorID} to tab2 (Room: {roomName}) - links to {tab1[doorID]}");
 			}
 		}
 
@@ -220,8 +220,8 @@ using System.Numerics;
 
 		 private void PrintTableSummary(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
 		{
-			GD.Print($"Table 1 has {tab1.Count} doors, Table 2 has {tab2.Count} doors");
-			GD.Print($"Total rooms scanned: {roomCount}");
+			//GD.Print($"Table 1 has {tab1.Count} doors, Table 2 has {tab2.Count} doors");
+			//GD.Print($"Total rooms scanned: {roomCount}");
 		}
 		
 		public void TeleportToDoor(int doorID)
