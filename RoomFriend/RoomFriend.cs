@@ -11,16 +11,16 @@ using System.Numerics;
 
 
 		//Need these to use Room Friend
-		[Export] public string roomfolder;
+		[Export] public string roomfolder = "RoomFriend";
 
-		[Export] public string roomprefix;
+		[Export] public string roomprefix = "mr";
 
 
 		public int currentDoorNumber = 0;
 
 		public CharacterBody3D player;
 
-		[Export] public NodePath playerpath;
+		[Export] public NodePath playerpath = "/root/Game/Player";
 
 
 		//Random pointers / checks 
@@ -36,6 +36,8 @@ using System.Numerics;
     	public Dictionary<int, string> tab2 = new Dictionary<int, string>();
 
 		public int roomCount = 0;
+
+		
 
 
 		public override void _Ready()
@@ -236,6 +238,8 @@ using System.Numerics;
 			{
 				targetRoom = tab2[doorID];
 			}
+			
+			
 			
 			if (targetRoom != "")
 			{

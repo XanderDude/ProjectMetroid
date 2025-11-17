@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chnmuhpj3q4yq"]
+
+[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://RoomFriend/RoomFriend.cs" id="1_a0wfd"]
+
+[node name="RoomFriend" type="Node3D"]
+script = ExtResource("1_a0wfd")
+playerpath = NodePath("../Player")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwyxd67473x2c"]
+
+[ext_resource type="Script" uid="uid://crbkfghkeoq76" path="res://InventoryFriend/InventoryFriend.cs" id="1_gimx0"]
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_wba4i"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_wba4i"]
+[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_ea2o8"]
+[ext_resource type="PackedScene" uid="uid://chnmuhpj3q4yq" path="res://RoomFriend/room_friend.tscn" id="4_pwufh"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_wba4i")
+
+[node name="InventoryFriend" type="Node3D" parent="."]
+script = ExtResource("1_gimx0")
+
+[node name="Player" parent="." instance=ExtResource("2_wba4i")]
+unique_name_in_owner = true
+
+[node name="Camera3D" parent="." instance=ExtResource("3_ea2o8")]
+
+[node name="RoomFriend" parent="." instance=ExtResource("4_pwufh")]

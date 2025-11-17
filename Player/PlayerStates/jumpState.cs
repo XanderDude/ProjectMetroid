@@ -185,7 +185,7 @@ public partial class jumpState : State
 		{
 			player.Set(PlayerManager.PropertyName.jumpQueued, false);
 		}
-		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight()) {
+		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight() && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("walljump")) {
 			msm.TransitionTo("walljumpState");
 		}
 

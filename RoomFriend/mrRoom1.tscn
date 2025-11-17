@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmw44mknrkmtv"]
+[gd_scene load_steps=14 format=3 uid="uid://cmw44mknrkmtv"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_yt822"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_fo316"]
@@ -8,6 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="6_kk6fl"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_vnwnp"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_hoge7"]
+[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop.tscn" id="9_6ofkd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -897,3 +898,7 @@ visible = false
 radius = 0.986816
 height = 0.331055
 material = SubResource("StandardMaterial3D_nilwv")
+
+[node name="Item" parent="." instance=ExtResource("9_6ofkd")]
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 2.79729, 0, 0)
+itemName = "walljump"
