@@ -38,7 +38,9 @@ using System.Numerics;
 		public int roomCount = 0;
 
 		
+		[Export] public PackedScene initialRoom; 
 
+		
 
 		public override void _Ready()
 		{
@@ -46,15 +48,9 @@ using System.Numerics;
 			player = GetNode<CharacterBody3D>(playerpath);
         
 			room_table_init(tab1, tab2);
-			
-			if (tab1.ContainsKey(1))
-			{
-				room_init(tab1[1]);
-			}
-			else if (tab2.ContainsKey(1))
-			{
-				room_init(tab2[1]);
-			}
+
+			string fullPath = initialRoom.ResourcePath;
+			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
 		}
 
 		

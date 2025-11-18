@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public partial class InventoryFriend : Node3D
 {
+
     public HashSet <string> upgrades = new HashSet<string>();
     public Dictionary<string, int> consumables = new Dictionary<string, int>();
 

@@ -2274,7 +2274,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 17, -1)
 
 [node name="Item" parent="." instance=ExtResource("18_uaptb")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, -3, 0, 0)
-itemName = "wallJump"
+upgrade = 1
 
 [editable path="stoneWallRight/Wall_DoorWay"]
 [editable path="stoneWallRight/Wall_DoorWay2"]

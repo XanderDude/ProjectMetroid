@@ -12,10 +12,15 @@ public partial class GameFriend : Node3D
     public override void _Ready()
     {
         gameinstance = this;
+        
         inventoryfriend = new InventoryFriend();
+        
     
 
     }
+
+    
+
 
 
 }

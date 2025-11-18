@@ -5,19 +5,31 @@ using System.Numerics;
 public partial class ItemDrop : CharacterBody3D
 {
     public float timer = 0.0f;
+    public enum Type { Upgrade, Consumables, Health}
+    public enum Upgrade { none, wallJump, ravenSlash, mantling, chargeShot, slideBoost, bombArrows, ravenTeleport };
     
+    [ExportGroup("Type")]
     
-    enum Type { Upgrade, Consumables, Health}
 
     [Export] Type itemType = Type.Upgrade; 
 
-    [Export] public string itemName = "";
+
+    [ExportGroup("Upgrade Type")]
+     [Export]public Upgrade upgrade = Upgrade.none;
+
+
+    [ExportGroup("ETC")]
 
     [Export] public int amount = 0;
+
+    public string itemName = "";
 
     //if the player comes in contact make the object disappear
     public void OnBodyEntered(Node body)
     {
+
+        itemName = upgrade.ToString();
+
         if (body is PlayerManager player)
         {
             GD.Print($"Player picked up {itemName}");

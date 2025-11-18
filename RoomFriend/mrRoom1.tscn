@@ -901,4 +901,3 @@ material = SubResource("StandardMaterial3D_nilwv")
 
 [node name="Item" parent="." instance=ExtResource("9_6ofkd")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 2.79729, 0, 0)
-itemName = "walljump"
