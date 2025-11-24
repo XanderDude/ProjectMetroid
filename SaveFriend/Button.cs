@@ -16,6 +16,7 @@ public partial class Button : Godot.Button
             
             //GD.Print("Button was pressed!");
             savefriend.SaveUpgrades(saveslot);
+            ReleaseFocus();
         }
 
 }

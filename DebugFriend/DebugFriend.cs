@@ -69,6 +69,11 @@ public partial class DebugFriend : CanvasLayer
     public override void _Process(double delta)
     {
         healthlabel.Text = $"Health: {pm.health}";
+        int bombCount = 0;
+        var inventory = GameFriend.gameinstance.inventoryfriend;
+        if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))
+            bombCount = cnt;
+        labelbombarrow.Text = $"Bomb Arrows: {bombCount}";
     }
 
     private void OnDropdownRoomSelected(long index)
@@ -83,11 +88,8 @@ public partial class DebugFriend : CanvasLayer
         //GD.Print("Adding 5 Bomb Arrows");
         GameFriend.gameinstance.inventoryfriend.AddConsumable("bombArrows", 5);
 
-        var inventory = GameFriend.gameinstance.inventoryfriend;
-        int bombCount = 0;
-        if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))
-            bombCount = cnt;
-        labelbombarrow.Text = $"Bomb Arrows: {bombCount}";
+        
+        
         upgradeselectorbutton.ReleaseFocus();
     }
     private void OnAddUpgradePressed()

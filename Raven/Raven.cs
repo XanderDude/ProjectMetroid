@@ -28,6 +28,8 @@ public partial class Raven : CharacterBody3D
     public bool canLaunch = false;
     public float ravenMeleeDamage = 0.0f;
 
+    public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
+
     public override void _Ready()
     {
         sound = GetNode<Godot.AudioStreamPlayer>("Sound");
@@ -43,7 +45,8 @@ public partial class Raven : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        //GD.Print("Raven launch state: " + canLaunch);
+        
+
         if (rsm != null && rsm._currentState != null)
         {
             if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
@@ -63,14 +66,11 @@ public partial class Raven : CharacterBody3D
             canTeleport = true;
         }
 
-            
         MoveAndSlide();
             
     }
     
 
 
-
-   
 
 }

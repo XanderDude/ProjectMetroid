@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=21 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
-[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yv1x3"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_4lvic"]
 [ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
 [ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
@@ -55,10 +54,8 @@ size = Vector3(2, 0.5, 6)
 resource_local_to_scene = true
 size = Vector3(1, 8, 2)
 
-[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Gameplay" type="Node3D"]
 process_mode = 1
-script = ExtResource("1_yv1x3")
-player = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_itrsp")
@@ -87,47 +84,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83642, 6.56469, 0)
 jumpVFX = null
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178224, 0.894991, 0.0228209)
-bones/0/rotation = Quaternion(0.55175, 0.444139, 0.455927, 0.538927)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.099698, 0.105006, 0.00252709, 0.989458)
-bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.201174, 0.00959482, -0.0371767, 0.978803)
-bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.041484, 0.0608645, 0.00508079)
-bones/7/rotation = Quaternion(0.481153, 0.507245, 0.443571, -0.560748)
-bones/9/rotation = Quaternion(0.376361, -0.0403165, 0.924489, 0.04525)
-bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524519, 0.561412, -0.460642, 0.444415)
-bones/11/rotation = Quaternion(0.0609179, -0.525487, -0.162981, 0.83282)
-bones/13/rotation = Quaternion(-0.001282, -0.107006, 0.0785223, 0.991152)
-bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.200167, 0.0114362, -0.123264, 0.97191)
-bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.998037, 0.000545132, -0.0302696, 0.0548326)
-bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.523527, -0.485611, 0.501141, 0.488835)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/0/position = Vector3(0.017836, 0.895245, 0.0070927)
+bones/0/rotation = Quaternion(0.547373, 0.448228, 0.4519, 0.543379)
+bones/1/rotation = Quaternion(-0.00858044, 0.104795, -0.0070919, 0.994432)
+bones/4/rotation = Quaternion(-0.0897346, 0.00416567, -0.011511, 0.99589)
+bones/7/position = Vector3(0.0403347, 0.0606027, 0.0055129)
+bones/7/rotation = Quaternion(0.48469, 0.505032, 0.447442, -0.556609)
+bones/9/rotation = Quaternion(0.360475, -0.031693, 0.931374, 0.0399391)
+bones/10/rotation = Quaternion(0.492347, 0.591812, -0.431026, 0.470711)
+bones/11/rotation = Quaternion(0.0924285, -0.529444, -0.156232, 0.828697)
+bones/13/rotation = Quaternion(0.0251309, -0.105015, 0.073567, 0.991427)
+bones/14/rotation = Quaternion(0.100351, 0.0419971, -0.215748, 0.97037)
+bones/21/rotation = Quaternion(0.999436, -0.016897, -0.0287939, 0.00353927)
+bones/22/rotation = Quaternion(0.528507, -0.490457, 0.495568, 0.484299)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(-0.0150113, -0.848113, -0.529602, -0.379274, 0.494908, -0.781804, 0.925162, 0.189129, -0.329097, -0.348058, 1.10343, -0.0343466)
+transform = Transform3D(0.0710457, -0.877597, -0.474106, -0.152083, 0.460219, -0.874683, 0.985811, 0.134246, -0.100771, -0.353691, 1.10328, 0.0119501)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(-0.0150113, -0.848113, -0.529602, -0.379274, 0.494908, -0.781804, 0.925162, 0.189129, -0.329097, -0.410599, 1.11911, -0.028903)
+transform = Transform3D(0.0710457, -0.877597, -0.474106, -0.152083, 0.460219, -0.874683, 0.985811, 0.134246, -0.100771, -0.416994, 1.11505, 0.0183569)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(-0.0150113, -0.848113, -0.529602, -0.379274, 0.494908, -0.781804, 0.925162, 0.189129, -0.329097, -0.410599, 1.11911, -0.028903)
+transform = Transform3D(0.0710457, -0.877597, -0.474106, -0.152083, 0.460219, -0.874683, 0.985811, 0.134246, -0.100771, -0.416994, 1.11505, 0.0183569)
 
 [node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)

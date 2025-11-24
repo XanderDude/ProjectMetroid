@@ -164,7 +164,7 @@ public partial class jumpState : State
 				if (Input.IsActionPressed("Slide")) msm.TransitionTo("slideState");
 				else msm.TransitionTo("groundedState");
 			}
-			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
+			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight() && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling")) //player must be pressing towards ledge, player top reset, and in range of ledge height
 			{
 
 				//GD.Print("Mantling");

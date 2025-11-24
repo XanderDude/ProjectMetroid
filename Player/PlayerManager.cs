@@ -15,7 +15,7 @@ public partial class PlayerManager : CharacterBody3D
 
 	public Item equippedRangedWeapon;
 
-	
+	Raven raven => GetNode<Raven>("%Raven");
 
 
 
@@ -128,21 +128,35 @@ public partial class PlayerManager : CharacterBody3D
 
 
 
+	if (raven != null)
+	{
+		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash"))
+		{
+			raven.ProcessMode = ProcessModeEnum.Inherit;
+			raven.Visible = true;
+		}
+		else
+		{
+			raven.ProcessMode = ProcessModeEnum.Disabled;
+			raven.Visible = false;
+		}
+	}
+
 	if (health <= 0 && !isDead)
-{
-    ProcessMode = Node.ProcessModeEnum.Always;
-    void MakeNodeBlack(Node node)
-    {
-        if (node is MeshInstance3D mesh)
-        {
-            var material = new StandardMaterial3D();
-            material.AlbedoColor = Colors.Black;
-            material.Emission = Colors.Black;
-            mesh.MaterialOverride = material;
-        }
-        foreach (Node child in node.GetChildren())
-            MakeNodeBlack(child);
-    }
+	{
+		ProcessMode = Node.ProcessModeEnum.Always;
+		void MakeNodeBlack(Node node)
+		{
+			if (node is MeshInstance3D mesh)
+			{
+				var material = new StandardMaterial3D();
+				material.AlbedoColor = Colors.Black;
+				material.Emission = Colors.Black;
+				mesh.MaterialOverride = material;
+			}
+			foreach (Node child in node.GetChildren())
+				MakeNodeBlack(child);
+		}
 
     void MakeNodeWhite(Node node)
     {

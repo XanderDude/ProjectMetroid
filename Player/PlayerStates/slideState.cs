@@ -19,7 +19,7 @@ public partial class slideState : State
 		input = Mathf.Sign(Input.GetAxis("Left", "Right"));
 		//GD.Print("Entered Slide State. Facing " + input);
 		slideTimer = 0;
-		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost) && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
 			//GD.Print("Boosting");
 			currentSlideSpeed = boostMaxSpeed * input;

@@ -41,6 +41,7 @@ public partial class attackState : State
 
 		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
+			
 			ShootArrow(true);
 		}
 	}
@@ -73,28 +74,22 @@ public partial class attackState : State
 	
 	private bool CanShoot()
 	{
-		return pm != null && 
-			   pm.HasRangedWeapon() && 
-			   arrowScene != null;
+		return true;
 	}
 	
 	private bool CanShootBomb()
 	{
-		return true;
-	}
-	
-	private bool HasBombArrows(Inventory arrowsInventory)
-	{
-		for (int i = 0; i < arrowsInventory.inventorySize; i++)
+		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
+			GameFriend.gameinstance.inventoryfriend.consumables.ContainsKey("bombArrows") &&
+			GameFriend.gameinstance.inventoryfriend.consumables["bombArrows"] > 0)
 		{
-			var item = arrowsInventory.GetInventoryItem(i);
-			if (item != null && item.ID == 6 && item.Qty > 0)
-			{
-				return true;
-			}
+			return true;
 		}
+
 		return false;
 	}
+	
+	
 	
 	
 	
@@ -141,8 +136,13 @@ public partial class attackState : State
 
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
-		//GD.Print(arrow.LinearVelocity);
 		
 		shootSoundNormal?.Play();
+
+		// Only consume after arrow is successfully created
+		if (isBombArrow)
+		{
+			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+		}
 	}
 }

@@ -19,5 +19,6 @@ public partial class Button2 : Button
            
            //GD.Print("Load was pressed!");
            savefriend.LoadUpgrades(saveslot);
+           ReleaseFocus();
         }
 }

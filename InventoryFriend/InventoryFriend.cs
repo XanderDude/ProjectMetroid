@@ -36,7 +36,7 @@ public partial class InventoryFriend : Node3D
 
     }
 
-     public bool UseConsumable(string itemName, int amount = 1)
+     public bool UseConsumable(string itemName, int amount)
     {
         if (consumables.ContainsKey(itemName) && consumables[itemName] >= amount)
         {
