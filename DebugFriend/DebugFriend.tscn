@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://dei0cf7stvxe4"]
+
+[ext_resource type="Script" uid="uid://s02veagml56s" path="res://DebugFriend/DebugFriend.cs" id="1_atxtx"]
+
+[node name="DebugFriend" type="CanvasLayer"]
+script = ExtResource("1_atxtx")
+
+[node name="BombArrowCount" type="Label" parent="."]
+offset_left = 482.0
+offset_top = 1.0
+offset_right = 596.0
+offset_bottom = 24.0
+
+[node name="AddBombArrow" type="Button" parent="BombArrowCount"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 33.0
+offset_right = 153.0
+offset_bottom = 64.0
+text = "Add BA"
+
+[node name="RoomTeleporter" type="LineEdit" parent="."]
+offset_left = 7.0
+offset_top = 13.0
+offset_right = 160.0
+offset_bottom = 44.0
+
+[node name="Upgrades" type="OptionButton" parent="."]
+offset_left = 10.0
+offset_top = 60.0
+offset_right = 120.0
+offset_bottom = 92.0
+
+[node name="AddUpgrade" type="Button" parent="Upgrades"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 54.0
+offset_bottom = 69.0
+text = "Add"
+
+[node name="RemUpgrade" type="Button" parent="Upgrades"]
+offset_left = 62.0
+offset_top = 37.0
+offset_right = 116.0
+offset_bottom = 69.0
+text = "Rem"
+
+[node name="Health" type="Label" parent="."]
+offset_left = 358.0
+offset_top = 1.0
+offset_right = 438.0
+offset_bottom = 24.0

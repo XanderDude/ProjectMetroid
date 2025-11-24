@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://de7rywevvhf7u" path="res://Environment/Levels/Dungeon_WallJumpUnlock/wj6_WJUnlock.tscn" id="5_kamup"]
 [ext_resource type="Script" uid="uid://dag8hjqmmalnu" path="res://SaveFriend/SaveFriend.cs" id="6_w6gw0"]
 [ext_resource type="Script" uid="uid://fhx2rmgkvqrj" path="res://SaveFriend/Button.cs" id="7_kamup"]
-[ext_resource type="Script" uid="uid://s02veagml56s" path="res://SaveFriend/DebugFriend.cs" id="7_vxs5w"]
+[ext_resource type="PackedScene" uid="uid://dei0cf7stvxe4" path="res://DebugFriend/DebugFriend.tscn" id="7_vxs5w"]
 [ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="8_vxs5w"]
 
 [node name="GameFriend" type="Node3D"]
@@ -17,32 +17,32 @@ script = ExtResource("1_76ouy")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178329, 0.895188, -0.0123154)
-bones/0/rotation = Quaternion(0.541904, 0.453242, 0.446873, 0.548832)
+bones/0/position = Vector3(0.0178236, 0.895014, 0.0218598)
+bones/0/rotation = Quaternion(0.551493, 0.444381, 0.455691, 0.539191)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(0.0202179, 0.104544, -0.0101329, 0.994263)
+bones/1/rotation = Quaternion(-0.114781, 0.104952, 0.00416163, 0.987822)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(0.103928, 0.0263908, 0.0587862, 0.992495)
+bones/4/rotation = Quaternion(-0.211591, 0.0131143, -0.0530373, 0.97583)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.036338, 0.059745, 0.000878818)
-bones/7/rotation = Quaternion(0.517622, 0.48172, 0.483142, -0.51632)
-bones/9/rotation = Quaternion(0.363512, -0.0817851, 0.92793, 0.0107827)
+bones/7/position = Vector3(0.0407066, 0.0606183, 0.00287813)
+bones/7/rotation = Quaternion(0.495625, 0.497552, 0.454399, -0.548014)
+bones/9/rotation = Quaternion(0.377111, -0.0403201, 0.92418, 0.0453015)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.493943, 0.577018, -0.407435, 0.507019)
-bones/11/rotation = Quaternion(0.0270218, -0.520671, -0.169275, 0.836371)
-bones/13/rotation = Quaternion(0.0552131, -0.103727, 0.0925406, 0.988751)
+bones/10/rotation = Quaternion(0.524479, 0.561453, -0.460537, 0.444519)
+bones/11/rotation = Quaternion(0.0252066, -0.520398, -0.169583, 0.836536)
+bones/13/rotation = Quaternion(0.0378985, -0.103942, 0.0675003, 0.991566)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.00638927, 0.0499211, -0.215772, 0.975146)
+bones/14/rotation = Quaternion(0.230295, 0.0147636, -0.15367, 0.960798)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
 bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.99874, 0.0317844, -0.0285374, 0.0263348)
+bones/21/rotation = Quaternion(0.997315, 0.0215867, -0.0291624, 0.063617)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.493315, -0.456264, 0.532769, 0.514413)
+bones/22/rotation = Quaternion(0.515222, -0.477537, 0.510198, 0.496188)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
@@ -51,13 +51,13 @@ bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
 bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.00674863, -0.899075, -0.437743, -0.152174, 0.431731, -0.889073, 0.988331, 0.072613, -0.133902, -0.361545, 1.099, -0.017266)
+transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.339711, 1.10257, -0.0108591)
 
 [node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.00674863, -0.899075, -0.437743, -0.152174, 0.431731, -0.889073, 0.988331, 0.072613, -0.133902, -0.425484, 1.10873, -0.0153019)
+transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.401568, 1.11741, 0.000981733)
 
 [node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.00674863, -0.899075, -0.437743, -0.152174, 0.431731, -0.889073, 0.988331, 0.072613, -0.133902, -0.425484, 1.10873, -0.0153019)
+transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.401568, 1.11741, 0.000981733)
 
 [node name="Camera3D" parent="." instance=ExtResource("3_wj4gp")]
 playerPath = NodePath("../Player")
@@ -74,54 +74,7 @@ initialRoom = ExtResource("5_kamup")
 [node name="SaveFriend" type="Node3D" parent="."]
 script = ExtResource("6_w6gw0")
 
-[node name="DebugFriend" type="CanvasLayer" parent="."]
-script = ExtResource("7_vxs5w")
-
-[node name="BombArrowCount" type="Label" parent="DebugFriend"]
-offset_left = 482.0
-offset_top = 1.0
-offset_right = 596.0
-offset_bottom = 24.0
-
-[node name="AddBombArrow" type="Button" parent="DebugFriend/BombArrowCount"]
-layout_mode = 0
-offset_left = 89.0
-offset_top = 33.0
-offset_right = 153.0
-offset_bottom = 64.0
-text = "Add BA"
-
-[node name="RoomTeleporter" type="LineEdit" parent="DebugFriend"]
-offset_left = 7.0
-offset_top = 13.0
-offset_right = 160.0
-offset_bottom = 44.0
-
-[node name="Upgrades" type="OptionButton" parent="DebugFriend"]
-offset_left = 10.0
-offset_top = 60.0
-offset_right = 120.0
-offset_bottom = 92.0
-
-[node name="AddUpgrade" type="Button" parent="DebugFriend/Upgrades"]
-layout_mode = 0
-offset_top = 37.0
-offset_right = 54.0
-offset_bottom = 69.0
-text = "Add"
-
-[node name="RemUpgrade" type="Button" parent="DebugFriend/Upgrades"]
-offset_left = 62.0
-offset_top = 37.0
-offset_right = 116.0
-offset_bottom = 69.0
-text = "Rem"
-
-[node name="Health" type="Label" parent="DebugFriend"]
-offset_left = 358.0
-offset_top = 1.0
-offset_right = 438.0
-offset_bottom = 24.0
+[node name="DebugFriend" parent="." instance=ExtResource("7_vxs5w")]
 
 [node name="Button" type="Button" parent="."]
 offset_left = 491.0
