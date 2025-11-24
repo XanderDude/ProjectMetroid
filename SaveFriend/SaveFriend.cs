@@ -5,57 +5,91 @@ using System.Text.Json;
 
 public partial class SaveFriend : Node3D
 {
-    private const string SavePath = "user://game_data.sav";
-    private HashSet<string> upgrades;
-    private Dictionary<string, int> consumables;
-    
-    
-    
-    
-    public void SaveUpgrades()
+    private string[] SavePath = new string[]{ "user://save.sav" , "user://save2.sav" , "user://save3.sav" };
+
+    RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
+
+    public class SaveData
     {
-        upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
-        var itemsList = new List<string>(upgrades);
-        string jsonString = JsonSerializer.Serialize(itemsList);
-        
-        using var saveFile = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
-        if (saveFile != null)
+        public string CurrentRoom { get; set; }
+        public List<string> Upgrades { get; set; } = new();
+        public Dictionary<string, int> Consumables { get; set; } = new();
+    }
+
+    public void SaveUpgrades(int slot)
+    {
+        if (GameFriend.gameinstance?.inventoryfriend == null)
         {
-            saveFile.StoreString(jsonString);
-            GD.Print("HashSet saved successfully!");
+            GD.PrintErr("SaveFriend: inventoryfriend is null!");
+            return;
+        }
+
+        var inv = GameFriend.gameinstance.inventoryfriend;
+        var data = new SaveData
+        {
+            CurrentRoom = roomfriend.currentRoomName,
+            Upgrades = new List<string>(inv.upgrades),
+            Consumables = new Dictionary<string, int>(inv.consumables)
+        };
+
+        string json = JsonSerializer.Serialize(data);
+        using var file = FileAccess.Open(SavePath[slot], FileAccess.ModeFlags.Write);
+        if (file != null)
+        {
+            file.StoreString(json);
+            GD.Print("Save successful!");
         }
         else
         {
             GD.PrintErr($"Failed to save: {FileAccess.GetOpenError()}");
         }
     }
-    
-    public void LoadUpgrades()
-    {
-        upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
-        if (!FileAccess.FileExists(SavePath))
+
+        public void LoadUpgrades(int slot)
         {
-            GD.Print("Save file doesn't exist yet.");
-            return;
-        }
-        
-        using var saveFile = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
-        if (saveFile != null)
-        {
-            string jsonString = saveFile.GetAsText();
-            var itemsList = JsonSerializer.Deserialize<List<string>>(jsonString);
-            
-            upgrades.Clear();
-            foreach (var item in itemsList)
+
+            if (!FileAccess.FileExists(SavePath[slot]))
             {
-                upgrades.Add(item);
+                GD.Print("No save file found.");
+                return;
             }
-            
-            GD.Print($"HashSet loaded successfully! Items: {string.Join(", ", upgrades)}");
+
+            if (GameFriend.gameinstance?.inventoryfriend == null)
+            {
+                GD.PrintErr("SaveFriend: inventoryfriend is null!");
+                return;
+            }
+
+            using var file = FileAccess.Open(SavePath[slot], FileAccess.ModeFlags.Read);
+            if (file == null)
+            {
+                GD.PrintErr($"Failed to load: {FileAccess.GetOpenError()}");
+                return;
+            }
+
+            var data = JsonSerializer.Deserialize<SaveData>(file.GetAsText());
+            if (data == null)
+            {
+                GD.PrintErr("Failed to deserialize save data.");
+                return;
+            }
+
+            var inv = GameFriend.gameinstance.inventoryfriend;
+            inv.upgrades.Clear();
+            foreach (var upgrade in data.Upgrades)
+                inv.upgrades.Add(upgrade);
+
+            inv.consumables.Clear();
+            foreach (var kv in data.Consumables)
+                inv.consumables[kv.Key] = kv.Value;
+
+            var upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
+            GD.Print("Current Upgrades:");
+            foreach (var upgrade in upgrades)
+            {
+                GD.Print("  - " + upgrade);
+            }
+            string currentRoom = data.CurrentRoom;
+            roomfriend.room_init(currentRoom);
         }
-        else
-        {
-            GD.PrintErr($"Failed to load: {FileAccess.GetOpenError()}");
-        }
-    }
 }

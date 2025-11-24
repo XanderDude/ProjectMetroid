@@ -5,7 +5,7 @@ public partial class DebugFriend : CanvasLayer
 {
 
     private Label labelbombarrow => GetNode<Label>("BombArrowCount");
-    private LineEdit roomteleporter => GetNode<LineEdit>("RoomTeleporter");
+    private OptionButton roomteleporter => GetNode<OptionButton>("RoomTeleporter");
     private RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
 
 
@@ -18,23 +18,36 @@ public partial class DebugFriend : CanvasLayer
     
     private ItemDrop.Upgrade selected;
 
+    private string selectedRoom;
+
     PlayerManager pm => GetNode<PlayerManager>("/root/GameFriend/Player");
 
     public override void _Ready()
     {
-        
         labelbombarrow.Text = "Bomb Arrows: ";
         ////////////////////////////////////////////////
-        roomteleporter.PlaceholderText = "Scene Name";
-        roomteleporter.TextChanged += OnTextChanged;
-        roomteleporter.TextSubmitted += OnTextSubmitted;
+        foreach (string name in roomfriend.tab1.Values)
+        {
+           if (!OptionHasText(roomteleporter, name))
+            roomteleporter.AddItem(name);
+        }
+        foreach (string name in roomfriend.tab2.Values)
+        {
+           if (!OptionHasText(roomteleporter, name))
+            roomteleporter.AddItem(name);
+        }
+        roomteleporter.ItemSelected += OnDropdownRoomSelected;
+            
         ////////////////////////////////////////////////
         
+        
+
         foreach (string name in Enum.GetNames(typeof(ItemDrop.Upgrade)))
         {
             upgradeselectorbutton.AddItem(name);
         }
         upgradeselectorbutton.ItemSelected += OnDropdownItemSelected;
+
         addupgradebutton.Pressed += OnAddUpgradePressed;
         removeupgradebutton.Pressed += OnRemoveUpgradePressed;
         addbombarrowbutton.Pressed += OnAddBombArrowPressed;
@@ -42,12 +55,28 @@ public partial class DebugFriend : CanvasLayer
 
 
     }
+    private bool OptionHasText(OptionButton ob, string text)
+    {
+        if (string.IsNullOrEmpty(text)) return false;
+        for (int i = 0; i < ob.GetItemCount(); i++)
+        {
+            if (string.Equals(ob.GetItemText(i), text, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
+    }
 
     public override void _Process(double delta)
     {
         healthlabel.Text = $"Health: {pm.health}";
     }
 
+    private void OnDropdownRoomSelected(long index)
+    {
+        selectedRoom = roomteleporter.GetItemText((int)index);
+        roomfriend.room_init(selectedRoom);
+        roomteleporter.ReleaseFocus();
+    }
 
    private void OnAddBombArrowPressed()
     {
@@ -87,18 +116,6 @@ public partial class DebugFriend : CanvasLayer
     }
 
 
-    private void OnTextChanged(string newText)
-    {
-        //GD.Print($"Text changed to: {newText}");
-    }
-    private void OnTextSubmitted(string text)
-    {
-        //GD.Print($"User pressed Enter: {text}");
-        
-        string currentText = roomteleporter.Text;
-
-        roomfriend.room_init(currentText);
-        upgradeselectorbutton.ReleaseFocus();
-    }
+   
 
 }

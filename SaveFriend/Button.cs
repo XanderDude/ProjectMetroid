@@ -5,7 +5,7 @@ public partial class Button : Godot.Button
 {
     
         SaveFriend savefriend;
-
+        [Export] public int saveslot = 0;
         public override void _Ready()
         {
             savefriend = GetNode<SaveFriend>("/root/GameFriend/SaveFriend");
@@ -15,7 +15,7 @@ public partial class Button : Godot.Button
         {
             
             //GD.Print("Button was pressed!");
-            savefriend.SaveUpgrades();
+            savefriend.SaveUpgrades(saveslot);
         }
 
 }

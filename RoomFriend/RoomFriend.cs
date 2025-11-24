@@ -48,6 +48,7 @@ using System.Numerics;
 			player = GetNode<CharacterBody3D>(playerpath);
         
 			room_table_init(tab1, tab2);
+			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
 
 			string fullPath = initialRoom.ResourcePath;
 			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
