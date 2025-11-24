@@ -14,7 +14,7 @@ public partial class Button : Godot.Button
         private void OnButtonPressed()
         {
             
-            GD.Print("Button was pressed!");
+            //GD.Print("Button was pressed!");
             savefriend.SaveUpgrades();
         }
 

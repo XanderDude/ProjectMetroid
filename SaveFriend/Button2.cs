@@ -15,7 +15,7 @@ public partial class Button2 : Button
     private void OnButtonPressed()
         {
            
-           GD.Print("Load was pressed!");
+           //GD.Print("Load was pressed!");
            savefriend.LoadUpgrades();
         }
 }

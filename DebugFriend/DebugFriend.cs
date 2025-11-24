@@ -51,7 +51,7 @@ public partial class DebugFriend : CanvasLayer
 
    private void OnAddBombArrowPressed()
     {
-        GD.Print("Adding 5 Bomb Arrows");
+        //GD.Print("Adding 5 Bomb Arrows");
         GameFriend.gameinstance.inventoryfriend.AddConsumable("bombArrows", 5);
 
         var inventory = GameFriend.gameinstance.inventoryfriend;
@@ -63,15 +63,15 @@ public partial class DebugFriend : CanvasLayer
     }
     private void OnAddUpgradePressed()
     {
-        GD.Print($"Adding upgrade: {selected}");
-        // Add your logic here
+        //GD.Print($"Adding upgrade: {selected}");
+        
         GameFriend.gameinstance.inventoryfriend.UnlockUpgrade(selected.ToString());
         upgradeselectorbutton.ReleaseFocus();
     }
 
     private void OnRemoveUpgradePressed()
     {
-        GD.Print($"Removing upgrade: {selected}");
+        //GD.Print($"Removing upgrade: {selected}");
         GameFriend.gameinstance.inventoryfriend.RemoveUpgrade(selected.ToString());
         upgradeselectorbutton.ReleaseFocus();
     }
@@ -82,18 +82,18 @@ public partial class DebugFriend : CanvasLayer
     private void OnDropdownItemSelected(long index)
     {
         selected = (ItemDrop.Upgrade)index;
-        GD.Print($"Selected: {selected}");     
+        //GD.Print($"Selected: {selected}");     
         upgradeselectorbutton.ReleaseFocus();
     }
 
 
     private void OnTextChanged(string newText)
     {
-        GD.Print($"Text changed to: {newText}");
+        //GD.Print($"Text changed to: {newText}");
     }
     private void OnTextSubmitted(string text)
     {
-        GD.Print($"User pressed Enter: {text}");
+        //GD.Print($"User pressed Enter: {text}");
         
         string currentText = roomteleporter.Text;
 
