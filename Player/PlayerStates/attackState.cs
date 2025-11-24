@@ -41,6 +41,7 @@ public partial class attackState : State
 
 		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
+			
 			ShootArrow(true);
 		}
 	}
@@ -73,68 +74,24 @@ public partial class attackState : State
 	
 	private bool CanShoot()
 	{
-		return pm != null && 
-			   pm.HasRangedWeapon() && 
-			   arrowScene != null;
+		return true;
 	}
 	
 	private bool CanShootBomb()
 	{
-		if (!CanShoot() || bombArrowScene == null)
+		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
+			GameFriend.gameinstance.inventoryfriend.consumables.ContainsKey("bombArrows") &&
+			GameFriend.gameinstance.inventoryfriend.consumables["bombArrows"] > 0)
 		{
-			return false;
+			return true;
 		}
-		
-		var arrowsInventory = pm.GetArrowsInventory();
-		if (arrowsInventory == null)
-		{
-			return false;
-		}
-		
-		return HasBombArrows(arrowsInventory);
-	}
-	
-	private bool HasBombArrows(Inventory arrowsInventory)
-	{
-		for (int i = 0; i < arrowsInventory.inventorySize; i++)
-		{
-			var item = arrowsInventory.GetInventoryItem(i);
-			if (item != null && item.ID == 6 && item.Qty > 0)
-			{
-				return true;
-			}
-		}
+
 		return false;
 	}
 	
-	private void ConsumeBombArrow()
-{
-	var arrowsInventory = pm.GetArrowsInventory();
-	if (arrowsInventory == null) return;
 	
-	for (int i = 0; i < arrowsInventory.inventorySize; i++)
-	{
-		var item = arrowsInventory.GetInventoryItem(i);
-		if (item != null && item.ID == 6 && item.Qty > 0)
-		{
-			item.Qty--;
-			
-			if (item.Qty <= 0)
-			{
-				arrowsInventory.RemoveInventoryItem(i);
-			}
-			else
-			{
-			
-				if (!item.IsInfinite && item.MaxQty > 1)
-				{
-					arrowsInventory.SetItemText(i, item.Qty.ToString());
-				}
-			}
-			return;
-		}
-	}
-}
+	
+	
 	
 	private Vector2 GetShootDirection()
 	{		
@@ -162,7 +119,6 @@ public partial class attackState : State
 		arrow.GravityScale = 0.0f;
 		if (isBombArrow)
 		{
-			ConsumeBombArrow();
 			arrow.GravityScale = 0.5f;
 		}
 		
@@ -180,8 +136,13 @@ public partial class attackState : State
 
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
-		//GD.Print(arrow.LinearVelocity);
 		
 		shootSoundNormal?.Play();
+
+		// Only consume after arrow is successfully created
+		if (isBombArrow)
+		{
+			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+		}
 	}
 }

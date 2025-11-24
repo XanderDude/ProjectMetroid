@@ -11,16 +11,16 @@ using System.Numerics;
 
 
 		//Need these to use Room Friend
-		[Export] public string roomfolder;
+		[Export] public string roomfolder = "RoomFriend";
 
-		[Export] public string roomprefix;
+		[Export] public string roomprefix = "mr";
 
 
 		public int currentDoorNumber = 0;
 
 		public CharacterBody3D player;
 
-		[Export] public NodePath playerpath;
+		[Export] public NodePath playerpath = "/root/Game/Player";
 
 
 		//Random pointers / checks 
@@ -37,6 +37,10 @@ using System.Numerics;
 
 		public int roomCount = 0;
 
+		
+		[Export] public PackedScene initialRoom; 
+
+		
 
 		public override void _Ready()
 		{
@@ -44,15 +48,10 @@ using System.Numerics;
 			player = GetNode<CharacterBody3D>(playerpath);
         
 			room_table_init(tab1, tab2);
-			
-			if (tab1.ContainsKey(1))
-			{
-				room_init(tab1[1]);
-			}
-			else if (tab2.ContainsKey(1))
-			{
-				room_init(tab2[1]);
-			}
+			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
+
+			string fullPath = initialRoom.ResourcePath;
+			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
 		}
 
 		
@@ -236,6 +235,8 @@ using System.Numerics;
 			{
 				targetRoom = tab2[doorID];
 			}
+			
+			
 			
 			if (targetRoom != "")
 			{

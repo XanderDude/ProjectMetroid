@@ -55,7 +55,7 @@ public partial class RavenOnPlayerState : State
 	
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch)
+		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch && raven.inventoryfriend.isUpgradeUnlocked("ravenTeleport"))
 		{
 			
 			raven.GlobalPosition = raven.player.GlobalPosition + raven.Yoffset;
