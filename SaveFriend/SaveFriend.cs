@@ -6,16 +6,16 @@ using System.Text.Json;
 public partial class SaveFriend : Node3D
 {
     private const string SavePath = "user://game_data.sav";
-    private HashSet<string> inventory;
-    
-
-    
+    private HashSet<string> upgrades;
+    private Dictionary<string, int> consumables;
     
     
-    public void SaveHashSet()
+    
+    
+    public void SaveUpgrades()
     {
-        inventory = GameFriend.gameinstance.inventoryfriend.upgrades;
-        var itemsList = new List<string>(inventory);
+        upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
+        var itemsList = new List<string>(upgrades);
         string jsonString = JsonSerializer.Serialize(itemsList);
         
         using var saveFile = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
@@ -30,9 +30,9 @@ public partial class SaveFriend : Node3D
         }
     }
     
-    public void LoadHashSet()
+    public void LoadUpgrades()
     {
-        inventory = GameFriend.gameinstance.inventoryfriend.upgrades;
+        upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
         if (!FileAccess.FileExists(SavePath))
         {
             GD.Print("Save file doesn't exist yet.");
@@ -45,13 +45,13 @@ public partial class SaveFriend : Node3D
             string jsonString = saveFile.GetAsText();
             var itemsList = JsonSerializer.Deserialize<List<string>>(jsonString);
             
-            inventory.Clear();
+            upgrades.Clear();
             foreach (var item in itemsList)
             {
-                inventory.Add(item);
+                upgrades.Add(item);
             }
             
-            GD.Print($"HashSet loaded successfully! Items: {string.Join(", ", inventory)}");
+            GD.Print($"HashSet loaded successfully! Items: {string.Join(", ", upgrades)}");
         }
         else
         {

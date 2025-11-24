@@ -15,7 +15,7 @@ public partial class Button : Godot.Button
         {
             
             GD.Print("Button was pressed!");
-            savefriend.SaveHashSet();
+            savefriend.SaveUpgrades();
         }
 
 }
