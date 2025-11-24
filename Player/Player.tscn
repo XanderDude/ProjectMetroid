@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bexgm8f7ve0mw"]
+[gd_scene load_steps=26 format=3 uid="uid://bexgm8f7ve0mw"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
 [ext_resource type="Material" uid="uid://b8yeulj3n71qh" path="res://Player/PlayerOutlineShader.tres" id="2_s0mko"]
@@ -18,15 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Mesh/Frankengirl.fbx" id="15_hqjia"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_jvfa1"]
 [ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="16_ib3vm"]
-[ext_resource type="Script" uid="uid://bt8vb1bl53887" path="res://UI/Inventory/Inventory.cs" id="17_vtj8b"]
 [ext_resource type="AnimationLibrary" uid="uid://depi7daem64rk" path="res://Player/Animation/FrankengirlAnimLib2.res" id="18_hqjia"]
-[ext_resource type="Script" uid="uid://bf52oqd6526v8" path="res://UI/Inventory/AddItem.cs" id="18_rqaa0"]
-[ext_resource type="Texture2D" uid="uid://d11nhrkri1s1w" path="res://UI/Inventory/PauseMenuWristCrossbowIcon.png" id="19_o1b5h"]
-[ext_resource type="Texture2D" uid="uid://bggi1bjei5rop" path="res://UI/Inventory/PauseMenuNormalArrowIcon.png" id="20_7w4lt"]
 [ext_resource type="PackedScene" uid="uid://d385xi4ya7ejo" path="res://Player/VFX/JumpCloudVFX.tscn" id="21_hqjia"]
-[ext_resource type="Texture2D" uid="uid://co31mwly0jpkl" path="res://UI/Inventory/PauseMenuRavenIcon.png" id="21_ww5s2"]
 [ext_resource type="AudioStream" uid="uid://lmc7aeplmkff" path="res://Sounds/WristCrossbowShoot.mp3.mp3" id="22_wo5nf"]
-[ext_resource type="Texture2D" uid="uid://cx8gjxgmg7lrm" path="res://Player/Weapons/WristCrossbow/crossbow.png" id="22_xw4su"]
 [ext_resource type="PackedScene" uid="uid://8a15cimxh6tw" path="res://Player/PlayerLight.tscn" id="26_s0mko"]
 [ext_resource type="AudioStream" uid="uid://cfgimuf5j5hsj" path="res://Player/deathsound.mp3" id="27_hqjia"]
 
@@ -133,28 +127,28 @@ CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178352, 0.895231, -0.00873479)
-bones/0/rotation = Quaternion(0.542916, 0.452322, 0.447803, 0.547832)
+bones/0/position = Vector3(0.0178299, 0.895131, -0.0161517)
+bones/0/rotation = Quaternion(0.540815, 0.454228, 0.445873, 0.549904)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(0.0228168, 0.104523, -0.0104987, 0.994205)
+bones/1/rotation = Quaternion(0.0507977, 0.104186, -0.0133734, 0.99317)
 bones/1/scale = Vector3(1, 1, 1)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(0.081244, 0.0229076, 0.0337117, 0.995861)
+bones/4/rotation = Quaternion(0.101289, 0.0229231, 0.0524318, 0.99321)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0389654, 0.060112, -0.000644683)
-bones/7/rotation = Quaternion(0.493625, 0.502033, 0.449437, -0.549821)
-bones/9/rotation = Quaternion(0.378021, -0.103814, 0.919947, 0.00457257)
+bones/7/position = Vector3(0.0383842, 0.059984, -0.000964422)
+bones/7/rotation = Quaternion(0.500863, 0.496305, 0.455755, -0.543236)
+bones/9/rotation = Quaternion(0.375268, -0.154746, 0.9135, -0.0273124)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524429, 0.561506, -0.460402, 0.444652)
+bones/10/rotation = Quaternion(0.524413, 0.561522, -0.46036, 0.444694)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.0111739, -0.514584, -0.17519, 0.839278)
-bones/13/rotation = Quaternion(0.0785502, -0.100949, 0.0604624, 0.989941)
+bones/11/rotation = Quaternion(-0.0167865, -0.513632, -0.175955, 0.839607)
+bones/13/rotation = Quaternion(0.0724031, -0.101852, 0.0691183, 0.989751)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.0663366, 0.0237273, -0.0857293, 0.993824)
+bones/14/rotation = Quaternion(0.0527411, 0.0289239, -0.0878762, 0.994314)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
@@ -162,9 +156,9 @@ bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.996482, 0.0429356, -0.0277603, 0.0664005)
+bones/21/rotation = Quaternion(0.996544, 0.0445522, -0.0276875, 0.0644071)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.502997, -0.46566, 0.523021, 0.506561)
+bones/22/rotation = Quaternion(0.499521, -0.462286, 0.526561, 0.509415)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/scale = Vector3(1, 1, 1)
@@ -176,15 +170,15 @@ bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.11319, -0.828455, -0.548498, -0.35394, 0.48221, -0.801374, 0.928394, 0.284843, -0.238642, -0.355361, 1.09658, 0.0182798)
+transform = Transform3D(0.130213, -0.826071, -0.548317, -0.354729, 0.477605, -0.803779, 0.925857, 0.299167, -0.230841, -0.35548, 1.09647, 0.0188436)
 bone_idx = 17
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.11319, -0.828455, -0.548498, -0.35394, 0.48221, -0.801374, 0.928394, 0.284843, -0.238642, -0.417043, 1.1111, 0.0313669)
+transform = Transform3D(0.130213, -0.826071, -0.548317, -0.354729, 0.477605, -0.803779, 0.925857, 0.299167, -0.230841, -0.417011, 1.11066, 0.032965)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.11319, -0.828455, -0.548498, -0.35394, 0.48221, -0.801374, 0.928394, 0.284843, -0.238642, -0.417043, 1.1111, 0.0313669)
+transform = Transform3D(0.130213, -0.826071, -0.548317, -0.354729, 0.477605, -0.803779, 0.925857, 0.299167, -0.230841, -0.417011, 1.11066, 0.032965)
 bone_idx = 19
 
 [node name="body" parent="PlayerMesh/Skeleton3D" index="3"]
@@ -223,110 +217,6 @@ volume_db = -10.442
 
 [node name="shootingsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_wo5nf")
-
-[node name="Inventory" type="Node2D" parent="."]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
-
-[node name="Crossbows" type="ItemList" parent="Inventory/CanvasLayer"]
-offset_left = 79.0
-offset_top = 52.0
-offset_right = 227.0
-offset_bottom = 119.0
-allow_rmb_select = true
-allow_search = false
-same_column_width = true
-icon_mode = 0
-script = ExtResource("17_vtj8b")
-inventorySize = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="Standard Crossbow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
-offset_left = 367.0
-offset_top = 50.0
-offset_right = 629.0
-offset_bottom = 81.0
-text = "\"You got the standard crossbow\""
-script = ExtResource("18_rqaa0")
-inv = NodePath("../Crossbows")
-itemicon = ExtResource("19_o1b5h")
-maxQty = 1
-qty = 1
-category = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Arrows" type="ItemList" parent="Inventory/CanvasLayer"]
-offset_left = 80.0
-offset_top = 197.0
-offset_right = 265.0
-offset_bottom = 254.0
-allow_rmb_select = true
-allow_search = false
-auto_height = true
-max_columns = 3
-same_column_width = true
-fixed_column_width = 55
-icon_mode = 0
-fixed_icon_size = Vector2i(50, 0)
-script = ExtResource("17_vtj8b")
-inventorySize = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="Add Normal Arrow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
-offset_left = 487.0
-offset_top = 8.0
-offset_right = 622.0
-offset_bottom = 39.0
-text = "Add Normal Arrow
-"
-script = ExtResource("18_rqaa0")
-inv = NodePath("../Arrows")
-id = 1
-itemicon = ExtResource("20_7w4lt")
-maxQty = 99
-qty = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Melees" type="ItemList" parent="Inventory/CanvasLayer"]
-offset_left = 432.0
-offset_top = 140.0
-offset_right = 580.0
-offset_bottom = 207.0
-allow_rmb_select = true
-allow_search = false
-same_column_width = true
-icon_mode = 0
-script = ExtResource("17_vtj8b")
-inventorySize = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="+Raven Sword" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
-offset_left = 445.0
-offset_top = 87.0
-offset_right = 630.0
-offset_bottom = 118.0
-text = "Raven Sword Obtained"
-script = ExtResource("18_rqaa0")
-inv = NodePath("../Melees")
-id = 1
-itemicon = ExtResource("21_ww5s2")
-maxQty = 1
-qty = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Add Bomb Arrow" type="Button" parent="Inventory/CanvasLayer" node_paths=PackedStringArray("inv")]
-offset_left = 326.0
-offset_top = 9.0
-offset_right = 466.0
-offset_bottom = 40.0
-text = "Add Bomb Arrow"
-script = ExtResource("18_rqaa0")
-inv = NodePath("../Arrows")
-id = 6
-itemicon = ExtResource("22_xw4su")
-maxQty = 99
-qty = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="deathSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

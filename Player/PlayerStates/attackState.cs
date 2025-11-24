@@ -80,18 +80,7 @@ public partial class attackState : State
 	
 	private bool CanShootBomb()
 	{
-		if (!CanShoot() || bombArrowScene == null)
-		{
-			return false;
-		}
-		
-		var arrowsInventory = pm.GetArrowsInventory();
-		if (arrowsInventory == null)
-		{
-			return false;
-		}
-		
-		return HasBombArrows(arrowsInventory);
+		return true;
 	}
 	
 	private bool HasBombArrows(Inventory arrowsInventory)
@@ -107,34 +96,7 @@ public partial class attackState : State
 		return false;
 	}
 	
-	private void ConsumeBombArrow()
-{
-	var arrowsInventory = pm.GetArrowsInventory();
-	if (arrowsInventory == null) return;
 	
-	for (int i = 0; i < arrowsInventory.inventorySize; i++)
-	{
-		var item = arrowsInventory.GetInventoryItem(i);
-		if (item != null && item.ID == 6 && item.Qty > 0)
-		{
-			item.Qty--;
-			
-			if (item.Qty <= 0)
-			{
-				arrowsInventory.RemoveInventoryItem(i);
-			}
-			else
-			{
-			
-				if (!item.IsInfinite && item.MaxQty > 1)
-				{
-					arrowsInventory.SetItemText(i, item.Qty.ToString());
-				}
-			}
-			return;
-		}
-	}
-}
 	
 	private Vector2 GetShootDirection()
 	{		
@@ -162,7 +124,6 @@ public partial class attackState : State
 		arrow.GravityScale = 0.0f;
 		if (isBombArrow)
 		{
-			ConsumeBombArrow();
 			arrow.GravityScale = 0.5f;
 		}
 		
