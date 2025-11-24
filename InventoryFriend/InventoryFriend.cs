@@ -16,8 +16,16 @@ public partial class InventoryFriend : Node3D
 
     public void UnlockUpgrade(string upgradeName)
     {
-        upgrades.Add(upgradeName);
+        if (!isUpgradeUnlocked(upgradeName)) 
+            upgrades.Add(upgradeName);
         GD.Print($"Unlocked: {upgradeName}!");
+    }
+
+    public void RemoveUpgrade(string upgradeName)
+    {
+        if (isUpgradeUnlocked(upgradeName))
+        upgrades.Remove(upgradeName);
+        GD.Print($"Removed: {upgradeName}!");
     }
 
     public bool isUpgradeUnlocked(string upgradeName)
