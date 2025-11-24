@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dei0cf7stvxe4"]
+[gd_scene load_steps=4 format=3 uid="uid://dei0cf7stvxe4"]
 
 [ext_resource type="Script" uid="uid://s02veagml56s" path="res://DebugFriend/DebugFriend.cs" id="1_atxtx"]
+[ext_resource type="Script" uid="uid://fhx2rmgkvqrj" path="res://SaveFriend/Button.cs" id="2_yoila"]
+[ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="3_dgl0o"]
 
 [node name="DebugFriend" type="CanvasLayer"]
 script = ExtResource("1_atxtx")
@@ -39,6 +41,7 @@ offset_bottom = 69.0
 text = "Add"
 
 [node name="RemUpgrade" type="Button" parent="Upgrades"]
+layout_mode = 0
 offset_left = 62.0
 offset_top = 37.0
 offset_right = 116.0
@@ -50,3 +53,24 @@ offset_left = 358.0
 offset_top = 1.0
 offset_right = 438.0
 offset_bottom = 24.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 491.0
+offset_top = 314.0
+offset_right = 559.0
+offset_bottom = 355.0
+text = "SAVE"
+script = ExtResource("2_yoila")
+
+[node name="Button2" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 0.058
+anchor_right = 0.056
+anchor_bottom = 0.225
+offset_left = 558.32
+offset_top = 293.12
+offset_right = 594.16
+offset_bottom = 274.0
+text = "LOAD"
+script = ExtResource("3_dgl0o")

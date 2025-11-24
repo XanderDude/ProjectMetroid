@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xuonqnoybpje"]
+[gd_scene load_steps=8 format=3 uid="uid://xuonqnoybpje"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_76ouy"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_w6gw0"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chnmuhpj3q4yq" path="res://RoomFriend/room_friend.tscn" id="4_kamup"]
 [ext_resource type="PackedScene" uid="uid://de7rywevvhf7u" path="res://Environment/Levels/Dungeon_WallJumpUnlock/wj6_WJUnlock.tscn" id="5_kamup"]
 [ext_resource type="Script" uid="uid://dag8hjqmmalnu" path="res://SaveFriend/SaveFriend.cs" id="6_w6gw0"]
-[ext_resource type="Script" uid="uid://fhx2rmgkvqrj" path="res://SaveFriend/Button.cs" id="7_kamup"]
 [ext_resource type="PackedScene" uid="uid://dei0cf7stvxe4" path="res://DebugFriend/DebugFriend.tscn" id="7_vxs5w"]
-[ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="8_vxs5w"]
 
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")
@@ -17,32 +15,32 @@ script = ExtResource("1_76ouy")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178236, 0.895014, 0.0218598)
-bones/0/rotation = Quaternion(0.551493, 0.444381, 0.455691, 0.539191)
+bones/0/position = Vector3(0.0178297, 0.895128, -0.0163384)
+bones/0/rotation = Quaternion(0.540766, 0.454272, 0.445828, 0.549952)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.114781, 0.104952, 0.00416163, 0.987822)
+bones/1/rotation = Quaternion(0.0507358, 0.104187, -0.013366, 0.993173)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.211591, 0.0131143, -0.0530373, 0.97583)
+bones/4/rotation = Quaternion(0.101736, 0.0230069, 0.0529047, 0.993137)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0407066, 0.0606183, 0.00287813)
-bones/7/rotation = Quaternion(0.495625, 0.497552, 0.454399, -0.548014)
-bones/9/rotation = Quaternion(0.377111, -0.0403201, 0.92418, 0.0453015)
+bones/7/position = Vector3(0.0383637, 0.0599795, -0.00097572)
+bones/7/rotation = Quaternion(0.501156, 0.49606, 0.456031, -0.542958)
+bones/9/rotation = Quaternion(0.375231, -0.154373, 0.913584, -0.027129)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524479, 0.561453, -0.460537, 0.444519)
-bones/11/rotation = Quaternion(0.0252066, -0.520398, -0.169583, 0.836536)
-bones/13/rotation = Quaternion(0.0378985, -0.103942, 0.0675003, 0.991566)
+bones/10/rotation = Quaternion(0.524413, 0.561523, -0.460358, 0.444695)
+bones/11/rotation = Quaternion(-0.0169101, -0.513611, -0.175972, 0.839614)
+bones/13/rotation = Quaternion(0.0721566, -0.101886, 0.069461, 0.989741)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.230295, 0.0147636, -0.15367, 0.960798)
+bones/14/rotation = Quaternion(0.0523364, 0.0291559, -0.0887884, 0.994247)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
 bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.997315, 0.0215867, -0.0291624, 0.063617)
+bones/21/rotation = Quaternion(0.996561, 0.0445472, -0.0276923, 0.0641399)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.515222, -0.477537, 0.510198, 0.496188)
+bones/22/rotation = Quaternion(0.499405, -0.462174, 0.526678, 0.50951)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
@@ -51,13 +49,13 @@ bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
 bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.339711, 1.10257, -0.0108591)
+transform = Transform3D(0.129387, -0.826815, -0.54739, -0.353443, 0.477317, -0.804516, 0.926465, 0.297565, -0.230474, -0.355567, 1.09648, 0.0182667)
 
 [node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.401568, 1.11741, 0.000981733)
+transform = Transform3D(0.129387, -0.826815, -0.54739, -0.353443, 0.477317, -0.804516, 0.926465, 0.297565, -0.230474, -0.417126, 1.11063, 0.0322961)
 
 [node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.104987, -0.83283, -0.543481, -0.31345, 0.490933, -0.812856, 0.943783, 0.255694, -0.209509, -0.401568, 1.11741, 0.000981733)
+transform = Transform3D(0.129387, -0.826815, -0.54739, -0.353443, 0.477317, -0.804516, 0.926465, 0.297565, -0.230474, -0.417126, 1.11063, 0.0322961)
 
 [node name="Camera3D" parent="." instance=ExtResource("3_wj4gp")]
 playerPath = NodePath("../Player")
@@ -75,27 +73,6 @@ initialRoom = ExtResource("5_kamup")
 script = ExtResource("6_w6gw0")
 
 [node name="DebugFriend" parent="." instance=ExtResource("7_vxs5w")]
-
-[node name="Button" type="Button" parent="."]
-offset_left = 491.0
-offset_top = 314.0
-offset_right = 559.0
-offset_bottom = 355.0
-text = "SAVE"
-script = ExtResource("7_kamup")
-
-[node name="Button2" type="Button" parent="."]
-anchors_preset = -1
-anchor_left = 0.012
-anchor_top = 0.058
-anchor_right = 0.056
-anchor_bottom = 0.225
-offset_left = 558.32
-offset_top = 293.12
-offset_right = 594.16
-offset_bottom = 274.0
-text = "LOAD"
-script = ExtResource("8_vxs5w")
 
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]
