@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    [Export] public PlayerManager player = null;
+    public PlayerManager player => GetNode<PlayerManager>("%Player");
 
     public Godot.AudioStreamPlayer sound = null;
     [Export] public float speed = 10.0f;

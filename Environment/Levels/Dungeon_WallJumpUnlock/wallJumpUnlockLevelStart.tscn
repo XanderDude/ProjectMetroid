@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgbcoxnembajc" path="res://Environment/Levels/Dungeon_WallJumpUnlock/wj3_SlipAndSlide.tscn" id="5_erlcl"]
 [ext_resource type="PackedScene" uid="uid://chnmuhpj3q4yq" path="res://RoomFriend/room_friend.tscn" id="5_iscwu"]
 
-[node name="Game" type="Node3D"]
+[node name="Game2" type="Node3D"]
 script = ExtResource("1_erlcl")
 
 [node name="Player" parent="." instance=ExtResource("3_128kk")]

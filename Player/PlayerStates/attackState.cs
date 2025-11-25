@@ -75,6 +75,8 @@ public partial class attackState : State
 	private bool CanShoot()
 	{
 		return true;
+
+		if (Input.IsActionPressed("SpecialShoot")) return false;
 	}
 	
 	private bool CanShootBomb()
@@ -86,6 +88,7 @@ public partial class attackState : State
 			return true;
 		}
 
+		if (Input.IsActionPressed("Shoot")) return false;
 		return false;
 	}
 	

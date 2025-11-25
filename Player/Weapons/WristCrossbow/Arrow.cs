@@ -8,6 +8,9 @@ public partial class Arrow : Node
 	[Export] public AudioStream hitSound;
 	[Export] public float damage;
 	[Export] public PackedScene arrowScene;
+
+
+
 	
 
 }
