@@ -11,11 +11,11 @@ public partial class PlayerManager : CharacterBody3D
 	public int health = 10000;
 
 	public bool isDead = false;
+	public bool isPressed = false; 
 	[Export] private ShaderMaterial invulnMat;
 
-	public Item equippedRangedWeapon;
 
-	Raven raven => GetNode<Raven>("%Raven");
+	
 
 
 
@@ -93,18 +93,7 @@ public partial class PlayerManager : CharacterBody3D
 
 	
 
-	public bool HasRangedWeapon()
-	{
-		bool hasWeapon = equippedRangedWeapon != null && equippedRangedWeapon.Category == ItemCategory.Ranged;
-		//GD.Print($"HasRangedWeapon called: {hasWeapon} (weapon: {equippedRangedWeapon?.Name ?? "null"})");
-		return hasWeapon;
-	}
 
-	public Item GetEquippedRangedWeapon()
-	{
-		//GD.Print($"GetEquippedRangedWeapon called: {equippedRangedWeapon?.Name ?? "null"}");
-		return equippedRangedWeapon;
-	}
 
 	// Method to add items to appropriate inventory
 	
@@ -126,22 +115,11 @@ public partial class PlayerManager : CharacterBody3D
 			invulnMat?.SetShaderParameter("alpha", 0f);
 		}
 
+		
 
 
-	if (raven != null)
-	{
-		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash"))
-		{
-			raven.ProcessMode = ProcessModeEnum.Inherit;
-			raven.Visible = true;
-		}
-		else
-		{
-			raven.ProcessMode = ProcessModeEnum.Disabled;
-			raven.Visible = false;
-		}
-	}
 
+	
 	if (health <= 0 && !isDead)
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;

@@ -29,7 +29,7 @@ albedo_color = Color(0.733333, 0, 0.00392157, 1)
 proximity_fade_enabled = true
 
 [node name="bombarrow" type="RigidBody3D"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 11
 collision_priority = 10.0
 axis_lock_linear_z = true

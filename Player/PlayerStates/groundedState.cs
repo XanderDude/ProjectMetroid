@@ -95,6 +95,12 @@ public partial class groundedState : State
 		{
 			asm.TransitionTo("attackState");
 		}
+
+		if (Input.IsActionPressed("forgemode"))
+		{
+			msm.TransitionTo("forgeState");
+
+		}
 		
 
 	}

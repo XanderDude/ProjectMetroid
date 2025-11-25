@@ -95,15 +95,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, -0.0204226, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0375758, 0)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(0.957668, -0.436067, -1.06898, 1.14651, 0.522387, 0.814025, 0.135635, -1.33677, 0.666818, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.02296, -0.373781, -1.03142, 1.08673, 0.538388, 0.882703, 0.150246, -1.34923, 0.637966, 0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(0.957503, 0.434438, 1.06979, -1.14631, 0.524317, 0.813064, -0.138456, -1.33655, 0.666689, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.03197, 0.367421, 1.02471, -1.07778, 0.543383, 0.890576, -0.153064, -1.34898, 0.637836, -0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]
