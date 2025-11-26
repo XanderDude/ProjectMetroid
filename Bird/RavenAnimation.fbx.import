@@ -5437,6 +5437,23 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "uid://bbbiwnk5avsf4"
 }
+},
+"nodes": {
+"PATH:Weapons/RavenAnimated": {
+"mesh_instance/layers": 2
+},
+"PATH:Weapons/RavenAnimated/Beak/BeakBottom": {
+"mesh_instance/layers": 2
+},
+"PATH:Weapons/RavenAnimated/Beak/BeakTop": {
+"mesh_instance/layers": 2
+},
+"PATH:Weapons/RavenAnimated/WingLeft": {
+"mesh_instance/layers": 2
+},
+"PATH:Weapons/RavenAnimated/WingRight": {
+"mesh_instance/layers": 2
+}
 }
 }
 fbx/importer=0
