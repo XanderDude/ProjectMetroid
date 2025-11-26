@@ -6,6 +6,7 @@ public partial class DebugFriend : CanvasLayer
 
     private Label labelbombarrow => GetNode<Label>("BombArrowCount");
     private OptionButton roomteleporter => GetNode<OptionButton>("RoomTeleporter");
+    private OptionButton doorid => GetNode<OptionButton>("IDTeleporter");
     private RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
 
 
@@ -78,6 +79,7 @@ public partial class DebugFriend : CanvasLayer
 
     private void OnDropdownRoomSelected(long index)
     {
+        //store door ids from selected room from both tables
         selectedRoom = roomteleporter.GetItemText((int)index);
         roomfriend.room_init(selectedRoom);
         roomteleporter.ReleaseFocus();

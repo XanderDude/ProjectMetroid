@@ -39,7 +39,7 @@ public partial class attackState : State
 			ShootArrow(false);
 		}
 
-		if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
+		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
 			
 			ShootArrow(true);
