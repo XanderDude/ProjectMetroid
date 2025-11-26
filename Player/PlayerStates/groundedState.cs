@@ -8,17 +8,6 @@ public partial class groundedState : State
 
 	public override void Enter()
 	{
-		/*
-		GD.Print("Entered Grounded State");
-		if (Input.IsActionPressed("Slide") && (bool)player.Get(PlayerManager.PropertyName.slideBoost) && Input.GetAxis("Left", "Right") != 0) //player wants to slide so let them
-		{
-			msm.TransitionTo("slideState");
-		}
-		else
-		{
-			//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-			player.Set(PlayerManager.PropertyName.slideBoost, false); //player is not sliding so player cannot retain boost
-		}*/
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
 		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded(); //could be crouching
 	}
@@ -65,6 +54,10 @@ public partial class groundedState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
+		if (@event.IsActionPressed("forgemode"))
+		{
+			msm.TransitionTo("forgeState");
+		}
 		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0) //only crouch when not moving
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
@@ -95,14 +88,5 @@ public partial class groundedState : State
 		{
 			asm.TransitionTo("attackState");
 		}
-
-		if (Input.IsActionPressed("forgemode"))
-		{
-			msm.TransitionTo("forgeState");
-
-		}
-		
-
 	}
-
 }

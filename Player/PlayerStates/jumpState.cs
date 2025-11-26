@@ -161,7 +161,7 @@ public partial class jumpState : State
 			if (player.IsOnFloor())
 			{
 				mantleTimer = 0;
-				if (Input.IsActionPressed("Slide")) msm.TransitionTo("slideState");
+				if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) msm.TransitionTo("slideState");
 				else msm.TransitionTo("groundedState");
 			}
 			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight() && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling")) //player must be pressing towards ledge, player top reset, and in range of ledge height
@@ -181,6 +181,10 @@ public partial class jumpState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
+		if (@event.IsActionPressed("forgemode"))
+		{
+			msm.TransitionTo("forgeState");
+		}
 		if (@event.IsActionReleased("Jump")) //check when jump is released
 		{
 			player.Set(PlayerManager.PropertyName.jumpQueued, false);
