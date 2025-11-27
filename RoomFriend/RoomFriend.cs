@@ -65,7 +65,6 @@ using System.Numerics;
 			
 			if (isTransitioning && transitionCooldown <= 0)
 			{
-				
 				TeleportToDoor(currentDoorNumber);
 
 				GD.Print("Transitioning to door number: " + currentDoorNumber);
