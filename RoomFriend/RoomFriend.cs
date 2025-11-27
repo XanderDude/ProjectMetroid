@@ -27,7 +27,7 @@ using System.Numerics;
 		public bool isTransitioning = false;
 
 		private double transitionCooldown = 0.0;
-		private const double COOLDOWN_TIME = 0.5;
+		private const double COOLDOWN_TIME = 5.0;
 		
 		public Node3D currentRoomScene; 
 		public string currentRoomName = "";
@@ -65,7 +65,13 @@ using System.Numerics;
 			
 			if (isTransitioning && transitionCooldown <= 0)
 			{
+				
 				TeleportToDoor(currentDoorNumber);
+
+				GD.Print("Transitioning to door number: " + currentDoorNumber);
+				GD.Print("Current room: " + currentRoomName);
+
+
 				isTransitioning = false;
 				transitionCooldown = COOLDOWN_TIME; // Start cooldown
 			}
@@ -79,11 +85,12 @@ using System.Numerics;
 			if (currentRoomScene != null) 
 			{
 				room_del();
-				room_player_animation();
+				player.GlobalPosition = Godot.Vector3.Zero;
+				
 			}
 			currentRoomName = name;
 			currentRoomScene = ResourceLoader.Load<PackedScene>(roomfolder + "/" + name + ".tscn").Instantiate() as Node3D;
-			CallDeferred("add_child", currentRoomScene);
+			AddChild(currentRoomScene);
 			
 			
 			
@@ -93,11 +100,6 @@ using System.Numerics;
     	{
 			currentRoomScene.Free();
     	}
-
-		public void room_player_animation()
-		{
-			player.GlobalPosition = new Godot.Vector3(0, 0, 0); // Default position if door not found
-		}
 
 		public int room_table_init(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
 		{
@@ -196,14 +198,14 @@ using System.Numerics;
 			}
 		}
 
-		private List<Node> GetAllDoorsInRoom(Node3D room)
+		private List<Node3D> GetAllDoorsInRoom(Node3D room)
 		{
-			var doors = new List<Node>();
+			var doors = new List<Node3D>();
 			FindDoorsRecursive(room, doors);
 			return doors;
 		}
 
-		private void FindDoorsRecursive(Node node, List<Node> doors)
+		private void FindDoorsRecursive(Node3D node, List<Node3D> doors)
 		{
 			
 			var variant = node.Get("DoorNumber");
@@ -211,7 +213,7 @@ using System.Numerics;
 			{
 				doors.Add(node);
 			}
-			foreach (Node child in node.GetChildren())
+			foreach (Node3D child in node.GetChildren())
 			{
 				FindDoorsRecursive(child, doors);
 			}
@@ -219,8 +221,7 @@ using System.Numerics;
 
 		 private void PrintTableSummary(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
 		{
-			//GD.Print($"Table 1 has {tab1.Count} doors, Table 2 has {tab2.Count} doors");
-			//GD.Print($"Total rooms scanned: {roomCount}");
+
 		}
 		
 		public void TeleportToDoor(int doorID)
@@ -244,8 +245,22 @@ using System.Numerics;
 			}
 			else
 			{
-				GD.PrintErr($"Door {doorID} not found or has no destination");
+				GD.PrintErr("cant load the room");
 			}
+
+			var doors = GetAllDoorsInRoom(currentRoomScene);
+			foreach (var door in doors)
+			{
+				int dID = (int)door.Get("DoorNumber");
+				if (dID == doorID)
+				{
+					player.GlobalPosition = door.GlobalPosition;
+					break;	
+				}
+			}
+			
+
+
 		}
 }
 

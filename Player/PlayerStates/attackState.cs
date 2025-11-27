@@ -44,8 +44,11 @@ public partial class attackState : State
 			
 			ShootArrow(true);
 		}
+		
+		
 	}
 	
+
 	public override void Exit()
 	{
 	}

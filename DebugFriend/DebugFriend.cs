@@ -62,7 +62,9 @@ public partial class DebugFriend : CanvasLayer
         for (int i = 0; i < ob.GetItemCount(); i++)
         {
             if (string.Equals(ob.GetItemText(i), text, StringComparison.OrdinalIgnoreCase))
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -75,6 +77,8 @@ public partial class DebugFriend : CanvasLayer
         if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))
             bombCount = cnt;
         labelbombarrow.Text = $"Bomb Arrows: {bombCount}";
+
+       
     }
 
     private void OnDropdownRoomSelected(long index)

@@ -6,6 +6,7 @@ public partial class Door : Node3D
   enum DoorOrientation { Left, Right, Up, Down }
   [Export] DoorOrientation orientation = DoorOrientation.Up;
   [Export] public int DoorNumber = 0; 
+  
 
 
   public override void _Ready()

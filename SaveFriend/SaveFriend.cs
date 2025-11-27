@@ -5,7 +5,7 @@ using System.Text.Json;
 
 public partial class SaveFriend : Node3D
 {
-    private string[] SavePath = new string[]{ "user://save.sav" , "user://save2.sav" , "user://save3.sav" };
+    private string[] SavePath = new string[]{ "res://save.sav" , "res://save2.sav" , "res://save3.sav" };
 
     RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
 

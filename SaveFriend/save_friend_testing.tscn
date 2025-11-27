@@ -16,47 +16,31 @@ script = ExtResource("1_76ouy")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178331, 0.895192, 0.0110945)
-bones/0/rotation = Quaternion(0.54848, 0.447201, 0.452918, 0.54226)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.0258868, 0.104906, -0.00529124, 0.994131)
-bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.131317, 0.00567412, -0.0173841, 0.991172)
-bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0411535, 0.0607996, 0.00569128)
-bones/7/rotation = Quaternion(0.480407, 0.507945, 0.443148, -0.561089)
-bones/9/rotation = Quaternion(0.372078, -0.0319691, 0.926796, 0.0398018)
-bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.494267, 0.591617, -0.434659, 0.465577)
-bones/11/rotation = Quaternion(0.0863398, -0.528719, -0.157604, 0.829555)
-bones/13/rotation = Quaternion(0.0174334, -0.105574, 0.0732646, 0.991556)
-bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.1259, 0.0319471, -0.182227, 0.97464)
-bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.99869, -0.00944726, -0.0302626, 0.0401724)
-bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.527907, -0.489873, 0.496245, 0.48485)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/0/position = Vector3(0.0178234, 0.89501, 0.0220318)
+bones/0/rotation = Quaternion(0.55154, 0.444337, 0.455735, 0.539142)
+bones/1/rotation = Quaternion(-0.094234, 0.10502, 0.00194058, 0.989993)
+bones/4/rotation = Quaternion(-0.199184, 0.00922702, -0.0354727, 0.979276)
+bones/7/position = Vector3(0.0414803, 0.0608652, 0.00514783)
+bones/7/rotation = Quaternion(0.479702, 0.50832, 0.442342, -0.561988)
+bones/9/rotation = Quaternion(0.376653, -0.040248, 0.924377, 0.0451585)
+bones/10/rotation = Quaternion(0.524522, 0.561409, -0.46065, 0.444408)
+bones/11/rotation = Quaternion(0.0634369, -0.525822, -0.162474, 0.83252)
+bones/13/rotation = Quaternion(-0.000227643, -0.106926, 0.0782267, 0.991185)
+bones/14/rotation = Quaternion(0.196509, 0.0115888, -0.121331, 0.972897)
+bones/21/rotation = Quaternion(0.998097, -0.000567727, -0.0302922, 0.0537035)
+bones/22/rotation = Quaternion(0.524027, -0.486099, 0.500585, 0.488383)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.054208, -0.863209, -0.501929, -0.226372, 0.478957, -0.848149, 0.972532, 0.159599, -0.169443, -0.354038, 1.10332, 0.00366887)
+transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.348849, 1.10321, -0.0320285)
+
+[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D/Crossbow" index="0"]
+transform = Transform3D(0.583154, 0.597625, -0.230999, -0.060465, 5.56663, 0.216965, 0.0405884, -0.293709, 3.6421, 0.0142065, -0.0013181, -0.00168902)
 
 [node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.054208, -0.863209, -0.501929, -0.226372, 0.478957, -0.848149, 0.972532, 0.159599, -0.169443, -0.416982, 1.11676, 0.0103331)
+transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.411361, 1.11888, -0.0262426)
 
 [node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.054208, -0.863209, -0.501929, -0.226372, 0.478957, -0.848149, 0.972532, 0.159599, -0.169443, -0.416982, 1.11676, 0.0103331)
+transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.411361, 1.11888, -0.0262426)
 
 [node name="Camera3D" parent="." instance=ExtResource("3_wj4gp")]
 playerPath = NodePath("../Player")
@@ -75,24 +59,42 @@ script = ExtResource("6_w6gw0")
 
 [node name="DebugFriend" parent="." instance=ExtResource("7_vxs5w")]
 
+[node name="RemUpgrade" parent="DebugFriend/Upgrades" index="2"]
+offset_top = 38.0
+offset_bottom = 70.0
+
 [node name="Save1" parent="DebugFriend" index="4"]
+offset_left = 499.0
+offset_top = 315.0
+offset_right = 567.0
+offset_bottom = 356.0
 saveslot = 0
 
 [node name="Load1" parent="DebugFriend" index="5"]
+offset_left = 566.32
+offset_right = 603.16
 saveslot = 0
 saveslot = 0
 
 [node name="Save2" parent="DebugFriend" index="6"]
+offset_left = 498.0
+offset_right = 566.0
 saveslot = 1
 
 [node name="Load2" parent="DebugFriend" index="7"]
+offset_left = 565.32
+offset_right = 602.16
 saveslot = 1
 saveslot = 1
 
 [node name="Save3" parent="DebugFriend" index="8"]
+offset_left = 498.0
+offset_right = 566.0
 saveslot = 2
 
 [node name="Load3" parent="DebugFriend" index="9"]
+offset_left = 565.32
+offset_right = 602.16
 saveslot = 2
 saveslot = 2
 
