@@ -4,13 +4,13 @@ using System;
 public partial class Button2 : Button
 {
     
-    SaveFriend savefriend;
+    [Export] SaveFriend savefriend;
     [Export] public int saveslot = 0;
 
 
     public override void _Ready()
     {
-        savefriend = GetNode<SaveFriend>("/root/GameFriend/SaveFriend");
+        if (savefriend == null) QueueFree();
         this.Pressed += OnButtonPressed;
     }
 

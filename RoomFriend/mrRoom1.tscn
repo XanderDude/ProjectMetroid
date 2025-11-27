@@ -8,7 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="6_kk6fl"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_vnwnp"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_hoge7"]
-[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop.tscn" id="9_6ofkd"]
+[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="9_6ofkd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 

@@ -24,10 +24,12 @@ roomfolder = "Environment/Levels/Dungeon_WallJumpUnlock"
 roomprefix = "wj"
 initialRoom = ExtResource("5_kamup")
 
-[node name="SaveFriend" type="Node3D" parent="."]
+[node name="SaveFriend" type="Node3D" parent="." node_paths=PackedStringArray("roomfriend")]
 script = ExtResource("6_w6gw0")
+roomfriend = NodePath("../RoomFriend")
 
-[node name="DebugFriend" parent="." instance=ExtResource("7_vxs5w")]
+[node name="DebugFriend" parent="." node_paths=PackedStringArray("roomfriend") instance=ExtResource("7_vxs5w")]
+roomfriend = NodePath("../RoomFriend")
 
 [node name="RemUpgrade" parent="DebugFriend/Upgrades" index="2"]
 offset_top = 38.0

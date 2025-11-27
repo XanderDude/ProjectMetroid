@@ -20,7 +20,7 @@ using System.Numerics;
 
 		public CharacterBody3D player;
 
-		[Export] public NodePath playerpath = "/root/Game/Player";
+		[Export] public NodePath playerpath = "%Player";
 
 
 		//Random pointers / checks 

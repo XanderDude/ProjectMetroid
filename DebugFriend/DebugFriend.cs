@@ -7,7 +7,7 @@ public partial class DebugFriend : CanvasLayer
     private Label labelbombarrow => GetNode<Label>("BombArrowCount");
     private OptionButton roomteleporter => GetNode<OptionButton>("RoomTeleporter");
     private OptionButton doorid => GetNode<OptionButton>("IDTeleporter");
-    private RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
+    [Export] private RoomFriend roomfriend;
 
 
     private OptionButton upgradeselectorbutton => GetNode<OptionButton>("Upgrades");
@@ -21,23 +21,28 @@ public partial class DebugFriend : CanvasLayer
 
     private string selectedRoom;
 
-    PlayerManager pm => GetNode<PlayerManager>("/root/GameFriend/Player");
+    PlayerManager pm => GetNode<PlayerManager>("%Player");
 
     public override void _Ready()
     {
+        
         labelbombarrow.Text = "Bomb Arrows: ";
         ////////////////////////////////////////////////
-        foreach (string name in roomfriend.tab1.Values)
+        if (roomfriend != null)
         {
-           if (!OptionHasText(roomteleporter, name))
-            roomteleporter.AddItem(name);
+            foreach (string name in roomfriend.tab1.Values)
+            {
+            if (!OptionHasText(roomteleporter, name))
+                roomteleporter.AddItem(name);
+            }
+            foreach (string name in roomfriend.tab2.Values)
+            {
+            if (!OptionHasText(roomteleporter, name))
+                roomteleporter.AddItem(name);
+            }
+            roomteleporter.ItemSelected += OnDropdownRoomSelected;
         }
-        foreach (string name in roomfriend.tab2.Values)
-        {
-           if (!OptionHasText(roomteleporter, name))
-            roomteleporter.AddItem(name);
-        }
-        roomteleporter.ItemSelected += OnDropdownRoomSelected;
+        
             
         ////////////////////////////////////////////////
         
@@ -85,7 +90,7 @@ public partial class DebugFriend : CanvasLayer
     {
         //store door ids from selected room from both tables
         selectedRoom = roomteleporter.GetItemText((int)index);
-        roomfriend.room_init(selectedRoom);
+        if (roomfriend != null) roomfriend.room_init(selectedRoom);
         roomteleporter.ReleaseFocus();
     }
 
