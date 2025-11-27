@@ -20,7 +20,7 @@ public partial class DebugFriend : CanvasLayer
 
     private string selectedRoom;
 
-    PlayerManager pm => GetNode<PlayerManager>("/root/GameFriend/Player");
+    PlayerManager pm => GetNode<PlayerManager>("%Player");
 
     public override void _Ready()
     {
