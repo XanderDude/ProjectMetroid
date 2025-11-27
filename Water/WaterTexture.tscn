@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnqkd4igr75m6"]
+
+[ext_resource type="Shader" uid="uid://cvmpue1jh5dlb" path="res://Water/WaterTexture.tres" id="1_8bomg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oix7f"]
+render_priority = 0
+shader = ExtResource("1_8bomg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_abatj"]
+material = SubResource("ShaderMaterial_oix7f")
+
+[node name="WaterTexture" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_abatj")
