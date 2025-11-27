@@ -12,46 +12,6 @@
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")
 
-[node name="Player" parent="." instance=ExtResource("2_w6gw0")]
-unique_name_in_owner = true
-
-[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178311, 0.895153, 0.0138492)
-bones/0/rotation = Quaternion(0.549268, 0.446466, 0.453644, 0.541461)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.0414631, 0.104978, -0.00366011, 0.993603)
-bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.156836, 0.00653384, -0.0216174, 0.987366)
-bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0414516, 0.0608708, 0.00567675)
-bones/7/rotation = Quaternion(0.478305, 0.509403, 0.441196, -0.563097)
-bones/9/rotation = Quaternion(0.391439, -0.0322849, 0.918825, 0.0386411)
-bones/10/rotation = Quaternion(0.496849, 0.590537, -0.43817, 0.460885)
-bones/11/rotation = Quaternion(0.0815344, -0.528134, -0.158664, 0.830212)
-bones/13/rotation = Quaternion(0.012607, -0.105948, 0.0746284, 0.991487)
-bones/14/rotation = Quaternion(0.145888, 0.0253734, -0.158544, 0.976185)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/rotation = Quaternion(0.998529, -0.00840852, -0.0303713, 0.0441209)
-bones/22/rotation = Quaternion(0.527224, -0.489209, 0.497013, 0.485476)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
-
-[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0402736, -0.854896, -0.517234, -0.282183, 0.486851, -0.82665, 0.958515, 0.179246, -0.221629, -0.353575, 1.10299, -0.00494406)
-
-[node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0402736, -0.854896, -0.517234, -0.282183, 0.486851, -0.82665, 0.958515, 0.179246, -0.221629, -0.416298, 1.11732, 0.00193922)
-
-[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0402736, -0.854896, -0.517234, -0.282183, 0.486851, -0.82665, 0.958515, 0.179246, -0.221629, -0.416298, 1.11732, 0.00193922)
-
 [node name="Camera3D" parent="." instance=ExtResource("3_wj4gp")]
 playerPath = NodePath("../Player")
 roomMinX = -100.0
@@ -64,35 +24,56 @@ roomfolder = "Environment/Levels/Dungeon_WallJumpUnlock"
 roomprefix = "wj"
 initialRoom = ExtResource("5_kamup")
 
-[node name="SaveFriend" type="Node3D" parent="."]
+[node name="SaveFriend" type="Node3D" parent="." node_paths=PackedStringArray("roomfriend")]
 script = ExtResource("6_w6gw0")
+roomfriend = NodePath("../RoomFriend")
 
-[node name="DebugFriend" parent="." instance=ExtResource("7_vxs5w")]
+[node name="DebugFriend" parent="." node_paths=PackedStringArray("roomfriend") instance=ExtResource("7_vxs5w")]
+roomfriend = NodePath("../RoomFriend")
+
+[node name="RemUpgrade" parent="DebugFriend/Upgrades" index="2"]
+offset_top = 38.0
+offset_bottom = 70.0
 
 [node name="Save1" parent="DebugFriend" index="4"]
+offset_left = 499.0
+offset_top = 315.0
+offset_right = 567.0
+offset_bottom = 356.0
 saveslot = 0
 
 [node name="Load1" parent="DebugFriend" index="5"]
+offset_left = 566.32
+offset_right = 603.16
 saveslot = 0
 saveslot = 0
 
 [node name="Save2" parent="DebugFriend" index="6"]
+offset_left = 498.0
+offset_right = 566.0
 saveslot = 1
 
 [node name="Load2" parent="DebugFriend" index="7"]
+offset_left = 565.32
+offset_right = 602.16
 saveslot = 1
 saveslot = 1
 
 [node name="Save3" parent="DebugFriend" index="8"]
+offset_left = 498.0
+offset_right = 566.0
 saveslot = 2
 
 [node name="Load3" parent="DebugFriend" index="9"]
+offset_left = 565.32
+offset_right = 602.16
 saveslot = 2
 saveslot = 2
 
 [node name="Raven" parent="." instance=ExtResource("8_kamup")]
 unique_name_in_owner = true
 
-[editable path="Player"]
-[editable path="Player/PlayerMesh"]
+[node name="Player" parent="." instance=ExtResource("2_w6gw0")]
+unique_name_in_owner = true
+
 [editable path="DebugFriend"]

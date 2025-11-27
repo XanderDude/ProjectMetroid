@@ -5,10 +5,16 @@ using System.Text.Json;
 
 public partial class SaveFriend : Node3D
 {
-    private string[] SavePath = new string[]{ "user://save.sav" , "user://save2.sav" , "user://save3.sav" };
+    private string[] SavePath = new string[]{ "res://save.sav" , "res://save2.sav" , "res://save3.sav" };
 
-    RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
+    [Export] RoomFriend roomfriend;
 
+
+
+    public override void _Ready()
+    {
+        
+    }
     public class SaveData
     {
         public string CurrentRoom { get; set; }
@@ -18,6 +24,11 @@ public partial class SaveFriend : Node3D
 
     public void SaveUpgrades(int slot)
     {
+        if (roomfriend == null)
+        {
+            GD.PrintErr("SaveFriend: roomfriend is null!");
+            return;
+        }
         if (GameFriend.gameinstance?.inventoryfriend == null)
         {
             GD.PrintErr("SaveFriend: inventoryfriend is null!");
@@ -90,6 +101,6 @@ public partial class SaveFriend : Node3D
                 GD.Print("  - " + upgrade);
             }
             string currentRoom = data.CurrentRoom;
-            roomfriend.room_init(currentRoom);
+            if (roomfriend != null) roomfriend.room_init(currentRoom);
         }
 }
