@@ -12,36 +12,6 @@
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")
 
-[node name="Player" parent="." instance=ExtResource("2_w6gw0")]
-unique_name_in_owner = true
-
-[node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178234, 0.89501, 0.0220318)
-bones/0/rotation = Quaternion(0.55154, 0.444337, 0.455735, 0.539142)
-bones/1/rotation = Quaternion(-0.094234, 0.10502, 0.00194058, 0.989993)
-bones/4/rotation = Quaternion(-0.199184, 0.00922702, -0.0354727, 0.979276)
-bones/7/position = Vector3(0.0414803, 0.0608652, 0.00514783)
-bones/7/rotation = Quaternion(0.479702, 0.50832, 0.442342, -0.561988)
-bones/9/rotation = Quaternion(0.376653, -0.040248, 0.924377, 0.0451585)
-bones/10/rotation = Quaternion(0.524522, 0.561409, -0.46065, 0.444408)
-bones/11/rotation = Quaternion(0.0634369, -0.525822, -0.162474, 0.83252)
-bones/13/rotation = Quaternion(-0.000227643, -0.106926, 0.0782267, 0.991185)
-bones/14/rotation = Quaternion(0.196509, 0.0115888, -0.121331, 0.972897)
-bones/21/rotation = Quaternion(0.998097, -0.000567727, -0.0302922, 0.0537035)
-bones/22/rotation = Quaternion(0.524027, -0.486099, 0.500585, 0.488383)
-
-[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.348849, 1.10321, -0.0320285)
-
-[node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D/Crossbow" index="0"]
-transform = Transform3D(0.583154, 0.597625, -0.230999, -0.060465, 5.56663, 0.216965, 0.0405884, -0.293709, 3.6421, 0.0142065, -0.0013181, -0.00168902)
-
-[node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.411361, 1.11888, -0.0262426)
-
-[node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(-0.010247, -0.847109, -0.531321, -0.380417, 0.494697, -0.781382, 0.924759, 0.194116, -0.327323, -0.411361, 1.11888, -0.0262426)
-
 [node name="Camera3D" parent="." instance=ExtResource("3_wj4gp")]
 playerPath = NodePath("../Player")
 roomMinX = -100.0
@@ -101,6 +71,7 @@ saveslot = 2
 [node name="Raven" parent="." instance=ExtResource("8_kamup")]
 unique_name_in_owner = true
 
-[editable path="Player"]
-[editable path="Player/PlayerMesh"]
+[node name="Player" parent="." instance=ExtResource("2_w6gw0")]
+unique_name_in_owner = true
+
 [editable path="DebugFriend"]
