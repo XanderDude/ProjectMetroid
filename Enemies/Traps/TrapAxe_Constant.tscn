@@ -26,6 +26,7 @@ transform = Transform3D(-1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 0, 1, 0, 3, 
 transform = Transform3D(-1, 0.000407306, 0, -0.000407306, -1, 0, 0, 0, 1, -0.499179, -1.99739, 0)
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 script = ExtResource("3_jjyyq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HalberdTrap/TrapPivot/AxeHurtBox"]
@@ -38,7 +39,7 @@ libraries = {
 }
 playback_auto_capture = false
 
-[connection signal="body_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnCollide"]
-[connection signal="body_exited" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnLeaveCollider"]
+[connection signal="area_entered" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnCollide"]
+[connection signal="area_exited" from="HalberdTrap/TrapPivot/AxeHurtBox" to="HalberdTrap/TrapPivot/AxeHurtBox" method="OnLeaveCollider"]
 
 [editable path="HalberdTrap"]

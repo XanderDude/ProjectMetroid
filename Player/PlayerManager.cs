@@ -24,6 +24,7 @@ public partial class PlayerManager : CharacterBody3D
 		get { return health; }
 		set
 		{
+			if (value < health && invulnTimer > 0) return;
 			if (value < health) invulnTimer = _invulnTimer;
 			health = value;
 			if (health <= 0)
