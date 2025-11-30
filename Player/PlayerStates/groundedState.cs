@@ -5,7 +5,7 @@ public partial class groundedState : State
 {
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
-
+	public SlideVertColCheck vertColCheck;
 	public override void Enter()
 	{
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
@@ -19,8 +19,8 @@ public partial class groundedState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		
-		
-		if (Mathf.Abs(player.Velocity.X) >= .1f) {
+		if (msm._currentState.Name == "groundedState" && Mathf.Abs(player.Velocity.X) >= .1f) 
+		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		}
 		if (!player.IsOnFloor()) //immediately switch to jump state
@@ -58,22 +58,32 @@ public partial class groundedState : State
 		{
 			msm.TransitionTo("forgeState");
 		}
-		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0) //only crouch when not moving
+		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0 && msm._currentState.Name == "groundedState") //only crouch when not moving
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 			msm.TransitionTo("crouchState");
 		}
-		if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
+		if (vertColCheck != null && vertColCheck.RayIsColliding())
+        {
+			GD.Print("Standing blocked");
+        }
+		else if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 			msm.TransitionTo("groundedState");
 		}
+		
 		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
 		}
-		if (@event.IsActionPressed("Jump"))
+		if (vertColCheck != null && vertColCheck.RayIsColliding())
+        {
+			GD.Print("Jump Blocked");
+            //Ceiling blocking jump
+        }
+		else if (@event.IsActionPressed("Jump")) 
 		{
 			player.Set("jumpQueued", true);
 			msm.TransitionTo("jumpState");

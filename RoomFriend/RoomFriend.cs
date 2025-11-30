@@ -83,7 +83,7 @@ using System.Numerics;
 			}
 			currentRoomName = name;
 			currentRoomScene = ResourceLoader.Load<PackedScene>(roomfolder + "/" + name + ".tscn").Instantiate() as Node3D;
-			CallDeferred("add_child", currentRoomScene);
+			AddChild(currentRoomScene);
 			
 			
 			
