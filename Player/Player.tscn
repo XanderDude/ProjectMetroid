@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bexgm8f7ve0mw"]
+[gd_scene load_steps=24 format=3 uid="uid://bexgm8f7ve0mw"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
 [ext_resource type="Material" uid="uid://b8yeulj3n71qh" path="res://Player/PlayerOutlineShader.tres" id="2_s0mko"]
@@ -11,19 +11,16 @@
 [ext_resource type="Script" uid="uid://6gcg572gqiwb" path="res://Player/PlayerStates/AttackStateMachine.cs" id="9_bgaaw"]
 [ext_resource type="Script" uid="uid://cupqpycn8w34t" path="res://Environment/Rooms/DeathState.cs" id="9_x70vp"]
 [ext_resource type="Script" uid="uid://d0fuh6u8aahvr" path="res://Player/PlayerStates/noattackState.cs" id="10_gv3fu"]
-[ext_resource type="Script" path="res://Player/PlayerStates/forgeState.cs" id="11_7uipr"]
+[ext_resource type="Script" uid="uid://c8mopga6yjf8p" path="res://Player/PlayerStates/forgeState.cs" id="11_7uipr"]
 [ext_resource type="Script" uid="uid://c85uww7hrdt1j" path="res://Player/PlayerStates/attackState.cs" id="11_xu7fl"]
 [ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/NormalArrow.tscn" id="12_yifbt"]
 [ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="13_4n5ed"]
 [ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="13_s0mko"]
 [ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Mesh/Frankengirl.fbx" id="15_hqjia"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_jvfa1"]
-[ext_resource type="AudioStream" uid="uid://c348xslybc6rn" path="res://Sounds/jumpSound.mp3" id="16_ib3vm"]
 [ext_resource type="AnimationLibrary" uid="uid://depi7daem64rk" path="res://Player/Animation/FrankengirlAnimLib2.res" id="18_hqjia"]
 [ext_resource type="PackedScene" uid="uid://d385xi4ya7ejo" path="res://Player/VFX/JumpCloudVFX.tscn" id="21_hqjia"]
-[ext_resource type="AudioStream" uid="uid://lmc7aeplmkff" path="res://Sounds/WristCrossbowShoot.mp3.mp3" id="22_wo5nf"]
 [ext_resource type="PackedScene" uid="uid://8a15cimxh6tw" path="res://Player/PlayerLight.tscn" id="26_s0mko"]
-[ext_resource type="AudioStream" uid="uid://cfgimuf5j5hsj" path="res://Player/SFX/deathsound.mp3" id="27_hqjia"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.25
@@ -75,9 +72,8 @@ script = ExtResource("4_s0mko")
 groundMaxSpeed = 0.0
 groundAcceleration = 0.0
 
-[node name="jumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
+[node name="jumpState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("5_hqjia")
-jumpySound = NodePath("../../jumpSound")
 
 [node name="slideState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("6_x70vp")
@@ -91,7 +87,7 @@ script = ExtResource("7_wo5nf")
 
 [node name="walljumpState" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jumpySound")]
 script = ExtResource("8_croik")
-jumpySound = NodePath("../../jumpSound")
+jumpySound = NodePath("")
 
 [node name="deathState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("9_x70vp")
@@ -131,28 +127,28 @@ CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178199, 0.894944, 0.0246499)
-bones/0/rotation = Quaternion(0.551678, 0.444207, 0.455861, 0.539001)
+bones/0/position = Vector3(0.0178373, 0.895271, 0.00150514)
+bones/0/rotation = Quaternion(0.545851, 0.449634, 0.450501, 0.544908)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.116154, 0.104945, 0.00430636, 0.987662)
+bones/1/rotation = Quaternion(-0.00267508, 0.104749, -0.00770351, 0.994465)
 bones/1/scale = Vector3(1, 1, 1)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.211169, 0.0126994, -0.0512224, 0.976024)
+bones/4/rotation = Quaternion(-0.0210154, 0.00117878, -0.00278952, 0.999775)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0410019, 0.060708, 0.00355666)
-bones/7/rotation = Quaternion(0.495475, 0.497115, 0.45488, -0.548147)
-bones/9/rotation = Quaternion(0.377218, -0.0403178, 0.924136, 0.0453076)
+bones/7/position = Vector3(0.038046, 0.0601376, 0.00466192)
+bones/7/rotation = Quaternion(0.494559, 0.4986, 0.45935, -0.543883)
+bones/9/rotation = Quaternion(0.357655, -0.0315987, 0.932466, 0.0399025)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524488, 0.561444, -0.46056, 0.444496)
+bones/10/rotation = Quaternion(0.486131, 0.590363, -0.41593, 0.492087)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.0330142, -0.521564, -0.168234, 0.83581)
-bones/13/rotation = Quaternion(0.0183855, -0.105489, 0.073088, 0.99156)
+bones/11/rotation = Quaternion(0.0999806, -0.530315, -0.154483, 0.82759)
+bones/13/rotation = Quaternion(0.0419497, -0.104352, 0.0934886, 0.989248)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.227364, 0.0138602, -0.149042, 0.962237)
+bones/14/rotation = Quaternion(0.0520242, 0.0703251, -0.293023, 0.952095)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
@@ -160,9 +156,9 @@ bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.99748, 0.0167061, -0.0294608, 0.0623474)
+bones/21/rotation = Quaternion(0.997443, -0.029158, -0.0247074, -0.0603965)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.51724, -0.479498, 0.508024, 0.494425)
+bones/22/rotation = Quaternion(0.518591, -0.480812, 0.506558, 0.493236)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/scale = Vector3(1, 1, 1)
@@ -174,15 +170,15 @@ bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0556961, -0.841072, -0.538048, -0.330967, 0.492865, -0.804702, 0.941998, 0.222895, -0.250916, -0.341774, 1.10334, -0.0215247)
+transform = Transform3D(0.0519565, -0.919379, -0.389926, -0.0260583, 0.389073, -0.920839, 0.99831, 0.0580043, -0.00374236, -0.353028, 1.10073, 0.000461496)
 bone_idx = 17
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0556961, -0.841072, -0.538048, -0.330967, 0.492865, -0.804702, 0.941998, 0.222895, -0.250916, -0.404039, 1.11846, -0.0125016)
+transform = Transform3D(0.0519565, -0.919379, -0.389926, -0.0260583, 0.389073, -0.920839, 0.99831, 0.0580043, -0.00374236, -0.417309, 1.10722, 0.0040052)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0556961, -0.841072, -0.538048, -0.330967, 0.492865, -0.804702, 0.941998, 0.222895, -0.250916, -0.404039, 1.11846, -0.0125016)
+transform = Transform3D(0.0519565, -0.919379, -0.389926, -0.0260583, 0.389073, -0.920839, 0.99831, 0.0580043, -0.00374236, -0.417309, 1.10722, 0.0040052)
 bone_idx = 19
 
 [node name="body" parent="PlayerMesh/Skeleton3D" index="3"]
@@ -214,17 +210,5 @@ parameters/Running/RunSpeed/scale = 2.3
 
 [node name="PlayerLight" parent="." instance=ExtResource("26_s0mko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="jumpSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("16_ib3vm")
-volume_db = -10.442
-
-[node name="shootingsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_wo5nf")
-
-[node name="deathSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("27_hqjia")
 
 [editable path="PlayerMesh"]

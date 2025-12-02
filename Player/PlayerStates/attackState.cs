@@ -8,7 +8,6 @@ public partial class attackState : State
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.12f;
 	private float shootCooldownTimer = 0.0f;
-	private Godot.AudioStreamPlayer shootSoundNormal, shootSoundBomb;
 	private Node3D crossbowMesh;
 	private Node3D arrowSpawnLoc;
 
@@ -28,7 +27,6 @@ public partial class attackState : State
 			crossbowMesh = pm.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
 			arrowSpawnLoc = (Node3D)crossbowMesh.GetChild(0);
 		}
-		shootSoundNormal = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
 	}
 	
 	public override void Enter()
@@ -143,7 +141,7 @@ public partial class attackState : State
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
 		
-		shootSoundNormal?.Play();
+		SoundFriend.Play("player_normal_shoot_SFX");
 
 		// Only consume after arrow is successfully created
 		if (isBombArrow)

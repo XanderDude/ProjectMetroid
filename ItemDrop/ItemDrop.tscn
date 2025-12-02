@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bn7qo37oaqxvj"]
 
-[ext_resource type="AudioStream" uid="uid://chm6qj14ul5cv" path="res://ItemDrop/da_vinky.mp3" id="2_jf20d"]
+[ext_resource type="AudioStream" uid="uid://chm6qj14ul5cv" path="res://Sounds/da_vinky.mp3" id="2_jf20d"]
 [ext_resource type="Script" uid="uid://dofk3lm3pf6cd" path="res://ItemDrop/ItemDrop.cs" id="2_u2oce"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yghj7"]
