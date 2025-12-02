@@ -10,6 +10,15 @@ public partial class attackState : State
 	private float shootCooldownTimer = 0.0f;
 	private Node3D crossbowMesh;
 	private Node3D arrowSpawnLoc;
+	private float timer = 0.0f;
+
+	[Export] private float HALF_CHARGE_TIME = 0.4f;
+	[Export] private float FULL_CHARGE_TIME = 0.8f;
+
+	private bool half_charge_shot = false;
+	private bool full_charge_shot = false;
+
+	
 
 	public override void _Ready()
 	{
@@ -31,17 +40,21 @@ public partial class attackState : State
 	
 	public override void Enter()
 	{
+		half_charge_shot = false;
+		full_charge_shot = false;
+		timer = 0.0f;
 		shootCooldownTimer = 0.0f;
 		if (Input.IsActionPressed("Shoot") && CanShoot())
 		{
 			ShootArrow(false);
 		}
-
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
 			
 			ShootArrow(true);
 		}
+
+		
 		
 		
 	}
@@ -49,12 +62,108 @@ public partial class attackState : State
 
 	public override void Exit()
 	{
+		if (full_charge_shot == true && CanShoot())
+		{
+			GD.Print("Shooting Full Charge Shot");
+			ShootFullCharge();
+		}
+		else if (half_charge_shot == true && CanShoot())
+		{
+			GD.Print("Shooting Half Charge Shot");
+			ShootHalfCharge();
+		}
+		
+
+
+	}
+
+
+	public void ShootHalfCharge()
+	{
+		
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		PackedScene projectileScene = arrowScene;
+		
+		if (projectileScene == null || arrowSpawnLoc == null)
+		{
+			return;
+		}
+		
+		var arrow = projectileScene.Instantiate() as RigidBody3D;
+		arrow.GravityScale = 0.0f;
+		
+		
+		player.GetParent().AddChild(arrow);
+		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
+
+		Vector2 shootDirection = GetShootDirection();
+		
+		float dot = shootDirection.Dot(new Vector2(Mathf.Abs(shootDirection.X), 0));
+		float rotation = (shootDirection.Y >= 0)
+		? (1f - dot) / 4f 
+		: (dot + 3f) / 4f;
+
+		rotation *= 360f;
+
+		arrow.RotationDegrees = new(0, 0, rotation);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * 0.03f, shootDirection.Y * arrowSpeed * 0.03f, 0);
+		
+		SoundFriend.Play("player_death_SFX");
+		
+
+	
+	}
+
+
+
+	public void ShootFullCharge()
+	{
+		
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		PackedScene projectileScene = arrowScene;
+		
+		if (projectileScene == null || arrowSpawnLoc == null)
+		{
+			return;
+		}
+		
+		var arrow = projectileScene.Instantiate() as RigidBody3D;
+		arrow.GravityScale = 0.0f;
+		
+		
+		player.GetParent().AddChild(arrow);
+		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
+
+		Vector2 shootDirection = GetShootDirection();
+		
+		float dot = shootDirection.Dot(new Vector2(Mathf.Abs(shootDirection.X), 0));
+		float rotation = (shootDirection.Y >= 0)
+		? (1f - dot) / 4f 
+		: (dot + 3f) / 4f;
+
+		rotation *= 360f;
+
+		arrow.RotationDegrees = new(0, 0, rotation);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * 5.0f, shootDirection.Y * arrowSpeed * 5.0f, 0);
+		
+		SoundFriend.Play("raven_launch_SFX");
+		
+
+	
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
+		timer += delta;
 		shootCooldownTimer += delta;
-		if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
+		if (shootCooldownTimer >= shootCooldown && Input.IsActionJustReleased("Shoot")) asm.TransitionTo("noattackState");
+		else
+		{
+			if (timer >= FULL_CHARGE_TIME) full_charge_shot = true; 
+			else if (timer >= HALF_CHARGE_TIME) half_charge_shot = true;
+			
+			
+		}
 	}
 
 
@@ -148,5 +257,6 @@ public partial class attackState : State
 		{
 			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
 		}
+
 	}
 }

@@ -98,6 +98,7 @@ using System.Numerics;
 		public void room_del()
     	{
 			currentRoomScene.Free();
+			
     	}
 
 		public int room_table_init(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
