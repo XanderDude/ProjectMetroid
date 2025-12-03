@@ -13,7 +13,7 @@ shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
 disable_ambient_light = true
-albedo_color = Color(0.403922, 0.286275, 0.207843, 1)
+albedo_color = Color(0.747974, 0.576709, 0.464434, 1)
 grow = true
 grow_amount = 0.003
 proximity_fade_enabled = true
@@ -37,5 +37,6 @@ light_energy = 6.98
 
 [node name="ArrowNormalMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-9.95947e-08, 1.07254e-07, 1, 2.27846, -1.07254e-07, 4.37115e-08, 9.95945e-08, 2.45369, -4.37114e-08, -0.000376441, 0, 0)
+layers = 2
 material_overlay = SubResource("StandardMaterial3D_jo3q1")
 mesh = ExtResource("3_yq1wc")
