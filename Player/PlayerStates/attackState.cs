@@ -5,12 +5,14 @@ public partial class attackState : State
 {
 	[Export] public PackedScene arrowScene;
 	[Export] public PackedScene bombArrowScene;
+	[Export] private string shootNormalArrowSFX = "player_normal_shoot_SFX", shootBombArrowSFX = "player_normal_shoot_SFX",
+		shootHalfChargeSFX = "player_normal_shoot_SFX", shootFullChargeSFX = "player_normal_shoot_SFX";
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.12f;
 	private float shootCooldownTimer = 0.0f;
 	private Node3D crossbowMesh;
 	private Node3D arrowSpawnLoc;
-	private float timer = 0.0f;
+	private float chargingTimer = 0.0f;
 
 	[Export] private float HALF_CHARGE_TIME = 0.4f;
 	[Export] private float FULL_CHARGE_TIME = 0.8f;
@@ -42,39 +44,45 @@ public partial class attackState : State
 	{
 		half_charge_shot = false;
 		full_charge_shot = false;
-		timer = 0.0f;
+		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;
-		if (Input.IsActionPressed("Shoot") && CanShoot())
+		if (Input.IsActionPressed("Shoot"))
 		{
 			ShootArrow(false);
 		}
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
-			
 			ShootArrow(true);
 		}
-
-		
-		
-		
 	}
 	
 
 	public override void Exit()
 	{
-		if (full_charge_shot == true && CanShoot())
+		if (full_charge_shot == true)
 		{
 			GD.Print("Shooting Full Charge Shot");
 			ShootFullCharge();
 		}
-		else if (half_charge_shot == true && CanShoot())
+		else if (half_charge_shot == true)
 		{
 			GD.Print("Shooting Half Charge Shot");
 			ShootHalfCharge();
 		}
-		
+	}
 
-
+	public override void PhysicsUpdate(float delta)
+	{
+		chargingTimer += delta;
+		shootCooldownTimer += delta;
+		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
+		else
+		{
+			if (chargingTimer >= FULL_CHARGE_TIME) full_charge_shot = true; 
+			else if (chargingTimer >= HALF_CHARGE_TIME) half_charge_shot = true;
+			
+			
+		}
 	}
 
 
@@ -146,49 +154,9 @@ public partial class attackState : State
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * 5.0f, shootDirection.Y * arrowSpeed * 5.0f, 0);
 		
-		SoundFriend.Play("raven_launch_SFX");
-		
-
-	
+		SoundFriend.Play("raven_launch_SFX");	
 	}
 
-	public override void PhysicsUpdate(float delta)
-	{
-		timer += delta;
-		shootCooldownTimer += delta;
-		if (shootCooldownTimer >= shootCooldown && Input.IsActionJustReleased("Shoot")) asm.TransitionTo("noattackState");
-		else
-		{
-			if (timer >= FULL_CHARGE_TIME) full_charge_shot = true; 
-			else if (timer >= HALF_CHARGE_TIME) half_charge_shot = true;
-			
-			
-		}
-	}
-
-
-	
-	public override void HandleInput(InputEvent @event)
-	{
-		/*
-		if (@event.IsActionReleased("Shoot") && !Input.IsActionPressed("SpecialShoot"))
-		{
-			asm.TransitionTo("noattackState");
-		}
-
-		if (@event.IsActionReleased("SpecialShoot") && !Input.IsActionPressed("Shoot"))
-		{
-			asm.TransitionTo("noattackState");
-		}*/
-	}
-	
-	private bool CanShoot()
-	{
-		return true;
-
-		if (Input.IsActionPressed("SpecialShoot")) return false;
-	}
-	
 	private bool CanShootBomb()
 	{
 		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
@@ -200,11 +168,7 @@ public partial class attackState : State
 
 		if (Input.IsActionPressed("Shoot")) return false;
 		return false;
-	}
-	
-	
-	
-	
+	}	
 	
 	private Vector2 GetShootDirection()
 	{		
@@ -250,13 +214,17 @@ public partial class attackState : State
 		arrow.RotationDegrees = new(0, 0, rotation);
 		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
 		
-		SoundFriend.Play("player_normal_shoot_SFX");
+		SoundFriend.Play(shootNormalArrowSFX);
 
 		// Only consume after arrow is successfully created
 		if (isBombArrow)
 		{
 			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
 		}
+
+	}
+		public override void HandleInput(InputEvent @event)
+	{
 
 	}
 }
