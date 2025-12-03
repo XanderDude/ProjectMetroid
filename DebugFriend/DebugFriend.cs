@@ -6,7 +6,8 @@ public partial class DebugFriend : CanvasLayer
 
     private Label labelbombarrow => GetNode<Label>("BombArrowCount");
     private OptionButton roomteleporter => GetNode<OptionButton>("RoomTeleporter");
-    private RoomFriend roomfriend => GetNode<RoomFriend>("/root/GameFriend/RoomFriend");
+    private OptionButton doorid => GetNode<OptionButton>("IDTeleporter");
+    [Export] private RoomFriend roomfriend;
 
 
     private OptionButton upgradeselectorbutton => GetNode<OptionButton>("Upgrades");
@@ -24,19 +25,24 @@ public partial class DebugFriend : CanvasLayer
 
     public override void _Ready()
     {
+        
         labelbombarrow.Text = "Bomb Arrows: ";
         ////////////////////////////////////////////////
-        foreach (string name in roomfriend.tab1.Values)
+        if (roomfriend != null)
         {
-           if (!OptionHasText(roomteleporter, name))
-            roomteleporter.AddItem(name);
+            foreach (string name in roomfriend.tab1.Values)
+            {
+            if (!OptionHasText(roomteleporter, name))
+                roomteleporter.AddItem(name);
+            }
+            foreach (string name in roomfriend.tab2.Values)
+            {
+            if (!OptionHasText(roomteleporter, name))
+                roomteleporter.AddItem(name);
+            }
+            roomteleporter.ItemSelected += OnDropdownRoomSelected;
         }
-        foreach (string name in roomfriend.tab2.Values)
-        {
-           if (!OptionHasText(roomteleporter, name))
-            roomteleporter.AddItem(name);
-        }
-        roomteleporter.ItemSelected += OnDropdownRoomSelected;
+        
             
         ////////////////////////////////////////////////
         
@@ -61,7 +67,9 @@ public partial class DebugFriend : CanvasLayer
         for (int i = 0; i < ob.GetItemCount(); i++)
         {
             if (string.Equals(ob.GetItemText(i), text, StringComparison.OrdinalIgnoreCase))
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -74,12 +82,15 @@ public partial class DebugFriend : CanvasLayer
         if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))
             bombCount = cnt;
         labelbombarrow.Text = $"Bomb Arrows: {bombCount}";
+
+       
     }
 
     private void OnDropdownRoomSelected(long index)
     {
+        //store door ids from selected room from both tables
         selectedRoom = roomteleporter.GetItemText((int)index);
-        roomfriend.room_init(selectedRoom);
+        if (roomfriend != null) roomfriend.room_init(selectedRoom);
         roomteleporter.ReleaseFocus();
     }
 

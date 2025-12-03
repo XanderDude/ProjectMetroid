@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_wnbbv"]
 [ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="16_328w1"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="17_bwo4n"]
-[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop.tscn" id="18_uaptb"]
+[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="18_uaptb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yfrp"]
 size = Vector3(26, 0.5, 2)

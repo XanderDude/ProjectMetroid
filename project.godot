@@ -21,6 +21,10 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundFriend="*res://SoundFriend/SoundFriend.tscn"
+
 [display]
 
 window/size/viewport_width=640

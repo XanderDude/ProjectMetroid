@@ -15,7 +15,6 @@ public partial class jumpState : State
 	public float jumpHeight = 0.0f; //player's current jump height position
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
-	[Export] Godot.AudioStreamPlayer jumpySound;
 
 	private bool isTouching() {
 		if (player.GetSlideCollisionCount() != 0) {
@@ -93,8 +92,7 @@ public partial class jumpState : State
 		{
 			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0);
 			jumpHeight = 0.0f;
-			jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
-			jumpySound.Play();
+			SoundFriend.Play("player_jump_SFX");
 			if (Input.GetAxis("Left", "Right") == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost

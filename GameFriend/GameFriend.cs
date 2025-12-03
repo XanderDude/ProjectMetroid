@@ -10,6 +10,7 @@ public partial class GameFriend : Node3D
 
     public override void _Ready()
     {
+        SoundFriend.Play("background_SFX");
         gameinstance = this;
         inventoryfriend = new InventoryFriend();
         savefriend.LoadUpgrades(0);

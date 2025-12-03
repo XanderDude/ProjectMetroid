@@ -35,6 +35,7 @@ public partial class ItemDrop : CharacterBody3D
             GD.Print($"Player picked up {itemName}");
             var pickupsound = GetNode<AudioStreamPlayer3D>("PickupSound");
             pickupsound.Play();
+            var crossbow = body.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow/Crossbow");
             //move item toward center of player and then disappear
             //when the sound is done playing, delete the item
             Visible = false;

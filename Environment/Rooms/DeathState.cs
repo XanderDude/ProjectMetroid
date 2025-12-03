@@ -5,12 +5,11 @@ using System.Linq;
 public partial class DeathState : State
 {
     private bool deathEffectApplied = false;
-    [Export] Godot.AudioStreamPlayer deathSound;
     public override void Enter()
     {
         GD.Print("Entered Death State");
-        deathSound = GetNode<Godot.AudioStreamPlayer>("../%deathSound");
-        deathSound.Play();
+     
+        SoundFriend.Play("player_death_SFX");
         PauseGame();
         ProcessMode = Node.ProcessModeEnum.Always;
         
