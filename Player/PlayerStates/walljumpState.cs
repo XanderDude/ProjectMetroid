@@ -41,8 +41,7 @@ public partial class walljumpState : State
 	{
 		airMaxSpeed = Mathf.Abs(airMaxSpeed);
 		checkDirection();
-		jumpySound = GetNode<Godot.AudioStreamPlayer>("%jumpSound");
-		jumpySound.Play();
+		SoundFriend.Play("player_jump_SFX");
 		player.Set("jumpQueued", true);
 		//GD.Print("Entered Wall Jump State. Jump queued: " + player.Get("jumpQueued"));
 		jumpHeight = 0.0f;
