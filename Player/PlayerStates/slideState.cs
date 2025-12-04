@@ -22,7 +22,6 @@ public partial class slideState : State
 		slideTimer = 0;
 		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost) && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
-			//GD.Print("Boosting");
 			currentSlideSpeed = boostMaxSpeed * input;
 		}
 		else
@@ -57,7 +56,6 @@ public partial class slideState : State
 				return;
 			}
 			else msm.TransitionTo("groundedState"); //switch to grounded state
-			GD.Print("Waht");
 		}
 		else if (slideTimer >= slideMinTime && Mathf.Abs(currentSlideSpeed) < .1f)
 		{
@@ -89,14 +87,17 @@ public partial class slideState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
-		if (vertColCheck != null && vertColCheck.RayIsColliding())
-        {
-			GD.Print("Jump Blocked");
-        }
-		else if (@event.IsActionPressed("Jump")) //allow jumping out of slide
+		if (@event.IsActionPressed("Jump")) //allow jumping out of slide
 		{
-			player.Set(PlayerManager.PropertyName.jumpQueued, true);
-			msm.TransitionTo("jumpState");
+            if (vertColCheck != null && vertColCheck.RayIsColliding())
+            {
+				GD.Print("Jump Blocked");
+        	}
+			else
+            {
+				player.Set(PlayerManager.PropertyName.jumpQueued, true);
+				msm.TransitionTo("jumpState");
+			}
 		}
 		
 		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))

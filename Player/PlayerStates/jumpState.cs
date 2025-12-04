@@ -86,7 +86,6 @@ public partial class jumpState : State
 
 	public override void Enter()
 	{
-		//GD.Print("Entered Jump State. Jump queued: " + player.Get("jumpQueued"));
 		cancelVelocity = true;
 		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
 		{

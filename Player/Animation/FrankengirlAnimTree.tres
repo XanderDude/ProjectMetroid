@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=47 format=3 uid="uid://hofqrbo1bvp7"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=48 format=3 uid="uid://hofqrbo1bvp7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4bmw"]
 animation = &"Crouch"
@@ -125,6 +125,7 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p0v1u"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6k55h"]
+priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_won0t"]
 switch_mode = 2
@@ -134,6 +135,7 @@ advance_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cjrvr"]
+priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ck7tx"]
 
@@ -159,10 +161,15 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w5o1s"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rcinv"]
+xfade_time = 0.1
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_txnio"]
 xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mvhvr"]
+xfade_time = 0.1
+priority = 0
 
 [resource]
 states/Crouching/node = SubResource("AnimationNodeAnimation_g4bmw")
@@ -171,7 +178,7 @@ states/End/position = Vector2(935, 62)
 states/Hanging/node = SubResource("AnimationNodeAnimation_32mgm")
 states/Hanging/position = Vector2(725, -22)
 states/Jumping/node = SubResource("AnimationNodeAnimation_4tsnk")
-states/Jumping/position = Vector2(636, 55)
+states/Jumping/position = Vector2(639, 62)
 states/Landing/node = SubResource("AnimationNodeAnimation_txnio")
 states/Landing/position = Vector2(550, -22)
 states/RESET/node = SubResource("AnimationNodeAnimation_lq4et")
@@ -186,6 +193,6 @@ states/Start/position = Vector2(139, 28)
 states/WallCollision/node = SubResource("AnimationNodeAnimation_iktvi")
 states/WallCollision/position = Vector2(415, -123)
 states/WallCollision2/node = SubResource("AnimationNodeAnimation_o4qg4")
-states/WallCollision2/position = Vector2(626, -129)
-transitions = ["SlideStart", "SlideEnd", SubResource("AnimationNodeStateMachineTransition_32mgm"), "Start", "Running", SubResource("AnimationNodeStateMachineTransition_yqsad"), "Running", "Jumping", SubResource("AnimationNodeStateMachineTransition_l56v8"), "Running", "SlideStart", SubResource("AnimationNodeStateMachineTransition_x3rbt"), "Running", "Crouching", SubResource("AnimationNodeStateMachineTransition_o4qg4"), "Crouching", "Jumping", SubResource("AnimationNodeStateMachineTransition_7dk07"), "Running", "WallCollision", SubResource("AnimationNodeStateMachineTransition_p0v1u"), "WallCollision", "Running", SubResource("AnimationNodeStateMachineTransition_6k55h"), "WallCollision", "WallCollision2", SubResource("AnimationNodeStateMachineTransition_won0t"), "WallCollision2", "WallCollision", SubResource("AnimationNodeStateMachineTransition_qn6ap"), "WallCollision2", "Running", SubResource("AnimationNodeStateMachineTransition_cjrvr"), "Jumping", "Hanging", SubResource("AnimationNodeStateMachineTransition_ck7tx"), "Hanging", "Jumping", SubResource("AnimationNodeStateMachineTransition_j2y1a"), "Crouching", "SlideStart", SubResource("AnimationNodeStateMachineTransition_lq4et"), "SlideStart", "Jumping", SubResource("AnimationNodeStateMachineTransition_ktho3"), "SlideEnd", "Jumping", SubResource("AnimationNodeStateMachineTransition_6r8si"), "SlideEnd", "RESET", SubResource("AnimationNodeStateMachineTransition_lajsm"), "RESET", "Running", SubResource("AnimationNodeStateMachineTransition_1vo05"), "Crouching", "RESET", SubResource("AnimationNodeStateMachineTransition_t37bb"), "Jumping", "Landing", SubResource("AnimationNodeStateMachineTransition_w5o1s"), "Landing", "Running", SubResource("AnimationNodeStateMachineTransition_rcinv"), "SlideEnd", "Crouching", SubResource("AnimationNodeStateMachineTransition_txnio")]
-graph_offset = Vector2(59, -124)
+states/WallCollision2/position = Vector2(626, -128)
+transitions = ["SlideStart", "SlideEnd", SubResource("AnimationNodeStateMachineTransition_32mgm"), "Start", "Running", SubResource("AnimationNodeStateMachineTransition_yqsad"), "Running", "Jumping", SubResource("AnimationNodeStateMachineTransition_l56v8"), "Running", "SlideStart", SubResource("AnimationNodeStateMachineTransition_x3rbt"), "Running", "Crouching", SubResource("AnimationNodeStateMachineTransition_o4qg4"), "Crouching", "Jumping", SubResource("AnimationNodeStateMachineTransition_7dk07"), "Running", "WallCollision", SubResource("AnimationNodeStateMachineTransition_p0v1u"), "WallCollision", "Running", SubResource("AnimationNodeStateMachineTransition_6k55h"), "WallCollision", "WallCollision2", SubResource("AnimationNodeStateMachineTransition_won0t"), "WallCollision2", "WallCollision", SubResource("AnimationNodeStateMachineTransition_qn6ap"), "WallCollision2", "Running", SubResource("AnimationNodeStateMachineTransition_cjrvr"), "Jumping", "Hanging", SubResource("AnimationNodeStateMachineTransition_ck7tx"), "Hanging", "Jumping", SubResource("AnimationNodeStateMachineTransition_j2y1a"), "Crouching", "SlideStart", SubResource("AnimationNodeStateMachineTransition_lq4et"), "SlideStart", "Jumping", SubResource("AnimationNodeStateMachineTransition_ktho3"), "SlideEnd", "Jumping", SubResource("AnimationNodeStateMachineTransition_6r8si"), "SlideEnd", "RESET", SubResource("AnimationNodeStateMachineTransition_lajsm"), "RESET", "Running", SubResource("AnimationNodeStateMachineTransition_1vo05"), "Crouching", "RESET", SubResource("AnimationNodeStateMachineTransition_t37bb"), "Jumping", "Landing", SubResource("AnimationNodeStateMachineTransition_w5o1s"), "Landing", "Running", SubResource("AnimationNodeStateMachineTransition_rcinv"), "SlideEnd", "Crouching", SubResource("AnimationNodeStateMachineTransition_txnio"), "Landing", "SlideStart", SubResource("AnimationNodeStateMachineTransition_mvhvr")]
+graph_offset = Vector2(147, -108)

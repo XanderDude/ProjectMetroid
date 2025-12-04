@@ -52,7 +52,7 @@ public partial class groundedState : State
 	}
 
 
-	public override void HandleInput(InputEvent @event)
+	public override void HandleInput(InputEvent @event) //Called whenever an input is detected
 	{
 		if (@event.IsActionPressed("forgemode"))
 		{
@@ -63,32 +63,34 @@ public partial class groundedState : State
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 			msm.TransitionTo("crouchState");
 		}
-		if (vertColCheck != null && vertColCheck.RayIsColliding())
-        {
-			GD.Print("Standing blocked");
-        }
-		else if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
-		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			msm.TransitionTo("groundedState");
-		}
 		
 		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
 		}
-		if (vertColCheck != null && vertColCheck.RayIsColliding())
-        {
-			GD.Print("Jump Blocked");
-            //Ceiling blocking jump
-        }
-		else if (@event.IsActionPressed("Jump")) 
+		if (@event.IsActionPressed("Jump")) 
 		{
-			player.Set("jumpQueued", true);
-			msm.TransitionTo("jumpState");
+			if (vertColCheck != null && vertColCheck.RayIsColliding()) 
+			{
+				GD.Print("Play cannot stand animation");
+			}
+			else
+            {
+                player.Set("jumpQueued", true);
+				msm.TransitionTo("jumpState");
+            }
 		}
-		else player.Set("jumpQueued", false);
+
+		if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
+		{
+			if (vertColCheck != null && vertColCheck.RayIsColliding()) GD.Print("Standing blocked");
+			else
+            {
+                parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+				msm.TransitionTo("groundedState");
+            }
+		}
 
 		if (@event.IsActionPressed("Shoot"))
 		{
