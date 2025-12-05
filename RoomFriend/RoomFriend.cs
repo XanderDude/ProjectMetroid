@@ -11,16 +11,11 @@ using System.Numerics;
 
 
 		//Need these to use Room Friend
-		[Export] public string roomfolder = "RoomFriend";
-
-		[Export] public string roomprefix = "mr";
-
-
+		public string roomfolder;
+		public string roomprefix;
+		public PackedScene initialRoom;
 		public int currentDoorNumber = 0;
 
-		public CharacterBody3D player;
-
-		[Export] public NodePath playerpath = "%Player";
 
 
 		//Random pointers / checks 
@@ -38,22 +33,18 @@ using System.Numerics;
 		public int roomCount = 0;
 
 		
-		[Export] public PackedScene initialRoom; 
 
-		
-
-		public override void _Ready()
+		public void init_roomfriend(string folder, string prefix, PackedScene initRoom)
 		{
-			player = GetNode<PlayerManager>(playerpath);
-			player = GetNode<CharacterBody3D>(playerpath);
-        
+			roomfolder = folder;
+			roomprefix = prefix;
+			initialRoom = initRoom;
+			
 			room_table_init(tab1, tab2);
 			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
-
 			string fullPath = initialRoom.ResourcePath;
 			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
 		}
-
 		
 
 		public override void _Process(double delta)
@@ -84,7 +75,7 @@ using System.Numerics;
 			if (currentRoomScene != null) 
 			{
 				room_del();
-				player.GlobalPosition = Godot.Vector3.Zero;
+				GameFriend.gameinstance.player.GlobalPosition = Godot.Vector3.Zero;
 				
 			}
 			currentRoomName = name;
@@ -254,7 +245,7 @@ using System.Numerics;
 				int dID = (int)door.Get("DoorNumber");
 				if (dID == doorID)
 				{
-					player.GlobalPosition = door.GlobalPosition;
+					GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
 					break;	
 				}
 			}

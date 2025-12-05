@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    public PlayerManager player => GetNode<PlayerManager>("%Player");
+    public PlayerManager player => GameFriend.gameinstance.player; 
     [Export] public float speed = 10.0f;
     
     [Export] public float launchTimer = 0.8f;
@@ -28,7 +28,8 @@ public partial class Raven : CharacterBody3D
 
     public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
 
-    public override void _Ready()
+
+    public void init_raven()
     {
         rsm = GetNode<RavenStateMachine>("RavenStateMachine");
         if (player == null)
@@ -42,6 +43,13 @@ public partial class Raven : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (GameFriend.gameinstance.roomfriend.isTransitioning == true)
+        {
+             rsm._currentState.Name = "RavenRecallState";
+            this.GlobalPosition = targetPosition;
+        }
+        
+
         
 
         if (rsm != null && rsm._currentState != null)
