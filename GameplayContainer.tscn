@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=25 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_hnrdm"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
@@ -10,10 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_cmioc"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
-[ext_resource type="PackedScene" uid="uid://dei0cf7stvxe4" path="res://DebugFriend/DebugFriend.tscn" id="11_iviu7"]
-[ext_resource type="PackedScene" uid="uid://5hvtb5yfddrm" path="res://Enemies/Rat/PathfindingEnemy.tscn" id="12_hnrdm"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
-[ext_resource type="Script" uid="uid://dag8hjqmmalnu" path="res://SaveFriend/SaveFriend.cs" id="12_rh8vc"]
+[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="13_hnrdm"]
+[ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="14_cmioc"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="14_rh8vc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
@@ -89,28 +88,31 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83642, 6.56469, 0)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.01783, 0.895133, 0.0152733)
-bones/0/rotation = Quaternion(0.549672, 0.44609, 0.454015, 0.541051)
-bones/1/rotation = Quaternion(-0.0501897, 0.105007, -0.00274175, 0.9932)
-bones/4/rotation = Quaternion(-0.168281, 0.00693984, -0.02384, 0.985426)
-bones/7/position = Vector3(0.0414562, 0.0608699, 0.0055911)
-bones/7/rotation = Quaternion(0.477595, 0.509903, 0.440565, -0.563741)
-bones/9/rotation = Quaternion(0.400131, -0.0327048, 0.915083, 0.0380603)
-bones/10/rotation = Quaternion(0.498875, 0.589496, -0.440899, 0.457412)
-bones/11/rotation = Quaternion(0.0788631, -0.527803, -0.159245, 0.830569)
-bones/13/rotation = Quaternion(0.0101232, -0.106139, 0.075329, 0.991442)
-bones/14/rotation = Quaternion(0.156317, 0.0219322, -0.146509, 0.976534)
-bones/21/rotation = Quaternion(0.998451, -0.007575, -0.0304029, 0.0459799)
-bones/22/rotation = Quaternion(0.526799, -0.488796, 0.497491, 0.485865)
+bones/0/position = Vector3(0.0178359, 0.895244, 0.00406863)
+bones/0/rotation = Quaternion(0.546521, 0.449016, 0.451117, 0.544236)
+bones/1/rotation = Quaternion(-0.0803857, 0.105039, 0.000445589, 0.991214)
+bones/4/rotation = Quaternion(-0.0968556, 0.0225286, -0.0312903, 0.994551)
+bones/7/position = Vector3(0.039666, 0.060302, 0.000486363)
+bones/7/rotation = Quaternion(0.493403, 0.501333, 0.450219, -0.55002)
+bones/9/rotation = Quaternion(0.376393, -0.0403299, 0.924475, 0.0452583)
+bones/10/rotation = Quaternion(0.524449, 0.561485, -0.460455, 0.4446)
+bones/11/rotation = Quaternion(0.000524636, -0.516521, -0.17351, 0.838511)
+bones/13/rotation = Quaternion(0.0815191, -0.100395, 0.055269, 0.990061)
+bones/14/rotation = Quaternion(0.152584, 0.0177989, -0.123048, 0.980439)
+bones/21/rotation = Quaternion(0.99674, 0.0368545, -0.0281671, 0.0660064)
+bones/22/rotation = Quaternion(0.507773, -0.470299, 0.518082, 0.502571)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0320539, -0.851217, -0.523834, -0.310402, 0.48971, -0.814761, 0.950065, 0.188715, -0.248522, -0.353139, 1.10282, -0.00982033)
+transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.347805, 1.09807, -0.00916614)
+
+[node name="FullyChargedArrowVFX" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D/Crossbow" index="1" node_paths=PackedStringArray("VFXNodes")]
+VFXNodes = [null, NodePath("electicitySpikes")]
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0320539, -0.851217, -0.523834, -0.310402, 0.48971, -0.814761, 0.950065, 0.188715, -0.248522, -0.415761, 1.11755, -0.00286477)
+transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.409847, 1.11252, 0.00218663)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0320539, -0.851217, -0.523834, -0.310402, 0.48971, -0.814761, 0.950065, 0.188715, -0.248522, -0.415761, 1.11755, -0.00286477)
+transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.409847, 1.11252, 0.00218663)
 
 [node name="Raven" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_rh8vc")]
 unique_name_in_owner = true
@@ -199,16 +201,11 @@ transform = Transform3D(3, 0, 0, 0, 4.03, 0, 0, 0, 1, 7.58705, 4.68006, 3.75513)
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("12_iviu7")
 
-[node name="EnemyRat" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_hnrdm")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90633, 6.4554, -0.00885105)
-jumpmaxheight = 5.0
-isFlying = true
+[node name="EnemyRat" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_hnrdm")]
+health = 50
 
-[node name="DebugFriend" parent="." instance=ExtResource("11_iviu7")]
-
-[node name="SaveFriend" type="Node3D" parent="."]
-script = ExtResource("12_rh8vc")
+[node name="EnemyBat" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_cmioc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62265, 6.42368, 0)
 
 [editable path="SubViewportContainer/SubViewport/Player"]
 [editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
@@ -230,4 +227,3 @@ script = ExtResource("12_rh8vc")
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered/HalberdTrap"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Constant/HalberdTrap"]
-[editable path="DebugFriend"]

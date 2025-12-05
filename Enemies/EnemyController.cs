@@ -24,7 +24,7 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public bool isFlying = false;
 
 	[ExportGroup("Node References")]
-	[Export] public MeshInstance3D mesh;
+	[Export] public Node3D mesh;
 	public PlayerManager player;
 	[Export] public RayCast3D ray;
 
@@ -35,18 +35,18 @@ public partial class EnemyController : CharacterBody3D
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
-	
-
-	
-
-	
-
-
 	public override async void _Ready()
 	{
 		player = GetNode<PlayerManager>("%Player");
-		
-	}
+		//AssignPlayer();
+    }
+
+    private async void AssignPlayer()
+    {
+        await ToSignal(GetTree().GetCurrentScene(), Node.SignalName.Ready);
+        player = GetTree().GetCurrentScene().GetNode<PlayerManager>("%Player");
+    }
+
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -61,12 +61,16 @@ public partial class EnemyController : CharacterBody3D
 
 	public void OnCollide(Node3D node)
 	{
-		GD.Print($"Collided with {node.Name}");
+		player.Health -= damagedealt;
 	}
 
 	public void DamagedRecieved(int damage)
 	{
-		
+		health -= damage;
+		if (health <= 0)
+		{
+			KillEnemy();
+		}
 	}
 
 	public void KillEnemy()

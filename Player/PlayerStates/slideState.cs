@@ -57,7 +57,7 @@ public partial class slideState : State
 			}
 			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
-		else if (slideTimer >= slideMinTime && Mathf.Abs(currentSlideSpeed) < .1f)
+		else if (slideTimer >= slideMinTime && Mathf.Abs(currentSlideSpeed) < .2f)
 		{
 			crouchQueued = true; //for animation purposes
 			msm.TransitionTo("crouchState");
@@ -99,7 +99,13 @@ public partial class slideState : State
 				msm.TransitionTo("jumpState");
 			}
 		}
-		
+
+		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0 && slideTimer >= slideMinTime)
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+			msm.TransitionTo("crouchState");
+		}
+
 		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
 		{
 			asm.TransitionTo("attackState");

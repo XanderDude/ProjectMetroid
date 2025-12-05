@@ -7,6 +7,7 @@ public partial class attackState : State
 	[Export] public PackedScene bombArrowScene;
 	[Export] private string shootNormalArrowSFX = "player_normal_shoot_SFX", shootBombArrowSFX = "player_normal_shoot_SFX",
 		shootHalfChargeSFX = "player_normal_shoot_SFX", shootFullChargeSFX = "player_normal_shoot_SFX";
+	[Export] private Material arrowOutlineMat;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.12f;
 	private float shootCooldownTimer = 0.0f;
@@ -221,10 +222,6 @@ public partial class attackState : State
 		{
 			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
 		}
-
-	}
-		public override void HandleInput(InputEvent @event)
-	{
 
 	}
 }

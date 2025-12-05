@@ -8,7 +8,7 @@ public partial class PlayerManager : CharacterBody3D
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
-	public int health = 10000;
+	[Export] public int health = 100;
 
 	public bool isDead = false;
 	public bool isPressed = false; 
