@@ -4,4 +4,3 @@
 
 [node name="RoomFriend" type="Node3D"]
 script = ExtResource("1_a0wfd")
-playerpath = NodePath("../Player")

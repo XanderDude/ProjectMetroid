@@ -1,24 +1,23 @@
 using Godot;
 using System;
 
-public partial class Button2 : Button
+public partial class Button2 : Godot.Button
 {
     
-    [Export] SaveFriend savefriend;
     [Export] public int saveslot = 0;
 
 
     public override void _Ready()
     {
-        if (savefriend == null) QueueFree();
+        
         this.Pressed += OnButtonPressed;
     }
 
     private void OnButtonPressed()
         {
            
-           //GD.Print("Load was pressed!");
-           savefriend.LoadUpgrades(saveslot);
+           GD.Print("Load was pressed!");
+           GameFriend.gameinstance.savefriend.LoadUpgrades(saveslot);
            ReleaseFocus();
         }
 }
