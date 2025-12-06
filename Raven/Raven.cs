@@ -46,7 +46,7 @@ public partial class Raven : CharacterBody3D
         if (GameFriend.gameinstance.roomfriend.isTransitioning == true)
         {
              rsm._currentState.Name = "RavenRecallState";
-            this.GlobalPosition = targetPosition;
+            this.GlobalPosition = player.GlobalPosition + new Vector3(0, 1.5f, 0);
         }
         
 
