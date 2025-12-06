@@ -12,7 +12,7 @@ public partial class Door : Node3D
   
   public override void _Ready()
   {
-    var rc = GetTree().GetCurrentScene().GetNode<RoomFriend>("RoomFriend");
+    var rc = GameFriend.gameinstance.roomfriend;
     rc.isTransitioning = false;
   }
   
@@ -23,7 +23,7 @@ public partial class Door : Node3D
   
     public void _on_door_transport_body_entered(Node3D body)
     {
-        var rc = GetTree().GetCurrentScene().GetNode<RoomFriend>("RoomFriend");
+              var rc = GameFriend.gameinstance.roomfriend;
               rc.currentDoorNumber = DoorNumber;
               if (rc.transitionCooldown <= 0) rc.isTransitioning = true; 
               

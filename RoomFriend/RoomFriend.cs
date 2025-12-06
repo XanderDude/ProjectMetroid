@@ -32,8 +32,6 @@ public partial class RoomFriend : Node3D
     	public Dictionary<int, string> tab2 = new Dictionary<int, string>();
 
 		public int roomCount = 0;
-
-		private AnimationPlayer animplayer;
 		
 
 		public void init_roomfriend(string folder, string prefix, PackedScene initRoom)
@@ -46,7 +44,6 @@ public partial class RoomFriend : Node3D
 			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
 			string fullPath = initialRoom.ResourcePath;
 			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
-			animplayer = GetNode<AnimationPlayer>("AnimationPlayer");
 			
 			
 
