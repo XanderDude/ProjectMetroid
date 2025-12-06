@@ -26,11 +26,10 @@ public partial class GameFriend : Node3D
 
     private const string RAVEN_SCENE_PATH = "res://Raven/Raven.tscn";
 
-    private const string FILTER_SCENE_PATH = "res://svgstuff.tscn";
     public override void _Ready()
     {
         gameinstance = this;
-        init_filter("SubViewportContainer", FILTER_SCENE_PATH);
+        init_filter();
         init_player("Player", PLAYER_SCENE_PATH, "Player");
         init_camera("Camera", CAMERA_SCENE_PATH, "Camera");
         init_inventoryfriend();
@@ -40,13 +39,8 @@ public partial class GameFriend : Node3D
     }
 
     
-    private void init_filter(string name, string path)
+    private void init_filter()
     {
-        
-        var instantiator = GD.Load<PackedScene>(path).Instantiate();
-        if (instantiator == null) GD.PrintErr("[GameFriend]Cant find path for: " + name);
-        instantiator.Name = name;
-        AddChild(instantiator); 
         
         svc = GetNode<SubViewportContainer>("SubViewportContainer");
         svp = svc.GetNode<SubViewport>("SubViewport");
