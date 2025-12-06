@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 
 
 
-	public partial class RoomFriend : Node3D
+public partial class RoomFriend : Node3D
 	{
 
 
@@ -21,7 +22,7 @@ using System.Numerics;
 		//Random pointers / checks 
 		public bool isTransitioning = false;
 
-		private double transitionCooldown = 0.0;
+		public double transitionCooldown = 0.0;
 		private const double COOLDOWN_TIME = 5.0;
 		
 		public Node3D currentRoomScene; 
@@ -32,6 +33,7 @@ using System.Numerics;
 
 		public int roomCount = 0;
 
+		private AnimationPlayer animplayer;
 		
 
 		public void init_roomfriend(string folder, string prefix, PackedScene initRoom)
@@ -44,11 +46,16 @@ using System.Numerics;
 			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
 			string fullPath = initialRoom.ResourcePath;
 			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
+			animplayer = GetNode<AnimationPlayer>("AnimationPlayer");
+			
+			
+
 		}
 		
 
-		public override void _Process(double delta)
+		public  override async void _Process(double delta)
 		{
+			
 			if (transitionCooldown > 0)
 			{
 				transitionCooldown -= delta;
@@ -61,12 +68,11 @@ using System.Numerics;
 				GD.Print("Transitioning to door number: " + currentDoorNumber);
 				GD.Print("Current room: " + currentRoomName);
 
-
-				isTransitioning = false;
 				transitionCooldown = COOLDOWN_TIME; // Start cooldown
+				
 			}
 		}
-
+		
 		
 
 			
@@ -75,7 +81,7 @@ using System.Numerics;
 			if (currentRoomScene != null) 
 			{
 				room_del();
-				GameFriend.gameinstance.player.GlobalPosition = Godot.Vector3.Zero;
+				GameFriend.gameinstance.player.GlobalPosition = new Godot.Vector3(0,0,0);
 				
 			}
 			currentRoomName = name;
@@ -217,6 +223,9 @@ using System.Numerics;
 		
 		public void TeleportToDoor(int doorID)
 		{
+
+			GameFriend.gameinstance.player.Velocity = new Godot.Vector3(0,0,0);
+			
 			string targetRoom = "";
 			
 			if (tab1.ContainsKey(doorID) && tab1[doorID] != currentRoomName)
@@ -246,6 +255,8 @@ using System.Numerics;
 				if (dID == doorID)
 				{
 					GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
+					if (GameFriend.gameinstance.raven != null) 
+						GameFriend.gameinstance.raven.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition + new Godot.Vector3(0, 1.5f, 0);;
 					break;	
 				}
 			}

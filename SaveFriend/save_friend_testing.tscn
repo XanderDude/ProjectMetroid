@@ -4,6 +4,9 @@
 
 [sub_resource type="Environment" id="Environment_kamup"]
 background_mode = 1
+background_energy_multiplier = 3.12
+ambient_light_color = Color(0.956863, 0.337255, 0.172549, 1)
+ambient_light_energy = 2.35
 
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")

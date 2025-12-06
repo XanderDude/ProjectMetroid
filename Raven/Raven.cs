@@ -43,11 +43,6 @@ public partial class Raven : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (GameFriend.gameinstance.roomfriend.isTransitioning == true)
-        {
-             rsm._currentState.Name = "RavenRecallState";
-            this.GlobalPosition = player.GlobalPosition + new Vector3(0, 1.5f, 0);
-        }
         
 
         
