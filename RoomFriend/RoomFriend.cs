@@ -98,7 +98,7 @@ public partial class RoomFriend : Node3D
 
 		public void obj_del()
 		{
-			var children = GameFriend.gameinstance.GetChildren();
+			var children = GameFriend.gameinstance.svp.GetChildren();
 			foreach (Node child in children)
 			{
 				if (child is NormalArrow arrow)
