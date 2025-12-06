@@ -12,6 +12,7 @@ public partial class forgeState : State
         parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
         //Remove collision on layer 3 
         pm.CollisionMask = 0;        
+        player.Velocity = new Godot.Vector3(0,0,0);
     }
 
     public override void Exit()
@@ -43,12 +44,12 @@ public partial class forgeState : State
             player.Velocity = new Vector3(player.Velocity.X, 10, player.Velocity.Z);
         }
 
-        else if (@event.IsActionPressed("Down"))
+        if (@event.IsActionPressed("Down"))
         {
             player.Velocity = new Vector3(player.Velocity.X, -10, player.Velocity.Z);
         }
 
-        else if (@event.IsActionReleased("Jump") || @event.IsActionReleased("Up") || @event.IsActionReleased("Down"))
+        if (@event.IsActionReleased("Jump") || @event.IsActionReleased("Up") || @event.IsActionReleased("Down"))
         {
             player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
         }
@@ -58,12 +59,12 @@ public partial class forgeState : State
             player.Velocity = new Vector3(-10, player.Velocity.Y, player.Velocity.Z);
         }
 
-        else if (@event.IsActionPressed("Right"))
+        if (@event.IsActionPressed("Right"))
         {
             player.Velocity = new Vector3(10, player.Velocity.Y, player.Velocity.Z);
         }
 
-        else if (@event.IsActionReleased("Left") || @event.IsActionReleased("Right"))
+        if (@event.IsActionReleased("Left") || @event.IsActionReleased("Right"))
         {
             player.Velocity = new Vector3(0, player.Velocity.Y, player.Velocity.Z);
         }
