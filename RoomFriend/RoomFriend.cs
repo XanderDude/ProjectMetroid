@@ -81,6 +81,7 @@ public partial class RoomFriend : Node3D
 			if (currentRoomScene != null) 
 			{
 				room_del();
+				obj_del();
 				GameFriend.gameinstance.player.GlobalPosition = new Godot.Vector3(0,0,0);
 				
 			}
@@ -97,6 +98,18 @@ public partial class RoomFriend : Node3D
 			currentRoomScene.Free();
 			
     	}
+
+		public void obj_del()
+		{
+			var children = GameFriend.gameinstance.GetChildren();
+			foreach (Node child in children)
+			{
+				if (child is NormalArrow arrow)
+				{
+					arrow.QueueFree();
+				}
+			}
+		}
 
 		public int room_table_init(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
 		{
