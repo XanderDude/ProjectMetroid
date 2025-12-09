@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyq7lfns17r48"]
+[gd_scene load_steps=8 format=3 uid="uid://dyq7lfns17r48"]
 
 [ext_resource type="Script" uid="uid://d35fqc85b2uvp" path="res://SoundFriend/SoundFriend.cs" id="1_wcdol"]
 [ext_resource type="AudioStream" uid="uid://cfgimuf5j5hsj" path="res://Sounds/player_death_SFX.mp3" id="3_cdrqa"]
 [ext_resource type="AudioStream" uid="uid://lmc7aeplmkff" path="res://Sounds/player_normal_shoot_SFX.mp3" id="4_nol34"]
+[ext_resource type="AudioStream" uid="uid://d3b5bbo7j6jw4" path="res://Sounds/player_chargingArrowStart_SFX.mp3" id="4_x473h"]
 [ext_resource type="AudioStream" uid="uid://kavsnlamhkjl" path="res://Sounds/sewer_background_SFX.mp3" id="5_gfe33"]
+[ext_resource type="AudioStream" uid="uid://daw0ko1xs4ig1" path="res://Sounds/player_chargingArrowLoop_SFX.mp3" id="5_sd77e"]
 [ext_resource type="AudioStream" uid="uid://4k185t4ooqwu" path="res://Sounds/raven_launch_SFX.mp3" id="6_u4i86"]
 
 [node name="SoundFriend" type="Node"]
@@ -18,6 +20,15 @@ stream = ExtResource("3_cdrqa")
 
 [node name="player_normal_shoot_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_nol34")
+
+[node name="player_chargingArrowStart_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x473h")
+volume_db = -3.0
+
+[node name="player_chargingArrowLoop_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sd77e")
+volume_db = -3.0
+parameters/looping = true
 
 [node name="background_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_gfe33")

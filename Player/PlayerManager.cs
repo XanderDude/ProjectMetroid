@@ -69,9 +69,7 @@ public partial class PlayerManager : CharacterBody3D
 			AttackStateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
 		}
 	}
-
-	[Export] public Area3D slidingCollider;
-	[Export] public PackedScene jumpVFX;
+	[Export] public PackedScene jumpVFX, slideBoostVFX;
 
 	public override void _Ready()
 	{

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
@@ -58,6 +59,17 @@ public partial class SoundFriend : Node
         
     }
 
+    public static void Stop(string soundName)
+    {
+        if (sounds.ContainsKey(soundName))
+        {
+            sounds[soundName].Stop();
+        }
+        else
+        {
+            GD.PrintErr($"SoundFriend: Sound '{soundName}' not found!");
+        }
+    }
 
 
 

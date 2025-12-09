@@ -22,6 +22,14 @@ public partial class slideState : State
 		slideTimer = 0;
 		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost) && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
+			if (pm.slideBoostVFX != null)
+			{
+				var slideBoostEffect = pm.slideBoostVFX.Instantiate() as Node3D;
+				this.AddChild(slideBoostEffect, true);
+				slideBoostEffect.GlobalPosition = parentMesh.GlobalPosition;
+				slideBoostEffect.GlobalRotation = parentMesh.GlobalRotation;
+
+			}
 			currentSlideSpeed = boostMaxSpeed * input;
 		}
 		else

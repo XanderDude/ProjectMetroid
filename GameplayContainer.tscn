@@ -87,32 +87,35 @@ visible = false
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83642, 6.56469, 0)
 
+[node name="HitBoxStanding" parent="SubViewportContainer/SubViewport/Player/HitBoxes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855018, 0)
+
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178359, 0.895244, 0.00406863)
-bones/0/rotation = Quaternion(0.546521, 0.449016, 0.451117, 0.544236)
-bones/1/rotation = Quaternion(-0.0803857, 0.105039, 0.000445589, 0.991214)
-bones/4/rotation = Quaternion(-0.0968556, 0.0225286, -0.0312903, 0.994551)
-bones/7/position = Vector3(0.039666, 0.060302, 0.000486363)
-bones/7/rotation = Quaternion(0.493403, 0.501333, 0.450219, -0.55002)
-bones/9/rotation = Quaternion(0.376393, -0.0403299, 0.924475, 0.0452583)
-bones/10/rotation = Quaternion(0.524449, 0.561485, -0.460455, 0.4446)
-bones/11/rotation = Quaternion(0.000524636, -0.516521, -0.17351, 0.838511)
-bones/13/rotation = Quaternion(0.0815191, -0.100395, 0.055269, 0.990061)
-bones/14/rotation = Quaternion(0.152584, 0.0177989, -0.123048, 0.980439)
-bones/21/rotation = Quaternion(0.99674, 0.0368545, -0.0281671, 0.0660064)
-bones/22/rotation = Quaternion(0.507773, -0.470299, 0.518082, 0.502571)
+bones/0/position = Vector3(0.0178222, 0.894987, 0.0229896)
+bones/0/rotation = Quaternion(0.551567, 0.444312, 0.455759, 0.539115)
+bones/1/rotation = Quaternion(-0.115688, 0.104947, 0.00425813, 0.987717)
+bones/4/rotation = Quaternion(-0.211569, 0.0130318, -0.0526446, 0.975857)
+bones/7/position = Vector3(0.0408087, 0.0606493, 0.00311263)
+bones/7/rotation = Quaternion(0.495573, 0.497401, 0.454565, -0.54806)
+bones/9/rotation = Quaternion(0.377182, -0.0403191, 0.924152, 0.0453057)
+bones/10/rotation = Quaternion(0.524482, 0.56145, -0.460545, 0.444511)
+bones/11/rotation = Quaternion(0.0278661, -0.520798, -0.169132, 0.836294)
+bones/13/rotation = Quaternion(0.0309169, -0.104501, 0.0695175, 0.99161)
+bones/14/rotation = Quaternion(0.229524, 0.0145039, -0.152391, 0.96119)
+bones/21/rotation = Quaternion(0.997372, 0.0199091, -0.0292668, 0.0632196)
+bones/22/rotation = Quaternion(0.515929, -0.478223, 0.509439, 0.495573)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.347805, 1.09807, -0.00916614)
+transform = Transform3D(0.0872596, -0.836094, -0.541603, -0.319182, 0.491549, -0.810248, 0.943668, 0.243572, -0.223973, -0.340449, 1.10284, -0.0147018)
 
-[node name="FullyChargedArrowVFX" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D/Crossbow" index="1" node_paths=PackedStringArray("VFXNodes")]
+[node name="FullyChargedArrowVFX" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D/Crossbow" index="2" node_paths=PackedStringArray("VFXNodes")]
 VFXNodes = [null, NodePath("electicitySpikes")]
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.409847, 1.11252, 0.00218663)
+transform = Transform3D(0.0872596, -0.836094, -0.541603, -0.319182, 0.491549, -0.810248, 0.943668, 0.243572, -0.223973, -0.402472, 1.11777, -0.00388641)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0993418, -0.837895, -0.536716, -0.313472, 0.485567, -0.816064, 0.944387, 0.249315, -0.214419, -0.409847, 1.11252, 0.00218663)
+transform = Transform3D(0.0872596, -0.836094, -0.541603, -0.319182, 0.491549, -0.810248, 0.943668, 0.243572, -0.223973, -0.402472, 1.11777, -0.00388641)
 
 [node name="Raven" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_rh8vc")]
 unique_name_in_owner = true

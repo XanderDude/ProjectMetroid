@@ -3,10 +3,13 @@ using System;
 
 public partial class attackState : State
 {
-	[Export] public PackedScene arrowScene;
+	[Export] public PackedScene arrowScene, chargedArrowScene;
 	[Export] public PackedScene bombArrowScene;
-	[Export] private string shootNormalArrowSFX = "player_normal_shoot_SFX", shootBombArrowSFX = "player_normal_shoot_SFX",
+	[Export] private string shootNormalArrowSFX = "player_normal_shoot_SFX", shootBombArrowSFX = "player_normal_shoot_SFX", 
+		chargingArrowStartSFX = "player_chargingArrowStart_SFX", chargingArrowLoopSFX = "player_chargingArrowLoop_SFX", 
 		shootHalfChargeSFX = "player_normal_shoot_SFX", shootFullChargeSFX = "player_normal_shoot_SFX";
+
+	[Export] private Node3D chargingArrowVFX, fullChargedArrowVFX;
 	[Export] private Material arrowOutlineMat;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.12f;
@@ -50,6 +53,7 @@ public partial class attackState : State
 		if (Input.IsActionPressed("Shoot"))
 		{
 			ShootArrow(false);
+			SoundFriend.Play(chargingArrowStartSFX);
 		}
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
@@ -60,6 +64,10 @@ public partial class attackState : State
 
 	public override void Exit()
 	{
+		chargingArrowVFX.Visible = false;
+		fullChargedArrowVFX.Visible = false;
+		SoundFriend.Stop(chargingArrowStartSFX);
+		SoundFriend.Stop(chargingArrowLoopSFX);
 		if (full_charge_shot == true)
 		{
 			GD.Print("Shooting Full Charge Shot");
@@ -79,10 +87,16 @@ public partial class attackState : State
 		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
 		else
 		{
-			if (chargingTimer >= FULL_CHARGE_TIME) full_charge_shot = true; 
-			else if (chargingTimer >= HALF_CHARGE_TIME) half_charge_shot = true;
+			if (chargingTimer > 0.4f) chargingArrowVFX.Visible = true;
 			
-			
+			if (chargingTimer >= FULL_CHARGE_TIME && full_charge_shot == false) 
+            {
+				full_charge_shot = true;
+				chargingArrowVFX.Visible = false;
+				fullChargedArrowVFX.Visible = true;
+				SoundFriend.Play(chargingArrowLoopSFX);
+            }
+			else if (chargingTimer >= HALF_CHARGE_TIME && full_charge_shot == false) half_charge_shot = true;
 		}
 	}
 
@@ -115,12 +129,9 @@ public partial class attackState : State
 		rotation *= 360f;
 
 		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * 0.03f, shootDirection.Y * arrowSpeed * 0.03f, 0);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
 		
-		SoundFriend.Play("player_death_SFX");
-		
-
-	
+		SoundFriend.Play(shootHalfChargeSFX);
 	}
 
 
@@ -129,7 +140,7 @@ public partial class attackState : State
 	{
 		
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
-		PackedScene projectileScene = arrowScene;
+		PackedScene projectileScene = chargedArrowScene;
 		
 		if (projectileScene == null || arrowSpawnLoc == null)
 		{
@@ -153,9 +164,9 @@ public partial class attackState : State
 		rotation *= 360f;
 
 		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * 5.0f, shootDirection.Y * arrowSpeed * 5.0f, 0);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
 		
-		SoundFriend.Play("raven_launch_SFX");	
+		SoundFriend.Play(shootFullChargeSFX);	
 	}
 
 	private bool CanShootBomb()
