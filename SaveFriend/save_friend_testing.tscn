@@ -8,9 +8,7 @@
 [ext_resource type="Script" uid="uid://dag8hjqmmalnu" path="res://SaveFriend/SaveFriend.cs" id="6_w6gw0"]
 [ext_resource type="PackedScene" uid="uid://dei0cf7stvxe4" path="res://DebugFriend/DebugFriend.tscn" id="7_vxs5w"]
 [ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="8_kamup"]
-
-[sub_resource type="Environment" id="Environment_kamup"]
-background_mode = 1
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="9_vxs5w"]
 
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")
@@ -80,6 +78,18 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kamup")
+environment = ExtResource("9_vxs5w")
+
+[node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)
+light_energy = 0.8
+light_indirect_energy = 0.333
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 10.0
+shadow_reverse_cull_face = true
+shadow_caster_mask = 4294967293
+directional_shadow_fade_start = 1.0
 
 [editable path="DebugFriend"]
