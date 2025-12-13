@@ -6,3 +6,7 @@
 keep_aspect = 0
 fov = 32.0
 script = ExtResource("1_npc1t")
+roomMinX = -100.0
+roomMaxX = 100.0
+roomMinY = -100.0
+roomMaxY = 100.0

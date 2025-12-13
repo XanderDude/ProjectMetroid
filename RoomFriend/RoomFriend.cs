@@ -23,7 +23,7 @@ public partial class RoomFriend : Node3D
 		public bool isTransitioning = false;
 
 		public double transitionCooldown = 0.0;
-		private const double COOLDOWN_TIME = 5.0;
+		private const double COOLDOWN_TIME = 2.0;
 		
 		public Node3D currentRoomScene; 
 		public string currentRoomName = "";
@@ -212,16 +212,17 @@ public partial class RoomFriend : Node3D
 			return doors;
 		}
 
-		private void FindDoorsRecursive(Node3D node, List<Node3D> doors)
+		private void FindDoorsRecursive(Node node, List<Node3D> doors)
 		{
 			
 			var variant = node.Get("DoorNumber");
-			if (variant.VariantType != Variant.Type.Nil)
+			if (variant.VariantType != Variant.Type.Nil && variant.ToString() != "0")
 			{
-				doors.Add(node);
+				doors.Add((Node3D)node);
 			}
-			foreach (Node3D child in node.GetChildren())
+			foreach (Node child in node.GetChildren())
 			{
+				
 				FindDoorsRecursive(child, doors);
 			}
 		}
@@ -256,6 +257,8 @@ public partial class RoomFriend : Node3D
 			else
 			{
 				GD.PrintErr("cant load the room");
+				isTransitioning = false;
+				return;
 			}
 
 			var doors = GetAllDoorsInRoom(currentRoomScene);
