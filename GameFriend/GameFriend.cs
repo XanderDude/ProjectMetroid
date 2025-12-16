@@ -21,9 +21,9 @@ public partial class GameFriend : Node3D
 
     private const string CAMERA_SCENE_PATH = "res://Camera/Camera.tscn";
     private const string PLAYER_SCENE_PATH = "res://Player/Player.tscn";
+    [Export] private Node3D playerNode = null;
     private const string ROOMFRIEND_SCENE_PATH = "res://RoomFriend/RoomFriend.tscn";
     private const string DEBUGFRIEND_SCENE_PATH = "res://DebugFriend/DebugFriend.tscn";
-
     private const string RAVEN_SCENE_PATH = "res://Raven/Raven.tscn";
 
     public override void _Ready()
@@ -78,10 +78,12 @@ public partial class GameFriend : Node3D
 
     private void init_player(string name, string path, string rootname)
     {
-          init_scene(name, path);
-          player = svp.GetNode<PlayerManager>(rootname);          
-
-    
+        if (playerNode != null) player = playerNode as PlayerManager;
+        else
+        {
+            init_scene(name, path);
+            player = svp.GetNode<PlayerManager>(rootname);
+        }
     }
 
     private void init_raven(string name, string path, string rootname)

@@ -56,6 +56,7 @@ public partial class RoomFriend : Node3D
 			if (transitionCooldown > 0)
 			{
 				transitionCooldown -= delta;
+				isTransitioning = false;
 			}
 			
 			if (isTransitioning && transitionCooldown <= 0)

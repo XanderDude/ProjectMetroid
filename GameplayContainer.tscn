@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_hnrdm"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
 [ext_resource type="PackedScene" uid="uid://0b6xs6vcxttm" path="res://UI/HUD/HUD.tscn" id="2_cilmm"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="3_cilmm"]
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="9_yv1x3"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
@@ -53,10 +53,11 @@ size = Vector3(2, 0.5, 6)
 resource_local_to_scene = true
 size = Vector3(1, 8, 2)
 
-[node name="Gameplay" type="Node3D"]
+[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("playerNode")]
 process_mode = 1
 script = ExtResource("1_hnrdm")
 initdebugfriend = true
+playerNode = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_itrsp")
@@ -78,9 +79,6 @@ process_mode = 3
 
 [node name="HUD" parent="SubViewportContainer/SubViewport/CanvasLayer" instance=ExtResource("2_cilmm")]
 visible = false
-
-[node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_cilmm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07734, 25)
 
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
@@ -155,6 +153,9 @@ texture = ExtResource("12_iviu7")
 transform = Transform3D(3, 0, 0, 0, 4.03, 0, 0, 0, 1, 7.58705, 4.68006, 3.75513)
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("12_iviu7")
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_yv1x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2072, 5.90692, 0)
 
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
