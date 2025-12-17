@@ -54,7 +54,7 @@ public partial class groundedState : State
 
 	public override void HandleInput(InputEvent @event) //Called whenever an input is detected
 	{
-		if (@event.IsActionPressed("forgemode"))
+		if (@event.IsActionPressed("forgemode") && GameFriend.gameinstance.initroomfriend == true)
 		{
 			msm.TransitionTo("forgeState");
 		}

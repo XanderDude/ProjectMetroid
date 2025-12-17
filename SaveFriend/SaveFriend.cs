@@ -5,31 +5,17 @@ using System.Text.Json;
 
 public partial class SaveFriend : Node3D
 {
-    private string[] SavePath = new string[]{ "res://save.sav" , "res://save2.sav" , "res://save3.sav" };
-
-    [Export] RoomFriend roomfriend;
-
-
-
-    public override void _Ready()
-    {
-        
-    }
     public class SaveData
     {
         public string CurrentRoom { get; set; }
         public List<string> Upgrades { get; set; } = new();
         public Dictionary<string, int> Consumables { get; set; } = new();
     }
+    private string[] SavePath = new string[]{ "res://save.sav" , "res://save2.sav" , "res://save3.sav" };
 
-    public void SaveUpgrades(int slot)
+        public void SaveUpgrades(int slot)
     {
-        if (roomfriend == null)
-        {
-            GD.PrintErr("SaveFriend: roomfriend is null!");
-            return;
-        }
-        if (GameFriend.gameinstance?.inventoryfriend == null)
+       if (GameFriend.gameinstance?.inventoryfriend == null)
         {
             GD.PrintErr("SaveFriend: inventoryfriend is null!");
             return;
@@ -38,7 +24,7 @@ public partial class SaveFriend : Node3D
         var inv = GameFriend.gameinstance.inventoryfriend;
         var data = new SaveData
         {
-            CurrentRoom = roomfriend.currentRoomName,
+            CurrentRoom = GameFriend.gameinstance.roomfriend.currentRoomName,
             Upgrades = new List<string>(inv.upgrades),
             Consumables = new Dictionary<string, int>(inv.consumables)
         };
@@ -101,6 +87,6 @@ public partial class SaveFriend : Node3D
                 GD.Print("  - " + upgrade);
             }
             string currentRoom = data.CurrentRoom;
-            if (roomfriend != null) roomfriend.room_init(currentRoom);
+            if (GameFriend.gameinstance.roomfriend != null) GameFriend.gameinstance.roomfriend.room_init(currentRoom);
         }
 }

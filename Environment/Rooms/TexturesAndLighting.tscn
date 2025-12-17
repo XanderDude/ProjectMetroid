@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_clrjg"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -18,16 +18,11 @@
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="12_g1r6t"]
 [ext_resource type="PackedScene" uid="uid://xbqb3ncnwmbs" path="res://Environment/Props/Environmental/UndergroundForeground.tscn" id="12_w5r6f"]
 [ext_resource type="Material" uid="uid://mfnek0rv47j4" path="res://Environment/Materials/BGEnvironmentMat.tres" id="12_x6fto"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="13_clrjg"]
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="19_clrjg"]
-[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="21_bcc5k"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="22_0pxb8"]
-[ext_resource type="Script" uid="uid://dag8hjqmmalnu" path="res://SaveFriend/SaveFriend.cs" id="26_ok65n"]
-[ext_resource type="PackedScene" uid="uid://dei0cf7stvxe4" path="res://DebugFriend/DebugFriend.tscn" id="27_3iq2j"]
-[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://RoomFriend/RoomFriend.cs" id="28_qispl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -277,8 +272,10 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[node name="GameFriend" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("playerNode")]
 script = ExtResource("1_clrjg")
+initdebugfriend = true
+playerNode = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -437,9 +434,6 @@ swingSpeed = 0.1
 swingDistance = 0.6
 rotateUpdateSpeed = 0.3
 
-[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall" instance=ExtResource("22_0pxb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8143, 1.66723, -0.734134)
-
 [node name="WoodHouse" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_ypo2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)
 
@@ -521,9 +515,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004,
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_3iq2j")
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup" index="0"]
-collision_layer = 1
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
@@ -664,7 +655,6 @@ visible = false
 
 [node name="BelowHorizonBackdrop" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("12_w5r6f")]
 transform = Transform3D(15.5687, 0, 0, 0, 4.44078, 0, 0, 0, 1, -13.3496, -22.2096, -8.96597)
-visible = false
 
 [node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_olupi")]
 transform = Transform3D(-0.40688, 0, 0.913482, 0, 1, 0, -0.913482, 0, -0.40688, -50.4516, 0, -46.0859)
@@ -689,48 +679,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -1)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2313, 0.058, 0)
+jumpVFX = null
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178374, 0.895272, 5.06341e-05)
-bones/0/rotation = Quaternion(0.545399, 0.45005, 0.450086, 0.54536)
-bones/1/rotation = Quaternion(-0.00190619, 0.104743, -0.00778305, 0.994467)
-bones/4/rotation = Quaternion(-0.00029095, 3.29132e-05, -7.48963e-05, 1)
-bones/7/position = Vector3(0.0362172, 0.0598184, 0.00376494)
-bones/7/rotation = Quaternion(0.501033, 0.494686, 0.469884, -0.53241)
-bones/9/rotation = Quaternion(0.350781, -0.0313678, 0.93509, 0.0396881)
-bones/10/rotation = Quaternion(0.469685, 0.586136, -0.390765, 0.532112)
-bones/11/rotation = Quaternion(0.101718, -0.530511, -0.154074, 0.827329)
-bones/13/rotation = Quaternion(0.0474484, -0.104276, 0.102607, 0.988103)
-bones/14/rotation = Quaternion(0.01857, 0.0749994, -0.312051, 0.946918)
-bones/21/rotation = Quaternion(0.999579, -0.004907, -0.0285863, -0.000632593)
-bones/22/rotation = Quaternion(0.49148, -0.454484, 0.534578, 0.515867)
-
-[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.00270842, -0.929734, -0.368222, 0.000683693, 0.368225, -0.929737, 0.999996, 0.00226626, 0.00163314, -0.356172, 1.10024, -0.0113768)
-
-[node name="FullyChargedArrowVFX" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D/Crossbow" index="2" node_paths=PackedStringArray("VFXNodes")]
-VFXNodes = [null, NodePath("electicitySpikes")]
-
-[node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.00270842, -0.929734, -0.368222, 0.000683693, 0.368225, -0.929737, 0.999996, 0.00226626, 0.00163314, -0.420681, 1.10528, -0.0111769)
-
-[node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.00270842, -0.929734, -0.368222, 0.000683693, 0.368225, -0.929737, 0.999996, 0.00226626, 0.00163314, -0.420681, 1.10528, -0.0111769)
-
-[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5714, 2.5, 25)
-playerPath = NodePath("../Player")
-lookAheadDistance = 1.5
-roomMinX = -52.5
-roomMaxX = 60.0
-roomMinY = -18.0
-roomMaxY = 500.0
-
-[node name="Raven" parent="SubViewportContainer/SubViewport" instance=ExtResource("21_bcc5k")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4921, 0, 0)
+[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport" instance=ExtResource("22_0pxb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1857, 1.66723, -0.734134)
 
 [node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)
@@ -765,17 +718,6 @@ visible = false
 size = Vector3(33, 15.1328, 8.39844)
 data = SubResource("VoxelGIData_8g18c")
 
-[node name="SaveFriend" type="Node3D" parent="."]
-script = ExtResource("26_ok65n")
-
-[node name="DebugFriend" parent="." instance=ExtResource("27_3iq2j")]
-
-[node name="RoomFriend" type="Node3D" parent="."]
-script = ExtResource("28_qispl")
-roomfolder = ""
-roomprefix = ""
-playerpath = NodePath("../SubViewportContainer/SubViewport/Player")
-
 [editable path="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay"]
@@ -798,6 +740,3 @@ playerpath = NodePath("../SubViewportContainer/SubViewport/Player")
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral2"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral3"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
-[editable path="SubViewportContainer/SubViewport/Camera"]
