@@ -46,6 +46,7 @@ public partial class attackState : State
 	
 	public override void Enter()
 	{
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(true);
 		half_charge_shot = false;
 		full_charge_shot = false;
 		chargingTimer = 0.0f;
@@ -64,6 +65,7 @@ public partial class attackState : State
 
 	public override void Exit()
 	{
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(false);
 		chargingArrowVFX.Visible = false;
 		fullChargedArrowVFX.Visible = false;
 		SoundFriend.Stop(chargingArrowStartSFX);
@@ -103,8 +105,7 @@ public partial class attackState : State
 
 	public void ShootHalfCharge()
 	{
-		
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();		
 		PackedScene projectileScene = arrowScene;
 		
 		if (projectileScene == null || arrowSpawnLoc == null)
@@ -138,8 +139,7 @@ public partial class attackState : State
 
 	public void ShootFullCharge()
 	{
-		
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();		
 		PackedScene projectileScene = chargedArrowScene;
 		
 		if (projectileScene == null || arrowSpawnLoc == null)
@@ -196,7 +196,7 @@ public partial class attackState : State
 	
 	private void ShootArrow(bool isBombArrow)
 	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();
 		PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
 		
 		if (projectileScene == null || arrowSpawnLoc == null)

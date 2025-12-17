@@ -113,10 +113,5 @@ public partial class slideState : State
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 			msm.TransitionTo("crouchState");
 		}
-
-		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
-		{
-			asm.TransitionTo("attackState");
-		}
 	}
 }

@@ -91,14 +91,5 @@ public partial class groundedState : State
 				msm.TransitionTo("groundedState");
             }
 		}
-
-		if (@event.IsActionPressed("Shoot"))
-		{
-			asm.TransitionTo("attackState");
-		}
-		else if (@event.IsActionPressed("SpecialShoot"))
-		{
-			asm.TransitionTo("attackState");
-		}
 	}
 }

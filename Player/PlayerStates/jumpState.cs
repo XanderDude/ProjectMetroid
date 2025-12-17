@@ -190,12 +190,6 @@ public partial class jumpState : State
 			msm.TransitionTo("walljumpState");
 		}
 
-		if (@event.IsActionPressed("Shoot") || @event.IsActionPressed("SpecialShoot"))
-		{
-			asm.TransitionTo("attackState");
-		}
-
-
 	}	
 	
 }

@@ -21,7 +21,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private string HangingStateName;
 
 	[Export] private float shootingAnimTime = 2f; //how long shoot anim lasts before resetting to default
-	private float shootingTimer = 0;
+	private float shootingTimer = 99f; //set to -1 to constantly aim, no timer
 
 	private float currentSpeed;
 
@@ -38,10 +38,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
 
-		if (shootingTimer > 0) shootingTimer -= (float)delta;
+		if (shootingTimer != -1 && shootingTimer < shootingAnimTime) shootingTimer += (float)delta;
 
 		//find the value between current speed and desired speed
-		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), (float)delta * transitionSpeed), 0, 1f);
+		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), 2), 0, 1f);
 
 
 		if (player.Velocity.X != 0) //direction has changed
@@ -60,12 +60,12 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		if (newAimDirect != aimDirection)
 		{
 			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, (float)delta * transitionSpeed);
-			animTree.Set(AimBlendBlendPath, new Vector2(aimDirection.X, aimDirection.Y * 2));
+			animTree.Set(AimBlendBlendPath, new Vector2(aimDirection.X, aimDirection.Y));
 		}
 
-		//only blend upper body when shooting
-		if (shootingTimer > 0) animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 1, (float)delta * transitionSpeed));
-		else animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 0, (float)delta * transitionSpeed));
+		//only blend upper body when aiming
+		if (shootingTimer < shootingAnimTime) animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 1, (float)delta * transitionSpeed));
+		else animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 0, (float)delta * (transitionSpeed/3)));
 	}
 
 	public void BeginJump()
@@ -101,10 +101,16 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		playback?.Travel(HangingStateName);
 	}
 
-	public void Shoot()
+	public void Aiming(bool isAiming)
 	{
-		shootingTimer = shootingAnimTime;
+		if (isAiming) shootingTimer = -1;
+		else
+		shootingTimer = 0;
 	}
+	public void Shooting()
+    {
+        //play shooting animation
+    }
 
 	public void Death()
     {
