@@ -8,6 +8,4 @@ render_priority = 0
 shader = ExtResource("1_yfhdy")
 shader_parameter/UseAlbedoTexture = false
 shader_parameter/ColorParameter = Color(0.192666, 0.0788828, 0.0181564, 1)
-shader_parameter/UseWorldCameraNode = true
-shader_parameter/CameraPosition = Vector3(0, 0, 0)
 shader_parameter/CameraHideHeight = -1.0

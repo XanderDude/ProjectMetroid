@@ -36,7 +36,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public override void _Process(double delta)
 	{
-		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned 
+		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
 
 		if (shootingTimer > 0) shootingTimer -= (float)delta;
 
@@ -106,22 +106,29 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		shootingTimer = shootingAnimTime;
 	}
 
-	public void StopAllAnimations()
-{
-    if (playback != null)
+	public void Death()
     {
-        playback.Stop();
+		animTree.Active = false;
+		//StopAllAnimations();
+        var animPlayer = GetParent().GetNode<AnimationPlayer>("AnimationPlayerMain");
+		animPlayer.Play("Death");
     }
-    
-    // Reset all blend values to 0
-    animTree.Set(WalkingBlendPath, 0f);
-    animTree.Set(RunSpeedBlendPath, 0f);
-    animTree.Set(AimBlendBlendPath, Vector2.Zero);
-    animTree.Set(LegAndArmBlendBlendPath, 0f);
-    
-    // Reset internal values
-    currentSpeed = 0f;
-    shootingTimer = 0f;
-    aimDirection = SVector2.Zero;
-}
+	public void StopAllAnimations()
+	{
+		if (playback != null)
+		{
+			playback.Stop();
+		}
+		
+		// Reset all blend values to 0
+		animTree.Set(WalkingBlendPath, 0f);
+		animTree.Set(RunSpeedBlendPath, 0f);
+		animTree.Set(AimBlendBlendPath, Vector2.Zero);
+		animTree.Set(LegAndArmBlendBlendPath, 0f);
+		
+		// Reset internal values
+		currentSpeed = 0f;
+		shootingTimer = 0f;
+		aimDirection = SVector2.Zero;
+	}
 }

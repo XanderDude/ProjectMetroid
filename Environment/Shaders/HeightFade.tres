@@ -203,7 +203,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-656.64, 205.052)
 varyings/CameraPosition = "0,4"
 varyings/CurrentPosition = "0,4"
 nodes/vertex/0/position = Vector2(400, 160)

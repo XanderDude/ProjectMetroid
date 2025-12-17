@@ -30,7 +30,7 @@ public partial class PlayerManager : CharacterBody3D
 			if (health <= 0)
 			{
 				health = 0;
-
+				isDead = true;
 
 			}
 
@@ -88,13 +88,10 @@ public partial class PlayerManager : CharacterBody3D
 
 	
 
-	
-
-	
-
-
-
-	// Method to add items to appropriate inventory
+	public override void _Process(double delta)
+	{
+		if (isDead) StateMachine.TransitionTo("deathState");
+	}
 	
 
 	public override void _PhysicsProcess(double delta)
@@ -115,66 +112,6 @@ public partial class PlayerManager : CharacterBody3D
 		}
 
 		
-
-
-
-	
-	if (health <= 0 && !isDead)
-	{
-		ProcessMode = Node.ProcessModeEnum.Always;
-		void MakeNodeBlack(Node node)
-		{
-			if (node is MeshInstance3D mesh)
-			{
-				var material = new StandardMaterial3D();
-				material.AlbedoColor = Colors.Black;
-				material.Emission = Colors.Black;
-				mesh.MaterialOverride = material;
-			}
-			foreach (Node child in node.GetChildren())
-				MakeNodeBlack(child);
-		}
-
-    void MakeNodeWhite(Node node)
-    {
-        if (node is MeshInstance3D mesh)
-        {
-            var material = new StandardMaterial3D();
-            material.AlbedoColor = Colors.White;
-            material.EmissionEnabled = true;
-            material.Emission = Colors.White;
-            mesh.MaterialOverride = material;
-        }
-        foreach (Node child in node.GetChildren())
-            MakeNodeWhite(child);
-    }
-
-    MakeNodeBlack(GetTree().CurrentScene);
-    MakeNodeWhite(GetNode<Node3D>("%PlayerMesh"));
-    GetTree().Paused = true;
-			_movementStateMachine.TransitionTo("deathState");
-    isDead = true;
-}
-else if (health > 0 && isDead)
-{
-    GetTree().Paused = false;
-    ProcessMode = Node.ProcessModeEnum.Inherit;
-    SetPhysicsProcess(true);
-    SetProcess(true);
-    
-    void RestoreMaterials(Node node)
-    {
-        if (node is MeshInstance3D mesh)
-        {
-            mesh.MaterialOverride = null;
-        }
-        foreach (Node child in node.GetChildren())
-            RestoreMaterials(child);
-    }
-
-    RestoreMaterials(GetTree().CurrentScene);
-    isDead = false;
-}
 	}
 	public void SpawnJumpCloud(float rotation)
 	{

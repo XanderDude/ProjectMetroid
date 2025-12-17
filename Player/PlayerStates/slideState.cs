@@ -57,7 +57,7 @@ public partial class slideState : State
 
 		if ((Mathf.Sign(Input.GetAxis("Left", "Right")) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or is not holding slide button
-			if (vertColCheck != null && vertColCheck.RayIsColliding())
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding())
 			{
 				crouchQueued = true; //for animation purposes
 				msm.TransitionTo("crouchState");
@@ -97,7 +97,7 @@ public partial class slideState : State
 	{
 		if (@event.IsActionPressed("Jump")) //allow jumping out of slide
 		{
-            if (vertColCheck != null && vertColCheck.RayIsColliding())
+            if (vertColCheck != null && vertColCheck.VertCheckIsColliding())
             {
 				GD.Print("Jump Blocked");
         	}

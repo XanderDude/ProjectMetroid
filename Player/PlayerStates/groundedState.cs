@@ -71,7 +71,7 @@ public partial class groundedState : State
 		}
 		if (@event.IsActionPressed("Jump")) 
 		{
-			if (vertColCheck != null && vertColCheck.RayIsColliding()) 
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
 			{
 				GD.Print("Play cannot stand animation");
 			}
@@ -84,7 +84,7 @@ public partial class groundedState : State
 
 		if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
 		{
-			if (vertColCheck != null && vertColCheck.RayIsColliding()) GD.Print("Standing blocked");
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) GD.Print("Standing blocked");
 			else
             {
                 parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);

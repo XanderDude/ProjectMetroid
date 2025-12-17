@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bexgm8f7ve0mw"]
+[gd_scene load_steps=33 format=3 uid="uid://bexgm8f7ve0mw"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
 [ext_resource type="Material" uid="uid://b8yeulj3n71qh" path="res://Player/PlayerOutlineShader.tres" id="2_s0mko"]
@@ -41,6 +41,9 @@ size = Vector3(0.374, 1, 0.498)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x70vp"]
 size = Vector3(0.5, 1.7, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo5nf"]
+size = Vector3(0.4, 1, 0.5)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("StateMachine", "AttackStateMachine")]
 collision_layer = 4
@@ -94,17 +97,17 @@ debug_color = Color(0.996893, 0, 0.177575, 0.42)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("BoxShape3D_x70vp")
 
-[node name="SlideVertColCheckNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="SlideVertColCheckNode" type="Node3D" parent="." node_paths=PackedStringArray("shape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("8_yifbt")
+shape = NodePath("ShapeCast3D")
 
-[node name="RayCast3D" type="RayCast3D" parent="SlideVertColCheckNode"]
-target_position = Vector3(0, 1.2, 0)
+[node name="ShapeCast3D" type="ShapeCast3D" parent="SlideVertColCheckNode"]
+visible = false
+shape = SubResource("BoxShape3D_wo5nf")
+target_position = Vector3(0, 0, 0)
 collision_mask = 3
-hit_back_faces = false
 collide_with_areas = true
-debug_shape_custom_color = Color(0, 0.819608, 0, 1)
-debug_shape_thickness = 5
 
 [node name="MovementStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
@@ -181,25 +184,25 @@ HangingStateName = "Hanging"
 bones/0/position = Vector3(0.0178337, 0.895203, 0.0102628)
 bones/0/rotation = Quaternion(0.548245, 0.447419, 0.452702, 0.542498)
 bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.0216794, 0.104882, -0.00573014, 0.994232)
 bones/1/scale = Vector3(1, 1, 1)
 bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
 bones/4/rotation = Quaternion(-0.123006, 0.00538961, -0.0161314, 0.99226)
 bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0409938, 0.0607605, 0.00565922)
 bones/7/rotation = Quaternion(0.481196, 0.507403, 0.443911, -0.560299)
 bones/9/rotation = Quaternion(0.367642, -0.0319201, 0.928559, 0.039988)
+bones/7/position = Vector3(0.0392753, 0.0601832, -0.000411476)
+bones/7/rotation = Quaternion(0.493039, 0.502191, 0.449261, -0.550347)
+bones/9/rotation = Quaternion(0.376189, -0.0494197, 0.924388, 0.039319)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
 bones/10/rotation = Quaternion(0.493747, 0.591765, -0.433872, 0.466672)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.0876933, -0.528882, -0.157302, 0.829367)
 bones/13/rotation = Quaternion(0.0189094, -0.10546, 0.0728454, 0.991572)
+bones/13/rotation = Quaternion(0.0808407, -0.100574, 0.0571174, 0.989994)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.120288, 0.0337785, -0.188923, 0.974011)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
@@ -209,7 +212,7 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
 bones/21/rotation = Quaternion(0.998737, -0.0097161, -0.030226, 0.0389527)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.52807, -0.490032, 0.496061, 0.4847)
+bones/22/rotation = Quaternion(0.504988, -0.467594, 0.520973, 0.504907)
 bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/scale = Vector3(1, 1, 1)
@@ -221,7 +224,7 @@ bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0580269, -0.865752, -0.497099, -0.21041, 0.476147, -0.853822, 0.97589, 0.154139, -0.154533, -0.354077, 1.10341, 0.00597943)
+transform = Transform3D(0.0925046, -0.837076, -0.539209, -0.337749, 0.483047, -0.807832, 0.93668, 0.256846, -0.238038, -0.354148, 1.09676, 0.00335316)
 bone_idx = 17
 
 [node name="ChargingArrowVFX" parent="PlayerMesh/Skeleton3D/Crossbow" index="1" instance=ExtResource("20_7uipr")]
@@ -235,11 +238,11 @@ visible = false
 VFXNodes = [null, NodePath("electicitySpikes")]
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0580269, -0.865752, -0.497099, -0.21041, 0.476147, -0.853822, 0.97589, 0.154139, -0.154533, -0.417086, 1.11656, 0.0125905)
+transform = Transform3D(0.0925046, -0.837076, -0.539209, -0.337749, 0.483047, -0.807832, 0.93668, 0.256846, -0.238038, -0.416186, 1.11121, 0.0147209)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0580269, -0.865752, -0.497099, -0.21041, 0.476147, -0.853822, 0.97589, 0.154139, -0.154533, -0.417086, 1.11656, 0.0125905)
+transform = Transform3D(0.0925046, -0.837076, -0.539209, -0.337749, 0.483047, -0.807832, 0.93668, 0.256846, -0.238038, -0.416186, 1.11121, 0.0147209)
 bone_idx = 19
 
 [node name="body" parent="PlayerMesh/Skeleton3D" index="3"]
@@ -252,6 +255,7 @@ material_overlay = ExtResource("2_s0mko")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58336e-08, 1.52681, -0.591004)
 
 [node name="AnimationPlayerMain" type="AnimationPlayer" parent="."]
+process_mode = 3
 root_node = NodePath("../PlayerMesh")
 libraries = {
 &"": ExtResource("18_hqjia")
@@ -263,11 +267,12 @@ root_node = NodePath("%PlayerMesh")
 tree_root = ExtResource("15_jvfa1")
 anim_player = NodePath("../AnimationPlayerMain")
 parameters/conditions/slideEnd = false
+parameters/Running/Add2/add_amount = 1.0
 parameters/Running/AddReset/add_amount = 0
 parameters/Running/AimBlend/blend_position = Vector2(0.0988764, 0.0557029)
 parameters/Running/IdleRunBlend/blend_amount = 0.0
 parameters/Running/LegAndArmBlend/blend_amount = 0.0
-parameters/Running/RunSpeed/scale = 2.3
+parameters/Running/RunSpeed/scale = false
 
 [node name="PlayerLight" parent="." instance=ExtResource("26_s0mko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
