@@ -108,6 +108,7 @@ shape = SubResource("BoxShape3D_wo5nf")
 target_position = Vector3(0, 0, 0)
 collision_mask = 3
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0.686275, 0, 1)
 
 [node name="MovementStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
@@ -121,8 +122,8 @@ groundAcceleration = 2.0
 
 [node name="crouchState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("4_s0mko")
-groundMaxSpeed = 0.0
-groundAcceleration = 0.0
+groundMaxSpeed = 1.0
+groundAcceleration = 1.0
 
 [node name="jumpState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("5_hqjia")
