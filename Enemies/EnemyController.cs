@@ -25,7 +25,7 @@ public partial class EnemyController : CharacterBody3D
 
 	[ExportGroup("Node References")]
 	[Export] public Node3D mesh;
-	public PlayerManager player;
+	public PlayerManager player => GameFriend.gameinstance.player;
 	[Export] public RayCast3D ray;
 
 	[Export] public RayCast3D edgeray;
@@ -35,18 +35,10 @@ public partial class EnemyController : CharacterBody3D
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
-	public override async void _Ready()
+	public override void _Ready()
 	{
-		player = GetNode<PlayerManager>("%Player");
-		//AssignPlayer();
+		if (player == null) GD.Print("Player not assigned");
     }
-
-    private async void AssignPlayer()
-    {
-        await ToSignal(GetTree().GetCurrentScene(), Node.SignalName.Ready);
-        player = GetTree().GetCurrentScene().GetNode<PlayerManager>("%Player");
-    }
-
 
 	public override void _PhysicsProcess(double delta)
 	{

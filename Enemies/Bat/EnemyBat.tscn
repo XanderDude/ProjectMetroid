@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://xaymn5irbgw5"]
+[gd_scene load_steps=10 format=3 uid="uid://xaymn5irbgw5"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_m2cak"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="2_2a3cg"]
@@ -9,11 +9,10 @@
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="7_il1qx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1m8w"]
+radius = 0.45
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
-size = Vector3(0.743164, 0.723022, 1.56396)
-
-[sub_resource type="SphereMesh" id="SphereMesh_x5qum"]
+size = Vector3(0.4, 0.4, 1)
 
 [node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "edgeray", "statemachine")]
 collision_layer = 8
@@ -30,9 +29,9 @@ statemachine = NodePath("EnemyStateMachine")
 shape = SubResource("SphereShape3D_j1m8w")
 
 [node name="HitBox" type="Area3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("BoxShape3D_tysk3")
@@ -58,11 +57,6 @@ hit_from_inside = true
 debug_shape_custom_color = Color(0.78977, 0.350233, 0.181749, 1)
 debug_shape_thickness = 5
 
-[node name="Blob" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.169242, 0.364897, 0)
-visible = false
-mesh = SubResource("SphereMesh_x5qum")
-
 [node name="EdgeBeam" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0506273, 0.161237, 0)
 target_position = Vector3(0, -2, 0)
@@ -72,6 +66,7 @@ debug_shape_custom_color = Color(0.384314, 0.34902, 0, 1)
 debug_shape_thickness = 5
 
 [node name="RavenFly" parent="." instance=ExtResource("6_jr35e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0989632, 0)
 
 [node name="WingLeft" parent="RavenFly/Weapons/RavenFlying" index="0"]
 transform = Transform3D(-0.190387, -0.859462, -1.21453, 1.48695, -0.0669547, -0.185712, 0.0521957, -1.22754, 0.860484, 0.0374537, 0.136378, 0.0803157)

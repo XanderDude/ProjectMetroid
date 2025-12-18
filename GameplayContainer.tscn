@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=22 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_hnrdm"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://ctl838fm51cgn" path="res://Enemies/Traps/SpikeTraps.tscn" id="3_itrsp"]
 [ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="5_cilmm"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="8_0f4ii"]
+[ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_cmioc"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="9_yv1x3"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
+[ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="14_cmioc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("1_qbg50")
@@ -118,6 +120,12 @@ disabled = true
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_dvh2n")
 
+[node name="StonePlatformEdge13" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup" index="14" instance=ExtResource("9_cmioc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 7, -1)
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge13/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_dvh2n")
+
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_0eabh")
 
@@ -155,7 +163,11 @@ modulate = Color(0, 0, 0, 1)
 texture = ExtResource("12_iviu7")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_yv1x3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2072, 5.90692, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1215, 5.90692, 0)
+
+[node name="EnemyBat" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_cmioc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14037, 5.17101, 0)
 
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]
@@ -168,6 +180,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2072, 5.90692, 0)
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge10"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge11"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge5"]
+[editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/PlatformGroup/StonePlatformEdge13"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/LeftWall/Wall_DoorWay2"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1/RightWall/Wall_DoorWay2"]
 [editable path="SubViewportContainer/SubViewport/Environment/TrapAxe_Triggered"]

@@ -7,12 +7,20 @@ public partial class BombArrowProjectile : RigidBody3D
 	[Export] public float explosionRadius = 5.0f;
 	[Export] public float explosionDuration = 2.0f;
 	private bool hasExploded = false;
+	private float lifetime = 3.0f;
+	SceneTreeTimer timer;
 	
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
 		SetContactMonitor(true);
 		SetMaxContactsReported(10);
+		timer = GetTree().CreateTimer(lifetime);
+		timer.Timeout += DeleteProjectile;
+	}
+	private void DeleteProjectile()
+	{
+		QueueFree();
 	}
 	
 	public override void _IntegrateForces(PhysicsDirectBodyState3D state)
@@ -25,16 +33,16 @@ public partial class BombArrowProjectile : RigidBody3D
 	
 	private void OnBodyEntered(Node body)
 	{
-		 if (!hasExploded)
-	{
-		// Check if we hit an enemy
-		if (body is EnemyController enemy)
+		if (!hasExploded)
 		{
-			enemy.DamagedRecieved(25); 
-		}
+			// Check if we hit an enemy
+			if (body is EnemyController enemy)
+			{
+				enemy.DamagedRecieved(25); 
+			}
 		
-		OnHitSurface();
-	}
+			OnHitSurface();
+		}
 	}
 	
 	private void OnHitSurface()
@@ -45,7 +53,7 @@ public partial class BombArrowProjectile : RigidBody3D
 		var explosion = explosionVFX.Instantiate() as Node3D;
 		GetTree().CurrentScene.AddChild(explosion);
 		explosion.GlobalPosition = GlobalPosition;
-		//CreateExplosionSphere();
+		CreateExplosionSphere();
 
 		if (explosionSound != null)
 		{
@@ -58,9 +66,7 @@ public partial class BombArrowProjectile : RigidBody3D
 		}
 		
 		Visible = false;
-		
-		var timer = GetTree().CreateTimer(explosionDuration);
-		timer.Timeout += () => QueueFree();
+		timer.TimeLeft = explosionDuration;
 	}
 	
 	private void CreateExplosionSphere()

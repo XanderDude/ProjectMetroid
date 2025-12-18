@@ -54,7 +54,11 @@ public partial class attackState : State
 		if (Input.IsActionPressed("Shoot"))
 		{
 			ShootArrow(false);
-			SoundFriend.Play(chargingArrowStartSFX);
+			if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
+			{
+				SoundFriend.Play(chargingArrowStartSFX);
+			}
+			
 		}
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
@@ -86,7 +90,12 @@ public partial class attackState : State
 	{
 		chargingTimer += delta;
 		shootCooldownTimer += delta;
-		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
+		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
+        {
+			if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
+            return;
+        }
+		else if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
 		else
 		{
 			if (chargingTimer > 0.4f) chargingArrowVFX.Visible = true;

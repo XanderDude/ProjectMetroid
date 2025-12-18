@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_76ouy"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_e2cod"]
-
-[sub_resource type="Environment" id="Environment_kamup"]
-background_mode = 1
-background_energy_multiplier = 3.12
-ambient_light_color = Color(0.956863, 0.337255, 0.172549, 1)
-ambient_light_energy = 2.35
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="9_vxs5w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk4x4"]
 shader = ExtResource("2_e2cod")
@@ -22,7 +17,7 @@ initroomfriend = true
 initdebugfriend = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kamup")
+environment = ExtResource("9_vxs5w")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_jk4x4")

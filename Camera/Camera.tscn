@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb1a5lyceph7y"]
 
-[ext_resource type="Script" uid="uid://cy25jwvvar85q" path="res://Camera/Camera3d.cs" id="1_npc1t"]
+[ext_resource type="Script" uid="uid://odh8xk650deb" path="res://Camera/CameraFriend.cs" id="1_88gwk"]
 [ext_resource type="Material" uid="uid://d446d1yqrasc" path="res://Camera/HeightFadeMaterial.tres" id="2_m7pi7"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_npc1t"]
@@ -9,7 +9,11 @@ material = ExtResource("2_m7pi7")
 [node name="Camera3D" type="Camera3D"]
 keep_aspect = 0
 fov = 32.0
-script = ExtResource("1_npc1t")
+script = ExtResource("1_88gwk")
+roomMinX = -200.0
+roomMaxX = 200.0
+roomMinY = -200.0
+roomMaxY = 200.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 1, 0, -4.69145, -30.6777)
