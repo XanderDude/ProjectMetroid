@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvvlrybffprx4"]
+[gd_scene load_steps=10 format=3 uid="uid://bvvlrybffprx4"]
 
 [ext_resource type="Script" uid="uid://diwkr0368hqc3" path="res://Player/Weapons/WristCrossbow/BombArrowProjectile.cs" id="1_jrn6s"]
 [ext_resource type="PackedScene" uid="uid://5b2aci4nglrg" path="res://Player/VFX/BombExplosionVFX.tscn" id="2_bfbit"]
@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bqqtpwpv1botb" path="res://Environment/VFX/CandleFlameVFX.tscn" id="4_bfbit"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
-radius = 0.0425374
-height = 0.463733
+radius = 0.075
+height = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfbit"]
 cull_mode = 2
@@ -28,14 +28,21 @@ disable_ambient_light = true
 albedo_color = Color(0.733333, 0, 0.00392157, 1)
 proximity_fade_enabled = true
 
-[node name="bombarrow" type="RigidBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_bfbit"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_alt2y"]
+
+[node name="BombArrow" type="RigidBody3D"]
 collision_layer = 0
-collision_mask = 11
+collision_mask = 27
 collision_priority = 10.0
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 script = ExtResource("1_jrn6s")
 explosionVFX = ExtResource("2_bfbit")
+explosionRadius = 1.0
+explosionDuration = 0.5
+damage = 100
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.000577286, 0, 0)
@@ -59,3 +66,26 @@ mesh = ExtResource("3_5scrf")
 
 [node name="CandleFlameVFX" parent="." instance=ExtResource("4_bfbit")]
 transform = Transform3D(0.685, 0, 0, 0, 0.685, 0, 0, 0, 0.685, 0.194713, 0.0271309, 0)
+
+[node name="ExplosionCollider" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0, 0)
+visible = false
+enabled = false
+shape = SubResource("SphereShape3D_bfbit")
+target_position = Vector3(0, 0, 0)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="Area3D" type="Area3D" parent="."]
+process_mode = 4
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, 0, 0)
+visible = false
+shape = SubResource("SphereShape3D_alt2y")
+
+[connection signal="area_entered" from="Area3D" to="." method="CollisionEntered"]
+[connection signal="body_entered" from="Area3D" to="." method="EnemyCollisionEntered"]

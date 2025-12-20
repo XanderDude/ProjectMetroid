@@ -42,21 +42,16 @@ public partial class Raven : CharacterBody3D
     }
 
     public override void _PhysicsProcess(double delta)
-    {
-        
-
-        
+    {        
 
         if (rsm != null && rsm._currentState != null)
         {
             if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
             {
-                this.CollisionLayer = 1 << 4;
                 this.CollisionMask = (1 << 0) | (1 << 1);
             }
             else
             {
-                this.CollisionLayer = 0;
                 this.CollisionMask = 0;
             }
         }

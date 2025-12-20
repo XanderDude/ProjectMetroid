@@ -5,14 +5,15 @@ public partial class forgeState : State
 {
 
     [Export] public float moveSpeed = 10.0f;
+    private uint layerMasks = 0;
 
     public override void Enter()
     {
         GD.Print("Entering forge state");
         parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
-        //Remove collision on layer 3 
         player.Velocity = Vector3.Zero;
-        pm.CollisionMask = 0;        
+        layerMasks = player.CollisionMask;
+        player.CollisionMask = 0;        
     }
 
     public override void Exit()
@@ -20,12 +21,7 @@ public partial class forgeState : State
         GD.Print("Exiting forge state");
         //Restore collision
        
-        pm.CollisionMask = (1 << 0) | (1 << 1);
-    }
-
-    public override void Update(float delta)
-    {
-
+        if (layerMasks != 0) player.CollisionMask = layerMasks; //layerMasks = 0 during initialization
     }
 
     public override void PhysicsUpdate(float delta)

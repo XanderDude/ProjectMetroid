@@ -18,13 +18,18 @@ public partial class attackState : State
 	private Node3D arrowSpawnLoc;
 	private float chargingTimer = 0.0f;
 
-	[Export] private float HALF_CHARGE_TIME = 0.4f;
+	//[Export] private float HALF_CHARGE_TIME = 0.4f;
 	[Export] private float FULL_CHARGE_TIME = 0.8f;
 
-	private bool half_charge_shot = false;
-	private bool full_charge_shot = false;
-
-	
+	private enum ArrowType
+	{
+		None,
+		Normal,
+		Bomb,
+		HalfCharge,
+		FullCharge
+	}
+	private ArrowType currentArrowType = ArrowType.None;
 
 	public override void _Ready()
 	{
@@ -47,22 +52,20 @@ public partial class attackState : State
 	public override void Enter()
 	{
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(true);
-		half_charge_shot = false;
-		full_charge_shot = false;
 		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;
 		if (Input.IsActionPressed("Shoot"))
 		{
-			ShootArrow(false);
+			ShootArrow(ArrowType.Normal);
 			if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
 			{
 				SoundFriend.Play(chargingArrowStartSFX);
 			}
-			
 		}
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
-			ShootArrow(true);
+			currentArrowType = ArrowType.Bomb;
+			ShootArrow(ArrowType.Bomb);
 		}
 	}
 	
@@ -74,108 +77,36 @@ public partial class attackState : State
 		fullChargedArrowVFX.Visible = false;
 		SoundFriend.Stop(chargingArrowStartSFX);
 		SoundFriend.Stop(chargingArrowLoopSFX);
-		if (full_charge_shot == true)
+		if (currentArrowType == ArrowType.FullCharge && pm.StateMachine._currentState.Name != "mantleState")
 		{
-			GD.Print("Shooting Full Charge Shot");
-			ShootFullCharge();
+			ShootArrow(ArrowType.FullCharge);
 		}
-		else if (half_charge_shot == true)
-		{
-			GD.Print("Shooting Half Charge Shot");
-			ShootHalfCharge();
-		}
+		currentArrowType = ArrowType.None;
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
-		chargingTimer += delta;
 		shootCooldownTimer += delta;
-		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
+		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot") || currentArrowType == ArrowType.Bomb)
         {
 			if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
             return;
         }
-		else if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
+
+		chargingTimer += delta;
+		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
 		else
 		{
 			if (chargingTimer > 0.4f) chargingArrowVFX.Visible = true;
 			
-			if (chargingTimer >= FULL_CHARGE_TIME && full_charge_shot == false) 
+			if (chargingTimer >= FULL_CHARGE_TIME && currentArrowType != ArrowType.FullCharge) 
             {
-				full_charge_shot = true;
+				currentArrowType = ArrowType.FullCharge;
 				chargingArrowVFX.Visible = false;
 				fullChargedArrowVFX.Visible = true;
 				SoundFriend.Play(chargingArrowLoopSFX);
             }
-			else if (chargingTimer >= HALF_CHARGE_TIME && full_charge_shot == false) half_charge_shot = true;
 		}
-	}
-
-
-	public void ShootHalfCharge()
-	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();		
-		PackedScene projectileScene = arrowScene;
-		
-		if (projectileScene == null || arrowSpawnLoc == null)
-		{
-			return;
-		}
-		
-		var arrow = projectileScene.Instantiate() as RigidBody3D;
-		arrow.GravityScale = 0.0f;
-		
-		
-		player.GetParent().AddChild(arrow);
-		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
-
-		Vector2 shootDirection = GetShootDirection();
-		
-		float dot = shootDirection.Dot(new Vector2(Mathf.Abs(shootDirection.X), 0));
-		float rotation = (shootDirection.Y >= 0)
-		? (1f - dot) / 4f 
-		: (dot + 3f) / 4f;
-
-		rotation *= 360f;
-
-		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
-		
-		SoundFriend.Play(shootHalfChargeSFX);
-	}
-
-
-
-	public void ShootFullCharge()
-	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();		
-		PackedScene projectileScene = chargedArrowScene;
-		
-		if (projectileScene == null || arrowSpawnLoc == null)
-		{
-			return;
-		}
-		
-		var arrow = projectileScene.Instantiate() as RigidBody3D;
-		arrow.GravityScale = 0.0f;
-		
-		
-		player.GetParent().AddChild(arrow);
-		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
-
-		Vector2 shootDirection = GetShootDirection();
-		
-		float dot = shootDirection.Dot(new Vector2(Mathf.Abs(shootDirection.X), 0));
-		float rotation = (shootDirection.Y >= 0)
-		? (1f - dot) / 4f 
-		: (dot + 3f) / 4f;
-
-		rotation *= 360f;
-
-		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
-		
-		SoundFriend.Play(shootFullChargeSFX);	
 	}
 
 	private bool CanShootBomb()
@@ -186,8 +117,6 @@ public partial class attackState : State
 		{
 			return true;
 		}
-
-		if (Input.IsActionPressed("Shoot")) return false;
 		return false;
 	}	
 	
@@ -203,21 +132,43 @@ public partial class attackState : State
 		return direction.Normalized();
 	}
 	
-	private void ShootArrow(bool isBombArrow)
+	private void ShootArrow(ArrowType arrowType)
 	{
+		PackedScene projectileScene; RigidBody3D arrow;
+		float speedModifier = 1f;
+		switch (arrowType)
+		{
+			case ArrowType.Normal:
+				projectileScene = arrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				break;
+			case ArrowType.Bomb:
+				projectileScene = bombArrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.5f;
+				speedModifier = 0.8f;
+				break;
+			case ArrowType.HalfCharge:
+				projectileScene = arrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				break;
+			case ArrowType.FullCharge:
+				projectileScene = chargedArrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				speedModifier = 1.5f;
+				break;
+			default:
+				GD.PrintErr("No arrow type selected!");
+				return;
+		}
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();
-		PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
-		
+
 		if (projectileScene == null || arrowSpawnLoc == null)
 		{
 			return;
-		}
-		
-		var arrow = projectileScene.Instantiate() as RigidBody3D;
-		arrow.GravityScale = 0.0f;
-		if (isBombArrow)
-		{
-			arrow.GravityScale = 0.5f;
 		}
 		
 		player.GetParent().AddChild(arrow);
@@ -233,15 +184,24 @@ public partial class attackState : State
 		rotation *= 360f;
 
 		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * speedModifier, 
+		shootDirection.Y * arrowSpeed * speedModifier, 0);
 		
-		SoundFriend.Play(shootNormalArrowSFX);
-
-		// Only consume after arrow is successfully created
-		if (isBombArrow)
+		switch (arrowType)
 		{
-			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+			case ArrowType.Normal:
+				SoundFriend.Play(shootNormalArrowSFX);
+				break;
+			case ArrowType.Bomb:
+				SoundFriend.Play(shootBombArrowSFX);
+				GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+				break;
+			case ArrowType.HalfCharge:
+				SoundFriend.Play(shootHalfChargeSFX);
+				break;
+			case ArrowType.FullCharge:
+				SoundFriend.Play(shootFullChargeSFX);
+				break;
 		}
-
 	}
 }
