@@ -14,10 +14,8 @@ public partial class PlayerManager : CharacterBody3D
 	public bool isPressed = false; 
 	[Export] private ShaderMaterial invulnMat;
 
-
-	
-
-
+	public Vector2 aimDirection;
+	public bool noAimDirection;
 
 	public int Health
 	{
@@ -96,6 +94,10 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		aimDirection = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();
+		if (aimDirection == Vector2.Zero) noAimDirection = true;
+		else noAimDirection = false;	
+		
 		if (invulnTimer > 0)
 		{
 			invulnMat?.SetShaderParameter("alpha", 1f);

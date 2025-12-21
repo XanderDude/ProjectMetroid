@@ -30,3 +30,5 @@ mono_crash.*.json
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/tasks.json
+*.sav
+*.sav

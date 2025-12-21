@@ -122,7 +122,8 @@ public partial class attackState : State
 	
 	private Vector2 GetShootDirection()
 	{		
-		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
+		Vector2 direction = new Vector2(Mathf.Ceil(Mathf.Abs(pm.aimDirection.X)) * Mathf.Sign(pm.aimDirection.X), 
+		Mathf.Ceil(Mathf.Abs(pm.aimDirection.Y)) * Mathf.Sign(pm.aimDirection.Y)); //get absolute value of direction (no negative), round up, multiply by sign to get direction
 
 		if (direction == Vector2.Zero || player.IsOnFloor() && direction == new Vector2(0, -1))
 		{

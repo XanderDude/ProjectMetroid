@@ -127,7 +127,7 @@ public partial class jumpState : State
 	private void HandleAirMovement(float delta)
 	{
 		Vector3 velocity = player.Velocity;
-		float input = Input.GetAxis("Left", "Right");
+		float input = Mathf.Sign(pm.aimDirection.X);
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
@@ -135,10 +135,6 @@ public partial class jumpState : State
 			if (input == 0)
 			{
 				velocity.X = Mathf.MoveToward(velocity.X, 0, jumpDeceleration);
-				/*
-				if (velocity.X > 0.3f) velocity.X -= 1.0f;
-				else if (velocity.X < -0.3f) velocity.X += 1.0f;
-				else { velocity.X = 0; }*/
 			}
 			else velocity.X = input * airMaxSpeed;
 		}
@@ -148,10 +144,6 @@ public partial class jumpState : State
 			if (input == 0)
 			{
 				velocity.X = Mathf.MoveToward(velocity.X, 0, jumpDeceleration);
-				/*
-				if (velocity.X > 0.1f) velocity.X = 0.5f;
-				else if (velocity.X < -0.1f) velocity.X = -0.5f;
-				*/
 			}
 			else velocity.X = input * airMaxSpeed;
 

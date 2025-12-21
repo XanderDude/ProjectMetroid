@@ -55,11 +55,11 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
 		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
-		SVector2 newAimDirect = new SVector2(Mathf.Abs(Input.GetAxis("Left", "Right")), Input.GetAxis("Down", "Up")); //get up or down (1, -1,) and if holding a direction
-
+		SVector2 newAimDirect = new SVector2(Mathf.Ceil(Mathf.Abs(Input.GetAxis("Left", "Right"))), Mathf.Ceil(Input.GetAxis("Down", "Up"))); //get up or down (1, -1,) and if holding a direction
+		
 		if (newAimDirect != aimDirection)
 		{
-			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, (float)delta * transitionSpeed);
+			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, .2f);
 			animTree.Set(AimBlendBlendPath, new Vector2(aimDirection.X, aimDirection.Y));
 		}
 
