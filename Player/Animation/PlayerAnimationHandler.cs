@@ -21,7 +21,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private string HangingStateName;
 
 	[Export] private float shootingAnimTime = 2f; //how long shoot anim lasts before resetting to default
-	private float shootingTimer = 99f; //set to -1 to constantly aim, no timer
+	private float aimingTimer = 99f; //set to -1 to constantly aim, no timer
 
 	private float currentSpeed;
 
@@ -38,7 +38,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
 
-		if (shootingTimer != -1 && shootingTimer < shootingAnimTime) shootingTimer += (float)delta;
+		if (aimingTimer != -1 && aimingTimer < shootingAnimTime) aimingTimer += (float)delta;
 
 		//find the value between current speed and desired speed
 		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), 2), 0, 1f);
@@ -56,7 +56,11 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		animTree.Set(WalkingBlendPath, currentSpeed); //always blend animation tree with current speed
 		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
 		SVector2 newAimDirect = new SVector2(Mathf.Ceil(Mathf.Abs(Input.GetAxis("Left", "Right"))), Mathf.Ceil(Input.GetAxis("Down", "Up"))); //get up or down (1, -1,) and if holding a direction
-		
+		if (Input.IsActionPressed("Aim"))
+		{
+			if (aimingTimer != -1) aimingTimer = .5f;
+			newAimDirect = new (1f,1f);
+		}
 		if (newAimDirect != aimDirection)
 		{
 			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, .2f);
@@ -64,7 +68,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		}
 
 		//only blend upper body when aiming
-		if (shootingTimer < shootingAnimTime) animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 1, (float)delta * transitionSpeed));
+		if (aimingTimer < shootingAnimTime) animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 1, (float)delta * transitionSpeed));
 		else animTree.Set(LegAndArmBlendBlendPath, Mathf.MoveToward((float)animTree.Get(LegAndArmBlendBlendPath), 0, (float)delta * (transitionSpeed/3)));
 	}
 
@@ -103,9 +107,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void Aiming(bool isAiming)
 	{
-		if (isAiming) shootingTimer = -1;
+		if (isAiming) aimingTimer = -1;
 		else
-		shootingTimer = 0;
+		aimingTimer = 0;
 	}
 	public void Shooting()
     {
@@ -134,7 +138,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		
 		// Reset internal values
 		currentSpeed = 0f;
-		shootingTimer = 0f;
+		aimingTimer = 0f;
 		aimDirection = SVector2.Zero;
 	}
 }

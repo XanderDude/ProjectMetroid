@@ -122,6 +122,10 @@ public partial class attackState : State
 	
 	private Vector2 GetShootDirection()
 	{		
+		if (Input.IsActionPressed("Aim"))
+        {
+            return new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 1f).Normalized();
+        }
 		Vector2 direction = new Vector2(Mathf.Ceil(Mathf.Abs(pm.aimDirection.X)) * Mathf.Sign(pm.aimDirection.X), 
 		Mathf.Ceil(Mathf.Abs(pm.aimDirection.Y)) * Mathf.Sign(pm.aimDirection.Y)); //get absolute value of direction (no negative), round up, multiply by sign to get direction
 
