@@ -6,22 +6,30 @@ public partial class groundedState : State
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	public SlideVertColCheck vertColCheck;
+	private float _landingCooldown = .1f; //3 frames (60fps)
+	private float landingCDTimer;
 	public override void Enter()
 	{
-		player.Set(PlayerManager.PropertyName.slideBoost, false);
+		pm.slideBoost = false;
 		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded(); //could be crouching
+		if (msm._previousState.Name == "jumpState") {
+			GD.Print("Player Landed");
+			landingCDTimer = 0; //start timer when landing
+		}
 	}
 	
 	public override void Exit() {
-		//GD.Print("Exited Grounded State.");
+		landingCDTimer = _landingCooldown;
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
-		
-		if (!player.IsOnFloor()) //immediately switch to jump state
+		landingCDTimer += delta;
+
+		if (!player.IsOnFloor() && landingCDTimer >= _landingCooldown) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
+			landingCDTimer = 0;
 			//return;
 		}
 		
@@ -38,6 +46,7 @@ public partial class groundedState : State
 	{
 		//int input = Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")); //get absolute value of input (no negative), round up, multiply by sign to get direction
 		Vector3 velocity = player.Velocity;
+		velocity.Y -= _gravity * delta;
 		velocity.X = Mathf.MoveToward(velocity.X, Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed, delta + groundAcceleration);
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
 		player.Velocity = velocity;
@@ -46,7 +55,7 @@ public partial class groundedState : State
 
 	public override void HandleInput(InputEvent @event) //Called whenever an input is detected
 	{
-		if (@event.IsActionPressed("forgemode") && GameFriend.gameinstance.initroomfriend == true)
+		if (@event.IsActionPressed("forgemode"))
 		{
 			msm.TransitionTo("forgeState");
 		}

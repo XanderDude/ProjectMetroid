@@ -80,7 +80,8 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void BeginJump()
 	{
-		playback?.Travel(JumpStateName);
+		playback?.Start(JumpStateName);
+		//playback?.Travel(JumpStateName);
 	}
 
 	public void Grounded()
@@ -91,8 +92,8 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void Sliding(bool value) //value = slide true or sliding false
 	{
 		animTree.Set("parameters/conditions/slideEnd", !value); //set slideEnd true when Sliding(false) is called
-		if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
-		else if (value) playback?.Travel(SlideStateName); //only transition to slide when true
+		//if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
+		if (value) playback?.Travel(SlideStateName); //only transition to slide when true
 	}
 
 	public void Crouch(bool value)

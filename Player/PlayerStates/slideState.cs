@@ -17,12 +17,13 @@ public partial class slideState : State
 	public SlideVertColCheck vertColCheck;
 	public override void Enter()
 	{
+		GD.Print("Sliding");
 		input = Mathf.Sign(pm.aimDirection.X);
 		if (input == 0) input = Mathf.Sign(parentMesh.RotationDegrees.Y);
 		crouchQueued = false;
 		slideTimer = 0;
 
-		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost) && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
+		if (pm.slideBoost && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
 			if (pm.slideBoostVFX != null)
 			{
@@ -52,7 +53,7 @@ public partial class slideState : State
 	{
 		slideTimer += delta;
 
-		if (!player.IsOnFloor()) //immediately switch to jump state
+		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor()) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
 			return;

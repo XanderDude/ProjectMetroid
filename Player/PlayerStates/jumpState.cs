@@ -10,8 +10,8 @@ public partial class jumpState : State
 	[Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpMaxHeight = 0.17f;
 	[Export] public float playerTop = 1.5f;
-	private float mantleCooldown = .2f;
-	private float mantleTimer = .2f;
+	private float _mantleCooldown = .2f;
+	private float mantleTimer = 1;
 	public float jumpHeight = 0.0f; //player's current jump height position
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
@@ -46,7 +46,7 @@ public partial class jumpState : State
 			collider.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
 			float playerHeight = player.GlobalPosition.Y + playerTop;
 			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
-			if (Mathf.Abs(playerHeight - meshTop) < 0.1f) return true;
+			if (Mathf.Abs(playerHeight - meshTop) < 0.2f) return true;
 		}
 		return false;
 
@@ -79,6 +79,7 @@ public partial class jumpState : State
 		}
 		else
 		{
+			pm.jumpQueued = false;
 			jumpHeight = jumpMaxHeight; //clamp
 			return false;
 		}
@@ -87,7 +88,7 @@ public partial class jumpState : State
 	public override void Enter()
 	{
 		cancelVelocity = true;
-		if ((bool)player.Get("jumpQueued"))//jump state entered due to player jumping
+		if (pm.jumpQueued)//jump state entered due to player jumping
 		{
 			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0);
 			jumpHeight = 0.0f;
@@ -101,26 +102,37 @@ public partial class jumpState : State
 	public override void Exit()
 	{
 		//GD.Print("Exited Jump State");
-		player.Set("jumpQueued", false); //don't jump on exit if holding jump
+		pm.jumpQueued = false; //don't jump on exit if holding jump
 		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 
 
 	public override void PhysicsUpdate(float delta)
 	{
+		mantleTimer += delta;
+
+		if (!pm.jumpQueued && (pm.groundCheck.IsColliding() || player.IsOnFloor()))
+        {
+			cancelVelocity = true;
+			//if (player.IsOnFloor()) player.Velocity = new Vector3(-Mathf.Sign(pm.aimDirection.X), 0, 0) * airMaxSpeed;
+            if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0) {
+				GD.Print("Slide boosting");
+				msm.TransitionTo("slideState");
+			}
+			else msm.TransitionTo("groundedState");
+        }
+		else if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling") && mantleTimer >= _mantleCooldown && pm.aimDirection.X != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
+		{
+			mantleTimer = 0;
+			player.Velocity = Vector3.Zero;
+			msm.TransitionTo("mantleState");
+		}
+		HandleAirMovement(delta);
 		if (cancelVelocity)
 		{
 			player.Velocity = Vector3.Zero;
 			cancelVelocity = false;
 		}
-		if (mantleTimer > 0) mantleTimer -= delta; //player can mantle again when mantleTimer = 0
-
-		/*if (Input.IsKeyPressed(Key.Down)) {
-				velocity.Y -= (jumpGravity * 4) * (float)delta;
-			}
-		*/
-
-		HandleAirMovement(delta);
 		player.MoveAndSlide();
 	}
 
@@ -129,7 +141,7 @@ public partial class jumpState : State
 		Vector3 velocity = player.Velocity;
 		float input = Mathf.Sign(pm.aimDirection.X);
 
-		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
+		if (pm.jumpQueued && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
 			velocity.Y -= _gravity * delta;
 			if (input == 0)
@@ -140,28 +152,13 @@ public partial class jumpState : State
 		}
 		else //must be falling
 		{
+
 			velocity.Y -= _gravity * 2.5f * delta; //faster falling speed
 			if (input == 0)
 			{
 				velocity.X = Mathf.MoveToward(velocity.X, 0, jumpDeceleration);
 			}
 			else velocity.X = input * airMaxSpeed;
-
-			if (player.IsOnFloor())
-			{
-				mantleTimer = 0;
-				if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0) msm.TransitionTo("slideState");
-				else msm.TransitionTo("groundedState");
-			}
-			else if (mantleTimer <= 0 && Input.GetAxis("Left", "Right") != 0 && isSameHeight() && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling")) //player must be pressing towards ledge, player top reset, and in range of ledge height
-			{
-
-				//GD.Print("Mantling");
-				mantleTimer = mantleCooldown;
-				cancelVelocity = true;
-				msm.TransitionTo("mantleState");
-				return; //dont continue updating movement
-			}
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
@@ -176,9 +173,9 @@ public partial class jumpState : State
 		}
 		if (@event.IsActionReleased("Jump")) //check when jump is released
 		{
-			player.Set(PlayerManager.PropertyName.jumpQueued, false);
+			pm.jumpQueued = false;
 		}
-		if (@event.IsActionPressed("Jump") && isTouching() && !isSameHeight() && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("wallJump")) {
+		if (@event.IsActionPressed("Jump") && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("wallJump") && !player.IsOnFloor() && isTouching() && !isSameHeight()) {
 			msm.TransitionTo("walljumpState");
 		}
 

@@ -16,6 +16,7 @@ public partial class PlayerManager : CharacterBody3D
 
 	public Vector2 aimDirection;
 	public bool noAimDirection;
+	[Export] public RayCast3D groundCheck;
 
 	public int Health
 	{
@@ -77,8 +78,6 @@ public partial class PlayerManager : CharacterBody3D
 		invulnTimer = 0;
 		invulnMat?.SetShaderParameter("alpha", 0f);
 
-		
-
 		// Small delay to ensure all nodes are ready
 		var timer = GetTree().CreateTimer(0.1f);
 		
@@ -106,8 +105,7 @@ public partial class PlayerManager : CharacterBody3D
 			else direction = new(Mathf.Sign(direction.X), Mathf.Sign(direction.Y));
         }
 		
-		if (direction != aimDirection) GD.Print(direction.Normalized());
-		aimDirection = direction.Normalized();
+		if (direction != aimDirection) aimDirection = direction.Normalized();
 		
 		if (invulnTimer > 0)
 		{
