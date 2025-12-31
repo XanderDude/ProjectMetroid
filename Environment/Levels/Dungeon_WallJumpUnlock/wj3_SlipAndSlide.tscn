@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgbcoxnembajc"]
+[gd_scene load_steps=26 format=3 uid="uid://bgbcoxnembajc"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_fsi3n"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="2_xa4ne"]
@@ -28,6 +28,15 @@ size = Vector3(26, 0.5, 2)
 size = Vector3(17.5, 0.5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpmfn"]
+size = Vector3(1.60322, 19.0082, 10.373)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsi3n"]
+size = Vector3(1.05049, 25.831, 10.373)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa4ne"]
+size = Vector3(0.1, 7.99207, 10.373)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kcjg1"]
 resource_local_to_scene = true
@@ -536,6 +545,13 @@ skeleton = NodePath("")
 
 [node name="stoneWallLeft" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0757, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneWallLeft/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.751611, -3.82424, 0)
+shape = SubResource("BoxShape3D_kpmfn")
 
 [node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallLeft"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 0, -5)
@@ -1433,6 +1449,13 @@ skeleton = NodePath("../..")
 [node name="stoneWallRight" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="stoneWallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0757, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneWallRight/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.475245, -0.412812, 0)
+shape = SubResource("BoxShape3D_fsi3n")
+
 [node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
 mesh = ExtResource("7_h4m41")
@@ -1800,6 +1823,13 @@ skeleton = NodePath("../..")
 
 [node name="stoneWallRight2" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stoneWallRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0757, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stoneWallRight2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.07108, 0)
+shape = SubResource("BoxShape3D_xa4ne")
 
 [node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallRight2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
