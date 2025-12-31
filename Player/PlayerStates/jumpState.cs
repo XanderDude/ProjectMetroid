@@ -92,7 +92,7 @@ public partial class jumpState : State
 			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0);
 			jumpHeight = 0.0f;
 			SoundFriend.Play("player_jump_SFX");
-			if (Input.GetAxis("Left", "Right") == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
+			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
@@ -102,7 +102,7 @@ public partial class jumpState : State
 	{
 		//GD.Print("Exited Jump State");
 		player.Set("jumpQueued", false); //don't jump on exit if holding jump
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 
 

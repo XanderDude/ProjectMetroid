@@ -16,8 +16,16 @@ public partial class walljumpState : State
 	private void checkDirection() {
 		KinematicCollision3D collision = player.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
-		if (collider.GlobalPosition.X >= player.GlobalPosition.X) { airMaxSpeed = -airMaxSpeed;}
-		if (collider.GlobalPosition.X <= player.GlobalPosition.X) { airMaxSpeed = Mathf.Abs(airMaxSpeed); }
+		if (collider.GlobalPosition.X >= player.GlobalPosition.X) 
+		{ 
+			airMaxSpeed = -airMaxSpeed;
+			parentMesh.RotationDegrees = new(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * -1, 0);
+		}
+		if (collider.GlobalPosition.X <= player.GlobalPosition.X)
+		{ 
+			airMaxSpeed = Mathf.Abs(airMaxSpeed); 
+			parentMesh.RotationDegrees = new(0, Mathf.Abs(parentMesh.RotationDegrees.Y), 0);	
+		}
 	}
 
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending

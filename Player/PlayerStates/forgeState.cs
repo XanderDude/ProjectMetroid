@@ -26,7 +26,7 @@ public partial class forgeState : State
 
     public override void PhysicsUpdate(float delta)
     {
-        Vector3 moveDirection = new(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"), 0);
+        Vector3 moveDirection = new(pm.aimDirection.X, pm.aimDirection.Y, 0);
         if (Input.IsActionPressed("Jump")) moveDirection.Y += 1;
         player.Velocity = moveDirection.Normalized() * moveSpeed;
         player.MoveAndSlide();

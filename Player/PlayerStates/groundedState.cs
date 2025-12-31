@@ -19,22 +19,19 @@ public partial class groundedState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		
-		if (msm._currentState.Name == "groundedState" && Mathf.Abs(player.Velocity.X) >= .1f) 
-		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-		}
 		if (!player.IsOnFloor()) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
-			return;
+			//return;
 		}
 		
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
-		if (msm._currentState.Name == "groundedState" && Input.GetAxis("Left", "Right") != 0 && player.Velocity.X == 0) //check if player is trying to move
+		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0) //check if player is trying to move
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided();
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
+		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
 	}
 
 	private void HandleGroundedMovement(float delta)
@@ -59,7 +56,7 @@ public partial class groundedState : State
 			msm.TransitionTo("crouchState");
 		}
 		
-		if (Input.IsActionPressed("Slide") && Input.GetAxis("Left", "Right") != 0)
+		if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0)
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
@@ -77,7 +74,7 @@ public partial class groundedState : State
             }
 		}
 
-		if (@event.IsActionPressed("Up") && Input.GetAxis("Left", "Right") == 0) //only stand up when only pressing up
+		if (@event.IsActionPressed("Up") && pm.aimDirection.X == 0) //only stand up when only pressing up
 		{
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) GD.Print("Standing blocked");
 			else

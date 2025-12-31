@@ -120,14 +120,13 @@ public partial class attackState : State
 		return false;
 	}	
 	
-	private Vector2 GetShootDirection()
+	public Vector2 GetShootDirection()
 	{		
 		if (Input.IsActionPressed("Aim"))
         {
             return new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 1f).Normalized();
         }
-		Vector2 direction = new Vector2(Mathf.Ceil(Mathf.Abs(pm.aimDirection.X)) * Mathf.Sign(pm.aimDirection.X), 
-		Mathf.Ceil(Mathf.Abs(pm.aimDirection.Y)) * Mathf.Sign(pm.aimDirection.Y)); //get absolute value of direction (no negative), round up, multiply by sign to get direction
+		Vector2 direction = pm.aimDirection;
 
 		if (direction == Vector2.Zero || player.IsOnFloor() && direction == new Vector2(0, -1))
 		{
@@ -177,7 +176,7 @@ public partial class attackState : State
 		}
 		
 		player.GetParent().AddChild(arrow);
-		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
+		arrow.GlobalPosition = new(arrowSpawnLoc.GlobalPosition.X, arrowSpawnLoc.GlobalPosition.Y, 0);
 
 		Vector2 shootDirection = GetShootDirection();
 		

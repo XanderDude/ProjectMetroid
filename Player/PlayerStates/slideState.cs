@@ -17,9 +17,11 @@ public partial class slideState : State
 	public SlideVertColCheck vertColCheck;
 	public override void Enter()
 	{
-		input = Mathf.Sign(Input.GetAxis("Left", "Right"));
+		input = Mathf.Sign(pm.aimDirection.X);
+		if (input == 0) input = Mathf.Sign(parentMesh.RotationDegrees.Y);
 		crouchQueued = false;
 		slideTimer = 0;
+
 		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost) && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
 			if (pm.slideBoostVFX != null)
@@ -36,6 +38,7 @@ public partial class slideState : State
 		{
 			currentSlideSpeed = slideMaxSpeed * input;
 		}
+		parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * input, 0); //rotate mesh
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
 	}
 
@@ -55,7 +58,7 @@ public partial class slideState : State
 			return;
 		}
 
-		if ((Mathf.Sign(Input.GetAxis("Left", "Right")) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
+		if ((Mathf.Sign(pm.aimDirection.X) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or is not holding slide button
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding())
 			{
@@ -108,7 +111,7 @@ public partial class slideState : State
 			}
 		}
 
-		if (@event.IsActionPressed("Down") && Input.GetAxis("Left", "Right") == 0 && slideTimer >= slideMinTime)
+		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
 			msm.TransitionTo("crouchState");

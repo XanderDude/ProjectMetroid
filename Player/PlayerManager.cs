@@ -71,7 +71,7 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _Ready()
 	{
-
+		//Input.GetActionStrength
 		
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
@@ -94,9 +94,20 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		aimDirection = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();
-		if (aimDirection == Vector2.Zero) noAimDirection = true;
-		else noAimDirection = false;	
+		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
+		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
+		
+		if (direction == Vector2.Zero) noAimDirection = true;
+		else
+        {
+			noAimDirection = false;	
+            if (Mathf.Abs(direction.X) > .9) direction = new(direction.X, 0);
+			else if (Mathf.Abs(direction.Y) > .9) direction = new(0, direction.Y);
+			else direction = new(Mathf.Sign(direction.X), Mathf.Sign(direction.Y));
+        }
+		
+		if (direction != aimDirection) GD.Print(direction.Normalized());
+		aimDirection = direction.Normalized();
 		
 		if (invulnTimer > 0)
 		{
