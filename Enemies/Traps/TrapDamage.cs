@@ -7,7 +7,7 @@ public partial class TrapDamage : Area3D
     public int damage = 5;
     public float damageCooldown = 2f;
     private float _damageCooldown;
-    private PlayerManager player;
+    private PlayerManager player => GameFriend.gameinstance.player;
     private bool playerInRange = false;
     private Area3D collider;
 
@@ -17,12 +17,11 @@ public partial class TrapDamage : Area3D
         damageCooldown = 0;
         collider = GetNode<Area3D>(GetPath());
         collider.Monitoring = true;
-        AssignPlayer();
+        //AssignPlayer();
     }
     private async void AssignPlayer()
     {
         await ToSignal(GetTree().GetCurrentScene(), Node.SignalName.Ready);
-        player = GetTree().GetCurrentScene().GetNode<PlayerManager>("%Player");
     }
 
     public override void _PhysicsProcess(double delta)

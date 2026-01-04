@@ -86,13 +86,13 @@ shape = SubResource("BoxShape3D_ut63f")
 [node name="PatrolCollision" type="MeshInstance3D" parent="."]
 transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_tu7f2")
-transparency = 0.83
+transparency = 1.0
 mesh = SubResource("BoxMesh_ut63f")
 
 [node name="ActiveCollision" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.4, 0, 0, 0, 2.64, 0, 0, 0, 1, 0, 0.925972, 0)
 material_override = SubResource("StandardMaterial3D_ut63f")
-transparency = 0.87
+transparency = 1.0
 mesh = SubResource("BoxMesh_tu7f2")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]

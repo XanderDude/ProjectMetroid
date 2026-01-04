@@ -12,7 +12,7 @@ public partial class groundedState : State
 	{
 		pm.slideBoost = false;
 		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded(); //could be crouching
-		if (msm._previousState.Name == "jumpState") {
+		if (msm._previousState == null || msm._previousState.Name == "jumpState") {
 			GD.Print("Player Landed");
 			landingCDTimer = 0; //start timer when landing
 		}

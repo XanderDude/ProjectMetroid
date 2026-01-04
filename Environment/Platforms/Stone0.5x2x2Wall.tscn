@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://epb6lm3c7lsy"]
+
+[ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="1_4k3nj"]
+[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="2_bq04j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkffd"]
+resource_local_to_scene = true
+size = Vector3(0.500122, 2, 2)
+
+[node name="StonePillar" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250061, 1, 0)
+shape = SubResource("BoxShape3D_pkffd")
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+mesh = ExtResource("1_4k3nj")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh4" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-0.5, 0, 8.74228e-08, 0, 1, 0, -4.37114e-08, 0, -1, 0.5, 0, 0)
+mesh = ExtResource("1_4k3nj")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 0, 0, 1)
+mesh = ExtResource("2_bq04j")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, 0.5, 0, 1)
+mesh = ExtResource("2_bq04j")
+skeleton = NodePath("../..")

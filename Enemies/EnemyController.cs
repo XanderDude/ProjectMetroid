@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 
 public partial class EnemyController : CharacterBody3D
 {
@@ -59,6 +60,7 @@ public partial class EnemyController : CharacterBody3D
 	public void DamagedRecieved(int damage)
 	{
 		health -= damage;
+		DamageFlicker();
 		if (health <= 0)
 		{
 			KillEnemy();
@@ -71,6 +73,13 @@ public partial class EnemyController : CharacterBody3D
 		QueueFree();
 	}
 
+	private async void DamageFlicker()
+    {
+        mesh.Visible = false;
+		await ToSignal(GetTree().CreateTimer(.1f, false, false, false), "timeout");
+		mesh.Visible = true;
+		
+    }
 
 	public void DropItems()
 	{
