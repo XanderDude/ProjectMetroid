@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://768ha6tg87kq"]
+
+[ext_resource type="Script" uid="uid://dunmsx3tj5x1k" path="res://Player/VFX/EmitVFX.cs" id="1_sukg0"]
+[ext_resource type="Shader" uid="uid://cyn4ax0i21mbh" path="res://Player/VFX/ElectricityShader.tres" id="3_6k7ev"]
+[ext_resource type="ArrayMesh" uid="uid://dfhmv2ansq4yh" path="res://Player/VFX/Electricity1_Mesh.res" id="4_ck6fp"]
+
+[sub_resource type="Gradient" id="Gradient_6k7ev"]
+offsets = PackedFloat32Array(0, 0.694215, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ck6fp"]
+gradient = SubResource("Gradient_6k7ev")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ck6fp"]
+render_priority = 0
+shader = ExtResource("3_6k7ev")
+shader_parameter/StartingUV_y = 0.65
+shader_parameter/Speed = 5.0
+shader_parameter/AlphaRotation = 90.0
+shader_parameter/AlphaGradient = SubResource("GradientTexture1D_ck6fp")
+
+[sub_resource type="Curve" id="Curve_pjdk5"]
+_data = [Vector2(0, 0.5), 0.0, 3.20833, 0, 1, Vector2(0.0948616, 0.804348), 2.92857, -2.75, 0, 0, Vector2(0.13834, 0.402174), -2.64, 1.20312, 0, 0, Vector2(0.27668, 0.73913), 3.59615, -3.60345, 0, 0, Vector2(0.395257, 0.336956), -3.0473, 6.325, 0, 0, Vector2(0.482213, 0.782609), 3.78125, -4.23077, 0, 0, Vector2(0.573123, 0.282609), -6.67857, 3.89583, 0, 0, Vector2(0.695652, 0.706522), 3.21808, -3.95313, 0, 0, Vector2(0.86166, 0.206522), -2.695, 2.30645, 0, 0, Vector2(1, 0.5), 1.33333, 2.00676, 0, 0]
+point_count = 10
+
+[sub_resource type="CurveTexture" id="CurveTexture_jmwis"]
+curve = SubResource("Curve_pjdk5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjdk5"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+color = Color(0.611765, 1, 1, 1)
+emission_curve = SubResource("CurveTexture_jmwis")
+
+[node name="ChargingArrowVFX" type="Node3D" node_paths=PackedStringArray("VFXNodes")]
+script = ExtResource("1_sukg0")
+playOnReady = true
+VFXNodes = [null, null]
+
+[node name="electicityWaves" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1.81402e-08, 0.415, 1.81402e-08, 0, -1.81402e-08, 0.415, 0.415, 1.81402e-08, 7.92934e-16, -0.382064, 0, 0)
+layers = 2
+sorting_offset = 1.0
+material_override = SubResource("ShaderMaterial_ck6fp")
+cast_shadow = 0
+amount = 1
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pjdk5")
+draw_pass_1 = ExtResource("4_ck6fp")
+
+[node name="electicityWaves2" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1.81402e-08, 0.415, 1.81402e-08, 0.415, 1.81402e-08, -1.81402e-08, -1.81402e-08, 1.81402e-08, -0.415, -0.382064, 0, 0)
+layers = 2
+sorting_offset = 1.0
+material_override = SubResource("ShaderMaterial_ck6fp")
+cast_shadow = 0
+amount = 1
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pjdk5")
+draw_pass_1 = ExtResource("4_ck6fp")

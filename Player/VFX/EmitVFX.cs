@@ -3,7 +3,7 @@ using System;
 
 public partial class EmitVFX : Node3D
 {
-	[Export] private bool playOnReady;
+	[Export] private bool playOnReady = false;
 	[Export] private float vfxDuration = 2f;
 	[Export] private Node3D[] VFXNodes;
 	// Called when the node enters the scene tree for the first time.

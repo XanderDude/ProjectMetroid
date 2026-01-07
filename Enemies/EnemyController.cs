@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 
 public partial class EnemyController : CharacterBody3D
 {
@@ -24,8 +25,8 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public bool isFlying = false;
 
 	[ExportGroup("Node References")]
-	[Export] public MeshInstance3D mesh;
-	public PlayerManager player;
+	[Export] public Node3D mesh;
+	public PlayerManager player => GameFriend.gameinstance.player;
 	[Export] public RayCast3D ray;
 
 	[Export] public RayCast3D edgeray;
@@ -35,18 +36,10 @@ public partial class EnemyController : CharacterBody3D
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
-	
-
-	
-
-	
-
-
-	public override async void _Ready()
+	public override void _Ready()
 	{
-		player = GetNode<PlayerManager>("%Player");
-		
-	}
+		if (player == null) GD.Print("Player not assigned");
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -61,12 +54,17 @@ public partial class EnemyController : CharacterBody3D
 
 	public void OnCollide(Node3D node)
 	{
-		GD.Print($"Collided with {node.Name}");
+		player.Health -= damagedealt;
 	}
 
 	public void DamagedRecieved(int damage)
 	{
-		
+		health -= damage;
+		DamageFlicker();
+		if (health <= 0)
+		{
+			KillEnemy();
+		}
 	}
 
 	public void KillEnemy()
@@ -75,6 +73,13 @@ public partial class EnemyController : CharacterBody3D
 		QueueFree();
 	}
 
+	private async void DamageFlicker()
+    {
+        mesh.Visible = false;
+		await ToSignal(GetTree().CreateTimer(.1f, false, false, false), "timeout");
+		mesh.Visible = true;
+		
+    }
 
 	public void DropItems()
 	{

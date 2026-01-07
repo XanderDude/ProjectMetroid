@@ -3,14 +3,33 @@ using System;
 
 public partial class attackState : State
 {
-	[Export] public PackedScene arrowScene;
+	[Export] public PackedScene arrowScene, chargedArrowScene;
 	[Export] public PackedScene bombArrowScene;
+	[Export] private string shootNormalArrowSFX = "player_normal_shoot_SFX", shootBombArrowSFX = "player_normal_shoot_SFX", 
+		chargingArrowStartSFX = "player_chargingArrowStart_SFX", chargingArrowLoopSFX = "player_chargingArrowLoop_SFX", 
+		shootHalfChargeSFX = "player_normal_shoot_SFX", shootFullChargeSFX = "player_normal_shoot_SFX";
+
+	[Export] private Node3D chargingArrowVFX, fullChargedArrowVFX;
+	[Export] private Material arrowOutlineMat;
 	[Export] public float arrowSpeed = 20.0f;
 	[Export] public float shootCooldown = 0.12f;
 	private float shootCooldownTimer = 0.0f;
-	private Godot.AudioStreamPlayer shootSoundNormal, shootSoundBomb;
 	private Node3D crossbowMesh;
 	private Node3D arrowSpawnLoc;
+	private float chargingTimer = 0.0f;
+
+	//[Export] private float HALF_CHARGE_TIME = 0.4f;
+	[Export] private float FULL_CHARGE_TIME = 0.8f;
+
+	private enum ArrowType
+	{
+		None,
+		Normal,
+		Bomb,
+		HalfCharge,
+		FullCharge
+	}
+	private ArrowType currentArrowType = ArrowType.None;
 
 	public override void _Ready()
 	{
@@ -28,60 +47,71 @@ public partial class attackState : State
 			crossbowMesh = pm.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
 			arrowSpawnLoc = (Node3D)crossbowMesh.GetChild(0);
 		}
-		shootSoundNormal = GetNode<Godot.AudioStreamPlayer>("../../shootingsound");
 	}
 	
 	public override void Enter()
 	{
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(true);
+		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;
-		if (Input.IsActionPressed("Shoot") && CanShoot())
+		if (Input.IsActionPressed("Shoot"))
 		{
-			ShootArrow(false);
+			ShootArrow(ArrowType.Normal);
+			if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
+			{
+				
+			}
 		}
-
 		else if (Input.IsActionPressed("SpecialShoot") && CanShootBomb())
 		{
-			
-			ShootArrow(true);
+			currentArrowType = ArrowType.Bomb;
+			ShootArrow(ArrowType.Bomb);
 		}
-		
-		
 	}
 	
 
 	public override void Exit()
 	{
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(false);
+		chargingArrowVFX.Visible = false;
+		fullChargedArrowVFX.Visible = false;
+		SoundFriend.Stop(chargingArrowStartSFX);
+		SoundFriend.Stop(chargingArrowLoopSFX);
+		if (currentArrowType == ArrowType.FullCharge && pm.StateMachine._currentState.Name != "mantleState")
+		{
+			ShootArrow(ArrowType.FullCharge);
+		}
+		currentArrowType = ArrowType.None;
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
 		shootCooldownTimer += delta;
-		if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
-	}
+		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot") || currentArrowType == ArrowType.Bomb)
+        {
+			if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
+            return;
+        }
 
-
-	
-	public override void HandleInput(InputEvent @event)
-	{
-		/*
-		if (@event.IsActionReleased("Shoot") && !Input.IsActionPressed("SpecialShoot"))
+		chargingTimer += delta;
+		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
+		else
 		{
-			asm.TransitionTo("noattackState");
+			if (chargingTimer > 0.3f && chargingArrowVFX.Visible != true)
+            {
+				SoundFriend.Play(chargingArrowStartSFX);
+                chargingArrowVFX.Visible = true;
+			}
+			if (chargingTimer >= FULL_CHARGE_TIME && currentArrowType != ArrowType.FullCharge) 
+            {
+				currentArrowType = ArrowType.FullCharge;
+				chargingArrowVFX.Visible = false;
+				fullChargedArrowVFX.Visible = true;
+				SoundFriend.Play(chargingArrowLoopSFX);
+            }
 		}
-
-		if (@event.IsActionReleased("SpecialShoot") && !Input.IsActionPressed("Shoot"))
-		{
-			asm.TransitionTo("noattackState");
-		}*/
 	}
-	
-	private bool CanShoot()
-	{
-		return true;
 
-		if (Input.IsActionPressed("SpecialShoot")) return false;
-	}
-	
 	private bool CanShootBomb()
 	{
 		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
@@ -90,18 +120,16 @@ public partial class attackState : State
 		{
 			return true;
 		}
-
-		if (Input.IsActionPressed("Shoot")) return false;
 		return false;
-	}
+	}	
 	
-	
-	
-	
-	
-	private Vector2 GetShootDirection()
+	public Vector2 GetShootDirection()
 	{		
-		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
+		if (Input.IsActionPressed("Aim"))
+        {
+            return new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 1f).Normalized();
+        }
+		Vector2 direction = pm.aimDirection;
 
 		if (direction == Vector2.Zero || player.IsOnFloor() && direction == new Vector2(0, -1))
 		{
@@ -111,25 +139,47 @@ public partial class attackState : State
 		return direction.Normalized();
 	}
 	
-	private void ShootArrow(bool isBombArrow)
+	private void ShootArrow(ArrowType arrowType)
 	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shoot();
-		PackedScene projectileScene = isBombArrow ? bombArrowScene : arrowScene;
-		
+		PackedScene projectileScene; RigidBody3D arrow;
+		float speedModifier = 1f;
+		switch (arrowType)
+		{
+			case ArrowType.Normal:
+				projectileScene = arrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				break;
+			case ArrowType.Bomb:
+				projectileScene = bombArrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.5f;
+				speedModifier = 0.8f;
+				break;
+			case ArrowType.HalfCharge:
+				projectileScene = arrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				break;
+			case ArrowType.FullCharge:
+				projectileScene = chargedArrowScene;
+				arrow = projectileScene.Instantiate() as RigidBody3D;
+				arrow.GravityScale = 0.0f;
+				speedModifier = 1.5f;
+				break;
+			default:
+				GD.PrintErr("No arrow type selected!");
+				return;
+		}
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();
+
 		if (projectileScene == null || arrowSpawnLoc == null)
 		{
 			return;
 		}
 		
-		var arrow = projectileScene.Instantiate() as RigidBody3D;
-		arrow.GravityScale = 0.0f;
-		if (isBombArrow)
-		{
-			arrow.GravityScale = 0.5f;
-		}
-		
 		player.GetParent().AddChild(arrow);
-		arrow.GlobalPosition = arrowSpawnLoc.GlobalPosition;
+		arrow.GlobalPosition = new(arrowSpawnLoc.GlobalPosition.X, arrowSpawnLoc.GlobalPosition.Y, 0);
 
 		Vector2 shootDirection = GetShootDirection();
 		
@@ -141,14 +191,24 @@ public partial class attackState : State
 		rotation *= 360f;
 
 		arrow.RotationDegrees = new(0, 0, rotation);
-		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed, shootDirection.Y * arrowSpeed, 0);
+		arrow.LinearVelocity = new(shootDirection.X * arrowSpeed * speedModifier, 
+		shootDirection.Y * arrowSpeed * speedModifier, 0);
 		
-		shootSoundNormal?.Play();
-
-		// Only consume after arrow is successfully created
-		if (isBombArrow)
+		switch (arrowType)
 		{
-			GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+			case ArrowType.Normal:
+				SoundFriend.Play(shootNormalArrowSFX);
+				break;
+			case ArrowType.Bomb:
+				SoundFriend.Play(shootBombArrowSFX);
+				GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+				break;
+			case ArrowType.HalfCharge:
+				SoundFriend.Play(shootHalfChargeSFX);
+				break;
+			case ArrowType.FullCharge:
+				SoundFriend.Play(shootFullChargeSFX);
+				break;
 		}
 	}
 }

@@ -88,7 +88,7 @@ public partial class ScreenTransitionScript : Godot.TextureRect
 		GetTree().CreateTimer(1.1f).Timeout += () => {
 		LoadRoom(roomPath);
 		blackScreen.Play("fade_out_black_screen");
-		var camera = gameNode.GetNode<Camera3D>("Camera3D") as Camera3d;
+		var camera = gameNode.GetNode<Camera3D>("Camera3D") as CameraFriend;
 		camera.Position = new Vector3(player.Position.X, player.Position.Y + camera.cameraYOffset, 25.0f);
 		};
 		

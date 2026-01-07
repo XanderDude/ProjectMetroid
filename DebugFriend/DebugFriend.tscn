@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="3_dgl0o"]
 
 [node name="DebugFriend" type="CanvasLayer"]
+layer = 101
 script = ExtResource("1_atxtx")
 
 [node name="BombArrowCount" type="Label" parent="."]
@@ -76,7 +77,6 @@ offset_bottom = 274.0
 text = "LOAD 1"
 script = ExtResource("3_dgl0o")
 saveslot = 1
-saveslot = 1
 
 [node name="Save2" type="Button" parent="."]
 offset_left = 490.0
@@ -100,7 +100,6 @@ offset_bottom = 230.0
 text = "LOAD 2"
 script = ExtResource("3_dgl0o")
 saveslot = 2
-saveslot = 2
 
 [node name="Save3" type="Button" parent="."]
 offset_left = 490.0
@@ -123,5 +122,4 @@ offset_right = 594.16
 offset_bottom = 185.0
 text = "LOAD 3"
 script = ExtResource("3_dgl0o")
-saveslot = 3
 saveslot = 3

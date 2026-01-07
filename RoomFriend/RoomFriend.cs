@@ -3,31 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 
 
 
-	public partial class RoomFriend : Node3D
+public partial class RoomFriend : Node3D
 	{
 
 
 		//Need these to use Room Friend
-		[Export] public string roomfolder = "RoomFriend";
-
-		[Export] public string roomprefix = "mr";
-
-
+		public string roomfolder;
+		public string roomprefix;
+		public PackedScene initialRoom;
 		public int currentDoorNumber = 0;
 
-		public CharacterBody3D player;
-
-		[Export] public NodePath playerpath = "%Player";
 
 
 		//Random pointers / checks 
 		public bool isTransitioning = false;
 
-		private double transitionCooldown = 0.0;
-		private const double COOLDOWN_TIME = 5.0;
+		public double transitionCooldown = 0.0;
+		private const double COOLDOWN_TIME = 2.0;
 		
 		public Node3D currentRoomScene; 
 		public string currentRoomName = "";
@@ -36,31 +32,31 @@ using System.Numerics;
     	public Dictionary<int, string> tab2 = new Dictionary<int, string>();
 
 		public int roomCount = 0;
-
-		
-		[Export] public PackedScene initialRoom; 
-
 		
 
-		public override void _Ready()
+		public void init_roomfriend(string folder, string prefix, PackedScene initRoom)
 		{
-			player = GetNode<PlayerManager>(playerpath);
-			player = GetNode<CharacterBody3D>(playerpath);
-        
+			roomfolder = folder;
+			roomprefix = prefix;
+			initialRoom = initRoom;
+			
 			room_table_init(tab1, tab2);
 			currentRoomName = System.IO.Path.GetFileNameWithoutExtension(initialRoom.ResourcePath);
-
 			string fullPath = initialRoom.ResourcePath;
 			room_init(System.IO.Path.GetFileNameWithoutExtension(fullPath));
-		}
+			
+			
 
+		}
 		
 
-		public override void _Process(double delta)
+		public  override async void _Process(double delta)
 		{
+			
 			if (transitionCooldown > 0)
 			{
 				transitionCooldown -= delta;
+				isTransitioning = false;
 			}
 			
 			if (isTransitioning && transitionCooldown <= 0)
@@ -70,12 +66,11 @@ using System.Numerics;
 				GD.Print("Transitioning to door number: " + currentDoorNumber);
 				GD.Print("Current room: " + currentRoomName);
 
-
-				isTransitioning = false;
 				transitionCooldown = COOLDOWN_TIME; // Start cooldown
+				
 			}
 		}
-
+		
 		
 
 			
@@ -84,7 +79,8 @@ using System.Numerics;
 			if (currentRoomScene != null) 
 			{
 				room_del();
-				player.GlobalPosition = Godot.Vector3.Zero;
+				obj_del();
+				GameFriend.gameinstance.player.GlobalPosition = new Godot.Vector3(0,0,0);
 				
 			}
 			currentRoomName = name;
@@ -98,7 +94,20 @@ using System.Numerics;
 		public void room_del()
     	{
 			currentRoomScene.Free();
+			
     	}
+
+		public void obj_del()
+		{
+			var children = GameFriend.gameinstance.svp.GetChildren();
+			foreach (Node child in children)
+			{
+				if (child is NormalArrow arrow)
+				{
+					arrow.QueueFree();
+				}
+			}
+		}
 
 		public int room_table_init(Dictionary<int, string> tab1, Dictionary<int, string> tab2)
 		{
@@ -204,16 +213,17 @@ using System.Numerics;
 			return doors;
 		}
 
-		private void FindDoorsRecursive(Node3D node, List<Node3D> doors)
+		private void FindDoorsRecursive(Node node, List<Node3D> doors)
 		{
 			
 			var variant = node.Get("DoorNumber");
-			if (variant.VariantType != Variant.Type.Nil)
+			if (variant.VariantType != Variant.Type.Nil && variant.ToString() != "0")
 			{
-				doors.Add(node);
+				doors.Add((Node3D)node);
 			}
-			foreach (Node3D child in node.GetChildren())
+			foreach (Node child in node.GetChildren())
 			{
+				
 				FindDoorsRecursive(child, doors);
 			}
 		}
@@ -225,6 +235,9 @@ using System.Numerics;
 		
 		public void TeleportToDoor(int doorID)
 		{
+
+			GameFriend.gameinstance.player.Velocity = new Godot.Vector3(0,0,0);
+			
 			string targetRoom = "";
 			
 			if (tab1.ContainsKey(doorID) && tab1[doorID] != currentRoomName)
@@ -245,6 +258,8 @@ using System.Numerics;
 			else
 			{
 				GD.PrintErr("cant load the room");
+				isTransitioning = false;
+				return;
 			}
 
 			var doors = GetAllDoorsInRoom(currentRoomScene);
@@ -253,7 +268,9 @@ using System.Numerics;
 				int dID = (int)door.Get("DoorNumber");
 				if (dID == doorID)
 				{
-					player.GlobalPosition = door.GlobalPosition;
+					GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
+					if (GameFriend.gameinstance.raven != null) 
+						GameFriend.gameinstance.raven.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition + new Godot.Vector3(0, 1.5f, 0);;
 					break;	
 				}
 			}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dx6inaiw5kq1u"]
+[gd_scene load_steps=15 format=4 uid="uid://dx6inaiw5kq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
 [ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_nx6tq"]
@@ -57,6 +57,9 @@ size = Vector3(1, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
 size = Vector3(1, 2.00586, 2.01587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vemgm"]
+size = Vector3(0.2, 2, 2)
 
 [node name="Wall_DoorWay" type="Node3D" groups=["doors"]]
 script = ExtResource("1_nx6tq")
@@ -137,6 +140,15 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTransport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.01702, 0)
 shape = SubResource("BoxShape3D_nx6tq")
+
+[node name="BackupCollider" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackupCollider"]
+shape = SubResource("BoxShape3D_vemgm")
+debug_color = Color(0.666667, 0.701961, 0, 0.407843)
 
 [connection signal="body_entered" from="DoorTransport" to="." method="_on_door_transport_body_entered"]
 [connection signal="body_exited" from="DoorTransport" to="." method="_on_door_transport_body_exited"]

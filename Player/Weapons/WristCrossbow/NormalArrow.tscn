@@ -4,8 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://bdhk7opdd6t44" path="res://Player/Weapons/WristCrossbow/ArrowNormalMesh.res" id="3_yq1wc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4wo"]
-radius = 0.0310877
-height = 0.392946
+radius = 0.05
+height = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo3q1"]
 cull_mode = 2
@@ -13,7 +13,7 @@ shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
 disable_ambient_light = true
-albedo_color = Color(0.403922, 0.286275, 0.207843, 1)
+albedo_color = Color(0.747974, 0.576709, 0.464434, 1)
 grow = true
 grow_amount = 0.003
 proximity_fade_enabled = true
@@ -21,7 +21,7 @@ distance_fade_max_distance = 0.0
 
 [node name="arrow" type="RigidBody3D"]
 collision_layer = 0
-collision_mask = 11
+collision_mask = 27
 collision_priority = 10.0
 axis_lock_linear_z = true
 script = ExtResource("1_jo3q1")
@@ -30,12 +30,8 @@ script = ExtResource("1_jo3q1")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0322086, 0, 0)
 shape = SubResource("CapsuleShape3D_ev4wo")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-visible = false
-light_color = Color(0.0854202, 0.603356, 0.793167, 1)
-light_energy = 6.98
-
 [node name="ArrowNormalMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-9.95947e-08, 1.07254e-07, 1, 2.27846, -1.07254e-07, 4.37115e-08, 9.95945e-08, 2.45369, -4.37114e-08, -0.000376441, 0, 0)
+layers = 2
 material_overlay = SubResource("StandardMaterial3D_jo3q1")
 mesh = ExtResource("3_yq1wc")

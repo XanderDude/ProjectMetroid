@@ -27,11 +27,14 @@ albedo_color = Color(1, 0.392157, 1, 0.0705882)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tu7f2"]
 
-[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
+[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "statemachine")]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tysk3")
+health = 80
 mesh = NodePath("Rat")
+ray = NodePath("Beam")
+statemachine = NodePath("EnemyStateMachine")
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -83,13 +86,13 @@ shape = SubResource("BoxShape3D_ut63f")
 [node name="PatrolCollision" type="MeshInstance3D" parent="."]
 transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_tu7f2")
-transparency = 0.83
+transparency = 1.0
 mesh = SubResource("BoxMesh_ut63f")
 
 [node name="ActiveCollision" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.4, 0, 0, 0, 2.64, 0, 0, 0, 1, 0, 0.925972, 0)
 material_override = SubResource("StandardMaterial3D_ut63f")
-transparency = 0.87
+transparency = 1.0
 mesh = SubResource("BoxMesh_tu7f2")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]

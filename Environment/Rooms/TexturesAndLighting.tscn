@@ -1,6 +1,6 @@
-[gd_scene load_steps=51 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
 
-[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_dhbn4"]
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_clrjg"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
 [ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_w5r6f"]
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="4_v1d21"]
@@ -18,12 +18,10 @@
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="12_g1r6t"]
 [ext_resource type="PackedScene" uid="uid://xbqb3ncnwmbs" path="res://Environment/Props/Environmental/UndergroundForeground.tscn" id="12_w5r6f"]
 [ext_resource type="Material" uid="uid://mfnek0rv47j4" path="res://Environment/Materials/BGEnvironmentMat.tres" id="12_x6fto"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="13_clrjg"]
 [ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
 [ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="19_clrjg"]
-[ext_resource type="PackedScene" uid="uid://bpb8scx3a6ci6" path="res://Raven/Raven.tscn" id="21_bcc5k"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="22_0pxb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
@@ -274,9 +272,10 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
-script = ExtResource("1_dhbn4")
-player = NodePath("SubViewportContainer/SubViewport/Player")
+[node name="Game" type="Node3D" node_paths=PackedStringArray("playerNode")]
+script = ExtResource("1_clrjg")
+initdebugfriend = true
+playerNode = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -680,22 +679,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -1)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.14, 0.058, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2313, 0.058, 0)
 jumpVFX = null
-
-[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_clrjg")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5714, 2.5, 25)
-playerPath = NodePath("../Player")
-lookAheadDistance = 1.5
-roomMinX = -52.5
-roomMaxX = 60.0
-roomMinY = -18.0
-roomMaxY = 500.0
-
-[node name="Raven" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("21_bcc5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4921, 0, 0)
-player = NodePath("../Player")
 
 [node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport" instance=ExtResource("22_0pxb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1857, 1.66723, -0.734134)

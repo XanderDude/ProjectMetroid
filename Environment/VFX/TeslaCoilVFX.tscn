@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://beiw2rg3wth8g"]
+
+[ext_resource type="PackedScene" uid="uid://bvhduo6m2s1fg" path="res://Player/VFX/Electricity1_Mesh.glb" id="1_dh11o"]
+[ext_resource type="Shader" uid="uid://cyn4ax0i21mbh" path="res://Player/VFX/ElectricityShader.tres" id="2_tyamt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjdk5"]
+render_priority = 0
+shader = ExtResource("2_tyamt")
+shader_parameter/Speed = 5.0
+shader_parameter/Rotation = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m3vf1"]
+
+[node name="TeslaCoil" type="Node3D"]
+
+[node name="Electricity1_Mesh2" parent="." instance=ExtResource("1_dh11o")]
+
+[node name="Electricity1_Mesh" parent="Electricity1_Mesh2" index="0"]
+material_override = SubResource("ShaderMaterial_pjdk5")
+cast_shadow = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.492991, -0.263619, 0, 0.132097, 0.983841, 0, 0, 0, 0.510382, -0.7, 0.8, 0)
+mesh = SubResource("CylinderMesh_m3vf1")
+skeleton = NodePath("../Electricity1_Mesh2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.492991, 0.263619, 0, -0.132097, 0.983841, 0, 0, 0, 0.510382, 0.7, 0.8, 0)
+mesh = SubResource("CylinderMesh_m3vf1")
+skeleton = NodePath("../Electricity1_Mesh2")
+
+[editable path="Electricity1_Mesh2"]

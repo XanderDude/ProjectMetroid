@@ -2,9 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    public PlayerManager player => GetNode<PlayerManager>("%Player");
-
-    public Godot.AudioStreamPlayer sound = null;
+    public PlayerManager player => GameFriend.gameinstance.player; 
     [Export] public float speed = 10.0f;
     
     [Export] public float launchTimer = 0.8f;
@@ -30,9 +28,9 @@ public partial class Raven : CharacterBody3D
 
     public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
 
-    public override void _Ready()
+
+    public void init_raven()
     {
-        sound = GetNode<Godot.AudioStreamPlayer>("Sound");
         rsm = GetNode<RavenStateMachine>("RavenStateMachine");
         if (player == null)
         {
@@ -44,19 +42,16 @@ public partial class Raven : CharacterBody3D
     }
 
     public override void _PhysicsProcess(double delta)
-    {
-        
+    {        
 
         if (rsm != null && rsm._currentState != null)
         {
             if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
             {
-                this.CollisionLayer = 1 << 4;
                 this.CollisionMask = (1 << 0) | (1 << 1);
             }
             else
             {
-                this.CollisionLayer = 0;
                 this.CollisionMask = 0;
             }
         }

@@ -13,8 +13,8 @@ public partial class RavenLaunchState : State
 		raven.canLaunch = false;
 		timer = 0f;
 
-		raven.sound.Stream = GD.Load<AudioStream>("res://Raven/Sounds/LaunchSound.mp3");
-		raven.sound.Play();
+		SoundFriend.Play("raven_launch_SFX");
+		
 		
 	
 

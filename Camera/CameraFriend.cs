@@ -1,10 +1,9 @@
 using Godot;
 using System;
 
-public partial class Camera3d : Camera3D
+public partial class CameraFriend : Camera3D
 {
 	[ExportGroup("Follow Settings")]
-	[Export] public NodePath playerPath = ("%Player");
 
 	[Export] public float followSpeed = 8.0f;
 	[Export] public float lookAheadDistance = 3.0f; 
@@ -21,29 +20,18 @@ public partial class Camera3d : Camera3D
 
 	[Export] public float cameraDistance = 25.0f;
 
-	private Node3D player;
 	private Vector3 playerPosition;
 	private float lastPlayerDirection = 1.0f;
 	private Vector3 lookAheadOffset = Vector3.Zero;
-	private PlayerManager pm;
 
-	public override void _Ready()
+	public void init_camera()
 	{
-		pm = GetNode<PlayerManager>(playerPath);
-		if (playerPath != null)
-		{
-			player = GetNode<Node3D>(playerPath);
-			if (player != null)
+		if (GameFriend.gameinstance.player != null)
 			{
-				playerPosition = player.GlobalPosition;
+				playerPosition = GameFriend.gameinstance.player.GlobalPosition;
 				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
 
 			}
-			else
-			{
-				GD.PrintErr("Player not found!");
-			}
-		}
 	}
 
 	public override void _Process(double delta) {
@@ -51,7 +39,7 @@ public partial class Camera3d : Camera3D
 	}
 
 	private void UpdateCameraPosition(float delta) {
-		Vector3 playerPos = player.GlobalPosition;
+		Vector3 playerPos = GameFriend.gameinstance.player.GlobalPosition;
 		Vector3 playerVelocity = GetPlayerVelocity();
 		if (Mathf.Abs(playerVelocity.X) > minMoveThreshold) {
 			lastPlayerDirection = Mathf.Sign(playerVelocity.X);
@@ -76,7 +64,7 @@ public partial class Camera3d : Camera3D
 
 		Vector3 newPosition;
 
-		if (pm.StateMachine._currentState.Name == "deathState")
+		if (GameFriend.gameinstance.player.StateMachine._currentState.Name == "deathState")
 		{
 			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
 			GlobalPosition = newPosition;
@@ -84,7 +72,7 @@ public partial class Camera3d : Camera3D
 		}
 		else
 		{
-			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, currentPos.Z);
+			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, cameraDistance);
 			GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
 		}
 	}
@@ -93,7 +81,7 @@ public partial class Camera3d : Camera3D
 
 	private Vector3 GetPlayerVelocity()
 	{
-		if (player is CharacterBody3D characterBody) {
+		if (GameFriend.gameinstance.player is CharacterBody3D characterBody) {
 			return characterBody.Velocity;
 		}
 
@@ -112,12 +100,4 @@ public partial class Camera3d : Camera3D
 		
 	}
 
-	
-	public void SetPlayer(Node3D newPlayer)
-	{
-		player = newPlayer;
-		if (player != null) {
-			playerPosition = player.GlobalPosition;
-		}
-	}
 }

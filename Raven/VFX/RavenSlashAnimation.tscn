@@ -345,7 +345,7 @@ transform = Transform3D(0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 0, 0, 1, 
 visible = false
 
 [node name="RavenAnimation" parent="SlashVFX" instance=ExtResource("2_r5qca")]
-transform = Transform3D(-1, 1.07285e-07, 4.37113e-08, -1.0677e-07, -0.707107, -0.707107, -4.49531e-08, -0.707107, 0.707107, -2, 0.634201, 0.498321)
+transform = Transform3D(-1, 1.07285e-07, 4.37112e-08, -1.0677e-07, -0.707107, -0.707107, -4.49533e-08, -0.707107, 0.707107, -2, 0.634201, 0.498321)
 
 [node name="SlashMeshVFX" type="GPUParticles3D" parent="SlashVFX/RavenAnimation"]
 transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, -0.707106, 0.707107, -2.98023e-08, -0.707106, -0.707107, -1.19209e-07, 0.433511, -0.197981)

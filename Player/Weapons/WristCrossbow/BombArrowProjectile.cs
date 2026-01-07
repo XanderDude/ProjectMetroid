@@ -1,50 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public partial class BombArrowProjectile : RigidBody3D
 {
 	[Export] public AudioStream explosionSound;
 	[Export] private PackedScene explosionVFX;
+	private Area3D explosionCollider;
 	[Export] public float explosionRadius = 5.0f;
 	[Export] public float explosionDuration = 2.0f;
+	[Export] private int damage = 30;
 	private bool hasExploded = false;
-	
+	private float lifetime = 3.0f;
+	SceneTreeTimer timer;
 	public override void _Ready()
 	{
-		BodyEntered += OnBodyEntered;
 		SetContactMonitor(true);
 		SetMaxContactsReported(10);
+		timer = GetTree().CreateTimer(lifetime);
+		timer.Timeout += DeleteProjectile;
+		explosionCollider = GetNode<Area3D>("Area3D");
+		explosionCollider.AreaEntered += EnemyCollisionEntered;//may be redundant
+	}
+
+	private void DeleteProjectile()
+	{
+		QueueFree();
 	}
 	
 	public override void _IntegrateForces(PhysicsDirectBodyState3D state)
 	{
 		if (!hasExploded && state.GetContactCount() > 0)
 		{
+			for (int i = 0; i < state.GetContactCount(); i++)
+			{
+				var collider = state.GetContactColliderObject(i);
+				
+				if (collider is EnemyController enemy)
+				{
+					//enemy.DamagedRecieved(damage);
+				}
+			}
+			
 			OnHitSurface();
+			Freeze = true;
 		}
-	}
-	
-	private void OnBodyEntered(Node body)
-	{
-		 if (!hasExploded)
-	{
-		// Check if we hit an enemy
-		if (body is EnemyController enemy)
-		{
-			enemy.DamagedRecieved(25); 
-		}
-		
-		OnHitSurface();
-	}
 	}
 	
 	private void OnHitSurface()
-	{
-		if (hasExploded) return;
+	{		
 		hasExploded = true;
+		explosionCollider.ProcessMode = ProcessModeEnum.Inherit;
 
 		var explosion = explosionVFX.Instantiate() as Node3D;
 		GetTree().CurrentScene.AddChild(explosion);
 		explosion.GlobalPosition = GlobalPosition;
+
 		//CreateExplosionSphere();
 
 		if (explosionSound != null)
@@ -58,9 +70,16 @@ public partial class BombArrowProjectile : RigidBody3D
 		}
 		
 		Visible = false;
-		
-		var timer = GetTree().CreateTimer(explosionDuration);
-		timer.Timeout += () => QueueFree();
+		timer.TimeLeft = explosionDuration;
+	}
+
+	private void EnemyCollisionEntered(Node3D body)
+	{
+		if (body is EnemyController enemy)
+		{
+			GD.Print("Bomb dealing damage via body entered");
+			enemy.DamagedRecieved(damage);
+		}
 	}
 	
 	private void CreateExplosionSphere()

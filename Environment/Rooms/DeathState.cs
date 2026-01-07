@@ -5,25 +5,23 @@ using System.Linq;
 public partial class DeathState : State
 {
     private bool deathEffectApplied = false;
-    [Export] Godot.AudioStreamPlayer deathSound;
     public override void Enter()
     {
-        GD.Print("Entered Death State");
-        deathSound = GetNode<Godot.AudioStreamPlayer>("../%deathSound");
-        deathSound.Play();
-        PauseGame();
-        ProcessMode = Node.ProcessModeEnum.Always;
+            
+        pm.canBeDamaged = false;
+        SoundFriend.Play("player_death_SFX");
+        //ProcessMode = ProcessModeEnum.Always;
+        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Death();
+        player.Velocity = Vector3.Zero;
+        player.MoveAndSlide();
         
-        Vector3 velocity = Vector3.Zero;
-        player.Velocity = velocity;
+        PauseGame();
         
         if (!deathEffectApplied)
         {
             ApplyDeathEffect();
             deathEffectApplied = true;
         }
-        
-        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StopAllAnimations();
     }
    
     public override void Exit()
@@ -37,13 +35,7 @@ public partial class DeathState : State
         RestoreVisuals();
     }
 
-    public override void PhysicsUpdate(float delta)
-    {
-        Vector3 velocity = Vector3.Zero;
-        player.Velocity = velocity;
-        player.MoveAndSlide();
-        pm.canBeDamaged = false;
-    }
+
    
     public override void HandleInput(InputEvent @event)
     {

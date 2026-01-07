@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d446d1yqrasc"]
+
+[ext_resource type="Shader" uid="uid://bn4vdgfb78eca" path="res://Environment/Shaders/HeightFade.tres" id="1_yfhdy"]
+
+[resource]
+resource_name = "HeightFade"
+render_priority = 0
+shader = ExtResource("1_yfhdy")
+shader_parameter/UseAlbedoTexture = false
+shader_parameter/ColorParameter = Color(0.192666, 0.0788828, 0.0181564, 1)
+shader_parameter/CameraHideHeight = -1.0

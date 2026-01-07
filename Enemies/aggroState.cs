@@ -166,8 +166,14 @@ public partial class aggroState : State
 
 		if (isColliding)
 		{
+			BoxShape3D boxShape;
 			var collider = ec.ray.GetCollider() as Node3D;
-			var boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
+			var shape = collider.GetChild<CollisionShape3D>(0).Shape;
+			if (shape is BoxShape3D b)
+            {
+                boxShape = b;
+            }
+			else return false;
 
 			// Don't jump if we hit the player or wall (layer 2)
 			if (collider == ec.player || (collider is PhysicsBody3D body && body.CollisionLayer == 2))
