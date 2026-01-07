@@ -36,6 +36,8 @@ public partial class EnemyController : CharacterBody3D
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
+	private bool playerInDamageRange = false; //player is within damage collider
+
 	public override void _Ready()
 	{
 		if (player == null) GD.Print("Player not assigned");
@@ -44,6 +46,10 @@ public partial class EnemyController : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		statemachine?._currentState?.PhysicsUpdate((float)delta);
+		if (playerInDamageRange && player.canBeDamaged)
+		{
+			player.Health -= damagedealt;
+		}
 		MoveAndSlide();
 	}
 
@@ -54,7 +60,12 @@ public partial class EnemyController : CharacterBody3D
 
 	public void OnCollide(Node3D node)
 	{
-		player.Health -= damagedealt;
+		playerInDamageRange = true;
+	}
+
+	public void OnLeaveCollider(Node3D node)
+	{
+		playerInDamageRange = false;
 	}
 
 	public void DamagedRecieved(int damage)
@@ -86,7 +97,7 @@ public partial class EnemyController : CharacterBody3D
 		Godot.Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
 		{
-			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop.tscn");
+			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop/ItemDrop.tscn");
 			var itemDropNode = itemDropScene.Instantiate();
 			if (itemDropNode is ItemDrop itemDrop)
 			{
