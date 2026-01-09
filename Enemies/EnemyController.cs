@@ -1,15 +1,12 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Numerics;
-using System.Threading.Tasks;
 
 public partial class EnemyController : CharacterBody3D
 {
 	[ExportGroup("Enemy Stats")]
 	[Export] public int health = 100;
-	[Export] public int itemdropamount = 0;
+	[Export] public int itemdropamount = 1;
+	[Export] private int dropRate1 = 100, dropRate2 = 0;
 	[Export] public float runspeed { get; set; } = 2.5f;
 	[Export] public float walkspeed { get; set; } = 1.0f;
 	[Export] public float idle { get; set; } = 0f;
@@ -28,6 +25,7 @@ public partial class EnemyController : CharacterBody3D
 	[Export] public Node3D mesh;
 	public PlayerManager player => GameFriend.gameinstance.player;
 	[Export] public RayCast3D ray;
+	[Export] public PackedScene item1, item2;
 
 	[Export] public RayCast3D edgeray;
 	[Export] public EnemyStateMachine statemachine { get; private set; }
@@ -70,8 +68,11 @@ public partial class EnemyController : CharacterBody3D
 
 	public void DamagedRecieved(int damage)
 	{
-		health -= damage;
+		GD.Print($"{this.Name} took {damage} damage");
 		DamageFlicker();
+
+		if (health <= 0) return; //already dead
+		health -= damage;
 		if (health <= 0)
 		{
 			KillEnemy();
@@ -94,23 +95,37 @@ public partial class EnemyController : CharacterBody3D
 
 	public void DropItems()
 	{
-		Godot.Vector3 dropPosition = GlobalPosition;
+		Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
-		{
-			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop/ItemDrop.tscn");
-			var itemDropNode = itemDropScene.Instantiate();
-			if (itemDropNode is ItemDrop itemDrop)
+        {
+            if (GD.RandRange(0, 100) <= dropRate1)
+            {
+                SpawnItem(dropPosition, item1);
+            }
+            if (GD.RandRange(0, 100) <= dropRate2)
 			{
-				GetParent().AddChild(itemDrop);
-				itemDrop.GlobalPosition = dropPosition;
+				SpawnItem(dropPosition, item2);
 			}
-			else
-			{
-				GD.PrintErr("ItemDrop.tscn root node is not an ItemDrop!");
-				itemDropNode.QueueFree();
-			}
-		}
-	}
+
+            
+        }
+
+        void SpawnItem(Vector3 dropPosition, PackedScene itemScene)
+        {
+
+            var itemDropNode = itemScene.Instantiate();
+            if (itemDropNode is ItemDrop itemDrop)
+            {
+                GetParent().AddChild(itemDrop);
+                itemDrop.GlobalPosition = dropPosition;
+            }
+            else
+            {
+                GD.PrintErr("Missing item drop scene reference");
+                itemDropNode.QueueFree();
+            }
+        }
+    }
 
 	public bool isPlayerInRange(float range)
 	{

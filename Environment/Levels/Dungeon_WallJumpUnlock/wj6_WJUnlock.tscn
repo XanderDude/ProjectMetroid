@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=34 format=3 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="17_bwo4n"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="18_uaptb"]
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="19_rvs66"]
+[ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="20_2woci"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
@@ -2305,6 +2306,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 17, -1)
 
 [node name="Item" parent="." instance=ExtResource("18_uaptb")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, -3, 0, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+sleeping = true
 upgrade = 1
 
 [node name="EnemyBat" parent="." instance=ExtResource("19_rvs66")]
@@ -2315,6 +2319,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 17, 0)
 
 [node name="EnemyBat3" parent="." instance=ExtResource("19_rvs66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 0)
+
+[node name="HealthSmall" parent="." instance=ExtResource("20_2woci")]
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 2.941, 0.37, 0)
 
 [editable path="Wall_DoorWay3"]
 [editable path="Secret1/StonePlatformEdge"]

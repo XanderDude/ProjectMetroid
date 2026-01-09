@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn7qo37oaqxvj"]
+[gd_scene load_steps=5 format=3 uid="uid://24fid0tsbjm"]
 
-[ext_resource type="AudioStream" uid="uid://chm6qj14ul5cv" path="res://Sounds/da_vinky.mp3" id="2_jf20d"]
-[ext_resource type="Script" uid="uid://dofk3lm3pf6cd" path="res://ItemDrop/ItemDrop.cs" id="2_u2oce"]
+[ext_resource type="Script" uid="uid://dofk3lm3pf6cd" path="res://ItemDrop/ItemDrop.cs" id="1_qd1jx"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yghj7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpl3i"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.631373, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_myup0"]
 
-[node name="Item" type="RigidBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yghj7"]
+
+[node name="HealthSmall" type="RigidBody3D"]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 0, 0, 0)
 collision_layer = 0
 collision_mask = 3
@@ -18,15 +21,18 @@ axis_lock_angular_z = true
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
-script = ExtResource("2_u2oce")
+script = ExtResource("1_qd1jx")
+itemType = 2
+amount = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.336767, 0, 0, 0, 0.336767, 0, 0, 0, 0.336767, 0, 0.377202, 0)
+material_override = SubResource("StandardMaterial3D_mpl3i")
+mesh = SubResource("SphereMesh_myup0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00743103, 0.388216, -0.000119925)
 shape = SubResource("BoxShape3D_yghj7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.377202, 0)
-mesh = SubResource("SphereMesh_myup0")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
@@ -37,4 +43,3 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00743103, 0.388216, -
 shape = SubResource("BoxShape3D_yghj7")
 
 [node name="PickupSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_jf20d")

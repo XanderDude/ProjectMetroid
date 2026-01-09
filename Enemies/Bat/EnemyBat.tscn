@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://xaymn5irbgw5"]
+[gd_scene load_steps=11 format=3 uid="uid://xaymn5irbgw5"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_m2cak"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="2_2a3cg"]
+[ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="2_glgse"]
 [ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="3_6itjq"]
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="4_707fo"]
 [ext_resource type="Script" uid="uid://q8c5wnqw785t" path="res://Enemies/flyingaggroState.cs" id="5_8n3kf"]
@@ -22,6 +23,7 @@ health = 30
 isFlying = true
 mesh = NodePath("RavenFly")
 ray = NodePath("Beam")
+item1 = ExtResource("2_glgse")
 edgeray = NodePath("EdgeBeam")
 statemachine = NodePath("EnemyStateMachine")
 
