@@ -23,6 +23,7 @@ public partial class EnemyController : CharacterBody3D
 
 	[ExportGroup("Node References")]
 	[Export] public Node3D mesh;
+	private float meshDirection = -90f;
 	public PlayerManager player => GameFriend.gameinstance.player;
 	[Export] public RayCast3D ray;
 	[Export] public PackedScene item1, item2;
@@ -39,6 +40,7 @@ public partial class EnemyController : CharacterBody3D
 	public override void _Ready()
 	{
 		if (player == null) GD.Print("Player not assigned");
+		meshDirection = mesh.RotationDegrees.Y;
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -48,6 +50,8 @@ public partial class EnemyController : CharacterBody3D
 		{
 			player.Health -= damagedealt;
 		}
+		if (Velocity.X < -0.5) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
+		else if (Velocity.X > 0.5) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
 		MoveAndSlide();
 	}
 
@@ -68,6 +72,8 @@ public partial class EnemyController : CharacterBody3D
 
 	public void DamagedRecieved(int damage)
 	{
+
+
 		GD.Print($"{this.Name} took {damage} damage");
 		DamageFlicker();
 

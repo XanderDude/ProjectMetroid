@@ -31,7 +31,7 @@ albedo_color = Color(1, 0.392157, 1, 0.0705882)
 
 [node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "statemachine")]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_tysk3")
 health = 80
 itemdropamount = 3

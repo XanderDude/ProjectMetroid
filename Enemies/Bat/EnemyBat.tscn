@@ -9,15 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://cfqx3x3003wu0" path="res://Bird/RavenFly.fbx" id="6_jr35e"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="7_il1qx"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_j1m8w"]
-radius = 0.45
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_glgse"]
+height = 1.0
+radius = 0.371094
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
-size = Vector3(0.4, 0.4, 1)
+size = Vector3(0.45, 0.45, 1)
 
 [node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "edgeray", "statemachine")]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_m2cak")
 health = 30
 isFlying = true
@@ -27,8 +28,9 @@ item1 = ExtResource("2_glgse")
 edgeray = NodePath("EdgeBeam")
 statemachine = NodePath("EnemyStateMachine")
 
-[node name="mesh" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_j1m8w")
+[node name="GroundCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_glgse")
 
 [node name="HitBox" type="Area3D" parent="."]
 collision_layer = 0
@@ -53,14 +55,14 @@ script = ExtResource("4_707fo")
 script = ExtResource("5_8n3kf")
 
 [node name="Beam" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.657952, 0.735805, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.657952, -0.0116118, 0)
 collision_mask = 3
 hit_from_inside = true
 debug_shape_custom_color = Color(0.78977, 0.350233, 0.181749, 1)
 debug_shape_thickness = 5
 
 [node name="EdgeBeam" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0506273, 0.161237, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.372658, 0, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 3
 hit_from_inside = true
@@ -68,13 +70,13 @@ debug_shape_custom_color = Color(0.384314, 0.34902, 0, 1)
 debug_shape_thickness = 5
 
 [node name="RavenFly" parent="." instance=ExtResource("6_jr35e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0989632, 0)
+transform = Transform3D(1, 0, 0, 0, 0.782206, 0.62302, 0, -0.62302, 0.782206, 0, -0.137428, 0)
 
 [node name="WingLeft" parent="RavenFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(-0.190387, -0.859462, -1.21453, 1.48695, -0.0669547, -0.185712, 0.0521957, -1.22754, 0.860484, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.15413, -0.214856, -0.933712, 0.940722, 0.531367, 1.04052, 0.18172, -1.38618, 0.543591, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="RavenFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(-0.190387, 0.859462, 1.21453, -1.48695, -0.0669547, -0.185712, -0.0521957, -1.22754, 0.860484, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.15413, 0.214856, 0.933712, -0.940722, 0.531367, 1.04052, -0.18172, -1.38618, 0.543591, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationPlayer" parent="RavenFly" index="1"]
 script = ExtResource("7_il1qx")
