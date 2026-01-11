@@ -9,12 +9,16 @@ public partial class jumpState : State
 	[Export] public float jumpDeceleration = 15f;
 	[Export] public float jumpVelocity = 10.0f;
 	[Export] public float jumpMaxHeight = 0.17f;
-	[Export] public float playerTop = 1.5f;
+	[Export] public float playerTopWhileInJump = 1.322f;
 	private float _mantleCooldown = .2f;
 	private float mantleTimer = 1;
 	public float jumpHeight = 0.0f; //player's current jump height position
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
+
+	public float meshTop = 0.0f;
+
+	private const float PLAYER_AND_MESH_OFFSET = 0.2f; //to account for difference in player origin and mesh origin
 
 	private bool isTouching() {
 		if (player.GetSlideCollisionCount() != 0) {
@@ -24,9 +28,12 @@ public partial class jumpState : State
 	}
 	private bool isSameHeight()
 	{
-		if (player.GetSlideCollisionCount() == 0) {
+		if (!isTouching() && !isGreaterHeight()) { 
 			return false;
 		}
+
+
+		
 
 		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
 		{
@@ -43,10 +50,13 @@ public partial class jumpState : State
 
 			var scaleY = new Vector3(collider.Transform.Basis.X.Y * boxShape.Size.Y,
 			collider.Transform.Basis.Y.Y * boxShape.Size.Y,
-			collider.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); //local y scale derived from scale and rotation matrix
-			float playerHeight = player.GlobalPosition.Y + playerTop;
-			float meshTop = collider.GlobalPosition.Y + scaleY / 2;
-			if (Mathf.Abs(playerHeight - meshTop) < 0.2f) return true;
+			collider.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); 
+			float playerHeight = player.GlobalPosition.Y + playerTopWhileInJump + 0.5f;
+			float meshTopTemp = collider.GlobalPosition.Y + scaleY / 2;
+			meshTop = meshTopTemp;
+			if (Mathf.Abs(playerHeight - meshTop) < PLAYER_AND_MESH_OFFSET && playerHeight >= meshTop) {
+				return true;
+			}
 		}
 		return false;
 
@@ -59,14 +69,16 @@ public partial class jumpState : State
 		}
 		KinematicCollision3D collision = player.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
-		float playerHeight = player.GlobalPosition.Y + playerTop;
+		float playerHeight = player.GlobalPosition.Y + playerTopWhileInJump;
 		float meshTop = collider.GlobalPosition.Y;
 
 
 		if (Mathf.Abs(playerHeight - meshTop) > 0.1f)
 			return true;
-		else return false;
+		
+		return false;
 	}
+
 
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
 	{
@@ -125,6 +137,7 @@ public partial class jumpState : State
 		{
 			mantleTimer = 0;
 			player.Velocity = Vector3.Zero;
+			
 			msm.TransitionTo("mantleState");
 		}
 		HandleAirMovement(delta);

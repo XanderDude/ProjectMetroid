@@ -1,0 +1,42 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://cvmpue1jh5dlb"]
+
+[ext_resource type="Texture2D" uid="uid://bqwjsjaef8ioi" path="res://Water/watertexture.png" id="1_prg7k"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_jgmw7"]
+texture = ExtResource("1_prg7k")
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_785lb"]
+default_input_values = [1, Vector2(4, 4), 2, Vector2(0, 0)]
+function = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// UVFunc:3
+	vec2 n_in3p1 = vec2(4.00000, 4.00000);
+	vec2 n_in3p2 = vec2(0.00000, 0.00000);
+	vec2 n_out3p0 = (UV - n_in3p2) * n_in3p1 + n_in3p2;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out3p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-392.778, 178.412)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_jgmw7")
+nodes/fragment/2/position = Vector2(20, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeUVFunc_785lb")
+nodes/fragment/3/position = Vector2(-260, 240)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 2, 0)
