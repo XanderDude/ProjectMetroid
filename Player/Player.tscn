@@ -175,11 +175,12 @@ script = ExtResource("13_4n5ed")
 player = NodePath("..")
 animTree = NodePath("../AnimationTree")
 playbackFilePath = "parameters/playback"
-IdleBlendPath = "parameters/Running/IdleBlend/blend_amount"
 RunSpeedBlendPath = "parameters/Running/RunSpeed/scale"
 AimBlendBlendPath = "parameters/Running/AimBlend/blend_position"
+StandingShootTimeseekPath = "parameters/Running/AimTimeSeek/seek_request"
+CrouchingShootTimeseekPath = "parameters/Crouching/AimTimeSeek/seek_request"
 LegAndArmBlendBlendPath = "parameters/Running/LegAndArmBlend/blend_amount"
-transitionSpeed = 18.0
+transitionSpeed = 5.0
 JumpStateName = "Jumping"
 RunningStateName = "Running"
 WallCollisionStateName = "WallCollision"
@@ -189,50 +190,50 @@ CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(3.55271e-17, 0.924947, 0.09)
-bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
-bones/1/position = Vector3(-0.0220807, -0.0253461, 0.00305502)
-bones/1/rotation = Quaternion(-0.00469533, 0.073264, -0.0590212, 0.995554)
+bones/0/position = Vector3(0.0178352, 0.895231, 0.00818349)
+bones/0/rotation = Quaternion(0.547679, 0.447945, 0.452182, 0.54307)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(-0.0943754, 0.10502, 0.00195888, 0.98998)
 bones/1/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.035671, 0.0139758, -8.06113e-13)
-bones/3/rotation = Quaternion(-0.00109227, -1.55136e-05, 0.278033, 0.960571)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-2.77556e-17, 2.498e-16, -5.55112e-17, 1)
-bones/5/position = Vector3(0.0708221, -0.0208942, -8.71525e-16)
-bones/5/rotation = Quaternion(0.520164, 0.478258, 0.520994, -0.478815)
-bones/7/position = Vector3(0.0324921, 0.0596365, 5.04041e-16)
-bones/9/rotation = Quaternion(0.173699, -0.299185, 0.927533, 0.141418)
+bones/3/position = Vector3(0.035671, 0.0139758, 2.66454e-16)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -4.79616e-16)
+bones/4/rotation = Quaternion(-0.161604, 0.0171417, -0.0481547, 0.985531)
+bones/5/position = Vector3(0.0708221, -0.0208942, -6.4837e-16)
+bones/5/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
+bones/7/position = Vector3(0.0398761, 0.0603658, 0.000969372)
+bones/7/rotation = Quaternion(0.493921, 0.500548, 0.451091, -0.549554)
+bones/9/rotation = Quaternion(0.376538, -0.0403279, 0.924415, 0.045267)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.43248, 0.704158, -0.455764, 0.33076)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-2.77556e-17, -8.32667e-17, 1.94289e-16, 1)
-bones/13/rotation = Quaternion(-0.166358, -0.208352, -0.371447, 0.889349)
+bones/10/rotation = Quaternion(0.524455, 0.561479, -0.460471, 0.444584)
+bones/11/rotation = Quaternion(0.00497572, -0.517241, -0.172841, 0.83819)
+bones/13/rotation = Quaternion(0.0811912, -0.10038, 0.0548086, 0.990115)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.380479, 0.202428, -0.488897, 0.758445)
+bones/14/rotation = Quaternion(0.182719, 0.016522, -0.135527, 0.973639)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(1.66533e-16, -1.66533e-16, 2.77556e-16, 1)
-bones/20/position = Vector3(0.000332437, -0.0253461, 0.0807161)
-bones/20/rotation = Quaternion(0.262619, 0.738815, 0.617289, 0.0643242)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.899064, -0.0142268, -0.437533, 0.00686211)
+bones/21/rotation = Quaternion(0.99685, 0.0341648, -0.0283463, 0.0657272)
+bones/21/scale = Vector3(1, 1, 1)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.534381, -0.442481, 0.48104, 0.535955)
-bones/24/position = Vector3(-0.0330471, -0.0253461, -0.0761898)
-bones/24/rotation = Quaternion(0.811298, -0.00329079, -0.0121052, 0.584498)
-bones/24/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.50929, -0.471772, 0.516494, 0.501287)
+bones/22/scale = Vector3(1, 1, 1)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.932223, -0.00947717, -0.330954, 0.146085)
-bones/25/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
 bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.626457, -0.279218, 0.394449, 0.611554)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.667668, -0.68194, -0.298626, 0.725714, 0.685646, 0.0568172, 0.166006, -0.254652, 0.952678, -0.363338, 1.31261, 0.268078)
+transform = Transform3D(0.133279, -0.829363, -0.542582, -0.301279, 0.487653, -0.819406, 0.944176, 0.272678, -0.184875, -0.343137, 1.09917, -0.0039722)
 bone_idx = 17
 
 [node name="ArrowSpawnLocation" type="Node3D" parent="PlayerMesh/Skeleton3D/Crossbow" index="0"]
@@ -249,11 +250,11 @@ visible = false
 VFXNodes = [null, NodePath("electicitySpikes")]
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.667668, -0.68194, -0.298626, 0.725714, 0.685646, 0.0568172, 0.166006, -0.254652, 0.952678, -0.411179, 1.35611, 0.270508)
+transform = Transform3D(0.133279, -0.829363, -0.542582, -0.301279, 0.487653, -0.819406, 0.944176, 0.272678, -0.184875, -0.404762, 1.11369, 0.0093886)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.667668, -0.68194, -0.298626, 0.725714, 0.685646, 0.0568172, 0.166006, -0.254652, 0.952678, -0.411179, 1.35611, 0.270508)
+transform = Transform3D(0.133279, -0.829363, -0.542582, -0.301279, 0.487653, -0.819406, 0.944176, 0.272678, -0.184875, -0.404762, 1.11369, 0.0093886)
 bone_idx = 19
 
 [node name="body" parent="PlayerMesh/Skeleton3D" index="3"]
@@ -261,6 +262,9 @@ material_overlay = ExtResource("2_s0mko")
 
 [node name="cloak" parent="PlayerMesh/Skeleton3D" index="4"]
 material_overlay = ExtResource("2_s0mko")
+
+[node name="AnimationPlayer" parent="PlayerMesh" index="2"]
+active = false
 
 [node name="PlayerRavenFollow" type="MeshInstance3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58336e-08, 1.52681, -0.591004)
@@ -277,15 +281,25 @@ deterministic = false
 root_node = NodePath("%PlayerMesh")
 tree_root = ExtResource("15_jvfa1")
 anim_player = NodePath("../AnimationPlayerMain")
+parameters/conditions/EnterIdle = false
+parameters/conditions/ExitIdle = false
 parameters/conditions/slideEnd = false
-parameters/Crouching/AimBlend/blend_position = Vector2(0, 0)
-parameters/Crouching/ArmBlend/blend_amount = 1.0
-parameters/Running/Add2/add_amount = 1.0
-parameters/Running/AddReset/add_amount = 0
+parameters/Crouching/AddCrouching/add_amount = 1.0
+parameters/Crouching/AimBlend/blend_position = Vector2(0.510112, -0.616253)
+parameters/Crouching/AimBlend/2/BlendArms/blend_amount = 1.1
+parameters/Crouching/AimBlend/2/BlendHead/blend_amount = 0.75
+parameters/Crouching/AimBlend/3/BlendArms/blend_amount = 1.1
+parameters/Crouching/AimTimeSeek/seek_request = -1.0
+parameters/Crouching/OneShot_StandBlock/active = false
+parameters/Crouching/OneShot_StandBlock/internal_active = false
+parameters/Crouching/OneShot_StandBlock/request = 0
+parameters/Jumping/AddSpin/add_amount = 1.0
+parameters/Running/AddReset/add_amount = 1.0
 parameters/Running/AimBlend/blend_position = Vector2(0, 0)
-parameters/Running/IdleBlend/blend_amount = 0.0
-parameters/Running/LegAndArmBlend/blend_amount = 1.0
+parameters/Running/AimTimeSeek/seek_request = -1.0
+parameters/Running/LegAndArmBlend/blend_amount = 0.0
 parameters/Running/RunSpeed/scale = 1.5
+parameters/SlidingLoop/blend_position = Vector2(0, 0)
 
 [node name="PlayerLight" parent="." instance=ExtResource("26_s0mko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
