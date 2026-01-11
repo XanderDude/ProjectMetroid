@@ -77,20 +77,20 @@ public partial class groundedState : State
 				GD.Print("Play cannot stand animation");
 			}
 			else
-            {
-                player.Set("jumpQueued", true);
+			{
+				player.Set("jumpQueued", true);
 				msm.TransitionTo("jumpState");
-            }
+			}
 		}
 
 		if (@event.IsActionPressed("Up") && pm.aimDirection.X == 0) //only stand up when only pressing up
 		{
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) GD.Print("Standing blocked");
 			else
-            {
-                parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+			{
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 				msm.TransitionTo("groundedState");
-            }
+			}
 		}
 	}
 }
