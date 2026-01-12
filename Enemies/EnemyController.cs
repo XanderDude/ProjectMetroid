@@ -104,11 +104,11 @@ public partial class EnemyController : CharacterBody3D
 		Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
         {
-            if (GD.RandRange(0, 100) <= dropRate1)
+            if (item1 != null && GD.RandRange(0, 100) <= dropRate1)
             {
                 SpawnItem(dropPosition, item1);
             }
-            if (GD.RandRange(0, 100) <= dropRate2)
+            if (item2 != null && GD.RandRange(0, 100) <= dropRate2)
 			{
 				SpawnItem(dropPosition, item2);
 			}

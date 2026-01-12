@@ -11,8 +11,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	private AnimationNodeStateMachinePlayback playback;
 	[Export] private string RunSpeedBlendPath { get; set; }
 	[Export] private string AimBlendBlendPath { get; set; } //for blending the different aim directions
-	[Export] private string StandingShootTimeseekPath { get; set; } //for playing aim animation from the start for shooting
-	[Export] private string CrouchingShootTimeseekPath { get; set; } //for playing aim animation from the start for shooting
 	[Export] private string LegAndArmBlendBlendPath { get; set; } //for choosing when to blend between normal animations and aiming
 	[Export] private float transitionSpeed = 8f;
 	[Export] private string JumpStateName;
@@ -84,7 +82,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void BeginJump()
 	{
-		playback?.Start(JumpStateName);
+		playback?.Travel(JumpStateName);
 		//playback?.Travel(JumpStateName);
 	}
 
@@ -96,7 +94,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void Sliding(bool value) //value = slide true or sliding false
 	{
 		animTree.Set("parameters/conditions/slideEnd", !value); //set slideEnd true when Sliding(false) is called
-		//if (!player.IsOnFloor()) playback?.Travel(JumpStateName);
 		if (value) playback?.Travel(SlideStateName); //only transition to slide when true
 	}
 
@@ -114,7 +111,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void StandingBlocked()
     {
 		GD.Print("Play Stand blocked animation");	
-        //animTree.Set($"parameters/{playback.GetCurrentNode()}/OneShot_StandBlock/request", "Fire");
 		animTree.Set("parameters/Crouching/OneShot_StandBlock/request", (int)AnimationNodeOneShot.OneShotRequest.Fire); //fire = 1
 		GD.Print("Stand blocked animation played");	
     }
@@ -132,8 +128,8 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	}
 	public void Shooting()
     {
-        animTree.Set(StandingShootTimeseekPath, 0f); //reset shoot animation to start
-		animTree.Set(CrouchingShootTimeseekPath, 0f); //reset shoot animation to start
+        animTree.Set("parameters/Running/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
+		animTree.Set("parameters/Crouching/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
     }
 
 	public void Death()
