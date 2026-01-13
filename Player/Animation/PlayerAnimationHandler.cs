@@ -65,25 +65,26 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		animTree.Set(LegAndArmBlendBlendPath, currentSpeed);
 		
 		float yOffset = .2f * currentSpeed;
-		SVector2 newAimDirect = new SVector2(Mathf.Abs(pm.aimDirection.X), pm.aimDirection.Y + yOffset); //get up or down (1, -1,) and if holding a direction
+		SVector2 newAimDirect = new SVector2(pm.aimDirection.X, pm.aimDirection.Y + yOffset);
 		if (Input.IsActionPressed("Aim"))
 		{
 			if (aimingTimer != -1) aimingTimer = .5f;
-			newAimDirect = new (1f,1f);
+			newAimDirect = new (Mathf.Sign(Rotation.Y),1f);
 		}
 
 		if (newAimDirect != aimDirection && playback?.GetCurrentNode() != "Idle")
 		{
 			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, .5f);
-			animTree.Set(AimBlendBlendPath, new Vector2(aimDirection.X, aimDirection.Y));
-			animTree.Set("parameters/Crouching/AimBlend/blend_position", new Vector2(aimDirection.X, aimDirection.Y)); //also set the crouching aim blend
+			animTree.Set(AimBlendBlendPath, new Vector2(Mathf.Abs(aimDirection.X), aimDirection.Y));
+			animTree.Set("parameters/Crouching/AimBlend/blend_position", new Vector2(Mathf.Abs(aimDirection.X), aimDirection.Y)); //also set the crouching aim blend
+			animTree.Set("parameters/Sliding/AimBlend/blend_position", new Vector2(aimDirection.X * Mathf.Sign(Rotation.Y), aimDirection.Y - yOffset));
 		}
+
 	}
 
 	public void BeginJump()
 	{
-		playback?.Travel(JumpStateName);
-		//playback?.Travel(JumpStateName);
+		playback?.Start(JumpStateName);
 	}
 
 	public void Grounded()
@@ -130,6 +131,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
     {
         animTree.Set("parameters/Running/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
 		animTree.Set("parameters/Crouching/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
+		animTree.Set("parameters/Sliding/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
     }
 
 	public void Death()

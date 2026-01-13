@@ -14,6 +14,9 @@ AimDownForward 275-280
 AimDown 285-290
 Death 300-380
 StandUpBlocked 390-400
+SlideAimUp 405-410
+SlideAimUpBack 415-420
+SlideAimBack 425-430
 
 Raven Animations:
 0 idle
