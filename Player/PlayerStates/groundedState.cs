@@ -8,6 +8,10 @@ public partial class groundedState : State
 	public SlideVertColCheck vertColCheck;
 	private float _landingCooldown = .1f; //3 frames (60fps)
 	private float landingCDTimer;
+
+	private float timer = 0.0f;
+
+	private bool isPlaying = false;
 	public override void Enter()
 	{
 		pm.slideBoost = false;
@@ -32,6 +36,25 @@ public partial class groundedState : State
 			landingCDTimer = 0;
 			//return;
 		}
+
+		if (pm.inwater && timer == 0.0f && pm.Velocity.X != 0)
+		{
+			SoundFriend.Play("player_treading_water_SFX");
+			GD.Print("PLAY");
+			timer = 0.3f;
+			isPlaying = true;
+		}
+		else if (!pm.inwater && isPlaying || pm.Velocity.X == 0)
+		{
+			SoundFriend.Stop("player_treading_water_SFX");
+			isPlaying = false;
+		}
+
+		timer -= delta;
+		if (timer < 0)
+		{
+			timer = 0.0f;
+		}
 		
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
@@ -40,6 +63,7 @@ public partial class groundedState : State
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
 		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
+
 	}
 
 	private void HandleGroundedMovement(float delta)

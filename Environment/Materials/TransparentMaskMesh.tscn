@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwup8ofqiohv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm6l0"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+no_depth_test = true
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hpsl5"]
+material = SubResource("StandardMaterial3D_pm6l0")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0495896, 0, 0)
+mesh = SubResource("BoxMesh_hpsl5")
+skeleton = NodePath("../..")

@@ -12,6 +12,8 @@ public partial class PlayerManager : CharacterBody3D
 
 	public bool isDead = false;
 	public bool isPressed = false; 
+
+	public bool inwater = false;
 	[Export] private ShaderMaterial invulnMat;
 
 	public Vector2 aimDirection;
@@ -121,6 +123,7 @@ public partial class PlayerManager : CharacterBody3D
 			canBeDamaged = true;
 			invulnMat?.SetShaderParameter("alpha", 0f);
 		}
+
 
 		
 	}

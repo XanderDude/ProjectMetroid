@@ -2,28 +2,29 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch7n0dvwosxta"
-path="res://.godot/imported/ArchitectureStone_Albedo.png-2033985be6324a314f2b2cb1583c782d.ctex"
+uid="uid://nb1n5rlsecuv"
+path.s3tc="res://.godot/imported/StoneWallTextureAlbedo.png-7de027284d432ace2fd0a3911da79e36.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Environment/Materials/ArchitectureStone_Albedo.png"
-dest_files=["res://.godot/imported/ArchitectureStone_Albedo.png-2033985be6324a314f2b2cb1583c782d.ctex"]
+source_file="res://Environment/Materials/StoneWallTextureAlbedo.png"
+dest_files=["res://.godot/imported/StoneWallTextureAlbedo.png-7de027284d432ace2fd0a3911da79e36.s3tc.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=2
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
-mipmaps/limit=0
-roughness/mode=1
+mipmaps/limit=-1
+roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyq7lfns17r48"]
+[gd_scene load_steps=9 format=3 uid="uid://dyq7lfns17r48"]
 
 [ext_resource type="Script" uid="uid://d35fqc85b2uvp" path="res://SoundFriend/SoundFriend.cs" id="1_wcdol"]
 [ext_resource type="AudioStream" uid="uid://cfgimuf5j5hsj" path="res://Sounds/player_death_SFX.mp3" id="3_cdrqa"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://kavsnlamhkjl" path="res://Sounds/sewer_background_SFX.mp3" id="5_gfe33"]
 [ext_resource type="AudioStream" uid="uid://daw0ko1xs4ig1" path="res://Sounds/player_chargingArrowLoop_SFX.mp3" id="5_sd77e"]
 [ext_resource type="AudioStream" uid="uid://4k185t4ooqwu" path="res://Sounds/raven_launch_SFX.mp3" id="6_u4i86"]
+[ext_resource type="AudioStream" uid="uid://cirori105uojj" path="res://Sounds/player_treading_water_SFX.mp3" id="9_mx2ac"]
 
 [node name="SoundFriend" type="Node"]
 script = ExtResource("1_wcdol")
@@ -36,3 +37,7 @@ volume_db = -34.625
 
 [node name="raven_launch_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_u4i86")
+
+[node name="player_treading_water_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_mx2ac")
+volume_db = -4.0

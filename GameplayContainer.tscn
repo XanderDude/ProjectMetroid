@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3p56e8p07hea"]
+[gd_scene load_steps=23 format=3 uid="uid://b3p56e8p07hea"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_hnrdm"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_qbg50"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="9_cmioc"]
 [ext_resource type="PackedScene" uid="uid://yjo28xsyc55e" path="res://Enemies/Traps/TrapAxe_Triggered.tscn" id="9_j5m4r"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="9_yv1x3"]
+[ext_resource type="PackedScene" uid="uid://s4v1554fiap5" path="res://Environment/VFX/WaterMesh.tscn" id="12_hnrdm"]
 [ext_resource type="Texture2D" uid="uid://den3xfuqm7yu" path="res://Environment/Foreground/ForegroundChains.png" id="12_iviu7"]
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="14_cmioc"]
 
@@ -168,6 +169,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1215, 5.90692, 0)
 
 [node name="EnemyBat" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_cmioc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14037, 5.17101, 0)
+
+[node name="Water" parent="." instance=ExtResource("12_hnrdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5429, 5.97519, 0.300129)
 
 [editable path="SubViewportContainer/SubViewport/Environment/SpikeTraps"]
 [editable path="SubViewportContainer/SubViewport/Environment/JungleGym1"]

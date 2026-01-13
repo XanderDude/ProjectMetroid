@@ -37,7 +37,6 @@ skeleton = NodePath("../Floor")
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CeilingCollider/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_2cev0")
 
 [node name="Floor" type="CSGBox3D" parent="."]
