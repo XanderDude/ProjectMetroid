@@ -10,6 +10,7 @@ public partial class groundedState : State
 	private float landingCDTimer = 0;
 	private float _WalkOffCooldown = .2f; //12 frames (60fps)
 	private float walkOffCDTimer = 0;
+	private float timer = 0.0f;
 	private bool isPlaying = false;
 	public override void Enter()
 	{
