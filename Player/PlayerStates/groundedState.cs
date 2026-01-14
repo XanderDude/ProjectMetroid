@@ -6,16 +6,17 @@ public partial class groundedState : State
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	public SlideVertColCheck vertColCheck;
-	private float _landingCooldown = .1f; //3 frames (60fps)
-	private float landingCDTimer;
-
-	private float timer = 0.0f;
-
+	private float _landingCooldown = .1f; //6 frames (60fps)
+	private float landingCDTimer = 0;
+	private float _WalkOffCooldown = .2f; //12 frames (60fps)
+	private float walkOffCDTimer = 0;
 	private bool isPlaying = false;
 	public override void Enter()
 	{
 		pm.slideBoost = false;
-		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded(); //could be crouching
+		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		else if (msm._currentState.Name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
+
 		if (msm._previousState == null || msm._previousState.Name == "jumpState") {
 			GD.Print("Player Landed");
 			landingCDTimer = 0; //start timer when landing
@@ -32,10 +33,13 @@ public partial class groundedState : State
 
 		if (!player.IsOnFloor() && landingCDTimer >= _landingCooldown) //immediately switch to jump state
 		{
-			msm.TransitionTo("jumpState");
-			landingCDTimer = 0;
-			//return;
+			walkOffCDTimer += delta;
+			if (walkOffCDTimer >= _WalkOffCooldown)
+			{
+				msm.TransitionTo("jumpState");
+			}
 		}
+		else walkOffCDTimer = _WalkOffCooldown;
 
 		if (pm.inwater && timer == 0.0f && pm.Velocity.X != 0)
 		{
@@ -85,11 +89,10 @@ public partial class groundedState : State
 		}
 		if (@event.IsActionPressed("Down") && pm.noAimDirection && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
 			msm.TransitionTo("crouchState");
 		}
-		
-		if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0)
+		if (@event.IsActionPressed("Slide") && pm.aimDirection.X != 0)
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
@@ -98,7 +101,7 @@ public partial class groundedState : State
 		{
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
 			{
-				GD.Print("Play cannot stand animation");
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
 			}
 			else
 			{
@@ -107,12 +110,15 @@ public partial class groundedState : State
 			}
 		}
 
-		if (@event.IsActionPressed("Up") && pm.aimDirection.X == 0) //only stand up when only pressing up
+		if (@event.IsActionPressed("Up") && pm.aimDirection.X == 0 && msm._currentState.Name == "crouchState") //only stand up when only pressing up
 		{
-			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) GD.Print("Standing blocked");
-			else
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
 			{
-				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
+			}
+			else
+            {
+                parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 				msm.TransitionTo("groundedState");
 			}
 		}

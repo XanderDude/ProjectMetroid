@@ -1,15 +1,12 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Numerics;
-using System.Threading.Tasks;
 
 public partial class EnemyController : CharacterBody3D
 {
 	[ExportGroup("Enemy Stats")]
 	[Export] public int health = 100;
-	[Export] public int itemdropamount = 0;
+	[Export] public int itemdropamount = 1;
+	[Export] private int dropRate1 = 100, dropRate2 = 0;
 	[Export] public float runspeed { get; set; } = 2.5f;
 	[Export] public float walkspeed { get; set; } = 1.0f;
 	[Export] public float idle { get; set; } = 0f;
@@ -26,8 +23,10 @@ public partial class EnemyController : CharacterBody3D
 
 	[ExportGroup("Node References")]
 	[Export] public Node3D mesh;
+	private float meshDirection = -90f;
 	public PlayerManager player => GameFriend.gameinstance.player;
 	[Export] public RayCast3D ray;
+	[Export] public PackedScene item1, item2;
 
 	[Export] public RayCast3D edgeray;
 	[Export] public EnemyStateMachine statemachine { get; private set; }
@@ -36,14 +35,23 @@ public partial class EnemyController : CharacterBody3D
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
+	private bool playerInDamageRange = false; //player is within damage collider
+
 	public override void _Ready()
 	{
 		if (player == null) GD.Print("Player not assigned");
+		meshDirection = mesh.RotationDegrees.Y;
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
 		statemachine?._currentState?.PhysicsUpdate((float)delta);
+		if (playerInDamageRange && player.canBeDamaged)
+		{
+			player.Health -= damagedealt;
+		}
+		if (Velocity.X < -0.5) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
+		else if (Velocity.X > 0.5) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
 		MoveAndSlide();
 	}
 
@@ -54,13 +62,23 @@ public partial class EnemyController : CharacterBody3D
 
 	public void OnCollide(Node3D node)
 	{
-		player.Health -= damagedealt;
+		playerInDamageRange = true;
+	}
+
+	public void OnLeaveCollider(Node3D node)
+	{
+		playerInDamageRange = false;
 	}
 
 	public void DamagedRecieved(int damage)
 	{
-		health -= damage;
+
+
+		GD.Print($"{this.Name} took {damage} damage");
 		DamageFlicker();
+
+		if (health <= 0) return; //already dead
+		health -= damage;
 		if (health <= 0)
 		{
 			KillEnemy();
@@ -83,23 +101,37 @@ public partial class EnemyController : CharacterBody3D
 
 	public void DropItems()
 	{
-		Godot.Vector3 dropPosition = GlobalPosition;
+		Vector3 dropPosition = GlobalPosition;
 		for (int i = 0; i < itemdropamount; i++)
-		{
-			var itemDropScene = GD.Load<PackedScene>("res://ItemDrop.tscn");
-			var itemDropNode = itemDropScene.Instantiate();
-			if (itemDropNode is ItemDrop itemDrop)
+        {
+            if (item1 != null && GD.RandRange(0, 100) <= dropRate1)
+            {
+                SpawnItem(dropPosition, item1);
+            }
+            if (item2 != null && GD.RandRange(0, 100) <= dropRate2)
 			{
-				GetParent().AddChild(itemDrop);
-				itemDrop.GlobalPosition = dropPosition;
+				SpawnItem(dropPosition, item2);
 			}
-			else
-			{
-				GD.PrintErr("ItemDrop.tscn root node is not an ItemDrop!");
-				itemDropNode.QueueFree();
-			}
-		}
-	}
+
+            
+        }
+
+        void SpawnItem(Vector3 dropPosition, PackedScene itemScene)
+        {
+
+            var itemDropNode = itemScene.Instantiate();
+            if (itemDropNode is ItemDrop itemDrop)
+            {
+                GetParent().AddChild(itemDrop);
+                itemDrop.GlobalPosition = dropPosition;
+            }
+            else
+            {
+                GD.PrintErr("Missing item drop scene reference");
+                itemDropNode.QueueFree();
+            }
+        }
+    }
 
 	public bool isPlayerInRange(float range)
 	{

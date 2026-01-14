@@ -1,5 +1,5 @@
 using Godot;
-
+using System.Collections.Generic;
 public partial class NormalArrow : RigidBody3D
 {
 	[Export] public AudioStream hitSound;
@@ -8,7 +8,7 @@ public partial class NormalArrow : RigidBody3D
 	[Export] public int damage = 10; //we should override value in attack state o-o
 	private float lifetime = 2.0f;
 	SceneTreeTimer timer;
-	
+	private List<Node3D> targetsDamaged = new();
 	public override void _Ready()
 	{
 		SetContactMonitor(true);
@@ -30,9 +30,10 @@ public partial class NormalArrow : RigidBody3D
 			{
 				var collider = state.GetContactColliderObject(i);
 				
-				if (collider is EnemyController enemy)
+				if (collider is EnemyController enemy && !targetsDamaged.Contains(enemy))
 				{
 					enemy.DamagedRecieved(damage);
+					targetsDamaged.Add(enemy);
 				}
 			}
 

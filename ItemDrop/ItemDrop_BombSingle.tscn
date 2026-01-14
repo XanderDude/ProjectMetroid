@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgpsef3yj32e0"]
+
+[ext_resource type="Script" uid="uid://dofk3lm3pf6cd" path="res://ItemDrop/ItemDrop.cs" id="1_rhaek"]
+[ext_resource type="ArrayMesh" uid="uid://c3hwc1tptwycd" path="res://Player/Weapons/WristCrossbow/ArrowBombMesh.res" id="2_fwg8i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yghj7"]
+size = Vector3(0.662109, 0.732666, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqkwx"]
+shading_mode = 0
+albedo_color = Color(1, 0.0823529, 0.00784314, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_myup0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hojm5"]
+shading_mode = 0
+
+[node name="Item_Bomb" type="RigidBody3D"]
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 0, 0, 0)
+collision_layer = 0
+collision_mask = 3
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_rhaek")
+itemType = 1
+amount = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.295, 0)
+shape = SubResource("BoxShape3D_yghj7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.275732, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_uqkwx")
+mesh = SubResource("SphereMesh_myup0")
+
+[node name="ArrowBombMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.9282, 4, 1.25916e-14, -4, 6.9282, -7.26977e-15, -1.64988e-13, 6.77626e-21, 0.705, 0, 0.290724, -0.0362207)
+cast_shadow = 0
+mesh = ExtResource("2_fwg8i")
+
+[node name="ArrowBombMesh2" type="MeshInstance3D" parent="ArrowBombMesh"]
+transform = Transform3D(1.2, -5.96046e-08, 3.14329e-23, 5.96046e-08, 1.2, -8.2568e-23, -1.35525e-20, 2.58328e-20, 0.005, 0, 0, 0.151085)
+material_override = SubResource("StandardMaterial3D_hojm5")
+cast_shadow = 0
+mesh = ExtResource("2_fwg8i")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0932758, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00743103, 0.388216, -0.000119925)
+shape = SubResource("BoxShape3D_yghj7")
+
+[node name="PickupSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.997208, 0, 0, 0, 0.997208, 0, 0, 0, 0.997208, 0, 0.278746, 0)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=17 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
+[ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="2_oempk"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_icv41"]
+[ext_resource type="PackedScene" uid="uid://dgpsef3yj32e0" path="res://ItemDrop/ItemDrop_BombSingle.tscn" id="3_oempk"]
 [ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="4_ut63f"]
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_tu7f2"]
 [ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_oempk"]
@@ -29,11 +31,16 @@ albedo_color = Color(1, 0.392157, 1, 0.0705882)
 
 [node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "statemachine")]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_tysk3")
 health = 80
+itemdropamount = 3
+dropRate1 = 75
+dropRate2 = 33
 mesh = NodePath("Rat")
 ray = NodePath("Beam")
+item1 = ExtResource("2_oempk")
+item2 = ExtResource("3_oempk")
 statemachine = NodePath("EnemyStateMachine")
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
@@ -78,6 +85,7 @@ hit_from_inside = true
 [node name="AttackRange" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
+monitorable = false
 
 [node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
