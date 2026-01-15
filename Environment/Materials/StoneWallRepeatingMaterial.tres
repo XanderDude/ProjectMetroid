@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://nb1n5rlsecuv" path="res://Environment/Materials/StoneWallTextureAlbedo.png" id="1_g8aci"]
 
 [resource]
+transparency = 4
+specular_mode = 2
 albedo_texture = ExtResource("1_g8aci")
-roughness = 0.0
 uv1_triplanar = true
 uv1_world_triplanar = true
+texture_filter = 0

@@ -9,5 +9,5 @@ shader = ExtResource("1_ye4qh")
 shader_parameter/affine_mapping = false
 shader_parameter/albedo = ExtResource("2_ye4qh")
 shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(640, 480)
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)

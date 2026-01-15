@@ -9,9 +9,10 @@ render_mode blend_mix,
 	specular_disabled;
 
 uniform bool affine_mapping = false;
-uniform sampler2D albedo : source_color, filter_nearest;
+uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform sampler2D texture_albedo : source_color, filter_nearest;
 uniform float alpha_scissor : hint_range(0, 1) = 0.5;
-uniform float jitter: hint_range(0, 1) = 0.25;
+uniform float jitter: hint_range(0, 1) = 0.5;
 uniform ivec2 resolution = ivec2(640, 360);
 
 vec4 snap_to_position(vec4 base_position)
@@ -19,9 +20,9 @@ vec4 snap_to_position(vec4 base_position)
 	vec4 snapped_position = base_position;
 	snapped_position.xyz = base_position.xyz / base_position.w;
 
-	vec2 snap_resulotion = floor(vec2(resolution) * (1.0 - jitter));
-	snapped_position.x = floor(snap_resulotion.x * snapped_position.x) / snap_resulotion.x;
-	snapped_position.y = floor(snap_resulotion.y * snapped_position.y) / snap_resulotion.y;
+	vec2 snap_resolution = floor(vec2(resolution) * (1.0 - jitter));
+	snapped_position.x = floor(snap_resolution.x * snapped_position.x) / snap_resolution.x;
+	snapped_position.y = floor(snap_resolution.y * snapped_position.y) / snap_resolution.y;
 
 	snapped_position.xyz *= base_position.w;
 	return snapped_position;
@@ -39,16 +40,13 @@ void vertex()
 	{
 		POSITION = snapped_position;
 	}
-
 }
 
 void fragment()
 {
+	vec4 texture_color = texture(texture_albedo, UV);
 
-	vec4 color_base = COLOR;
-	vec4 texture_color = texture(albedo, UV);
-
-	ALBEDO = (color_base * texture_color).rgb;
-	ALPHA = texture_color.a * color_base.a;
-	ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
+	ALBEDO = albedo.rbg * texture_color.rgb;
+	ALPHA *= albedo.a * texture_color.a;
+	//ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
 }

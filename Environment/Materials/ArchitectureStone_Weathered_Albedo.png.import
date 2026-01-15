@@ -3,28 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gy53jwqcdste"
-path.s3tc="res://.godot/imported/ArchitectureStone_Weathered_Albedo.png-da30c396c4470113a427880a2a75349f.s3tc.ctex"
+path="res://.godot/imported/ArchitectureStone_Weathered_Albedo.png-da30c396c4470113a427880a2a75349f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Environment/Materials/ArchitectureStone_Weathered_Albedo.png"
-dest_files=["res://.godot/imported/ArchitectureStone_Weathered_Albedo.png-da30c396c4470113a427880a2a75349f.s3tc.ctex"]
+dest_files=["res://.godot/imported/ArchitectureStone_Weathered_Albedo.png-da30c396c4470113a427880a2a75349f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

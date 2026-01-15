@@ -3,28 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvhcfc5nc72e3"
-path.s3tc="res://.godot/imported/FrankengirlWeaponTextures_512.png-37297b2067df39b3a7674d478ff02cd2.s3tc.ctex"
+path="res://.godot/imported/FrankengirlWeaponTextures_512.png-37297b2067df39b3a7674d478ff02cd2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Player/Mesh/FrankengirlWeaponTextures_512.png"
-dest_files=["res://.godot/imported/FrankengirlWeaponTextures_512.png-37297b2067df39b3a7674d478ff02cd2.s3tc.ctex"]
+dest_files=["res://.godot/imported/FrankengirlWeaponTextures_512.png-37297b2067df39b3a7674d478ff02cd2.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

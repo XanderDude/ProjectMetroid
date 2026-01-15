@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=47 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_clrjg"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -228,18 +228,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hcbv4")
 
-[sub_resource type="Gradient" id="Gradient_g1r6t"]
-interpolation_mode = 1
-colors = PackedColorArray(0.59775, 0.590232, 0.641509, 1, 0.596078, 0.592157, 0.643137, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bgal7"]
-gradient = SubResource("Gradient_g1r6t")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bcc5k"]
 render_priority = 0
 shader = ExtResource("17_cuncf")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = SubResource("GradientTexture1D_bgal7")
+shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(640, 360)

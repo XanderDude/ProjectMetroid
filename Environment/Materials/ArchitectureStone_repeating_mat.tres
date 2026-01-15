@@ -1,14 +1,20 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dkbuj5t3d5kcu"]
 
-[ext_resource type="Shader" uid="uid://i5aqhb3bnti0" path="res://Environment/Shaders/ps1JitterBacksideCullRepeating.gdshader" id="1_f0ovo"]
-[ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="2_vmhw6"]
+[ext_resource type="Shader" uid="uid://cgvjtt8nwg740" path="res://Environment/Shaders/ps1JitterBacksideCullRepeating.gdshader" id="1_ygwgl"]
+[ext_resource type="Texture2D" uid="uid://nb1n5rlsecuv" path="res://Environment/Materials/StoneWallTextureAlbedo.png" id="2_ygwgl"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_f0ovo")
-shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("2_vmhw6")
+shader = ExtResource("1_ygwgl")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_ygwgl")
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
+shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)
-shader_parameter/uv_scale = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)

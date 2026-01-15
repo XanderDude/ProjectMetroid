@@ -116,6 +116,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-211.15, -0.449852)
 modes/diffuse = 3
 flags/unshaded = true
 preview_params/TextureSpeed = "Vector2(0, -3)"

@@ -6,7 +6,9 @@ render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_sc
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
 uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float jitter: hint_range(0, 1) = 0.5;
+uniform ivec2 resolution = ivec2(640, 360);
 
 uniform float roughness : hint_range(0.0, 1.0);
 uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
@@ -31,11 +33,24 @@ varying vec3 uv1_power_normal;
 
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
+
+vec4 snap_to_position(vec4 base_position)
+{
+	vec4 snapped_position = base_position;
+	snapped_position.xyz = base_position.xyz / base_position.w;
+
+	vec2 snap_resolution = floor(vec2(resolution) * (1.0 - jitter));
+	snapped_position.x = floor(snap_resolution.x * snapped_position.x) / snap_resolution.x;
+	snapped_position.y = floor(snap_resolution.y * snapped_position.y) / snap_resolution.y;
+
+	snapped_position.xyz *= base_position.w;
+	return snapped_position;
+}
 
 void vertex() {
 	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
+	vec4 snapped_position = snap_to_position(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
+	
 
 	TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
 	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.y);
@@ -52,6 +67,8 @@ void vertex() {
 	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * 0.01;
 	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
 	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
+	
+	POSITION = snapped_position;
 }
 
 vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {

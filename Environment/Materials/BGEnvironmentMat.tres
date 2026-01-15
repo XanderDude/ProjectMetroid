@@ -1,13 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://mfnek0rv47j4"]
 
 [ext_resource type="Shader" uid="uid://dc4yhxl60u45" path="res://Environment/Shaders/ps1JitterNoAmbientLighting.gdshader" id="1_5n5hx"]
-[ext_resource type="Texture2D" uid="uid://dryrtc4p7i1fx" path="res://Environment/Materials/BackgroundEnvironment_Albedo.png" id="2_5n5hx"]
+[ext_resource type="Texture2D" uid="uid://vxs676ck0fqd" path="res://Environment/Props/Environmental/TreeIndividuals_BackgroundEnvironment_Albedo.png" id="2_5n5hx"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_5n5hx")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("2_5n5hx")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_5n5hx")
 shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
+shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)
