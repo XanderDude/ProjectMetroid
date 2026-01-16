@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dsu10amfvawtu"]
+[gd_scene load_steps=0 format=3 uid="uid://dsu10amfvawtu"]
 
 [node name="DirectionalLight_Exterior_DayBreak" type="DirectionalLight3D"]
 transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, 0, 0, 0)

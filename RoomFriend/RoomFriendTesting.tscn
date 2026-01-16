@@ -18,44 +18,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0585608, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855018, 0)
 
 [node name="Skeleton3D" parent="Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178362, 0.895249, 0.0064059)
-bones/0/rotation = Quaternion(0.547171, 0.448415, 0.451714, 0.543582)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.00635095, 0.104778, -0.00732298, 0.994448)
-bones/3/position = Vector3(0.035671, 0.0139758, -2.93099e-16)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -5.41789e-16)
-bones/4/rotation = Quaternion(-0.0817647, 0.00386725, -0.0104234, 0.99659)
-bones/5/position = Vector3(0.0708221, -0.0208942, -8.52651e-16)
-bones/7/position = Vector3(0.0401189, 0.0605556, 0.00544632)
-bones/7/rotation = Quaternion(0.485616, 0.504411, 0.448428, -0.555571)
-bones/9/rotation = Quaternion(0.359822, -0.0316676, 0.931628, 0.0399271)
-bones/10/rotation = Quaternion(0.492055, 0.591746, -0.430255, 0.471804)
-bones/11/rotation = Quaternion(0.0934485, -0.529563, -0.155999, 0.82855)
-bones/13/rotation = Quaternion(0.0268326, -0.104914, 0.0747449, 0.991305)
-bones/14/rotation = Quaternion(0.095612, 0.0446537, -0.223489, 0.968977)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/rotation = Quaternion(0.999285, -0.0207656, -0.0278053, -0.0150349)
-bones/22/rotation = Quaternion(0.528572, -0.490521, 0.495494, 0.484238)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/0/position = Vector3(0.0178373, 0.895269, 0.0023008)
+bones/0/rotation = Quaternion(0.546037, 0.449463, 0.450671, 0.544722)
+bones/1/rotation = Quaternion(-0.00289718, 0.104751, -0.00768054, 0.994465)
+bones/4/rotation = Quaternion(-0.0320743, 0.00171529, -0.0041481, 0.999475)
+bones/7/position = Vector3(0.0385743, 0.0602298, 0.00492102)
+bones/7/rotation = Quaternion(-0.492551, -0.49987, -0.456618, 0.546831)
+bones/9/rotation = Quaternion(0.358065, -0.0316098, 0.932308, 0.0399084)
+bones/10/rotation = Quaternion(0.488368, 0.590795, -0.42066, 0.485286)
+bones/11/rotation = Quaternion(0.098947, -0.530198, -0.154726, 0.827744)
+bones/13/rotation = Quaternion(0.0389546, -0.104423, 0.0889959, 0.989777)
+bones/14/rotation = Quaternion(0.0618481, 0.0653967, -0.279761, 0.955841)
+bones/21/rotation = Quaternion(0.996166, -0.0335788, -0.0232099, -0.0773809)
+bones/22/rotation = Quaternion(0.526096, -0.488111, 0.498279, 0.486506)
 
 [node name="Crossbow" parent="Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0732697, -0.88146, -0.46654, -0.137626, 0.454385, -0.88011, 0.987771, 0.128693, -0.0880188, -0.353489, 1.10311, 0.0124078)
+transform = Transform3D(0.0607158, -0.912214, -0.40519, -0.0455075, 0.402987, -0.914074, 0.997117, 0.0739377, -0.0170449, -0.352838, 1.10123, 0.0038631)
 
 [node name="FullyChargedArrowVFX" parent="Player/PlayerMesh/Skeleton3D/Crossbow" index="3" node_paths=PackedStringArray("VFXNodes")]
 VFXNodes = [null, NodePath("electicitySpikes")]
 
 [node name="ArrowNormal" parent="Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0732697, -0.88146, -0.46654, -0.137626, 0.454385, -0.88011, 0.987771, 0.128693, -0.0880188, -0.416887, 1.11442, 0.0187145)
+transform = Transform3D(0.0607158, -0.912214, -0.40519, -0.0455075, 0.402987, -0.914074, 0.997117, 0.0739377, -0.0170449, -0.416967, 1.10871, 0.00813823)
 
 [node name="ArrowBomb" parent="Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0732697, -0.88146, -0.46654, -0.137626, 0.454385, -0.88011, 0.987771, 0.128693, -0.0880188, -0.416887, 1.11442, 0.0187145)
+transform = Transform3D(0.0607158, -0.912214, -0.40519, -0.0455075, 0.402987, -0.914074, 0.997117, 0.0739377, -0.0170449, -0.416967, 1.10871, 0.00813823)
 
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]

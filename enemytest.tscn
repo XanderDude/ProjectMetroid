@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c031ifeiix01t"]
+[gd_scene load_steps=6 format=3 uid="uid://dtnm2sgs6q7ov"]
 
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="1_3a0kg"]
 [ext_resource type="PackedScene" uid="uid://co7myhh7xifp6" path="res://Environment/Platforms/Wood1x0.5x6Platform.tscn" id="1_m88j1"]

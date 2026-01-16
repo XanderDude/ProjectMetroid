@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1dgedio24xf1"]
+
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_d2wvo"]
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="2_4cfun"]
+[ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="3_dyqg2"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_i5ub3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
+shader = ExtResource("4_i5ub3")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+
+[node name="GameFriend" type="Node3D"]
+script = ExtResource("1_d2wvo")
+initroomfriend = true
+initdebugfriend = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_4cfun")
+
+[node name="DirectionalLight_Exterior_DayBreak" parent="." instance=ExtResource("3_dyqg2")]
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, 0, 6.26745, -9.86159)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_itrsp")
+offset_left = 1.0
+offset_right = 641.0
+offset_bottom = 360.0
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxueeeifff6ey"]
+[gd_scene load_steps=3 format=3 uid="uid://dbmp6cmannuc5"]
 
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="1_5nilq"]
 
