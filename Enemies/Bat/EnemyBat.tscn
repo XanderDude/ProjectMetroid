@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://xaymn5irbgw5"]
+[gd_scene load_steps=13 format=3 uid="uid://xaymn5irbgw5"]
 
 [ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_m2cak"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="2_2a3cg"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="3_6itjq"]
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="4_707fo"]
 [ext_resource type="Script" uid="uid://q8c5wnqw785t" path="res://Enemies/flyingaggroState.cs" id="5_8n3kf"]
-[ext_resource type="PackedScene" uid="uid://cfqx3x3003wu0" path="res://Bird/RavenFly.fbx" id="6_jr35e"]
-[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="7_il1qx"]
+[ext_resource type="PackedScene" uid="uid://bivh6o5w3i8ic" path="res://Enemies/Bat/BatFly.fbx" id="7_il1qx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_glgse"]
 height = 1.0
@@ -16,13 +15,26 @@ radius = 0.371094
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
 size = Vector3(0.45, 0.45, 1)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_il1qx"]
+animation = &"Take 001"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glgse"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_il1qx"]
+states/Start/position = Vector2(189, 100)
+"states/Take 001/node" = SubResource("AnimationNodeAnimation_il1qx")
+"states/Take 001/position" = Vector2(342, 100)
+transitions = ["Start", "Take 001", SubResource("AnimationNodeStateMachineTransition_glgse")]
+graph_offset = Vector2(-20, -55)
+
 [node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "edgeray", "statemachine")]
 collision_layer = 8
 collision_mask = 19
 script = ExtResource("1_m2cak")
 health = 30
 isFlying = true
-mesh = NodePath("RavenFly")
+mesh = NodePath("BatFly")
 ray = NodePath("Beam")
 item1 = ExtResource("2_glgse")
 edgeray = NodePath("EdgeBeam")
@@ -69,20 +81,20 @@ hit_from_inside = true
 debug_shape_custom_color = Color(0.384314, 0.34902, 0, 1)
 debug_shape_thickness = 5
 
-[node name="RavenFly" parent="." instance=ExtResource("6_jr35e")]
-transform = Transform3D(1, 0, 0, 0, 0.782206, 0.62302, 0, -0.62302, 0.782206, 0, -0.137428, 0)
+[node name="BatFly" parent="." instance=ExtResource("7_il1qx")]
 
-[node name="WingLeft" parent="RavenFly/Weapons/RavenFlying" index="0"]
+[node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
 transform = Transform3D(1.15413, -0.214856, -0.933712, 0.940722, 0.531367, 1.04052, 0.18172, -1.38618, 0.543591, 0.0374537, 0.136378, 0.0803157)
 
-[node name="WingRight" parent="RavenFly/Weapons/RavenFlying" index="1"]
+[node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
 transform = Transform3D(1.15413, 0.214856, 0.933712, -0.940722, 0.531367, 1.04052, -0.18172, -1.38618, 0.543591, -0.0374537, 0.136378, 0.0803157)
 
-[node name="AnimationPlayer" parent="RavenFly" index="1"]
-script = ExtResource("7_il1qx")
-idleAnim = "Take 001"
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../BatFly")
+tree_root = SubResource("AnimationNodeStateMachine_il1qx")
+anim_player = NodePath("../BatFly/AnimationPlayer")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]
 
-[editable path="RavenFly"]
+[editable path="BatFly"]

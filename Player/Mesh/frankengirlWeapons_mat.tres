@@ -4,10 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bvhcfc5nc72e3" path="res://Player/Mesh/FrankengirlWeaponTextures_512.png" id="2_5qoq0"]
 
 [resource]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("1_4e14r")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("2_5qoq0")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/texture_albedo = ExtResource("2_5qoq0")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)
+shader_parameter/flashing = false
+shader_parameter/flashColor = Color(0, 0.5, 0.33, 1)
+shader_parameter/flashSpeed = 8.0
+shader_parameter/flashIntensity = 2.0
+shader_parameter/useExternalTime = true
+shader_parameter/timer = 0.0
+shader_parameter/proximity_fade_distance = 1.0

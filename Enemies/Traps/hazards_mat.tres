@@ -1,14 +1,16 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c58ag0emj7rrq"]
 
-[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="1_pipr3"]
+[ext_resource type="Shader" uid="uid://uakif3h5h8ic" path="res://Enemies/ps1JitterEnemies.gdshader" id="1_i0ppv"]
 [ext_resource type="Texture2D" uid="uid://bghsprymaqfoj" path="res://Enemies/Traps/Hazards_Albedo.png" id="2_i0ppv"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_pipr3")
+shader = ExtResource("1_i0ppv")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/texture_albedo = ExtResource("2_i0ppv")
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)

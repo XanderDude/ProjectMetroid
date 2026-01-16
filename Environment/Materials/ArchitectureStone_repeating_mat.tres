@@ -6,10 +6,12 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_ygwgl")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/texture_albedo = ExtResource("2_ygwgl")
 shader_parameter/roughness = 0.0
 shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)

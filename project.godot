@@ -16,7 +16,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="ProjectMetroid"
-run/main_scene="uid://xuonqnoybpje"
+run/main_scene="uid://d1dgedio24xf1"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"

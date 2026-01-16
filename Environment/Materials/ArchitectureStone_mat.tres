@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="2_uh873"]
 
 [resource]
-render_priority = 1
+render_priority = 0
 shader = ExtResource("1_vk5qh")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/texture_albedo = ExtResource("2_uh873")
-shader_parameter/use_alpha_scissor = true
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)

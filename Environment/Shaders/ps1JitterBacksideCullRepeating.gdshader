@@ -7,19 +7,14 @@ render_mode blend_mix,
 	specular_disabled;
 
 
-uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 albedo : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
 
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
+uniform float brightness : hint_range(0, 1) = 0.5;
+uniform float contrast : hint_range(0, 1) = 1.0;
 uniform float alpha_scissor : hint_range(0, 1) = 0.5;
 uniform float jitter: hint_range(0, 1) = 0.5;
 uniform ivec2 resolution = ivec2(640, 360);
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
 
 varying vec3 uv1_triplanar_pos;
 
@@ -74,16 +69,11 @@ vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos
 }
 
 void fragment() {
-	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	vec4 texture_color = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
+	vec4 averageLuminance = vec4(0.5, 0.5, 0.5, 1.0);
+	vec3 fragRGB = texture_color.rgb + albedo.rgb;
+	ALBEDO = mix(fragRGB * brightness, mix(averageLuminance.rgb, fragRGB, contrast), 0.5);
 
-	float metallic_tex = dot(triplanar_texture(texture_metallic, uv1_power_normal, uv1_triplanar_pos), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(triplanar_texture(texture_roughness, uv1_power_normal, uv1_triplanar_pos), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA *= albedo.a * texture_color.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
 }

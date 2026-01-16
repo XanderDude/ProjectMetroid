@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System;	
 
 public partial class PlayerManager : CharacterBody3D
 {
@@ -8,19 +8,19 @@ public partial class PlayerManager : CharacterBody3D
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
-	[Export] public int health = 100;
 
 	public bool isDead = false;
 	public bool isPressed = false; 
-
 	public bool inwater = false;
-	[Export] private ShaderMaterial invulnMat;
+	[Export] private ShaderMaterial mainMat, weaponMat;
+	private float alpha = 0f;
 
 	public Vector2 aimDirection;
 	public bool noAimDirection;
 	[Export] public RayCast3D groundCheck;
 
-	public int Health
+	private int health = 100;
+	[Export] public int Health
 	{
 		get { return health; }
 		set
@@ -32,9 +32,7 @@ public partial class PlayerManager : CharacterBody3D
 			{
 				health = 0;
 				isDead = true;
-
 			}
-
 		}
 	}
 
@@ -78,21 +76,13 @@ public partial class PlayerManager : CharacterBody3D
 		
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
-		invulnMat?.SetShaderParameter("alpha", 0f);
-
-		// Small delay to ensure all nodes are ready
-		var timer = GetTree().CreateTimer(0.1f);
-		
 	}
-
-	
 
 	public override void _Process(double delta)
 	{
 		if (isDead) StateMachine.TransitionTo("deathState");
 	}
 	
-
 	public override void _PhysicsProcess(double delta)
 	{
 		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
@@ -107,25 +97,23 @@ public partial class PlayerManager : CharacterBody3D
 			else direction = new(Mathf.Sign(direction.X), Mathf.Sign(direction.Y));
         }
 		
-		if (direction != aimDirection) aimDirection = direction.Normalized();
+		if (direction != aimDirection) aimDirection = direction.Normalized(); //update aim direction only if it has changed
 		
 		if (invulnTimer > 0)
 		{
-			invulnMat?.SetShaderParameter("alpha", 1f);
-			GetNode<Node3D>(playerMeshPath).Visible = false;
-			var timer = GetTree().CreateTimer(0.1f);
-			timer.Timeout += () => { GetNode<Node3D>(playerMeshPath).Visible = true; };
 			canBeDamaged = false;
 			invulnTimer -= (float)delta;
+			mainMat?.SetShaderParameter("flashing", true);
+			mainMat?.SetShaderParameter("timer", invulnTimer);
+			weaponMat?.SetShaderParameter("flashing", true);
+			weaponMat?.SetShaderParameter("timer", invulnTimer);
 		}
 		else
 		{
 			canBeDamaged = true;
-			invulnMat?.SetShaderParameter("alpha", 0f);
-		}
-
-
-		
+			mainMat?.SetShaderParameter("flashing", false);
+			weaponMat?.SetShaderParameter("flashing", false);
+		}		
 	}
 	public void SpawnJumpCloud(float rotation)
 	{

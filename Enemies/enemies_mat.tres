@@ -1,12 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://doh4584wdeiwl"]
 
-[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="1_khe8q"]
+[ext_resource type="Shader" uid="uid://uakif3h5h8ic" path="res://Enemies/ps1JitterEnemies.gdshader" id="1_21dpc"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_khe8q")
+shader = ExtResource("1_21dpc")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = Color(0.0352941, 0.701961, 0.258824, 1)
+shader_parameter/albedo = Color(0.271276, 0.427071, 0.274825, 1)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)

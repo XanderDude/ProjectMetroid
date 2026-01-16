@@ -1,10 +1,10 @@
 shader_type spatial;
-render_mode blend_mix,
+render_mode blend_add,
 	cull_disabled,
 	depth_prepass_alpha,
 	//shadows_disabled,
 	//ambient_light_disabled,
-	//vertex_lighting;
+	//vertex_lighting,
 	specular_disabled;
 
 uniform bool affine_mapping = false;
@@ -12,7 +12,7 @@ uniform vec4 albedo : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform sampler2D texture_albedo : hint_default_black, source_color, filter_nearest;
 uniform float brightness : hint_range(0, 1) = 0.5;
 uniform float contrast : hint_range(0, 1) = 1.0;
-uniform float alpha_scissor : hint_range(0, 1) = 0.0;
+uniform float alpha_scissor : hint_range(0, 1) = 0.5;
 uniform float jitter: hint_range(0, 1) = 0.5;
 uniform ivec2 resolution = ivec2(640, 360);
 
@@ -45,10 +45,16 @@ void vertex()
 
 void fragment()
 {
-	vec4 averageLuminance = vec4(0.5, 0.5, 0.5, 1.0);
+	vec4 averageLuminance = vec4(0.5,0.5,0.5, 1.0);
 	vec4 texture_color = texture(texture_albedo, UV);
 	vec3 fragRGB = texture_color.rgb + albedo.rgb;
 	ALBEDO = mix(fragRGB * brightness, mix(averageLuminance.rgb, fragRGB, contrast), 0.5);
 	ALPHA *= albedo.a * texture_color.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
+}
+
+void light()
+{
+	float light_amount = max(ATTENUATION, 0.5);
+	DIFFUSE_LIGHT += clamp(dot(NORMAL, LIGHT), 0.5, 0.9) * light_amount * LIGHT_COLOR / PI;
 }
