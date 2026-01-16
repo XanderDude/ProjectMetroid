@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bj04crs2qg4xo"]
+[gd_scene load_steps=48 format=4 uid="uid://bj04crs2qg4xo"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_clrjg"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
@@ -23,6 +23,7 @@
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
 [ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="19_clrjg"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="22_0pxb8"]
+[ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="22_clrjg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
 shader = ExtResource("2_ypo2y")
@@ -678,17 +679,7 @@ jumpVFX = null
 [node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport" instance=ExtResource("22_0pxb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1857, 1.66723, -0.734134)
 
-[node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, -14.7046, 19, -11)
-light_energy = 0.8
-light_indirect_energy = 0.333
-light_bake_mode = 1
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 10.0
-shadow_reverse_cull_face = true
-shadow_caster_mask = 4294967293
-directional_shadow_fade_start = 1.0
+[node name="DirectionalLight_Exterior_DayBreak" parent="." instance=ExtResource("22_clrjg")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_v1d21")
