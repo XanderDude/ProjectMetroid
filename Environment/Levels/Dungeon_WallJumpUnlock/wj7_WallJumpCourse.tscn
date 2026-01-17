@@ -858,9 +858,8 @@ mesh = ExtResource("4_raaho")
 skeleton = NodePath("")
 
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_vd2c5")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.0112982, 0, 0.0141525)
 orientation = 0
-DoorNumber = 8
 
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_vd2c5")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 6, 3.49691e-07)

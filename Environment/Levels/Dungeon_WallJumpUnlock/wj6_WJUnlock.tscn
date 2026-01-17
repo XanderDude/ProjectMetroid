@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=75 format=4 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="16_328w1"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="18_uaptb"]
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="19_rvs66"]
-[ext_resource type="PackedScene" uid="uid://s4v1554fiap5" path="res://Environment/VFX/WaterMesh.tscn" id="20_2woci"]
 [ext_resource type="ArrayMesh" uid="uid://boal3eyvblo0v" path="res://Environment/Models/PropLightMeshes/lanternMesh.res" id="21_0avxc"]
 [ext_resource type="ArrayMesh" uid="uid://b8pslodswp7x8" path="res://Environment/Models/PropsBasicMeshes/barrelMesh.res" id="21_vh3en"]
 [ext_resource type="Texture2D" uid="uid://swjn4d6lrbmo" path="res://Environment/Materials/LanternShadowMap.png" id="22_4r4id"]
@@ -34,6 +33,14 @@
 [ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="27_lcqwc"]
 [ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="28_enmp1"]
 [ext_resource type="ArrayMesh" uid="uid://bdbt33h3t5okg" path="res://Environment/Models/PropsBasicMeshes/ladderMesh.res" id="30_1kpit"]
+[ext_resource type="Script" uid="uid://qfqdj1pyinnn" path="res://Environment/VFX/Water.cs" id="33_rhcw0"]
+[ext_resource type="Shader" uid="uid://cilv5mak1sjdh" path="res://Environment/Levels/Dungeon_WallJumpUnlock/new_shader.gdshader" id="34_vmhjp"]
+[ext_resource type="AudioStream" uid="uid://d2od0x78wtj2l" path="res://Sounds/running_water_SFX.ogg" id="34_xibo1"]
+[ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="35_icpyk"]
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="36_rhcw0"]
+[ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="37_xibo1"]
+[ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="38_vmhjp"]
+[ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="39_6i2mc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
@@ -86,6 +93,15 @@ data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0avxc"]
 data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 2, 0, 1, 2, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 1, 2, 0, 1, 2, 0, 0, 2, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 2, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdfn7"]
+points = PackedVector3Array(-0.152992, 2, 1, -0.153, 0, 1, -0.153, 0, -1, -0.152992, 2, -1, -2.15284, -7.62939e-08, 1, -2.15284, -7.62939e-08, -1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_et65i"]
+size = Vector3(0.15, 2, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_icpyk"]
+data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 2, 0, 1, 2, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 1, 2, 0, 1, 2, 0, 0, 2, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 2, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7bwnk"]
 size = Vector3(16, 0.5, 2)
 
@@ -128,12 +144,95 @@ shadow_mesh = SubResource("ArrayMesh_vxalm")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_orqwy"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u6jpm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m2pp5"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_u6jpm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkkvd"]
+render_priority = 0
+shader = ExtResource("34_vmhjp")
+shader_parameter/albedo = Color(0.312, 0.6, 0.3504, 0.470588)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_m2pp5")
+shader_parameter/refraction = 0.05
+shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_m2pp5")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.1, 0.1, 0.1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qr5o4"]
+material = SubResource("ShaderMaterial_tkkvd")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p215r"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amwor"]
 albedo_color = Color(0.31, 0.31, 0.31, 1)
 albedo_texture = ExtResource("28_enmp1")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_amwor"]
 data = PackedVector3Array(0.2, 2, 0.2, 0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 2, 0.2, 0.2, 2, 0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 0, -0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, 0.2, 0, -0.2, 0.2, 0, 0.2, 0.2, 0, 0.2, 0.2, 2, 0.2, 0.2, 2, -0.2, -0.2, 2, 0.2, -0.2, 0, 0.2, -0.2, 0, -0.2, -0.2, 0, -0.2, -0.2, 2, -0.2, -0.2, 2, 0.2, 0.225, 2.1, 0.225, 0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 2.1, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, 0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, -0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 1.9, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, -0.225, 2.1, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, 0.225)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nx6tq"]
+render_priority = 0
+shader = ExtResource("36_rhcw0")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(640, 360)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_icpyk"]
+_surfaces = [{
+"aabb": AABB(0, 0, -1.90735e-08, 1, 2.08875, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAABSuBUAK16Oy+v9/PxSuBUAK16Oy+v9/PwAAAAAAAAAAAAAAAAAAAAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2ht27"]
+resource_name = "doorLeft"
+lightmap_size_hint = Vector2i(22, 14)
+_surfaces = [{
+"aabb": AABB(0, 0, -1.90735e-08, 1, 2.08875, 1e-05),
+"attribute_data": PackedByteArray("XDguPxxTlT6MLno/JUkSPcTJSj8kVZU+jC56P27bdj+kx0o/clYGP4wuujxu23Y/PDYuP21VBj+MLro8JUkSPQ=="),
+"format": 34359742519,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"material": SubResource("ShaderMaterial_nx6tq"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAABSuBUAK16Oy+v9/PxSuBUAK16Oy+v9/PwAAAAAAAAAAAAAAAAAAAAAAAAAA/3//f/r/AcD/f/9/+v8BwP9//3/6/wHA/3//f/r/AcA=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_icpyk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
+size = Vector3(1, 2.00586, 2.01587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vemgm"]
+size = Vector3(0.2, 2, 2)
 
 [node name="Room_DeepWell" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.4496, 0)
@@ -683,7 +782,7 @@ mesh = ExtResource("6_7kd1p")
 skeleton = NodePath("../..")
 
 [node name="StoneFloorMesh13" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725162, -0.752838, -1)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.258148, -3.423, -1)
 mesh = ExtResource("6_7kd1p")
 skeleton = NodePath("../..")
 
@@ -808,8 +907,29 @@ skeleton = NodePath("../../..")
 [node name="StonePlatformEdge3" parent="Floor" instance=ExtResource("14_6jjw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92636, -0.0124588, -0.657609)
 
-[node name="stoneStairs2x4" parent="Floor" instance=ExtResource("27_lcqwc")]
+[node name="stoneStairs2x4" type="Node3D" parent="Floor"]
 transform = Transform3D(-1, 0, -1.66095e-07, 0, 1, 0, 1.50996e-07, 0, -1.1, -1.92961, -2.01246, 0.0380841)
+
+[node name="Stone2x2StairsMesh" type="MeshInstance3D" parent="Floor/stoneStairs2x4"]
+mesh = ExtResource("13_x557r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/stoneStairs2x4/Stone2x2StairsMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.52588e-07)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/stoneStairs2x4/Stone2x2StairsMesh/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jdfn7")
+debug_color = Color(0.918333, 0.95, 0, 0.564706)
+
+[node name="EdgesStaticBody3D" type="StaticBody3D" parent="Floor/stoneStairs2x4/Stone2x2StairsMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/stoneStairs2x4/Stone2x2StairsMesh/EdgesStaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.424, 0.5, 0)
+shape = SubResource("BoxShape3D_et65i")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="StonePlatformEdge4" parent="Floor" instance=ExtResource("14_6jjw1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.04878, -0.0124588, -1.53896)
@@ -821,15 +941,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1, 1.10215, -2.01246, -0.10005
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.47987, -0.0124588, -1.53896)
 
 [node name="StoneFloorMesh15" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14416, -0.752838, -1)
+transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, -1.34971, -3.68851, -1)
 mesh = ExtResource("6_7kd1p")
 skeleton = NodePath("../../..")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/StoneFloorMesh15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StoneFloorMesh15/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_icpyk")
+
 [node name="StonePlatformEdge2" parent="Floor" instance=ExtResource("14_6jjw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92636, -0.0124588, -0.657609)
-
-[node name="stoneStairs2x3" parent="Floor" instance=ExtResource("27_lcqwc")]
-transform = Transform3D(-1, 0, -1.66095e-07, 0, 1, 0, 1.50996e-07, 0, -1.1, -1.92961, -2.01246, 0.0380841)
 
 [node name="StoneWallMesh110" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 1.38892e-05, -9.3307e-06, -1.38892e-05, 1, -4.96446e-06, 9.3307e-06, 4.96446e-06, 1, 4.99078, -2.0377, 5)
@@ -1160,8 +1282,28 @@ transform = Transform3D(1.40878, 0, 0, 0, 1, 0, -3.10862e-15, 0, 1, 0.0242515, 0
 operation = 2
 size = Vector3(1, 0.108643, 0.33374)
 
-[node name="Water" parent="." instance=ExtResource("20_2woci")]
+[node name="Water" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 20, -0.136796, -0.759001, -5.1091)
+script = ExtResource("33_rhcw0")
+
+[node name="Area3D" type="Area3D" parent="Water"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Water/Area3D"]
+layers = 128
+mesh = SubResource("BoxMesh_qr5o4")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
+shape = SubResource("ConcavePolygonShape3D_p215r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Water"]
+stream = ExtResource("34_xibo1")
+attenuation_model = 3
+volume_db = 1.0
+autoplay = true
+max_distance = 5.0
 
 [node name="StonePillarMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, 5.49716, -1.72232, 5.33662)
@@ -1198,6 +1340,69 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollapsedPillar/StonePillarMesh_Collapsed/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_amwor")
+
+[node name="Wall_DoorWay6" type="Node3D" parent="." groups=["doors"]]
+transform = Transform3D(6.55671e-08, 1.5, 1.31134e-07, 1.5, -6.55671e-08, -1.31134e-07, -1.31134e-07, 1.31134e-07, -1.5, -1.70095, -3.20887, -0.0548209)
+script = ExtResource("35_icpyk")
+DoorNumber = 8
+
+[node name="StoneDoorFrameMesh" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(-4.28372e-08, 0, 1, 0, 1, 0, -0.98, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("1_jwnfk")
+
+[node name="ReinforcedDoorMesh2" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.950392, 0, 1, 0, -4.37114e-08, 0, 0.0035969, -1)
+mesh = SubResource("ArrayMesh_2ht27")
+
+[node name="StoneWallHalfMesh" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+mesh = ExtResource("37_xibo1")
+
+[node name="StoneWallHalfMesh3" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 1)
+mesh = ExtResource("37_xibo1")
+
+[node name="StoneWallHalfMesh4" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 1)
+mesh = ExtResource("37_xibo1")
+
+[node name="StoneWallHalfMesh5" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 1)
+mesh = ExtResource("37_xibo1")
+
+[node name="StoneWallHalfMesh2" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1)
+mesh = ExtResource("37_xibo1")
+
+[node name="StoneFloorHalfMesh" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+mesh = ExtResource("38_vmhjp")
+
+[node name="StoneFloorHalfMesh2" type="MeshInstance3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -1)
+mesh = ExtResource("39_6i2mc")
+
+[node name="DoorTransport" type="Area3D" parent="Wall_DoorWay6"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_DoorWay6/DoorTransport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.01702, 0)
+shape = SubResource("BoxShape3D_nx6tq")
+
+[node name="BackupCollider" type="StaticBody3D" parent="Wall_DoorWay6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_DoorWay6/BackupCollider"]
+shape = SubResource("BoxShape3D_vemgm")
+debug_color = Color(0.666667, 0.701961, 0, 0.407843)
+
+[connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Water/Area3D" to="Water" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Wall_DoorWay6/DoorTransport" to="Wall_DoorWay6" method="_on_door_transport_body_entered"]
+[connection signal="body_exited" from="Wall_DoorWay6/DoorTransport" to="Wall_DoorWay6" method="_on_door_transport_body_exited"]
 
 [editable path="Wall_DoorWay3"]
 [editable path="Secret1/StonePlatformEdge"]
