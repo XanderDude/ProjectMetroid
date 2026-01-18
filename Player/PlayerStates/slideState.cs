@@ -11,14 +11,13 @@ public partial class slideState : State
 	[Export] public float slideAcceleration = 15.0f;
 	[Export] public float slideDeceleration = 15.0f;
 	private float currentSlideSpeed;
-	private float input;
+	private int slideDirection;
 	private bool crouchQueued = false;
 	private float slideTimer; //time in current slide
 	public SlideVertColCheck vertColCheck;
 	public override void Enter()
 	{
-		input = Mathf.Sign(pm.aimDirection.X);
-		if (input == 0) input = Mathf.Sign(parentMesh.RotationDegrees.Y);
+		slideDirection = pm.facingDirection;
 		crouchQueued = false;
 		slideTimer = 0;
 
@@ -32,13 +31,13 @@ public partial class slideState : State
 				slideBoostEffect.GlobalRotation = parentMesh.GlobalRotation;
 
 			}
-			currentSlideSpeed = boostMaxSpeed * input;
+			currentSlideSpeed = boostMaxSpeed * slideDirection;
 		}
 		else
 		{
-			currentSlideSpeed = slideMaxSpeed * input;
+			currentSlideSpeed = slideMaxSpeed * slideDirection;
 		}
-		parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * input, 0); //rotate mesh
+		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
 	}
 
@@ -58,9 +57,9 @@ public partial class slideState : State
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
-		{ //if player is holding opposite direction of slide or is not holding slide button
-			if (vertColCheck != null && vertColCheck.VertCheckIsColliding() || Mathf.Sign(pm.aimDirection.X) == input * -1)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && slideTimer >= slideMinTime)
+		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
 				crouchQueued = true; //for animation purposes
 				msm.TransitionTo("crouchState");
@@ -68,11 +67,15 @@ public partial class slideState : State
 			}
 			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
-		else if (slideTimer >= slideMinTime && Mathf.Abs(currentSlideSpeed) < .2f)
+		else if (slideTimer >= slideMaxTime || Mathf.Abs(currentSlideSpeed) < .2f) //slide is at its end
 		{
-			crouchQueued = true; //for animation purposes
-			msm.TransitionTo("crouchState");
-			return;
+			if (vertColCheck != null && vertColCheck.VertCheckIsColliding())
+			{
+				crouchQueued = true; //for animation purposes
+				msm.TransitionTo("crouchState");
+				return;
+			}
+			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
 		player.MoveAndSlide();

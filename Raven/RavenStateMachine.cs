@@ -14,7 +14,7 @@ public partial class RavenStateMachine : Node
         set { _raven = value; }
     }
     private PlayerManager _manager;
-	public PlayerManager ParentManager //assign from parent script prior to _ready
+	public PlayerManager PlayerManager //assign from parent script prior to _ready
 	{
 		get { return _manager; }
 		set { _manager = value; }
@@ -58,7 +58,7 @@ public partial class RavenStateMachine : Node
                 _states[node.Name] = s;
                 s.rsm = this;
                 s.raven = _raven;
-                s.pm = ParentManager;
+                s.pm = PlayerManager;
                 s.player = Parent;
                 s.parentMesh = parentMesh;
                 s.Ready();

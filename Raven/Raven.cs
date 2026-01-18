@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    public PlayerManager player => GameFriend.gameinstance.player; 
+    public PlayerManager player => GameFriend.gameinstance.player;
     [Export] public float speed = 10.0f;
     
     [Export] public float launchTimer = 0.8f;
@@ -10,7 +10,6 @@ public partial class Raven : CharacterBody3D
     public Vector3 direction = Vector3.Zero;
     public Vector3 targetPosition = Vector3.Zero;
     public Area3D swordHitbox;
-    public RavenStateMachine rsm;
 
     [Export] public CollisionShape3D topCollider = null;
     [Export] public CollisionShape3D bottomCollider = null;
@@ -28,25 +27,33 @@ public partial class Raven : CharacterBody3D
 
     public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
 
+    private RavenStateMachine _ravenStateMachine;
+	[Export] public RavenStateMachine RavenStateMachine
+	{
+		get { return _ravenStateMachine; }
+		set
+		{
+			_ravenStateMachine = value;
+			RavenStateMachine.Parent = this;
+			RavenStateMachine.PlayerManager = player;
+		}
+	}
+    
 
     public void init_raven()
     {
-        rsm = GetNode<RavenStateMachine>("RavenStateMachine");
-        if (player == null)
+        if (player != null)
         {
-            GD.PrintErr("Raven: player not found");
-        }
-
-        
-
+            RavenStateMachine.PlayerManager = player;
+        }        
     }
 
     public override void _PhysicsProcess(double delta)
     {        
 
-        if (rsm != null && rsm._currentState != null)
+        if (RavenStateMachine._currentState != null)
         {
-            if (rsm._currentState.Name == "RavenLaunchState" || rsm._currentState.Name == "RavenIdleState" || rsm._currentState.Name == "RavenAttackState")
+            if (RavenStateMachine._currentState.Name == "RavenLaunchState" || RavenStateMachine._currentState.Name == "RavenIdleState" || RavenStateMachine._currentState.Name == "RavenAttackState")
             {
                 this.CollisionMask = (1 << 0) | (1 << 1);
             }
@@ -56,7 +63,7 @@ public partial class Raven : CharacterBody3D
             }
         }
 
-        if (player.IsOnFloor() || player.StateMachine._currentState.Name == "mantleState")
+        if (player != null && (player.IsOnFloor() || player.StateMachine._currentState.Name == "mantleState"))
         {
             canTeleport = true;
         }

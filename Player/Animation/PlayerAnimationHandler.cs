@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 using SVector2 = System.Numerics.Vector2;
@@ -22,12 +23,14 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private float _aimingMaxTime = 2f; //how long shoot anim lasts before resetting to default
 	private float aimingTimer = 99f; //set to -1 to constantly aim, no timer
 	private float currentSpeed;
-	private int meshRotation = 90; //-90 for left, 90 for right
+	private float newMeshRotation = 90f;//ex: -90 for left, 90 for right
+	private float _meshRotationDegrees = 90f; //how much to rotate
 	private SVector2 aimDirection = SVector2.Zero; //angle to position shooting arm during aiming mode
 
 	public override void _Ready()
 	{
-		meshRotation *= Mathf.Sign(GlobalRotation.Y);
+		newMeshRotation = RotationDegrees.Y;
+		_meshRotationDegrees = MathF.Abs(RotationDegrees.Y);
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
 		pm = player.GetNode<PlayerManager>(player.GetPath());
 	}
@@ -56,9 +59,20 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), transitionSpeed * (float)delta), 0, 1f);
 
 		if (pm.StateMachine._currentState.Name != "mantleState" && pm.StateMachine._currentState.Name != "slideState" 
-		&& pm.StateMachine._currentState.Name != "walljumpState" && pm.aimDirection.X != 0) //player is moving, check for input to rotate mesh
+		&& pm.StateMachine._currentState.Name != "walljumpState" //states to ignore rotation changes
+		&& pm.aimDirection.X != 0 && newMeshRotation != _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X))
+        {
+			newMeshRotation = _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X);
+			pm.facingDirection = Mathf.Sign(pm.aimDirection.X);
+			pm.StateMachine._currentState.Set("turnAroundTimer", 0f);
+			GD.Print("new mesh rotation: " + newMeshRotation);
+        }
+
+		if (newMeshRotation != RotationDegrees.Y)
 		{
-			RotationDegrees = new Vector3(0, meshRotation * Mathf.Sign(pm.aimDirection.X), 0); //rotate mesh
+			var rotation = Mathf.MoveToward(RotationDegrees.Y, newMeshRotation, 35f);
+			if (Mathf.Abs(rotation - newMeshRotation) < 2f) rotation = newMeshRotation; //snap to final rotation
+			RotationDegrees = new Vector3(0, rotation, 0);
 		}
 
 		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
@@ -77,9 +91,8 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 			aimDirection = SVector2.Lerp(aimDirection, newAimDirect, .5f);
 			animTree.Set(AimBlendBlendPath, new Vector2(Mathf.Abs(aimDirection.X), aimDirection.Y));
 			animTree.Set("parameters/Crouching/AimBlend/blend_position", new Vector2(Mathf.Abs(aimDirection.X), aimDirection.Y)); //also set the crouching aim blend
-			animTree.Set("parameters/Sliding/AimBlend/blend_position", new Vector2(aimDirection.X * Mathf.Sign(Rotation.Y), aimDirection.Y - yOffset));
+			animTree.Set("parameters/Sliding/AimBlend/blend_position", new Vector2(aimDirection.X * pm.facingDirection, aimDirection.Y - yOffset));
 		}
-
 	}
 
 	public void BeginJump()
@@ -95,7 +108,11 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void Sliding(bool value) //value = slide true or sliding false
 	{
 		animTree.Set("parameters/conditions/slideEnd", !value); //set slideEnd true when Sliding(false) is called
-		if (value) playback?.Travel(SlideStateName); //only transition to slide when true
+		if (value) 
+		{
+			playback?.Travel(SlideStateName); //only transition to slide when true
+			RotationDegrees = new Vector3(0, newMeshRotation, 0);
+		}
 	}
 
 	public void Crouch()

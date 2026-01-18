@@ -6,69 +6,71 @@ public partial class groundedState : State
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
 	public SlideVertColCheck vertColCheck;
-	private float _landingCooldown = .1f; //6 frames (60fps)
-	private float landingCDTimer = 0;
 	private float _WalkOffCooldown = .2f; //12 frames (60fps)
 	private float walkOffCDTimer = 0;
-	private float timer = 0.0f;
-	private bool isPlaying = false;
+	private float waterFootstepTimer = 0.0f;
+	private float _turnAroundTime = 0.12f; //time it takes to turn around before standing up while crouched
+	public float turnAroundTimer = 0.0f;
+
+	public override void Ready()
+	{
+		turnAroundTimer = _turnAroundTime;
+	}
 	public override void Enter()
 	{
+		walkOffCDTimer = 0;
 		pm.slideBoost = false;
 		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 		else if (msm._currentState.Name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
-
-		if (msm._previousState == null || msm._previousState.Name == "jumpState") {
-			GD.Print("Player Landed");
-			landingCDTimer = 0; //start timer when landing
-		}
 	}
 	
 	public override void Exit() {
-		landingCDTimer = _landingCooldown;
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
-		landingCDTimer += delta;
-
-		if (!player.IsOnFloor() && landingCDTimer >= _landingCooldown) //immediately switch to jump state
+		if (!player.IsOnFloor())
 		{
 			walkOffCDTimer += delta;
 			if (walkOffCDTimer >= _WalkOffCooldown)
 			{
 				msm.TransitionTo("jumpState");
+				return;
 			}
 		}
 		else walkOffCDTimer = _WalkOffCooldown;
 
-		if (pm.inwater && timer == 0.0f && pm.Velocity.X != 0)
+		waterFootstepTimer -= delta;
+		if (waterFootstepTimer < 0)
+		{
+			waterFootstepTimer = 0.0f;
+		}
+
+		if (pm.inwater && waterFootstepTimer == 0.0f && Mathf.Abs(player.Velocity.X) > 0.4f)
 		{
 			SoundFriend.Play("player_treading_water_SFX");
 			GD.Print("PLAY");
-			timer = 0.3f;
-			isPlaying = true;
-		}
-		else if (!pm.inwater && isPlaying || pm.Velocity.X == 0)
-		{
-			SoundFriend.Stop("player_treading_water_SFX");
-			isPlaying = false;
-		}
-
-		timer -= delta;
-		if (timer < 0)
-		{
-			timer = 0.0f;
+			waterFootstepTimer = 0.3f;
 		}
 		
+		if (turnAroundTimer < _turnAroundTime) //player is turning around
+        {
+			turnAroundTimer += delta;
+		}
+		else if (Mathf.Sign(pm.aimDirection.X) == pm.facingDirection) //turn finished and player is holding direction
+		{
+			msm.TransitionTo("groundedState");
+		} 
+
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
+
 		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0) //check if player is trying to move
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
 		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
-
+		
 	}
 
 	private void HandleGroundedMovement(float delta)
@@ -93,7 +95,7 @@ public partial class groundedState : State
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
 			msm.TransitionTo("crouchState");
 		}
-		if (@event.IsActionPressed("Slide") && pm.aimDirection.X != 0)
+		if (@event.IsActionPressed("Slide"))
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
 			msm.TransitionTo("slideState");
@@ -111,7 +113,7 @@ public partial class groundedState : State
 			}
 		}
 
-		if (@event.IsActionPressed("Up") && pm.aimDirection.X == 0 && msm._currentState.Name == "crouchState") //only stand up when only pressing up
+		if (@event.IsActionPressed("Up") && msm._currentState.Name == "crouchState") //only stand up when only pressing up
 		{
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
 			{

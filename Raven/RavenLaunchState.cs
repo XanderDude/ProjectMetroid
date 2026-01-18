@@ -28,12 +28,12 @@ public partial class RavenLaunchState : State
 
 	public override void Update(float delta)
 	{
-		if (raven.player.GlobalPosition < raven.GlobalPosition)
+		if (pm.GlobalPosition < raven.GlobalPosition)
 			{
 				
 				raven.RotationDegrees = new Vector3(0, 180, 0);
 			}
-			else if (raven.player.GlobalPosition > raven.GlobalPosition)
+			else if (pm.GlobalPosition > raven.GlobalPosition)
 			{
 				raven.RotationDegrees = new Vector3(0, 0, 0);
 			}
@@ -51,18 +51,18 @@ public partial class RavenLaunchState : State
 
 				if (raven.canTeleport)
 				{
-					//GD.Print("Raven: Teleported to player position" + raven.player.StateMachine._currentState.Name);
+					//GD.Print("Raven: Teleported to player position" + pm.StateMachine._currentState.Name);
 					// Define start and end points for the ray
 					
-					raven.player.GlobalPosition = new Vector3(raven.GlobalPosition.X, raven.GlobalPosition.Y - 1.0f, raven.GlobalPosition.Z);
+					pm.GlobalPosition = new Vector3(raven.GlobalPosition.X, raven.GlobalPosition.Y - 1.0f, raven.GlobalPosition.Z);
 					raven.canTeleport = false;
-					raven.player.Velocity = Vector3.Zero;
+					pm.Velocity = Vector3.Zero;
 				}
 
 
-			if (raven.player.StateMachine._currentState.Name == "mantleState")
+			if (pm.StateMachine._currentState.Name == "mantleState")
 			{
-				raven.player.StateMachine.TransitionTo("jumpState");  
+				pm.StateMachine.TransitionTo("jumpState");  
 			}
 
 				rsm.TransitionTo("RavenRecallState");
@@ -89,7 +89,7 @@ public partial class RavenLaunchState : State
 			return new Vector3(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"), 0).Normalized();
 
 		else
-			return new Vector3(Mathf.Sign(raven.player.GetNode<Node3D>("%PlayerMesh").RotationDegrees.Y), 0, 0);  
+			return new Vector3(Mathf.Sign(pm.GetNode<Node3D>("%PlayerMesh").RotationDegrees.Y), 0, 0);  
 	}
 
 	public void RavenLaunch(float delta)
@@ -97,7 +97,7 @@ public partial class RavenLaunchState : State
 
 	
 				
-		if (raven.player == null)
+		if (pm == null)
 		{
 			GD.PrintErr("Raven: PlayerManager is null");
 			return;

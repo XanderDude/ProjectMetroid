@@ -127,15 +127,18 @@ public partial class attackState : State
 	{		
 		if (Input.IsActionPressed("Aim"))
         {
-            return new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 1f).Normalized();
+            return new Vector2(pm.facingDirection, 1f).Normalized();
         }
 		Vector2 direction = pm.aimDirection;
 
-		if (direction == Vector2.Zero || player.IsOnFloor() && direction == new Vector2(0, -1))
+		if (pm.StateMachine._currentState.Name == "slideState" && direction == new Vector2(0, -1))
+        {
+            direction = new(pm.facingDirection, 0);
+        }
+		else if (direction == Vector2.Zero || (player.IsOnFloor() && direction == new Vector2(0, -1)))
 		{
-			direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
+			direction = new(pm.facingDirection, direction.Y);
 		}
-		
 		return direction.Normalized();
 	}
 	

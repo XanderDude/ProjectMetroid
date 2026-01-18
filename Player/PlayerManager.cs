@@ -15,8 +15,9 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	private float alpha = 0f;
 
-	public Vector2 aimDirection;
+	public Vector2 aimDirection = Vector2.Right;
 	public bool noAimDirection;
+	public int facingDirection = 1; //1 is right, -1 is left
 	[Export] public RayCast3D groundCheck;
 
 	private int health = 100;
