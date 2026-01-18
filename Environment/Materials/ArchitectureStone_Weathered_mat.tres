@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dq0eyflucqbl0"]
 
-[ext_resource type="Shader" uid="uid://batqp4ecrskan" path="res://Environment/Shaders/ps1JitterBacksideCull.gdshader" id="1_ojvad"]
+[ext_resource type="Shader" uid="uid://cf8g7u7u8qgbm" path="res://Environment/Shaders/ps1JitterBacksideCullButDarker.gdshader" id="1_ojvad"]
 [ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="2_ojvad"]
 
 [resource]

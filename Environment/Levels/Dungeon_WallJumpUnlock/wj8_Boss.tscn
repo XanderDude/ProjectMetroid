@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://y2y3es1m1hpq"]
+[gd_scene load_steps=51 format=4 uid="uid://y2y3es1m1hpq"]
 
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_lp1h8"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="3_3ytno"]
+[ext_resource type="Shader" uid="uid://cf8g7u7u8qgbm" path="res://Environment/Shaders/ps1JitterBacksideCullButDarker.gdshader" id="3_y4874"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="4_sq8gj"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="5_woexr"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="6_nulya"]
@@ -28,8 +29,62 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpbhw"]
 size = Vector3(19, 0.5, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_d87xs"]
-size = Vector3(4, 0.5, 10)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4874"]
+render_priority = 0
+shader = ExtResource("3_y4874")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = Color(0.568973, 0.568973, 0.568973, 1)
+shader_parameter/texture_albedo = ExtResource("17_4hh38")
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w7cy"]
+render_priority = 0
+shader = ExtResource("3_y4874")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/texture_albedo = ExtResource("17_4hh38")
+shader_parameter/brightness = 0.171
+shader_parameter/contrast = 1.0
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6w7cy"]
+_surfaces = [{
+"aabb": AABB(0, -3.86535e-14, 0, 2, 1e-05, 2),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAQAAAAQABAAFAAEABgAEAAAAAAAHAAYABwAAAAMAAwAIAAcA"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AACAP3sULqkAAIA/AACAPwAAgKUAAABAAAAAAAAAgKUAAABAAAAAAHsULqkAAIA/AAAAQHsULqkAAIA/AAAAQAAAgKUAAABAAAAAQHsULqkAAAAAAACAP3sULqkAAAAAAAAAAHsULqkAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h1r15"]
+resource_name = "stoneFloor"
+lightmap_size_hint = Vector2i(22, 22)
+_surfaces = [{
+"aabb": AABB(0, -3.86535e-14, 0, 2, 1e-05, 2),
+"attribute_data": PackedByteArray("dIwEP/DaFj4AAAA/AAAAP3SMBD/82JI+jC66PAAAAD9krcE+/NiSPowuujyMLro8ZK3BPvDaFj4AAAA/jC66PHSMBD/w2hY+AAAAP4wuej90jAQ//NiSPowuujyMLno/ZK3BPvzYkj6MLro8AAAAP2StwT7w2hY+AAAAPwAAAD90jAQ/8NoWPowuej+MLno/dIwEP/zYkj4AAAA/jC56P2StwT782JI+AAAAPwAAAD9krcE+8NoWPowuej8AAAA/dIwEP/DaFj6MLno/AAAAP3SMBD/82JI+AAAAPwAAAD9krcE+/NiSPgAAAD+MLro8ZK3BPvDaFj6MLno/jC66PA=="),
+"format": 34359742519,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwA"),
+"material": SubResource("ShaderMaterial_6w7cy"),
+"name": "ArchitectureStone_Mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAP3sULqkAAIA/AACAPwAAgKUAAABAAAAAAAAAgKUAAABAAAAAAHsULqkAAIA/AAAAQHsULqkAAIA/AAAAQAAAgKUAAABAAACAPwAAgKUAAABAAACAP3sULqkAAIA/AAAAQHsULqkAAAAAAAAAQHsULqkAAIA/AACAP3sULqkAAIA/AACAP3sULqkAAAAAAACAP3sULqkAAAAAAACAP3sULqkAAIA/AAAAAHsULqkAAIA/AAAAAHsULqkAAAAA/3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6w7cy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25j7i"]
 albedo_color = Color(1, 1, 0, 1)
@@ -40,6 +95,9 @@ emission = Color(1, 1, 0, 1)
 material = ExtResource("9_4yasq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_orqwy"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y4874"]
+radial_segments = 6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hh38"]
 resource_local_to_scene = true
@@ -229,8 +287,22 @@ albedo_texture = ExtResource("17_4hh38")
 [sub_resource type="BoxShape3D" id="BoxShape3D_bqjjw"]
 size = Vector3(1.11621, 2.50867, 1)
 
-[node name="wjBossRoom" type="Node3D"]
-transform = Transform3D(1.00199, 0, 0, 0, 1.00199, 0, 0, 0, 1.00199, 0, 0, -1.35805)
+[sub_resource type="PrismMesh" id="PrismMesh_bqjjw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1r15"]
+render_priority = 0
+shader = ExtResource("3_y4874")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/texture_albedo = ExtResource("17_4hh38")
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)
+
+[node name="wj8_Boss" type="Node3D"]
+transform = Transform3D(0.998767, 0, 0, 0, 0.998767, 0, 0, 0, 0.998767, 0, 0, -1.70092)
 
 [node name="FloorCollider" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -240,10 +312,6 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.25, 0)
 shape = SubResource("BoxShape3D_mpbhw")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="FloorCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 6.25, 0)
-shape = SubResource("BoxShape3D_d87xs")
-
 [node name="FloorGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 
@@ -251,175 +319,173 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
 
 [node name="StoneFloorMesh2" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
 
 [node name="StoneFloorMesh3" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh6" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh7" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh8" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh11" type="MeshInstance3D" parent="FloorGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
-material_override = ExtResource("2_lp1h8")
+transform = Transform3D(0.685615, 0, 0.727964, 0, 1, 0, -0.727964, 0, 0.685615, -3.02494, 0.0271715, -0.391322)
+material_override = SubResource("ShaderMaterial_y4874")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh12" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 material_override = ExtResource("2_lp1h8")
-mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+mesh = SubResource("ArrayMesh_h1r15")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh13" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh14" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh15" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh16" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh17" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh18" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh19" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh20" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh23" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh24" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh25" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh26" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh27" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh28" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh29" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh30" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh31" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -5)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh32" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh33" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh34" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneFloorMesh22" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 6, -1)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("5_woexr")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StonePlatformMesh" type="MeshInstance3D" parent="FloorGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
@@ -460,6 +526,60 @@ mesh = ExtResource("6_nulya")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
 material_override = ExtResource("2_lp1h8")
 mesh = ExtResource("6_nulya")
+
+[node name="StoneFloorMesh9" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.980951, 0, -3)
+material_override = ExtResource("2_lp1h8")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh21" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, -2.96684, 0.0271715, 2.41741)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh35" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, -0.211479, 0.0271715, -0.476631)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh36" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, -0.153372, 0.0271715, 2.3321)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh37" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, 2.66907, 0.0196905, -0.538362)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh38" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, 2.6681, 0.0271715, 2.24936)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh39" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, 5.42345, 0.0271715, -0.644675)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh40" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(0.685615, 0, 0.727964, 0, 0.999999, 0, -0.727964, 0, 0.685615, 5.48156, 0.0271715, 2.16405)
+material_override = SubResource("ShaderMaterial_y4874")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh41" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00247, 0, -1)
+material_override = ExtResource("2_lp1h8")
+mesh = SubResource("ArrayMesh_h1r15")
+skeleton = NodePath("")
 
 [node name="CeilingGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 0)
@@ -1034,7 +1154,7 @@ shape = SubResource("BoxShape3D_orqwy")
 [node name="StoneWallBack" type="Node3D" parent="."]
 transform = Transform3D(1.19209e-07, 0, 18.1368, 0, 15, 0, -1, 0, 1.71661e-06, -0.11006, 6.43939, -4.50389)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StoneWallBack"]
+[node name="MeshInstance3D" type="CSGMesh3D" parent="StoneWallBack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10744, 0, 1.39698e-08)
 mesh = SubResource("BoxMesh_orqwy")
 
@@ -1043,6 +1163,18 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StoneWallBack/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_orqwy")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StoneWallBack/MeshInstance3D"]
+transform = Transform3D(9.46479e-08, 0, -1, 0, 0.04, 0, 0.0551365, 0, 6.57277e-09, -0.263514, -0.329024, -0.161446)
+operation = 2
+mesh = SubResource("CylinderMesh_y4874")
+material = ExtResource("9_4yasq")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="StoneWallBack/MeshInstance3D"]
+transform = Transform3D(9.46479e-08, 0, -1, 0, 0.04, 0, 0.0551365, 0, 6.57277e-09, -0.263514, -0.329024, -0.298982)
+operation = 2
+mesh = SubResource("CylinderMesh_y4874")
+material = ExtResource("9_4yasq")
 
 [node name="Wall_DoorWay2" type="Node3D" parent="." groups=["doors"]]
 transform = Transform3D(-4.37114e-08, 1, -7.64276e-15, -1, -4.37114e-08, -1.74846e-07, -1.74846e-07, 0, 1, -0.141876, 9.16973, 0.0141525)
@@ -1165,7 +1297,7 @@ collision_mask = 4
 transform = Transform3D(1.20673, 1.77636e-15, 7.10543e-15, -1.42109e-14, 0.100289, 0, -2.41585e-13, -1.11022e-16, 2.06339, -0.351806, -0.295078, 0.0176253)
 layers = 128
 mesh = SubResource("BoxMesh_qr5o4")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StonePillar2" parent="WaterFall/Area3D" instance=ExtResource("14_ir43i")]
 transform = Transform3D(0.998018, -7.76654e-21, -8.90529e-08, 8.90529e-08, -1.04699e-07, 0.998018, -8.65028e-16, -0.532276, -9.69439e-09, 0.277672, -1.94763, 0.11479)
@@ -1199,42 +1331,42 @@ mesh = ExtResource("5_woexr")
 [node name="StoneWallMesh2" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 2)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh5" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 0, 0, 1)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh6" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 0, -2, 1)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh8" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, 2, 0, 1)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh9" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, 2, -2, 1)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh11" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(-1, 0, -1.60936e-07, 0, 1, 0, 1.60936e-07, 0, -1, 1, 0, 0)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh12" type="MeshInstance3D" parent="WaterFall/StonePillar2/Meshes"]
 transform = Transform3D(-1, 0, -1.60936e-07, 0, 1, 0, 1.60936e-07, 0, -1, 1, -2, 0)
 mesh = ExtResource("4_sq8gj")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
 [node name="StonePillar3" parent="WaterFall" instance=ExtResource("14_ir43i")]
 transform = Transform3D(0.998018, -1.62201e-20, -8.90528e-09, 8.90529e-08, -1.04699e-07, 0.0998017, -8.65028e-16, -0.532276, -9.69438e-10, -1.45691, -0.12616, 1.98213)
@@ -1245,42 +1377,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123628, -0.50986)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.48497, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0966, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.66618, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.27781, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.39618, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.78455, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.21497, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="PrisonFence"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.60334, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, -7.40486, -6.49407, -1.38158)
@@ -1299,42 +1431,42 @@ mesh = ExtResource("8_nulya")
 [node name="WoodPillarMesh" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.92672, 0, 0.616327)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh2" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.92672, 0, 1.3466)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh3" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.92672, 0, 2.00906)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh4" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.92672, 0, 2.73932)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh5" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.62537, 0, 0.616327)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh6" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.62537, 0, 1.3466)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh7" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.62537, 0, 2.00906)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="WoodPillarMesh8" type="MeshInstance3D" parent="WoodPlatform"]
 transform = Transform3D(0.998018, 0, 0, 0, 0.998018, 0, 0, 0, 1.79643, -7.62537, 0, 2.73932)
 mesh = ExtResource("19_mpbhw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WoodPlatform"]
 
@@ -1352,55 +1484,55 @@ transform = Transform3D(1, 0, 0, 0, -1, 2.97432e-08, 0, -2.97432e-08, -1, 0, 9.4
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.48497, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.0966, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.66618, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.27781, 0, 5.03201)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.39618, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.78455, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.21497, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="PrisonFence2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.60334, -1.18973e-07, 5.02754)
 mesh = SubResource("PrismMesh_4yasq")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/wjBossRoom")
+skeleton = NodePath("")
 
 [node name="Lanterns" type="Node3D" parent="."]
 
 [node name="LanternMesh2" type="MeshInstance3D" parent="Lanterns"]
-transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, -5.42568, 1.89682, -1.38898)
+transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, -5.54877, 1.76103, -2.24851)
 cast_shadow = 0
 gi_lightmap_texel_scale = 10.0
 mesh = ExtResource("21_bqjjw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
 
 [node name="lanternOmniLight" type="OmniLight3D" parent="Lanterns/LanternMesh2"]
 transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
 light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_energy = 2.0
 light_projector = ExtResource("22_y4874")
 light_size = 0.2
 light_bake_mode = 1
@@ -1415,18 +1547,18 @@ script = ExtResource("23_h1r15")
 transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
 cast_shadow = 0
 mesh = ExtResource("24_qfdol")
-skeleton = NodePath("../../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
+skeleton = NodePath("")
 
 [node name="LanternMesh3" type="MeshInstance3D" parent="Lanterns"]
-transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, -3.0824, 1.89682, -1.38898)
+transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, -3.05204, 1.73519, -2.25091)
 cast_shadow = 0
 gi_lightmap_texel_scale = 10.0
 mesh = ExtResource("21_bqjjw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
 
 [node name="lanternOmniLight" type="OmniLight3D" parent="Lanterns/LanternMesh3"]
 transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
 light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_energy = 2.0
 light_projector = ExtResource("22_y4874")
 light_size = 0.2
 light_bake_mode = 1
@@ -1441,40 +1573,13 @@ script = ExtResource("23_h1r15")
 transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
 cast_shadow = 0
 mesh = ExtResource("24_qfdol")
-skeleton = NodePath("../../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
-
-[node name="LanternMesh4" type="MeshInstance3D" parent="Lanterns"]
-transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, -7.83949, 1.89682, 4.33712)
-cast_shadow = 0
-gi_lightmap_texel_scale = 10.0
-mesh = ExtResource("21_bqjjw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
-
-[node name="lanternOmniLight" type="OmniLight3D" parent="Lanterns/LanternMesh4"]
-transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
-light_color = Color(0.997038, 0.897511, 0.617295, 1)
-light_projector = ExtResource("22_y4874")
-light_size = 0.2
-light_bake_mode = 1
-shadow_enabled = true
-shadow_bias = 0.2
-shadow_opacity = 0.5
-shadow_blur = 0.4
-omni_range = 8.0
-script = ExtResource("23_h1r15")
-
-[node name="glassMesh" type="MeshInstance3D" parent="Lanterns/LanternMesh4"]
-transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
-cast_shadow = 0
-mesh = ExtResource("24_qfdol")
-skeleton = NodePath("../../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
+skeleton = NodePath("")
 
 [node name="LanternMesh5" type="MeshInstance3D" parent="Lanterns"]
 transform = Transform3D(1, -5.21541e-08, 0, 7.45058e-09, 1, 0, 7.45058e-09, 5.96046e-08, 1, 7.39239, 1.89682, 4.33712)
 cast_shadow = 0
 gi_lightmap_texel_scale = 10.0
 mesh = ExtResource("21_bqjjw")
-skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
 
 [node name="lanternOmniLight" type="OmniLight3D" parent="Lanterns/LanternMesh5"]
 transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
@@ -1493,7 +1598,292 @@ script = ExtResource("23_h1r15")
 transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
 cast_shadow = 0
 mesh = ExtResource("24_qfdol")
-skeleton = NodePath("../../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141")
+
+[node name="Wood Baseboard" type="Node3D" parent="."]
+
+[node name="WoodPillarMesh" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(0.998014, 0, 0, 0, -4.36246e-08, 0.998014, 0, -0.998014, -4.36246e-08, -8.2218, 0.113866, 4.98078)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh2" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36246e-08, 0.598808, 4.36246e-08, 0, -2.61747e-08, 0.998014, 0.998014, 2.61747e-08, 1.90689e-15, -9.21757, 0.113866, 4.83036)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh3" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(0.998014, 0, 0, 0, -4.36246e-08, 0.998014, 0, -0.998014, -4.36246e-08, -8.2218, 0.113866, 0.41852)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh4" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36246e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36246e-08, 1.90689e-15, -6.48285, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh5" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, -4.52732, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh6" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, -3.29727, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh7" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, 3.19375, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh8" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, 5.14928, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh9" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, 6.37933, 0.113866, -2.03372)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh10" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, -1.6985, 0.113866, -2.76344)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh11" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, -1.89394, 0.113866, -0.896674)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh12" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, 0.0615816, 0.113866, -0.896674)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh13" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.998013, 4.36245e-08, 0, -4.36245e-08, 0.998013, 0.998013, 4.36245e-08, 1.90689e-15, 1.29163, 0.113866, -0.896674)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh14" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 2.11598e-22, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 3.38738, 0.113866, -2.70583)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh15" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 8.00966, 0.113866, -1.92783)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh16" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 8.00966, 0.113866, 0.0276941)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh17" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 8.00966, 0.113866, 1.25775)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh18" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 8.00966, 0.113866, 1.80567)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh19" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-0.998013, -8.72491e-08, -3.81378e-15, 0, -4.36245e-08, 0.998013, -8.72491e-08, 0.998013, 4.36245e-08, 8.00966, 0.113866, 3.03572)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="WoodPillarMesh20" type="MeshInstance3D" parent="Wood Baseboard"]
+transform = Transform3D(-4.36245e-08, 0.541729, 4.36245e-08, 4.23197e-22, -2.36797e-08, 0.998013, 0.998013, 2.36797e-08, 1.90689e-15, 7.80639, 0.113866, 4.80614)
+mesh = ExtResource("19_mpbhw")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-7.86804e-08, 0, 1.29616, 0, 6.75999, 0, -1.8, 0, -5.66568e-08, -1.17889, -0.939847, -0.784286)
+mesh = SubResource("PrismMesh_bqjjw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-7.86804e-08, 0, 1.29616, 0, 4.05599, 0, -1.8, 0, -5.66568e-08, 0.427648, -0.991084, -0.73222)
+mesh = SubResource("PrismMesh_bqjjw")
+
+[node name="StonePillarMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -1.75046, -6.49407, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -1.75046, -0.752291, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 3.44195, -6.49407, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 3.44195, -0.752291, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StoneFloorMesh36" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.94859, 0, -4.38877e-09, -3.47444e-07, 1.91068e-15, -0.100403, 0, 0.999998, 1.91839e-16, -7.87567, 3.48818, -1.87436)
+material_override = SubResource("ShaderMaterial_h1r15")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh37" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.0152, 0, -1.09719e-08, -4.37779e-07, 1.91068e-15, -0.251008, 0, 0.999998, 4.79598e-16, -8.50188, 9.52208, -1.87436)
+material_override = SubResource("ShaderMaterial_h1r15")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh38" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.08466e-07, 0.999998, 6.10281e-17, -2.08466e-07, 1.91068e-15, -0.230927, -4.76916, -4.37113e-08, 1.00942e-08, -8.07768, 9.53879, 4.95004)
+material_override = SubResource("ShaderMaterial_h1r15")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StoneFloorMesh39" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.38713e-07, -0.999997, -1.33391e-15, -2.08466e-07, 1.91068e-15, -0.230928, 4.76916, 8.95174e-08, -1.00942e-08, 7.776, 9.48603, -4.53747)
+material_override = SubResource("ShaderMaterial_h1r15")
+mesh = ExtResource("5_woexr")
+skeleton = NodePath("")
+
+[node name="StonePillarMesh9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 7.88109, -6.49407, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 7.88109, -0.752291, -1.78223)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 7.89725, -6.49407, 4.87374)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh12" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, 7.89725, -0.752291, 4.87374)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh13" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -8.04225, -6.49407, 4.87374)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh14" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -8.04225, -0.75229, 4.87374)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh15" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -8.05856, -6.48206, -1.89785)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="StonePillarMesh16" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.599999, 0, 0, 0, 5.39445, 0, 0, 0, 0.73405, -8.05856, -0.740284, -1.89785)
+mesh = ExtResource("3_3ytno")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpbhw")
+
+[node name="LanternMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, -5.21541e-08, 0, 7.45058e-09, 0.999999, 0, 7.45058e-09, 5.96046e-08, 0.999999, 0.881814, -0.0150153, 1.39107)
+cast_shadow = 0
+gi_lightmap_texel_scale = 10.0
+mesh = ExtResource("21_bqjjw")
+
+[node name="lanternOmniLight" type="OmniLight3D" parent="LanternMesh3"]
+transform = Transform3D(1.00124, 3.7299e-08, -2.23794e-08, 7.45978e-09, 1.00124, -8.95173e-08, 1.49196e-08, 2.98391e-08, 1.00124, 1.72682, -0.0811252, -0.414789)
+light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_energy = 2.0
+light_projector = ExtResource("22_y4874")
+light_size = 1.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+omni_range = 8.0
+script = ExtResource("23_h1r15")
+
+[node name="glassMesh" type="MeshInstance3D" parent="LanternMesh3"]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+visible = false
+cast_shadow = 0
+mesh = ExtResource("24_qfdol")
+skeleton = NodePath("")
+
+[node name="lanternOmniLight3" type="OmniLight3D" parent="LanternMesh3"]
+transform = Transform3D(1.00124, 3.7299e-08, -2.23794e-08, 7.45977e-09, 1.00124, -8.95173e-08, 1.49196e-08, 2.98391e-08, 1.00124, -4.00287, -0.102512, -0.47583)
+light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_energy = 2.0
+light_projector = ExtResource("22_y4874")
+light_size = 1.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+omni_range = 8.0
+script = ExtResource("23_h1r15")
+
+[node name="LanternMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, -5.21541e-08, 0, 7.45058e-09, 0.999999, 0, 7.45058e-09, 5.96046e-08, 0.999999, 0.881814, 3.67358, -2.07736)
+cast_shadow = 0
+gi_lightmap_texel_scale = 10.0
+mesh = ExtResource("21_bqjjw")
+
+[node name="lanternOmniLight" type="OmniLight3D" parent="LanternMesh4"]
+transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
+light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_projector = ExtResource("22_y4874")
+light_size = 0.2
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+omni_range = 8.0
+script = ExtResource("23_h1r15")
+
+[node name="glassMesh" type="MeshInstance3D" parent="LanternMesh4"]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("24_qfdol")
+skeleton = NodePath("")
+
+[node name="LanternMesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, -5.21541e-08, 0, 7.45058e-09, 0.999999, 0, 7.45058e-09, 5.96046e-08, 0.999999, 0.881814, 7.13667, -2.07736)
+cast_shadow = 0
+gi_lightmap_texel_scale = 10.0
+mesh = ExtResource("21_bqjjw")
+skeleton = NodePath("")
+
+[node name="lanternOmniLight" type="OmniLight3D" parent="LanternMesh5"]
+transform = Transform3D(1, -2.38419e-07, 2.90573e-07, 7.45058e-09, 1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 0.0110488, -0.37596, 1.19209e-07)
+light_color = Color(0.997038, 0.897511, 0.617295, 1)
+light_projector = ExtResource("22_y4874")
+light_size = 0.2
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.2
+shadow_opacity = 0.5
+shadow_blur = 0.4
+omni_range = 8.0
+script = ExtResource("23_h1r15")
+
+[node name="glassMesh" type="MeshInstance3D" parent="LanternMesh5"]
+transform = Transform3D(0.99, 0, 0, 0, 0.99, 0, 0, 0, 0.99, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("24_qfdol")
+skeleton = NodePath("")
 
 [connection signal="body_entered" from="Wall_DoorWay2/DoorTransport" to="Wall_DoorWay2" method="_on_door_transport_body_entered"]
 [connection signal="body_exited" from="Wall_DoorWay2/DoorTransport" to="Wall_DoorWay2" method="_on_door_transport_body_exited"]
