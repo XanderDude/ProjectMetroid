@@ -102,7 +102,7 @@ public partial class jumpState : State
 		cancelVelocity = true;
 		if (pm.jumpQueued)//jump state entered due to player jumping
 		{
-			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0);
+			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0,0);
 			jumpHeight = 0.0f;
 			SoundFriend.Play("player_jump_SFX");
 			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
@@ -174,6 +174,7 @@ public partial class jumpState : State
 			else velocity.X = input * airMaxSpeed;
 		}
 
+		if (Input.IsActionPressed("Aim")) velocity.X = player.Velocity.X;
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
 		player.Velocity = velocity;
 	}

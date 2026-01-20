@@ -57,7 +57,7 @@ public partial class slideState : State
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && slideTimer >= slideMinTime)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{

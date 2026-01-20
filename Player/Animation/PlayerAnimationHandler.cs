@@ -23,7 +23,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private float _aimingMaxTime = 2f; //how long shoot anim lasts before resetting to default
 	private float aimingTimer = 99f; //set to -1 to constantly aim, no timer
 	private float currentSpeed;
-	private float newMeshRotation = 90f;//ex: -90 for left, 90 for right
+	public float newMeshRotation = 90f;//ex: -90 for left, 90 for right
 	private float _meshRotationDegrees = 90f; //how much to rotate
 	private SVector2 aimDirection = SVector2.Zero; //angle to position shooting arm during aiming mode
 
@@ -35,7 +35,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		pm = player.GetNode<PlayerManager>(player.GetPath());
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
 
@@ -65,7 +65,6 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 			newMeshRotation = _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X);
 			pm.facingDirection = Mathf.Sign(pm.aimDirection.X);
 			pm.StateMachine._currentState.Set("turnAroundTimer", 0f);
-			GD.Print("new mesh rotation: " + newMeshRotation);
         }
 
 		if (newMeshRotation != RotationDegrees.Y)
@@ -80,11 +79,11 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		
 		float yOffset = .2f * currentSpeed;
 		SVector2 newAimDirect = new SVector2(pm.aimDirection.X, pm.aimDirection.Y + yOffset);
-		if (Input.IsActionPressed("Aim"))
+		/*if (Input.IsActionPressed("Aim"))
 		{
 			if (aimingTimer != -1) aimingTimer = .5f;
 			newAimDirect = new (Mathf.Sign(Rotation.Y),1f);
-		}
+		}*/
 
 		if (newAimDirect != aimDirection && playback?.GetCurrentNode() != "Idle")
 		{
@@ -115,6 +114,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		}
 	}
 
+	public void RotateMesh(int direction)
+	{
+		newMeshRotation = _meshRotationDegrees * direction;
+	}
 	public void Crouch()
 	{
 		playback?.Travel(CrouchStateName);

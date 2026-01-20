@@ -57,20 +57,20 @@ public partial class groundedState : State
         {
 			turnAroundTimer += delta;
 		}
-		else if (Mathf.Sign(pm.aimDirection.X) == pm.facingDirection) //turn finished and player is holding direction
+		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && vertColCheck != null && !vertColCheck.VertCheckIsColliding()) //turn finished and player is holding direction
 		{
 			msm.TransitionTo("groundedState");
 		} 
 
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
-
+		/*
 		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0) //check if player is trying to move
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
 		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
-		
+		*/
 	}
 
 	private void HandleGroundedMovement(float delta)
@@ -78,7 +78,11 @@ public partial class groundedState : State
 		//int input = Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")); //get absolute value of input (no negative), round up, multiply by sign to get direction
 		Vector3 velocity = player.Velocity;
 		velocity.Y -= _gravity * delta;
-		velocity.X = Mathf.MoveToward(velocity.X, Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed, delta + groundAcceleration);
+		if (Input.IsActionPressed("Aim"))
+        {
+            velocity.X = Mathf.MoveToward(velocity.X, 0, delta + groundAcceleration);
+        }
+		else velocity.X = Mathf.MoveToward(velocity.X, Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed, delta + groundAcceleration);
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
 		player.Velocity = velocity;
 	}
@@ -90,7 +94,7 @@ public partial class groundedState : State
 		{
 			msm.TransitionTo("forgeState");
 		}
-		if (@event.IsActionPressed("Down") && pm.noAimDirection && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
+		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
 			msm.TransitionTo("crouchState");
@@ -113,7 +117,7 @@ public partial class groundedState : State
 			}
 		}
 
-		if (@event.IsActionPressed("Up") && msm._currentState.Name == "crouchState") //only stand up when only pressing up
+		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && msm._currentState.Name == "crouchState") //only stand up when only pressing up
 		{
 			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
 			{

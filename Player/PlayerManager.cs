@@ -116,11 +116,12 @@ public partial class PlayerManager : CharacterBody3D
 			weaponMat?.SetShaderParameter("flashing", false);
 		}		
 	}
-	public void SpawnJumpCloud(float rotation)
+	public void SpawnJumpCloud(float yOffset,float rotation)
 	{
 		var jumpCloud = jumpVFX.Instantiate() as Node3D;
-		this.AddChild(jumpCloud, true);
-		jumpCloud.GlobalPosition = GlobalPosition;
-		jumpCloud.RotationDegrees = new(rotation, 0, 0);
+		AddChild(jumpCloud, true);
+		jumpCloud.GlobalPosition = new(GlobalPosition.X, GlobalPosition.Y + yOffset, GlobalPosition.Z);
+		jumpCloud.RotationDegrees = new(0, 0, rotation);
 	}
+
 }

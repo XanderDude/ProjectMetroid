@@ -125,13 +125,15 @@ public partial class attackState : State
 	
 	public Vector2 GetShootDirection()
 	{		
+		/*
 		if (Input.IsActionPressed("Aim"))
         {
             return new Vector2(pm.facingDirection, 1f).Normalized();
         }
+		*/
 		Vector2 direction = pm.aimDirection;
 
-		if (pm.StateMachine._currentState.Name == "slideState" && direction == new Vector2(0, -1))
+		if (pm.StateMachine._currentState.Name == "slideState" && direction.Y < 0)
         {
             direction = new(pm.facingDirection, 0);
         }
