@@ -117,7 +117,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void RotateMesh(int direction)
 	{
 		newMeshRotation = _meshRotationDegrees * direction;
+		pm.facingDirection = direction;
 	}
+
 	public void Crouch()
 	{
 		playback?.Travel(CrouchStateName);
@@ -131,9 +133,9 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void StandingBlocked()
     {
-		GD.Print("Play Stand blocked animation");	
+		GD.Print("Play Stand blocked animation");
 		animTree.Set("parameters/Crouching/OneShot_StandBlock/request", (int)AnimationNodeOneShot.OneShotRequest.Fire); //fire = 1
-		GD.Print("Stand blocked animation played");	
+		GD.Print("Stand blocked animation played");
     }
 
 	public void Hanging()
@@ -147,6 +149,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		else
 		aimingTimer = 0;
 	}
+
 	public void Shooting()
     {
         animTree.Set("parameters/Running/AimTimeSeek/seek_request", 0f); //reset shoot animation to start
