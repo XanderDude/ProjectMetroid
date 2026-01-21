@@ -8,14 +8,15 @@ public partial class jumpState : State
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpDeceleration = 15f;
 	[Export] public float jumpVelocity = 10.0f;
-	[Export] public float jumpMaxHeight = 0.17f;
+	[Export] public float jumpMaxHeight = 2f, jumpMinHeight = 0.2f; //meters
 	[Export] public float playerTopWhileInJump = 1.322f;
 	private float _mantleCooldown = .2f;
 	private float mantleTimer = 1;
 	public float jumpHeight = 0.0f; //player's current jump height position
+	private float startPosition = 0.0f;
+	private float travelTime = 0.0f;
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
-
 	public float meshTop = 0.0f;
 
 	private const float PLAYER_AND_MESH_OFFSET = 0.2f; //to account for difference in player origin and mesh origin
@@ -85,17 +86,25 @@ public partial class jumpState : State
 		if (jumpHeight < jumpMaxHeight)
 		{
 			velocity.Y = jumpVelocity; //continously set upward velocity
-			jumpHeight += delta;
-			//GD.Print("Jump Height: " + jumpHeight);
+			jumpHeight = player.GlobalPosition.Y - startPosition;
+			GD.Print("Jump Height: " + jumpHeight);
 			return true;
 		}
 		else
 		{
+			//if (pm.jumpQueued) CancelUpwardVelocity();
+			velocity.Y = player.Velocity.Y/2;
 			pm.jumpQueued = false;
 			jumpHeight = jumpMaxHeight; //clamp
 			return false;
 		}
 	}
+	private void CancelUpwardVelocity()
+    {
+		pm.jumpQueued = false;
+        player.Velocity = new Vector3(player.Velocity.X, player.Velocity.Y/2, player.Velocity.Z);
+		GD.Print("Jump velocity Cancelled");
+    }
 
 	public override void Enter()
 	{
@@ -104,6 +113,7 @@ public partial class jumpState : State
 		{
 			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0,0);
 			jumpHeight = 0.0f;
+			startPosition = player.GlobalPosition.Y;
 			SoundFriend.Play("player_jump_SFX");
 			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
@@ -140,6 +150,13 @@ public partial class jumpState : State
 			
 			msm.TransitionTo("mantleState");
 		}
+
+		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
+		{
+			CancelUpwardVelocity();
+			pm.jumpQueued = false;
+		}
+		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity();
 		HandleAirMovement(delta);
 		if (cancelVelocity)
 		{
@@ -176,6 +193,7 @@ public partial class jumpState : State
 
 		if (Input.IsActionPressed("Aim")) velocity.X = player.Velocity.X;
 		velocity.X = Mathf.Clamp(velocity.X, -airMaxSpeed, airMaxSpeed);//clamp horizontal speed
+		velocity.Y = Mathf.Max(velocity.Y, -_gravity * 2f); //clamp fall speed
 		player.Velocity = velocity;
 	}
 
@@ -185,10 +203,7 @@ public partial class jumpState : State
 		{
 			msm.TransitionTo("forgeState");
 		}
-		if (@event.IsActionReleased("Jump")) //check when jump is released
-		{
-			pm.jumpQueued = false;
-		}
+
 		if (@event.IsActionPressed("Jump") && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("wallJump") && !player.IsOnFloor() && isTouching() && !isSameHeight()) {
 			msm.TransitionTo("walljumpState");
 		}
