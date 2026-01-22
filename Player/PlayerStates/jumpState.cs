@@ -92,7 +92,7 @@ public partial class jumpState : State
 		}
 		else
 		{
-			//if (pm.jumpQueued) CancelUpwardVelocity();
+			if (pm.jumpQueued) CancelUpwardVelocity();
 			velocity.Y = player.Velocity.Y/2;
 			pm.jumpQueued = false;
 			jumpHeight = jumpMaxHeight; //clamp

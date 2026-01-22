@@ -9,7 +9,7 @@ public partial class groundedState : State
 	private float _WalkOffCooldown = .2f; //12 frames (60fps)
 	private float walkOffCDTimer = 0;
 	private float waterFootstepTimer = 0.0f;
-	private float _turnAroundTime = 0.12f; //time it takes to turn around before standing up while crouched
+	[Export] private float _turnAroundTime = 0.1f; //time it takes to turn around before standing up while crouched
 	public float turnAroundTimer = 0.0f;
 
 	public override void Ready()
@@ -94,7 +94,7 @@ public partial class groundedState : State
 		{
 			msm.TransitionTo("forgeState");
 		}
-		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
+		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && Mathf.Abs(pm.aimDirection.X) < 0.1f && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
 			msm.TransitionTo("crouchState");
