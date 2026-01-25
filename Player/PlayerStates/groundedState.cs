@@ -5,8 +5,7 @@ public partial class groundedState : State
 {
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
-	public SlideVertColCheck vertColCheck;
-	private float _WalkOffCooldown = .2f; //12 frames (60fps)
+	private float _WalkOffCooldown = .067f; //4 frames (60fps)
 	private float walkOffCDTimer = 0;
 	private float waterFootstepTimer = 0.0f;
 	[Export] private float _turnAroundTime = 0.1f; //time it takes to turn around before standing up while crouched
@@ -20,16 +19,30 @@ public partial class groundedState : State
 	{
 		walkOffCDTimer = 0;
 		pm.slideBoost = false;
-		if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-		else if (msm._currentState.Name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// && pm.vertColCheck.shape.GetClosestCollisionUnsafeFraction() < 0.1f)
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
+			msm.TransitionTo("crouchState");
+		}
+		else if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		else if (msm._currentState.Name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 	}
 	
-	public override void Exit() {
-	}
+	public override void Exit()
+    {
+        pm.vertColCheck.ForceUpdateTransform();
+    }
 
 	public override void PhysicsUpdate(float delta)
 	{
-		if (!player.IsOnFloor())
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
+			msm.TransitionTo("crouchState");
+			return;
+		}
+
+		if (!player.IsOnFloor() && !pm.groundCheck.IsColliding())
 		{
 			walkOffCDTimer += delta;
 			if (walkOffCDTimer >= _WalkOffCooldown)
@@ -38,7 +51,7 @@ public partial class groundedState : State
 				return;
 			}
 		}
-		else walkOffCDTimer = _WalkOffCooldown;
+		else walkOffCDTimer = 0;
 
 		waterFootstepTimer -= delta;
 		if (waterFootstepTimer < 0)
@@ -49,7 +62,6 @@ public partial class groundedState : State
 		if (pm.inwater && waterFootstepTimer == 0.0f && Mathf.Abs(player.Velocity.X) > 0.4f)
 		{
 			SoundFriend.Play("player_treading_water_SFX");
-			GD.Print("PLAY");
 			waterFootstepTimer = 0.3f;
 		}
 		
@@ -57,8 +69,9 @@ public partial class groundedState : State
         {
 			turnAroundTimer += delta;
 		}
-		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && vertColCheck != null && !vertColCheck.VertCheckIsColliding()) //turn finished and player is holding direction
+		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && pm.vertColCheck != null && !pm.vertColCheck.VertCheckIsColliding()) //turn finished and player is holding direction
 		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 			msm.TransitionTo("groundedState");
 		} 
 
@@ -96,7 +109,7 @@ public partial class groundedState : State
 		}
 		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && Mathf.Abs(pm.aimDirection.X) < 0.1f && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 			msm.TransitionTo("crouchState");
 		}
 		if (@event.IsActionPressed("Slide"))
@@ -106,7 +119,7 @@ public partial class groundedState : State
 		}
 		if (@event.IsActionPressed("Jump")) 
 		{
-			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
 			{
 				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
 			}
@@ -119,7 +132,7 @@ public partial class groundedState : State
 
 		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && msm._currentState.Name == "crouchState") //only stand up when only pressing up
 		{
-			if (vertColCheck != null && vertColCheck.VertCheckIsColliding()) 
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
 			{
 				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
 			}

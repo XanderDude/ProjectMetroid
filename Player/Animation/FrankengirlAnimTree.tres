@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=83 format=3 uid="uid://hofqrbo1bvp7"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=85 format=3 uid="uid://hofqrbo1bvp7"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ktho3"]
 
@@ -83,7 +83,7 @@ animation = &"StandUpBlocked"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hrlck"]
 resource_name = "CrouchingBlendTree"
-graph_offset = Vector2(-159.409, 18.6091)
+graph_offset = Vector2(-48.1275, 29.7345)
 nodes/AddCrouching/node = SubResource("AnimationNodeAdd2_ktho3")
 nodes/AddCrouching/position = Vector2(540, 180)
 nodes/AimBlend/node = SubResource("AnimationNodeBlendSpace2D_hrlck")
@@ -210,6 +210,8 @@ play_mode = 1
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xdwog"]
 animation = &"SlideStart"
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_txnio"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oosgb"]
 animation = &"Slide"
 
@@ -239,6 +241,9 @@ blend_point_4/pos = Vector2(-0.5, 0.5)
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_0rajy"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrlck"]
+animation = &"SlidingColliders"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ti8cv"]
 animation = &"Slide"
 use_custom_timeline = true
@@ -252,17 +257,21 @@ filter_enabled = true
 filters = ["Skeleton3D:foot_l", "Skeleton3D:foot_l2", "Skeleton3D:foot_r", "Skeleton3D:foot_r2", "Skeleton3D:hand_l", "Skeleton3D:lowerArm_l", "Skeleton3D:lowerLeg_l", "Skeleton3D:rowerLeg_r", "Skeleton3D:upperArm_l", "Skeleton3D:upperLeg_l", "Skeleton3D:upperLeg_r"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w7x0k"]
-graph_offset = Vector2(-501.364, -55.4132)
+graph_offset = Vector2(-221.76, -67.91)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_txnio")
+nodes/Add2/position = Vector2(280, 140)
 nodes/AimBlend/node = SubResource("AnimationNodeBlendSpace2D_ti8cv")
 nodes/AimBlend/position = Vector2(-260, 100)
 nodes/AimTimeSeek/node = SubResource("AnimationNodeTimeSeek_0rajy")
 nodes/AimTimeSeek/position = Vector2(-80, 40)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ti8cv")
 nodes/Animation/position = Vector2(-80, 220)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hrlck")
+"nodes/Animation 2/position" = Vector2(100, 360)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_0rajy")
 nodes/Blend2/position = Vector2(100, 100)
-nodes/output/position = Vector2(280, 160)
-node_connections = [&"AimTimeSeek", 0, &"AimBlend", &"Blend2", 0, &"AimTimeSeek", &"Blend2", 1, &"Animation", &"output", 0, &"Blend2"]
+nodes/output/position = Vector2(460, 140)
+node_connections = [&"Add2", 0, &"Blend2", &"Add2", 1, &"Animation 2", &"AimTimeSeek", 0, &"AimBlend", &"Blend2", 0, &"AimTimeSeek", &"Blend2", 1, &"Animation", &"output", 0, &"Add2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iktvi"]
 animation = &"WallCollision"
@@ -356,7 +365,7 @@ advance_condition = &"slideEnd"
 
 [resource]
 states/Crouching/node = SubResource("AnimationNodeBlendTree_hrlck")
-states/Crouching/position = Vector2(178, 281)
+states/Crouching/position = Vector2(179, 281)
 states/Death/node = SubResource("AnimationNodeAnimation_lq4et")
 states/Death/position = Vector2(227, -144)
 states/End/position = Vector2(848, -51)
@@ -382,4 +391,4 @@ states/WallCollision/position = Vector2(415, -123)
 states/WallCollision2/node = SubResource("AnimationNodeAnimation_o4qg4")
 states/WallCollision2/position = Vector2(626, -128)
 transitions = ["Running", "SlideStart", SubResource("AnimationNodeStateMachineTransition_x3rbt"), "Running", "WallCollision", SubResource("AnimationNodeStateMachineTransition_p0v1u"), "WallCollision", "Running", SubResource("AnimationNodeStateMachineTransition_6k55h"), "WallCollision", "WallCollision2", SubResource("AnimationNodeStateMachineTransition_won0t"), "WallCollision2", "WallCollision", SubResource("AnimationNodeStateMachineTransition_qn6ap"), "WallCollision2", "Running", SubResource("AnimationNodeStateMachineTransition_cjrvr"), "Landing", "Running", SubResource("AnimationNodeStateMachineTransition_rcinv"), "Landing", "SlideStart", SubResource("AnimationNodeStateMachineTransition_mvhvr"), "SlideEnd", "Running", SubResource("AnimationNodeStateMachineTransition_ly6ef"), "Crouching", "SlideStart", SubResource("AnimationNodeStateMachineTransition_1vo05"), "Running", "Crouching", SubResource("AnimationNodeStateMachineTransition_hrlck"), "Crouching", "Running", SubResource("AnimationNodeStateMachineTransition_vn3mv"), "SlideStart", "Jumping", SubResource("AnimationNodeStateMachineTransition_lq4et"), "Crouching", "Jumping", SubResource("AnimationNodeStateMachineTransition_lajsm"), "Running", "Jumping", SubResource("AnimationNodeStateMachineTransition_a22yy"), "Hanging", "Jumping", SubResource("AnimationNodeStateMachineTransition_mx262"), "Jumping", "Hanging", SubResource("AnimationNodeStateMachineTransition_i0ifd"), "Jumping", "Landing", SubResource("AnimationNodeStateMachineTransition_ml07n"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_bmsdf"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_oosgb"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_uwh7x"), "SlideStart", "Sliding", SubResource("AnimationNodeStateMachineTransition_txnio"), "Sliding", "Crouching", SubResource("AnimationNodeStateMachineTransition_t37bb"), "Sliding", "Jumping", SubResource("AnimationNodeStateMachineTransition_dskf1"), "Sliding", "SlideEnd", SubResource("AnimationNodeStateMachineTransition_aenux"), "Idle", "Jumping", SubResource("AnimationNodeStateMachineTransition_ktho3")]
-graph_offset = Vector2(-66, -193)
+graph_offset = Vector2(19, -85)

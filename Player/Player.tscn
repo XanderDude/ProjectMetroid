@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bexgm8f7ve0mw"]
+[gd_scene load_steps=35 format=3 uid="uid://bexgm8f7ve0mw"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
 [ext_resource type="Material" uid="uid://hate0nlnfe0p" path="res://Player/Mesh/frankengirlCharacter_mat.tres" id="3_hqjia"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/PlayerStates/slideState.cs" id="6_x70vp"]
 [ext_resource type="Script" uid="uid://bmtdfvkahjerh" path="res://Player/PlayerStates/mantleState.cs" id="7_wo5nf"]
 [ext_resource type="Script" uid="uid://dlloi8ffjlah4" path="res://Player/PlayerStates/walljumpState.cs" id="8_croik"]
-[ext_resource type="Script" uid="uid://ck20j4xtnxfxv" path="res://Player/PlayerStates/SlideVertColCheck.cs" id="8_yifbt"]
+[ext_resource type="Script" uid="uid://ck20j4xtnxfxv" path="res://Player/PlayerStates/VerticalCollisionCheck.cs" id="8_yifbt"]
 [ext_resource type="Script" uid="uid://6gcg572gqiwb" path="res://Player/PlayerStates/AttackStateMachine.cs" id="9_bgaaw"]
 [ext_resource type="Script" uid="uid://cupqpycn8w34t" path="res://Environment/Rooms/DeathState.cs" id="9_x70vp"]
 [ext_resource type="Script" uid="uid://d0fuh6u8aahvr" path="res://Player/PlayerStates/noattackState.cs" id="10_gv3fu"]
@@ -29,24 +29,27 @@
 [ext_resource type="PackedScene" uid="uid://8a15cimxh6tw" path="res://Player/PlayerLight.tscn" id="26_s0mko"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hqjia"]
-size = Vector3(0.374, 1.6, 0.5)
+size = Vector3(0.3, 1.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0mko"]
-size = Vector3(0.75, 0.75, 0.5)
+size = Vector3(0.6, 0.6, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yifbt"]
-size = Vector3(0.5, 0.9, 0.5)
+size = Vector3(0.3, 0.8, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7uipr"]
-size = Vector3(0.374, 1, 0.498)
+size = Vector3(0.289917, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x70vp"]
 size = Vector3(0.45, 1.7, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wo5nf"]
-size = Vector3(0.4, 1, 0.5)
+size = Vector3(0.205, 1, 0.5)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("groundCheck", "StateMachine", "AttackStateMachine")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_croik"]
+size = Vector3(0.445, 0.75, 0.5)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("vertColCheck", "groundCheck", "StateMachine", "AttackStateMachine")]
 collision_layer = 4
 collision_mask = 19
 axis_lock_linear_z = true
@@ -56,10 +59,12 @@ axis_lock_angular_z = true
 floor_constant_speed = true
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
+safe_margin = 0.01
 script = ExtResource("1_ps8ct")
 playerMeshPath = NodePath("PlayerMesh")
 mainMat = ExtResource("3_hqjia")
 weaponMat = ExtResource("3_x70vp")
+vertColCheck = NodePath("VerticalCollisionCheckNode")
 groundCheck = NodePath("groundCheck")
 StateMachine = NodePath("MovementStateMachine")
 AttackStateMachine = NodePath("AttackStateMachine")
@@ -71,26 +76,25 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="HitBoxStanding" type="CollisionShape3D" parent="HitBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855018, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("BoxShape3D_hqjia")
 debug_color = Color(0.996893, 0, 0.177575, 0.42)
 
 [node name="HitBoxSpinning" type="CollisionShape3D" parent="HitBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992206, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 shape = SubResource("BoxShape3D_s0mko")
 disabled = true
 debug_color = Color(0.996893, 0, 0.177575, 0.42)
 
 [node name="HitBoxCrouching" type="CollisionShape3D" parent="HitBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_yifbt")
 disabled = true
 debug_color = Color(0.996893, 0, 0.177575, 0.42)
 
 [node name="HitBoxSliding" type="CollisionShape3D" parent="HitBoxes"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.213, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.86756e-11, 0.250022, 0)
 visible = false
 shape = SubResource("BoxShape3D_7uipr")
 disabled = true
@@ -100,23 +104,25 @@ debug_color = Color(0.996893, 0, 0.177575, 0.42)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("BoxShape3D_x70vp")
 
-[node name="SlideVertColCheckNode" type="Node3D" parent="." node_paths=PackedStringArray("shape")]
+[node name="VerticalCollisionCheckNode" type="Node3D" parent="." node_paths=PackedStringArray("shape")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("8_yifbt")
 shape = NodePath("ShapeCast3D")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="SlideVertColCheckNode"]
-visible = false
+[node name="ShapeCast3D" type="ShapeCast3D" parent="VerticalCollisionCheckNode"]
 shape = SubResource("BoxShape3D_wo5nf")
 target_position = Vector3(0, 0, 0)
+max_results = 8
 collision_mask = 19
-collide_with_areas = true
 debug_shape_custom_color = Color(0, 0.686275, 0, 1)
 
-[node name="groundCheck" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-target_position = Vector3(0, -0.6, 0)
+[node name="groundCheck" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352527, 0)
+shape = SubResource("BoxShape3D_croik")
+target_position = Vector3(0, 0, 0)
+max_results = 16
 collision_mask = 19
+debug_shape_custom_color = Color(0, 0.686275, 0, 1)
 
 [node name="MovementStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
@@ -135,7 +141,7 @@ groundAcceleration = 0.0
 
 [node name="jumpState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("5_hqjia")
-jumpMaxHeight = 3.0
+jumpMaxHeight = 2.5
 
 [node name="slideState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("6_x70vp")
@@ -192,52 +198,52 @@ CrouchStateName = "Crouching"
 HangingStateName = "Hanging"
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178362, 0.89525, 0.00631382)
-bones/0/rotation = Quaternion(0.547145, 0.448439, 0.451691, 0.543608)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.00608441, 0.104776, -0.0073506, 0.99445)
+bones/0/position = Vector3(3.55271e-17, 0.924947, -0.04)
+bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/1/position = Vector3(0.0403507, -0.0253461, -0.00558281)
+bones/1/rotation = Quaternion(0.00670959, 0.0683594, 0.0974515, 0.992867)
 bones/1/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.035671, 0.0139758, 1.59872e-15)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/3/position = Vector3(0.035671, 0.0139758, 1.56449e-15)
+bones/3/rotation = Quaternion(-6.56333e-26, 8.32667e-17, -0.032407, 0.999475)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -4.70735e-16)
-bones/4/rotation = Quaternion(-0.0807039, 0.00382618, -0.0102818, 0.996678)
-bones/5/position = Vector3(0.0708221, -0.0208942, -6.57252e-16)
+bones/4/position = Vector3(0.117899, 0.0191126, -4.79521e-16)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/5/position = Vector3(0.0708221, -0.0208942, -6.69984e-16)
 bones/5/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
-bones/7/position = Vector3(0.04009, 0.0605493, 0.0054374)
-bones/7/rotation = Quaternion(-0.485743, -0.504327, -0.448564, 0.555427)
+bones/7/position = Vector3(0.0324921, 0.0596365, 0)
+bones/7/rotation = Quaternion(-0.5, -0.5, -0.5, 0.5)
 bones/7/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.359746, -0.0316647, 0.931658, 0.0399258)
+bones/9/rotation = Quaternion(0.248565, 0.282585, 0.679656, 0.629626)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.492015, 0.591735, -0.430143, 0.471962)
+bones/10/rotation = Quaternion(0.143893, 0.292313, -0.722639, 0.609624)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.0935799, -0.529579, -0.155969, 0.828531)
+bones/11/rotation = Quaternion(-2.77556e-16, -2.498e-16, -5.27356e-16, 1)
 bones/11/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.0270654, -0.104901, 0.0749294, 0.991287)
+bones/13/rotation = Quaternion(0.0746763, -0.05515, -0.758797, 0.644677)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.0949741, 0.0450265, -0.224557, 0.968776)
+bones/14/rotation = Quaternion(1.29536e-26, 0.00299866, 2.69634e-17, 0.999996)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/15/rotation = Quaternion(4.16334e-16, 2.498e-16, 9.4369e-16, 1)
+bones/20/position = Vector3(0.0513148, -0.0253461, 0.0736623)
+bones/20/rotation = Quaternion(0.200636, 0.69761, 0.682851, 0.0824601)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.999235, -0.0213038, -0.0276536, -0.0176133)
+bones/21/rotation = Quaternion(0.980952, 0.000158272, -0.194171, -0.00553049)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.528581, -0.490529, 0.495484, 0.48423)
+bones/22/rotation = Quaternion(0.493891, -0.506866, 0.505988, 0.493088)
 bones/22/scale = Vector3(1, 1, 1)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/24/position = Vector3(0.0293843, -0.0253461, -0.0848276)
+bones/24/rotation = Quaternion(0.707221, 0.051016, -0.0225969, 0.704788)
 bones/24/scale = Vector3(1, 1, 1)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/25/rotation = Quaternion(0.983989, 0.000142932, -0.178159, -0.00499445)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/26/rotation = Quaternion(0.577509, -0.401451, 0.407145, 0.582713)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0735118, -0.882004, -0.465473, -0.135687, 0.45355, -0.880842, 0.988021, 0.127911, -0.086335, -0.353462, 1.10309, 0.0124342)
+transform = Transform3D(0.0209822, -0.93089, -0.364698, 0.892651, 0.181724, -0.412494, 0.450261, -0.316893, 0.834772, -0.30464, 1.4118, 0.388688)
 bone_idx = 17
 
 [node name="ArrowSpawnLocation" type="Node3D" parent="PlayerMesh/Skeleton3D/Crossbow" index="0"]
@@ -255,11 +261,11 @@ visible = false
 VFXNodes = []
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0735118, -0.882004, -0.465473, -0.135687, 0.45355, -0.880842, 0.988021, 0.127911, -0.086335, -0.416872, 1.11433, 0.0187247)
+transform = Transform3D(0.0209822, -0.93089, -0.364698, 0.892651, 0.181724, -0.412494, 0.450261, -0.316893, 0.834772, -0.369153, 1.41519, 0.385028)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0735118, -0.882004, -0.465473, -0.135687, 0.45355, -0.880842, 0.988021, 0.127911, -0.086335, -0.416872, 1.11433, 0.0187247)
+transform = Transform3D(0.0209822, -0.93089, -0.364698, 0.892651, 0.181724, -0.412494, 0.450261, -0.316893, 0.834772, -0.369153, 1.41519, 0.385028)
 bone_idx = 19
 
 [node name="AnimationPlayer" parent="PlayerMesh" index="2"]
@@ -276,7 +282,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-deterministic = false
 root_node = NodePath("%PlayerMesh")
 tree_root = ExtResource("15_jvfa1")
 anim_player = NodePath("../AnimationPlayerMain")
@@ -298,6 +303,7 @@ parameters/Running/AimBlend/blend_position = Vector2(0, 0)
 parameters/Running/AimTimeSeek/seek_request = -1.0
 parameters/Running/LegAndArmBlend/blend_amount = 0.0
 parameters/Running/RunSpeed/scale = 1.5
+parameters/Sliding/Add2/add_amount = 1.0
 parameters/Sliding/AimBlend/blend_position = Vector2(1, 0)
 parameters/Sliding/AimTimeSeek/seek_request = -1.0
 parameters/Sliding/Blend2/blend_amount = 0.5

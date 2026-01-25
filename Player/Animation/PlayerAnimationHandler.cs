@@ -120,9 +120,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		pm.facingDirection = direction;
 	}
 
-	public void Crouch()
+	public void Crouch(bool force)
 	{
-		playback?.Travel(CrouchStateName);
+		if (force) playback?.Start(CrouchStateName);
+		else playback?.Travel(CrouchStateName);
 	}
 
 	public void WallCollided(bool colliding)

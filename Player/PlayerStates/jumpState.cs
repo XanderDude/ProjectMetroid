@@ -27,14 +27,12 @@ public partial class jumpState : State
 		}
 		return false;
 	}
+	
 	private bool isSameHeight()
 	{
 		if (!isTouching() && !isGreaterHeight()) { 
 			return false;
 		}
-
-
-		
 
 		for (int i = 0; i < player.GetSlideCollisionCount(); i++) //must be at least 1 collision
 		{
@@ -80,30 +78,28 @@ public partial class jumpState : State
 		return false;
 	}
 
-
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
 	{
 		if (jumpHeight < jumpMaxHeight)
 		{
 			velocity.Y = jumpVelocity; //continously set upward velocity
 			jumpHeight = player.GlobalPosition.Y - startPosition;
-			GD.Print("Jump Height: " + jumpHeight);
+			//GD.Print("Jump Height: " + jumpHeight);
 			return true;
 		}
 		else
 		{
-			if (pm.jumpQueued) CancelUpwardVelocity();
 			velocity.Y = player.Velocity.Y/2;
 			pm.jumpQueued = false;
 			jumpHeight = jumpMaxHeight; //clamp
 			return false;
 		}
 	}
+
 	private void CancelUpwardVelocity()
     {
 		pm.jumpQueued = false;
         player.Velocity = new Vector3(player.Velocity.X, player.Velocity.Y/2, player.Velocity.Z);
-		GD.Print("Jump velocity Cancelled");
     }
 
 	public override void Enter()
@@ -125,7 +121,6 @@ public partial class jumpState : State
 	{
 		//GD.Print("Exited Jump State");
 		pm.jumpQueued = false; //don't jump on exit if holding jump
-		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 	}
 
 
@@ -133,14 +128,30 @@ public partial class jumpState : State
 	{
 		mantleTimer += delta;
 
-		if (!pm.jumpQueued && (pm.groundCheck.IsColliding() || player.IsOnFloor()))
+
+		//1. Check player input for canceling jump early
+		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
+		{
+			CancelUpwardVelocity();
+			pm.jumpQueued = false;
+		}
+
+		//2. Check if player height (GlobalPosition) has increased after previous movement calculation (jumpHeight), no change means jump blocked
+		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity(); //position rounded to two decimal places
+		
+		HandleAirMovement(delta);
+		
+		//3. Perform collision checks prior to move and slide, but after HandleAirMovement()
+		if (!pm.jumpQueued && player.IsOnFloor())
         {
-			cancelVelocity = true;
-			//if (player.IsOnFloor()) player.Velocity = new Vector3(-Mathf.Sign(pm.aimDirection.X), 0, 0) * airMaxSpeed;
+			player.Velocity = new Vector3(player.Velocity.X, 0, 0); //keep horizontal, reset vertical
+			var ground = GetFloorYPosition();
+			player.GlobalPosition = new Vector3(player.GlobalPosition.X, ground, player.GlobalPosition.Z);
+
             if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0) {
-				GD.Print("Slide boosting");
 				msm.TransitionTo("slideState");
 			}
+			else if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) msm.TransitionTo("crouchState");
 			else msm.TransitionTo("groundedState");
         }
 		else if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling") && mantleTimer >= _mantleCooldown && pm.aimDirection.X != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
@@ -151,20 +162,26 @@ public partial class jumpState : State
 			msm.TransitionTo("mantleState");
 		}
 
-		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
-		{
-			CancelUpwardVelocity();
-			pm.jumpQueued = false;
-		}
-		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity();
-		HandleAirMovement(delta);
 		if (cancelVelocity)
 		{
 			player.Velocity = Vector3.Zero;
 			cancelVelocity = false;
 		}
+
+		//4. Update player position
 		player.MoveAndSlide();
 	}
+
+	private float GetFloorYPosition()
+    {
+		float floorY = player.GlobalPosition.Y;
+        for (int i = 0; i < pm.groundCheck.GetCollisionCount(); i++)
+		{
+			Vector3 point = pm.groundCheck.GetCollisionPoint(i);
+			floorY = Mathf.Max(floorY, point.Y);
+		}
+		return floorY;
+    }
 
 	private void HandleAirMovement(float delta)
 	{
@@ -182,7 +199,7 @@ public partial class jumpState : State
 		}
 		else //must be falling
 		{
-
+			pm.groundCheck.ForceShapecastUpdate();
 			velocity.Y -= _gravity * 2.5f * delta; //faster falling speed
 			if (input == 0)
 			{
