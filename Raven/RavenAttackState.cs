@@ -147,7 +147,7 @@ public partial class RavenAttackState : State
 
 		if (targetsDamaged.Contains(body)) return;
 
-		if (body is EnemyController enemy)
+		if (body is Enemy enemy)
 			{
 				//GD.Print("Dealing damage to enemy!");
 				enemy.DamagedRecieved(damage);
@@ -162,7 +162,7 @@ public partial class RavenAttackState : State
 		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
 		
 		Node3D parent = area.GetParent<Node3D>();
-		if (parent != null && parent is EnemyController enemy)
+		if (parent != null && parent is Enemy enemy)
 		{
 			//GD.Print("Dealing damage to enemy via area!");
 			enemy.DamagedRecieved(damage);

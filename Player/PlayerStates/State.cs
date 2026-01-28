@@ -7,7 +7,7 @@ public partial class State : Node
 	public MovementStateMachine msm;
 	public AttackStateMachine asm;
 	public CharacterBody3D player;
-	public PlayerManager pm;
+	public Player pm;
 
 	public CharacterBody3D projectileArrow;
 
@@ -19,7 +19,7 @@ public partial class State : Node
 	public Raven raven;
 
 	//Enemy related
-	public EnemyController ec;
+	public Enemy ec;
 	public EnemyStateMachine esm;
 
 	public float _gravity = 9.8f;

@@ -34,13 +34,13 @@ public partial class attackState : State
 	public override void _Ready()
 	{
 		Node current = this;
-		while (current != null && !(current is PlayerManager))
+		while (current != null && !(current is Player))
 		{
 			current = current.GetParent();
 		}
-		if (current is PlayerManager)
+		if (current is Player)
 		{
-			pm = current as PlayerManager;
+			pm = current as Player;
 		}
 		if (pm != null)
 		{
@@ -72,6 +72,7 @@ public partial class attackState : State
 
 	public override void Exit()
 	{
+		if (parentMesh == null) return;
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(false);
 		chargingArrowVFX.Visible = false;
 		fullChargedArrowVFX.Visible = false;

@@ -5,23 +5,22 @@ using System.Collections.Generic;
 public partial class MovementStateMachine : Node
 {
 	[Export] public NodePath asmState;
-	private AttackStateMachine asm; 
-	[Export] public NodePath initialState; //the node path to the starting state
+	[Export] public NodePath initialState;
 	private CharacterBody3D _parent;
 	public CharacterBody3D Parent //assign from parent script prior to _ready
 	{
 		get { return _parent; }
 		set { _parent = value; }
 	}
-	private PlayerManager _manager;
-	public PlayerManager ParentManager //assign from parent script prior to _ready
+	private Player _manager;
+	public Player ParentManager //assign from parent script prior to _ready
 	{
 		get { return _manager; }
 		set { _manager = value; }
 	}
 
 	private Node3D _mesh;
-	public Node3D parentMesh //assign from parent script prior to _ready
+	public Node3D parentMesh 
 	{
 		get { return _mesh; }
 		set { _mesh = value; }
@@ -33,7 +32,6 @@ public partial class MovementStateMachine : Node
 	//Purpose: This is called when opening the game for the first time, after all child nodes are in the scene
 	public override void _Ready()
 	{
-		asm = GetNode<AttackStateMachine>(asmState);
 		_states = new Dictionary<string, State>();
 		foreach (Node node in GetChildren())
 		{
@@ -41,21 +39,20 @@ public partial class MovementStateMachine : Node
 			{
 				_states[node.Name] = s;
 				s.msm = this;  //assign self to the states
-				s.asm = asm;
 				s.player = Parent;
 				s.pm = ParentManager;
-				s.parentMesh = parentMesh;
+				s.parentMesh = s.pm.mesh;
 				s.Ready();
-				s.Exit(); //reset all states
 			}
 		}
-
+		
 		_currentState = GetNode<State>(initialState);
-		_currentState.Enter(); //run initial state
+		_currentState.Enter(); 
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (_currentState == null) return;
 		_currentState.HandleInput(@event);
 
 	}
@@ -64,12 +61,13 @@ public partial class MovementStateMachine : Node
 
 	public override void _Process(double delta)
 	{
-
+		if (_currentState == null) return;
 		_currentState.Update((float)delta);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_currentState == null) return;  
 		_currentState.PhysicsUpdate((float)delta);
 	}
 

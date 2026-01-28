@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public partial class AttackStateMachine : Node
 {
-	[Export] public NodePath initialState; //the node path to the starting state
+	[Export] public NodePath initialState; 
 	private CharacterBody3D _parent;
 	public CharacterBody3D Parent //assign from parent script prior to _ready
 	{
 		get { return _parent; }
 		set { _parent = value; }
 	}
-	private PlayerManager _manager;
-	public PlayerManager ParentManager //assign from parent script prior to _ready
+	private Player _manager;
+	public Player ParentManager //assign from parent script prior to _ready
 	{
 		get { return _manager; }
 		set { _manager = value; }
@@ -40,7 +40,7 @@ public partial class AttackStateMachine : Node
 				s.asm = this;  //assign self to the states
 				s.player = Parent;
 				s.pm = ParentManager;
-				s.parentMesh = parentMesh;
+				s.parentMesh = s.pm.mesh;
 				s.Ready();
 				s.Exit(); //reset all states
 			}
@@ -52,6 +52,7 @@ public partial class AttackStateMachine : Node
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (_currentState == null) return;
 		_currentState.HandleInput(@event);
 
 	}
@@ -60,12 +61,13 @@ public partial class AttackStateMachine : Node
 
 	public override void _Process(double delta)
 	{
-
+		if (_currentState == null) return;
 		_currentState.Update((float)delta);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_currentState == null) return;  
 		_currentState.PhysicsUpdate((float)delta);
 	}
 

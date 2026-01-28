@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://xaymn5irbgw5"]
 
-[ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_m2cak"]
+[ext_resource type="Script" uid="uid://duq3pwytjdv5f" path="res://Enemies/Enemy.cs" id="1_jr35e"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="2_2a3cg"]
 [ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="2_glgse"]
 [ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="3_6itjq"]
@@ -28,17 +28,14 @@ states/Start/position = Vector2(189, 100)
 transitions = ["Start", "Take 001", SubResource("AnimationNodeStateMachineTransition_glgse")]
 graph_offset = Vector2(-20, -55)
 
-[node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "edgeray", "statemachine")]
+[node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("ray", "edgeray", "mesh")]
 collision_layer = 8
 collision_mask = 19
-script = ExtResource("1_m2cak")
-health = 30
-isFlying = true
-mesh = NodePath("BatFly")
+script = ExtResource("1_jr35e")
 ray = NodePath("Beam")
 item1 = ExtResource("2_glgse")
 edgeray = NodePath("EdgeBeam")
-statemachine = NodePath("EnemyStateMachine")
+mesh = NodePath("BatFly")
 
 [node name="GroundCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -83,11 +80,14 @@ debug_shape_thickness = 5
 
 [node name="BatFly" parent="." instance=ExtResource("7_il1qx")]
 
+[node name="RavenFlying" parent="BatFly/Weapons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, -0.309017, 0, 0.309017, 0.951057, 0, 0, 0)
+
 [node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(1.15413, -0.214856, -0.933712, 0.940722, 0.531367, 1.04052, 0.18172, -1.38618, 0.543591, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(-0.114287, -0.836193, -1.24005, 1.4943, -0.0111941, -0.130171, 0.0633113, -1.24525, 0.833868, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(1.15413, 0.214856, 0.933712, -0.940722, 0.531367, 1.04052, -0.18172, -1.38618, 0.543591, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(-0.114287, 0.836193, 1.24005, -1.4943, -0.0111941, -0.130171, -0.0633113, -1.24525, 0.833868, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BatFly")

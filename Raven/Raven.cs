@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    public PlayerManager player => GameFriend.gameinstance.player;
+    public Player player => GameFriend.gameinstance.player;
     [Export] public float speed = 10.0f;
     
     [Export] public float launchTimer = 0.8f;

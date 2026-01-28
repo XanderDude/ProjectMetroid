@@ -59,7 +59,7 @@ public partial class groundedState : State
 			waterFootstepTimer = 0.0f;
 		}
 
-		if (pm.inwater && waterFootstepTimer == 0.0f && Mathf.Abs(player.Velocity.X) > 0.4f)
+		if (pm.inWater && waterFootstepTimer == 0.0f && Mathf.Abs(player.Velocity.X) > 0.4f)
 		{
 			SoundFriend.Play("player_treading_water_SFX");
 			waterFootstepTimer = 0.3f;

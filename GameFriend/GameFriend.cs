@@ -9,7 +9,7 @@ public partial class GameFriend : Node3D
     public SaveFriend savefriend;
     public RoomFriend roomfriend;
     public Raven raven;
-    public PlayerManager player;
+    public Player player;
     public CameraFriend camera;
     public DebugFriend debugfriend;
 
@@ -78,11 +78,11 @@ public partial class GameFriend : Node3D
 
     private void init_player(string name, string path, string rootname)
     {
-        if (playerNode != null) player = playerNode as PlayerManager;
+        if (playerNode != null) player = playerNode as Player;
         else
         {
             init_scene(name, path);
-            player = svp.GetNode<PlayerManager>(rootname);
+            player = svp.GetNode<Player>(rootname);
         }
     }
 

@@ -9,7 +9,7 @@ public partial class flyingaggroState : State
     public override void Enter()
     {
         GD.Print("Entered Flying Aggro State");
-        ec.speed = ec.runspeed;
+        ec.Velocity = new Vector3(ec.maxRunSpeed, 0, 0);
         outOfRangeTimer = 0f;
     }
     
@@ -41,7 +41,7 @@ public partial class flyingaggroState : State
         {
             Vector3 directionToPlayer = (ec.player.GlobalPosition - ec.GlobalPosition).Normalized();
             
-            ec.Velocity = directionToPlayer * ec.speed;
+            ec.Velocity = directionToPlayer * new Vector3(ec.maxRunSpeed, 0, 0).X;
         }
     }
 }

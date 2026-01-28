@@ -2,7 +2,7 @@ using Godot;
 
 public partial class HudManager : CanvasLayer
 {
-	[Export] public PlayerManager player; // Direct reference to player
+	[Export] public Player player; // Direct reference to player
 	
 	private Label arrowCountLabel;
 	private Timer updateTimer;

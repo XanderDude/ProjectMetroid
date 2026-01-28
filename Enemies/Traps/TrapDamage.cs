@@ -7,7 +7,7 @@ public partial class TrapDamage : Area3D
     public int damage = 5;
     public float damageCooldown = 2f;
     private float _damageCooldown;
-    private PlayerManager player => GameFriend.gameinstance.player;
+    private Player player => GameFriend.gameinstance.player;
     private bool playerInRange = false;
     private Area3D collider;
 

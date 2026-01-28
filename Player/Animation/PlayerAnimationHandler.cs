@@ -6,7 +6,7 @@ using SVector2 = System.Numerics.Vector2;
 public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 {
 	[Export] private CharacterBody3D player;
-	private PlayerManager pm;
+	private Player pm;
 	[Export] public AnimationTree animTree;
 	[Export] private string playbackFilePath; //ref to where we are in the animation state machine
 	private AnimationNodeStateMachinePlayback playback;
@@ -32,7 +32,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		newMeshRotation = RotationDegrees.Y;
 		_meshRotationDegrees = MathF.Abs(RotationDegrees.Y);
 		playback = (AnimationNodeStateMachinePlayback)animTree.Get(playbackFilePath);
-		pm = player.GetNode<PlayerManager>(player.GetPath());
+		pm = player.GetNode<Player>(player.GetPath());
 	}
 
 	public override void _PhysicsProcess(double delta)

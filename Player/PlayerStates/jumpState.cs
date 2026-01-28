@@ -113,7 +113,7 @@ public partial class jumpState : State
 			SoundFriend.Play("player_jump_SFX");
 			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
-		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
+		player.Set(Player.PropertyName.slideBoost, true); //player must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
 	}
 

@@ -1,17 +1,13 @@
 using Godot;
 using System;	
 
-public partial class PlayerManager : CharacterBody3D
+public partial class Player : Actor
 {
-    [Export] public NodePath playerMeshPath = "%PlayerMesh";
+	public bool jumpQueued, slideQueued, slideBoost;
+	private bool isDead, isPressed = false;
 
-	public bool jumpQueued;
-	public bool slideQueued;
-	public bool slideBoost;
+	public bool inWater = false;
 
-	public bool isDead = false;
-	public bool isPressed = false; 
-	public bool inwater = false;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	private float alpha = 0f;
 
@@ -21,7 +17,6 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] public VerticalCollisionCheck vertColCheck;
 	[Export] public ShapeCast3D groundCheck;
 
-	private int health = 100;
 	[Export] public int Health
 	{
 		get { return health; }
@@ -52,7 +47,6 @@ public partial class PlayerManager : CharacterBody3D
 			_movementStateMachine = value;
 			StateMachine.Parent = this;
 			StateMachine.ParentManager = this;
-			StateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
 		}
 	}
 
@@ -67,17 +61,31 @@ public partial class PlayerManager : CharacterBody3D
 			_attackStateMachine = value;
 			AttackStateMachine.Parent = this;
 			AttackStateMachine.ParentManager = this;
-			AttackStateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
 		}
 	}
 	[Export] public PackedScene jumpVFX, slideBoostVFX;
 
 	public override void _Ready()
 	{
-		//Input.GetActionStrength
 		
+
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
+		
+		mesh = GetNode<Node3D>("PlayerMesh");
+		GD.Print($"Player mesh assigned: {mesh != null}");
+		
+		// Now set mesh on the state machines after everything is ready
+		if (StateMachine != null)
+		{
+			StateMachine.parentMesh = mesh;
+			GD.Print($"Movement SM parentMesh set: {StateMachine.parentMesh != null}");
+		}
+		if (AttackStateMachine != null)
+		{
+			AttackStateMachine.parentMesh = mesh;
+			GD.Print($"Attack SM parentMesh set: {AttackStateMachine.parentMesh != null}");
+		}
 	}
 
 	public override void _Process(double delta)

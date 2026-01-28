@@ -13,8 +13,8 @@ public partial class RavenStateMachine : Node
         get { return _raven; }
         set { _raven = value; }
     }
-    private PlayerManager _manager;
-	public PlayerManager PlayerManager //assign from parent script prior to _ready
+    private Player _manager;
+	public Player PlayerManager //assign from parent script prior to _ready
 	{
 		get { return _manager; }
 		set { _manager = value; }

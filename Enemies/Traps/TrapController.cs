@@ -11,7 +11,7 @@ public partial class TrapController : Node3D
     [Export] private float _triggerCooldown = 2f;
     private float triggerCooldown = 0;
     [Export] private bool autoTrap = false; //trap doesn't need or have a trigger
-    private PlayerManager player;
+    private Player player;
     private bool playerInRange = false;
     public override void _Ready()
     {
@@ -31,7 +31,7 @@ public partial class TrapController : Node3D
     private async void AssignPlayer()
     {
         await ToSignal(GetTree().GetCurrentScene(), Node.SignalName.Ready);
-        player = GetTree().GetCurrentScene().GetNode<PlayerManager>("%Player");
+        player = GetTree().GetCurrentScene().GetNode<Player>("%Player");
     }
 
     public override void _PhysicsProcess(double delta)

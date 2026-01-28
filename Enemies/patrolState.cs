@@ -11,8 +11,8 @@ public partial class patrolState : State
    
     public override void Enter()
     {
-        GD.Print("Entered Patrol State");
-        ec.speed = ec.walkspeed;
+        //GD.Print("Entered Patrol State");
+        ec.Velocity = new Vector3(ec.maxWalkSpeed, 0, 0);
         SetNewPatrolDirection();
     }
    
@@ -50,7 +50,7 @@ public partial class patrolState : State
         {
             bobTimer += delta;
             float bobOffset = Mathf.Sin(bobTimer * bobSpeed) * bobAmount;
-            verticalVelocity = patrolDirection.Y * ec.speed + bobOffset;
+            verticalVelocity = patrolDirection.Y * new Vector3(0, ec.maxWalkSpeed, 0).Y + bobOffset;
         }
         else
         {
@@ -58,7 +58,7 @@ public partial class patrolState : State
         }
        
         ec.Velocity = new Godot.Vector3(
-            patrolDirection.X * ec.speed,
+            patrolDirection.X * new Vector3(ec.maxWalkSpeed, 0, 0).X,
             verticalVelocity,
             0
         );
@@ -122,6 +122,6 @@ public partial class patrolState : State
             }
         }
        
-        GD.Print($"New patrol direction: {patrolDirection}, duration: {patrolDuration}");
+        //GD.Print($"New patrol direction: {patrolDirection}, duration: {patrolDuration}");
     }
 }

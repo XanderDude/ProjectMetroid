@@ -12,7 +12,7 @@ public partial class aggroState : State
     public override void Enter()
     {
         GD.Print("Entered Aggro State");
-        ec.speed = ec.runspeed;
+        ec.Velocity = new Vector3(ec.maxRunSpeed, 0, 0);
         outOfRangeTimer = 0f;
 
 		if (ec.ray != null)
@@ -73,7 +73,7 @@ public partial class aggroState : State
 				verticalVelocity = jumpForce;
 
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * new Vector3(ec.maxRunSpeed, 0, 0).X,
 					verticalVelocity,
 					0
 				);
@@ -91,7 +91,7 @@ public partial class aggroState : State
 				{
 					// Turn around and go right
 					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.speed),
+						Mathf.Abs(ec.Velocity.X),
 						verticalVelocity,
 						0
 					);
@@ -102,7 +102,7 @@ public partial class aggroState : State
 				{
 					// Move right
 					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.speed),
+						Mathf.Abs(ec.Velocity.X),
 						verticalVelocity,
 						0
 					);
@@ -113,7 +113,7 @@ public partial class aggroState : State
 					if (edgeTurnCooldown <= 0)
 					{
 						ec.Velocity = new Godot.Vector3(
-							-Mathf.Abs(ec.speed),
+							-Mathf.Abs(ec.Velocity.X),
 							verticalVelocity,
 							0
 						);
@@ -122,7 +122,7 @@ public partial class aggroState : State
 					{
 						// Still in cooldown - keep moving right
 						ec.Velocity = new Godot.Vector3(
-							Mathf.Abs(ec.speed),
+							Mathf.Abs(ec.Velocity.X),
 							verticalVelocity,
 							0
 						);
@@ -132,10 +132,10 @@ public partial class aggroState : State
 			//JUMP ACROSS GAP CASE
 			else if (isHitEdge(ec.edgeray) && ec.IsOnFloor())
 			{
-				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * ec.jumpmaxheight);
+				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * ec.maxJumpHeight);
 
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * ec.Velocity.X,
 					verticalVelocity,
 					0
 				);
@@ -147,7 +147,7 @@ public partial class aggroState : State
 			else
 			{
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * new Vector3(ec.maxWalkSpeed, 0, 0).X,
 					verticalVelocity,
 					0
 				);
@@ -182,7 +182,7 @@ public partial class aggroState : State
 			}
 
 			float obstacleHeight = collider.GlobalPosition.Y + (boxShape.Size.Y / 2) - ec.GlobalPosition.Y;
-			if (ec.jumpmaxheight > obstacleHeight && ec.player.GlobalPosition.Y - ec.GlobalPosition.Y > 0.0f)
+			if (ec.maxJumpHeight > obstacleHeight && ec.player.GlobalPosition.Y - ec.GlobalPosition.Y > 0.0f)
 			{
 				
 				jumpForce = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * (obstacleHeight + 5.0f));

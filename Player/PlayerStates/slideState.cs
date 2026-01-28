@@ -41,8 +41,9 @@ public partial class slideState : State
 	}
 
 	public override void Exit()
-	{
-		player.Set(PlayerManager.PropertyName.slideBoost, false);
+	{	 
+		if (parentMesh == null) return;
+		player.Set(Player.PropertyName.slideBoost, false);
 		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 		else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
 	}
@@ -84,7 +85,7 @@ public partial class slideState : State
 	{
 		Vector3 velocity = player.Velocity;
 
-		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+		if ((bool)player.Get(Player.PropertyName.slideBoost))
 		{
 			currentSlideSpeed = Mathf.MoveToward(currentSlideSpeed, 0, delta * slideDeceleration);
 		}
@@ -109,7 +110,7 @@ public partial class slideState : State
         	}
 			else
             {
-				player.Set(PlayerManager.PropertyName.jumpQueued, true);
+				player.Set(Player.PropertyName.jumpQueued, true);
 				msm.TransitionTo("jumpState");
 			}
 		}

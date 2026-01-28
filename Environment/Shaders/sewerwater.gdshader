@@ -50,7 +50,7 @@ vec4 snap_to_position(vec4 base_position)
 void vertex() {
 	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
 	vec4 snapped_position = snap_to_position(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
-	
+
 
 	TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
 	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.y);
@@ -67,7 +67,7 @@ void vertex() {
 	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * 0.01;
 	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
 	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
-	
+
 	POSITION = snapped_position;
 }
 

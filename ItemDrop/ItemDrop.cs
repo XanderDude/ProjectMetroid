@@ -31,7 +31,7 @@ public partial class ItemDrop : RigidBody3D
     {
         itemName = upgrade.ToString();
 
-        if (body is PlayerManager player)
+        if (body is Player player)
         {
             area.CollisionMask = 0;
             GD.Print($"Player picked up {itemName}");
