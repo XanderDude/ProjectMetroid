@@ -22,7 +22,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private string HangingStateName;
 	[Export] private float _aimingMaxTime = 2f; //how long shoot anim lasts before resetting to default
 	private float aimingTimer = 99f; //set to -1 to constantly aim, no timer
-	private float currentSpeed;
+	private float currentRunSpeed, currentVerticalSpeed;
 	public float newMeshRotation = 90f;//ex: -90 for left, 90 for right
 	private float _meshRotationDegrees = 90f; //how much to rotate
 	private SVector2 aimDirection = SVector2.Zero; //angle to position shooting arm during aiming mode
@@ -39,14 +39,14 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	{
 		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
 
-		if (currentSpeed != 0 || aimingTimer < _aimingMaxTime) //always exit idle when moving or aiming
+		if (currentRunSpeed != 0 || aimingTimer < _aimingMaxTime) //always exit idle when moving or aiming
 		{
 			animTree.Set("parameters/conditions/ExitIdle", true);
 			animTree.Set("parameters/conditions/EnterIdle", false);
 			if (aimingTimer != -1 ) //use timer if not -1
 			{
 				aimingTimer += (float)delta;
-				if (currentSpeed != 0 && aimingTimer > 0.5f) aimingTimer = 0.5f; //reset timer when moving
+				if (currentRunSpeed != 0 && aimingTimer > 0.5f) aimingTimer = 0.5f; //reset timer when moving
 			} 
 		}
 		else
@@ -56,8 +56,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
         }
 
 		//find the value between current speed and desired speed
-		currentSpeed = Mathf.Clamp(Mathf.MoveToward(currentSpeed, Mathf.Abs(player.Velocity.X), transitionSpeed * (float)delta), 0, 1f);
-
+		currentRunSpeed = Mathf.Clamp(Mathf.MoveToward(currentRunSpeed, Mathf.Abs(player.Velocity.X), transitionSpeed * (float)delta), 0, 1f);
+		currentVerticalSpeed = Mathf.Clamp(Mathf.MoveToward(currentVerticalSpeed, player.Velocity.Y, transitionSpeed * (float)delta), -1f, 1f);
+		animTree.Set("parameters/Jumping/BlendSpace1D/blend_position", currentVerticalSpeed);
+		
 		if (pm.StateMachine._currentState.Name != "mantleState" && pm.StateMachine._currentState.Name != "slideState" 
 		&& pm.StateMachine._currentState.Name != "walljumpState" //states to ignore rotation changes
 		&& pm.aimDirection.X != 0 && newMeshRotation != _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X))
@@ -74,10 +76,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 			RotationDegrees = new Vector3(0, rotation, 0);
 		}
 
-		animTree.Set(RunSpeedBlendPath, currentSpeed * runBlendSpeed); //always blend animation tree with current speed
-		animTree.Set(LegAndArmBlendBlendPath, currentSpeed);
+		animTree.Set(RunSpeedBlendPath, currentRunSpeed * runBlendSpeed); //always blend animation tree with current speed
+		animTree.Set(LegAndArmBlendBlendPath, currentRunSpeed);
 		
-		float yOffset = .2f * currentSpeed;
+		float yOffset = .2f * currentRunSpeed;
 		SVector2 newAimDirect = new SVector2(pm.aimDirection.X, pm.aimDirection.Y + yOffset);
 		/*if (Input.IsActionPressed("Aim"))
 		{
@@ -94,9 +96,10 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		}
 	}
 
-	public void BeginJump()
+	public void Airborne(bool jump)
 	{
 		playback?.Start(JumpStateName);
+		if (jump) animTree.Set("parameters/Jumping/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
 	}
 
 	public void Grounded()
@@ -178,7 +181,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		animTree.Set(LegAndArmBlendBlendPath, 0f);
 		
 		// Reset internal values
-		currentSpeed = 0f;
+		currentRunSpeed = 0f;
 		aimingTimer = 0f;
 		aimDirection = SVector2.Zero;
 	}

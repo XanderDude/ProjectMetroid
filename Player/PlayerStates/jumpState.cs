@@ -114,7 +114,7 @@ public partial class jumpState : State
 			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(pm.jumpQueued);
 	}
 
 	public override void Exit()
@@ -180,6 +180,7 @@ public partial class jumpState : State
 			Vector3 point = pm.groundCheck.GetCollisionPoint(i);
 			floorY = Mathf.Max(floorY, point.Y);
 		}
+		GD.Print($"Floor: {floorY}. Player pos: {player.GlobalPosition.Y}.");
 		return floorY;
     }
 

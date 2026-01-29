@@ -17,6 +17,10 @@ StandUpBlocked 390-400
 SlideAimUp 405-410
 SlideAimUpBack 415-420
 SlideAimBack 425-430
+JumpStart 435-440
+AirborneNeutral 445-450
+AirborneFalling 455-460
+Landing 460-480
 
 Raven Animations:
 0 idle

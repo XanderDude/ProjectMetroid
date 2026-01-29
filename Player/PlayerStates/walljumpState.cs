@@ -54,7 +54,7 @@ public partial class walljumpState : State
 		jumpHeight = 0.0f;
 		startPosition = player.GlobalPosition.Y;
 		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(true);
 	}
 	
 	public override void Exit()
