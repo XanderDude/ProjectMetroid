@@ -14,7 +14,7 @@ public partial class DebugFriend : CanvasLayer
 
     private Label healthlabel => GetNode<Label>("Health");
     
-    private ItemDrop.Upgrade selected;
+    private ItemFriend.Upgrade selected;
 
     private string selectedRoom;
 
@@ -43,7 +43,7 @@ public partial class DebugFriend : CanvasLayer
         
         
 
-        foreach (string name in Enum.GetNames(typeof(ItemDrop.Upgrade)))
+        foreach (string name in Enum.GetNames(typeof(ItemFriend.Upgrade)))
         {
             upgradeselectorbutton.AddItem(name);
         }
@@ -118,7 +118,7 @@ public partial class DebugFriend : CanvasLayer
 
     private void OnDropdownItemSelected(long index)
     {
-        selected = (ItemDrop.Upgrade)index;
+        selected = (ItemFriend.Upgrade)index;
         //GD.Print($"Selected: {selected}");     
         upgradeselectorbutton.ReleaseFocus();
     }

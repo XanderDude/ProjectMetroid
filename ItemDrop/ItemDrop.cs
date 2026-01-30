@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ItemDrop : RigidBody3D
+public partial class ItemFriend : RigidBody3D
 {
     public float timer = 0.0f;
     public enum Type { Upgrade, Consumables, Health}
@@ -54,6 +54,22 @@ public partial class ItemDrop : RigidBody3D
 
 
 
+    }
+
+     private void SpawnItem(Vector3 dropPosition, PackedScene itemScene)
+      {
+
+        var itemDropNode = itemScene.Instantiate();
+                if (itemDropNode is ItemFriend itemDrop)
+                {
+                    GetParent().AddChild(itemDrop);
+                    itemDrop.GlobalPosition = dropPosition;
+                }
+                else
+                {
+                    GD.PrintErr("Missing item drop scene reference");
+                    itemDropNode.QueueFree();
+                }
     }
     private async void DespawnItem()
     {
