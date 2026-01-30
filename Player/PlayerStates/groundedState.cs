@@ -17,9 +17,10 @@ public partial class groundedState : State
 	}
 	public override void Enter()
 	{
+		player.ApplyFloorSnap();
 		walkOffCDTimer = 0;
 		pm.slideBoost = false;
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// && pm.vertColCheck.shape.GetClosestCollisionUnsafeFraction() < 0.1f)
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0)
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
 			msm.TransitionTo("crouchState");
@@ -30,11 +31,12 @@ public partial class groundedState : State
 	
 	public override void Exit()
     {
-        pm.vertColCheck.ForceUpdateTransform();
+        pm.vertColCheck.shape.ForceShapecastUpdate();
     }
 
 	public override void PhysicsUpdate(float delta)
 	{
+		player.ApplyFloorSnap();
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
@@ -90,7 +92,8 @@ public partial class groundedState : State
 	{
 		//int input = Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")); //get absolute value of input (no negative), round up, multiply by sign to get direction
 		Vector3 velocity = player.Velocity;
-		velocity.Y -= _gravity * delta;
+		velocity.Y = 0;
+		//velocity.Y -= _gravity * delta;
 		if (Input.IsActionPressed("Aim"))
         {
             velocity.X = Mathf.MoveToward(velocity.X, 0, delta + groundAcceleration);

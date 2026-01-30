@@ -20,12 +20,13 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	[Export] private string SlideStateName;
 	[Export] private string CrouchStateName;
 	[Export] private string HangingStateName;
-	[Export] private float _aimingMaxTime = 2f; //how long shoot anim lasts before resetting to default
+	[Export] private float _aimingMaxTime = 30f; //how long shoot anim lasts before resetting to default
 	private float aimingTimer = 99f; //set to -1 to constantly aim, no timer
 	private float currentRunSpeed, currentVerticalSpeed;
 	public float newMeshRotation = 90f;//ex: -90 for left, 90 for right
 	private float _meshRotationDegrees = 90f; //how much to rotate
 	private SVector2 aimDirection = SVector2.Zero; //angle to position shooting arm during aiming mode
+	[Export] private CollisionShape3D physicsCollider;
 
 	public override void _Ready()
 	{
@@ -105,7 +106,16 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	public void Grounded()
 	{
 		if (playback?.GetCurrentNode() != "Idle") playback?.Travel(RunningStateName);
+		//SetGroundedColliders();
 	}
+	public void SetGroundedColliders()
+    {
+		GD.Print("Updating collider");
+        physicsCollider.Position = new(0,8.5f,0);
+		var shape = (BoxShape3D)physicsCollider.Shape;
+		shape.Size = new(0.45f,1.7f,0.5f);
+		physicsCollider.ForceUpdateTransform();
+    }
 
 	public void Sliding(bool value) //value = slide true or sliding false
 	{
@@ -114,7 +124,12 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		{
 			playback?.Travel(SlideStateName); //only transition to slide when true
 			RotationDegrees = new Vector3(0, newMeshRotation, 0);
+			//Tilt mesh on ramps?
+
+			//physicsCollider.Position = new(pm.facingDirection*0.2f,0.48f,0);
+			//physicsCollider.ForceUpdateTransform();
 		}
+		//else physicsCollider.Position = new(0,0.85f,0);
 	}
 
 	public void RotateMesh(int direction)
@@ -137,9 +152,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void StandingBlocked()
     {
-		GD.Print("Play Stand blocked animation");
 		animTree.Set("parameters/Crouching/OneShot_StandBlock/request", (int)AnimationNodeOneShot.OneShotRequest.Fire); //fire = 1
-		GD.Print("Stand blocked animation played");
     }
 
 	public void Hanging()

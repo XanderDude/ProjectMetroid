@@ -18,7 +18,6 @@ public partial class jumpState : State
 	private bool neutralJump = false;
 	private bool cancelVelocity = true;
 	public float meshTop = 0.0f;
-
 	private const float PLAYER_AND_MESH_OFFSET = 0.2f; //to account for difference in player origin and mesh origin
 
 	private bool isTouching() {
@@ -104,7 +103,7 @@ public partial class jumpState : State
 
 	public override void Enter()
 	{
-		cancelVelocity = true;
+		//cancelVelocity = true;
 		if (pm.jumpQueued)//jump state entered due to player jumping
 		{
 			if (pm.jumpVFX != null && msm._previousState.Name != "mantleState") pm.SpawnJumpCloud(0,0);
@@ -113,7 +112,7 @@ public partial class jumpState : State
 			SoundFriend.Play("player_jump_SFX");
 			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
-		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
+		pm.slideBoost = true; //player must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(pm.jumpQueued);
 	}
 
@@ -123,11 +122,9 @@ public partial class jumpState : State
 		pm.jumpQueued = false; //don't jump on exit if holding jump
 	}
 
-
 	public override void PhysicsUpdate(float delta)
 	{
 		mantleTimer += delta;
-
 
 		//1. Check player input for canceling jump early
 		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
@@ -140,19 +137,29 @@ public partial class jumpState : State
 		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity(); //position rounded to two decimal places
 		
 		HandleAirMovement(delta);
-		
+
 		//3. Perform collision checks prior to move and slide, but after HandleAirMovement()
 		if (!pm.jumpQueued && player.IsOnFloor())
         {
 			player.Velocity = new Vector3(player.Velocity.X, 0, 0); //keep horizontal, reset vertical
 			var ground = GetFloorYPosition();
 			player.GlobalPosition = new Vector3(player.GlobalPosition.X, ground, player.GlobalPosition.Z);
-
-            if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0) {
+			//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).SetGroundedColliders();
+            if (Input.IsActionPressed("Slide") && pm.aimDirection.X != 0) 
+			{
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
 				msm.TransitionTo("slideState");
 			}
-			else if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) msm.TransitionTo("crouchState");
-			else msm.TransitionTo("groundedState");
+			else if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
+			{
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+				msm.TransitionTo("crouchState");
+			}
+			else 
+			{
+				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+				msm.TransitionTo("groundedState");
+			}
         }
 		else if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling") && mantleTimer >= _mantleCooldown && pm.aimDirection.X != 0 && isSameHeight()) //player must be pressing towards ledge, player top reset, and in range of ledge height
 		{
@@ -175,12 +182,12 @@ public partial class jumpState : State
 	private float GetFloorYPosition()
     {
 		float floorY = player.GlobalPosition.Y;
-        for (int i = 0; i < pm.groundCheck.GetCollisionCount(); i++)
+		floorY = player.GlobalPosition.Y - pm.groundCheck.GetClosestCollisionSafeFraction();
+		for (int i = 0; i < pm.groundCheck.GetCollisionCount(); i++)
 		{
 			Vector3 point = pm.groundCheck.GetCollisionPoint(i);
 			floorY = Mathf.Max(floorY, point.Y);
 		}
-		GD.Print($"Floor: {floorY}. Player pos: {player.GlobalPosition.Y}.");
 		return floorY;
     }
 

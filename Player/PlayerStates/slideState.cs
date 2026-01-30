@@ -38,6 +38,7 @@ public partial class slideState : State
 		}
 		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
+		player.ApplyFloorSnap();
 	}
 
 	public override void Exit()
@@ -49,8 +50,8 @@ public partial class slideState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		slideTimer += delta;
-
-		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor()) //immediately switch to jump state
+		player.ApplyFloorSnap();
+		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
 			return;
@@ -84,7 +85,7 @@ public partial class slideState : State
 	{
 		Vector3 velocity = player.Velocity;
 
-		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+		if (pm.slideBoost)
 		{
 			currentSlideSpeed = Mathf.MoveToward(currentSlideSpeed, 0, delta * slideDeceleration);
 		}
@@ -105,7 +106,6 @@ public partial class slideState : State
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
             {
 				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
-				GD.Print("Jump Blocked");
         	}
 			else
             {
