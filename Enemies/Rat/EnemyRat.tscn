@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=13 format=3 uid="uid://h08w3a132xks"]
 
-[ext_resource type="Script" uid="uid://cvinl0vangl1a" path="res://Enemies/EnemyController.cs" id="1_tysk3"]
+[ext_resource type="Script" uid="uid://6yn16y46yem2" path="res://Enemies/Enemy.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="2_oempk"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_icv41"]
@@ -19,34 +19,29 @@ size = Vector3(0.743164, 0.723022, 1.56396)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
 size = Vector3(2.38171, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu7f2"]
-albedo_color = Color(0.242411, 0.949085, 0.721341, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ut63f"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut63f"]
-albedo_color = Color(1, 0.392157, 1, 0.0705882)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tu7f2"]
-
-[node name="EnemyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "ray", "statemachine")]
+[node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "statemachine", "ray")]
 collision_layer = 8
 collision_mask = 19
+axis_lock_linear_x = true
+axis_lock_linear_y = true
 script = ExtResource("1_tysk3")
+mesh = NodePath("Rat")
+navagent = NodePath("NavigationAgent3D")
+statemachine = NodePath("EnemyStateMachine")
+ray = NodePath("Beam")
+item1 = ExtResource("2_oempk")
+item2 = ExtResource("3_oempk")
 health = 80
 itemdropamount = 3
 dropRate1 = 75
 dropRate2 = 33
-mesh = NodePath("Rat")
-ray = NodePath("Beam")
-item1 = ExtResource("2_oempk")
-item2 = ExtResource("3_oempk")
-statemachine = NodePath("EnemyStateMachine")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PhysicalCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)
 shape = SubResource("BoxShape3D_icv41")
 
@@ -90,18 +85,6 @@ monitorable = false
 [node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
 shape = SubResource("BoxShape3D_ut63f")
-
-[node name="PatrolCollision" type="MeshInstance3D" parent="."]
-transform = Transform3D(11.7, 0, 0, 0, 4.37, 0, 0, 0, 1, 0, 1, 0)
-material_override = SubResource("StandardMaterial3D_tu7f2")
-transparency = 1.0
-mesh = SubResource("BoxMesh_ut63f")
-
-[node name="ActiveCollision" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.4, 0, 0, 0, 2.64, 0, 0, 0, 1, 0, 0.925972, 0)
-material_override = SubResource("StandardMaterial3D_ut63f")
-transparency = 1.0
-mesh = SubResource("BoxMesh_tu7f2")
 
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]

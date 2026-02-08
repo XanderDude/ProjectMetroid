@@ -12,7 +12,7 @@ public partial class aggroState : State
     public override void Enter()
     {
         GD.Print("Entered Aggro State");
-        ec.speed = ec.runspeed;
+        ec.IDLE = ec.runspeed;
         outOfRangeTimer = 0f;
 
 		if (ec.ray != null)
@@ -73,7 +73,7 @@ public partial class aggroState : State
 				verticalVelocity = jumpForce;
 
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * ec.IDLE,
 					verticalVelocity,
 					0
 				);
@@ -91,7 +91,7 @@ public partial class aggroState : State
 				{
 					// Turn around and go right
 					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.speed),
+						Mathf.Abs(ec.IDLE),
 						verticalVelocity,
 						0
 					);
@@ -102,7 +102,7 @@ public partial class aggroState : State
 				{
 					// Move right
 					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.speed),
+						Mathf.Abs(ec.IDLE),
 						verticalVelocity,
 						0
 					);
@@ -113,7 +113,7 @@ public partial class aggroState : State
 					if (edgeTurnCooldown <= 0)
 					{
 						ec.Velocity = new Godot.Vector3(
-							-Mathf.Abs(ec.speed),
+							-Mathf.Abs(ec.IDLE),
 							verticalVelocity,
 							0
 						);
@@ -122,7 +122,7 @@ public partial class aggroState : State
 					{
 						// Still in cooldown - keep moving right
 						ec.Velocity = new Godot.Vector3(
-							Mathf.Abs(ec.speed),
+							Mathf.Abs(ec.IDLE),
 							verticalVelocity,
 							0
 						);
@@ -135,7 +135,7 @@ public partial class aggroState : State
 				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * ec.jumpmaxheight);
 
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * ec.IDLE,
 					verticalVelocity,
 					0
 				);
@@ -147,7 +147,7 @@ public partial class aggroState : State
 			else
 			{
 				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.speed,
+					directionToPlayer * ec.IDLE,
 					verticalVelocity,
 					0
 				);

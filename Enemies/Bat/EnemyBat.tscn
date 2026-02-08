@@ -34,9 +34,9 @@ collision_mask = 19
 script = ExtResource("1_m2cak")
 health = 30
 isFlying = true
+item1 = ExtResource("2_glgse")
 mesh = NodePath("BatFly")
 ray = NodePath("Beam")
-item1 = ExtResource("2_glgse")
 edgeray = NodePath("EdgeBeam")
 statemachine = NodePath("EnemyStateMachine")
 
@@ -84,10 +84,10 @@ debug_shape_thickness = 5
 [node name="BatFly" parent="." instance=ExtResource("7_il1qx")]
 
 [node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(1.15413, -0.214856, -0.933712, 0.940722, 0.531367, 1.04052, 0.18172, -1.38618, 0.543591, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.124547, -0.748491, -1.29393, 1.49173, 0.145703, 0.059302, 0.0960951, -1.29172, 0.756462, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(1.15413, 0.214856, 0.933712, -0.940722, 0.531367, 1.04052, -0.18172, -1.38618, 0.543591, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.124547, 0.748491, 1.29393, -1.49173, 0.145703, 0.059302, -0.0960951, -1.29172, 0.756462, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BatFly")

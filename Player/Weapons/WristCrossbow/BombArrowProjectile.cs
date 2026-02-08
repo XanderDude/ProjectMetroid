@@ -37,7 +37,7 @@ public partial class BombArrowProjectile : RigidBody3D
 			{
 				var collider = state.GetContactColliderObject(i);
 				
-				if (collider is EnemyController enemy)
+				if (collider is Enemy enemy)
 				{
 					//enemy.DamagedRecieved(damage);
 				}
@@ -75,7 +75,7 @@ public partial class BombArrowProjectile : RigidBody3D
 
 	private void EnemyCollisionEntered(Node3D body)
 	{
-		if (body is EnemyController enemy)
+		if (body is Enemy enemy)
 		{
 			GD.Print("Bomb dealing damage via body entered");
 			enemy.DamagedRecieved(damage);

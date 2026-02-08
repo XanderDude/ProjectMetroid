@@ -30,7 +30,7 @@ public partial class NormalArrow : RigidBody3D
 			{
 				var collider = state.GetContactColliderObject(i);
 				
-				if (collider is EnemyController enemy && !targetsDamaged.Contains(enemy))
+				if (collider is Enemy enemy && !targetsDamaged.Contains(enemy))
 				{
 					enemy.DamagedRecieved(damage);
 					targetsDamaged.Add(enemy);

@@ -1,37 +1,22 @@
 using Godot;
 using System;
 
-public partial class EnemyController : CharacterBody3D
+public partial class Enemy : Actor
 {
-	[ExportGroup("Enemy Stats")]
-	[Export] public int health = 100;
-	[Export] public int itemdropamount = 1;
-	[Export] private int dropRate1 = 100, dropRate2 = 0;
-	[Export] public float runspeed { get; set; } = 2.5f;
-	[Export] public float walkspeed { get; set; } = 1.0f;
-	[Export] public float idle { get; set; } = 0f;
-	[Export] public float acceleration { get; set; } = 0.1f;
-	[Export] public float jumpmaxheight { get; set; } = 10.0f;
-	[Export] public int  damagedealt { get; set; } = 15;
-	[Export] public float damagecooldown { get; set; } = 0.5f;
-	[Export] public float gravity { get; set; } = -9.8f;
-	[Export] public float attackspeed { get; set; } = 1.0f;
-	[Export] public float attackknockback { get; set; } = 5;
-	[Export] public float damageovertime { get; set; } = 0f;
-	[Export] public float detectionrange { get; set; } = 10f;
 	[Export] public bool isFlying = false;
 
-	[ExportGroup("Node References")]
+	[ExportGroup("EnemyReferences")]
 	[Export] public Node3D mesh;
-	private float meshDirection = -90f;
-	public PlayerManager player => GameFriend.gameinstance.player;
+	[Export] public NavigationAgent3D navagent;
+	[Export] public EnemyStateMachine statemachine { get; private set; }
+	
 	[Export] public RayCast3D ray;
 	[Export] public PackedScene item1, item2;
 
 	[Export] public RayCast3D edgeray;
-	[Export] public EnemyStateMachine statemachine { get; private set; }
 	[Export] public PackedScene projectilescene = null;
-	public float speed = 0.0f;
+	private float meshDirection = -90f;
+	public PlayerManager player => GameFriend.gameinstance.player;
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
@@ -39,7 +24,6 @@ public partial class EnemyController : CharacterBody3D
 
 	public override void _Ready()
 	{
-		if (player == null) GD.Print("Player not assigned");
 		meshDirection = mesh.RotationDegrees.Y;
     }
 
@@ -150,34 +134,6 @@ public partial class EnemyController : CharacterBody3D
 		}
 	}
 
-
-
-
-	public int GetRandomSign()
-	{
-		Random rand = new Random();
-		return rand.Next(0, 2) == 0 ? -1 : 1;
-	}
-
-	public int GetRandom1234()
-	{
-		Random rnd = new Random();
-	
-		return rnd.Next(1, 5); 
-	}
-
-
-	public float GetRandomNumber()
-	{
-	return GD.RandRange(5, 9);
-	}
-
-
-	public void initBounds()
-	{
-
-		
-	}
 	
 	public bool CurrentDirection()
 	{
