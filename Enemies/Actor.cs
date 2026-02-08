@@ -17,6 +17,8 @@ public partial class Actor : CharacterBody3D
 	[Export] public int  damagedealt { get; set; } = 15;
 	[Export] public float damagecooldown { get; set; } = 0.5f;
 	[Export] public float gravity { get; set; } = -9.8f;
+
+    public Vector3 GravityVector => new Vector3(0, gravity, 0);
 	[Export] public float attackspeed { get; set; } = 1.0f;
 	[Export] public float attackknockback { get; set; } = 5;
 	[Export] public float damageovertime { get; set; } = 0f;

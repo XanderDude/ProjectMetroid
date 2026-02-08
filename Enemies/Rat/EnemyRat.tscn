@@ -22,8 +22,7 @@ size = Vector3(2.38171, 1, 1)
 [node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "statemachine", "ray")]
 collision_layer = 8
 collision_mask = 19
-axis_lock_linear_x = true
-axis_lock_linear_y = true
+axis_lock_linear_z = true
 script = ExtResource("1_tysk3")
 mesh = NodePath("Rat")
 navagent = NodePath("NavigationAgent3D")
@@ -37,6 +36,8 @@ dropRate1 = 75
 dropRate2 = 33
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.1
+debug_enabled = true
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -86,6 +87,7 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
 shape = SubResource("BoxShape3D_ut63f")
 
+[connection signal="navigation_finished" from="NavigationAgent3D" to="EnemyStateMachine/patrolState" method="_on_navigation_agent_3d_navigation_finished"]
 [connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
 [connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]
 

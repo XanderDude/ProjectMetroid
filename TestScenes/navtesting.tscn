@@ -16,11 +16,9 @@ shader_parameter/colors = 16
 shader_parameter/dither_size = 1
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_egr1a"]
-vertices = PackedVector3Array(-12.75, 1.5, -2, -9.25, 1.5, -2, -9.25, 1.5, -4, -7.25, 1.5, -4.25, -7.25, 1.5, -7.75, -12.75, 1.5, -7.75, -6, 1.5, 5.5, -7.5, 1.5, 5.5, -7.5, 1.5, 5.75, 12.75, 1.5, 5.75, -5.5, 1.5, -4, 12.75, 1.5, -7.75, -5.5, 1.5, 5, -6.5, 2.5, -1, -6, 2.5, -1, -6, 2.5, -3.75, -8.75, 2.5, -3.75, -8.75, 2.5, -1, -8.25, 2.5, -1, -9.25, 1.5, 5.25, -12.75, 1.5, 5.75, -6.5, 2.5, 4, -6, 2.5, 5, -8, 2.5, 4.5, -8.75, 2.5, 5, -7.75, 3.5, -0.75, -7.75, 3.5, 4, -7, 3.5, 4, -7, 3.5, -0.75)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 0), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(3, 4, 10), PackedInt32Array(10, 4, 11), PackedInt32Array(12, 10, 9), PackedInt32Array(9, 10, 11), PackedInt32Array(9, 6, 12), PackedInt32Array(15, 14, 13), PackedInt32Array(18, 17, 16), PackedInt32Array(18, 16, 13), PackedInt32Array(13, 16, 15), PackedInt32Array(7, 8, 19), PackedInt32Array(19, 8, 20), PackedInt32Array(1, 19, 0), PackedInt32Array(0, 19, 20), PackedInt32Array(13, 14, 21), PackedInt32Array(21, 14, 22), PackedInt32Array(18, 23, 17), PackedInt32Array(17, 23, 24), PackedInt32Array(21, 22, 23), PackedInt32Array(23, 22, 24), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26)]
-agent_height = 0.7
-agent_radius = 0.25
-agent_max_slope = 90.0
+vertices = PackedVector3Array(-9.5, 1.2, -4.25, -7.25, 1.2, -4.5, -7.25, 1.2, -7.5, -12.5, 1.2, -7.5, -12.5, 1.2, 5.5, -9.5, 1.2, 5.5, -5.25, 1.2, -4.25, 12.5, 1.2, -7.5, -5.5, 1.2, 5.5, 12.5, 1.2, 5.5, -8.5, 2.2, -3.5, -8.5, 2.2, -1.25, -6.5, 2.2, -1.5, -6.5, 2.2, -3.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11)]
+cell_height = 0.1
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gccg7"]
 
@@ -50,10 +48,10 @@ size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_enfwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.84945, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13651, 4.30869, 0)
 
 [node name="Rat" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_lo8t2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24698, 2.32696, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24698, 1.02631, 0)
 item1 = null
 item2 = null
 health = 100
