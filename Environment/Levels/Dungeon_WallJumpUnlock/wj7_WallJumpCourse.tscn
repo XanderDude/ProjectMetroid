@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfv7vfxl0ff8u"]
+[gd_scene load_steps=16 format=3 uid="uid://bfv7vfxl0ff8u"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_2cev0"]
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_f7hsf"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="3_lt58l"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="4_raaho"]
+[ext_resource type="PackedScene" uid="uid://ewqyu8m66x7l" path="res://Environment/Platforms/Stone2x2x2Block.tscn" id="5_lt58l"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="5_vd2c5"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="6_ob75b"]
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_oenow"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_1lb3i"]
 [ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="9_0et23"]
+[ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="10_f7hsf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -19,11 +21,6 @@ size = Vector3(19, 0.5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f7hsf"]
 size = Vector3(4, 0.5, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
-albedo_color = Color(1, 1, 0, 1)
-emission_enabled = true
-emission = Color(1, 1, 0, 1)
 
 [node name="wj1_SaveRoom" type="Node3D"]
 
@@ -446,186 +443,6 @@ skeleton = NodePath("../..")
 [node name="stoneWallLeft" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh2" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh3" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh4" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh6" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh7" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh8" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh9" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh10" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh11" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh13" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh14" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh15" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh12" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh16" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh17" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh18" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh19" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh20" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh29" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh30" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh31" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh32" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh33" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh34" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 2)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh35" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh36" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 8, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh37" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 0)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
-[node name="StoneWallMesh38" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 4)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("")
-
 [node name="StonePillarMesh" type="MeshInstance3D" parent="stoneWallLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 material_override = ExtResource("2_f7hsf")
@@ -662,53 +479,8 @@ material_override = ExtResource("2_f7hsf")
 mesh = ExtResource("3_lt58l")
 skeleton = NodePath("../..")
 
-[node name="StoneWallMesh21" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.0005, 2.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh22" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.00025, 4.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh23" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000498533, 2.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh24" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000249386, 4.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh25" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.9995, 2.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh26" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.99975, 4.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh27" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.9995, 2.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
-
-[node name="StoneWallMesh28" type="MeshInstance3D" parent="stoneWallLeft"]
-transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.99975, 4.00019)
-material_override = ExtResource("2_f7hsf")
-mesh = ExtResource("4_raaho")
-skeleton = NodePath("../..")
+[node name="StoneBlock" parent="stoneWallLeft" instance=ExtResource("5_lt58l")]
+transform = Transform3D(0.299272, 0, 0, 0, 5.97991, 0, 0, 0, 5.03252, 0, 10.0675, -5)
 
 [node name="stoneWallRight" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8, 0, 0)
@@ -1926,12 +1698,26 @@ skeleton = NodePath("../..")
 
 [node name="Decorations" type="Node3D" parent="."]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108218, 0)
-visible = false
-radius = 0.986816
-height = 0.331055
-material = SubResource("StandardMaterial3D_nilwv")
-
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_0et23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="EnemyGroup" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91353, 0)
+
+[node name="EnemyBat" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46958, 2.21281, 0)
+
+[node name="EnemyBat2" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54395, 2.21281, 0)
+
+[node name="EnemyBat3" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01995, 3.03247, 0)
+
+[node name="EnemyBat4" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95354, 4.33435, 0)
+
+[node name="EnemyBat5" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16164, 4.55055, 0)
+
+[node name="EnemyBat6" parent="EnemyGroup" instance=ExtResource("10_f7hsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94559, 3.09019, 0)

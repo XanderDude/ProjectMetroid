@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://db8lip27mghef"]
+
+[ext_resource type="Material" uid="uid://dkbuj5t3d5kcu" path="res://Environment/Materials/ArchitectureStone_repeating_mat.tres" id="1_e0w5b"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2chpn"]
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1mai"]
+
+[node name="CSGBox3D" type="CSGBox3D"]
+material_override = ExtResource("1_e0w5b")
+size = Vector3(7.17017, 8.75293, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23517e-08, 0.558635, 0.515701)
+operation = 2
+radius = 0.57
+height = 2.65427
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.295, 0)
+mesh = SubResource("SphereMesh_2chpn")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCylinder3D"]
+transform = Transform3D(1.72863, 0, 0, 0, 0.3, 0, 0, 0, 0.403787, 0, 0, 0)
+mesh = SubResource("BoxMesh_c1mai")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGCylinder3D"]
+transform = Transform3D(1.72863, 0, 0, 0, 0.3, 0, 0, 0, 0.403787, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_c1mai")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGCylinder3D"]
+transform = Transform3D(1.72863, 0, 0, 0, 0.3, 0, 0, 0, 0.403787, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_c1mai")
