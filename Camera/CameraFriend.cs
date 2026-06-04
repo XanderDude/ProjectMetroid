@@ -100,4 +100,12 @@ public partial class CameraFriend : Camera3D
 		
 	}
 
+	public void ZoomTo(float targetDistance, float duration)
+	{
+		var tween = CreateTween();
+		tween.TweenProperty(this, "cameraDistance", targetDistance, duration)
+			.SetTrans(Tween.TransitionType.Sine)
+			.SetEase(Tween.EaseType.InOut);
+	}
+
 }

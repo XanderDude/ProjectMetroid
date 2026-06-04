@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class RavenAttackState : State
 {
+	public static event Action<Enemy> OnRavenSlashHit;
 	[Export] private int damage = 15;
 	private Area3D slashArea;
 	private Area3D slashHitboxes;
@@ -150,7 +151,13 @@ public partial class RavenAttackState : State
 		if (body is Enemy enemy)
 			{
 				//GD.Print("Dealing damage to enemy!");
+				
+				
+{
 				enemy.DamagedReceived(damage);
+				targetsDamaged.Add(body);
+				OnRavenSlashHit?.Invoke(enemy); // fire the event
+}
 				targetsDamaged.Add(body);
 				
 			}

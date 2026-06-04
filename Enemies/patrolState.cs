@@ -85,4 +85,9 @@ public partial class patrolState : State
     {
         substate = SubState.IDLE;
     }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        
+    }
 }

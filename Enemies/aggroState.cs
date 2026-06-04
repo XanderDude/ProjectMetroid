@@ -1,303 +1,173 @@
 using Godot;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 public partial class aggroState : State
 {
-    private float outOfRangeTimer = 0f;
-	private float outOfRangeDelay = 2f;
-	private float jumpForce = 0f;
-	private float edgeTurnCooldown = 0f;  
-    private const float EDGE_TURN_DELAY = 3.0f; 
+    private enum SubState { FLASH, LUNGE, KNOCKBACK, DONE }
+    private SubState substate = SubState.FLASH;
+
+	private float lungeAirborneTimer = 0f;
+	private bool hasLeftGround = false;
+    private float flashTimer = 0f;
+    private const float FLASH_DURATION = 0.8f;
+    private float flashIntervalTimer = 0f;
+    private const float FLASH_INTERVAL = 0.12f;
+
+
+    private OmniLight3D parryLight;
+    private bool parryHandled = false;
+
+    private float lightTweenTimer = 0f;
+    private bool lightGrowing = true;
+
+    private const float ORIGINAL_CAMERA_DISTANCE = 25f;
+    private const float ZOOM_DISTANCE = 20f;
+
     public override void Enter()
     {
-        GD.Print("Entered Aggro State");
-        ec.IDLE = ec.runspeed;
-        outOfRangeTimer = 0f;
+        substate = SubState.FLASH;
+        flashTimer = 0f;
+        flashIntervalTimer = 0f;
+        parryHandled = false;
+        lightTweenTimer = 0f;
+        lightGrowing = true;
 
-		if (ec.ray != null)
-		{
-			ec.ray.Enabled = true;
+        SpawnParryLight();
+        RavenAttackState.OnRavenSlashHit += OnSlashHitEnemy;
 
-		}
-		
+        if (GameFriend.gameinstance?.camera != null)
+            GameFriend.gameinstance.camera.ZoomTo(ZOOM_DISTANCE, 0.15f);
     }
-    
+
     public override void Exit()
     {
-        if (ec.ray != null)
-        {
-            ec.ray.Enabled = false;
-        }
-        outOfRangeTimer = 0f;
+        RavenAttackState.OnRavenSlashHit -= OnSlashHitEnemy;
+
+        if (IsInstanceValid(parryLight))
+            parryLight.QueueFree();
+        parryLight = null;
+
+        if (GameFriend.gameinstance?.camera != null)
+            GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.15f);
     }
-    
+
     public override void Update(float delta)
     {
-        // Check if player is out of range
-        if (!ec.isPlayerInRange(ec.detectionrange))
-        {
-            outOfRangeTimer += delta;
-            
-            if (outOfRangeTimer >= outOfRangeDelay)
-            {
-                
-                esm.TransitionTo("patrolState");
-            }
-        }
-        else
-        {
-            outOfRangeTimer = 0f;
-        }
+        if (substate == SubState.FLASH)
+            UpdateFlash(delta);
     }
-    
-   public override void PhysicsUpdate(float delta)
+
+    public override void PhysicsUpdate(float delta)
     {
-        if (ec.player != null)
+        ec.Velocity += ec.GravityVector * delta;
+
+        switch (substate)
         {
-            UpdateRaycastDirection();
-            
-            float directionToPlayer = Mathf.Sign(ec.player.GlobalPosition.X - ec.GlobalPosition.X);
-            bool shouldJump = ShouldJumpOverObstacle();
-            float verticalVelocity = ec.Velocity.Y + ec.gravity * delta;
-            
-            // Decrease cooldown timer
-            if (edgeTurnCooldown > 0)
-            {
-                edgeTurnCooldown -= delta;
-            }
+            case SubState.FLASH:
+                // Hold still during flash
+                ec.Velocity = new Vector3(0f, ec.Velocity.Y, 0f);
+                break;
 
-			// JUMP CASE
-			if (ec.ray.IsColliding() && shouldJump && ec.IsOnFloor() && !isUnderObstacle(ec.ray))
-			{
-				verticalVelocity = jumpForce;
-
-				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.IDLE,
-					verticalVelocity,
-					0
-				);
-
-			
-				edgeTurnCooldown = 0f;  // Reset cooldown
-			}
-			// UNDER OBSTACLE CASE
-			else if (ec.ray.IsColliding() && isUnderObstacle(ec.ray) && ec.IsOnFloor())
-			{
-				bool tryingToGoRight = isUnderObstacleLeadingDirection(ec.ray);
-
-				// If moving LEFT and hit edge, turn around (only if cooldown expired)
-				if (!tryingToGoRight && isHitEdge(ec.edgeray) && edgeTurnCooldown <= 0)
-				{
-					// Turn around and go right
-					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.IDLE),
-						verticalVelocity,
-						0
-					);
-					edgeTurnCooldown = EDGE_TURN_DELAY;  // Start cooldown
-					
-				}
-				else if (tryingToGoRight)
-				{
-					// Move right
-					ec.Velocity = new Godot.Vector3(
-						Mathf.Abs(ec.IDLE),
-						verticalVelocity,
-						0
-					);
-				}
-				else
-				{
-					// Move left (but only if not in cooldown)
-					if (edgeTurnCooldown <= 0)
-					{
-						ec.Velocity = new Godot.Vector3(
-							-Mathf.Abs(ec.IDLE),
-							verticalVelocity,
-							0
-						);
-					}
-					else
-					{
-						// Still in cooldown - keep moving right
-						ec.Velocity = new Godot.Vector3(
-							Mathf.Abs(ec.IDLE),
-							verticalVelocity,
-							0
-						);
-					}
-				}
-			}
-			//JUMP ACROSS GAP CASE
-			else if (isHitEdge(ec.edgeray) && ec.IsOnFloor())
-			{
-				verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * ec.jumpmaxheight);
-
-				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.IDLE,
-					verticalVelocity,
-					0
-				);
-
-				
-				edgeTurnCooldown = 0f;  // Reset cooldown
-			}
-			// NORMAL CASE
-			else
-			{
-				ec.Velocity = new Godot.Vector3(
-					directionToPlayer * ec.IDLE,
-					verticalVelocity,
-					0
-				);
-
-				edgeTurnCooldown = 0f;  // Reset when not under obstacle
-			}
+            case SubState.LUNGE:
+                UpdateLunge(delta);
+                break;
         }
     }
 
-	private bool ShouldJumpOverObstacle()
+    private void UpdateFlash(float delta)
+    {
+        flashTimer += delta;
+        flashIntervalTimer += delta;
+
+        if (IsInstanceValid(parryLight))
+        {
+            lightTweenTimer += delta * (lightGrowing ? 1f : -1f);
+            lightTweenTimer = Mathf.Clamp(lightTweenTimer, 0f, FLASH_INTERVAL);
+            float t = lightTweenTimer / FLASH_INTERVAL;
+            parryLight.LightEnergy = Mathf.Lerp(0.5f, 3.5f, t);
+
+            if (lightTweenTimer >= FLASH_INTERVAL) lightGrowing = false;
+            else if (lightTweenTimer <= 0f) lightGrowing = true;
+        }
+
+        if (flashTimer >= FLASH_DURATION)
+        {
+            if (IsInstanceValid(parryLight))
+                parryLight.LightEnergy = 3.5f;
+            StartLunge();
+        }
+    }
+
+    private void StartLunge()
 	{
+		substate = SubState.LUNGE;
+		lungeAirborneTimer = 0f;
+		hasLeftGround = false;
 
-		ec.ray.ForceRaycastUpdate();
-
-		bool isColliding = ec.ray.IsColliding();
-
-		if (isColliding)
-		{
-			BoxShape3D boxShape;
-			var collider = ec.ray.GetCollider() as Node3D;
-			var shape = collider.GetChild<CollisionShape3D>(0).Shape;
-			if (shape is BoxShape3D b)
-            {
-                boxShape = b;
-            }
-			else return false;
-
-			// Don't jump if we hit the player or wall (layer 2)
-			if (collider == ec.player || (collider is PhysicsBody3D body && body.CollisionLayer == 2))
-			{
-				return false;
-			}
-
-			float obstacleHeight = collider.GlobalPosition.Y + (boxShape.Size.Y / 2) - ec.GlobalPosition.Y;
-			if (ec.jumpmaxheight > obstacleHeight && ec.player.GlobalPosition.Y - ec.GlobalPosition.Y > 0.0f)
-			{
-				
-				jumpForce = Mathf.Sqrt(2 * Mathf.Abs(ec.gravity) * (obstacleHeight + 5.0f));
-				return true;
-			}
-		}
-
-		return false;
+		float lungeDir = Mathf.Sign(ec.player.GlobalPosition.X - ec.GlobalPosition.X);
+		ec.Velocity = new Vector3(lungeDir * ec.runspeed * 5f, 3f, 0f);
 	}
 
-	private bool isUnderObstacle(RayCast3D ray)
-{
-    // Check if ray exists
-    if (ray == null)
-    {
-        return false;
-    }
-
-    // Check if ray is colliding
-    if (!ray.IsColliding())
-    {
-        return false;
-    }
-
-    // Check if collider exists
-    var collider = ray.GetCollider() as Node3D;
-    if (collider == null)
-    {
-        return false;
-    }
-
-    // Check if collider has children
-    if (collider.GetChildCount() == 0)
-    {
-        return false;
-    }
-
-    // Check if first child is a CollisionShape3D
-    var collisionShape = collider.GetChild<CollisionShape3D>(0);
-    if (collisionShape == null)
-    {
-        return false;
-    }
-
-    // Check if shape exists and is a BoxShape3D
-    if (collisionShape.Shape == null || collisionShape.Shape is not BoxShape3D)
-    {
-        return false;
-    }
-
-    var boxShape = (BoxShape3D)collisionShape.Shape;
-
-    float obstacleRight = collider.GlobalPosition.X + (boxShape.Size.X / 2);
-    float obstacleLeft = collider.GlobalPosition.X - (boxShape.Size.X / 2);
-
-    if (ec.GlobalPosition.X <= obstacleRight + 1.0f && ec.GlobalPosition.X >= obstacleLeft - 1.0f)
-    {
-        float obstacleTop = collider.GlobalPosition.Y + (boxShape.Size.Y / 2);
-        if (ec.GlobalPosition.Y < obstacleTop)
-        {
-            return true;
-        }
-    }
-    
-    return false;
-}
-
-	private bool isUnderObstacleLeadingDirection(RayCast3D ray)
+	private void UpdateLunge(float delta)
 	{
-		var collider = ec.ray.GetCollider() as Node3D;
-		var boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
+		lungeAirborneTimer += delta;
 
-		float obstacleRight = collider.GlobalPosition.X + (boxShape.Size.X / 2);
-		float obstacleLeft = collider.GlobalPosition.X - (boxShape.Size.X / 2);
+		// wait a few frames for him to actually leave the ground
+		if (lungeAirborneTimer > 0.15f && !ec.IsOnFloor())
+			hasLeftGround = true;
 
-		if (ec.player.GlobalPosition.X <= obstacleRight + 1.0f && ec.player.GlobalPosition.X >= collider.GlobalPosition.X)
+		if (hasLeftGround && ec.IsOnFloor() && !parryHandled)
 		{
-			return true; //right side
+			parryHandled = true;
+			substate = SubState.DONE;
+			esm.TransitionTo("patrolState");
 		}
-		else if (ec.player.GlobalPosition.X >= obstacleLeft - 1.0f && ec.player.GlobalPosition.X <= collider.GlobalPosition.X)
-		{
-			return false; //left side
-		}
-		return false;
 	}
+
+
+    private void OnSlashHitEnemy(Enemy hitEnemy)
+    {
+        if (hitEnemy != ec) return;
+        if (substate != SubState.LUNGE) return;
+        if (parryHandled) return;
+
+        parryHandled = true;
+        OnParrySuccess();
+    }
+
 	
-	private bool isHitEdge(RayCast3D ray)
+
+	private void OnParrySuccess()
 	{
-		if (ray == null)
+		GD.Print("Parry success!");
+		substate = SubState.KNOCKBACK; // stops UpdateLunge from running
+
+		if (IsInstanceValid(parryLight))
 		{
-		
-			return false;
+			parryLight.LightColor = new Color(0.3f, 1f, 0.4f);
+			parryLight.LightEnergy = 5f;
 		}
-		
-		bool hitEdge = !ray.IsColliding();
-	
-		return hitEdge;
+
+		float knockbackDir = Mathf.Sign(ec.GlobalPosition.X - ec.player.GlobalPosition.X);
+		ec.Velocity = new Vector3(knockbackDir * ec.attackknockback * 3f, 4f, 0f);
+		ec.DamagedReceived(ec.parryDamage);
+
+		var tween = ec.CreateTween();
+		tween.TweenInterval(0.4f);
+		tween.TweenCallback(Callable.From(() =>
+		{
+			if (IsInstanceValid(ec))
+				esm.TransitionTo("patrolState");
+		}));
 	}
-    private void UpdateRaycastDirection()
+   
+
+    private void SpawnParryLight()
     {
-       
-        Godot.Vector3 rayStart = ec.ray.GlobalPosition;
-        Godot.Vector3 playerPos = ec.player.GlobalPosition;
-        
-        
-        Godot.Vector3 worldDirection = (playerPos - rayStart).Normalized();
-        
-       
-        Godot.Vector3 localDirection = ec.ray.GlobalTransform.Basis.Inverse() * worldDirection;
-        
-        
-        float distance = rayStart.DistanceTo(playerPos);
-        
-        ec.ray.TargetPosition = localDirection * distance;
-        
-       
+        parryLight = new OmniLight3D();
+        parryLight.LightColor = new Color(1f, 1f, 1f);
+        parryLight.LightEnergy = 0f;
+        parryLight.OmniRange = 3f;
+        parryLight.Position = new Vector3(0f, 1f, 0f);
+        ec.AddChild(parryLight);
     }
 }

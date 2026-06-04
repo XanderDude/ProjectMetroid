@@ -21,7 +21,7 @@ public partial class BombArrowProjectile : RigidBody3D
 		timer = GetTree().CreateTimer(lifetime);
 		timer.Timeout += DeleteProjectile;
 		explosionCollider = GetNode<Area3D>("Area3D");
-		explosionCollider.AreaEntered += EnemyCollisionEntered;//may be redundant
+		explosionCollider.BodyEntered += EnemyCollisionEntered;//may be redundant
 	}
 
 	private void DeleteProjectile()
@@ -79,6 +79,7 @@ public partial class BombArrowProjectile : RigidBody3D
 		{
 			GD.Print("Bomb dealing damage via body entered");
 			enemy.DamagedReceived(damage);
+
 		}
 	}
 	

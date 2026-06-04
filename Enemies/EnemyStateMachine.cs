@@ -26,6 +26,8 @@ public partial class EnemyStateMachine : Node
             }
         }
 
+        
+
         if (initialState != null && !initialState.IsEmpty)
         {
             _currentState = GetNode<State>(initialState);

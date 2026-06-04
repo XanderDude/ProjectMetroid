@@ -9,6 +9,7 @@ public partial class PlayerManager : CharacterBody3D
 	public bool slideQueued;
 	public bool slideBoost;
 
+	public Vector3 knockbackVelocity = Vector3.Zero;
 	public bool isDead = false;
 	public bool isPressed = false; 
 	public bool inwater = false;
@@ -115,7 +116,8 @@ public partial class PlayerManager : CharacterBody3D
 			canBeDamaged = true;
 			mainMat?.SetShaderParameter("flashing", false);
 			weaponMat?.SetShaderParameter("flashing", false);
-		}		
+		}	
+
 	}
 	public void SpawnJumpCloud(float yOffset,float rotation)
 	{
@@ -124,5 +126,7 @@ public partial class PlayerManager : CharacterBody3D
 		jumpCloud.GlobalPosition = new(GlobalPosition.X, GlobalPosition.Y + yOffset, GlobalPosition.Z);
 		jumpCloud.RotationDegrees = new(0, 0, rotation);
 	}
+
+	
 
 }

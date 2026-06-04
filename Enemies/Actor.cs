@@ -10,6 +10,8 @@ public partial class Actor : CharacterBody3D
 
 	[Export] public Godot.Collections.Array<DropEntry> dropTable { get; set;} = new();
 
+	[Export] public int parryDamage { get; set; } = 25;
+
 	[Export] public float runspeed { get; set; } = 2.5f;
 	[Export] public float walkspeed { get; set; } = 1.0f;
 	public Vector3 walkspeedVector => new Vector3(walkspeed, 0, 0);

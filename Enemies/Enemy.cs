@@ -7,7 +7,11 @@ public partial class Enemy : Actor
 	[ExportGroup("EnemyReferences")]
 	[Export] public Node3D mesh;
 	[Export] public NavigationAgent3D navagent;
-	[Export] public EnemyStateMachine statemachine { get; private set; }
+	[Export] public EnemyStateMachine esm;
+	
+	private bool hasAppliedKnockback = false;
+
+	[Export] public bool revengeMode;
 	
 	[Export] public RayCast3D ray;
 
@@ -23,11 +27,12 @@ public partial class Enemy : Actor
 	public override void _Ready()
 	{
 		meshDirection = mesh.RotationDegrees.Y;
+		
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
-		statemachine?._currentState?.PhysicsUpdate((float)delta);
+		esm?._currentState?.PhysicsUpdate((float)delta);
 		if (playerInDamageRange && player.canBeDamaged)
 		{
 			player.Health -= damagedealt;
@@ -39,14 +44,19 @@ public partial class Enemy : Actor
 
 	public override void _Process(double delta)
 	{
-		statemachine?._currentState?.Update((float)delta);
+		esm?._currentState?.Update((float)delta);
 	}
 
 	public void OnCollide(Node3D node)
 	{
 		playerInDamageRange = true;
+		if (node is PlayerManager p && p.canBeDamaged)
+		{
+			float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
+			p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+			p.StateMachine.TransitionTo("knockbackState");
+		}
 	}
-
 	public void OnLeaveCollider(Node3D node)
 	{
 		playerInDamageRange = false;
@@ -67,6 +77,9 @@ public partial class Enemy : Actor
 
 	public void KillEnemy()
 	{
+
+		if (GameFriend.gameinstance?.camera != null)
+        GameFriend.gameinstance.camera.ZoomTo(25f, 0.15f);
 		DropItems();
 		QueueFree();
 	}

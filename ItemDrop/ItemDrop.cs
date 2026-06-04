@@ -5,19 +5,17 @@ public partial class ItemDrop : RigidBody3D
     [Export] public int amount = 0;
     private Area3D area;
     private Vector3 spawnDirection;
-
+    private bool pickedUp = false; 
     public DropEntry.Type itemType = DropEntry.Type.Upgrade;
     public DropEntry.Upgrade upgrade = DropEntry.Upgrade.none;
-
     public enum Upgrade { none, wallJump, ravenSlash, mantling, chargeShot, slideBoost, bombArrows, ravenTeleport };
 
     public void OnBodyEntered(Node body)
     {
+        if (pickedUp) return; 
         if (body is PlayerManager player)
         {
-            var pickupsound = GetNode<AudioStreamPlayer>("PickupSound");
-            pickupsound.Play();
-
+            pickedUp = true;
             Visible = false;
             
             var itemName = upgrade.ToString();
@@ -26,26 +24,24 @@ public partial class ItemDrop : RigidBody3D
             else if (itemType == DropEntry.Type.Health) player.Health += amount;
             
             DespawnItem();
-
         }
     }
+
     private async void DespawnItem()
     {
         var pickupsound = GetNode<AudioStreamPlayer>("PickupSound");
+        area.Monitoring = false;
+        pickupsound.Play();
         await ToSignal(pickupsound, "finished");
         QueueFree();
-    
     }
+
     public override void _Ready()
     {
         area = GetNode<Area3D>("Area3D");
         area.BodyEntered += OnBodyEntered;
         var random = new Random();
-
-
-        //need to move item physics to other class 
         spawnDirection = new Vector3(random.Next(-4, 4), random.Next(-4, 4), 0);
         LinearVelocity = spawnDirection.Normalized() * 4;
     }
-   
 }
