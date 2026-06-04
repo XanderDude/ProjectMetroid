@@ -49,7 +49,7 @@ void fragment()
 	vec4 texture_color = texture(texture_albedo, UV);
 	vec3 fragRGB = texture_color.rgb + albedo.rgb;
 	ALBEDO = mix(fragRGB * brightness, mix(averageLuminance.rgb, fragRGB, contrast), 0.5);
-	
+
 	ALPHA *= albedo.a * texture_color.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
 }

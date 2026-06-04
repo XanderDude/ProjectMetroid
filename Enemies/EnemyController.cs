@@ -118,7 +118,6 @@ public partial class EnemyController : CharacterBody3D
 
         void SpawnItem(Vector3 dropPosition, PackedScene itemScene)
         {
-
             var itemDropNode = itemScene.Instantiate();
             if (itemDropNode is ItemDrop itemDrop)
             {
