@@ -150,7 +150,7 @@ public partial class RavenAttackState : State
 		if (body is Enemy enemy)
 			{
 				//GD.Print("Dealing damage to enemy!");
-				enemy.DamagedRecieved(damage);
+				enemy.DamagedReceived(damage);
 				targetsDamaged.Add(body);
 				
 			}
@@ -165,7 +165,7 @@ public partial class RavenAttackState : State
 		if (parent != null && parent is Enemy enemy)
 		{
 			//GD.Print("Dealing damage to enemy via area!");
-			enemy.DamagedRecieved(damage);
+			enemy.DamagedReceived(damage);
 		}
 	}
 }

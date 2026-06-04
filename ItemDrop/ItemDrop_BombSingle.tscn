@@ -28,7 +28,6 @@ gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("1_rhaek")
-itemType = 1
 amount = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

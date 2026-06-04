@@ -1121,7 +1121,6 @@ mesh = ExtResource("23_g2sos")
 
 [node name="Item" parent="NavigationRegion3D" instance=ExtResource("18_uaptb")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, -3.91441, 0, 0)
-upgrade = 1
 
 [node name="EnemyBat" parent="NavigationRegion3D" instance=ExtResource("19_rvs66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)

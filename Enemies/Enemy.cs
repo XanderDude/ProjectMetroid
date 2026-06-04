@@ -3,7 +3,6 @@ using System;
 
 public partial class Enemy : Actor
 {
-	[Export] public bool isFlying = false;
 
 	[ExportGroup("EnemyReferences")]
 	[Export] public Node3D mesh;
@@ -11,7 +10,6 @@ public partial class Enemy : Actor
 	[Export] public EnemyStateMachine statemachine { get; private set; }
 	
 	[Export] public RayCast3D ray;
-	[Export] public PackedScene item1, item2;
 
 	[Export] public RayCast3D edgeray;
 	[Export] public PackedScene projectilescene = null;
@@ -54,11 +52,9 @@ public partial class Enemy : Actor
 		playerInDamageRange = false;
 	}
 
-	public void DamagedRecieved(int damage)
+	public void DamagedReceived(int damage)
 	{
-
-
-		GD.Print($"{this.Name} took {damage} damage");
+		//GD.Print($"{this.Name} took {damage} damage");
 		DamageFlicker();
 
 		if (health <= 0) return; //already dead
@@ -83,62 +79,22 @@ public partial class Enemy : Actor
 		
     }
 
-	public void DropItems()
-	{
-		Vector3 dropPosition = GlobalPosition;
-		for (int i = 0; i < itemdropamount; i++)
-        {
-            if (item1 != null && GD.RandRange(0, 100) <= dropRate1)
-            {
-                SpawnItem(dropPosition, item1);
-            }
-            if (item2 != null && GD.RandRange(0, 100) <= dropRate2)
-			{
-				SpawnItem(dropPosition, item2);
-			}
 
-            
-        }
-
-        void SpawnItem(Vector3 dropPosition, PackedScene itemScene)
-        {
-
-            var itemDropNode = itemScene.Instantiate();
-            if (itemDropNode is ItemDrop itemDrop)
-            {
-                GetParent().AddChild(itemDrop);
-                itemDrop.GlobalPosition = dropPosition;
-            }
-            else
-            {
-                GD.PrintErr("Missing item drop scene reference");
-                itemDropNode.QueueFree();
-            }
-        }
-    }
 
 	public bool isPlayerInRange(float range)
 	{
 		float distance = GlobalPosition.DistanceTo(player.GlobalPosition);
-		float yDifference = Mathf.Abs(player.GlobalPosition.Y - GlobalPosition.Y);
+	
+		if (distance <= range) return true;
 		
-		
-		if (distance <= range && yDifference < 3f) 
-		{
-			//GD.Print("Player IN RANGE!");
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	
-	public bool CurrentDirection()
+	public bool isMovingRight()
 	{
 		if (this.Velocity.X >= 0) return true;
-		else return false;
+		return false;
 	}
 	
 	}

@@ -3,8 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 public partial class patrolState : State
 {
-
-    //Just for organization   
+  
     private enum SubState { IDLE, WAIT_TO_MOVE, MOVEMENT }; 
     private SubState substate = SubState.IDLE;
 
@@ -16,8 +15,8 @@ public partial class patrolState : State
 
     public override void Enter()
     {
-        GD.Print("Enemy " + ec.Name + " entered patrol state");
-        ec.Velocity = ec.walkspeedVector;
+        //GD.Print("Enemy " + ec.Name + " entered patrol state");
+        ec.Velocity = ec.walkspeedVector * (float)GD.RandRange(0.5f, ec.walkspeedVector.X);;
     }
    
     public override void Exit()
@@ -48,14 +47,14 @@ public partial class patrolState : State
 
     private void _on_idle()
     {
-        GD.Print("Enemy " + ec.Name + " is idling");
+        //GD.Print("Enemy " + ec.Name + " is idling");
         ec.Velocity = Vector3.Zero;
         idle_timer_count = idle_wait_time;
         substate = SubState.WAIT_TO_MOVE;
     }
     private void _on_wait_to_move(float delta)
     {
-        GD.Print("Enemy " + ec.Name + " is waiting to move");
+        //GD.Print("Enemy " + ec.Name + " is waiting to move");
         idle_timer_count -= delta;
         if (idle_timer_count <= 0.0f)
         {
@@ -67,7 +66,7 @@ public partial class patrolState : State
     }
     private void _on_movement()
     {
-        GD.Print("Enemy " + ec.Name + " is moving");
+        //GD.Print("Enemy " + ec.Name + " is moving");
         var current_position = ec.GlobalTransform.Origin;
         var next_position = ec.navagent.GetNextPathPosition();
         var direction = (next_position - current_position).Normalized(); 

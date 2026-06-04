@@ -32,7 +32,7 @@ public partial class NormalArrow : RigidBody3D
 				
 				if (collider is Enemy enemy && !targetsDamaged.Contains(enemy))
 				{
-					enemy.DamagedRecieved(damage);
+					enemy.DamagedReceived(damage);
 					targetsDamaged.Add(enemy);
 				}
 			}
