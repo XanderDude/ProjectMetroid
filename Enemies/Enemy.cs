@@ -36,6 +36,10 @@ public partial class Enemy : Actor
 		if (playerInDamageRange && player.canBeDamaged)
 		{
 			player.Health -= damagedealt;
+			float knockDir = Mathf.Sign(player.GlobalPosition.X - GlobalPosition.X);
+			player.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+			player.StateMachine.TransitionTo("knockbackState");
+
 		}
 		if (Velocity.X < -0.5) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
 		else if (Velocity.X > 0.5) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
@@ -50,12 +54,6 @@ public partial class Enemy : Actor
 	public void OnCollide(Node3D node)
 	{
 		playerInDamageRange = true;
-		if (node is PlayerManager p && p.canBeDamaged)
-		{
-			float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
-			p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
-			p.StateMachine.TransitionTo("knockbackState");
-		}
 	}
 	public void OnLeaveCollider(Node3D node)
 	{
