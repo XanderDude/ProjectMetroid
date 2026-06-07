@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://spk3443rahc2"]
+[gd_scene load_steps=24 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
@@ -7,6 +7,9 @@
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_2c0r4"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="6_c4fj4"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="7_jamja"]
+[ext_resource type="PackedScene" uid="uid://h08q7h0jgt4a" path="res://Interactables/Cages/cage_drop_medium.tscn" id="8_2c0r4"]
+[ext_resource type="PackedScene" uid="uid://c74fis35bki3p" path="res://Interactables/Cages/cage_drop_large.tscn" id="9_0bo1q"]
+[ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="10_wgw3m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("4_2c0r4")
@@ -32,9 +35,6 @@ left_to_right = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bo1q"]
 albedo_color = Color(0.243137, 1, 0.243137, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgw3m"]
-albedo_color = Color(0.215686, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpxpn"]
 albedo_color = Color(0.215686, 1, 1, 1)
@@ -86,7 +86,7 @@ render_target_update_mode = 4
 [node name="sewerBlockout" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Player" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("2_f1wm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 22.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.8888, 21.2479, 0)
 
 [node name="GridMap" type="GridMap" parent="SubViewportContainer/SubViewport/sewerBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
@@ -437,29 +437,14 @@ use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D97" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-2, 2.89913e-07, 0, -3.01992e-07, -1.92, 0, 0, 0, 1.8, 86.5, 20, 0)
+transform = Transform3D(-2, 2.89913e-07, 0, -3.01992e-07, -1.92, 0, 0, 0, 1.8, 86, 20, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D98" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-2.5, 3.77489e-07, 0, -3.77489e-07, -2.5, 0, 0, 0, 2.5, 81.5, 24.5, 0)
+transform = Transform3D(-2, 2.89913e-07, 0, -3.01992e-07, -1.92, 0, 0, 0, 1.8, 78, 20, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
-material = SubResource("StandardMaterial3D_wgw3m")
-
-[node name="Chain" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D98" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, -0.8, 0)
-modulate = Color(1, 0.113725, 0.219608, 1)
-
-[node name="CSGMesh3D99" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-3, 4.52987e-07, 0, -4.52987e-07, -3, 0, 0, 0, 3, 71.5, 24, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-material = SubResource("StandardMaterial3D_rpxpn")
-
-[node name="Chain" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D99" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.275625, -1.06581e-14, 0, 1.06581e-14, 0.275625, 0, 0, 0, 0.275625, 0, -0.900002, 0)
-modulate = Color(1, 0.113725, 0.219608, 1)
 
 [node name="CSGMesh3D146" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
 transform = Transform3D(-3, 6.34182e-07, 0, -4.52987e-07, -4.2, 0, 0, 0, 3, 11, 39.5, 0)
@@ -1031,3 +1016,13 @@ mesh = SubResource("BoxMesh_8x5tc")
 transform = Transform3D(-5.96046e-08, -2.16, 0, 2, -8.58307e-08, 0, 0, 0, 2, 22.7745, -0.644068, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CageDrop_Medium" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes" instance=ExtResource("8_2c0r4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.8547, 23.6862, 0)
+dropLocationY = 22.0
+
+[node name="CageDrop_Large" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes" instance=ExtResource("9_0bo1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3547, 23.6862, 0)
+
+[node name="Lever" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_wgw3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 19.5, 0)

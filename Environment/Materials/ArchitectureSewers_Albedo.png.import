@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt3bt5g4nobtg"
-path.s3tc="res://.godot/imported/ArchitectureSewers_Albedo.png-fea1213aac5a93e771e29b1135c0ef31.s3tc.ctex"
+path.s3tc="res://.godot/imported/ArchitectureSewers_Albedo.png-9bc90fd8db28c559e5d1a14b95bafaf3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Environment/materials/ArchitectureSewers_Albedo.png"
-dest_files=["res://.godot/imported/ArchitectureSewers_Albedo.png-fea1213aac5a93e771e29b1135c0ef31.s3tc.ctex"]
+source_file="res://Environment/Materials/ArchitectureSewers_Albedo.png"
+dest_files=["res://.godot/imported/ArchitectureSewers_Albedo.png-9bc90fd8db28c559e5d1a14b95bafaf3.s3tc.ctex"]
 
 [params]
 
