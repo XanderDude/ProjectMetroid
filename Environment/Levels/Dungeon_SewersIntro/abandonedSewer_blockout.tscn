@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://spk3443rahc2"]
+[gd_scene load_steps=25 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://h08q7h0jgt4a" path="res://Interactables/Cages/cage_drop_medium.tscn" id="8_2c0r4"]
 [ext_resource type="PackedScene" uid="uid://c74fis35bki3p" path="res://Interactables/Cages/cage_drop_large.tscn" id="9_0bo1q"]
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="10_wgw3m"]
+[ext_resource type="PackedScene" uid="uid://q571o852xbvc" path="res://Interactables/Moving Platforms/MovingPlatform_PingPong.tscn" id="11_rpxpn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("4_2c0r4")
@@ -620,11 +621,6 @@ transform = Transform3D(-2.72, 3.6692e-07, 0, -4.10709e-07, -2.43, 0, 0, 0, 1, 7
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
-[node name="CSGMesh3D125" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-2.72, 3.6239e-07, 0, -4.10709e-07, -2.4, 0, 0, 0, 1, 78, 43.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
 [node name="CSGMesh3D114" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
 transform = Transform3D(-0.6, 9.30137e-07, 0, -9.05976e-08, -6.16, 0, 0, 0, 2, 95, 37, 0)
 use_collision = true
@@ -634,17 +630,6 @@ mesh = SubResource("BoxMesh_8x5tc")
 transform = Transform3D(-2, 7.54979e-07, 0, -3.01992e-07, -5, 0, 0, 0, 2, 86.5, 40.5, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D109" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-2, 2.11394e-07, 0, -3.01992e-07, -1.4, 0, 0, 0, 2, 81, 38.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="Chain" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D109" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.275625, -2.13163e-14, 0, 1.06581e-14, 0.55125, 0, 0, 0, 0.275625, 0, -1.61429, 0)
-
-[node name="Chain2" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D109" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.275625, -2.13163e-14, 0, 1.06581e-14, 0.55125, 0, 0, 0, 0.275625, 0, -3.4, 0)
 
 [node name="CSGMesh3D150" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
 transform = Transform3D(-2, 6.55322e-07, 0, -3.01992e-07, -4.34, 0, 0, 0, 2, 25, 38.5, 0)
@@ -685,17 +670,6 @@ transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0,
 transform = Transform3D(-2.86, 2.11394e-07, 0, -4.31848e-07, -1.4, 0, 0, 0, 2, 69.5, 32.2209, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D123" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
-transform = Transform3D(-2.86, 2.11394e-07, 0, -4.31848e-07, -1.4, 0, 0, 0, 2, 78, 39.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="Chain" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D123" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, 0.307693, -1.25714, 0)
-
-[node name="Chain2" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes/CSGMesh3D123" instance=ExtResource("7_jamja")]
-transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, -0.325176, -1.25714, 0)
 
 [node name="CSGMesh3D110" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes"]
 transform = Transform3D(-8.74228e-08, -19.3918, 0, 2, -8.47643e-07, 0, 0, 0, 2, 76, 44, 0)
@@ -1026,3 +1000,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3547, 23.6862, 0)
 
 [node name="Lever" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_wgw3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 19.5, 0)
+
+[node name="MovingPlatform_PingPong" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("11_rpxpn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 23, 0)
