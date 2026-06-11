@@ -12,10 +12,19 @@ public partial class Actor : CharacterBody3D
 
 	[Export] public int parryDamage { get; set; } = 25;
 
+	public enum AttackDirMode { Any, HorizontalOnly, EightWay }
+	[Export] public AttackDirMode attackDirMode = AttackDirMode.HorizontalOnly;
+
 	[Export] public float runspeed { get; set; } = 2.5f;
+
+	[Export] public float maxspeed { get; set; } = 5.0f;
 	[Export] public float walkspeed { get; set; } = 1.0f;
-	public Vector3 walkspeedVector => new Vector3(walkspeed, 0, 0);
-    public Vector3 runspeedVector => new Vector3(runspeed, 0, 0);
+
+	[Export] public bool isflying { get; set; } = false;
+
+	[Export] public bool isdodgeprojectile { get; set; } = false;
+	public Vector3 walkspeedVector => isflying ? new Vector3(walkspeed, 0, 0) : new Vector3(walkspeed, gravity, 0);
+    public Vector3 runspeedVector => isflying ? new Vector3(runspeed, 0, 0) : new Vector3(runspeed, gravity, 0);
 	[Export] public float idle { get; set; } = 0f;
 	[Export] public float acceleration { get; set; } = 0.1f;
 	[Export] public float jumpmaxheight { get; set; } = 10.0f;
@@ -26,7 +35,9 @@ public partial class Actor : CharacterBody3D
 	[Export] public float attackspeed { get; set; } = 1.0f;
 	[Export] public float attackknockback { get; set; } = 5;
 	[Export] public float damageovertime { get; set; } = 0f;
-	[Export] public float detectionrange { get; set; } = 10f;
+	[Export] public float detectionrange { get; set; } = 1.5f;
+
+	[Export] public float attackrange { get; set; } = 1.5f;
 	public float IDLE = 0.0f;
 
 	public void DropItems()

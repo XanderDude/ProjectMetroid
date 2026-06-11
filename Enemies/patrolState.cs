@@ -42,6 +42,16 @@ public partial class patrolState : State
         }
     
         ec.Velocity += ec.GravityVector * delta;
+
+        if (ec.isPlayerInRange(ec.detectionrange))
+        {
+            GD.Print("in detection range");
+            ec.Velocity = Vector3.Zero;
+        }
+        if (ec.isPlayerInRange(ec.detectionrange - 1))
+        {
+            esm.TransitionTo("aggroState");
+        }
         
     }
 

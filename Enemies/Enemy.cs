@@ -11,6 +11,14 @@ public partial class Enemy : Actor
 	
 	private bool hasAppliedKnockback = false;
 
+	public bool justattacked = false;
+
+	public float timer = 0f;
+
+	public bool isDodging = false;
+
+	public float dodgeDuration = 1f;
+
 	[Export] public bool revengeMode;
 	
 	[Export] public RayCast3D ray;
@@ -27,20 +35,29 @@ public partial class Enemy : Actor
 	public override void _Ready()
 	{
 		meshDirection = mesh.RotationDegrees.Y;
+		 var sensor = mesh.GetNodeOrNull<Area3D>("DodgeSensor");
+		if (sensor != null)
+			sensor.BodyEntered += DodgeProjectile;
 		
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
-		esm?._currentState?.PhysicsUpdate((float)delta);
-		if (playerInDamageRange && player.canBeDamaged)
+		 if (isDodging)
 		{
-			player.Health -= damagedealt;
+			Velocity = new Vector3(0, Velocity.Y, 0);   
 		}
-		if (Velocity.X < -0.5) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
-		else if (Velocity.X > 0.5) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
-		MoveAndSlide();
-	}
+		else
+		{
+			esm?._currentState?.PhysicsUpdate((float)delta);
+		}
+			if (Mathf.Abs(Velocity.X) > 0.5f)
+				FaceDirection(Velocity.X);
+
+			if (!isflying && !IsOnFloor())
+				Velocity += GravityVector * (float)delta;
+			MoveAndSlide();
+		}
 
 	public override void _Process(double delta)
 	{
@@ -50,12 +67,18 @@ public partial class Enemy : Actor
 	public void OnCollide(Node3D node)
 	{
 		playerInDamageRange = true;
+		DamagePlayer(node, damagedealt);
+	}
+
+	public void DamagePlayer(Node3D node, int damage)
+	{
 		if (node is PlayerManager p && p.canBeDamaged)
-		{
-			float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
-			p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
-			p.StateMachine.TransitionTo("knockbackState");
-		}
+       {
+		   p.Health -= damage;
+           float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
+           p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+           p.StateMachine.TransitionTo("knockbackState");
+       }
 	}
 	public void OnLeaveCollider(Node3D node)
 	{
@@ -103,11 +126,123 @@ public partial class Enemy : Actor
 		return false;
 	}
 
+
+	public void MoveToPlayer(float speed, float acceleration)
+	{
+		Vector3 dir = player.GlobalPosition - GlobalPosition;
+		dir.Z = 0;                     
+		if (!isflying) dir.Y = 0;        
+		if (dir.LengthSquared() < 0.001f) return;
+		dir = dir.Normalized();
+
+		Vector3 target = dir * speed;
+		if (!isflying) target.Y = Velocity.Y;  
+
+		Velocity = Velocity.MoveToward(target, acceleration);
+	}
+
+	public async void Attack(float distance, int size, int damage, float duration)
+	{
+		// --- Direction: locked at the moment the rat stopped (set in aggroState via ec.direction) ---
+		Vector3 toPlayer = direction;
+		toPlayer.Z = 0;
+
+		if (attackDirMode == AttackDirMode.HorizontalOnly)
+			toPlayer.Y = 0;
+
+		if (toPlayer.LengthSquared() < 0.001f)
+			toPlayer = Vector3.Zero;
+		else
+			toPlayer = toPlayer.Normalized();
+
+		if (attackDirMode == AttackDirMode.EightWay && toPlayer != Vector3.Zero)
+		{
+			float angle = Mathf.Atan2(toPlayer.Y, toPlayer.X);
+			float snapped = Mathf.Round(angle / (Mathf.Pi / 4f)) * (Mathf.Pi / 4f);
+			toPlayer = new Vector3(Mathf.Cos(snapped), Mathf.Sin(snapped), 0);
+		}
+
+		FaceDirection(toPlayer.X);
+
+		// --- Hitbox ---
+		Area3D hitbox = new Area3D();
+		hitbox.CollisionMask = 1 << 2;         // layer 3 = Player
+		AddChild(hitbox);
+
+		CollisionShape3D collisionShape = new CollisionShape3D();
+		BoxShape3D boxShape = new BoxShape3D();
+		boxShape.Size = new Vector3(size, size, size);
+		collisionShape.Shape = boxShape;
+		hitbox.AddChild(collisionShape);
+
+		// Replace with Animation
+		MeshInstance3D visual = new MeshInstance3D();
+		BoxMesh boxMesh = new BoxMesh();
+		boxMesh.Size = boxShape.Size;
+		visual.Mesh = boxMesh;
+
+		StandardMaterial3D mat = new StandardMaterial3D();
+		mat.AlbedoColor = new Color(1f, 0.2f, 0.2f, 0.4f);
+		mat.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+		mat.ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded;
+		visual.MaterialOverride = mat;
+		hitbox.AddChild(visual);
+		//
+
+		// --- Position ---
+		hitbox.GlobalPosition = GlobalPosition + toPlayer * distance;
+
+		// --- Damage: route through the one damage pipeline ---
+		hitbox.AreaEntered += (Area3D area) =>
+		{
+			if (area.GetOwner() is PlayerManager p)
+				DamagePlayer(p, damage);
+			else if (area.GetParent() is PlayerManager pp)
+				DamagePlayer(pp, damage);
+		};
+
+		// --- Despawn (duration in seconds) ---
+		await ToSignal(GetTree().CreateTimer(duration), "timeout");
+		if (IsInstanceValid(hitbox))
+			hitbox.QueueFree();
+	}
+	
 	
 	public bool isMovingRight()
 	{
 		if (this.Velocity.X >= 0) return true;
 		return false;
+	}
+
+	public void FaceDirection(float x)
+	{
+		if (x < -0.01f) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
+		else if (x > 0.01f) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
+		
+	}
+
+	public async void DodgeProjectile(Node3D body)
+	{
+		//GD.Print($"SAW {body.Name}");
+		if (body is not NormalArrow and not BombArrowProjectile) return;
+		if (!isdodgeprojectile || isDodging) return;
+		isDodging = true;
+
+		uint savedLayer = CollisionLayer;
+		SetDeferred("collision_layer", CollisionLayer & ~(uint)(1 << 3));
+
+
+		//Replace with Animation
+		Tween tween = CreateTween();
+		tween.TweenProperty(mesh, "position:z", -1.5f, dodgeDuration * 0.3f).SetEase(Tween.EaseType.Out);
+		tween.TweenInterval(dodgeDuration * 0.4f);
+		tween.TweenProperty(mesh, "position:z", 0f, dodgeDuration * 0.3f).SetEase(Tween.EaseType.In);
+		await ToSignal(tween, "finished");
+		//------------------------
+
+		if (!IsInstanceValid(this)) return;
+		SetDeferred("collision_layer", savedLayer);
+		isDodging = false;
 	}
 	
 	}

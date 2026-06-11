@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=12 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://6yn16y46yem2" path="res://Enemies/Enemy.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_tu7f2"]
 [ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_oempk"]
 [ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_wwosr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
 size = Vector3(1.89575, 0.82019, 0.958557)
@@ -33,6 +35,15 @@ debug_enabled = true
 
 [node name="Rat" parent="." instance=ExtResource("2_okdv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="DodgeSensor" type="Area3D" parent="Rat"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rat/DodgeSensor"]
+transform = Transform3D(1.69415, 0, 0, 0, 2.19267, 0, 0, 0, 1, 1.78207, 0.514353, 0)
+shape = SubResource("BoxShape3D_tu7f2")
 
 [node name="PhysicalCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)

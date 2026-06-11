@@ -8,6 +8,7 @@ public partial class State : Node
 	public AttackStateMachine asm;
 	public CharacterBody3D player;
 	public PlayerManager pm;
+	
 
 	public CharacterBody3D projectileArrow;
 

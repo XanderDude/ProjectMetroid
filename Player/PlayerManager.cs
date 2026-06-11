@@ -13,6 +13,8 @@ public partial class PlayerManager : CharacterBody3D
 	public bool isDead = false;
 	public bool isPressed = false; 
 	public bool inwater = false;
+
+	public bool movementlocked = false;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	private float alpha = 0f;
 
@@ -88,6 +90,8 @@ public partial class PlayerManager : CharacterBody3D
 	
 	public override void _PhysicsProcess(double delta)
 	{
+
+
 		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
 		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
 		
@@ -127,6 +131,11 @@ public partial class PlayerManager : CharacterBody3D
 		jumpCloud.RotationDegrees = new(0, 0, rotation);
 	}
 
+	public void LockMovement(bool locked)
+	{
+		AxisLockLinearX = locked;
+		AxisLockLinearY = locked;
+	}
 	
 
 }

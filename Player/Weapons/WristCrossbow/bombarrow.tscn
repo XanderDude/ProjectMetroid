@@ -33,7 +33,7 @@ proximity_fade_enabled = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_alt2y"]
 
 [node name="BombArrow" type="RigidBody3D"]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 27
 collision_priority = 10.0
 axis_lock_linear_z = true
