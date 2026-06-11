@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://spk3443rahc2"]
+[gd_scene load_steps=26 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c74fis35bki3p" path="res://Interactables/Cages/cage_drop_large.tscn" id="9_0bo1q"]
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="10_wgw3m"]
 [ext_resource type="PackedScene" uid="uid://q571o852xbvc" path="res://Interactables/Moving Platforms/MovingPlatform_PingPong.tscn" id="11_rpxpn"]
+[ext_resource type="PackedScene" uid="uid://drflmxqbk3k3w" path="res://Interactables/Cages/movingCage_large.tscn" id="12_ej2m0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
 shader = ExtResource("4_2c0r4")
@@ -998,8 +999,14 @@ dropLocationY = 22.0
 [node name="CageDrop_Large" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes" instance=ExtResource("9_0bo1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.3547, 23.6862, 0)
 
-[node name="Lever" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_wgw3m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 19.5, 0)
+[node name="Lever" parent="SubViewportContainer/SubViewport/sewerBlockout" node_paths=PackedStringArray("switchedObjects") instance=ExtResource("10_wgw3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 19.5, 0)
+switchOn = true
+oneShotSwitch = true
+switchedObjects = [NodePath("../MovingCage_Large")]
 
 [node name="MovingPlatform_PingPong" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("11_rpxpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 23, 0)
+
+[node name="MovingCage_Large" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("12_ej2m0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.5, 25, 0)

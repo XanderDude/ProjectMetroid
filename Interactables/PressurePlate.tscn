@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://brmfwgp854pll"]
+[gd_scene load_steps=8 format=3 uid="uid://cbndt4e0pvp4"]
 
-[ext_resource type="Script" uid="uid://203ipfohvmq1" path="res://Interactables/SwitchManager.cs" id="1_21gdj"]
-[ext_resource type="Script" uid="uid://bj6vsbjavec2k" path="res://Interactables/Switch_Lever.cs" id="1_p1qae"]
+[ext_resource type="Script" uid="uid://203ipfohvmq1" path="res://Interactables/SwitchManager.cs" id="1_a72nk"]
+[ext_resource type="Script" uid="uid://bj6vsbjavec2k" path="res://Interactables/Switch_Lever.cs" id="2_qf8pv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ie0al"]
 radius = 0.234266
@@ -16,8 +16,8 @@ albedo_color = Color(0.215686, 1, 1, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_oixoq"]
 radial_segments = 5
 
-[node name="Lever" type="Node3D" node_paths=PackedStringArray("switchedObjects")]
-script = ExtResource("1_21gdj")
+[node name="PressurePlate" type="Node3D" node_paths=PackedStringArray("switchedObjects")]
+script = ExtResource("1_a72nk")
 switchedObjects = []
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.757104, 0)
 collision_layer = 0
 collision_mask = 4
 monitorable = false
-script = ExtResource("1_p1qae")
+script = ExtResource("2_qf8pv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_ie0al")

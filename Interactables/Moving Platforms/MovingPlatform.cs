@@ -30,6 +30,11 @@ public partial class MovingPlatform : Node3D
             if (platform.Position.DistanceTo(target) < 0.1f)
             {
                 moveTo2 = !moveTo2;
+                if (!autoMove) 
+                {
+                    isMoving = false;
+                    platform.Position = target;
+                }
             }
         }
 	}

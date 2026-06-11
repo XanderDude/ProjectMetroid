@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Switch_Lever : Node3D
+public partial class Switch_PressurePlate : Node3D
 {
 	[Export] public bool isOn = false;
 	private bool interactable = true;
@@ -19,35 +19,29 @@ public partial class Switch_Lever : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
-		if (isOn)
+        if (isOn)
 		{
-			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, -45);
+			GetParent<Node3D>().Position = new Vector3(0, -.1f, 0);
 		}
 		else
 		{
-			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, 45);
+			GetParent<Node3D>().Position = new Vector3(0, 0, 0);
 		}
-
     }
 
 	public void _on_body_entered(Node3D body)
 	{
 		if (!interactable) return;
 		PlayerManager player = body as PlayerManager;
-		if (player.Velocity.X > 0 && !isOn) //moving right
-        {
-			RotateLever(true);
-        }
-		else if (player.Velocity.X < 0 && isOn)
-		{
-			RotateLever(false);
-		}
+		isOn = true;
+		RotateLever(isOn);
 	}
 	
 	public bool Toggle()
 	{
-		RotateLever(!isOn);
-		return !isOn;
+		isOn = !isOn;
+		RotateLever(isOn);
+		return isOn;
 	}
 
 	public void LockSwitch(bool isLocked)
@@ -57,10 +51,16 @@ public partial class Switch_Lever : Node3D
 
 	private void RotateLever(bool on)
     {
-		isOn = on;
 		EmitSignal(SignalName.switch_flipped);
 		GD.Print("Emitting signal");
-
+		if (on)
+		{
+			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, -45);
+		}
+		else
+		{
+			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, 45);
+		}
 		
     }
 }
