@@ -43,15 +43,21 @@ public partial class Enemy : Actor
 
 	public override void _PhysicsProcess(double delta)
 	{
-		esm?._currentState?.PhysicsUpdate((float)delta);
-		if (playerInDamageRange && player.canBeDamaged)
+		 if (isDodging)
 		{
-			player.Health -= damagedealt;
+			Velocity = new Vector3(0, Velocity.Y, 0);   
 		}
-		if (Velocity.X < -0.5) mesh.RotationDegrees = new Vector3(0, -meshDirection, 0);
-		else if (Velocity.X > 0.5) mesh.RotationDegrees = new Vector3(0, meshDirection, 0);
-		MoveAndSlide();
-	}
+		else
+		{
+			esm?._currentState?.PhysicsUpdate((float)delta);
+		}
+			if (Mathf.Abs(Velocity.X) > 0.5f)
+				FaceDirection(Velocity.X);
+
+			if (!isflying && !IsOnFloor())
+				Velocity += GravityVector * (float)delta;
+			MoveAndSlide();
+		}
 
 	public override void _Process(double delta)
 	{
@@ -61,12 +67,18 @@ public partial class Enemy : Actor
 	public void OnCollide(Node3D node)
 	{
 		playerInDamageRange = true;
+		DamagePlayer(node, damagedealt);
+	}
+
+	public void DamagePlayer(Node3D node, int damage)
+	{
 		if (node is PlayerManager p && p.canBeDamaged)
-		{
-			float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
-			p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
-			p.StateMachine.TransitionTo("knockbackState");
-		}
+       {
+		   p.Health -= damage;
+           float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
+           p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+           p.StateMachine.TransitionTo("knockbackState");
+       }
 	}
 	public void OnLeaveCollider(Node3D node)
 	{
