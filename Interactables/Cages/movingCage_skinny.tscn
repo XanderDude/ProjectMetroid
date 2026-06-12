@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://drflmxqbk3k3w"]
+[gd_scene load_steps=7 format=3 uid="uid://bsxnr54oats74"]
 
-[ext_resource type="Script" uid="uid://d0osecbseobaf" path="res://Interactables/Cages/MovingCage.cs" id="1_1o4rg"]
-[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_f20ut"]
+[ext_resource type="Script" uid="uid://d0osecbseobaf" path="res://Interactables/Cages/MovingCage.cs" id="1_0ynqp"]
+[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_d7j6r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o4rg"]
 albedo_color = Color(0.215686, 1, 1, 1)
@@ -12,17 +12,17 @@ albedo_color = Color(0.215686, 1, 1, 1)
 size = Vector3(1, 0.2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwphm"]
-size = Vector3(3, 2.5, 3)
+size = Vector3(1.5, 2.5, 1.5)
 
-[node name="MovingCage_Large" type="AnimatableBody3D"]
+[node name="MovingCage_Skinny" type="AnimatableBody3D"]
 collision_mask = 0
-script = ExtResource("1_1o4rg")
+script = ExtResource("1_0ynqp")
 destination = Vector3(0, -5, 0)
 autoMove = false
 metadata/State = &""
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 2.5, 0, 0, 0, 3, 0, 1.25, 0)
+transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 1.25, 0)
 material_override = SubResource("StandardMaterial3D_1o4rg")
 mesh = SubResource("BoxMesh_fwphm")
 
@@ -43,29 +43,29 @@ shape = SubResource("BoxShape3D_fwphm")
 
 [node name="chain" type="Node3D" parent="."]
 
-[node name="Chain" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 2.5, 0)
 
-[node name="Chain2" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain2" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 3.5, 0)
 
-[node name="Chain3" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain3" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4.5, 0)
 
-[node name="Chain4" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain4" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 5.5, 0)
 
-[node name="Chain5" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain5" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 6.5, 0)
 
-[node name="Chain6" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain6" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 7.5, 0)
 
-[node name="Chain7" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain7" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 8.5, 0)
 
-[node name="Chain8" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain8" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 9.5, 0)
 
-[node name="Chain9" parent="chain" instance=ExtResource("2_f20ut")]
+[node name="Chain9" parent="chain" instance=ExtResource("2_d7j6r")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 10.5, 0)

@@ -13,21 +13,13 @@ public partial class Switch_Lever : Node3D
 	
 	public override void _Ready()
 	{
-		
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
-		if (isOn)
-		{
-			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, -45);
-		}
-		else
-		{
-			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, 45);
-		}
-
+		GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, (interactable ? 40 : 75) * (isOn ? -1 : 1));
     }
 
 	public void _on_body_entered(Node3D body)
@@ -43,12 +35,6 @@ public partial class Switch_Lever : Node3D
 			RotateLever(false);
 		}
 	}
-	
-	public bool Toggle()
-	{
-		RotateLever(!isOn);
-		return !isOn;
-	}
 
 	public void LockSwitch(bool isLocked)
 	{
@@ -61,6 +47,5 @@ public partial class Switch_Lever : Node3D
 		EmitSignal(SignalName.switch_flipped);
 		GD.Print("Emitting signal");
 
-		
     }
 }
