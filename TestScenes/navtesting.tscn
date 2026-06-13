@@ -71,52 +71,31 @@ Health = 2000
 script = ExtResource("6_ht5l1")
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178186, 0.89492, 0.0255467)
-bones/0/rotation = Quaternion(0.551989, 0.443914, 0.456147, 0.538682)
-bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
-bones/1/rotation = Quaternion(-0.11659, 0.104942, 0.00434824, 0.987611)
-bones/3/position = Vector3(0.035671, 0.0139758, 1.63425e-15)
-bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, -4.79616e-16)
-bones/4/rotation = Quaternion(-0.208156, 0.0113184, -0.0451013, 0.97699)
-bones/5/position = Vector3(0.0708221, -0.0208942, -6.57252e-16)
-bones/5/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
-bones/7/position = Vector3(0.0415027, 0.0608609, 0.00473702)
-bones/7/rotation = Quaternion(0.49006, 0.500664, 0.450978, -0.552988)
-bones/9/rotation = Quaternion(0.376776, -0.0403171, 0.924319, 0.0452778)
-bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524504, 0.561428, -0.460603, 0.444455)
-bones/11/rotation = Quaternion(0.0475706, -0.523658, -0.165576, 0.834328)
-bones/13/position = Vector3(-0.00103, 0.0139758, -0.143857)
-bones/13/rotation = Quaternion(-0.00266935, -0.107109, 0.0789396, 0.991105)
-bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.216437, 0.0118362, -0.135507, 0.966775)
-bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
-bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
-bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
-bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.99777, 0.00790651, -0.0299499, 0.0591259)
-bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.520688, -0.482851, 0.504269, 0.491377)
-bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
-bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
-bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
-bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
-bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+bones/0/position = Vector3(0.0178283, 0.895102, -0.0177664)
+bones/0/rotation = Quaternion(0.540478, 0.454533, 0.445563, 0.550234)
+bones/1/rotation = Quaternion(0.0404826, 0.104317, -0.012275, 0.993644)
+bones/4/rotation = Quaternion(0.109413, 0.0265835, 0.0623356, 0.991684)
+bones/7/position = Vector3(0.0372896, 0.0598227, -0.000658505)
+bones/7/rotation = Quaternion(0.510885, 0.487929, 0.468658, -0.53036)
+bones/9/rotation = Quaternion(0.372077, -0.1287, 0.919126, -0.0142214)
+bones/10/rotation = Quaternion(0.521213, 0.564545, -0.452386, 0.45274)
+bones/11/rotation = Quaternion(-0.0167112, -0.513645, -0.175945, 0.839603)
+bones/13/rotation = Quaternion(0.0640783, -0.102874, 0.0805594, 0.989354)
+bones/14/rotation = Quaternion(0.0325935, 0.0377302, -0.136571, 0.989375)
+bones/21/rotation = Quaternion(0.997494, 0.0420055, -0.0280544, 0.0495434)
+bones/22/rotation = Quaternion(0.496165, -0.459029, 0.529936, 0.512134)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(-0.0138939, -0.84962, -0.527213, -0.363346, 0.495511, -0.788955, 0.931551, 0.180599, -0.31559, -0.344585, 1.10413, -0.0379508)
+transform = Transform3D(0.0816812, -0.861077, -0.501871, -0.280587, 0.463319, -0.840599, 0.956347, 0.209479, -0.203762, -0.358989, 1.09716, -0.000524655)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(-0.0138939, -0.84962, -0.527213, -0.363346, 0.495511, -0.788955, 0.931551, 0.180599, -0.31559, -0.407174, 1.11971, -0.0327767)
+transform = Transform3D(0.0816812, -0.861077, -0.501871, -0.280587, 0.463319, -0.840599, 0.956347, 0.209479, -0.203762, -0.421799, 1.10976, 0.00856866)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(-0.0138939, -0.84962, -0.527213, -0.363346, 0.495511, -0.788955, 0.931551, 0.180599, -0.31559, -0.407174, 1.11971, -0.0327767)
+transform = Transform3D(0.0816812, -0.861077, -0.501871, -0.280587, 0.463319, -0.840599, 0.956347, 0.209479, -0.203762, -0.421799, 1.10976, 0.00856866)
 
 [node name="Rat" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("esm") instance=ExtResource("5_lo8t2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24698, 1.02631, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24698, 1.02631, -5.36738)
 esm = NodePath("EnemyStateMachine")
 revengeMode = true
 health = 8000
@@ -143,6 +122,20 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 4, 0)
 
+[node name="Rat2" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("esm") instance=ExtResource("5_lo8t2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42024, 1.02631, -5.36738)
+esm = NodePath("EnemyStateMachine")
+revengeMode = true
+health = 8000
+dropTable = Array[ExtResource("7_a7ko2")]([SubResource("Resource_ue6sv"), null, null])
+runspeed = 3.0
+maxspeed = 2.0
+isdodgeprojectile = true
+acceleration = 1.0
+attackknockback = 2.0
+detectionrange = 6.0
+attackrange = 3.0
+
 [node name="StonePillar" parent="." instance=ExtResource("10_6ay6n")]
 transform = Transform3D(1, 0, 0, 0, 7.13, 0, 0, 0, 1, 12.7763, 3.5782, -0.199218)
 
@@ -150,3 +143,5 @@ transform = Transform3D(1, 0, 0, 0, 7.13, 0, 0, 0, 1, 12.7763, 3.5782, -0.199218
 [editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
 [editable path="SubViewportContainer/SubViewport/Rat"]
 [editable path="SubViewportContainer/SubViewport/Rat/Rat"]
+[editable path="SubViewportContainer/SubViewport/Rat2"]
+[editable path="SubViewportContainer/SubViewport/Rat2/Rat"]

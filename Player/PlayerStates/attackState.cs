@@ -51,6 +51,12 @@ public partial class attackState : State
 	
 	public override void Enter()
 	{
+
+		 if (pm.StateMachine._currentState.Name == "backgroundState")
+		{
+			asm.TransitionTo("noattackState");
+			return;
+		}
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(true);
 		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;

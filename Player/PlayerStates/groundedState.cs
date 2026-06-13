@@ -110,6 +110,11 @@ public partial class groundedState : State
 		{
 			msm.TransitionTo("forgeState");
 		}
+
+		if (@event.IsActionPressed("ShootBackground"))
+		{
+			msm.TransitionTo("backgroundState");
+		}
 		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && Mathf.Abs(pm.aimDirection.X) < 0.1f && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);

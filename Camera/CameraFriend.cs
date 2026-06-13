@@ -24,6 +24,8 @@ public partial class CameraFriend : Camera3D
 	private float lastPlayerDirection = 1.0f;
 	private Vector3 lookAheadOffset = Vector3.Zero;
 
+	public Vector3 camOffset = Vector3.Zero;
+
 	public void init_camera()
 	{
 		if (GameFriend.gameinstance.player != null)
@@ -66,7 +68,7 @@ public partial class CameraFriend : Camera3D
 
 		if (GameFriend.gameinstance.player.StateMachine._currentState.Name == "deathState")
 		{
-			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
+			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, cameraDistance) + camOffset;
 			GlobalPosition = newPosition;
 			GD.Print("Death State - Camera Locked to Player");
 		}
@@ -104,6 +106,14 @@ public partial class CameraFriend : Camera3D
 	{
 		var tween = CreateTween();
 		tween.TweenProperty(this, "cameraDistance", targetDistance, duration)
+			.SetTrans(Tween.TransitionType.Sine)
+			.SetEase(Tween.EaseType.InOut);
+	}
+
+	public void OffsetTo(Vector3 target, float duration)
+	{
+		var tween = CreateTween();
+		tween.TweenProperty(this, "camOffset", target, duration)
 			.SetTrans(Tween.TransitionType.Sine)
 			.SetEase(Tween.EaseType.InOut);
 	}
