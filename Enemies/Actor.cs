@@ -12,19 +12,16 @@ public partial class Actor : CharacterBody3D
 
 	[Export] public int parryDamage { get; set; } = 25;
 
-	public enum AttackDirMode { Any, HorizontalOnly, EightWay }
-	[Export] public AttackDirMode attackDirMode = AttackDirMode.HorizontalOnly;
 
 	[Export] public float runspeed { get; set; } = 2.5f;
 
 	[Export] public float maxspeed { get; set; } = 5.0f;
 	[Export] public float walkspeed { get; set; } = 1.0f;
 
-	[Export] public bool isflying { get; set; } = false;
 
 	[Export] public bool isdodgeprojectile { get; set; } = false;
-	public Vector3 walkspeedVector => isflying ? new Vector3(walkspeed, 0, 0) : new Vector3(walkspeed, gravity, 0);
-    public Vector3 runspeedVector => isflying ? new Vector3(runspeed, 0, 0) : new Vector3(runspeed, gravity, 0);
+	public Vector3 walkspeedVector;
+    public Vector3 runspeedVector;
 	[Export] public float idle { get; set; } = 0f;
 	[Export] public float acceleration { get; set; } = 0.1f;
 	[Export] public float jumpmaxheight { get; set; } = 10.0f;

@@ -4,10 +4,20 @@ using System;
 public partial class Enemy : Actor
 {
 
-	[ExportGroup("EnemyReferences")]
+	[ExportGroup("Enemy_References")]
 	[Export] public Node3D mesh;
 	[Export] public NavigationAgent3D navagent;
 	[Export] public EnemyStateMachine esm;
+	[Export] public PackedScene projectilescene = null;
+	[Export] public RayCast3D ray;
+
+	[ExportGroup("Enemy_Preferences")]
+	[Export] public bool revengeMode;
+
+	public enum AttackDirMode { Any, HorizontalOnly, EightWay }
+	[Export] public AttackDirMode attackDirMode = AttackDirMode.HorizontalOnly;
+
+	[Export] public bool isFlying { get; set; } = false;
 	
 	private bool hasAppliedKnockback = false;
 
@@ -19,21 +29,26 @@ public partial class Enemy : Actor
 
 	public float dodgeDuration = 1f;
 
-	[Export] public bool revengeMode;
-	
-	[Export] public RayCast3D ray;
 
-	[Export] public RayCast3D edgeray;
-	[Export] public PackedScene projectilescene = null;
 	private float meshDirection = -90f;
 	public PlayerManager player => GameFriend.gameinstance.player;
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
-	public Godot.Vector3 targetposition { get; set; } = Godot.Vector3.Zero;
 
 	private bool playerInDamageRange = false; //player is within damage collider
 
 	public override void _Ready()
 	{
+
+		if (this.isFlying)
+		{
+			walkspeedVector = new Vector3(walkspeed, 0, 0);
+			runspeedVector = new Vector3(runspeed, 0, 0);
+		}
+		else
+		{
+			walkspeedVector = new Vector3(walkspeed, gravity, 0);
+			runspeedVector = new Vector3(runspeed, gravity, 0);
+		}
 		meshDirection = mesh.RotationDegrees.Y;
 		 var sensor = mesh.GetNodeOrNull<Area3D>("DodgeSensor");
 		if (sensor != null)
