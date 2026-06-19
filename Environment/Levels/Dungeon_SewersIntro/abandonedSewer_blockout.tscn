@@ -1006,6 +1006,7 @@ destination = Vector3(0, -6.5, 0)
 
 [node name="MovingCage_Large_Spikes" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("12_ej2m0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 36, 0)
+collision_layer = 2
 moveSpeed = 5.0
 destination = Vector3(0, -6, 0)
 
@@ -1019,7 +1020,7 @@ transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, -1.5, 0.
 [node name="MovingCage_Skinny2" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("13_kjv0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 38.5, 0)
 
-[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/sewerBlockout/MovingCage_Skinny2" index="0"]
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/sewerBlockout/MovingCage_Skinny2" index="1"]
 skeleton = NodePath("../../MovingCage_Skinny2")
 
 [node name="chain" parent="SubViewportContainer/SubViewport/sewerBlockout/MovingCage_Skinny2" index="2"]

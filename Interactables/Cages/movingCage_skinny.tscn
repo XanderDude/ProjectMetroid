@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://d0osecbseobaf" path="res://Interactables/Cages/MovingCage.cs" id="1_0ynqp"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_d7j6r"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwphm"]
+size = Vector3(1.5, 2.5, 1.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o4rg"]
 albedo_color = Color(0.215686, 1, 1, 1)
 
@@ -11,15 +14,15 @@ albedo_color = Color(0.215686, 1, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_g22iw"]
 size = Vector3(1, 0.2, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fwphm"]
-size = Vector3(1.5, 2.5, 1.5)
-
 [node name="MovingCage_Skinny" type="AnimatableBody3D"]
 collision_mask = 0
 script = ExtResource("1_0ynqp")
 destination = Vector3(0, -5, 0)
 autoMove = false
 metadata/State = &""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fwphm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -36,9 +39,6 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0996579, 0)
 shape = SubResource("BoxShape3D_g22iw")
 debug_color = Color(1, 0.113725, 0.219608, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_fwphm")
 
 [node name="chain" type="Node3D" parent="."]
 
