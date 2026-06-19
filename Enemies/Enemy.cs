@@ -69,7 +69,7 @@ public partial class Enemy : Actor
 			if (Mathf.Abs(Velocity.X) > 0.5f)
 				FaceDirection(Velocity.X);
 
-			if (!isflying && !IsOnFloor())
+			if (!isFlying && !IsOnFloor())
 				Velocity += GravityVector * (float)delta;
 			MoveAndSlide();
 		}
@@ -146,12 +146,12 @@ public partial class Enemy : Actor
 	{
 		Vector3 dir = player.GlobalPosition - GlobalPosition;
 		dir.Z = 0;                     
-		if (!isflying) dir.Y = 0;        
+		if (!isFlying) dir.Y = 0;        
 		if (dir.LengthSquared() < 0.001f) return;
 		dir = dir.Normalized();
 
 		Vector3 target = dir * speed;
-		if (!isflying) target.Y = Velocity.Y;  
+		if (!isFlying) target.Y = Velocity.Y;  
 
 		Velocity = Velocity.MoveToward(target, acceleration);
 	}
