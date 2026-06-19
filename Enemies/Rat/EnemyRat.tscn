@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://h08w3a132xks"]
+[gd_scene load_steps=13 format=3 uid="uid://h08w3a132xks"]
 
 [ext_resource type="Script" uid="uid://6yn16y46yem2" path="res://Enemies/Enemy.cs" id="1_tysk3"]
 [ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_okdv7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_tu7f2"]
 [ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_oempk"]
 [ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_wwosr"]
+[ext_resource type="Script" uid="uid://cc1gtkoyuwvuh" path="res://Enemies/lungeState.cs" id="8_tu7f2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
 
@@ -74,6 +75,9 @@ script = ExtResource("6_oempk")
 
 [node name="enemyattackState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("7_wwosr")
+
+[node name="lungeState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("8_tu7f2")
 
 [node name="Beam" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)

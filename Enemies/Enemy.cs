@@ -27,6 +27,8 @@ public partial class Enemy : Actor
 
 	public bool isDodging = false;
 
+	public float snapshotSpeed = 0f; //gets speed a moment in time
+
 	public float dodgeDuration = 1f;
 
 
@@ -66,14 +68,11 @@ public partial class Enemy : Actor
 		{
 			esm?._currentState?.PhysicsUpdate((float)delta);
 		}
-			if (Mathf.Abs(Velocity.X) > 0.5f)
-				FaceDirection(Velocity.X);
-
-			if (!isFlying && !IsOnFloor())
-				Velocity += GravityVector * (float)delta;
-			MoveAndSlide();
+		if (!isFlying && !IsOnFloor())
+			Velocity += GravityVector * (float)delta;
+		MoveAndSlide();
 		}
-
+		
 	public override void _Process(double delta)
 	{
 		esm?._currentState?.Update((float)delta);
@@ -154,6 +153,7 @@ public partial class Enemy : Actor
 		if (!isFlying) target.Y = Velocity.Y;  
 
 		Velocity = Velocity.MoveToward(target, acceleration);
+
 	}
 
 	public async void Attack(float distance, int size, int damage, float duration)

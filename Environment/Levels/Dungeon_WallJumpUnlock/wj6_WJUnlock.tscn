@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=54 format=4 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -32,7 +32,6 @@
 [ext_resource type="Material" uid="uid://beylnq8ywcc2" path="res://Environment/Materials/StoneWallRepeatingMaterial.tres" id="27_amwor"]
 [ext_resource type="PackedScene" uid="uid://l0m2vqqltusx" path="res://Environment/RoomPieces/Stone/StoneWall_Scaleable.tscn" id="27_enmp1"]
 [ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="27_lcqwc"]
-[ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="28_enmp1"]
 [ext_resource type="ArrayMesh" uid="uid://bdbt33h3t5okg" path="res://Environment/Models/PropsBasicMeshes/ladderMesh.res" id="30_1kpit"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g2sos"]
@@ -131,10 +130,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vxalm")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_orqwy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amwor"]
-albedo_color = Color(0.31, 0.31, 0.31, 1)
-albedo_texture = ExtResource("28_enmp1")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_amwor"]
 data = PackedVector3Array(0.2, 2, 0.2, 0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 2, 0.2, 0.2, 2, 0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 0, -0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, 0.2, 0, -0.2, 0.2, 0, 0.2, 0.2, 0, 0.2, 0.2, 2, 0.2, 0.2, 2, -0.2, -0.2, 2, 0.2, -0.2, 0, 0.2, -0.2, 0, -0.2, -0.2, 0, -0.2, -0.2, 2, -0.2, -0.2, 2, 0.2, 0.225, 2.1, 0.225, 0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 2.1, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, 0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, -0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 1.9, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, -0.225, 2.1, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, 0.225)
@@ -1174,25 +1169,21 @@ transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 20, -0.136796, -0.759001, -5.109
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, 5.49716, -1.72232, 5.33662)
 mesh = ExtResource("2_lr27n")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_amwor")
 
 [node name="StonePillarMesh2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, 5.49716, 8.97654, 5.33662)
 mesh = ExtResource("2_lr27n")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_amwor")
 
 [node name="StonePillarMesh3" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, -5.11265, -1.72232, 5.33662)
 mesh = ExtResource("2_lr27n")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_amwor")
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 5.39445, 0, 0, 0, 3.67025, -5.28775, 9.08111, 5.33662)
 mesh = ExtResource("2_lr27n")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_amwor")
 
 [node name="CollapsedPillar" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66818, 19.96, 0.0203276)
@@ -1201,7 +1192,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66818, 19.96, 0.0203276)
 transform = Transform3D(-0.308969, 2.81262, 3.12366, -4.76339, -1.53792, 0.387154, 1.48817, -4.33867, 1.88774, -4.66237, 0.0558224, 5.31561)
 mesh = ExtResource("2_lr27n")
 skeleton = NodePath("StaticBody3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_amwor")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/CollapsedPillar/StonePillarMesh_Collapsed"]
 collision_layer = 2

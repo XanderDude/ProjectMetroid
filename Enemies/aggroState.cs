@@ -10,13 +10,16 @@ public partial class aggroState : State
 
     private SubState substate = SubState.APPROACH;
 
-
+    private int rand;
 
     public override void Enter()
     {       
-            ec.timer = 0f;
+
             GD.Print($"{ec.Name}:aggroState");
-            ec.Velocity = ec.runspeedVector;
+            substate = SubState.APPROACH;
+            rand = GD.RandRange(0, 3);
+            ec.timer = 5f;
+        
             
     }
 
@@ -27,46 +30,58 @@ public partial class aggroState : State
 
     public override void Update(float delta)
     {
-
+        if (Mathf.Abs(ec.Velocity.X) > 0.5f)
+				ec.FaceDirection(ec.Velocity.X);
     }
 
     public override async void PhysicsUpdate(float delta)
     {
+
+
         if (this.substate == SubState.APPROACH)
         {   
             ec.timer -= delta;
             ec.MoveToPlayer(ec.runspeed, ec.acceleration);
             if (ec.isPlayerInRange(ec.attackrange) && ec.timer <= 0) 
             {
-                ec.timer = 2f;
                 substate = SubState.ATTACK;
                 ec.direction = ec.player.GlobalPosition - ec.GlobalPosition;   // ← this line
                 ec.FaceDirection(ec.direction.X);
+                ec.timer = 1.5f;
             }
         }
         
         if (this.substate == SubState.ATTACK)
         {
-            ec.Velocity = Vector3.Zero;
             ec.timer -= delta;
-            ec.justattacked = true;
             if (ec.timer <= 0) 
             {
-                ec.Attack(2, 2, 100, 2);
-                ec.timer = 5f;
-                substate = SubState.RECOVER;
+                if (rand > 0)
+                {
+                    ec.Velocity = Vector3.Zero;
+                    ec.Attack(2, 2, 100, 0.2f);
+                    ec.timer = 5f;
+                    substate = SubState.RECOVER;
+                }
+                else
+                { 
+                    ec.esm.TransitionTo("lungeState");
+                }
             }
         }
         if (this.substate == SubState.RECOVER)
         {
-
             ec.timer -= delta;
             if (ec.timer <= 0f)
             {
-                this.substate = SubState.APPROACH;
-                if (ec.justattacked) ec.timer = 8f;
                 if (!ec.isPlayerInRange(ec.detectionrange))
                     esm.TransitionTo("patrolState");
+                else
+                {
+                    rand = GD.RandRange(0, 3);
+                    ec.timer = 5f;
+                    substate = SubState.APPROACH;
+                }
             }
         }
         

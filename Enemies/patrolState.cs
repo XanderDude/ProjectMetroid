@@ -23,6 +23,12 @@ public partial class patrolState : State
     {
         
     }
+
+    public override void Update(float delta)
+    {
+        if (Mathf.Abs(ec.Velocity.X) > 0.5f)
+				ec.FaceDirection(ec.Velocity.X);
+    }
    
     public override void PhysicsUpdate(float delta)
     {
