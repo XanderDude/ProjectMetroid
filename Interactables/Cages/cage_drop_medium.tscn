@@ -9,16 +9,17 @@
 size = Vector3(1, 0.2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwphm"]
+size = Vector3(2, 3, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yeml"]
-size = Vector3(0.5, 3.5, 1)
+size = Vector3(0.5, 1, 0.5)
 
-[node name="MovingCage_Large" type="AnimatableBody3D"]
+[node name="CageDrop_Medium" type="AnimatableBody3D"]
 collision_mask = 0
 script = ExtResource("1_fwphm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, 0)
 mesh = SubResource("BoxMesh_fwphm")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
@@ -32,7 +33,7 @@ shape = SubResource("BoxShape3D_g22iw")
 debug_color = Color(1, 0.113725, 0.219608, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_fwphm")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -44,16 +45,35 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="Chain" parent="chain" instance=ExtResource("1_yqhbi")]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 2.5, 0)
-
-[node name="Chain2" parent="chain" instance=ExtResource("1_yqhbi")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 3.5, 0)
 
-[node name="Chain3" parent="chain" instance=ExtResource("1_yqhbi")]
+[node name="Chain2" parent="chain" instance=ExtResource("1_yqhbi")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4.5, 0)
+modulate = Color(1, 0, 0, 1)
+
+[node name="Chain3" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 5.5, 0)
+
+[node name="Chain4" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 6.5, 0)
+
+[node name="Chain5" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 7.5, 0)
+
+[node name="Chain6" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 8.5, 0)
+
+[node name="Chain7" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 9.5, 0)
+
+[node name="Chain8" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 10.5, 0)
+
+[node name="Chain9" parent="chain" instance=ExtResource("1_yqhbi")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 11.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
 shape = SubResource("BoxShape3D_5yeml")
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_cage_crush"]
