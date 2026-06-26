@@ -11,14 +11,12 @@ public partial class slideState : State
 	[Export] public float slideAcceleration = 15.0f;
 	[Export] public float slideDeceleration = 15.0f;
 	private float currentSlideSpeed;
-	private float input;
+	private int slideDirection;
 	private bool crouchQueued = false;
 	private float slideTimer; //time in current slide
-	public SlideVertColCheck vertColCheck;
 	public override void Enter()
 	{
-		input = Mathf.Sign(pm.aimDirection.X);
-		if (input == 0) input = Mathf.Sign(parentMesh.RotationDegrees.Y);
+		slideDirection = pm.facingDirection;
 		crouchQueued = false;
 		slideTimer = 0;
 
@@ -32,35 +30,36 @@ public partial class slideState : State
 				slideBoostEffect.GlobalRotation = parentMesh.GlobalRotation;
 
 			}
-			currentSlideSpeed = boostMaxSpeed * input;
+			currentSlideSpeed = boostMaxSpeed * slideDirection;
 		}
 		else
 		{
-			currentSlideSpeed = slideMaxSpeed * input;
+			currentSlideSpeed = slideMaxSpeed * slideDirection;
 		}
-		parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * input, 0); //rotate mesh
+		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
+		player.ApplyFloorSnap();
 	}
 
 	public override void Exit()
 	{
 		player.Set(PlayerManager.PropertyName.slideBoost, false);
-		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
+		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 		else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
 	}
 	public override void PhysicsUpdate(float delta)
 	{
 		slideTimer += delta;
-
-		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor()) //immediately switch to jump state
+		player.ApplyFloorSnap();
+		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == input * -1 || !Input.IsActionPressed("Slide")) && slideTimer >= slideMinTime)
-		{ //if player is holding opposite direction of slide or is not holding slide button
-			if (vertColCheck != null && vertColCheck.VertCheckIsColliding() || Mathf.Sign(pm.aimDirection.X) == input * -1)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
+		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
 				crouchQueued = true; //for animation purposes
 				msm.TransitionTo("crouchState");
@@ -68,11 +67,15 @@ public partial class slideState : State
 			}
 			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
-		else if (slideTimer >= slideMinTime && Mathf.Abs(currentSlideSpeed) < .2f)
+		else if (slideTimer >= slideMaxTime || Mathf.Abs(currentSlideSpeed) < .2f) //slide is at its end
 		{
-			crouchQueued = true; //for animation purposes
-			msm.TransitionTo("crouchState");
-			return;
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
+			{
+				crouchQueued = true; //for animation purposes
+				msm.TransitionTo("crouchState");
+				return;
+			}
+			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
 		player.MoveAndSlide();
@@ -82,7 +85,7 @@ public partial class slideState : State
 	{
 		Vector3 velocity = player.Velocity;
 
-		if ((bool)player.Get(PlayerManager.PropertyName.slideBoost))
+		if (pm.slideBoost)
 		{
 			currentSlideSpeed = Mathf.MoveToward(currentSlideSpeed, 0, delta * slideDeceleration);
 		}
@@ -100,10 +103,9 @@ public partial class slideState : State
 	{
 		if (@event.IsActionPressed("Jump")) //allow jumping out of slide
 		{
-            if (vertColCheck != null && vertColCheck.VertCheckIsColliding())
+            if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
             {
 				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
-				GD.Print("Jump Blocked");
         	}
 			else
             {
@@ -114,7 +116,7 @@ public partial class slideState : State
 
 		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch();
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 			msm.TransitionTo("crouchState");
 		}
 	}

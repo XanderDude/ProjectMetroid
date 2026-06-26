@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class RavenAttackState : State
 {
+	public static event Action<Enemy> OnRavenSlashHit;
 	[Export] private int damage = 15;
 	private Area3D slashArea;
 	private Area3D slashHitboxes;
@@ -26,13 +27,14 @@ public partial class RavenAttackState : State
 
 	public override void Enter()
 	{
-		parentMesh = raven.player.GetNode<Node3D>(raven.player.playerMeshPath);
+		GD.Print(pm == null);
 		attackDirection = GetAttackDirection();
 		raven.Visible = false;
 		SpawnSlashVFX();
 		//CreateSlashMesh();
 		attackTimer = 0.0f;
 		raven.isInAction = true;
+		
 	}
 
 	public override void Exit()
@@ -51,7 +53,7 @@ public partial class RavenAttackState : State
 		attackTimer += delta;
 		if (slashArea != null && IsInstanceValid(slashArea))
 		{
-			var playerPos = raven.player.GlobalPosition;
+			var playerPos = pm.GlobalPosition;
 			slashOffset = new Vector3(attackDirection.X * 1.0f, attackDirection.Y + 1.0f, 0.0f);
 			slashArea.GlobalPosition = playerPos + slashOffset;
 		}
@@ -62,38 +64,18 @@ public partial class RavenAttackState : State
 			rsm.TransitionTo("RavenOnPlayerState");
 		}
 
-
-	
-
 	}
 
 	private Vector2 GetAttackDirection()
 	{
-		Vector2 direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up"));
+		Vector2 direction = pm.aimDirection;
 
 		if (direction == Vector2.Zero)
 		{
-			if (Input.IsActionPressed("Up") || Input.IsActionPressed("Down"))
-			{
-				direction = new Vector2(0, Input.GetAxis("Down", "Up"));
-			}
-			else
-			{
-				direction = new Vector2(Math.Sign(parentMesh.RotationDegrees.Y), 0);
-			}
-
-			direction = new(Math.Sign(parentMesh.RotationDegrees.Y), direction.Y);
+			direction = new Vector2(pm.facingDirection, 0);
 		}
 
 		return direction.Normalized();
-	}
-
-	public override void PhysicsUpdate(float delta)
-	{
-	}
-
-	public override void HandleInput(InputEvent @event)
-	{
 	}
 
 	private void SpawnSlashVFX()
@@ -101,7 +83,7 @@ public partial class RavenAttackState : State
 		if (newSlash == null)
 		{
 			newSlash = slashVFX.Instantiate() as Node3D; //instantiate loaded vfx
-			raven.player.AddChild(newSlash); //add vfx to player
+			pm.AddChild(newSlash); //add vfx to player
 			slashHitboxes = newSlash.GetNode<Area3D>("Area3D");
 			slashHitboxes.BodyEntered += OnBodyEntered;
 		}
@@ -139,7 +121,7 @@ public partial class RavenAttackState : State
 		slashCollision.Shape = boxShape;
 		slashArea.AddChild(slashCollision);
 
-		Vector3 playerPos = raven.player.GlobalPosition;
+		Vector3 playerPos = pm.GlobalPosition;
 		Vector3 slashOffset = new Vector3(1.0f, 0.5f, 0);
 
 		if (Input.GetAxis("Left", "Right") == -1)
@@ -156,20 +138,26 @@ public partial class RavenAttackState : State
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
 
-			if (GetAttackDirection().Y < 0 && raven.player.StateMachine._currentState.Name == "jumpState")
+			if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
 				{
-				raven.player.Set("jumpQueued", true);
-				raven.player.StateMachine._currentState.Enter();
+				pm.Set("jumpQueued", true);
+				pm.StateMachine._currentState.Enter();
 					
 				}
 
 
 		if (targetsDamaged.Contains(body)) return;
 
-		if (body is EnemyController enemy)
+		if (body is Enemy enemy)
 			{
 				//GD.Print("Dealing damage to enemy!");
-				enemy.DamagedRecieved(damage);
+				
+				
+{
+				enemy.DamagedReceived(damage);
+				targetsDamaged.Add(body);
+				OnRavenSlashHit?.Invoke(enemy); // fire the event
+}
 				targetsDamaged.Add(body);
 				
 			}
@@ -181,10 +169,10 @@ public partial class RavenAttackState : State
 		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
 		
 		Node3D parent = area.GetParent<Node3D>();
-		if (parent != null && parent is EnemyController enemy)
+		if (parent != null && parent is Enemy enemy)
 		{
 			//GD.Print("Dealing damage to enemy via area!");
-			enemy.DamagedRecieved(damage);
+			enemy.DamagedReceived(damage);
 		}
 	}
 }

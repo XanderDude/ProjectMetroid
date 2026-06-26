@@ -14,7 +14,6 @@ public partial class mantleState : State
 	public override void Exit()
 	{
 		//GD.Print("Exited Mantle State");
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
 	}
 	
 	public override void PhysicsUpdate(float delta)

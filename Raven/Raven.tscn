@@ -62,12 +62,13 @@ graph_offset = Vector2(61, -36)
 [sub_resource type="SphereShape3D" id="SphereShape3D_8hq1b"]
 margin = 0.0
 
-[node name="Raven" type="CharacterBody3D"]
+[node name="Raven" type="CharacterBody3D" node_paths=PackedStringArray("RavenStateMachine")]
 collision_layer = 0
 collision_mask = 4
 floor_max_angle = 0.0
 script = ExtResource("1_sgyn5")
 speed = 12.0
+RavenStateMachine = NodePath("RavenStateMachine")
 
 [node name="RavenStateMachine" type="Node" parent="."]
 script = ExtResource("2_1yirg")
@@ -97,15 +98,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RavenAnimated" parent="RavenAnimation/Weapons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0184822, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.0230331, 0)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="WingLeft" parent="RavenAnimation/Weapons/RavenAnimated" index="0"]
-transform = Transform3D(0.654051, -0.590591, -1.21385, 1.34441, 0.406441, 0.526652, 0.121547, -1.31758, 0.706553, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.32542, -0.111441, -0.693435, 0.679091, 0.581188, 1.2046, 0.179183, -1.37833, 0.563996, 0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="WingRight" parent="RavenAnimation/Weapons/RavenAnimated" index="1"]
-transform = Transform3D(0.671935, 0.584343, 1.20708, -1.33539, 0.41579, 0.542078, -0.123422, -1.31745, 0.706474, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(1.32509, 0.107918, 0.694619, -0.678624, 0.582959, 1.20401, -0.183333, -1.37787, 0.563805, -0.0374537, 0.136378, 0.0803157)
 material_overlay = SubResource("StandardMaterial3D_swnu4")
 
 [node name="BeakTop" parent="RavenAnimation/Weapons/RavenAnimated/Beak" index="0"]

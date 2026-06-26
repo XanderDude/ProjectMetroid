@@ -22,7 +22,6 @@ gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("1_qd1jx")
-itemType = 2
 amount = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

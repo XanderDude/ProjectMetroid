@@ -9,15 +9,20 @@ public partial class PlayerManager : CharacterBody3D
 	public bool slideQueued;
 	public bool slideBoost;
 
+	public Vector3 knockbackVelocity = Vector3.Zero;
 	public bool isDead = false;
 	public bool isPressed = false; 
 	public bool inwater = false;
+
+	public bool movementlocked = false;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	private float alpha = 0f;
 
-	public Vector2 aimDirection;
+	public Vector2 aimDirection = Vector2.Right;
 	public bool noAimDirection;
-	[Export] public RayCast3D groundCheck;
+	public int facingDirection = 1; //1 is right, -1 is left
+	[Export] public VerticalCollisionCheck vertColCheck;
+	[Export] public ShapeCast3D groundCheck;
 
 	private int health = 100;
 	[Export] public int Health
@@ -85,6 +90,8 @@ public partial class PlayerManager : CharacterBody3D
 	
 	public override void _PhysicsProcess(double delta)
 	{
+
+
 		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
 		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
 		
@@ -113,13 +120,22 @@ public partial class PlayerManager : CharacterBody3D
 			canBeDamaged = true;
 			mainMat?.SetShaderParameter("flashing", false);
 			weaponMat?.SetShaderParameter("flashing", false);
-		}		
+		}	
+
 	}
-	public void SpawnJumpCloud(float rotation)
+	public void SpawnJumpCloud(float yOffset,float rotation)
 	{
 		var jumpCloud = jumpVFX.Instantiate() as Node3D;
-		this.AddChild(jumpCloud, true);
-		jumpCloud.GlobalPosition = GlobalPosition;
-		jumpCloud.RotationDegrees = new(rotation, 0, 0);
+		AddChild(jumpCloud, true);
+		jumpCloud.GlobalPosition = new(GlobalPosition.X, GlobalPosition.Y + yOffset, GlobalPosition.Z);
+		jumpCloud.RotationDegrees = new(0, 0, rotation);
 	}
+
+	public void LockMovement(bool locked)
+	{
+		AxisLockLinearX = locked;
+		AxisLockLinearY = locked;
+	}
+	
+
 }

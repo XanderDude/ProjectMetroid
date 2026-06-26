@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class walljumpState : State
 {
@@ -8,24 +7,18 @@ public partial class walljumpState : State
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpDeceleration = 15f;
  	[Export] public float jumpVelocity = 10.0f;
-	[Export] public float jumpMaxHeight = 0.17f;
+	[Export] public float jumpMaxHeight = 1f, jumpMinHeight = 0.2f; //meters
+	public float jumpHeight = 0.0f; //player's current jump height position
+	private float startPosition = 0.0f;
 	[Export] public float playerTop = 1.5f;
 
-	public float jumpHeight = 0.0f;
-	[Export] Godot.AudioStreamPlayer jumpySound;
-	private void checkDirection() {
+	private void CheckDirection() 
+	{
 		KinematicCollision3D collision = player.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
-		if (collider.GlobalPosition.X >= player.GlobalPosition.X) 
-		{ 
-			airMaxSpeed = -airMaxSpeed;
-			parentMesh.RotationDegrees = new(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * -1, 0);
-		}
-		if (collider.GlobalPosition.X <= player.GlobalPosition.X)
-		{ 
-			airMaxSpeed = Mathf.Abs(airMaxSpeed); 
-			parentMesh.RotationDegrees = new(0, Mathf.Abs(parentMesh.RotationDegrees.Y), 0);	
-		}
+		airMaxSpeed *= Mathf.Sign(player.GlobalPosition.X - collider.GlobalPosition.X);
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).RotateMesh(Mathf.Sign(airMaxSpeed));
+		pm.SpawnJumpCloud(0.8f, -45f * Mathf.Sign(airMaxSpeed));
 	}
 
 	private bool IsAscending(float delta, ref Vector3 velocity) //check if player should be ascending
@@ -33,68 +26,67 @@ public partial class walljumpState : State
 		if (jumpHeight < jumpMaxHeight)
 		{
 			velocity.Y = jumpVelocity; //continously set upward velocity
-			jumpHeight += delta;
-			//GD.Print("Jump Height: " + jumpHeight);
+			jumpHeight = player.GlobalPosition.Y - startPosition;
+			GD.Print("Jump Height: " + jumpHeight);
 			return true;
 		}
 		else
 		{
-			//GD.Print("jump max height reached");
-			jumpHeight = jumpMaxHeight; 
+			velocity.Y = player.Velocity.Y/2;
+			pm.jumpQueued = false;
+			jumpHeight = jumpMaxHeight; //clamp
 			return false;
 		}
 	}
+	private void CancelUpwardVelocity()
+    {
+		pm.jumpQueued = false;
+        player.Velocity = new Vector3(player.Velocity.X, player.Velocity.Y/2, player.Velocity.Z);
+		GD.Print("Jump velocity Cancelled");
+    }
 
 	public override void Enter()
 	{
 		airMaxSpeed = Mathf.Abs(airMaxSpeed);
-		checkDirection();
+		CheckDirection();
 		SoundFriend.Play("player_jump_SFX");
-		player.Set("jumpQueued", true);
-		//GD.Print("Entered Wall Jump State. Jump queued: " + player.Get("jumpQueued"));
+		pm.jumpQueued = true;
 		jumpHeight = 0.0f;
-
-		player.Set(PlayerManager.PropertyName.slideBoost, true); //player must be airborne, enable boost
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).BeginJump();
-		
+		startPosition = player.GlobalPosition.Y;
+		pm.slideBoost = true; //player must be airborne, enable boost
+		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(true);
 	}
+	
 	public override void Exit()
 	{
-		//GD.Print("Exited Wall Jump State");
-		player.Set("jumpQueued", false); //don't jump on exit if holding jump
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		pm.jumpQueued = false;
 	}
 
-	
 	public override void PhysicsUpdate(float delta)
 	{
+		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
+		{
+			CancelUpwardVelocity();
+			pm.jumpQueued = false;
+		}
+		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity();
 		HandleAirMovement(delta);
 		player.MoveAndSlide();
-		
 	}
 
 	private void HandleAirMovement(float delta)
 	{
 		Vector3 velocity = player.Velocity;
-		
 
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
-			//GD.Print("Jumping");
 			velocity.X = airMaxSpeed;
-
 			velocity.Y -= _gravity * delta;
 		}
-		
 		else
 		{	
 			velocity.X = airMaxSpeed;
-			velocity.Y -= _gravity * 2.5f * delta;
-			
-			
-			
-			
-			
+			velocity.Y -= _gravity * 2.5f * delta;			
 		}
 		
 		if (velocity.Y < 0) msm.TransitionTo("jumpState");
@@ -104,13 +96,9 @@ public partial class walljumpState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionReleased("Jump")) //check when jump is released
+		if (@event.IsActionPressed("Jump")) //check when jump is released
 		{
-			player.Set("jumpQueued", false);
+			//walljump check
 		}
-	}
-	
-	
-	
-	
+	}	
 }

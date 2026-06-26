@@ -29,7 +29,7 @@ public partial class RavenOnPlayerState : State
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		var followlocation = raven.player.GetNode<MeshInstance3D>("PlayerMesh/PlayerRavenFollow");
+		var followlocation = pm.GetNode<MeshInstance3D>("PlayerMesh/PlayerRavenFollow");
 		Vector3 targetPosition = followlocation.GlobalPosition;
 		Vector3 slope = (targetPosition - raven.GlobalPosition).Normalized();
 
@@ -37,17 +37,17 @@ public partial class RavenOnPlayerState : State
 		{
 			raven.GlobalPosition += slope * (raven.speed / 2) * delta;
 			raven.Velocity = Vector3.Zero;
-			if (raven.player.GlobalPosition > raven.GlobalPosition)
+			if (pm.GlobalPosition > raven.GlobalPosition)
 			{
 				
 				raven.RotationDegrees = new Vector3(0, 180, 0);
 			}
-			else if (raven.player.GlobalPosition < raven.GlobalPosition)
+			else if (pm.GlobalPosition < raven.GlobalPosition)
 			{
 				raven.RotationDegrees = new Vector3(0, 0, 0);
 			}
 		}
-		if (raven.player.IsOnFloor() || raven.player.StateMachine._currentState.Name == "mantleState")
+		if (pm.IsOnFloor() || pm.StateMachine._currentState.Name == "mantleState")
 		{
 			raven.canLaunch = true;
 		}
@@ -58,13 +58,13 @@ public partial class RavenOnPlayerState : State
 		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch && raven.inventoryfriend.isUpgradeUnlocked("ravenTeleport"))
 		{
 			
-			raven.GlobalPosition = raven.player.GlobalPosition + raven.Yoffset;
+			raven.GlobalPosition = pm.GlobalPosition + raven.Yoffset;
 			
 			rsm.TransitionTo("RavenLaunchState");
 		}
 		else if (@event.IsActionPressed("RavenSlash"))
 		{
-			raven.GlobalPosition = raven.player.GlobalPosition + raven.Yoffset;
+			raven.GlobalPosition = pm.GlobalPosition + raven.Yoffset;
 			rsm.TransitionTo("RavenAttackState");
 		}
 	}

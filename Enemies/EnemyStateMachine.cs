@@ -19,12 +19,14 @@ public partial class EnemyStateMachine : Node
             {
                 _states[node.Name] = s;
                 s.esm = this;
-                s.ec = GetParent<EnemyController>();
+                s.ec = GetParent<Enemy>();
                 s.parentMesh = s.ec.mesh;
                 s.Ready();
                 s.Exit();
             }
         }
+
+        
 
         if (initialState != null && !initialState.IsEmpty)
         {

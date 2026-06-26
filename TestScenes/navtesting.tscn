@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=3 uid="uid://dqx7rw75t5wnp"]
+
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_enfwr"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_enfwr"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="3_gccg7"]
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="3_qo81c"]
+[ext_resource type="MeshLibrary" uid="uid://b6oooqw81xqfb" path="res://TestScenes/meshlib.tres" id="4_enfwr"]
+[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="5_lo8t2"]
+[ext_resource type="Script" uid="uid://cv2h2g8w2y0ua" path="res://Player/knockbackState.cs" id="6_ht5l1"]
+[ext_resource type="Script" uid="uid://bviplcgofk6df" path="res://Enemies/DropEntry.cs" id="7_a7ko2"]
+[ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="7_egr1a"]
+[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="9_u45ip"]
+[ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="10_6ay6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egr1a"]
+shader = ExtResource("3_gccg7")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+
+[sub_resource type="Resource" id="Resource_ue6sv"]
+script = ExtResource("7_a7ko2")
+upgrade = 1
+itemType = 0
+itemScene = ExtResource("9_u45ip")
+dropRate = 0.0
+dropAmount = 1
+amount = 0
+pitydrop = true
+metadata/_custom_type_script = "uid://bviplcgofk6df"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_egr1a"]
+vertices = PackedVector3Array(-9.5, 1.2, -4.25, -7.25, 1.2, -4.5, -7.25, 1.2, -7.5, -12.5, 1.2, -7.5, -12.5, 1.2, 5.5, -9.5, 1.2, 5.5, -5.25, 1.2, -4.25, 12.5, 1.2, -7.5, -5.5, 1.2, 5.5, 12.5, 1.2, 5.5, -8.5, 2.2, -3.5, -8.5, 2.2, -1.25, -6.5, 2.2, -1.5, -6.5, 2.2, -3.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11)]
+cell_height = 0.1
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gccg7"]
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("playerNode")]
+script = ExtResource("1_enfwr")
+initdebugfriend = true
+playerNode = NodePath("SubViewportContainer/SubViewport/Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_qo81c")
+
+[node name="DirectionalLight_Exterior_DayBreak" parent="." instance=ExtResource("7_egr1a")]
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, 0, 6.26745, -9.86159)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_egr1a")
+offset_left = 1.0
+offset_right = 641.0
+offset_bottom = 360.0
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_enfwr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13651, 4.30869, 0)
+Health = 2000
+
+[node name="knockbackState" type="Node" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="8"]
+script = ExtResource("6_ht5l1")
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
+bones/0/position = Vector3(0.017833, 0.895189, 0.0112617)
+bones/0/rotation = Quaternion(0.548528, 0.447156, 0.452962, 0.542212)
+bones/1/position = Vector3(0.0774969, -0.0253461, -0.0107222)
+bones/1/rotation = Quaternion(-0.0267555, 0.104911, -0.00520055, 0.994108)
+bones/3/position = Vector3(0.035671, 0.0139758, 1.63425e-15)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
+bones/4/position = Vector3(0.117899, 0.0191126, -4.79616e-16)
+bones/4/rotation = Quaternion(-0.13297, 0.00573027, -0.017637, 0.990947)
+bones/5/position = Vector3(0.0708221, -0.0208942, -6.57252e-16)
+bones/5/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
+bones/7/position = Vector3(0.0411856, 0.0608075, 0.00569772)
+bones/7/rotation = Quaternion(0.480255, 0.508049, 0.443003, -0.561239)
+bones/9/rotation = Quaternion(0.373073, -0.0319786, 0.926398, 0.0397538)
+bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
+bones/10/rotation = Quaternion(0.494379, 0.591581, -0.434824, 0.465349)
+bones/11/rotation = Quaternion(0.0860677, -0.528687, -0.157665, 0.829593)
+bones/13/position = Vector3(-0.00103, 0.0139758, -0.143857)
+bones/13/rotation = Quaternion(0.0171363, -0.105597, 0.0733489, 0.991552)
+bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
+bones/14/rotation = Quaternion(0.127051, 0.0315704, -0.180846, 0.97476)
+bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
+bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
+bones/21/rotation = Quaternion(0.99868, -0.00939322, -0.03027, 0.0404175)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.527874, -0.489841, 0.496282, 0.48488)
+bones/24/position = Vector3(0.0665304, -0.0253461, -0.089967)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
+bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
+
+[node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
+transform = Transform3D(0.0534201, -0.862696, -0.502894, -0.229652, 0.4795, -0.846959, 0.971806, 0.160735, -0.172505, -0.354025, 1.10331, 0.00318972)
+
+[node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
+transform = Transform3D(0.0534201, -0.862696, -0.502894, -0.229652, 0.4795, -0.846959, 0.971806, 0.160735, -0.172505, -0.416956, 1.11679, 0.00986578)
+
+[node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
+transform = Transform3D(0.0534201, -0.862696, -0.502894, -0.229652, 0.4795, -0.846959, 0.971806, 0.160735, -0.172505, -0.416956, 1.11679, 0.00986578)
+
+[node name="Rat" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("esm") instance=ExtResource("5_lo8t2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24698, 1.02631, 0)
+esm = NodePath("EnemyStateMachine")
+revengeMode = true
+health = 8000
+dropTable = Array[ExtResource("7_a7ko2")]([SubResource("Resource_ue6sv"), null, null])
+runspeed = 3.0
+maxspeed = 2.0
+attackknockback = 2.0
+detectionrange = 6.0
+attackrange = 3.0
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport"]
+navigation_mesh = SubResource("NavigationMesh_egr1a")
+
+[node name="GridMap" type="GridMap" parent="SubViewportContainer/SubViewport/NavigationRegion3D"]
+mesh_library = ExtResource("4_enfwr")
+physics_material = SubResource("PhysicsMaterial_gccg7")
+cell_size = Vector3(1, 1, 1)
+collision_layer = 3
+collision_mask = 4
+data = {
+"cells": PackedInt32Array(0, 0, 1376259, 0, 65528, 1376259, 0, 65529, 1376259, 0, 65530, 1376259, 0, 65531, 1376259, 0, 65532, 1376259, 0, 65533, 1376259, 0, 65534, 1376259, 0, 65535, 1376259, 65535, 65528, 1376259, 65535, 65529, 1376259, 65535, 65530, 1376259, 65535, 65531, 1376259, 65535, 65532, 1376259, 65535, 65533, 1376259, 65535, 65534, 1376259, 65535, 65535, 1376259, 65535, 0, 1376259, 65535, 1, 1376259, 65535, 2, 1376259, 65535, 3, 1376259, 65535, 4, 1376259, 65535, 5, 1376259, 65535, 6, 983040, 65535, 7, 983040, 65535, 8, 983040, 0, 1, 1376259, 0, 2, 1376259, 0, 3, 1376259, 0, 4, 1376259, 0, 5, 1376259, 0, 6, 393216, 0, 7, 393216, 0, 8, 393216, 65534, 65528, 1376259, 65534, 65529, 1376259, 65534, 65530, 1376259, 65534, 65531, 1376259, 65534, 65532, 1376259, 65534, 65533, 1376259, 65534, 65534, 1376259, 65534, 65535, 1376259, 65534, 0, 1376259, 65534, 1, 1376259, 65534, 2, 1376259, 65534, 3, 1376259, 65534, 4, 1376259, 65534, 5, 1376259, 65534, 6, 786432, 65534, 7, 786432, 65534, 8, 786432, 1, 65535, 1376259, 1, 0, 1376259, 1, 1, 1376259, 2, 65535, 1376259, 2, 0, 1376259, 2, 1, 1376259, 3, 65535, 1376259, 3, 0, 1376259, 3, 1, 1376259, 4, 65535, 1376259, 4, 0, 1376259, 4, 1, 1376259, 5, 65535, 1376259, 5, 0, 1376259, 5, 1, 1376259, 6, 65535, 1376259, 6, 0, 1376259, 6, 1, 1376259, 7, 65535, 1376259, 7, 0, 1376259, 7, 1, 1376259, 8, 65535, 1376259, 8, 0, 1376259, 8, 1, 1376259, 9, 65535, 1376259, 9, 0, 1376259, 9, 1, 1376259, 10, 65535, 1376259, 10, 0, 1376259, 10, 1, 1376259, 11, 65535, 1376259, 11, 0, 1376259, 11, 1, 1376259, 12, 65535, 1376259, 12, 0, 1376259, 12, 1, 1376259, 65527, 65531, 1376259, 65527, 65532, 1376259, 65527, 65533, 1376259, 65527, 65534, 1376259, 65527, 65535, 1376259, 65527, 0, 1376259, 65527, 1, 1376259, 65527, 2, 1376259, 65528, 65531, 1376259, 65528, 65532, 1376259, 65528, 65533, 1376259, 65528, 65534, 1376259, 65528, 65535, 1376259, 65528, 0, 1376259, 65528, 1, 1376259, 65528, 2, 1376259, 65529, 65531, 1376259, 65529, 65532, 1376259, 65529, 65533, 1376259, 65529, 65534, 1376259, 65529, 65535, 1376259, 65529, 0, 1376259, 65529, 1, 1376259, 65529, 2, 1376259, 65530, 65531, 1376259, 65530, 65532, 1376259, 65530, 65533, 1376259, 65530, 65534, 1376259, 65530, 65535, 1376259, 65530, 0, 1376259, 65530, 1, 1376259, 65530, 2, 1376259, 65531, 65531, 1376259, 65531, 65532, 1376259, 65531, 65533, 1376259, 65531, 65534, 1376259, 65531, 65535, 1376259, 65531, 0, 1376259, 65531, 1, 1376259, 65531, 2, 1376259, 65532, 65531, 1376259, 65532, 65532, 1376259, 65532, 65533, 1376259, 65532, 65534, 1376259, 65532, 65535, 1376259, 65532, 0, 1376259, 65532, 1, 1376259, 65532, 2, 1376259, 65533, 65531, 1376259, 65533, 65532, 1376259, 65533, 65533, 1376259, 65533, 65534, 1376259, 65533, 65535, 1376259, 65533, 0, 1376259, 65533, 1, 1376259, 65533, 2, 1376259, 1, 65531, 1376259, 1, 65532, 1376259, 1, 65533, 1376259, 1, 65534, 1376259, 1, 2, 1376259, 2, 65531, 1376259, 2, 65532, 1376259, 2, 65533, 1376259, 2, 65534, 1376259, 2, 2, 1376259, 3, 65531, 1376259, 3, 65532, 1376259, 3, 65533, 1376259, 3, 65534, 1376259, 3, 2, 1376259, 4, 65531, 1376259, 4, 65532, 1376259, 4, 65533, 1376259, 4, 65534, 1376259, 4, 2, 1376259, 5, 65531, 1376259, 5, 65532, 1376259, 5, 65533, 1376259, 5, 65534, 1376259, 5, 2, 1376259, 6, 65531, 1376259, 6, 65532, 1376259, 6, 65533, 1376259, 6, 65534, 1376259, 6, 2, 1376259, 7, 65531, 1376259, 7, 65532, 1376259, 7, 65533, 1376259, 7, 65534, 1376259, 7, 2, 1376259, 8, 65531, 1376259, 8, 65532, 1376259, 8, 65533, 1376259, 8, 65534, 1376259, 8, 2, 1376259, 65523, 65528, 1376259, 65523, 65529, 1376259, 65523, 65530, 1376259, 65523, 65531, 1376259, 65523, 65532, 1376259, 65523, 65533, 1376259, 65523, 65534, 1376259, 65523, 65535, 1376259, 65523, 0, 1376259, 65523, 1, 1376259, 65523, 2, 1376259, 65523, 3, 1376259, 65523, 4, 1376259, 65523, 5, 1376259, 65524, 65528, 1376259, 65524, 65529, 1376259, 65524, 65530, 1376259, 65524, 65531, 1376259, 65524, 65532, 1376259, 65524, 65533, 1376259, 65524, 65534, 1376259, 65524, 65535, 1376259, 65524, 0, 1376259, 65524, 1, 1376259, 65524, 2, 1376259, 65524, 3, 1376259, 65524, 4, 1376259, 65524, 5, 1376259, 65525, 65528, 1376259, 65525, 65529, 1376259, 65525, 65530, 1376259, 65525, 65531, 1376259, 65525, 65532, 1376259, 65525, 65533, 1376259, 65525, 65534, 1376259, 65525, 65535, 1376259, 65525, 0, 1376259, 65525, 1, 1376259, 65525, 2, 1376259, 65525, 3, 1376259, 65525, 4, 1376259, 65525, 5, 1376259, 65526, 65528, 1376259, 65526, 65529, 1376259, 65526, 65530, 1376259, 65526, 65531, 1376259, 65526, 65532, 1376259, 65526, 65533, 1376259, 65526, 65534, 1376259, 65526, 65535, 1376259, 65526, 0, 1376259, 65526, 1, 1376259, 65526, 2, 1376259, 65526, 3, 1376259, 65526, 4, 1376259, 65526, 5, 1376259, 65527, 65528, 1376259, 65527, 65529, 1376259, 65527, 65530, 1376259, 65527, 3, 1376259, 65527, 4, 1376259, 65527, 5, 1376259, 65528, 65528, 1376259, 65528, 65529, 1376259, 65528, 65530, 1376259, 65528, 3, 1376259, 65528, 4, 1376259, 65528, 5, 1376259, 65529, 65528, 1376259, 65529, 65529, 1376259, 65529, 65530, 1376259, 65529, 3, 1376259, 65529, 4, 1376259, 65529, 5, 1376259, 65530, 65528, 1376259, 65530, 65529, 1376259, 65530, 65530, 1376259, 65530, 3, 1376259, 65530, 4, 1376259, 65530, 5, 1376259, 65531, 65528, 1376259, 65531, 65529, 1376259, 65531, 65530, 1376259, 65531, 3, 1376259, 65531, 4, 1376259, 65531, 5, 1376259, 65532, 65528, 1376259, 65532, 65529, 1376259, 65532, 65530, 1376259, 65532, 3, 1376259, 65532, 4, 1376259, 65532, 5, 1376259, 65533, 65528, 1376259, 65533, 65529, 1376259, 65533, 65530, 1376259, 65533, 3, 1376259, 65533, 4, 1376259, 65533, 5, 1376259, 1, 65528, 1376259, 1, 65529, 1376259, 1, 65530, 1376259, 1, 3, 1376259, 1, 4, 1376259, 1, 5, 1376259, 2, 65528, 1376259, 2, 65529, 1376259, 2, 65530, 1376259, 2, 3, 1376259, 2, 4, 1376259, 2, 5, 1376259, 3, 65528, 1376259, 3, 65529, 1376259, 3, 65530, 1376259, 3, 3, 1376259, 3, 4, 1376259, 3, 5, 1376259, 4, 65528, 1376259, 4, 65529, 1376259, 4, 65530, 1376259, 4, 3, 1376259, 4, 4, 1376259, 4, 5, 1376259, 5, 65528, 1376259, 5, 65529, 1376259, 5, 65530, 1376259, 5, 3, 1376259, 5, 4, 1376259, 5, 5, 1376259, 6, 65528, 1376259, 6, 65529, 1376259, 6, 65530, 1376259, 6, 3, 1376259, 6, 4, 1376259, 6, 5, 1376259, 7, 65528, 1376259, 7, 65529, 1376259, 7, 65530, 1376259, 7, 3, 1376259, 7, 4, 1376259, 7, 5, 1376259, 8, 65528, 1376259, 8, 65529, 1376259, 8, 65530, 1376259, 8, 3, 1376259, 8, 4, 1376259, 8, 5, 1376259, 9, 65528, 1376259, 9, 65529, 1376259, 9, 65530, 1376259, 9, 65531, 1376259, 9, 65532, 1376259, 9, 65533, 1376259, 9, 65534, 1376259, 9, 2, 1376259, 9, 3, 1376259, 9, 4, 1376259, 9, 5, 1376259, 10, 65528, 1376259, 10, 65529, 1376259, 10, 65530, 1376259, 10, 65531, 1376259, 10, 65532, 1376259, 10, 65533, 1376259, 10, 65534, 1376259, 10, 2, 1376259, 10, 3, 1376259, 10, 4, 1376259, 10, 5, 1376259, 11, 65528, 1376259, 11, 65529, 1376259, 11, 65530, 1376259, 11, 65531, 1376259, 11, 65532, 1376259, 11, 65533, 1376259, 11, 65534, 1376259, 11, 2, 1376259, 11, 3, 1376259, 11, 4, 1376259, 11, 5, 1376259, 12, 65528, 1376259, 12, 65529, 1376259, 12, 65530, 1376259, 12, 65531, 1376259, 12, 65532, 1376259, 12, 65533, 1376259, 12, 65534, 1376259, 12, 2, 1376259, 12, 3, 1376259, 12, 4, 1376259, 12, 5, 1376259, 131063, 65532, 786435, 131063, 65533, 786435, 131063, 65534, 786435, 131063, 65535, 786435, 131063, 0, 786435, 131063, 1, 786435, 131063, 2, 786435, 131063, 3, 786435, 131063, 4, 786435, 131064, 65532, 786435, 131064, 65533, 786435, 131064, 65534, 786435, 131064, 65535, 786435, 131064, 0, 786435, 131064, 1, 786435, 131064, 2, 786435, 131064, 3, 786435, 131064, 4, 786435, 131065, 65532, 786435, 131065, 65533, 786435, 131065, 65534, 786435, 131065, 65535, 786435, 131065, 0, 786435, 131065, 1, 786435, 131065, 2, 786435, 131065, 3, 786435, 131065, 4, 786435, 196600, 65535, 786435, 196600, 0, 786435, 196600, 1, 786435, 196600, 2, 786435, 196600, 3, 786435)
+}
+metadata/_editor_floor_ = Vector3(0, 4, 0)
+
+[node name="StonePillar" parent="." instance=ExtResource("10_6ay6n")]
+transform = Transform3D(1, 0, 0, 0, 7.13, 0, 0, 0, 1, 12.7763, 3.5782, -0.199218)
+
+[editable path="SubViewportContainer/SubViewport/Player"]
+[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]
+[editable path="SubViewportContainer/SubViewport/Rat"]
+[editable path="SubViewportContainer/SubViewport/Rat/Rat"]

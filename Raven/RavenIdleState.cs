@@ -21,7 +21,7 @@ public partial class RavenIdleState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		raven.Velocity = Vector3.Zero;
-		if ((raven.player.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 4.0f)
+		if ((pm.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 4.0f)
 		{
 			rsm.TransitionTo("RavenRecallState");
 		}
@@ -37,9 +37,9 @@ public partial class RavenIdleState : State
 
 				if (raven.canTeleport)
 				{
-					//GD.Print("Raven: Teleported to player position" + raven.player.StateMachine._currentState.Name);
+					//GD.Print("Raven: Teleported to player position" + pm.StateMachine._currentState.Name);
 					// Define start and end points for the ray
-					Vector3 from = raven.player.GlobalPosition;
+					Vector3 from = pm.GlobalPosition;
 					Vector3 to = raven.GlobalPosition;
 
 					// Create the ray query parameters
@@ -63,15 +63,15 @@ public partial class RavenIdleState : State
 					{
 						GD.Print("Ray did not hit anything.");
 					}
-					raven.player.GlobalPosition = raven.GlobalPosition;
+					pm.GlobalPosition = raven.GlobalPosition;
 					raven.canTeleport = false;
-					raven.player.Velocity = Vector3.Zero;
+					pm.Velocity = Vector3.Zero;
 				}
 
 
-			if (raven.player.StateMachine._currentState.Name == "mantleState")
+			if (pm.StateMachine._currentState.Name == "mantleState")
 			{
-				raven.player.StateMachine.TransitionTo("jumpState");  
+				pm.StateMachine.TransitionTo("jumpState");  
 			}
 
 				rsm.TransitionTo("RavenRecallState");

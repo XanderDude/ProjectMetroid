@@ -4011,9 +4011,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.549, -18.8241, 0)
 
 [node name="EnemyBat" parent="." instance=ExtResource("18_h4m41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -6, 0)
+script = null
 
 [node name="EnemyBat2" parent="." instance=ExtResource("18_h4m41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -8, 0)
+script = null
 
 [node name="Lights" type="Node3D" parent="."]
 
