@@ -14,7 +14,15 @@ public partial class Enemy : Actor
 	[ExportGroup("Enemy_Preferences")]
 	[Export] public bool revengeMode;
 
+	[Export] public float attackcd;
+
+	[Export] public float lungespeed = 5f;
+
 	public enum AttackDirMode { Any, HorizontalOnly, EightWay }
+
+	public enum MovementMode { Normal, Hopping}
+
+	[Export] public MovementMode movementmode = MovementMode.Normal;
 	[Export] public AttackDirMode attackDirMode = AttackDirMode.HorizontalOnly;
 
 	[Export] public bool isFlying { get; set; } = false;
@@ -30,6 +38,7 @@ public partial class Enemy : Actor
 	public float snapshotSpeed = 0f; //gets speed a moment in time
 
 	public float dodgeDuration = 1f;
+	
 
 
 	private float meshDirection = -90f;
@@ -40,7 +49,6 @@ public partial class Enemy : Actor
 
 	public override void _Ready()
 	{
-
 		if (this.isFlying)
 		{
 			walkspeedVector = new Vector3(walkspeed, 0, 0);
@@ -70,6 +78,7 @@ public partial class Enemy : Actor
 		}
 		if (!isFlying && !IsOnFloor())
 			Velocity += GravityVector * (float)delta;
+
 		MoveAndSlide();
 		}
 		
@@ -141,18 +150,25 @@ public partial class Enemy : Actor
 	}
 
 
-	public void MoveToPlayer(float speed, float acceleration)
+	public void MoveToPlayer(float speed, float acceleration, float offsetY, float offsetX)
 	{
-		Vector3 dir = player.GlobalPosition - GlobalPosition;
+		var playerpos = player.GlobalPosition + new Vector3 (offsetX,offsetY,0);
+		Vector3 dir = playerpos - GlobalPosition;
 		dir.Z = 0;                     
 		if (!isFlying) dir.Y = 0;        
-		if (dir.LengthSquared() < 0.001f) return;
+		if (dir.LengthSquared() < 0.1f) Velocity = Vector3.Zero;
 		dir = dir.Normalized();
 
 		Vector3 target = dir * speed;
 		if (!isFlying) target.Y = Velocity.Y;  
+		if (Velocity.X != maxspeed)
+			Velocity = Velocity.MoveToward(target, acceleration);
+		else
+		{
+			Velocity = Velocity.MoveToward(target, 0);
+		}
 
-		Velocity = Velocity.MoveToward(target, acceleration);
+
 
 	}
 

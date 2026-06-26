@@ -6,6 +6,8 @@ public partial class ItemDrop : RigidBody3D
     private Area3D area;
     private Vector3 spawnDirection;
     private bool pickedUp = false; 
+
+    private string sound = "ratGrunt1";
     public DropEntry.Type itemType = DropEntry.Type.Upgrade;
     public DropEntry.Upgrade upgrade = DropEntry.Upgrade.none;
     public enum Upgrade { none, wallJump, ravenSlash, mantling, chargeShot, slideBoost, bombArrows, ravenTeleport };
@@ -29,10 +31,8 @@ public partial class ItemDrop : RigidBody3D
 
     private async void DespawnItem()
     {
-        var pickupsound = GetNode<AudioStreamPlayer>("PickupSound");
+        SoundFriend.Play(sound);
         area.Monitoring = false;
-        pickupsound.Play();
-        await ToSignal(pickupsound, "finished");
         QueueFree();
     }
 

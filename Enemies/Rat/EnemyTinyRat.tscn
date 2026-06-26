@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://gojj3tua6rph"]
+
+[ext_resource type="Script" uid="uid://6yn16y46yem2" path="res://Enemies/Enemy.cs" id="1_ejwuq"]
+[ext_resource type="PackedScene" uid="uid://ibskdki64ocj" path="res://Enemies/Rat/Rat.fbx" id="2_eg3cj"]
+[ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="3_6c5e7"]
+[ext_resource type="Script" uid="uid://l7nwyq7fs3uf" path="res://Enemies/patrolState.cs" id="4_tht3j"]
+[ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="5_e85fv"]
+[ext_resource type="Script" uid="uid://cwvfk0hdjxr28" path="res://Enemies/recoverState.cs" id="6_ukqwm"]
+[ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_v1qbj"]
+[ext_resource type="Script" uid="uid://cc1gtkoyuwvuh" path="res://Enemies/lungeState.cs" id="8_okgt4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
+size = Vector3(1.89575, 0.82019, 0.958557)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
+size = Vector3(0.743164, 0.723022, 1.56396)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
+size = Vector3(2.38171, 1, 1)
+
+[node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "ray")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+collision_layer = 8
+collision_mask = 19
+axis_lock_linear_z = true
+script = ExtResource("1_ejwuq")
+mesh = NodePath("Rat")
+navagent = NodePath("NavigationAgent3D")
+ray = NodePath("Beam")
+health = 80
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.1
+debug_enabled = true
+
+[node name="Rat" parent="." instance=ExtResource("2_eg3cj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="DodgeSensor" type="Area3D" parent="Rat"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rat/DodgeSensor"]
+transform = Transform3D(1.69415, 0, 0, 0, 2.19267, 0, 0, 0, 1, 1.78207, 0.514353, 0)
+shape = SubResource("BoxShape3D_tu7f2")
+
+[node name="PhysicalCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)
+shape = SubResource("BoxShape3D_icv41")
+
+[node name="HitBox" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
+shape = SubResource("BoxShape3D_tysk3")
+debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_6c5e7")
+initialState = NodePath("patrolState")
+
+[node name="patrolState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_tht3j")
+
+[node name="aggroState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_e85fv")
+
+[node name="recoverState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("6_ukqwm")
+
+[node name="enemyattackState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_v1qbj")
+
+[node name="lungeState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("8_okgt4")
+
+[node name="Beam" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+
+[node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
+shape = SubResource("BoxShape3D_ut63f")
+
+[connection signal="navigation_finished" from="NavigationAgent3D" to="EnemyStateMachine/patrolState" method="_on_navigation_agent_3d_navigation_finished"]
+[connection signal="body_entered" from="HitBox" to="." method="OnCollide"]
+[connection signal="body_exited" from="HitBox" to="." method="OnLeaveCollider"]
+
+[editable path="Rat"]

@@ -12,6 +12,8 @@ public partial class DebugFriend : CanvasLayer
     private Godot.Button removeupgradebutton => GetNode<Godot.Button>("Upgrades/RemUpgrade");
     private Godot.Button addbombarrowbutton => GetNode<Godot.Button>("BombArrowCount/AddBombArrow");
 
+    private Godot.Button resetbutton => GetNode<Godot.Button>("RESET");
+
     private Label healthlabel => GetNode<Label>("Health");
     
     private ItemDrop.Upgrade selected;

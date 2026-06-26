@@ -12,14 +12,17 @@ public partial class aggroState : State
 
     private int rand;
 
+    private float randX, randY;
+
     public override void Enter()
     {       
-
+            ec.Velocity = Vector3.Zero;
             GD.Print($"{ec.Name}:aggroState");
+            ec.timer = ec.attackcd;
             substate = SubState.APPROACH;
             rand = GD.RandRange(0, 3);
-            ec.timer = 5f;
-        
+            randX = GD.RandRange(-2,2);
+            randY = GD.RandRange(0,3);
             
     }
 
@@ -41,11 +44,12 @@ public partial class aggroState : State
         if (this.substate == SubState.APPROACH)
         {   
             ec.timer -= delta;
-            ec.MoveToPlayer(ec.runspeed, ec.acceleration);
+            if (ec.isFlying) ec.MoveToPlayer(ec.runspeed, ec.acceleration, randY, randX);
+            else ec.MoveToPlayer(ec.runspeed, ec.acceleration, 0, 0);
             if (ec.isPlayerInRange(ec.attackrange) && ec.timer <= 0) 
             {
                 substate = SubState.ATTACK;
-                ec.direction = ec.player.GlobalPosition - ec.GlobalPosition;   // ← this line
+                ec.direction = ec.player.GlobalPosition - ec.GlobalPosition; //idk what this does
                 ec.FaceDirection(ec.direction.X);
                 ec.timer = 1.5f;
             }
@@ -56,46 +60,30 @@ public partial class aggroState : State
             ec.timer -= delta;
             if (ec.timer <= 0) 
             {
-                if (rand > 0)
+                if (rand > 0 && !ec.isFlying)
                 {
                     ec.Velocity = Vector3.Zero;
                     ec.Attack(2, 2, 100, 0.2f);
                     ec.timer = 5f;
                     substate = SubState.RECOVER;
                 }
-                else
+                else if (rand == 0 || ec.isFlying)
                 { 
                     ec.esm.TransitionTo("lungeState");
                 }
+                
             }
         }
         if (this.substate == SubState.RECOVER)
         {
             ec.timer -= delta;
             if (ec.timer <= 0f)
-            {
-                if (!ec.isPlayerInRange(ec.detectionrange))
+            {   
                     esm.TransitionTo("patrolState");
-                else
-                {
-                    rand = GD.RandRange(0, 3);
-                    ec.timer = 5f;
-                    substate = SubState.APPROACH;
-                }
             }
         }
         
 
     }
 
-    private void MoveToPlayer()
-    {
-        if (ec.runspeed < ec.maxspeed) ec.runspeed += ec.acceleration;
-        float dir = Mathf.Sign(ec.player.GlobalPosition.X - ec.GlobalPosition.X);
-        ec.Velocity = new Vector3(dir * ec.runspeed, ec.Velocity.Y, 0);
-    }
-
-    public override void HandleInput(InputEvent @event)
-    {
-    }
 }

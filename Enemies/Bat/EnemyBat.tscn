@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://xaymn5irbgw5"]
+[gd_scene load_steps=18 format=3 uid="uid://xaymn5irbgw5"]
 
 [ext_resource type="Script" uid="uid://6yn16y46yem2" path="res://Enemies/Enemy.cs" id="1_jr35e"]
 [ext_resource type="Script" uid="uid://36ph4eakhkkb" path="res://Enemies/EnemyStateMachine.cs" id="2_2a3cg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b1ywd1dyymrsm" path="res://Enemies/aggroState.cs" id="4_707fo"]
 [ext_resource type="Script" uid="uid://q8c5wnqw785t" path="res://Enemies/flyingaggroState.cs" id="5_8n3kf"]
 [ext_resource type="PackedScene" uid="uid://bivh6o5w3i8ic" path="res://Enemies/Bat/BatFly.fbx" id="7_il1qx"]
+[ext_resource type="Script" uid="uid://cc1gtkoyuwvuh" path="res://Enemies/lungeState.cs" id="8_vq6sv"]
 
 [sub_resource type="Resource" id="Resource_vq6sv"]
 script = ExtResource("3_glgse")
@@ -45,7 +46,8 @@ graph_offset = Vector2(-20, -55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_il1qx"]
 size = Vector3(2.38171, 1, 1)
 
-[node name="EnemyBat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
+[node name="Bat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 19
 axis_lock_linear_z = true
@@ -54,13 +56,12 @@ script = ExtResource("1_jr35e")
 mesh = NodePath("BatFly")
 navagent = NodePath("NavigationAgent3D")
 esm = NodePath("EnemyStateMachine")
+ray = NodePath("")
 revengeMode = true
-ray = NodePath("Beam")
-health = 30
-dropTable = [SubResource("Resource_vq6sv")]
-parryDamage = 30
 attackDirMode = 2
-isflying = true
+health = 30
+dropTable = Array[ExtResource("3_glgse")]([SubResource("Resource_vq6sv")])
+parryDamage = 30
 gravity = 0.0
 detectionrange = 10.0
 attackrange = 3.0
@@ -95,20 +96,19 @@ script = ExtResource("4_707fo")
 [node name="flyingaggroState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("5_8n3kf")
 
-[node name="Beam" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.657952, -0.0116118, 0)
-collision_mask = 3
-hit_from_inside = true
-debug_shape_custom_color = Color(0.78977, 0.350233, 0.181749, 1)
-debug_shape_thickness = 5
+[node name="lungeState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("8_vq6sv")
 
 [node name="BatFly" parent="." instance=ExtResource("7_il1qx")]
 
+[node name="RavenFlying" parent="BatFly/Weapons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, -0.309017, 0, 0.309017, 0.951057, 0, 0, 0)
+
 [node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(1.02569, -0.335853, -1.04172, 1.08369, 0.511904, 0.901977, 0.153552, -1.36936, 0.592677, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.367449, -0.725372, -1.26048, 1.45213, 0.253994, 0.277149, 0.0794125, -1.28815, 0.764442, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(1.02569, 0.335853, 1.04172, -1.08369, 0.511904, 0.901977, -0.153552, -1.36936, 0.592677, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.367449, 0.725372, 1.26048, -1.45213, 0.253994, 0.277149, -0.0794125, -1.28815, 0.764442, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BatFly")

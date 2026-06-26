@@ -15,6 +15,11 @@ public partial class lungeState : State
     private float flashIntervalTimer = 0f;
     private const float FLASH_INTERVAL = 0.12f;
 
+    // Flying lunge
+    private const float FLYING_LUNGE_DURATION = 0.9f;
+    private float flyingLungeTimer = 0f;
+    private Vector3 lungeDirection;
+    private Vector3 lungeTargetPos;
 
     private OmniLight3D parryLight;
     private bool parryHandled = false;
@@ -51,7 +56,6 @@ public partial class lungeState : State
         parryLight = null;
 
         ec.Velocity = Vector3.Zero;
-
     }
 
     public override void Update(float delta)
@@ -62,13 +66,14 @@ public partial class lungeState : State
 
     public override void PhysicsUpdate(float delta)
     {
-        ec.Velocity += ec.GravityVector * delta;
+        if (!ec.isFlying)
+            ec.Velocity += ec.GravityVector * delta;
 
         switch (substate)
         {
             case SubStateParry.FLASH:
                 // Hold still during flash
-                ec.Velocity = new Vector3(0f, ec.Velocity.Y, 0f);
+                ec.Velocity = ec.isFlying ? Vector3.Zero : new Vector3(0f, ec.Velocity.Y, 0f);
                 break;
 
             case SubStateParry.LUNGE:
@@ -107,12 +112,46 @@ public partial class lungeState : State
 		substate = SubStateParry.LUNGE;
 		lungeAirborneTimer = 0f;
 		hasLeftGround = false;
-        ec.FaceDirection(ec.Velocity.X);
-		ec.Velocity = new Vector3(ec.runspeed * Mathf.Sign(dir.X) * 3f, 7f, 0f);
+        flyingLungeTimer = 0f;
+
+        if (ec.isFlying)
+        {
+            // Dive at wherever the player is right now (X and Y), but bias the
+            // direction toward more downward pull so it reads as a dive-bomb
+            // even when the player is mostly off to the side.
+            lungeTargetPos = ec.player.GlobalPosition;
+            Vector3 toPlayer = lungeTargetPos - ec.GlobalPosition;
+            toPlayer.Z = 0f;
+
+            if (toPlayer.LengthSquared() > 0.001f)
+            {
+                toPlayer = toPlayer.Normalized();
+                float steepenedY = Mathf.Min(toPlayer.Y, toPlayer.Y - 0.4f); // pull further negative (downward)
+                lungeDirection = new Vector3(toPlayer.X, steepenedY, 0f).Normalized();
+            }
+            else
+            {
+                lungeDirection = Vector3.Down;
+            }
+
+            ec.FaceDirection(lungeDirection.X);
+            ec.Velocity = lungeDirection * ec.runspeed * ec.lungespeed;
+        }
+        else
+        {
+            ec.FaceDirection(ec.Velocity.X);
+            ec.Velocity = new Vector3(ec.runspeed * Mathf.Sign(dir.X) * 3f, 7f, 0f);
+        }
 	}
 
 	private void UpdateLunge(float delta)
 	{
+        if (ec.isFlying)
+        {
+            UpdateLungeFlying(delta);
+            return;
+        }
+
 		lungeAirborneTimer += delta;
 
 		// wait a few frames for him to actually leave the ground
@@ -126,6 +165,25 @@ public partial class lungeState : State
 			esm.TransitionTo("aggroState");
 		}
 	}
+
+    private void UpdateLungeFlying(float delta)
+    {
+        flyingLungeTimer += delta;
+
+        Vector3 toTarget = lungeTargetPos - ec.GlobalPosition;
+        toTarget.Z = 0f;
+
+        // once the dot flips negative we've flown past the target point
+        bool overshot = toTarget.Dot(lungeDirection) <= 0f;
+        bool timedOut = flyingLungeTimer >= FLYING_LUNGE_DURATION;
+
+        if ((overshot || timedOut) && !parryHandled)
+        {
+            parryHandled = true;
+            substate = SubStateParry.DONE;
+            esm.TransitionTo("patrolState");
+        }
+    }
 
 
     private void OnSlashHitEnemy(Enemy hitEnemy)
@@ -147,20 +205,32 @@ public partial class lungeState : State
 
         if (GameFriend.gameinstance?.camera != null)
             GameFriend.gameinstance.camera.ZoomTo(ZOOM_DISTANCE, 0.10f);
-            var tweene = CreateTween().SetIgnoreTimeScale(true);
-            GameFriend.gameinstance.player.LockMovement(true);
-            tweene.TweenProperty(Engine.Singleton, "time_scale", 0.2, 0.1);
-            tweene.TweenInterval(0.3);
-            tweene.TweenProperty(Engine.Singleton, "time_scale", 1.0, 0.2);
-            tweene.Finished += () => GameFriend.gameinstance.player.LockMovement(false);
+        var tweene = CreateTween().SetIgnoreTimeScale(true);
+        GameFriend.gameinstance.player.LockMovement(true);
+        tweene.TweenProperty(Engine.Singleton, "time_scale", 0.2, 0.1);
+        tweene.TweenInterval(0.3);
+        tweene.TweenProperty(Engine.Singleton, "time_scale", 1.0, 0.2);
+        tweene.Finished += () => GameFriend.gameinstance.player.LockMovement(false);
+
 		if (IsInstanceValid(parryLight))
 		{
 			parryLight.LightColor = new Color(0.3f, 1f, 0.4f);
 			parryLight.LightEnergy = 5f;
 		}
 
-		float knockbackDir = Mathf.Sign(ec.GlobalPosition.X - ec.player.GlobalPosition.X);
-		ec.Velocity = new Vector3(knockbackDir * ec.attackknockback * 3f, 4f, 0f);
+        if (ec.isFlying)
+        {
+            Vector3 away = ec.GlobalPosition - ec.player.GlobalPosition;
+            away.Z = 0f;
+            away = away.LengthSquared() > 0.001f ? away.Normalized() : Vector3.Right;
+            ec.Velocity = away * ec.attackknockback * 3f;
+        }
+        else
+        {
+            float knockbackDir = Mathf.Sign(ec.GlobalPosition.X - ec.player.GlobalPosition.X);
+            ec.Velocity = new Vector3(knockbackDir * ec.attackknockback * 3f, 4f, 0f);
+        }
+
 		ec.DamagedReceived(ec.parryDamage);
 
 		var tween = ec.CreateTween();
@@ -168,10 +238,12 @@ public partial class lungeState : State
 		tween.TweenCallback(Callable.From(() =>
 		{
 			if (IsInstanceValid(ec))
-            if (GameFriend.gameinstance?.camera != null)
-            GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
-            
-				esm.TransitionTo("patrolState");
+            {
+                if (GameFriend.gameinstance?.camera != null)
+                    GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
+
+                esm.TransitionTo("patrolState");
+            }
 		}));
 
 	}
