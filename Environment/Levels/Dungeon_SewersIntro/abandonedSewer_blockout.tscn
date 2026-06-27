@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://spk3443rahc2"]
+[gd_scene load_steps=31 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://35q544anjhdq" path="res://Interactables/Cages/movingCage_Medium.tscn" id="14_jwfsh"]
 [ext_resource type="PackedScene" uid="uid://dt3sp14e3wqoq" path="res://Enemies/Traps/SimpleSpike_Single.tscn" id="15_6kw23"]
 [ext_resource type="PackedScene" uid="uid://ddml0bmwqxx2a" path="res://Interactables/Cages/movingCageDrop_skinny.tscn" id="16_b6y4s"]
+[ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="18_4b7p4"]
 [ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="18_6kw23"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
@@ -1144,11 +1145,9 @@ switchedObjects = [NodePath("../MovingCage_Medium")]
 
 [node name="Item" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes" instance=ExtResource("12_0mapx")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 71.5, 9.5, 0)
-upgrade = 3
 
 [node name="Item2" parent="SubViewportContainer/SubViewport/sewerBlockout/GrayBoxes" instance=ExtResource("12_0mapx")]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 24.5, 8, 0)
-upgrade = 2
 
 [node name="Lever" parent="SubViewportContainer/SubViewport/sewerBlockout" node_paths=PackedStringArray("switchedObjects") instance=ExtResource("10_wgw3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 35.7802, 0)
@@ -1247,6 +1246,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 41.5, 0)
 waitToReactivate = true
 oneShotSwitch = true
 switchedObjects = [NodePath("../MovingCage_Medium3")]
+
+[node name="Rat" parent="SubViewportContainer" instance=ExtResource("18_4b7p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 31.5, 0)
 
 [node name="SpikeTraps" parent="." instance=ExtResource("15_6kw23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 14, -1)

@@ -104,9 +104,9 @@ public partial class MovingCageDrop : AnimatableBody3D
 	public void _on_cage_crush(Node3D body)
     {
 		GD.Print("cage crush");
-		if (body is EnemyController enemy)
+		if (body is Enemy enemy)
 		{
-			enemy.DamagedRecieved(100000);
+			enemy.DamagedReceived(100000);
 		}
 		else if (body is PlayerManager player)
         {
