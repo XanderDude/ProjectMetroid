@@ -7,11 +7,15 @@ public partial class CageDrop : StaticBody3D
 	private bool collisionFound = false;
 	private bool falling = false;
 	[Export] private float dropLocationY = 20f; //calulated on ready
+	[Export] private bool useRaycast = true;
+	[Export] private Area3D chain;
 	private Area3D fallingCollider; //area3d that damages while falling
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
-        CallDeferred("CalculateFallDistance");
+        if (useRaycast) CallDeferred("CalculateFallDistance");
+		else GetNode<RayCast3D>("RayCast3D").Enabled = false;
+
 		fallingCollider = FindChild("Area3D", true, false) as Area3D;
 		fallingCollider.Monitoring = false; //disable damage area until falling
     }
@@ -44,6 +48,12 @@ public partial class CageDrop : StaticBody3D
 	public void _on_chain_body_entered(Node3D body)
 	{
 		falling = true;
+		if (chain != null)
+		{
+			chain.Visible = false;
+			chain.SetBlockSignals(true);
+			//chain.Monitoring = false;
+		}
 		fallingCollider.Monitoring = true; //enable damage area
 		GD.Print("chain broken");
 	}
@@ -59,6 +69,13 @@ public partial class CageDrop : StaticBody3D
         {
 			player.Health -= 100000;
         }
+		else
+		{
+			if (body is CsgMesh3D csg) csg.UseCollision = false;
+			body.Visible = false;
+			body.ProcessMode = ProcessModeEnum.Disabled;
+			
+		}
     }
 
 }

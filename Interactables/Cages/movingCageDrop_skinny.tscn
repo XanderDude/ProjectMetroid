@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://0soxiy0fnoub"]
+[gd_scene load_steps=7 format=3 uid="uid://ddml0bmwqxx2a"]
 
-[ext_resource type="Script" uid="uid://7hiv0cgv11f2" path="res://Interactables/Cages/CageDrop.cs" id="1_5bh1l"]
-[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_n5de7"]
+[ext_resource type="Script" uid="uid://nvrd6etbquf3" path="res://Interactables/Cages/MovingCageDrop.cs" id="1_qnkdg"]
+[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_fpjsj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fwphm"]
 
@@ -14,10 +14,12 @@ size = Vector3(1.5, 2.5, 1.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yeml"]
 size = Vector3(0.5, 1, 0.5)
 
-[node name="CageDrop_Skinny" type="AnimatableBody3D" node_paths=PackedStringArray("chain")]
+[node name="MovingCageDrop_Skinny" type="AnimatableBody3D"]
+disable_mode = 1
 collision_mask = 0
-script = ExtResource("1_5bh1l")
-chain = NodePath("chain")
+script = ExtResource("1_qnkdg")
+destination = Vector3(0, -2, 0)
+metadata/State = &""
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 1.25, 0)
@@ -26,7 +28,8 @@ mesh = SubResource("BoxMesh_fwphm")
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_layer = 0
-collision_mask = 268
+collision_mask = 12
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0996579, 0)
@@ -45,36 +48,36 @@ collision_mask = 3
 collision_layer = 0
 collision_mask = 32
 
-[node name="Chain" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 3, 0)
 
-[node name="Chain2" parent="chain" instance=ExtResource("2_n5de7")]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4, 0)
+[node name="Chain2" parent="chain" instance=ExtResource("2_fpjsj")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 6, 0)
 modulate = Color(1, 0, 0, 1)
 
-[node name="Chain3" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain3" parent="chain" instance=ExtResource("2_fpjsj")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4, 0)
+
+[node name="Chain4" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 5, 0)
 
-[node name="Chain4" parent="chain" instance=ExtResource("2_n5de7")]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 6, 0)
-
-[node name="Chain5" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain5" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 7, 0)
 
-[node name="Chain6" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain6" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 8, 0)
 
-[node name="Chain7" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain7" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 9, 0)
 
-[node name="Chain8" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain8" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 10, 0)
 
-[node name="Chain9" parent="chain" instance=ExtResource("2_n5de7")]
+[node name="Chain9" parent="chain" instance=ExtResource("2_fpjsj")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 11, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 shape = SubResource("BoxShape3D_5yeml")
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_cage_crush"]

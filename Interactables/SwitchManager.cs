@@ -22,9 +22,23 @@ public partial class SwitchManager : Node3D
 
 		foreach (Node3D obj in switchedObjects)
 		{
-			if (obj is MovingCage cage)
+			if (obj.HasMeta("State"))
 			{
-				if (!waitToReactivate)cage.Connect(MovingCage.SignalName._movement_completed, Callable.From(FinishWaiting)); 
+				if (!oneShotSwitch && waitToReactivate)
+				{ 
+					var script = obj.GetScript();
+					GD.Print(script);
+					if (script is MovingCage)
+					{
+						//obj.Connect(MovingCage.SignalName._movement_completed, Callable.From(FinishWaiting));
+					}
+					else if (script is MovingCageDrop)
+					{
+						//obj.Connect(MovingCageDrop.SignalName._movement_completed, Callable.From(FinishWaiting));
+					}
+					
+				}
+
 			}
 		}
 	}
@@ -57,13 +71,11 @@ public partial class SwitchManager : Node3D
 			}
 		}
 		switchOn = state;
-		GD.Print("Toggling");
 		foreach (Node3D obj in switchedObjects)
 		{
-			GD.Print("Toggling object: " + obj.Name);
 			if (obj.HasMeta("State"))
 			{
-				GD.Print("Toggling cage");
+				GD.Print($"Toggling cage: {obj.Name} to the " + (switchOn ? "Forward" : "Back") + " state.");
 				obj.SetMeta("State", switchOn ? "FORWARD" : "BACK");
 			}
 			else if (obj is MovingPlatform platform)

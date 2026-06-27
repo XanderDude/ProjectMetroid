@@ -14,9 +14,10 @@ size = Vector3(2, 3, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yeml"]
 size = Vector3(0.5, 1, 0.5)
 
-[node name="CageDrop_Medium" type="AnimatableBody3D"]
+[node name="CageDrop_Medium" type="AnimatableBody3D" node_paths=PackedStringArray("chain")]
 collision_mask = 0
 script = ExtResource("1_fwphm")
+chain = NodePath("chain")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, 0)
@@ -25,7 +26,7 @@ mesh = SubResource("BoxMesh_fwphm")
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_layer = 0
-collision_mask = 12
+collision_mask = 268
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0996579, 0)
