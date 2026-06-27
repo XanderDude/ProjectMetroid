@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq6afschkhutq"]
+
+[ext_resource type="Texture2D" uid="uid://bkd1g66jpiu0h" path="res://Environment/Materials/napoleon-crossing-the-alps-painting-1.jpg" id="1_uktce"]
+
+[node name="Painting1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_uktce")

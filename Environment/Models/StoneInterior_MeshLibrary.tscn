@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu7f5ncrc0254"]
+
+[ext_resource type="PackedScene" uid="uid://c1rbt5gjs5k24" path="res://Environment/Models/StoneInterior_Tileset.fbx" id="1_c2i0u"]
+
+[node name="StoneInteriorMeshLibrary" type="Node3D"]
+
+[node name="StoneInterior_Tileset" parent="." instance=ExtResource("1_c2i0u")]

@@ -37,20 +37,21 @@ public partial class jumpState : State
 		{
 			KinematicCollision3D collision = player.GetSlideCollision(i);
 			BoxShape3D boxShape;
-			StaticBody3D collider;
+			CollisionShape3D colShapeNode;
 			try
 			{
-				collider = collision.GetCollider() as StaticBody3D;
-				if (!collider.GetCollisionLayerValue(1)) continue;
-				boxShape = (BoxShape3D)collider.GetChild<CollisionShape3D>(0).Shape;
+				var colObj = (CollisionObject3D)collision.GetCollider();
+				if (!colObj.GetCollisionLayerValue(1)) continue;
+				colShapeNode = (CollisionShape3D)collision.GetColliderShape();
+				boxShape = (BoxShape3D)colShapeNode.Shape;
 			}
 			catch { continue; }
 
-			var scaleY = new Vector3(collider.Transform.Basis.X.Y * boxShape.Size.Y,
-			collider.Transform.Basis.Y.Y * boxShape.Size.Y,
-			collider.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); 
+			var scaleY = new Vector3(colShapeNode.Transform.Basis.X.Y * boxShape.Size.Y,
+			colShapeNode.Transform.Basis.Y.Y * boxShape.Size.Y,
+			colShapeNode.Transform.Basis.Z.Y * boxShape.Size.Y).Length(); 
 			float playerHeight = player.GlobalPosition.Y + playerTopWhileInJump + 0.5f;
-			float meshTopTemp = collider.GlobalPosition.Y + scaleY / 2;
+			float meshTopTemp = colShapeNode.GlobalPosition.Y + scaleY / 2;
 			meshTop = meshTopTemp;
 			if (Mathf.Abs(playerHeight - meshTop) < PLAYER_AND_MESH_OFFSET && playerHeight >= meshTop) {
 				return true;

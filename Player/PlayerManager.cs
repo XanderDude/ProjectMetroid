@@ -22,7 +22,7 @@ public partial class PlayerManager : CharacterBody3D
 	public bool noAimDirection;
 	public int facingDirection = 1; //1 is right, -1 is left
 	[Export] public VerticalCollisionCheck vertColCheck;
-	[Export] public ShapeCast3D groundCheck;
+	[Export] public ShapeCast3D groundCheck, forwardCheck;
 
 	private int health = 100;
 	[Export] public int Health
@@ -86,6 +86,7 @@ public partial class PlayerManager : CharacterBody3D
 	public override void _Process(double delta)
 	{
 		if (isDead) StateMachine.TransitionTo("deathState");
+		forwardCheck.TargetPosition = new Vector3(Mathf.Abs(forwardCheck.TargetPosition.X) * facingDirection, 0, 0);
 	}
 	
 	public override void _PhysicsProcess(double delta)

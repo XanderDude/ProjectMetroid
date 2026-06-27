@@ -31,7 +31,7 @@ public partial class TrapController : Node3D
     private async void AssignPlayer()
     {
         await ToSignal(GetTree().GetCurrentScene(), Node.SignalName.Ready);
-        player = GetTree().GetCurrentScene().GetNode<PlayerManager>("%Player");
+        player = GameFriend.gameinstance.player;
     }
 
     public override void _PhysicsProcess(double delta)

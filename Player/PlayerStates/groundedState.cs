@@ -79,13 +79,12 @@ public partial class groundedState : State
 
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
-		/*
-		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0) //check if player is trying to move
+
+		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0 && pm.forwardCheck.IsColliding()) //check if player is trying to move into a wall
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
 		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
-		*/
 	}
 
 	private void HandleGroundedMovement(float delta)

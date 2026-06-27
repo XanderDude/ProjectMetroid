@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr84e1cfhryjk"]
+
+[ext_resource type="Texture2D" uid="uid://ns3qkiui6qhr" path="res://Environment/Materials/Handmann,_Familie_von_Wattenwyl.jpg" id="1_vtaaj"]
+
+[node name="Painting1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transparent = false
+texture = ExtResource("1_vtaaj")

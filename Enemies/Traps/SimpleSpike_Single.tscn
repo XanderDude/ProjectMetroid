@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt3sp14e3wqoq"]
+
+[ext_resource type="Script" uid="uid://cxwbspuo6l4cs" path="res://Enemies/Traps/SimpleSpike.cs" id="1_8m7bu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8m7bu"]
+radius = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ue28u"]
+radius = 0.286
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7e6g6"]
+radius = 0.406
+
+[sub_resource type="Gradient" id="Gradient_ue28u"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8m7bu"]
+gradient = SubResource("Gradient_ue28u")
+fill_from = Vector2(0, 0.641026)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7e6g6"]
+albedo_texture = SubResource("GradientTexture2D_8m7bu")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_51wl0"]
+top_radius = 0.0
+radial_segments = 4
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[node name="SimpleSpike" type="Node3D"]
+script = ExtResource("1_8m7bu")
+
+[node name="TriggerZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_8m7bu")
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="TriggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275562, 0)
+shape = SubResource("SphereShape3D_ue28u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TriggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.224438, 0)
+shape = SubResource("SphereShape3D_7e6g6")
+
+[node name="Spikes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SpikesMesh" type="MeshInstance3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.465241, 1)
+material_override = SubResource("StandardMaterial3D_7e6g6")
+mesh = SubResource("CylinderMesh_51wl0")
+skeleton = NodePath("../..")
+
+[connection signal="area_entered" from="TriggerZone" to="." method="OnTrapTriggered"]
+[connection signal="area_exited" from="TriggerZone" to="." method="OnLeaveTrapTrigger"]

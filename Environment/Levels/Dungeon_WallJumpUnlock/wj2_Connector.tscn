@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cj3f7awqmbyby"]
+[gd_scene load_steps=31 format=4 uid="uid://cj3f7awqmbyby"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_78ct1"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/ArchitectureStone_mat.tres" id="2_blkx3"]
@@ -26,6 +26,9 @@
 size = Vector3(9, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lxnrv"]
+size = Vector3(8, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vpaxh"]
 size = Vector3(8, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_blkx3"]
@@ -149,9 +152,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -2.00042, 0)
 shape = SubResource("BoxShape3D_lxnrv")
 debug_fill = false
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Interactable/FloorColliderRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 0)
-shape = SubResource("BoxShape3D_lxnrv")
+[node name="FloorColliderRight2" type="StaticBody3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -6.00042, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Interactable/FloorColliderRight2"]
+shape = SubResource("BoxShape3D_vpaxh")
 debug_fill = false
 
 [node name="FloorColliderLeft2" type="StaticBody3D" parent="Interactable"]

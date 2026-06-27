@@ -137,14 +137,12 @@ public partial class RavenAttackState : State
 	private void OnBodyEntered(Node3D body)
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
-
-			if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
-				{
-				pm.Set("jumpQueued", true);
-				pm.StateMachine._currentState.Enter();
-					
-				}
-
+		GD.Print("Body hit");
+		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
+		{
+			pm.Set("jumpQueued", true);
+			pm.StateMachine._currentState.Enter();		
+		}
 
 		if (targetsDamaged.Contains(body)) return;
 
@@ -167,7 +165,11 @@ public partial class RavenAttackState : State
 	{
 		
 		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
-		
+		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
+		{
+			pm.Set("jumpQueued", true);
+			pm.StateMachine._currentState.Enter();
+		}
 		Node3D parent = area.GetParent<Node3D>();
 		if (parent != null && parent is Enemy enemy)
 		{
