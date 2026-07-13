@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cxwbspuo6l4cs" path="res://Enemies/Traps/SimpleSpike.cs" id="1_8m7bu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8m7bu"]
-radius = 0.2
+radius = 0.145588
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7e6g6"]
+radius = 0.202933
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ue28u"]
 radius = 0.286
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_7e6g6"]
-radius = 0.406
 
 [sub_resource type="Gradient" id="Gradient_ue28u"]
 
@@ -23,6 +23,8 @@ albedo_texture = SubResource("GradientTexture2D_8m7bu")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_51wl0"]
 top_radius = 0.0
+bottom_radius = 0.3
+height = 1.0
 radial_segments = 4
 rings = 0
 cap_top = false
@@ -39,20 +41,23 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("SphereShape3D_8m7bu")
+debug_color = Color(0.713726, 0, 0.14902, 1)
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="TriggerZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275562, 0)
-shape = SubResource("SphereShape3D_ue28u")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549314, 0)
+shape = SubResource("SphereShape3D_7e6g6")
+debug_color = Color(0.713726, 0, 0.14902, 1)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="TriggerZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.224438, 0)
-shape = SubResource("SphereShape3D_7e6g6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275562, 0)
+shape = SubResource("SphereShape3D_ue28u")
+debug_color = Color(0.713726, 0, 0.14902, 1)
 
 [node name="Spikes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="SpikesMesh" type="MeshInstance3D" parent="Spikes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.465241, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.754727, 1)
 material_override = SubResource("StandardMaterial3D_7e6g6")
 mesh = SubResource("CylinderMesh_51wl0")
 skeleton = NodePath("../..")
