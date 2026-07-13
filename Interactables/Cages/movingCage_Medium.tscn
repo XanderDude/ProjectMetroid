@@ -1,12 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://35q544anjhdq"]
+[gd_scene load_steps=6 format=3 uid="uid://35q544anjhdq"]
 
 [ext_resource type="Script" uid="uid://d0osecbseobaf" path="res://Interactables/Cages/MovingCage.cs" id="1_ueywv"]
+[ext_resource type="PackedScene" uid="uid://dfj5sb41gg03o" path="res://Interactables/Cages/CageMedium.fbx" id="2_7pt38"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_vio3i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o4rg"]
-albedo_color = Color(0.215686, 1, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_fwphm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g22iw"]
 size = Vector3(1, 0.2, 1)
@@ -21,18 +17,18 @@ destination = Vector3(0, -5, 0)
 autoMove = false
 metadata/State = &""
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, 0)
-material_override = SubResource("StandardMaterial3D_1o4rg")
-mesh = SubResource("BoxMesh_fwphm")
+[node name="CageMedium" parent="." instance=ExtResource("2_7pt38")]
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="cageMedium" parent="CageMedium/SewerProps" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Area3D" type="Area3D" parent="CageMedium"]
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CageMedium/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0996579, 0)
 shape = SubResource("BoxShape3D_g22iw")
 debug_color = Color(1, 0.113725, 0.219608, 1)
@@ -69,3 +65,5 @@ transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 10.5, 0)
 
 [node name="Chain9" parent="chain" instance=ExtResource("2_vio3i")]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 11.5, 0)
+
+[editable path="CageMedium"]
