@@ -35,6 +35,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="ProjectMetroid"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+
 [global_group]
 
 doors="Every type of door "

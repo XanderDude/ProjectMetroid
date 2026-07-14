@@ -46,7 +46,7 @@ graph_offset = Vector2(-20, -55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_il1qx"]
 size = Vector3(2.38171, 1, 1)
 
-[node name="Bat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
+[node name="Bat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 19
@@ -56,7 +56,6 @@ script = ExtResource("1_jr35e")
 mesh = NodePath("BatFly")
 navagent = NodePath("NavigationAgent3D")
 esm = NodePath("EnemyStateMachine")
-ray = NodePath("")
 revengeMode = true
 attackcd = 3.0
 lungespeed = 1.0

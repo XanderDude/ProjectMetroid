@@ -3,7 +3,7 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
-    [Export] public NodePath playerMeshPath = "%PlayerMesh";
+	[Export] public NodePath playerMeshPath = "%PlayerMesh";
 
 	public bool jumpQueued;
 	public bool slideQueued;
@@ -97,12 +97,12 @@ public partial class PlayerManager : CharacterBody3D
 		
 		if (direction == Vector2.Zero) noAimDirection = true;
 		else
-        {
+		{
 			noAimDirection = false;	
-            if (Mathf.Abs(direction.X) > .9) direction = new(direction.X, 0);
+			if (Mathf.Abs(direction.X) > .9) direction = new(direction.X, 0);
 			else if (Mathf.Abs(direction.Y) > .9) direction = new(0, direction.Y);
 			else direction = new(Mathf.Sign(direction.X), Mathf.Sign(direction.Y));
-        }
+		}
 		
 		if (direction != aimDirection) aimDirection = direction.Normalized(); //update aim direction only if it has changed
 		
