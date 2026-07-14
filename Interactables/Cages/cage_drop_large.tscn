@@ -36,6 +36,7 @@ debug_color = Color(1, 0.113725, 0.219608, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+visible = false
 shape = SubResource("BoxShape3D_fwphm")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
