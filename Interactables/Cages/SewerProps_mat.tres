@@ -14,3 +14,4 @@ shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(640, 360)
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cw15ne5mux4df"]
