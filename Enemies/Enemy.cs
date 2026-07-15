@@ -64,7 +64,7 @@ public partial class Enemy : Actor
 		if (sensor != null)
 			sensor.BodyEntered += DodgeProjectile;
 		
-    }
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -96,12 +96,12 @@ public partial class Enemy : Actor
 	public void DamagePlayer(Node3D node, int damage)
 	{
 		if (node is PlayerManager p && p.canBeDamaged)
-       {
+	   {
 		   p.Health -= damage;
-           float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
-           p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
-           p.StateMachine.TransitionTo("knockbackState");
-       }
+		   float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
+		   p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+		   p.StateMachine.TransitionTo("knockbackState");
+	   }
 	}
 	public void OnLeaveCollider(Node3D node)
 	{
@@ -125,18 +125,18 @@ public partial class Enemy : Actor
 	{
 
 		if (GameFriend.gameinstance?.camera != null)
-        GameFriend.gameinstance.camera.ZoomTo(25f, 0.15f);
+		GameFriend.gameinstance.camera.ZoomTo(25f, 0.15f);
 		DropItems();
 		QueueFree();
 	}
 
 	private async void DamageFlicker()
-    {
-        mesh.Visible = false;
+	{
+		mesh.Visible = false;
 		await ToSignal(GetTree().CreateTimer(.1f, false, false, false), "timeout");
 		mesh.Visible = true;
 		
-    }
+	}
 
 
 
