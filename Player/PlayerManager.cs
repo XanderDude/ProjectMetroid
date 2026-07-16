@@ -3,8 +3,7 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
-	[Export] public NodePath playerMeshPath = "%PlayerMesh";
-
+	[Export] public Node3D playerMesh;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	[Export] public VerticalCollisionCheck vertColCheck;
 	[Export] public ShapeCast3D groundCheck;
@@ -29,7 +28,7 @@ public partial class PlayerManager : CharacterBody3D
     public float invulnTimer = 0f;
     public bool canBeDamaged => invulnTimer <= 0f;
 	
-	[Export] public PlayerStateMachine psm;
+	[Export] public PlayerStateMachine psm, asm;
 	[Export] public PackedScene jumpVFX, slideBoostVFX;
 
 	public float jumpBufferTimer = 0f;
@@ -89,9 +88,13 @@ public partial class PlayerManager : CharacterBody3D
 
 		if (!noAimDirection)
 		{
-    		float x = Mathf.Abs(input.Y) > .9f ? 0 : Mathf.Sign(input.X);
-    		float y = Mathf.Abs(input.X) > .9f ? 0 : Mathf.Sign(input.Y);
-    		aimDirection = new Vector2(x, y).Normalized();
+			float x = Mathf.Abs(input.Y) > .9f ? 0 : Mathf.Sign(input.X);
+			float y = Mathf.Abs(input.X) > .9f ? 0 : Mathf.Sign(input.Y);
+			aimDirection = new Vector2(x, y).Normalized();
+		}
+		else
+		{
+			aimDirection = new Vector2(facingDirection, 0);
 		}
 	}
 

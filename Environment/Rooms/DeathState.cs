@@ -10,9 +10,9 @@ public partial class DeathState : PlayerState
             
         SoundFriend.Play("player_death_SFX");
         //ProcessMode = ProcessModeEnum.Always;
-        parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Death();
-        player.Velocity = Vector3.Zero;
-        player.MoveAndSlide();
+        pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Death();
+        pm.Velocity = Vector3.Zero;
+        pm.MoveAndSlide();
         
         PauseGame();
         
@@ -140,7 +140,7 @@ public partial class DeathState : PlayerState
         }
        
         MakeNodeBlack(GetTree().CurrentScene);
-        MakeNodeWhite(parentMesh);
+        MakeNodeWhite(pm.playerMesh);
     }
    
     private void RestoreVisuals()

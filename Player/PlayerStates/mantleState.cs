@@ -7,7 +7,7 @@ public partial class mantleState : PlayerState
 	public override void Enter()
 	{
 		//GD.Print("Entered Mantle State.");
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Hanging();
+		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Hanging();
 		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Mantle();
 	}
 	
@@ -18,7 +18,7 @@ public partial class mantleState : PlayerState
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		player.MoveAndCollide(Vector3.Zero);
+		pm.MoveAndCollide(Vector3.Zero);
 	}
 	
 	public override void HandleInput(InputEvent @event)
@@ -31,7 +31,7 @@ public partial class mantleState : PlayerState
 		
 		
 		if (@event.IsActionPressed("Jump")) {
-			player.Set("jumpQueued", true);
+			pm.playerMesh.GetNode<PlayerAnimationHandler>(".").Airborne(pm.jumpQueued);
 			EmitSignal(SignalName.Transition, "jumpState");
 		}
 

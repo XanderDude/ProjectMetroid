@@ -26,8 +26,8 @@ public partial class slideState : PlayerState
 			{
 				var slideBoostEffect = pm.slideBoostVFX.Instantiate() as Node3D;
 				this.AddChild(slideBoostEffect, true);
-				slideBoostEffect.GlobalPosition = parentMesh.GlobalPosition;
-				slideBoostEffect.GlobalRotation = parentMesh.GlobalRotation;
+				slideBoostEffect.GlobalPosition = pm.playerMesh.GlobalPosition;
+				slideBoostEffect.GlobalRotation = pm.playerMesh.GlobalRotation;
 
 			}
 			currentSlideSpeed = boostMaxSpeed * slideDirection;
@@ -37,27 +37,27 @@ public partial class slideState : PlayerState
 			currentSlideSpeed = slideMaxSpeed * slideDirection;
 		}
 		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
-		player.ApplyFloorSnap();
+		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Sliding(true);
+		pm.ApplyFloorSnap();
 	}
 
 	public override void Exit()
 	{
-		player.Set(PlayerManager.PropertyName.slideBoost, false);
-		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-		else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
+		pm.Set(PlayerManager.PropertyName.slideBoost, false);
+		if (crouchQueued) pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
+		else pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Sliding(false); //return to grounded state
 	}
 	public override void PhysicsUpdate(float delta)
 	{
 		slideTimer += delta;
-		player.ApplyFloorSnap();
-		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
+		pm.ApplyFloorSnap();
+		if (!pm.groundCheck.IsColliding() && !pm.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
 			EmitSignal(SignalName.Transition, "jumpState");
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(pm.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
@@ -78,12 +78,12 @@ public partial class slideState : PlayerState
 			else EmitSignal(SignalName.Transition, "groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
-		player.MoveAndSlide();
+		pm.MoveAndSlide();
 	}
 
 	private void HandleSlidingMovement(float delta)
 	{
-		Vector3 velocity = player.Velocity;
+		Vector3 velocity = pm.Velocity;
 
 		if (pm.slideBoost)
 		{
@@ -96,7 +96,7 @@ public partial class slideState : PlayerState
 
 		//velocity.X = Mathf.MoveToward(slideMaxSpeed, 0, delta + slideDeceleration);
 		velocity.X = currentSlideSpeed;
-		player.Velocity = velocity; 
+		pm.Velocity = velocity; 
 	}
 
 	public override void HandleInput(InputEvent @event)
@@ -105,18 +105,18 @@ public partial class slideState : PlayerState
 		{
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
             {
-				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
+				pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
         	}
 			else
             {
-				player.Set(PlayerManager.PropertyName.jumpQueued, true);
+				pm.Set(PlayerManager.PropertyName.jumpQueued, true);
 				EmitSignal(SignalName.Transition, "jumpState");
 			}
 		}
 
 		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
 			EmitSignal(SignalName.Transition, "crouchState");
 		}
 	}
