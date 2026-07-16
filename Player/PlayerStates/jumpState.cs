@@ -10,14 +10,13 @@ public partial class jumpState : PlayerState
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpDeceleration = 15f;
 	[Export] public float jumpVelocity = 10.0f;
-	[Export] public float jumpMaxHeight = 2f, jumpMinHeight = 0.2f; //meters
+	[Export] public float jumpMaxHeight = 2f, jumpMinHeight = 0.2f; 
 	[Export] public float pmTopWhileInJump = 1.322f;
 	private float _mantleCooldown = .2f;
 	private float mantleTimer = 1;
 	public float jumpHeight = 0.0f; //pm's current jump height position
 	private float startPosition = 0.0f;
 	private float travelTime = 0.0f;
-	private bool neutralJump = false;
 	private bool cancelVelocity = true;
 	public float meshTop = 0.0f;
 	private const float pm_AND_MESH_OFFSET = 0.2f; //to account for difference in pm origin and mesh origin

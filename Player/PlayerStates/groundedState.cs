@@ -9,20 +9,11 @@ public partial class groundedState : PlayerState
 	private float coyote_timer = 0f;
 
 	private float coyote_cd = 0.067f;
-	private float waterFootstepTimer = 0.0f;
 
 	public override void Enter()
 	{
-		pm.ApplyFloorSnap();
 		coyote_timer = 0;
 		pm.slideBoost = false;
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0)
-		{
-			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(true); //force crouch
-			EmitSignal(SignalName.Transition, "crouchState");
-		}
-		else if (pm.psm.current_node_state_name == "groundedState") pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Grounded();
-		else if (pm.psm.current_node_state_name == "crouchState") pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
 	}
 	
 	public override void Exit()
@@ -41,7 +32,7 @@ public partial class groundedState : PlayerState
 			EmitSignal(SignalName.Transition, "jumpState");
 			return;
 		}
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.IsOnFloor())
 		{
 			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(true); //force crouch
 			EmitSignal(SignalName.Transition, "crouchState");
