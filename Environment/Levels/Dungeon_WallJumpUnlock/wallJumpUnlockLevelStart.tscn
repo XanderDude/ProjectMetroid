@@ -1,20 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0k62aimg164v"]
+[gd_scene load_steps=6 format=3 uid="uid://d0k62aimg164v"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_erlcl"]
-[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="3_128kk"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="4_lwxf4"]
-[ext_resource type="PackedScene" uid="uid://chnmuhpj3q4yq" path="res://RoomFriend/RoomFriend.tscn" id="5_iscwu"]
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="2_2waga"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="3_erlcl"]
+[ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="4_rjwe2"]
 
-[node name="Game2" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itrsp"]
+shader = ExtResource("3_erlcl")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+
+[node name="GameFriend" type="Node3D"]
 script = ExtResource("1_erlcl")
+initroomfriend = true
+initdebugfriend = true
 
-[node name="Player" parent="." instance=ExtResource("3_128kk")]
-unique_name_in_owner = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_2waga")
 
-[node name="Camera3D" parent="." instance=ExtResource("4_lwxf4")]
-roomMinX = -100.0
-roomMaxX = 100.0
-roomMinY = -100.0
-roomMaxY = 100.0
+[node name="DirectionalLight_Exterior_DayBreak" parent="." instance=ExtResource("4_rjwe2")]
+transform = Transform3D(1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, 0, 6.26745, -9.86159)
 
-[node name="RoomFriend" parent="." instance=ExtResource("5_iscwu")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_itrsp")
+offset_left = 1.0
+offset_right = 641.0
+offset_bottom = 360.0
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+use_occlusion_culling = true
+anisotropic_filtering_level = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4

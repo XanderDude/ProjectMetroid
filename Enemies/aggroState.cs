@@ -71,7 +71,6 @@ public partial class aggroState : State
                 { 
                     ec.esm.TransitionTo("lungeState");
                 }
-                
             }
         }
         if (this.substate == SubState.RECOVER)

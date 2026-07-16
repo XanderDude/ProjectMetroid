@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cj3f7awqmbyby"]
+[gd_scene load_steps=36 format=4 uid="uid://cj3f7awqmbyby"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_78ct1"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/ArchitectureStone_mat.tres" id="2_blkx3"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_2m4cs"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_ihuuf"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="17_blkx3"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="18_agfde"]
+[ext_resource type="Script" uid="uid://dovnhc7c5tq6x" path="res://Camera/UpdateCameraBounds.cs" id="18_vpaxh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
@@ -121,6 +123,15 @@ _data = {
 dynamic_range = 1.0
 use_two_bounces = false
 interior = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slk4n"]
+resource_local_to_scene = true
+size = Vector3(20, 1.21301, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agfde"]
+size = Vector3(6.98572, 5, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
 
 [node name="wj2_connectorHallway" type="Node3D"]
 
@@ -1457,5 +1468,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 [node name="EnemyRat" parent="." instance=ExtResource("17_blkx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.72898, 0, 0)
 
+[node name="CameraBounds" parent="." instance=ExtResource("18_agfde")]
+
+[node name="CollisionShape" parent="CameraBounds/Area1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.893494, 0)
+shape = SubResource("BoxShape3D_slk4n")
+
+[node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
+transform = Transform3D(20.3347, 0, 0, 0, 5.53432, 0, 0, 0, 1, 2, 1.66984, 4)
+
+[node name="Area2" type="Area3D" parent="CameraBounds" node_paths=PackedStringArray("boundsObject")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1371, -5.4432, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("18_vpaxh")
+boundsObject = NodePath("BoundsNode")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="CameraBounds/Area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07343, 1.41683, 0)
+shape = SubResource("BoxShape3D_agfde")
+debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
+
+[node name="BoundsNode" type="MeshInstance3D" parent="CameraBounds/Area2"]
+transform = Transform3D(8.35628, 0, 0, 0, 10.3459, 0, 0, 0, 1, 2.09569, 2.02122, 3.99)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+
+[connection signal="body_entered" from="CameraBounds/Area2" to="CameraBounds/Area2" method="_body_entered"]
+
 [editable path="Interactable/SideWalls/Wall_DoorWay2"]
 [editable path="Interactable/Floor/StonePlatformEdge2"]
+[editable path="CameraBounds"]

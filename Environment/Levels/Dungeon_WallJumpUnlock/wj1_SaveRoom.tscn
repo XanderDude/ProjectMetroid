@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxdd1ykv1653r"]
+[gd_scene load_steps=16 format=3 uid="uid://bxdd1ykv1653r"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_30cq6"]
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_af5h3"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_flptt"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_gy72u"]
 [ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="9_hn3v6"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="10_af5h3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -22,6 +23,10 @@ size = Vector3(12, 0.5, 2)
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y7u5"]
+resource_local_to_scene = true
+size = Vector3(11.1758, 1, 1)
 
 [node name="wj1_SaveRoom" type="Node3D"]
 
@@ -1065,3 +1070,16 @@ material = SubResource("StandardMaterial3D_nilwv")
 
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_hn3v6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="CameraBounds" parent="." instance=ExtResource("10_af5h3")]
+
+[node name="Area1" parent="CameraBounds" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.983799, 0)
+
+[node name="CollisionShape" parent="CameraBounds/Area1" index="0"]
+shape = SubResource("BoxShape3D_8y7u5")
+
+[node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
+transform = Transform3D(9.4597, 0, 0, 0, 5.33725, 0, 0, 0, 1, 0, 1.73215, 4)
+
+[editable path="CameraBounds"]

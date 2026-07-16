@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=61 format=4 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -33,6 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://l0m2vqqltusx" path="res://Environment/RoomPieces/Stone/StoneWall_Scaleable.tscn" id="27_enmp1"]
 [ext_resource type="PackedScene" uid="uid://dxtejsd3feask" path="res://Environment/RoomPieces/Stone/Stone2x2Stairs.tscn" id="27_lcqwc"]
 [ext_resource type="ArrayMesh" uid="uid://bdbt33h3t5okg" path="res://Environment/Models/PropsBasicMeshes/ladderMesh.res" id="30_1kpit"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="34_g2sos"]
+[ext_resource type="Script" uid="uid://dovnhc7c5tq6x" path="res://Camera/UpdateCameraBounds.cs" id="35_ssm1s"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g2sos"]
 vertices = PackedVector3Array(-4.56068, 24.2621, -16.7655, -4.56068, 24.2621, -7.7655, 4.68932, 24.2621, -7.7655, 4.68932, 24.2621, -16.7655, -2.31068, 0.0121343, -4.5155, -4.31068, 0.262134, -4.2655, -4.31068, 0.262134, -3.5155, 1.93932, 0.262134, -3.5155, 1.93932, 0.0121343, -14.7655, -2.31068, 0.0121343, -14.7655, 5.68932, 24.7621, -2.0155, 5.68932, 24.7621, -4.7655, 5.18932, 24.7621, -2.5155, -5.06068, 24.7621, -2.5155, -5.56068, 24.7621, -4.7655, -5.56068, 24.7621, -1.5155, -5.06068, 24.7621, -2.2655, -4.31068, 6.76213, -4.5155, -4.31068, 6.76213, -3.5155, -3.31068, 6.76213, -3.5155, -3.31068, 6.76213, -4.5155, -4.31068, 24.2621, -4.5155, -4.31068, 24.2621, -3.5155, 4.43932, 24.2621, -3.5155, 4.43932, 24.2621, -4.5155, -0.560678, 3.26213, -4.5155, -0.560678, 3.26213, -3.5155, 0.689322, 3.26213, -3.5155, 0.689322, 3.26213, -4.5155, -0.560678, 11.2621, -4.5155, -0.560678, 11.2621, -3.5155, 0.689322, 11.2621, -3.5155, 0.689322, 11.2621, -4.5155, 3.43932, 7.76213, -4.5155, 3.43932, 7.76213, -3.5155, 4.43932, 7.76213, -3.5155, 4.43932, 7.76213, -4.5155, -0.060678, 18.5121, -4.0155, -0.060678, 18.5121, -3.5155, 0.689322, 18.5121, -3.5155, -4.31068, 6.76213, -1.2655, -4.31068, 6.76213, 0.734501, -3.31068, 6.76213, 0.734501, -3.31068, 6.76213, -1.2655, 4.18932, 0.262134, -1.2655, 3.68932, 0.262134, -1.2655, 3.68932, 0.262134, -0.515499, 4.43932, 0.262134, 2.9845, -3.81068, 0.262134, -1.2655, -3.81068, 0.262134, -0.765499, -3.06068, 0.262134, -0.515499, 2.18932, 0.262134, -1.2655, -4.31068, 0.262134, 0.984501, -4.31068, 0.262134, 3.9845, -3.81068, 0.262134, 3.9845, -3.06068, 0.262134, 0.484501, -3.56068, 0.262134, 4.7345, 3.93932, 0.262134, 4.7345, 2.43932, 0.512134, -0.265499, -0.300665, 0.0121343, 2.22049, -2.06068, 24.2621, -1.2655, -3.06068, 24.2621, -1.2655, -3.31068, 24.2621, -0.515499, -3.06068, 24.2621, 1.7345, -1.81068, 24.2621, 1.7345, -4.31068, 24.2621, 1.9845, -4.31068, 24.2621, 4.7345, -1.31068, 24.2621, 4.7345, -1.31068, 24.2621, 1.9845, -0.810678, 19.2621, -1.0155, -1.56068, 19.2621, -1.2655, -1.81068, 19.5121, -0.765499, -4.31068, 19.5121, 0.484501, -3.56068, 19.7621, 0.484501, -3.56068, 19.2621, -0.265499, -4.31068, 19.2621, -0.515499, -2.56068, 19.5121, -0.265499, -2.56068, 19.7621, 0.484501, -4.31068, 20.7621, 2.7345, -4.06068, 21.0121, 3.9845, -0.560678, 3.26213, -1.2655, -0.560678, 3.26213, 0.734501, 0.689322, 3.26213, 0.734501, 0.689322, 3.26213, -1.2655, -0.560678, 11.2621, -0.765499, 0.689322, 11.2621, -0.515499, 0.689322, 11.2621, -1.2655, -0.560678, 11.2621, -1.2655, 1.93932, 24.2621, 1.7345, 1.43932, 24.2621, 1.9845, 1.43932, 24.2621, 4.7345, 4.18932, 24.2621, -1.2655, 1.93932, 24.2621, -1.2655, 4.43932, 24.2621, 4.7345, -7.31068, 19.2621, -0.765499, -7.31068, 19.5121, 0.484501, -6.56068, 19.5121, 0.484501, -6.56068, 19.2621, -0.765499, 3.43932, 7.76213, 0.734501, 4.43932, 7.76213, 0.734501, 4.43932, 8.01213, -0.515499, 3.43932, 8.01213, -0.765499, -4.56068, 39.2621, -0.515499, -4.56068, 39.2621, 0.734501, -3.31068, 39.2621, 0.734501, -3.31068, 39.2621, -0.515499, 1.93932, 20.2621, -0.515499, 1.93932, 20.2621, 0.734501, 2.43932, 20.2621, 0.734501, 2.43932, 20.2621, -0.515499, 6.68932, 20.2621, -0.515499, 6.68932, 20.2621, 0.734501, 16.4393, 20.2621, 0.734501, 16.4393, 20.2621, -0.515499, 6.68932, 16.2621, -0.265499, 6.68932, 16.2621, 0.484501, 10.6893, 16.2621, 0.734501, 10.6893, 16.2621, -0.515499)
@@ -133,6 +135,24 @@ shadow_mesh = SubResource("ArrayMesh_vxalm")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_amwor"]
 data = PackedVector3Array(0.2, 2, 0.2, 0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 0, 0.2, -0.2, 2, 0.2, 0.2, 2, 0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 2, -0.2, -0.2, 0, -0.2, 0.2, 0, -0.2, 0.2, 2, -0.2, 0.2, 0, -0.2, 0.2, 0, 0.2, 0.2, 0, 0.2, 0.2, 2, 0.2, 0.2, 2, -0.2, -0.2, 2, 0.2, -0.2, 0, 0.2, -0.2, 0, -0.2, -0.2, 0, -0.2, -0.2, 2, -0.2, -0.2, 2, 0.2, 0.225, 2.1, 0.225, 0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, 0.225, -0.225, 2.1, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, 0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, 0.225, -0.225, 2.1, -0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, -0.225, -0.225, 1.9, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, -0.225, 0.225, 1.9, -0.225, 0.225, 1.9, 0.225, 0.225, 1.9, 0.225, 0.225, 2.1, 0.225, 0.225, 2.1, -0.225, -0.225, 2.1, 0.225, -0.225, 1.9, 0.225, -0.225, 1.9, -0.225, -0.225, 1.9, -0.225, -0.225, 2.1, -0.225, -0.225, 2.1, 0.225)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bi5t"]
+resource_local_to_scene = true
+size = Vector3(9.4505, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t72gw"]
+resource_local_to_scene = true
+size = Vector3(10.8444, 2.94922, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wm0pd"]
+resource_local_to_scene = true
+size = Vector3(2.5, 2.94922, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icpyk"]
+resource_local_to_scene = true
+size = Vector3(3.27515, 2.94922, 1)
 
 [node name="Room_DeepWell" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.4496, 0)
@@ -1200,7 +1220,73 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CollapsedPillar/StonePillarMesh_Collapsed/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_amwor")
 
+[node name="CameraBounds" parent="." instance=ExtResource("34_g2sos")]
+
+[node name="Area1" parent="CameraBounds" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01108, 0)
+
+[node name="CollisionShape" parent="CameraBounds/Area1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.455902, -1.20767, 0)
+shape = SubResource("BoxShape3D_6bi5t")
+
+[node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
+transform = Transform3D(10.5133, 0, 0, 0, 5, 0, 0, 0, 1, 0.0383387, 0, 4)
+
+[node name="Area2" type="Area3D" parent="CameraBounds" node_paths=PackedStringArray("boundsObject")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.28029, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("35_ssm1s")
+boundsObject = NodePath("BoundsNode")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="CameraBounds/Area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0264626, 7.48964, 0)
+shape = SubResource("BoxShape3D_t72gw")
+debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
+
+[node name="CollisionShape2" type="CollisionShape3D" parent="CameraBounds/Area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0264626, -13.1042, 0)
+shape = SubResource("BoxShape3D_t72gw")
+debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
+
+[node name="CollisionShape3" type="CollisionShape3D" parent="CameraBounds/Area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7931, 3.07042, 0)
+shape = SubResource("BoxShape3D_wm0pd")
+debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
+
+[node name="BoundsNode" type="MeshInstance3D" parent="CameraBounds/Area2"]
+transform = Transform3D(10.5133, 0, 0, 0, 25.7925, 0, 0, 0, 1, 0.0383387, -2.54244, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+
+[node name="Area3_Secret" type="Area3D" parent="CameraBounds" node_paths=PackedStringArray("boundsObject")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.00411, -6.32962, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("35_ssm1s")
+boundsObject = NodePath("BoundsNode")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="CameraBounds/Area3_Secret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.665201, 0.0644612, 0)
+shape = SubResource("BoxShape3D_icpyk")
+debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
+
+[node name="BoundsNode" type="MeshInstance3D" parent="CameraBounds/Area3_Secret"]
+transform = Transform3D(17.1297, 0, 0, 0, 3.60484, 0, 0, 0, 1, -2.13388, -0.0553432, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+
+[connection signal="body_entered" from="CameraBounds/Area2" to="CameraBounds/Area2" method="_body_entered"]
+[connection signal="body_entered" from="CameraBounds/Area3_Secret" to="CameraBounds/Area3_Secret" method="_body_entered"]
+
 [editable path="NavigationRegion3D/Secret1/StonePlatformEdge"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern2"]
 [editable path="NavigationRegion3D/Wall_DoorWay3"]
+[editable path="CameraBounds"]

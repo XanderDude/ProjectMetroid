@@ -16,7 +16,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="ProjectMetroid"
-run/main_scene="uid://d1dgedio24xf1"
+run/main_scene="uid://d0k62aimg164v"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -38,6 +38,7 @@ project/assembly_name="ProjectMetroid"
 [global_group]
 
 doors="Every type of door "
+cameraBounds="The bounds or the empty node with all the bounds for the level"
 
 [input]
 
@@ -164,6 +165,7 @@ forgemode={
 [layer_names]
 
 3d_render/layer_2="Player"
+3d_render/layer_5="CameraBoundMesh"
 3d_physics/layer_1="Ground"
 3d_physics/layer_2="Wall"
 3d_physics/layer_3="Player"
