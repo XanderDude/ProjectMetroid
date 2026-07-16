@@ -64,7 +64,7 @@ public partial class CameraFriend : Camera3D
 
 		Vector3 newPosition;
 
-		if (GameFriend.gameinstance.player.StateMachine._currentState.Name == "deathState")
+		if (GameFriend.gameinstance.player.psm.current_node_state_name == "deathState")
 		{
 			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
 			GlobalPosition = newPosition;

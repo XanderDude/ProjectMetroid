@@ -1,27 +1,21 @@
-[gd_scene load_steps=35 format=3 uid="uid://bexgm8f7ve0mw"]
+[gd_scene load_steps=29 format=3 uid="uid://bexgm8f7ve0mw"]
 
 [ext_resource type="Script" uid="uid://cqilotstc00f" path="res://Player/PlayerManager.cs" id="1_ps8ct"]
 [ext_resource type="Material" uid="uid://hate0nlnfe0p" path="res://Player/Mesh/frankengirlCharacter_mat.tres" id="3_hqjia"]
 [ext_resource type="Material" uid="uid://bwbcwsmcq4p6q" path="res://Player/Mesh/frankengirlWeapons_mat.tres" id="3_x70vp"]
-[ext_resource type="Script" uid="uid://bqe03yf4422jv" path="res://Player/PlayerStates/MovementStateMachine.cs" id="3_yifbt"]
 [ext_resource type="PackedScene" uid="uid://d0nqak7exd26d" path="res://Player/VFX/SlideBoostVFX.tscn" id="4_hqjia"]
 [ext_resource type="Script" uid="uid://fj5ffovuf1gd" path="res://Player/PlayerStates/groundedState.cs" id="4_s0mko"]
 [ext_resource type="Script" uid="uid://c1sy7or2fmie4" path="res://Player/PlayerStates/jumpState.cs" id="5_hqjia"]
 [ext_resource type="Script" uid="uid://b0cm7qnk3dyfk" path="res://Player/PlayerStates/slideState.cs" id="6_x70vp"]
+[ext_resource type="Script" uid="uid://dnfi5rf0t3mlo" path="res://Player/PlayerStates/PlayerStateMachine.cs" id="7_roy6y"]
 [ext_resource type="Script" uid="uid://bmtdfvkahjerh" path="res://Player/PlayerStates/mantleState.cs" id="7_wo5nf"]
 [ext_resource type="Script" uid="uid://dlloi8ffjlah4" path="res://Player/PlayerStates/walljumpState.cs" id="8_croik"]
 [ext_resource type="Script" uid="uid://ck20j4xtnxfxv" path="res://Player/PlayerStates/VerticalCollisionCheck.cs" id="8_yifbt"]
-[ext_resource type="Script" uid="uid://6gcg572gqiwb" path="res://Player/PlayerStates/AttackStateMachine.cs" id="9_bgaaw"]
 [ext_resource type="Script" uid="uid://cupqpycn8w34t" path="res://Environment/Rooms/DeathState.cs" id="9_x70vp"]
-[ext_resource type="Script" uid="uid://d0fuh6u8aahvr" path="res://Player/PlayerStates/noattackState.cs" id="10_gv3fu"]
 [ext_resource type="Script" uid="uid://c8mopga6yjf8p" path="res://Player/PlayerStates/forgeState.cs" id="11_7uipr"]
-[ext_resource type="Script" uid="uid://c85uww7hrdt1j" path="res://Player/PlayerStates/attackState.cs" id="11_xu7fl"]
-[ext_resource type="PackedScene" uid="uid://3og3uwn1s88q" path="res://Player/Weapons/WristCrossbow/NormalArrow.tscn" id="12_yifbt"]
 [ext_resource type="Script" uid="uid://bjhxxth7isgib" path="res://Player/Animation/PlayerAnimationHandler.cs" id="13_4n5ed"]
-[ext_resource type="PackedScene" uid="uid://bvvlrybffprx4" path="res://Player/Weapons/WristCrossbow/bombarrow.tscn" id="13_s0mko"]
 [ext_resource type="PackedScene" uid="uid://cay82ous002ry" path="res://Player/Mesh/Frankengirl.fbx" id="15_hqjia"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://hofqrbo1bvp7" path="res://Player/Animation/FrankengirlAnimTree.tres" id="15_jvfa1"]
-[ext_resource type="PackedScene" uid="uid://supaxjlhu854" path="res://Player/Weapons/WristCrossbow/ChargedArrow.tscn" id="17_yifbt"]
 [ext_resource type="AnimationLibrary" uid="uid://depi7daem64rk" path="res://Player/Animation/FrankengirlAnimLib.res" id="18_hqjia"]
 [ext_resource type="PackedScene" uid="uid://768ha6tg87kq" path="res://Player/VFX/ChargingArrowVFX.tscn" id="20_7uipr"]
 [ext_resource type="PackedScene" uid="uid://d0gcgy1hvoxjm" path="res://Player/VFX/ElectricityBallVFX.tscn" id="20_ps8ct"]
@@ -49,7 +43,7 @@ size = Vector3(0.2, 0.2, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_croik"]
 size = Vector3(0.445, 0.2, 0.5)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("vertColCheck", "groundCheck", "StateMachine", "AttackStateMachine")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("vertColCheck", "groundCheck", "psm")]
 collision_layer = 4
 collision_mask = 19
 axis_lock_linear_z = true
@@ -66,8 +60,7 @@ mainMat = ExtResource("3_hqjia")
 weaponMat = ExtResource("3_x70vp")
 vertColCheck = NodePath("VerticalCollisionCheckNode")
 groundCheck = NodePath("groundCheckShape")
-StateMachine = NodePath("MovementStateMachine")
-AttackStateMachine = NodePath("AttackStateMachine")
+psm = NodePath("PlayerStateMachine")
 jumpVFX = ExtResource("21_hqjia")
 slideBoostVFX = ExtResource("4_hqjia")
 
@@ -124,26 +117,25 @@ max_results = 8
 collision_mask = 19
 debug_shape_custom_color = Color(0, 0.686275, 0, 1)
 
-[node name="MovementStateMachine" type="Node" parent="."]
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 unique_name_in_owner = true
-script = ExtResource("3_yifbt")
-asmState = NodePath("../AttackStateMachine")
+script = ExtResource("7_roy6y")
 initialState = NodePath("groundedState")
 
-[node name="groundedState" type="Node" parent="MovementStateMachine"]
+[node name="groundedState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_s0mko")
 groundAcceleration = 2.0
 
-[node name="crouchState" type="Node" parent="MovementStateMachine"]
+[node name="crouchState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_s0mko")
 groundMaxSpeed = 0.0
 groundAcceleration = 0.0
 
-[node name="jumpState" type="Node" parent="MovementStateMachine"]
+[node name="jumpState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_hqjia")
 jumpMaxHeight = 2.5
 
-[node name="slideState" type="Node" parent="MovementStateMachine"]
+[node name="slideState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_x70vp")
 slideMinTime = 0.25
 slideMaxTime = 0.75
@@ -151,32 +143,17 @@ slideMaxSpeed = 7.0
 boostMaxSpeed = 9.0
 slideDeceleration = 5.0
 
-[node name="mantleState" type="Node" parent="MovementStateMachine"]
+[node name="mantleState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_wo5nf")
 
-[node name="walljumpState" type="Node" parent="MovementStateMachine"]
+[node name="walljumpState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_croik")
 
-[node name="deathState" type="Node" parent="MovementStateMachine"]
+[node name="deathState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_x70vp")
 
-[node name="forgeState" type="Node" parent="MovementStateMachine"]
+[node name="forgeState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("11_7uipr")
-
-[node name="AttackStateMachine" type="Node" parent="."]
-script = ExtResource("9_bgaaw")
-initialState = NodePath("noattackState")
-
-[node name="noattackState" type="Node" parent="AttackStateMachine"]
-script = ExtResource("10_gv3fu")
-
-[node name="attackState" type="Node" parent="AttackStateMachine" node_paths=PackedStringArray("chargingArrowVFX", "fullChargedArrowVFX")]
-script = ExtResource("11_xu7fl")
-arrowScene = ExtResource("12_yifbt")
-chargedArrowScene = ExtResource("17_yifbt")
-bombArrowScene = ExtResource("13_s0mko")
-chargingArrowVFX = NodePath("../../PlayerMesh/Skeleton3D/Crossbow/ChargingArrowVFX")
-fullChargedArrowVFX = NodePath("../../PlayerMesh/Skeleton3D/Crossbow/FullyChargedArrowVFX")
 
 [node name="PlayerMesh" parent="." node_paths=PackedStringArray("player", "animTree", "physicsCollider") instance=ExtResource("15_hqjia")]
 unique_name_in_owner = true
@@ -199,53 +176,50 @@ HangingStateName = "Hanging"
 physicsCollider = NodePath("../PhysicsCollider")
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(3.55271e-17, 0.924947, 0.17)
-bones/0/rotation = Quaternion(0.533163, 0.464475, 0.464475, 0.533163)
+bones/0/position = Vector3(0.0178357, 0.89524, -0.00724437)
+bones/0/rotation = Quaternion(0.543325, 0.451949, 0.448179, 0.547427)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(-0.804105, -0.0253461, 0.111254)
-bones/1/rotation = Quaternion(0.164501, -0.0175678, -0.389828, 0.905906)
-bones/3/position = Vector3(0.035671, 0.0139758, 6.71773e-13)
-bones/3/rotation = Quaternion(-0.0436476, 0.11446, 0.363011, 0.923697)
+bones/1/rotation = Quaternion(0.0102084, 0.10464, -0.0090715, 0.994416)
+bones/3/position = Vector3(0.035671, 0.0139758, 1.63425e-15)
+bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(0.117899, 0.0191126, 4.49933e-18)
-bones/4/rotation = Quaternion(-0.161628, 0.0942241, -0.0189152, 0.982161)
-bones/5/position = Vector3(0.0708221, -0.0208942, -7.10476e-16)
-bones/5/rotation = Quaternion(0.540181, 0.456294, 0.540181, -0.456294)
-bones/7/position = Vector3(-0.00315109, 0.0947661, -3.65035e-05)
-bones/7/rotation = Quaternion(0.103453, 0.699432, 0.103118, -0.699614)
-bones/9/rotation = Quaternion(0.223735, 0.0970511, 0.697922, -0.673371)
+bones/4/position = Vector3(0.117899, 0.0191126, -4.79616e-16)
+bones/4/rotation = Quaternion(0.0643397, 0.0128816, 0.0258766, 0.997509)
+bones/7/position = Vector3(0.0359049, 0.0597156, 0.00172582)
+bones/7/rotation = Quaternion(0.515915, 0.482944, 0.485022, -0.515123)
+bones/9/rotation = Quaternion(0.357999, -0.058851, 0.931565, 0.0236559)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(-0.179846, 0.020802, 0.050247, 0.98219)
+bones/10/rotation = Quaternion(0.475371, 0.579077, -0.388548, 0.536398)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.606963, -0.284289, 0.0108836, 0.742063)
-bones/13/position = Vector3(-0.00112087, 0.0140258, -0.143938)
-bones/13/rotation = Quaternion(0.150375, -0.132498, -0.418039, 0.886044)
+bones/11/rotation = Quaternion(0.0585234, -0.525165, -0.163457, 0.833102)
+bones/13/rotation = Quaternion(0.0515906, -0.104007, 0.097387, 0.988452)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.253699, -0.0194406, 0.109222, 0.9609)
+bones/14/rotation = Quaternion(-0.00124305, 0.0569986, -0.254939, 0.965275)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
-bones/15/rotation = Quaternion(1.11805e-16, -3.34423e-16, 2.03471e-18, 1)
-bones/20/position = Vector3(-0.793141, -0.0253461, 0.190499)
-bones/20/rotation = Quaternion(0.654603, 0.263687, 0.390348, 0.591264)
+bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
+bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
+bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.833405, -0.022214, -0.549715, 0.0525009)
+bones/21/rotation = Quaternion(0.999206, 0.0224941, -0.0286005, 0.0162314)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/rotation = Quaternion(0.314824, -0.641625, 0.629871, 0.304081)
+bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
+bones/22/rotation = Quaternion(0.492302, -0.455282, 0.533769, 0.515217)
 bones/22/scale = Vector3(1, 1, 1)
-bones/24/position = Vector3(-0.815071, -0.0253461, 0.0320087)
-bones/24/rotation = Quaternion(0.299588, -0.33457, -0.608828, 0.653941)
+bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.386297, 0.0150745, 0.0078058)
-bones/25/rotation = Quaternion(0.993287, -0.0245962, -0.112493, -0.0109849)
+bones/25/rotation = Quaternion(0.966109, 0.000219519, -0.258022, -0.00767064)
 bones/25/scale = Vector3(1, 1, 1)
-bones/26/rotation = Quaternion(0.601403, -0.519615, 0.340592, 0.502306)
+bones/26/position = Vector3(-0.556281, -0.0174909, 0.0344341)
+bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.772289, -0.362259, -0.521861, 0.496153, 0.856978, 0.139358, 0.396739, -0.366547, 0.841571, -0.13644, 0.653507, 0.225863)
+transform = Transform3D(-0.0220156, -0.911763, -0.410126, -0.0891451, 0.410382, -0.907546, 0.995776, 0.0165805, -0.090314, -0.361439, 1.09995, -0.0200752)
 bone_idx = 17
 
 [node name="ArrowSpawnLocation" type="Node3D" parent="PlayerMesh/Skeleton3D/Crossbow" index="0"]
@@ -263,11 +237,11 @@ visible = false
 VFXNodes = []
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.772289, -0.362259, -0.521861, 0.496153, 0.856978, 0.139358, 0.396739, -0.366547, 0.841571, -0.16877, 0.709167, 0.219262)
+transform = Transform3D(-0.0220156, -0.911763, -0.410126, -0.0891451, 0.410382, -0.907546, 0.995776, 0.0165805, -0.090314, -0.425637, 1.10802, -0.0207441)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.772289, -0.362259, -0.521861, 0.496153, 0.856978, 0.139358, 0.396739, -0.366547, 0.841571, -0.16877, 0.709167, 0.219262)
+transform = Transform3D(-0.0220156, -0.911763, -0.410126, -0.0891451, 0.410382, -0.907546, 0.995776, 0.0165805, -0.090314, -0.425637, 1.10802, -0.0207441)
 bone_idx = 19
 
 [node name="AnimationPlayer" parent="PlayerMesh" index="2"]

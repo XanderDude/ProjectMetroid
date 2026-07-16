@@ -3,7 +3,7 @@ using System;
 
 public partial class RavenOnPlayerState : State
 {
-	
+	/*
 	private float timeAccumulator = 0.0f;
 	
 	public override void Enter()
@@ -68,4 +68,5 @@ public partial class RavenOnPlayerState : State
 			rsm.TransitionTo("RavenAttackState");
 		}
 	}
+	*/
 }

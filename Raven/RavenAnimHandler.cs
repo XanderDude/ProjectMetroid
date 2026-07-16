@@ -4,6 +4,7 @@ using System;
 
 public partial class RavenAnimHandler : AnimationTree
 {
+	/*
 	[Export] private RavenStateMachine rsm;
 	private AnimationNodeStateMachinePlayback playbackStates;
 
@@ -27,4 +28,5 @@ public partial class RavenAnimHandler : AnimationTree
 		}
 		else playbackStates?.Travel("Hovering");
 	}
+	*/
 }

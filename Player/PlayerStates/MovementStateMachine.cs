@@ -1,11 +1,11 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-
+/*
 public partial class MovementStateMachine : Node
 {
 	[Export] public NodePath asmState;
-	private AttackStateMachine asm; 
+	//private AttackStateMachine asm; 
 	[Export] public NodePath initialState; //the node path to the starting state
 	private CharacterBody3D _parent;
 	public CharacterBody3D Parent //assign from parent script prior to _ready
@@ -83,3 +83,4 @@ public partial class MovementStateMachine : Node
 	}
 	
 }
+*/

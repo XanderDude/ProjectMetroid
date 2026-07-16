@@ -62,7 +62,7 @@ lungespeed = 1.0
 attackDirMode = 2
 isFlying = true
 health = 30
-dropTable = Array[ExtResource("3_glgse")]([SubResource("Resource_vq6sv")])
+dropTable = [SubResource("Resource_vq6sv")]
 parryDamage = 30
 runspeed = 4.0
 maxspeed = 7.5
@@ -91,7 +91,6 @@ debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("2_2a3cg")
-initialState = NodePath("patrolState")
 
 [node name="patrolState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("3_6itjq")

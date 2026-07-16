@@ -1,7 +1,8 @@
-using Godot;
+
+/*using Godot;
 using System;
 
-public partial class attackState : State
+public partial class attackState : PlayerState
 {
 	[Export] public PackedScene arrowScene, chargedArrowScene;
 	[Export] public PackedScene bombArrowScene;
@@ -77,7 +78,7 @@ public partial class attackState : State
 		fullChargedArrowVFX.Visible = false;
 		SoundFriend.Stop(chargingArrowStartSFX);
 		SoundFriend.Stop(chargingArrowLoopSFX);
-		if (currentArrowType == ArrowType.FullCharge && pm.StateMachine._currentState.Name != "mantleState")
+		if (currentArrowType == ArrowType.FullCharge && pm.psm.current_node_state_name != "mantleState")
 		{
 			ShootArrow(ArrowType.FullCharge);
 		}
@@ -131,7 +132,7 @@ public partial class attackState : State
             return new Vector2(pm.facingDirection, 1f).Normalized();
         }
 		*/
-		Vector2 direction = pm.aimDirection;
+	/*	Vector2 direction = pm.aimDirection;
 
 		if (pm.StateMachine._currentState.Name == "slideState" && direction.Y < 0)
         {
@@ -217,3 +218,4 @@ public partial class attackState : State
 		}
 	}
 }
+*/

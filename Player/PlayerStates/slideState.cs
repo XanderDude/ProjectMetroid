@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class slideState : State
+public partial class slideState : PlayerState
 {
 	//[Export] public float slideTime = 1.0f; //max time the player can stay in a slide before standing up/crouching
 	[Export] public float slideMinTime = .2f; //min time the player has to stay in the slide state before standing up (can still jump)
@@ -53,7 +53,7 @@ public partial class slideState : State
 		player.ApplyFloorSnap();
 		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
 			return;
 		}
 
@@ -62,20 +62,20 @@ public partial class slideState : State
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
 				crouchQueued = true; //for animation purposes
-				msm.TransitionTo("crouchState");
+				EmitSignal(SignalName.Transition, "crouchState");
 				return;
 			}
-			else msm.TransitionTo("groundedState"); //switch to grounded state
+			else EmitSignal(SignalName.Transition, "groundedState"); //switch to grounded state
 		}
 		else if (slideTimer >= slideMaxTime || Mathf.Abs(currentSlideSpeed) < .2f) //slide is at its end
 		{
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 			{
 				crouchQueued = true; //for animation purposes
-				msm.TransitionTo("crouchState");
+				EmitSignal(SignalName.Transition, "crouchState");
 				return;
 			}
-			else msm.TransitionTo("groundedState"); //switch to grounded state
+			else EmitSignal(SignalName.Transition, "groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
 		player.MoveAndSlide();
@@ -110,14 +110,14 @@ public partial class slideState : State
 			else
             {
 				player.Set(PlayerManager.PropertyName.jumpQueued, true);
-				msm.TransitionTo("jumpState");
+				EmitSignal(SignalName.Transition, "jumpState");
 			}
 		}
 
 		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			msm.TransitionTo("crouchState");
+			EmitSignal(SignalName.Transition, "crouchState");
 		}
 	}
 }

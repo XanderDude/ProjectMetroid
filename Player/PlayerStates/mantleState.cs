@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class mantleState : State
+public partial class mantleState : PlayerState
 {
 
 	public override void Enter()
@@ -25,14 +25,14 @@ public partial class mantleState : State
 	{
 		
 		if (@event.IsActionPressed("Down")) {
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
 		}
 		
 		
 		
 		if (@event.IsActionPressed("Jump")) {
 			player.Set("jumpQueued", true);
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
 		}
 
 	

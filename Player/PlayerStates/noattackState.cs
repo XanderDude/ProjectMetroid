@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+/*
 public partial class noattackState : State
 {
 	public override void HandleInput(InputEvent @event) //Called whenever an input is detected
@@ -12,3 +12,4 @@ public partial class noattackState : State
         }
     }
 }
+*/

@@ -3,6 +3,7 @@ using System;
 
 public partial class RavenIdleState : State
 {
+	/*
 	public override void Enter()
 	{
 		//GD.Print("Raven: Entered Idle State");
@@ -86,5 +87,5 @@ public partial class RavenIdleState : State
 		}
 	}
 
-
+*/
 }

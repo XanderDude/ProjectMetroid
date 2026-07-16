@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public partial class RavenStateMachine : Node
 {
+    /*
     [Export] public NodePath ravenPath;
     [Export] public NodePath initialState;
 
@@ -110,4 +111,5 @@ public partial class RavenStateMachine : Node
         _currentState = value;
         _currentState.Enter();
     }
+    */
 }

@@ -44,35 +44,8 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] public bool canBeDamaged = true;
 	[Export] private float invulnTimer = 1f;
 	private float _invulnTimer;
-	private MovementStateMachine _movementStateMachine;
-
-	[Export]
-	public MovementStateMachine StateMachine
-	{
-		get { return _movementStateMachine; }
-		set
-		{
-			_movementStateMachine = value;
-			StateMachine.Parent = this;
-			StateMachine.ParentManager = this;
-			StateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
-		}
-	}
-
-	private AttackStateMachine _attackStateMachine;
-
-	[Export]
-	private AttackStateMachine AttackStateMachine
-	{
-		get { return _attackStateMachine; }
-		set
-		{
-			_attackStateMachine = value;
-			AttackStateMachine.Parent = this;
-			AttackStateMachine.ParentManager = this;
-			AttackStateMachine.parentMesh = GetNode<Node3D>(playerMeshPath);
-		}
-	}
+	
+	[Export] public PlayerStateMachine psm;
 	[Export] public PackedScene jumpVFX, slideBoostVFX;
 
 	public override void _Ready()
@@ -85,7 +58,7 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _Process(double delta)
 	{
-		if (isDead) StateMachine.TransitionTo("deathState");
+		
 	}
 	
 	public override void _PhysicsProcess(double delta)

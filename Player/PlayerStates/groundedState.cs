@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class groundedState : State
+public partial class groundedState : PlayerState
 {
 	[Export] public float groundMaxSpeed = 6.0f;
 	[Export] public float groundAcceleration = 15.0f;
@@ -23,10 +23,10 @@ public partial class groundedState : State
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0)
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
-			msm.TransitionTo("crouchState");
+			EmitSignal(SignalName.Transition, "crouchState");
 		}
-		else if (msm._currentState.Name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-		else if (msm._currentState.Name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
+		else if (psm.current_node_state_name == "groundedState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
+		else if (psm.current_node_state_name == "crouchState") parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 	}
 	
 	public override void Exit()
@@ -40,7 +40,7 @@ public partial class groundedState : State
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
-			msm.TransitionTo("crouchState");
+			EmitSignal(SignalName.Transition, "crouchState");
 			return;
 		}
 
@@ -49,7 +49,7 @@ public partial class groundedState : State
 			walkOffCDTimer += delta;
 			if (walkOffCDTimer >= _WalkOffCooldown)
 			{
-				msm.TransitionTo("jumpState");
+				EmitSignal(SignalName.Transition, "jumpState");
 				return;
 			}
 		}
@@ -74,7 +74,7 @@ public partial class groundedState : State
 		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && pm.vertColCheck != null && !pm.vertColCheck.VertCheckIsColliding()) //turn finished and player is holding direction
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-			msm.TransitionTo("groundedState");
+			EmitSignal(SignalName.Transition, "groundedState");
 		} 
 
 		HandleGroundedMovement(delta);
@@ -108,17 +108,20 @@ public partial class groundedState : State
 	{
 		if (@event.IsActionPressed("forgemode"))
 		{
-			msm.TransitionTo("forgeState");
+			EmitSignal(SignalName.Transition, "forgeState");
+			return;
 		}
-		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && Mathf.Abs(pm.aimDirection.X) < 0.1f && msm._currentState.Name == "groundedState") //only crouch when previous frame had no aim direction
+		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim") && Mathf.Abs(pm.aimDirection.X) < 0.1f && psm.current_node_state_name == "groundedState") //only crouch when previous frame had no aim direction
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			msm.TransitionTo("crouchState");
+			EmitSignal(SignalName.Transition, "crouchState");
+			return;
 		}
 		if (@event.IsActionPressed("Slide"))
 		{
 			//player.Set(PlayerManager.PropertyName.slideQueued, true);
-			msm.TransitionTo("slideState");
+			EmitSignal(SignalName.Transition, "slideState");
+			return;
 		}
 		if (@event.IsActionPressed("Jump")) 
 		{
@@ -129,11 +132,12 @@ public partial class groundedState : State
 			else
 			{
 				player.Set("jumpQueued", true);
-				msm.TransitionTo("jumpState");
+				EmitSignal(SignalName.Transition, "jumpState");
+				return;
 			}
 		}
 
-		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && msm._currentState.Name == "crouchState") //only stand up when only pressing up
+		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && psm.current_node_state_name == "crouchState") //only stand up when only pressing up
 		{
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
 			{
@@ -142,7 +146,7 @@ public partial class groundedState : State
 			else
             {
                 parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
-				msm.TransitionTo("groundedState");
+				EmitSignal(SignalName.Transition, "groundedState");
 			}
 		}
 	}

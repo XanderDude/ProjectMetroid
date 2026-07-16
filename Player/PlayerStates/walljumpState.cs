@@ -1,12 +1,14 @@
 using Godot;
 
-public partial class walljumpState : State
+public partial class walljumpState : PlayerState
 {
 	[ExportSubgroup("Wall Jump State")]
 	[Export] public float airMaxSpeed = 5.0f;
 	[Export] public float jumpAcceleration = 10.0f;
 	[Export] public float jumpDeceleration = 15f;
  	[Export] public float jumpVelocity = 10.0f;
+
+	[Export] public float gravity = 9.8f;
 	[Export] public float jumpMaxHeight = 1f, jumpMinHeight = 0.2f; //meters
 	public float jumpHeight = 0.0f; //player's current jump height position
 	private float startPosition = 0.0f;
@@ -81,15 +83,15 @@ public partial class walljumpState : State
 		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
 			velocity.X = airMaxSpeed;
-			velocity.Y -= _gravity * delta;
+			velocity.Y -= gravity * delta;
 		}
 		else
 		{	
 			velocity.X = airMaxSpeed;
-			velocity.Y -= _gravity * 2.5f * delta;			
+			velocity.Y -= gravity * 2.5f * delta;			
 		}
 		
-		if (velocity.Y < 0) msm.TransitionTo("jumpState");
+		if (velocity.Y < 0) EmitSignal(SignalName.Transition, "jumpState");
 		
 		player.Velocity = velocity;
 	}

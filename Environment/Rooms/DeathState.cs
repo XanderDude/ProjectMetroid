@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class DeathState : State
+public partial class DeathState : PlayerState
 {
     private bool deathEffectApplied = false;
     public override void Enter()

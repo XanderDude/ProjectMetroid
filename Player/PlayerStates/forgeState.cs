@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class forgeState : State
+public partial class forgeState : PlayerState
 {
 
     [Export] public float moveSpeed = 10.0f;
@@ -36,7 +36,7 @@ public partial class forgeState : State
     {
         if (@event.IsActionPressed("forgemode"))
 		{
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
         }
     }
 }

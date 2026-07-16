@@ -2,7 +2,7 @@ using System;
 using Godot;
 
 // TODO : Fix and refactor this class. It's a mess and needs to be cleaned up.
-public partial class lungeState : State
+public partial class lungeState : EnemyState
 {
 	private enum SubStateParry { FLASH, LUNGE, KNOCKBACK, DONE }
 
@@ -44,13 +44,13 @@ public partial class lungeState : State
 		lightGrowing = true;
 		ec.Velocity = Vector3.Zero;
 		SpawnParryLight();
-		RavenAttackState.OnRavenSlashHit += OnSlashHitEnemy;
+		//RavenAttackState.OnRavenSlashHit += OnSlashHitEnemy;
 
 	}
 
 	public override void Exit()
 	{
-		RavenAttackState.OnRavenSlashHit -= OnSlashHitEnemy;
+		//RavenAttackState.OnRavenSlashHit -= OnSlashHitEnemy;
 
 		if (IsInstanceValid(parryLight))
 			parryLight.QueueFree();
@@ -164,7 +164,7 @@ public partial class lungeState : State
 		{
 			parryHandled = true;
 			substate = SubStateParry.DONE;
-			esm.TransitionTo("aggroState");
+			EmitSignal(SignalName.Transition, "aggroState");
 		}
 	}
 
@@ -183,7 +183,7 @@ public partial class lungeState : State
 		{
 			parryHandled = true;
 			substate = SubStateParry.DONE;
-			esm.TransitionTo("patrolState");
+			EmitSignal(SignalName.Transition, "patrolState");
 		}
 	}
 
@@ -244,7 +244,7 @@ public partial class lungeState : State
 				if (GameFriend.gameinstance?.camera != null)
 					GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
 
-				esm.TransitionTo("patrolState");
+				EmitSignal(SignalName.Transition, "patrolState");
 			}
 		}));
 

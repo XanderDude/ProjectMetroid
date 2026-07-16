@@ -50,9 +50,7 @@ public partial class NormalArrow : RigidBody3D
                 if (collider is Enemy enemy && !targetsDamaged.Contains(enemy))
                 {
                     enemy.DamagedReceived(damage);
-					 if (enemy.revengeMode)
-               			 enemy.esm.TransitionTo("aggroState");
-                    targetsDamaged.Add(enemy);
+					
                 }
             }
         }

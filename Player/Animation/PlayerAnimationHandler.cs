@@ -61,13 +61,13 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		currentVerticalSpeed = Mathf.Clamp(Mathf.MoveToward(currentVerticalSpeed, player.Velocity.Y, transitionSpeed * (float)delta), -1f, 1f);
 		animTree.Set("parameters/Jumping/BlendSpace1D/blend_position", currentVerticalSpeed);
 		
-		if (pm.StateMachine._currentState.Name != "mantleState" && pm.StateMachine._currentState.Name != "slideState" 
-		&& pm.StateMachine._currentState.Name != "walljumpState" //states to ignore rotation changes
+		if (pm.psm.current_node_state.Name != "mantleState" && pm.psm.current_node_state.Name != "slideState" 
+		&& pm.psm.current_node_state.Name != "walljumpState" //states to ignore rotation changes
 		&& pm.aimDirection.X != 0 && newMeshRotation != _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X))
         {
 			newMeshRotation = _meshRotationDegrees * Mathf.Sign(pm.aimDirection.X);
 			pm.facingDirection = Mathf.Sign(pm.aimDirection.X);
-			pm.StateMachine._currentState.Set("turnAroundTimer", 0f);
+			pm.psm.current_node_state.Set("turnAroundTimer", 0f);
         }
 
 		if (newMeshRotation != RotationDegrees.Y)

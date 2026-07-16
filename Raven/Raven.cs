@@ -28,6 +28,8 @@ public partial class Raven : CharacterBody3D
     public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
 
     private RavenStateMachine _ravenStateMachine;
+
+    /*
 	[Export] public RavenStateMachine RavenStateMachine
 	{
 		get { return _ravenStateMachine; }
@@ -38,16 +40,17 @@ public partial class Raven : CharacterBody3D
 			RavenStateMachine.PlayerManager = player;
 		}
 	}
-    
+    */
 
     public void init_raven()
     {
         if (player != null)
         {
-            RavenStateMachine.PlayerManager = player;
+            //RavenStateMachine.PlayerManager = player;
         }        
     }
 
+/*
     public override void _PhysicsProcess(double delta)
     {        
 
@@ -63,7 +66,7 @@ public partial class Raven : CharacterBody3D
             }
         }
 
-        if (player != null && (player.IsOnFloor() || player.StateMachine._currentState.Name == "mantleState"))
+        if (player != null && (player.IsOnFloor() || player.psm.current_node_state_name == "mantleState"))
         {
             canTeleport = true;
         }
@@ -71,7 +74,7 @@ public partial class Raven : CharacterBody3D
         MoveAndSlide();
             
     }
-    
+    */
 
 
 

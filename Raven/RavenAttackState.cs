@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class RavenAttackState : State
 {
+	/*
 	public static event Action<Enemy> OnRavenSlashHit;
 	[Export] private int damage = 15;
 	private Area3D slashArea;
@@ -114,7 +115,7 @@ public partial class RavenAttackState : State
 		slashShape.Size = new Vector3(2.0f, 1.5f, 0.2f);
 		slashMesh.Mesh = slashShape;
 		slashArea.AddChild(slashMesh);*/
-
+/*
 		slashCollision = new CollisionShape3D();
 		var boxShape = new BoxShape3D();
 		boxShape.Size = new Vector3(2.0f, 1.5f, 0.2f);
@@ -175,4 +176,6 @@ public partial class RavenAttackState : State
 			enemy.DamagedReceived(damage);
 		}
 	}
+	
+	*/
 }

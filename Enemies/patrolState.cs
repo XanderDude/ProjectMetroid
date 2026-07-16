@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Text.RegularExpressions;
-public partial class patrolState : State
+public partial class patrolState : EnemyState
 {
   
     private enum SubState { IDLE, WAIT_TO_MOVE, MOVEMENT }; 
@@ -65,7 +65,7 @@ public partial class patrolState : State
             {
                 GD.Print("in detection range");
                 ec.Velocity = Vector3.Zero;
-                esm.TransitionTo("aggroState");
+                EmitSignal(SignalName.Transition, "aggroState");
             }
            
         }
