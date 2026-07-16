@@ -7,7 +7,7 @@ public partial class PlayerStateMachine : FiniteStateMachine
         base._Ready();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         current_node_state?.HandleInput(@event);
     }

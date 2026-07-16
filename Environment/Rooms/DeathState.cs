@@ -8,7 +8,6 @@ public partial class DeathState : PlayerState
     public override void Enter()
     {
             
-        pm.canBeDamaged = false;
         SoundFriend.Play("player_death_SFX");
         //ProcessMode = ProcessModeEnum.Always;
         parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Death();

@@ -113,7 +113,7 @@ public partial class jumpState : PlayerState
 			jumpHeight = 0.0f;
 			startPosition = pm.GlobalPosition.Y;
 			SoundFriend.Play("player_jump_SFX");
-			if (pm.aimDirection.X == 0) cancelVelocity = true; //freeze horizontal velocity for neutral jump
+			if (pm.noAimDirection) cancelVelocity = true; //freeze horizontal velocity for neutral jump
 		}
 		pm.slideBoost = true; //pm must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(pm.jumpQueued);
@@ -128,6 +128,12 @@ public partial class jumpState : PlayerState
 	public override void PhysicsUpdate(float delta)
 	{
 		mantleTimer += delta;
+
+		if (cancelVelocity)
+		{
+			pm.Velocity = Vector3.Zero;
+			cancelVelocity = false;
+		}
 
 		//1. Check pm input for canceling jump early
 		if (pm.jumpQueued && !Input.IsActionPressed("Jump") && jumpHeight > jumpMinHeight) //check when jump is released
@@ -174,11 +180,6 @@ public partial class jumpState : PlayerState
 			EmitSignal(SignalName.Transition, "mantleState");
 		}
 
-		if (cancelVelocity)
-		{
-			pm.Velocity = Vector3.Zero;
-			cancelVelocity = false;
-		}
 
 		//4. Update pm position
 		pm.MoveAndSlide();
@@ -199,7 +200,7 @@ public partial class jumpState : PlayerState
 	private void HandleAirMovement(float delta)
 	{
 		Vector3 velocity = pm.Velocity;
-		float input = Mathf.Sign(pm.aimDirection.X);
+		float input = pm.noAimDirection ? 0 : Mathf.Sign(pm.aimDirection.X);
 
 		if (pm.jumpQueued && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the pm releases jump, the bool is set false 

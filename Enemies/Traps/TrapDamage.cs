@@ -30,7 +30,7 @@ public partial class TrapDamage : Area3D
         if (damageCooldown <= 0 && playerInRange && player.canBeDamaged) //trap is ready and there is a target
         {
             damageCooldown = _damageCooldown;
-            player.Health -= damage;
+            player.health -= damage;
         }
     }
 
@@ -45,7 +45,7 @@ public partial class TrapDamage : Area3D
         if (damageCooldown <= 0 && player.canBeDamaged) //damaging collider 
         {
             damageCooldown = _damageCooldown;
-            player.Health -= damage;
+            player.health -= damage;
         }
     }
 }

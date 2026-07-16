@@ -37,6 +37,14 @@ public partial class groundedState : PlayerState
 	public override void PhysicsUpdate(float delta)
 	{
 		player.ApplyFloorSnap();
+
+		if (pm.JumpBuffered)
+		{
+			pm.jumpQueued = true;
+			pm.jumpBufferTimer = 0f;
+			EmitSignal(SignalName.Transition, "jumpState");
+			return;
+		}
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
@@ -90,15 +98,10 @@ public partial class groundedState : PlayerState
 
 	private void HandleGroundedMovement(float delta)
 	{
-		//int input = Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")); //get absolute value of input (no negative), round up, multiply by sign to get direction
 		Vector3 velocity = player.Velocity;
 		velocity.Y = 0;
-		//velocity.Y -= _gravity * delta;
-		if (Input.IsActionPressed("Aim"))
-        {
-            velocity.X = Mathf.MoveToward(velocity.X, 0, delta + groundAcceleration);
-        }
-		else velocity.X = Mathf.MoveToward(velocity.X, Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed, delta + groundAcceleration);
+		float targetX = pm.noAimDirection || Input.IsActionPressed("Aim") ? 0 : Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed;
+		velocity.X = Mathf.MoveToward(velocity.X, targetX, delta + groundAcceleration);
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
 		player.Velocity = velocity;
 	}

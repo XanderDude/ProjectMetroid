@@ -73,7 +73,7 @@ public partial class DebugFriend : CanvasLayer
 
     public override void _Process(double delta)
     {
-        healthlabel.Text = $"Health: {GameFriend.gameinstance.player.Health}";
+        healthlabel.Text = $"Health: {GameFriend.gameinstance.player.health}";
         int bombCount = 0;
         var inventory = GameFriend.gameinstance.inventoryfriend;
         if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))

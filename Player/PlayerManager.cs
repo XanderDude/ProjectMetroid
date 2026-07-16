@@ -5,6 +5,9 @@ public partial class PlayerManager : CharacterBody3D
 {
 	[Export] public NodePath playerMeshPath = "%PlayerMesh";
 
+	[Export] private ShaderMaterial mainMat, weaponMat;
+	[Export] public VerticalCollisionCheck vertColCheck;
+	[Export] public ShapeCast3D groundCheck;
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
@@ -15,85 +18,37 @@ public partial class PlayerManager : CharacterBody3D
 	public bool inwater = false;
 
 	public bool movementlocked = false;
-	[Export] private ShaderMaterial mainMat, weaponMat;
-	private float alpha = 0f;
 
 	public Vector2 aimDirection = Vector2.Right;
 	public bool noAimDirection;
-	public int facingDirection = 1; //1 is right, -1 is left
-	[Export] public VerticalCollisionCheck vertColCheck;
-	[Export] public ShapeCast3D groundCheck;
+	public int facingDirection = 1; 
 
-	private int health = 100;
-	[Export] public int Health
-	{
-		get { return health; }
-		set
-		{
-			if (value < health && invulnTimer > 0) return;
-			if (value < health) invulnTimer = _invulnTimer;
-			health = value;
-			if (health <= 0)
-			{
-				health = 0;
-				isDead = true;
-			}
-		}
-	}
+	[Export] public int health = 100;
 
-	[Export] public bool canBeDamaged = true;
-	[Export] private float invulnTimer = 1f;
-	private float _invulnTimer;
+	[Export] public float invulnDuration = 1f;
+    public float invulnTimer = 0f;
+    public bool canBeDamaged => invulnTimer <= 0f;
 	
 	[Export] public PlayerStateMachine psm;
 	[Export] public PackedScene jumpVFX, slideBoostVFX;
 
-	public override void _Ready()
-	{
-		//Input.GetActionStrength
-		
-		_invulnTimer = invulnTimer;
-		invulnTimer = 0;
-	}
+	public float jumpBufferTimer = 0f;
+	private const float JumpBufferTime = 0.1f; 
 
 	public override void _Process(double delta)
 	{
-		
+    	if (Input.IsActionJustPressed("Jump"))
+        	jumpBufferTimer = JumpBufferTime;
+    	else
+        	jumpBufferTimer -= (float)delta;
 	}
+
+	public bool JumpBuffered => jumpBufferTimer > 0f;
 	
 	public override void _PhysicsProcess(double delta)
 	{
-
-
-		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
-		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
-		
-		if (direction == Vector2.Zero) noAimDirection = true;
-		else
-		{
-			noAimDirection = false;	
-			if (Mathf.Abs(direction.X) > .9) direction = new(direction.X, 0);
-			else if (Mathf.Abs(direction.Y) > .9) direction = new(0, direction.Y);
-			else direction = new(Mathf.Sign(direction.X), Mathf.Sign(direction.Y));
-		}
-		
-		if (direction != aimDirection) aimDirection = direction.Normalized(); //update aim direction only if it has changed
-		
-		if (invulnTimer > 0)
-		{
-			canBeDamaged = false;
-			invulnTimer -= (float)delta;
-			mainMat?.SetShaderParameter("flashing", true);
-			mainMat?.SetShaderParameter("timer", invulnTimer);
-			weaponMat?.SetShaderParameter("flashing", true);
-			weaponMat?.SetShaderParameter("timer", invulnTimer);
-		}
-		else
-		{
-			canBeDamaged = true;
-			mainMat?.SetShaderParameter("flashing", false);
-			weaponMat?.SetShaderParameter("flashing", false);
-		}	
+		AimingLogic();
+		UpdateInvulnerability((float)delta);
 
 	}
 	public void SpawnJumpCloud(float yOffset,float rotation)
@@ -110,5 +65,45 @@ public partial class PlayerManager : CharacterBody3D
 		AxisLockLinearY = locked;
 	}
 	
+	public void UpdateInvulnerability(float delta)
+	{
+		if (invulnTimer > 0)
+		{
+			invulnTimer -= (float)delta;
+			mainMat?.SetShaderParameter("flashing", true);
+			mainMat?.SetShaderParameter("timer", invulnTimer);
+			weaponMat?.SetShaderParameter("flashing", true);
+			weaponMat?.SetShaderParameter("timer", invulnTimer);
+		}
+		else
+		{
+			mainMat?.SetShaderParameter("flashing", false);
+			weaponMat?.SetShaderParameter("flashing", false);
+		}	
+	}
 
+	public void AimingLogic()
+	{
+		var input = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();
+		noAimDirection = input == Vector2.Zero;
+
+		if (!noAimDirection)
+		{
+    		float x = Mathf.Abs(input.Y) > .9f ? 0 : Mathf.Sign(input.X);
+    		float y = Mathf.Abs(input.X) > .9f ? 0 : Mathf.Sign(input.Y);
+    		aimDirection = new Vector2(x, y).Normalized();
+		}
+	}
+
+	public void TakeDamage(int amount)
+    {
+        if (!canBeDamaged) return;
+        health -= amount;
+        invulnTimer = invulnDuration;
+        if (health <= 0)
+        {
+            health = 0;
+            isDead = true;
+        }
+    }
 }

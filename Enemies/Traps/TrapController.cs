@@ -45,7 +45,7 @@ public partial class TrapController : Node3D
             triggerCooldown = _triggerCooldown;
             if (damageCollider == null && player.canBeDamaged) //if there is not another collider, deal damage now
             {
-                player.Health -= damage;
+                player.health -= damage;
             }
                 
         }

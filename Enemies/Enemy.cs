@@ -93,7 +93,7 @@ public partial class Enemy : Actor
 	{
 		if (node is PlayerManager p && p.canBeDamaged)
 	   {
-		   p.Health -= damage;
+		   p.health -= damage;
 		   float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
 		   /*p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
 		   p.psm.TransitionTo("knockbackState");
