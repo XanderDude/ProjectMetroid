@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7hiv0cgv11f2" path="res://Interactables/Cages/CageDrop.cs" id="1_ln42g"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_aw4t0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_fwphm"]
+[ext_resource type="PackedScene" uid="uid://dfj5sb41gg03o" path="res://Interactables/Cages/CageMedium.fbx" id="2_kxmcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g22iw"]
 size = Vector3(1, 0.2, 1)
@@ -20,22 +19,24 @@ script = ExtResource("1_ln42g")
 dropLocationY = 22.0
 chain = NodePath("chain")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 2.5, 0, 0, 0, 3, 0, 1.25, 0)
-mesh = SubResource("BoxMesh_fwphm")
+[node name="CageMedium" parent="." instance=ExtResource("2_kxmcj")]
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="cageMedium" parent="CageMedium/SewerProps" index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 0.625, 0, 0, 0, 1.5, 0, 1.25, 0)
+
+[node name="Area3D" type="Area3D" parent="CageMedium"]
+transform = Transform3D(3, 0, 0, 0, 2.5, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 0
 collision_mask = 268
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CageMedium/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0996579, 0)
 shape = SubResource("BoxShape3D_g22iw")
 debug_color = Color(1, 0.113725, 0.219608, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+visible = false
 shape = SubResource("BoxShape3D_fwphm")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -80,5 +81,7 @@ transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 11, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 shape = SubResource("BoxShape3D_5yeml")
 
-[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_cage_crush"]
+[connection signal="body_entered" from="CageMedium/Area3D" to="." method="_on_cage_crush"]
 [connection signal="body_entered" from="chain" to="." method="_on_chain_body_entered"]
+
+[editable path="CageMedium"]

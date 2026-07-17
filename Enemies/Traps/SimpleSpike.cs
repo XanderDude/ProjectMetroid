@@ -5,6 +5,7 @@ public partial class SimpleSpike : Node3D
 {
 
 	[Export] private int damage = 5;
+	[Export] private float trapKnockback = 2f;
 	private PlayerManager player;
 
 	private bool playerInRange = false;
@@ -15,10 +16,11 @@ public partial class SimpleSpike : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{ 
-        if (playerInRange && PlayerManager.instance.canBeDamaged) 
+        if (playerInRange && GameFriend.gameinstance.player.canBeDamaged) 
 		{
-			//GD.Print("Player is touching spike");
-			PlayerManager.instance.health -= damage;
+			GD.Print("Player is touching spike");
+
+			DamagePlayer(GameFriend.gameinstance.player);
 		}
 	}
 
@@ -32,5 +34,13 @@ public partial class SimpleSpike : Node3D
 		//AssignPlayer();
         playerInRange = true;
     }
+
+	public void DamagePlayer(PlayerManager p)
+	{
+		float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
+		p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * trapKnockback * 3f;
+		p.StateMachine.TransitionTo("knockbackState");
+		p.Health -= damage;
+	}
 
 }

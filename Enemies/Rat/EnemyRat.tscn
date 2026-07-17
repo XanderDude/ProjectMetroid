@@ -32,7 +32,6 @@ ray = NodePath("Beam")
 attackcd = 3.0
 attackDirMode = 2
 health = 80
-attackknockback = 2.0
 detectionrange = 10.0
 attackrange = 10.0
 
@@ -66,7 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
 shape = SubResource("BoxShape3D_tysk3")
 debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
-[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+[node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("3_icv41")
 initialState = NodePath("patrolState")
 
