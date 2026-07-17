@@ -13,6 +13,7 @@ public partial class groundedState : PlayerState
 	public override void Enter()
 	{
 		coyote_timer = 0;
+		pm.pah.Grounded();
 		pm.slideBoost = false;
 	}
 	
@@ -34,7 +35,7 @@ public partial class groundedState : PlayerState
 		}
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.IsOnFloor())
 		{
-			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(true); //force crouch
+			pm.pah.Crouch(true); //force crouch
 			EmitSignal(SignalName.Transition, "crouchState");
 			return;
 		}
@@ -78,7 +79,7 @@ public partial class groundedState : PlayerState
 		}
 		if (@event.IsActionPressed("Down") && !Input.IsActionPressed("Aim"))
 		{
-			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
+			pm.pah.Crouch(false);
 			EmitSignal(SignalName.Transition, "crouchState");
 			return;
 		}
@@ -90,27 +91,27 @@ public partial class groundedState : PlayerState
 		}
 		if (@event.IsActionPressed("Jump")) 
 		{
-			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 			{
-				pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
+				pm.pah.StandingBlocked();
 			}
 			else
 			{
-				pm.playerMesh.GetNode<PlayerAnimationHandler>(".").Airborne(pm.jumpQueued);
+				pm.pah.Airborne(pm.jumpQueued);
 				EmitSignal(SignalName.Transition, "jumpState");
 				return;
 			}
 		}
 
-		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && pm.psm.current_node_state_name == "crouchState") 
+		if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim") && pm.psm.current_node_state_name == "crouchState")
 		{
-			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding()) 
+			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 			{
-				pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
+				pm.pah.StandingBlocked();
 			}
 			else
             {
-                pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Grounded();
+                pm.pah.Grounded();
 				EmitSignal(SignalName.Transition, "groundedState");
 			}
 		}

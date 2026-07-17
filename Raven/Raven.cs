@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class Raven : CharacterBody3D
 {
-    public PlayerManager player => GameFriend.gameinstance.player;
+    public PlayerManager pm => GetParent<PlayerManager>();
     [Export] public float speed = 10.0f;
     
     [Export] public float launchTimer = 0.8f;
@@ -13,11 +13,11 @@ public partial class Raven : CharacterBody3D
 
     [Export] public CollisionShape3D topCollider = null;
     [Export] public CollisionShape3D bottomCollider = null;
+    [Export] public CollisionShape3D bodyCollider = null;
 
     public Vector3 Yoffset = new Vector3(0, 1.5f, 0);
     public Vector3 Xoffset = new Vector3(0, 0, 0);
     public bool isInAction = false;
-
     public bool isOnPlayer = false;
     public bool isLaunching = false;
     public bool canTeleport = false;
@@ -25,38 +25,35 @@ public partial class Raven : CharacterBody3D
     public bool canLaunch = false;
     public float ravenMeleeDamage = 0.0f;
 
-    public InventoryFriend inventoryfriend => GameFriend.gameinstance.inventoryfriend;
+	[Export] public RavenStateMachine rm;
 
-    private RavenStateMachine _ravenStateMachine;
+    private bool wasUnlocked = false;
 
-    /*
-	[Export] public RavenStateMachine RavenStateMachine
-	{
-		get { return _ravenStateMachine; }
-		set
-		{
-			_ravenStateMachine = value;
-			RavenStateMachine.Parent = this;
-			RavenStateMachine.PlayerManager = player;
-		}
-	}
-    */
-
-    public void init_raven()
+    public override void _Ready()
     {
-        if (player != null)
-        {
-            //RavenStateMachine.PlayerManager = player;
-        }        
+        TopLevel = true;
     }
 
-/*
     public override void _PhysicsProcess(double delta)
-    {        
+    {
+        bool unlocked = pm != null && pm.inventoryfriend.isUpgradeUnlocked("ravenSlash");
+        if (bodyCollider != null) bodyCollider.Disabled = !unlocked;
 
-        if (RavenStateMachine._currentState != null)
+        if (!unlocked)
         {
-            if (RavenStateMachine._currentState.Name == "RavenLaunchState" || RavenStateMachine._currentState.Name == "RavenIdleState" || RavenStateMachine._currentState.Name == "RavenAttackState")
+            Visible = false;
+            wasUnlocked = false;
+            return;
+        }
+        if (!wasUnlocked)
+        {
+            Visible = true;
+            wasUnlocked = true;
+        }
+
+        if (rm.current_node_state != null)
+        {
+            if (rm.current_node_state_name == "RavenLaunchState" || rm.current_node_state_name == "RavenIdleState" || rm.current_node_state_name == "RavenAttackState")
             {
                 this.CollisionMask = (1 << 0) | (1 << 1);
             }
@@ -66,16 +63,11 @@ public partial class Raven : CharacterBody3D
             }
         }
 
-        if (player != null && (player.IsOnFloor() || player.psm.current_node_state_name == "mantleState"))
+        if (pm.IsOnFloor() || pm.psm.current_node_state_name == "mantleState")
         {
             canTeleport = true;
         }
 
         MoveAndSlide();
-            
     }
-    */
-
-
-
 }

@@ -19,7 +19,7 @@ public partial class walljumpState : PlayerState
 		KinematicCollision3D collision = pm.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
 		airMaxSpeed *= Mathf.Sign(pm.GlobalPosition.X - collider.GlobalPosition.X);
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).RotateMesh(Mathf.Sign(airMaxSpeed));
+		pm.pah.RotateMesh(Mathf.Sign(airMaxSpeed));
 		pm.SpawnJumpCloud(0.8f, -45f * Mathf.Sign(airMaxSpeed));
 	}
 
@@ -56,7 +56,7 @@ public partial class walljumpState : PlayerState
 		jumpHeight = 0.0f;
 		startPosition = pm.GlobalPosition.Y;
 		pm.slideBoost = true; //player must be airborne, enable boost
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Airborne(true);
+		pm.pah.Airborne(true);
 	}
 	
 	public override void Exit()

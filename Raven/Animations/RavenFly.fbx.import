@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cfqx3x3003wu0"
-path="res://.godot/imported/RavenFly.fbx-ff758cf98c6531d57061fb132331fb64.scn"
+valid=false
 
 [deps]
 
-source_file="res://Bird/RavenFly.fbx"
-dest_files=["res://.godot/imported/RavenFly.fbx-ff758cf98c6531d57061fb132331fb64.scn"]
+source_file="res://Raven/Animations/RavenFly.fbx"
 
 [params]
 

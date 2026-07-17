@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://hu45knn8o50r"
-path="res://.godot/imported/RavenAnimation.fbx-e0bad4f54e789b677be4c07f1c8eb971.scn"
+path="res://.godot/imported/RavenAnimation.fbx-55e4185efc5776a80a0db2a271ed6fee.scn"
 
 [deps]
 
-source_file="res://Bird/RavenAnimation.fbx"
-dest_files=["res://.godot/imported/RavenAnimation.fbx-e0bad4f54e789b677be4c07f1c8eb971.scn"]
+source_file="res://Raven/Animations/RavenAnimation.fbx"
+dest_files=["res://.godot/imported/RavenAnimation.fbx-55e4185efc5776a80a0db2a271ed6fee.scn"]
 
 [params]
 

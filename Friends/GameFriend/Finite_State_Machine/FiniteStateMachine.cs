@@ -49,7 +49,7 @@ public partial class FiniteStateMachine : Node
     
 	public void transition_to(String node_state_name)
 	{
-		GD.Print($"transition_to called: {node_state_name}");
+		//GD.Print($"transition_to called: {node_state_name}");
 		if (node_state_name == current_node_state_name)
 			return;
 

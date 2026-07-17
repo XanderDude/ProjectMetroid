@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dylvb5ucvbp71"
-path.s3tc="res://.godot/imported/RavenAnimation_0.png-eaaddfa2b0bc5bf4980efda72a4da5e3.s3tc.ctex"
+path.s3tc="res://.godot/imported/RavenAnimation_0.png-b9bf6bfc9b1d4d93ef4b8f7bd580fe27.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Bird/RavenAnimation_0.png"
-dest_files=["res://.godot/imported/RavenAnimation_0.png-eaaddfa2b0bc5bf4980efda72a4da5e3.s3tc.ctex"]
+source_file="res://Raven/Animations/RavenAnimation_0.png"
+dest_files=["res://.godot/imported/RavenAnimation_0.png-b9bf6bfc9b1d4d93ef4b8f7bd580fe27.s3tc.ctex"]
 
 [params]
 

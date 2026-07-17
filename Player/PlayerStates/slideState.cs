@@ -37,15 +37,15 @@ public partial class slideState : PlayerState
 			currentSlideSpeed = slideMaxSpeed * slideDirection;
 		}
 		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Sliding(true);
+		pm.pah.Sliding(true);
 		pm.ApplyFloorSnap();
 	}
 
 	public override void Exit()
 	{
 		pm.Set(PlayerManager.PropertyName.slideBoost, false);
-		if (crouchQueued) pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
-		else pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Sliding(false); //return to grounded state
+		if (crouchQueued) pm.pah.Crouch(false);
+		else pm.pah.Sliding(false); //return to grounded state
 	}
 	public override void PhysicsUpdate(float delta)
 	{
@@ -105,7 +105,7 @@ public partial class slideState : PlayerState
 		{
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
             {
-				pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
+				pm.pah.StandingBlocked();
         	}
 			else
             {
@@ -116,7 +116,7 @@ public partial class slideState : PlayerState
 
 		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
-			pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
+			pm.pah.Crouch(false);
 			EmitSignal(SignalName.Transition, "crouchState");
 		}
 	}

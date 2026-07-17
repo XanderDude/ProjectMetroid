@@ -7,32 +7,36 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	[Export] public VerticalCollisionCheck vertColCheck;
 	[Export] public ShapeCast3D groundCheck;
+	[Export] public PlayerAnimationHandler pah;
+	[Export] public PlayerStateMachine psm, asm;
+	[Export] public PackedScene jumpVFX, slideBoostVFX;
+	[Export] public Raven raven;
+	[Export] public CameraFriend camera;
+	[Export] public int health = 100;
+	[Export] public float invulnDuration = 1f;
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
 
-	public Vector3 knockbackVelocity = Vector3.Zero;
-	public bool isDead = false;
-	public bool isPressed = false; 
-	public bool inwater = false;
-
-	public bool movementlocked = false;
+	public InventoryFriend inventoryfriend = new InventoryFriend();
 
 	public Vector2 aimDirection = Vector2.Right;
 	public bool noAimDirection;
 	public int facingDirection = 1; 
 
-	[Export] public int health = 100;
-
-	[Export] public float invulnDuration = 1f;
     public float invulnTimer = 0f;
     public bool canBeDamaged => invulnTimer <= 0f;
-	
-	[Export] public PlayerStateMachine psm, asm;
-	[Export] public PackedScene jumpVFX, slideBoostVFX;
+
 
 	public float jumpBufferTimer = 0f;
-	private const float JumpBufferTime = 0.1f; 
+	private const float JumpBufferTime = 0.1f;
+
+
+    public override void _Ready()
+    {
+		NullChecks();
+	}
+		
 
 	public override void _Process(double delta)
 	{
@@ -106,7 +110,20 @@ public partial class PlayerManager : CharacterBody3D
         if (health <= 0)
         {
             health = 0;
-            isDead = true;
         }
     }
+
+	public void NullChecks()
+	{
+		if (playerMesh == null) GD.PushError("PlayerMesh is not assigned in PlayerManager.");
+		if (vertColCheck == null) GD.PushError("VerticalCollisionCheck is not assigned in PlayerManager.");
+		if (groundCheck == null) GD.PushError("GroundCheck is not assigned in PlayerManager.");
+		if (pah == null) GD.PushError("PlayerAnimationHandler is not assigned in PlayerManager.");
+		if (psm == null) GD.PushError("PlayerStateMachine is not assigned in PlayerManager.");
+		if (asm == null) GD.PushError("PlayerStateMachine is not assigned in PlayerManager.");
+		if (jumpVFX == null) GD.PushError("JumpVFX is not assigned in PlayerManager.");
+		if (slideBoostVFX == null) GD.PushError("SlideBoostVFX is not assigned in PlayerManager.");
+		if (raven == null) GD.PushError("Raven is not assigned in PlayerManager.");
+		if (camera == null) GD.PushError("Camera is not assigned in PlayerManager.");
+	}
 }

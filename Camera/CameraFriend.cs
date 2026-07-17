@@ -20,18 +20,19 @@ public partial class CameraFriend : Camera3D
 
 	[Export] public float cameraDistance = 25.0f;
 
+	public PlayerManager pm => GetParent<PlayerManager>();
+
 	private Vector3 playerPosition;
 	private float lastPlayerDirection = 1.0f;
 	private Vector3 lookAheadOffset = Vector3.Zero;
 
 	public void init_camera()
 	{
-		if (GameFriend.gameinstance.player != null)
-			{
-				playerPosition = GameFriend.gameinstance.player.GlobalPosition;
-				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
-
-			}
+		if (pm != null)
+		{
+			playerPosition = pm.GlobalPosition;
+			GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
+		}
 	}
 
 	public override void _Process(double delta) {
@@ -39,21 +40,21 @@ public partial class CameraFriend : Camera3D
 	}
 
 	private void UpdateCameraPosition(float delta) {
-		Vector3 playerPos = GameFriend.gameinstance.player.GlobalPosition;
-		Vector3 playerVelocity = GetPlayerVelocity();
+		Vector3 playerPos = pm.GlobalPosition;
+		Vector3 playerVelocity = pm.Velocity;
 		if (Mathf.Abs(playerVelocity.X) > minMoveThreshold) {
 			lastPlayerDirection = Mathf.Sign(playerVelocity.X);
 		}
 
-		
+
 		Vector3 desiredLookAhead = new Vector3(lastPlayerDirection * lookAheadDistance, 0, 0);
 		lookAheadOffset = lookAheadOffset.Lerp(desiredLookAhead, lookAheadSpeed * delta);
 
-		
+
 		playerPosition = playerPos + lookAheadOffset;
 		playerPosition.X = Mathf.Clamp(playerPosition.X, roomMinX, roomMaxX);
 		playerPosition.Y = Mathf.Clamp(playerPosition.Y, roomMinY, roomMaxY);
-		
+
 		Vector3 currentPos = GlobalPosition;
 
 		if (playerVelocity.Y > -14.0f) {
@@ -64,7 +65,7 @@ public partial class CameraFriend : Camera3D
 
 		Vector3 newPosition;
 
-		if (GameFriend.gameinstance.player.psm.current_node_state_name == "deathState")
+		if (pm.psm.current_node_state_name == "deathState")
 		{
 			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
 			GlobalPosition = newPosition;
@@ -76,20 +77,7 @@ public partial class CameraFriend : Camera3D
 			GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
 		}
 	}
-	
 
-
-	private Vector3 GetPlayerVelocity()
-	{
-		if (GameFriend.gameinstance.player is CharacterBody3D characterBody) {
-			return characterBody.Velocity;
-		}
-
-		
-		return Vector3.Zero;
-	}
-
-	
 	public void SetRoomBounds(float minX, float maxX, float minY, float maxY)
 	{
 		roomMinX = minX;
@@ -97,7 +85,14 @@ public partial class CameraFriend : Camera3D
 		roomMinY = minY;
 		roomMaxY = maxY;
 
-		
+
+	}
+
+	public void SnapToPlayer()
+	{
+		if (pm == null) return;
+		Vector3 p = pm.GlobalPosition;
+		GlobalPosition = new Vector3(p.X, p.Y + cameraYOffset, cameraDistance);
 	}
 
 	public void ZoomTo(float targetDistance, float duration)

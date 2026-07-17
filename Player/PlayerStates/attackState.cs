@@ -41,7 +41,7 @@ public partial class attackState : PlayerState
 	
 	public override void Enter()
 	{
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Aiming(true);
+		pm.pah.Aiming(true);
 		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;
 		if (Input.IsActionPressed("Shoot"))
@@ -62,7 +62,7 @@ public partial class attackState : PlayerState
 
 	public override void Exit()
 	{
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Aiming(false);
+		pm.pah.Aiming(false);
 		chargingArrowVFX.Visible = false;
 		fullChargedArrowVFX.Visible = false;
 		SoundFriend.Stop(chargingArrowStartSFX);
@@ -166,7 +166,7 @@ public partial class attackState : PlayerState
 				GD.PrintErr("No arrow type selected!");
 				return;
 		}
-		pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Shooting();
+		pm.pah.Shooting();
 
 		if (projectileScene == null || arrowSpawnLoc == null)
 		{

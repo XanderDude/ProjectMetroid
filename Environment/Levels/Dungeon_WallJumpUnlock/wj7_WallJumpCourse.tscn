@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_oenow"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_1lb3i"]
 [ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="9_0et23"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -1935,3 +1936,5 @@ material = SubResource("StandardMaterial3D_nilwv")
 
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_0et23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]

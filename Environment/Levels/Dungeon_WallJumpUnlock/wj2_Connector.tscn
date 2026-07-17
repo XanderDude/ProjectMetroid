@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cj3f7awqmbyby"]
+[gd_scene load_steps=31 format=4 uid="uid://cj3f7awqmbyby"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_78ct1"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/ArchitectureStone_mat.tres" id="2_blkx3"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_2m4cs"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_ihuuf"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="17_blkx3"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
@@ -1451,6 +1452,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
 [node name="EnemyRat" parent="." instance=ExtResource("17_blkx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.72898, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]
 
 [editable path="Interactable/SideWalls/Wall_DoorWay2"]
 [editable path="Interactable/Floor/StonePlatformEdge2"]

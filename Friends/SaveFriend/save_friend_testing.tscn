@@ -14,7 +14,6 @@ shader_parameter/dither_size = 1
 
 [node name="GameFriend" type="Node3D"]
 script = ExtResource("1_76ouy")
-initroomfriend = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("9_vxs5w")

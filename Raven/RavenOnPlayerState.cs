@@ -1,9 +1,8 @@
 using Godot;
 using System;
 
-public partial class RavenOnPlayerState : State
+public partial class RavenOnPlayerState : RavenState
 {
-	/*
 	private float timeAccumulator = 0.0f;
 	
 	public override void Enter()
@@ -47,7 +46,7 @@ public partial class RavenOnPlayerState : State
 				raven.RotationDegrees = new Vector3(0, 0, 0);
 			}
 		}
-		if (pm.IsOnFloor() || pm.StateMachine._currentState.Name == "mantleState")
+		if (pm.IsOnFloor() || pm.psm.current_node_state_name == "mantleState")
 		{
 			raven.canLaunch = true;
 		}
@@ -55,18 +54,17 @@ public partial class RavenOnPlayerState : State
 	
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch && raven.inventoryfriend.isUpgradeUnlocked("ravenTeleport"))
+		if (@event.IsActionPressed("RavenSpecial") && raven.canLaunch && pm.inventoryfriend.isUpgradeUnlocked("ravenTeleport"))
 		{
 			
 			raven.GlobalPosition = pm.GlobalPosition + raven.Yoffset;
-			
-			rsm.TransitionTo("RavenLaunchState");
+
+			EmitSignal(SignalName.Transition, "RavenLaunchState");
 		}
 		else if (@event.IsActionPressed("RavenSlash"))
 		{
 			raven.GlobalPosition = pm.GlobalPosition + raven.Yoffset;
-			rsm.TransitionTo("RavenAttackState");
+			EmitSignal(SignalName.Transition, "RavenAttackState");
 		}
 	}
-	*/
 }

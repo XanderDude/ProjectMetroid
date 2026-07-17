@@ -5,7 +5,7 @@ public partial class crouchState : PlayerState
     {
         pm.ApplyFloorSnap();
         pm.aimDirection = new Vector2(pm.facingDirection, 0);
-        pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Crouch(false);
+        pm.pah.Crouch(false);
     }
     public override void PhysicsUpdate(float delta)
     {
@@ -26,7 +26,7 @@ public partial class crouchState : PlayerState
         if (@event.IsActionPressed("Jump"))
         {
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
-                pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
+                pm.pah.StandingBlocked();
             else
             {
                 pm.jumpQueued = true;
@@ -36,10 +36,10 @@ public partial class crouchState : PlayerState
         if (@event.IsActionPressed("Up") && !Input.IsActionPressed("Aim"))
         {
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
-                pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).StandingBlocked();
+                pm.pah.StandingBlocked();
             else
             {
-                pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Grounded();
+                pm.pah.Grounded();
                 EmitSignal(SignalName.Transition, "groundedState");
             }
         }

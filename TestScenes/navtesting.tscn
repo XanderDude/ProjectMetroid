@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqx7rw75t5wnp"]
+[gd_scene load_steps=12 format=3 uid="uid://dqx7rw75t5wnp"]
 
-[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_enfwr"]
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://Friends/GameFriend/GameFriend.cs" id="1_a7ko2"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_enfwr"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="3_gccg7"]
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="3_qo81c"]
 [ext_resource type="MeshLibrary" uid="uid://b6oooqw81xqfb" path="res://TestScenes/meshlib.tres" id="4_enfwr"]
-[ext_resource type="Script" uid="uid://cv2h2g8w2y0ua" path="res://Player/knockbackState.cs" id="6_ht5l1"]
 [ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="7_egr1a"]
 [ext_resource type="PackedScene" uid="uid://h08w3a132xks" path="res://Enemies/Rat/EnemyRat.tscn" id="8_a7ko2"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="10_6ay6n"]
@@ -24,10 +23,9 @@ cell_height = 0.1
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gccg7"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("playerNode")]
-script = ExtResource("1_enfwr")
+[node name="Game" type="Node3D"]
+script = ExtResource("1_a7ko2")
 initdebugfriend = true
-playerNode = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_qo81c")
@@ -54,28 +52,28 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13651, 4.30869, 0)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178343, 0.895215, -0.00972731)
-bones/0/rotation = Quaternion(0.542625, 0.452586, 0.447536, 0.548119)
-bones/1/rotation = Quaternion(0.0149157, 0.104596, -0.00957101, 0.994357)
-bones/4/rotation = Quaternion(0.0863398, 0.020518, 0.0437857, 0.995092)
-bones/7/position = Vector3(0.036117, 0.05973, 0.0013111)
-bones/7/rotation = Quaternion(0.517335, 0.481817, 0.484808, -0.514955)
-bones/9/rotation = Quaternion(0.360706, -0.0696331, 0.929911, 0.017547)
-bones/10/rotation = Quaternion(0.484242, 0.57847, -0.396711, 0.522976)
-bones/11/rotation = Quaternion(0.0431452, -0.523034, -0.166384, 0.834799)
-bones/13/rotation = Quaternion(0.0532651, -0.103882, 0.0951499, 0.988594)
-bones/14/rotation = Quaternion(0.00168519, 0.0534561, -0.236348, 0.970196)
-bones/21/rotation = Quaternion(0.999002, 0.0270436, -0.0285703, 0.0211789)
-bones/22/rotation = Quaternion(0.492751, -0.455717, 0.533326, 0.514861)
+bones/0/position = Vector3(0.0178368, 0.895261, 0.00449471)
+bones/0/rotation = Quaternion(0.546642, 0.448904, 0.451228, 0.544115)
+bones/1/rotation = Quaternion(-0.00335034, 0.104755, -0.00763366, 0.994463)
+bones/4/rotation = Quaternion(-0.0593531, 0.00294437, -0.00754015, 0.998204)
+bones/7/position = Vector3(0.0394901, 0.0604182, 0.0052523)
+bones/7/rotation = Quaternion(0.488464, 0.502524, 0.451612, -0.552195)
+bones/9/rotation = Quaternion(0.35866, -0.0316249, 0.932079, 0.0399099)
+bones/10/rotation = Quaternion(0.491015, 0.591424, -0.427286, 0.475971)
+bones/11/rotation = Quaternion(0.0960536, -0.529866, -0.155399, 0.828171)
+bones/13/rotation = Quaternion(0.0320322, -0.104658, 0.0798762, 0.990778)
+bones/14/rotation = Quaternion(0.0815719, 0.0533702, -0.247612, 0.963943)
+bones/21/rotation = Quaternion(0.996972, -0.0315957, -0.0241077, -0.0668351)
+bones/22/rotation = Quaternion(0.528762, -0.490705, 0.495279, 0.484064)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(-0.00967622, -0.906088, -0.422978, -0.119023, 0.421034, -0.899202, 0.992845, 0.041643, -0.111919, -0.361627, 1.09951, -0.0191403)
+transform = Transform3D(0.0727264, -0.894487, -0.44114, -0.0960935, 0.433969, -0.895789, 0.992712, 0.107538, -0.0543934, -0.35302, 1.10239, 0.0104271)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(-0.00967622, -0.906088, -0.422978, -0.119023, 0.421034, -0.899202, 0.992845, 0.041643, -0.111919, -0.425719, 1.10839, -0.0186716)
+transform = Transform3D(0.0727264, -0.894487, -0.44114, -0.0960935, 0.433969, -0.895789, 0.992712, 0.107538, -0.0543934, -0.416738, 1.11213, 0.0160673)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(-0.00967622, -0.906088, -0.422978, -0.119023, 0.421034, -0.899202, 0.992845, 0.041643, -0.111919, -0.425719, 1.10839, -0.0186716)
+transform = Transform3D(0.0727264, -0.894487, -0.44114, -0.0960935, 0.433969, -0.895789, 0.992712, 0.107538, -0.0543934, -0.416738, 1.11213, 0.0160673)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport"]
 navigation_mesh = SubResource("NavigationMesh_egr1a")
@@ -93,9 +91,6 @@ metadata/_editor_floor_ = Vector3(0, 4, 0)
 
 [node name="Rat" parent="SubViewportContainer/SubViewport" instance=ExtResource("8_a7ko2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63662, 2.50752, 0)
-
-[node name="SubViewportContainer_SubViewport_Player_MovementStateMachine#knockbackState" type="Node" parent="."]
-script = ExtResource("6_ht5l1")
 
 [node name="StonePillar" parent="." instance=ExtResource("10_6ay6n")]
 transform = Transform3D(1, 0, 0, 0, 7.13, 0, 0, 0, 1, 17.2926, 3.5782, -0.199218)

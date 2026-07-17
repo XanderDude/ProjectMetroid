@@ -65,8 +65,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
 shape = SubResource("BoxShape3D_tysk3")
 debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
-[node name="EnemyStateMachine" type="Node" parent="."]
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("3_icv41")
+initialState = NodePath("patrolState")
 
 [node name="patrolState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("4_ut63f")

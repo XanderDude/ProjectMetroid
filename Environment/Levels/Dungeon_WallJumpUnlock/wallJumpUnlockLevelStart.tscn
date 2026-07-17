@@ -1,20 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0k62aimg164v"]
+[gd_scene load_steps=2 format=3 uid="uid://d0k62aimg164v"]
 
-[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_erlcl"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="3_128kk"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="4_lwxf4"]
-[ext_resource type="PackedScene" uid="uid://chnmuhpj3q4yq" path="res://RoomFriend/RoomFriend.tscn" id="5_iscwu"]
 
 [node name="Game2" type="Node3D"]
-script = ExtResource("1_erlcl")
 
 [node name="Player" parent="." instance=ExtResource("3_128kk")]
 unique_name_in_owner = true
-
-[node name="Camera3D" parent="." instance=ExtResource("4_lwxf4")]
-roomMinX = -100.0
-roomMaxX = 100.0
-roomMinY = -100.0
-roomMaxY = 100.0
-
-[node name="RoomFriend" parent="." instance=ExtResource("5_iscwu")]

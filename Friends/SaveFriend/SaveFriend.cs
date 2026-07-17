@@ -24,7 +24,7 @@ public partial class SaveFriend : Node3D
         var inv = GameFriend.gameinstance.inventoryfriend;
         var data = new SaveData
         {
-            CurrentRoom = GameFriend.gameinstance.roomfriend.currentRoomName,
+            CurrentRoom = RoomFriend.instance.currentRoomName,
             Upgrades = new List<string>(inv.upgrades),
             Consumables = new Dictionary<string, int>(inv.consumables)
         };
@@ -87,6 +87,6 @@ public partial class SaveFriend : Node3D
                 GD.Print("  - " + upgrade);
             }
             string currentRoom = data.CurrentRoom;
-            if (GameFriend.gameinstance.roomfriend != null) GameFriend.gameinstance.roomfriend.room_init(currentRoom);
+            RoomFriend.instance.DebugTeleportToRoom(currentRoom);
         }
 }

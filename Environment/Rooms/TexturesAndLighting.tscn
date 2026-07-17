@@ -266,10 +266,9 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("playerNode")]
+[node name="Game" type="Node3D"]
 script = ExtResource("1_clrjg")
 initdebugfriend = true
-playerNode = NodePath("SubViewportContainer/SubViewport/Player")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")

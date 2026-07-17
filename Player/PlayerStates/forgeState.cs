@@ -10,7 +10,7 @@ public partial class forgeState : PlayerState
     public override void Enter()
     {
         GD.Print("Entering forge state");
-        pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Airborne(false);
+        pm.pah.Airborne(false);
         pm.Velocity = Vector3.Zero;
         layerMasks = pm.CollisionMask;
         pm.CollisionMask = 0;        

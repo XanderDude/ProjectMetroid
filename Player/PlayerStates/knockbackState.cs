@@ -1,13 +1,16 @@
 using Godot;
 
+
+
 public partial class knockbackState : PlayerState
 {
 
+    public Vector3 knockbackVelocity = Vector3.Zero;
     public float gravity = 9.8f;
     public override void Enter()
     {
-        pm.Velocity = pm.knockbackVelocity;
-        pm.playerMesh.GetNode<PlayerAnimationHandler>(pm.playerMesh.GetPath()).Airborne(false);
+        pm.Velocity = knockbackVelocity;
+        pm.pah.Airborne(false);
     }
 
     public override void PhysicsUpdate(float delta)

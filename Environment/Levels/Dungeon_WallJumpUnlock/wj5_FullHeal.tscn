@@ -16,6 +16,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b16le8ja86a1w" path="res://Environment/Models/PropHouseMeshes/mugMesh.res" id="14_rn1jy"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_272sd"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_xo3d4"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
@@ -1159,3 +1160,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85237, -0.0819313, -0.9230
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_xo3d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]

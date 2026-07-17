@@ -1,9 +1,8 @@
 using Godot;
 using System;
 
-public partial class RavenIdleState : State
+public partial class RavenIdleState : RavenState
 {
-	/*
 	public override void Enter()
 	{
 		//GD.Print("Raven: Entered Idle State");
@@ -24,7 +23,7 @@ public partial class RavenIdleState : State
 		raven.Velocity = Vector3.Zero;
 		if ((pm.GlobalPosition + raven.Yoffset + raven.Xoffset).DistanceTo(raven.GlobalPosition) > 4.0f)
 		{
-			rsm.TransitionTo("RavenRecallState");
+			EmitSignal(SignalName.Transition, "RavenRecallState");
 		}
 	}
 
@@ -38,7 +37,7 @@ public partial class RavenIdleState : State
 
 				if (raven.canTeleport)
 				{
-					//GD.Print("Raven: Teleported to player position" + pm.StateMachine._currentState.Name);
+					//GD.Print("Raven: Teleported to player position" + pm.psm.current_node_state_name);
 					// Define start and end points for the ray
 					Vector3 from = pm.GlobalPosition;
 					Vector3 to = raven.GlobalPosition;
@@ -70,12 +69,12 @@ public partial class RavenIdleState : State
 				}
 
 
-			if (pm.StateMachine._currentState.Name == "mantleState")
+			if (pm.psm.current_node_state_name == "mantleState")
 			{
-				pm.StateMachine.TransitionTo("jumpState");  
+				pm.psm.transition_to("jumpState");
 			}
 
-				rsm.TransitionTo("RavenRecallState");
+				EmitSignal(SignalName.Transition, "RavenRecallState");
 		
 				
 				
@@ -86,6 +85,4 @@ public partial class RavenIdleState : State
 		   
 		}
 	}
-
-*/
 }
