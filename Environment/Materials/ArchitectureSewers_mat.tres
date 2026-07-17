@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cmamvarna4jdp"]
+
+[ext_resource type="Shader" uid="uid://batqp4ecrskan" path="res://Environment/Shaders/ps1JitterBacksideCull.gdshader" id="1_3l7lk"]
+[ext_resource type="Texture2D" uid="uid://dt3bt5g4nobtg" path="res://Environment/Materials/ArchitectureSewers_Albedo.png" id="2_3l7lk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3l7lk")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/texture_albedo = ExtResource("2_3l7lk")
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(640, 360)

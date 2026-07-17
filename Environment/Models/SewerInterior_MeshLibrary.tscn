@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://sfl1lxkdejni"]
+
+[ext_resource type="PackedScene" uid="uid://do1ukyf1ls62e" path="res://Environment/Models/SewerInterior_Tileset.fbx" id="1_xj8bs"]
+
+[node name="SewerInteriorMeshLibrary" type="Node3D"]
+
+[node name="SewerInterior_Tileset" parent="." instance=ExtResource("1_xj8bs")]

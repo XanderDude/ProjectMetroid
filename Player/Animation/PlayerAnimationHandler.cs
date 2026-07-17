@@ -124,6 +124,8 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 		{
 			playback?.Travel(SlideStateName); //only transition to slide when true
 			RotationDegrees = new Vector3(0, newMeshRotation, 0);
+			var hitbox = GetNode<Node3D>("../HitBoxes/HitBoxSliding");
+			hitbox.Position = new Vector3(Mathf.Abs(hitbox.Position.X) * pm.facingDirection, hitbox.Position.Y, 0);
 			//Tilt mesh on ramps?
 
 			//physicsCollider.Position = new(pm.facingDirection*0.2f,0.48f,0);

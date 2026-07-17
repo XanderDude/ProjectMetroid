@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c61bxjkwhatvp"
-path="res://.godot/imported/StoneInteriorTileset.fbx-8ae0e3c942b0fed7b08d6c9a0a4f4a9f.scn"
+path="res://.godot/imported/StoneInterior_Meshes.fbx-cbecf7228892c266f2a04c52aec664a1.scn"
 
 [deps]
 
-source_file="res://Environment/Models/StoneInteriorTileset.fbx"
-dest_files=["res://.godot/imported/StoneInteriorTileset.fbx-8ae0e3c942b0fed7b08d6c9a0a4f4a9f.scn"]
+source_file="res://Environment/Models/StoneInterior_Meshes.fbx"
+dest_files=["res://.godot/imported/StoneInterior_Meshes.fbx-cbecf7228892c266f2a04c52aec664a1.scn"]
 
 [params]
 

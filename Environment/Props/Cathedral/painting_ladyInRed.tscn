@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b158kiu63fy63"]
+
+[ext_resource type="Texture2D" uid="uid://cs3y3djxrigyr" path="res://Environment/Materials/Funck77_0020.jpg" id="1_it8y2"]
+
+[node name="Painting1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transparent = false
+texture = ExtResource("1_it8y2")

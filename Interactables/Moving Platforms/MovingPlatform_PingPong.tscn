@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://q571o852xbvc"]
+
+[ext_resource type="Script" uid="uid://dvxng3k748ufm" path="res://Interactables/Moving Platforms/MovingPlatform.cs" id="1_yfwu3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mfamp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfwu3"]
+size = Vector3(2, 0.5, 1)
+
+[node name="MovingPlatform_PingPong" type="Node3D"]
+script = ExtResource("1_yfwu3")
+Dest2 = Vector3(5, 0, 0)
+
+[node name="Platform" type="AnimatableBody3D" parent="."]
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_mfamp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_yfwu3")
+
+[node name="Destination1" type="Marker3D" parent="."]
+visible = false
+
+[node name="Destination2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+gizmo_extents = 1.0

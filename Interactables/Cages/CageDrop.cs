@@ -67,7 +67,7 @@ public partial class CageDrop : StaticBody3D
 		}
 		else if (body is PlayerManager player)
         {
-			player.health -= 100000;
+			player.Health -= 100000;
         }
 		else
 		{

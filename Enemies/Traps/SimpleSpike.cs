@@ -18,7 +18,7 @@ public partial class SimpleSpike : Node3D
         if (playerInRange && GameFriend.gameinstance.player.canBeDamaged) 
 		{
 			GD.Print("Player is touching spike");
-			GameFriend.gameinstance.player.health -= damage;
+			GameFriend.gameinstance.player.Health -= damage;
 		}
 	}
 
