@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
-[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://Friends/GameFriend/GameFriend.cs" id="1_8x5tc"]
 [ext_resource type="Environment" uid="uid://bieprckhve60v" path="res://Environment/Lighting/SewersAbandoned_EnvLighting.tres" id="2_8hlat"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_f1wm7"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_2c0r4"]
@@ -90,10 +90,9 @@ albedo_color = Color(0.243137, 1, 0.243137, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jamja"]
 albedo_color = Color(0.247059, 1, 0.180392, 1)
 
-[node name="GameFriend" type="Node3D" node_paths=PackedStringArray("playerNode")]
+[node name="GameFriend" type="Node3D"]
 script = ExtResource("1_8x5tc")
 initdebugfriend = true
-playerNode = NodePath("SubViewportContainer/SubViewport/sewerBlockout/Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_8hlat")
@@ -125,9 +124,6 @@ size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="sewerBlockout" type="Node3D" parent="SubViewportContainer/SubViewport"]
-
-[node name="Player" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("2_f1wm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1112, 1.2479, 0)
 
 [node name="GridMap" type="GridMap" parent="SubViewportContainer/SubViewport/sewerBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
@@ -1521,6 +1517,9 @@ billboard = 1
 modulate = Color(0.489622, 0.489622, 0.489622, 1)
 text = "Level Complete
 "
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_f1wm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1112, 1.2479, 0)
 
 [editable path="SubViewportContainer/SubViewport/sewerBlockout/Sewer1_1/LingeringSoul7"]
 [editable path="SubViewportContainer/SubViewport/sewerBlockout/Sewer1_2/Rat"]
