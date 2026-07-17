@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RavenRecallState : State
+public partial class RavenRecallState : RavenState
 {
 	public override void Enter()
 	{
@@ -42,10 +42,9 @@ public partial class RavenRecallState : State
 		
 		if (raven.isOnPlayer)
 		{
-			rsm.TransitionTo("RavenOnPlayerState");
+			EmitSignal(SignalName.Transition, "RavenOnPlayerState");
 		}
 		
 
 	}
-
 }

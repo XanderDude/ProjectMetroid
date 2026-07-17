@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://df7we5yafwkfo"]
+[gd_scene load_steps=37 format=3 uid="uid://df7we5yafwkfo"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_pclot"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="2_r04ko"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://epb6lm3c7lsy" path="res://Environment/Platforms/Stone0.5x2x2Wall.tscn" id="21_5ytod"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="22_3eba3"]
 [ext_resource type="ArrayMesh" uid="uid://b3ghn1a5lir6p" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="24_wgkks"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
@@ -3816,6 +3817,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90956, -26.532, 0)
 
 [node name="EnemyRat3" parent="." instance=ExtResource("16_gd74j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09044, -26.532, 0)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]
 
 [editable path="Wall_DoorWay2"]
 [editable path="Wall_DoorWay"]

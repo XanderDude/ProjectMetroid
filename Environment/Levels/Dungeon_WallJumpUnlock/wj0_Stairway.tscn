@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d1lxrp6s03olt"]
+[gd_scene load_steps=23 format=4 uid="uid://d1lxrp6s03olt"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_gaqwk"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_g3bjo"]
@@ -12,6 +12,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="9_v6icu"]
 [ext_resource type="ArrayMesh" uid="uid://bkuulp8qn8u7q" path="res://Environment/Models/WoodMeshes/woodWallMesh.res" id="11_oitet"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_tq5f0"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3yoy"]
 size = Vector3(26, 0.5, 2)
@@ -692,5 +693,7 @@ data = SubResource("VoxelGIData_v3yoy")
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_tq5f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]
 
 [editable path="Interactable/Roof/StonePillar"]

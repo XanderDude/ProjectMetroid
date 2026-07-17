@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class slideState : State
+public partial class slideState : PlayerState
 {
 	//[Export] public float slideTime = 1.0f; //max time the player can stay in a slide before standing up/crouching
 	[Export] public float slideMinTime = .2f; //min time the player has to stay in the slide state before standing up (can still jump)
@@ -26,8 +26,8 @@ public partial class slideState : State
 			{
 				var slideBoostEffect = pm.slideBoostVFX.Instantiate() as Node3D;
 				this.AddChild(slideBoostEffect, true);
-				slideBoostEffect.GlobalPosition = parentMesh.GlobalPosition;
-				slideBoostEffect.GlobalRotation = parentMesh.GlobalRotation;
+				slideBoostEffect.GlobalPosition = pm.playerMesh.GlobalPosition;
+				slideBoostEffect.GlobalRotation = pm.playerMesh.GlobalRotation;
 
 			}
 			currentSlideSpeed = boostMaxSpeed * slideDirection;
@@ -37,53 +37,53 @@ public partial class slideState : State
 			currentSlideSpeed = slideMaxSpeed * slideDirection;
 		}
 		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
-		player.ApplyFloorSnap();
+		pm.pah.Sliding(true);
+		pm.ApplyFloorSnap();
 	}
 
 	public override void Exit()
 	{
-		player.Set(PlayerManager.PropertyName.slideBoost, false);
-		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-		else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
+		pm.Set(PlayerManager.PropertyName.slideBoost, false);
+		if (crouchQueued) pm.pah.Crouch(false);
+		else pm.pah.Sliding(false); //return to grounded state
 	}
 	public override void PhysicsUpdate(float delta)
 	{
 		slideTimer += delta;
-		player.ApplyFloorSnap();
-		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
+		pm.ApplyFloorSnap();
+		if (!pm.groundCheck.IsColliding() && !pm.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(pm.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
 				crouchQueued = true; //for animation purposes
-				msm.TransitionTo("crouchState");
+				EmitSignal(SignalName.Transition, "crouchState");
 				return;
 			}
-			else msm.TransitionTo("groundedState"); //switch to grounded state
+			else EmitSignal(SignalName.Transition, "groundedState"); //switch to grounded state
 		}
 		else if (slideTimer >= slideMaxTime || Mathf.Abs(currentSlideSpeed) < .2f) //slide is at its end
 		{
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 			{
 				crouchQueued = true; //for animation purposes
-				msm.TransitionTo("crouchState");
+				EmitSignal(SignalName.Transition, "crouchState");
 				return;
 			}
-			else msm.TransitionTo("groundedState"); //switch to grounded state
+			else EmitSignal(SignalName.Transition, "groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
-		player.MoveAndSlide();
+		pm.MoveAndSlide();
 	}
 
 	private void HandleSlidingMovement(float delta)
 	{
-		Vector3 velocity = player.Velocity;
+		Vector3 velocity = pm.Velocity;
 
 		if (pm.slideBoost)
 		{
@@ -96,7 +96,7 @@ public partial class slideState : State
 
 		//velocity.X = Mathf.MoveToward(slideMaxSpeed, 0, delta + slideDeceleration);
 		velocity.X = currentSlideSpeed;
-		player.Velocity = velocity; 
+		pm.Velocity = velocity; 
 	}
 
 	public override void HandleInput(InputEvent @event)
@@ -105,19 +105,19 @@ public partial class slideState : State
 		{
             if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
             {
-				parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).StandingBlocked();
+				pm.pah.StandingBlocked();
         	}
 			else
             {
-				player.Set(PlayerManager.PropertyName.jumpQueued, true);
-				msm.TransitionTo("jumpState");
+				pm.Set(PlayerManager.PropertyName.jumpQueued, true);
+				EmitSignal(SignalName.Transition, "jumpState");
 			}
 		}
 
 		if (@event.IsActionPressed("Down") && pm.aimDirection.X == 0 && slideTimer >= slideMinTime)
 		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
-			msm.TransitionTo("crouchState");
+			pm.pah.Crouch(false);
+			EmitSignal(SignalName.Transition, "crouchState");
 		}
 	}
 }

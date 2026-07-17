@@ -3,8 +3,9 @@ using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 
-public partial class RavenAttackState : State
+public partial class RavenAttackState : RavenState
 {
+	
 	public static event Action<Enemy> OnRavenSlashHit;
 	[Export] private int damage = 15;
 	private Area3D slashArea;
@@ -61,7 +62,7 @@ public partial class RavenAttackState : State
 
 		if (attackTimer >= attackSpeed)
 		{
-			rsm.TransitionTo("RavenOnPlayerState");
+			EmitSignal(SignalName.Transition, "RavenOnPlayerState");
 		}
 
 	}
@@ -137,12 +138,14 @@ public partial class RavenAttackState : State
 	private void OnBodyEntered(Node3D body)
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
-		GD.Print("Body hit");
-		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
-		{
-			pm.Set("jumpQueued", true);
-			pm.StateMachine._currentState.Enter();		
-		}
+
+			if (GetAttackDirection().Y < 0 && raven.pm.psm.current_node_state_name == "jumpState")
+				{
+				pm.Set("jumpQueued", true);
+				raven.pm.psm.current_node_state.Enter();
+
+				}
+
 
 		if (targetsDamaged.Contains(body)) return;
 
@@ -165,11 +168,7 @@ public partial class RavenAttackState : State
 	{
 		
 		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
-		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
-		{
-			pm.Set("jumpQueued", true);
-			pm.StateMachine._currentState.Enter();
-		}
+		
 		Node3D parent = area.GetParent<Node3D>();
 		if (parent != null && parent is Enemy enemy)
 		{
@@ -177,4 +176,6 @@ public partial class RavenAttackState : State
 			enemy.DamagedReceived(damage);
 		}
 	}
+	
+	
 }

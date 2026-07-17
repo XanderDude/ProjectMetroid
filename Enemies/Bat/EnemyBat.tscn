@@ -46,7 +46,7 @@ graph_offset = Vector2(-20, -55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_il1qx"]
 size = Vector3(2.38171, 1, 1)
 
-[node name="Bat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
+[node name="Bat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 19
@@ -56,15 +56,21 @@ script = ExtResource("1_jr35e")
 mesh = NodePath("BatFly")
 navagent = NodePath("NavigationAgent3D")
 esm = NodePath("EnemyStateMachine")
-ray = NodePath("")
 revengeMode = true
+attackcd = 3.0
+lungespeed = 1.0
 attackDirMode = 2
+isFlying = true
 health = 30
-dropTable = Array[ExtResource("3_glgse")]([SubResource("Resource_vq6sv")])
+dropTable = [SubResource("Resource_vq6sv")]
 parryDamage = 30
+runspeed = 4.0
+maxspeed = 7.5
+acceleration = 0.3
 gravity = 0.0
-detectionrange = 10.0
-attackrange = 3.0
+attackknockback = 2.0
+detectionrange = 6.0
+attackrange = 5.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
@@ -85,7 +91,6 @@ debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("2_2a3cg")
-initialState = NodePath("patrolState")
 
 [node name="patrolState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("3_6itjq")
@@ -105,10 +110,10 @@ script = ExtResource("8_vq6sv")
 transform = Transform3D(1, 0, 0, 0, 0.951057, -0.309017, 0, 0.309017, 0.951057, 0, 0, 0)
 
 [node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(0.367449, -0.725372, -1.26048, 1.45213, 0.253994, 0.277149, 0.0794125, -1.28815, 0.764442, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(-0.164959, -0.851782, -1.22362, 1.48984, -0.047708, -0.167637, 0.0562757, -1.23377, 0.851259, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(0.367449, 0.725372, 1.26048, -1.45213, 0.253994, 0.277149, -0.0794125, -1.28815, 0.764442, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(-0.164959, 0.851782, 1.22362, -1.48984, -0.047708, -0.167637, -0.0562757, -1.23377, 0.851259, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BatFly")

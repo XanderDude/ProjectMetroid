@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="18_h4m41"]
 [ext_resource type="ArrayMesh" uid="uid://bnrrq8ugaq0to" path="res://Environment/Models/PropLightMeshes/chainShortMesh.res" id="19_tn0kn"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="20_r442o"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="999_player"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
@@ -4055,6 +4056,8 @@ transform = Transform3D(8.74228e-08, 0, -1, 0, 1, 0, 1, 0, 8.74228e-08, 13, -16.
 
 [node name="Light_CandleTriple_Wall4" parent="Lights" instance=ExtResource("20_r442o")]
 transform = Transform3D(1, 0, 1.31134e-07, 0, 1, 0, -1.31134e-07, 0, 1, 8, -17.674, -1.51856)
+
+[node name="Player" parent="." instance=ExtResource("999_player")]
 
 [editable path="Wall_DoorWay2"]
 [editable path="Wall_DoorWay"]

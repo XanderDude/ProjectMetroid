@@ -20,15 +20,20 @@ size = Vector3(0.743164, 0.723022, 1.56396)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
 size = Vector3(2.38171, 1, 1)
 
-[node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "ray")]
+[node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
 collision_layer = 8
 collision_mask = 19
 axis_lock_linear_z = true
 script = ExtResource("1_tysk3")
 mesh = NodePath("Rat")
 navagent = NodePath("NavigationAgent3D")
+esm = NodePath("EnemyStateMachine")
 ray = NodePath("Beam")
+attackcd = 3.0
+attackDirMode = 2
 health = 80
+detectionrange = 10.0
+attackrange = 10.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
@@ -60,7 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
 shape = SubResource("BoxShape3D_tysk3")
 debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
-[node name="EnemyStateMachine" type="Node" parent="."]
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("3_icv41")
 initialState = NodePath("patrolState")
 

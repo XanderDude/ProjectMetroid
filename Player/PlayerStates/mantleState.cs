@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class mantleState : State
+public partial class mantleState : PlayerState
 {
 
 	public override void Enter()
 	{
 		//GD.Print("Entered Mantle State.");
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Hanging();
+		pm.pah.Hanging();
 		//parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Mantle();
 	}
 	
@@ -18,21 +18,21 @@ public partial class mantleState : State
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		player.MoveAndCollide(Vector3.Zero);
+		pm.MoveAndCollide(Vector3.Zero);
 	}
 	
 	public override void HandleInput(InputEvent @event)
 	{
 		
 		if (@event.IsActionPressed("Down")) {
-			msm.TransitionTo("jumpState");
+			EmitSignal(SignalName.Transition, "jumpState");
 		}
 		
 		
 		
 		if (@event.IsActionPressed("Jump")) {
-			player.Set("jumpQueued", true);
-			msm.TransitionTo("jumpState");
+			pm.pah.Airborne(pm.jumpQueued);
+			EmitSignal(SignalName.Transition, "jumpState");
 		}
 
 	

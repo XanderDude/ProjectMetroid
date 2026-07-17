@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class flyingaggroState : State
+public partial class flyingaggroState : EnemyState
 {
     private float outOfRangeTimer = 0f;
 	private float outOfRangeDelay = 2f;
@@ -26,7 +26,7 @@ public partial class flyingaggroState : State
             
             if (outOfRangeTimer >= outOfRangeDelay)
             {
-                esm.TransitionTo("patrolState");
+                EmitSignal(SignalName.Transition, "patrolState");
             }
         }
         else

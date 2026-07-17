@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Text.RegularExpressions;
-public partial class patrolState : State
+public partial class patrolState : EnemyState
 {
   
     private enum SubState { IDLE, WAIT_TO_MOVE, MOVEMENT }; 
@@ -14,7 +14,8 @@ public partial class patrolState : State
     public override void Enter()
     {
         //GD.Print("Enemy " + ec.Name + " entered patrol state");
-        ec.Velocity = ec.walkspeedVector * (float)GD.RandRange(0.5f, ec.walkspeedVector.X);;
+        ec.Velocity = ec.walkspeedVector * (float)GD.RandRange(0.5f, ec.walkspeedVector.X);
+        ec.timer = 1.0f;
     }
    
     public override void Exit()
@@ -28,6 +29,7 @@ public partial class patrolState : State
    
     public override void PhysicsUpdate(float delta)
     {
+        ec.timer -= delta;
         {
             switch (substate)
             {
@@ -42,8 +44,16 @@ public partial class patrolState : State
                         _on_movement_flying();
                     else if (ec.movementmode == Enemy.MovementMode.Normal)
                         _on_movement();
-                    else if (ec.movementmode == Enemy.MovementMode.Hopping)
+                    else if (ec.movementmode == Enemy.MovementMode.Hopping && ec.IsOnFloor() && ec.timer <= 0)
+                    {
                         _on_movement_hopping();
+                        ec.timer = 2.0f;
+                    }
+                    else if (ec.timer > 0 && ec.IsOnFloor())
+                    {
+                        ec.Velocity = Vector3.Zero;
+                    }
+                    
                     break; 
                 default:
                     break;
@@ -51,16 +61,13 @@ public partial class patrolState : State
         
             if (!ec.isFlying)
                 ec.Velocity += ec.GravityVector * delta;
-            if (ec.isPlayerInRange(ec.detectionrange))
+            if (ec.isPlayerInRange(ec.detectionrange) && ec.movementmode != Enemy.MovementMode.Hopping)
             {
                 GD.Print("in detection range");
                 ec.Velocity = Vector3.Zero;
+                EmitSignal(SignalName.Transition, "aggroState");
             }
-            if (ec.isPlayerInRange(ec.detectionrange))
-            {   
-                ec.Velocity = Vector3.Zero;
-                esm.TransitionTo("aggroState");
-            }
+           
         }
         
     }
@@ -99,7 +106,14 @@ public partial class patrolState : State
     }
     private void _on_movement_hopping()
     {
-        
+        var direction = 1;
+        if (ec.IsOnWall()) direction = -1;
+        ec.Velocity = new Vector3(ec.walkspeed * direction, ec.runspeed, 0);
+        if (!ec.IsOnFloor() && ec.timer <= 0) 
+        {
+            ec.Velocity += new Vector3(0, ec.gravity,0);
+        }
+        GD.Print($"{ec.Velocity}");
     }
     private void _on_movement_flying()
     {

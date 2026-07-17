@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class aggroState : State
+public partial class aggroState : EnemyState
 {
 
     private enum SubState {APPROACH, ATTACK, RECOVER}
@@ -69,7 +69,7 @@ public partial class aggroState : State
                 }
                 else if (rand == 0 || ec.isFlying)
                 { 
-                    ec.esm.TransitionTo("lungeState");
+                    EmitSignal(SignalName.Transition, "lungeState");
                 }
                 
             }
@@ -79,7 +79,7 @@ public partial class aggroState : State
             ec.timer -= delta;
             if (ec.timer <= 0f)
             {   
-                    esm.TransitionTo("patrolState");
+                    EmitSignal(SignalName.Transition, "lungeState");
             }
         }
         

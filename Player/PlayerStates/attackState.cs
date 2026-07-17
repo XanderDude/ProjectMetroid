@@ -1,7 +1,8 @@
+
 using Godot;
 using System;
 
-public partial class attackState : State
+public partial class attackState : PlayerState
 {
 	[Export] public PackedScene arrowScene, chargedArrowScene;
 	[Export] public PackedScene bombArrowScene;
@@ -33,25 +34,14 @@ public partial class attackState : State
 
 	public override void _Ready()
 	{
-		Node current = this;
-		while (current != null && !(current is PlayerManager))
-		{
-			current = current.GetParent();
-		}
-		if (current is PlayerManager)
-		{
-			pm = current as PlayerManager;
-		}
-		if (pm != null)
-		{
 			crossbowMesh = pm.GetNode<Node3D>("PlayerMesh/Skeleton3D/Crossbow");
 			arrowSpawnLoc = (Node3D)crossbowMesh.GetChild(0);
-		}
+		
 	}
 	
 	public override void Enter()
 	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(true);
+		pm.pah.Aiming(true);
 		chargingTimer = 0.0f;
 		shootCooldownTimer = 0.0f;
 		if (Input.IsActionPressed("Shoot"))
@@ -72,12 +62,12 @@ public partial class attackState : State
 
 	public override void Exit()
 	{
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Aiming(false);
+		pm.pah.Aiming(false);
 		chargingArrowVFX.Visible = false;
 		fullChargedArrowVFX.Visible = false;
 		SoundFriend.Stop(chargingArrowStartSFX);
 		SoundFriend.Stop(chargingArrowLoopSFX);
-		if (currentArrowType == ArrowType.FullCharge && pm.StateMachine._currentState.Name != "mantleState")
+		if (currentArrowType == ArrowType.FullCharge && pm.psm.current_node_state_name != "mantleState")
 		{
 			ShootArrow(ArrowType.FullCharge);
 		}
@@ -89,12 +79,12 @@ public partial class attackState : State
 		shootCooldownTimer += delta;
 		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot") || currentArrowType == ArrowType.Bomb)
         {
-			if (shootCooldownTimer >= shootCooldown) asm.TransitionTo("noattackState");
+			if (shootCooldownTimer >= shootCooldown) EmitSignal(SignalName.Transition, "noattackState");
             return;
         }
 
 		chargingTimer += delta;
-		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) asm.TransitionTo("noattackState");
+		if (shootCooldownTimer >= shootCooldown && !Input.IsActionPressed("Shoot")) EmitSignal(SignalName.Transition, "noattackState");
 		else
 		{
 			if (chargingTimer > 0.3f && chargingArrowVFX.Visible != true)
@@ -133,11 +123,11 @@ public partial class attackState : State
 		*/
 		Vector2 direction = pm.aimDirection;
 
-		if (pm.StateMachine._currentState.Name == "slideState" && direction.Y < 0)
+		if (pm.psm.current_node_state_name == "slideState" && direction.Y < 0)
         {
             direction = new(pm.facingDirection, 0);
         }
-		else if (direction == Vector2.Zero || (player.IsOnFloor() && direction == new Vector2(0, -1)))
+		else if (direction == Vector2.Zero || (pm.IsOnFloor() && direction == new Vector2(0, -1)))
 		{
 			direction = new(pm.facingDirection, direction.Y);
 		}
@@ -176,14 +166,14 @@ public partial class attackState : State
 				GD.PrintErr("No arrow type selected!");
 				return;
 		}
-		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Shooting();
+		pm.pah.Shooting();
 
 		if (projectileScene == null || arrowSpawnLoc == null)
 		{
 			return;
 		}
 		
-		player.GetParent().AddChild(arrow);
+		pm.GetParent().AddChild(arrow);
 		arrow.GlobalPosition = new(arrowSpawnLoc.GlobalPosition.X, arrowSpawnLoc.GlobalPosition.Y, 0);
 
 		Vector2 shootDirection = GetShootDirection();
