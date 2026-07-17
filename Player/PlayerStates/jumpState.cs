@@ -114,7 +114,12 @@ public partial class jumpState : PlayerState
             CancelUpwardVelocity();
 
         HandleAirMovement(delta);
+        pm.MoveAndSlide();
 
+        // Check IsOnFloor() only after this frame's MoveAndSlide has actually resolved
+        // collision - checking beforehand reflects last frame's (stale) floor state, so the
+        // still-falling velocity gets fed into MoveAndSlide for one extra frame after actually
+        // touching down, digging slightly into the floor every time before landing is recognized.
         if (!pm.jumpQueued && pm.IsOnFloor())
         {
             pm.Velocity = new Vector3(pm.Velocity.X, 0, 0);
@@ -135,14 +140,12 @@ public partial class jumpState : PlayerState
             }
         }
         else if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling") &&
-                 mantleTimer >= _mantleCooldown && pm.aimDirection.X != 0 && isSameHeight())
+                 mantleTimer >= _mantleCooldown && pm.Velocity.Y <= 0 && pm.aimDirection.X != 0 && isSameHeight())
         {
             mantleTimer = 0;
             pm.Velocity = Vector3.Zero;
             EmitSignal(SignalName.Transition, "mantleState");
         }
-
-        pm.MoveAndSlide();
     }
 
     private void HandleAirMovement(float delta)

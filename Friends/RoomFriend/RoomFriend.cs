@@ -172,9 +172,42 @@ public partial class RoomFriend : Node3D
 		}
 		currentRoomPath = resPath;
 		currentRoomName = System.IO.Path.GetFileNameWithoutExtension(resPath);
-		currentRoomScene = ResourceLoader.Load<PackedScene>(resPath).Instantiate() as Node3D;
+
+		var instantiated = ResourceLoader.Load<PackedScene>(resPath).Instantiate() as Node3D;
+		currentRoomScene = ExtractRoomContent(instantiated);
 		StripTestPlayer(currentRoomScene);
 		GameFriend.gameinstance.svp.AddChild(currentRoomScene);
+	}
+
+	// Some scenes (e.g. abandonedsewer_blockout) are authored as standalone levels with their
+	// own GameFriend/SubViewportContainer/SubViewport, not as bare rooms. Adding one of those
+	// as-is nests a second SubViewport inside the real one - nothing renders where expected and
+	// the player ends up floating with no geometry under it. If we find an inner SubViewport,
+	// pull its children out into a plain wrapper and use that instead of the whole scene.
+	private Node3D ExtractRoomContent(Node3D instantiated)
+	{
+		SubViewport innerViewport = FindDescendantSubViewport(instantiated);
+		if (innerViewport == null) return instantiated;
+
+		var content = new Node3D { Name = instantiated.Name };
+		foreach (Node child in innerViewport.GetChildren())
+		{
+			innerViewport.RemoveChild(child);
+			content.AddChild(child);
+		}
+		instantiated.Free();
+		return content;
+	}
+
+	private SubViewport FindDescendantSubViewport(Node node)
+	{
+		foreach (Node child in node.GetChildren())
+		{
+			if (child is SubViewport sv) return sv;
+			SubViewport found = FindDescendantSubViewport(child);
+			if (found != null) return found;
+		}
+		return null;
 	}
 
 	// wj0-wj7 (and similar) rooms carry their own Player (which now brings its own Camera

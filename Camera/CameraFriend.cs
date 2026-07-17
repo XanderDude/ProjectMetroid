@@ -10,13 +10,7 @@ public partial class CameraFriend : Camera3D
 	[Export] public float lookAheadSpeed = 2.0f; 
 	[Export] public float cameraYOffset = 1.5f;
 	
-	[ExportGroup("Room Boundaries")]
-	[Export] public float roomMinX = -10.0f;
-	[Export] public float roomMaxX = 10.0f;
-	[Export] public float roomMinY = -5.0f;
-	[Export] public float roomMaxY = 5.0f;
-	
-	[Export] public float minMoveThreshold = 0.1f; 
+	[Export] public float minMoveThreshold = 0.1f;
 
 	[Export] public float cameraDistance = 25.0f;
 
@@ -52,16 +46,8 @@ public partial class CameraFriend : Camera3D
 
 
 		playerPosition = playerPos + lookAheadOffset;
-		playerPosition.X = Mathf.Clamp(playerPosition.X, roomMinX, roomMaxX);
-		playerPosition.Y = Mathf.Clamp(playerPosition.Y, roomMinY, roomMaxY);
 
 		Vector3 currentPos = GlobalPosition;
-
-		if (playerVelocity.Y > -14.0f) {
-			cameraYOffset = 1.5f;
-		} else {
-			cameraYOffset = -0.5f;
-		}
 
 		Vector3 newPosition;
 
@@ -76,16 +62,6 @@ public partial class CameraFriend : Camera3D
 			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, cameraDistance);
 			GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
 		}
-	}
-
-	public void SetRoomBounds(float minX, float maxX, float minY, float maxY)
-	{
-		roomMinX = minX;
-		roomMaxX = maxX;
-		roomMinY = minY;
-		roomMaxY = maxY;
-
-
 	}
 
 	public void SnapToPlayer()

@@ -47,10 +47,12 @@ public partial class DebugFriend : CanvasLayer
         ScanScenesRecursive(LEVELS_ROOT, levelScenePaths);
         levelScenePaths.Sort();
 
+        levellist.AddItem(""); // blank placeholder - nothing loaded until you actually pick one
         foreach (string path in levelScenePaths)
         {
             levellist.AddItem(path.GetFile());
         }
+        levellist.Selected = 0;
     }
 
     private void ScanScenesRecursive(string path, List<string> results)
@@ -78,7 +80,8 @@ public partial class DebugFriend : CanvasLayer
 
     private void OnLevelListItemSelected(long index)
     {
-        RoomFriend.instance.DebugLoadRoom(levelScenePaths[(int)index]);
+        if (index == 0) { levellist.ReleaseFocus(); return; } // blank placeholder
+        RoomFriend.instance.DebugLoadRoom(levelScenePaths[(int)index - 1]);
         levellist.ReleaseFocus();
     }
 

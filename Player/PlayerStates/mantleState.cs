@@ -31,6 +31,7 @@ public partial class mantleState : PlayerState
 		
 		
 		if (@event.IsActionPressed("Jump")) {
+			pm.jumpQueued = true;
 			pm.pah.Airborne(pm.jumpQueued);
 			EmitSignal(SignalName.Transition, "jumpState");
 		}
