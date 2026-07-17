@@ -17,7 +17,7 @@ public partial class aggroState : EnemyState
     public override void Enter()
     {       
             ec.Velocity = Vector3.Zero;
-            GD.Print($"{ec.Name}:aggroState");
+            //GD.Print($"{ec.Name}:aggroState");
             ec.timer = ec.attackcd;
             substate = SubState.APPROACH;
             rand = GD.RandRange(0, 3);

@@ -9,7 +9,7 @@ public partial class forgeState : PlayerState
 
     public override void Enter()
     {
-        GD.Print("Entering forge state");
+        //GD.Print("Entering forge state");
         pm.pah.Airborne(false);
         pm.Velocity = Vector3.Zero;
         layerMasks = pm.CollisionMask;
@@ -18,7 +18,7 @@ public partial class forgeState : PlayerState
 
     public override void Exit()
     {
-        GD.Print("Exiting forge state");
+        //GD.Print("Exiting forge state");
         //Restore collision
        
         if (layerMasks != 0) pm.CollisionMask = layerMasks; //layerMasks = 0 during initialization

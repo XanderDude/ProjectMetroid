@@ -28,7 +28,7 @@ public partial class RavenAttackState : RavenState
 
 	public override void Enter()
 	{
-		GD.Print(pm == null);
+		//GD.Print(pm == null);
 		attackDirection = GetAttackDirection();
 		raven.Visible = false;
 		SpawnSlashVFX();

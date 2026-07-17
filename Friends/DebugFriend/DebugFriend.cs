@@ -15,6 +15,7 @@ public partial class DebugFriend : CanvasLayer
     private Godot.Button resetbutton => GetNode<Godot.Button>("RESET");
 
     private Label healthlabel => GetNode<Label>("Health");
+    private Godot.Button addhealthbutton => GetNode<Godot.Button>("Health/AddHealth");
     private OptionButton levellist => GetNode<OptionButton>("LevelList");
 
     private ItemDrop.Upgrade selected;
@@ -34,6 +35,7 @@ public partial class DebugFriend : CanvasLayer
         addupgradebutton.Pressed += OnAddUpgradePressed;
         removeupgradebutton.Pressed += OnRemoveUpgradePressed;
         addbombarrowbutton.Pressed += OnAddBombArrowPressed;
+        addhealthbutton.Pressed += OnAddHealthPressed;
 
         ////////////////////////////////////////////////
 
@@ -87,9 +89,9 @@ public partial class DebugFriend : CanvasLayer
 
     public override void _Process(double delta)
     {
-        healthlabel.Text = $"Health: {GameFriend.gameinstance.player.health}";
+        healthlabel.Text = $"Health: {PlayerManager.instance.health}";
         int bombCount = 0;
-        var inventory = GameFriend.gameinstance.inventoryfriend;
+        var inventory = PlayerManager.instance.inventoryfriend;
         if (inventory?.consumables != null && inventory.consumables.TryGetValue("bombArrows", out var cnt))
             bombCount = cnt;
         labelbombarrow.Text = $"Bomb Arrows: {bombCount}";
@@ -100,24 +102,30 @@ public partial class DebugFriend : CanvasLayer
    private void OnAddBombArrowPressed()
     {
         //GD.Print("Adding 5 Bomb Arrows");
-        GameFriend.gameinstance.inventoryfriend.AddConsumable("bombArrows", 5);
+        PlayerManager.instance.inventoryfriend.AddConsumable("bombArrows", 5);
 
         
         
         upgradeselectorbutton.ReleaseFocus();
     }
+
+    private void OnAddHealthPressed()
+    {
+        PlayerManager.instance.Heal(25);
+        addhealthbutton.ReleaseFocus();
+    }
     private void OnAddUpgradePressed()
     {
         //GD.Print($"Adding upgrade: {selected}");
         
-        GameFriend.gameinstance.inventoryfriend.UnlockUpgrade(selected.ToString());
+        PlayerManager.instance.inventoryfriend.UnlockUpgrade(selected.ToString());
         upgradeselectorbutton.ReleaseFocus();
     }
 
     private void OnRemoveUpgradePressed()
     {
         //GD.Print($"Removing upgrade: {selected}");
-        GameFriend.gameinstance.inventoryfriend.RemoveUpgrade(selected.ToString());
+        PlayerManager.instance.inventoryfriend.RemoveUpgrade(selected.ToString());
         upgradeselectorbutton.ReleaseFocus();
     }
 

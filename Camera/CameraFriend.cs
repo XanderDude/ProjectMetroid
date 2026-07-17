@@ -55,7 +55,7 @@ public partial class CameraFriend : Camera3D
 		{
 			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
 			GlobalPosition = newPosition;
-			GD.Print("Death State - Camera Locked to Player");
+			//GD.Print("Death State - Camera Locked to Player");
 		}
 		else
 		{

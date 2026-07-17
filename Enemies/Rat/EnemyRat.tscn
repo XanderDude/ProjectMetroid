@@ -32,6 +32,7 @@ ray = NodePath("Beam")
 attackcd = 3.0
 attackDirMode = 2
 health = 80
+attackknockback = 2.0
 detectionrange = 10.0
 attackrange = 10.0
 

@@ -21,8 +21,8 @@ public partial class ItemDrop : RigidBody3D
             Visible = false;
             
             var itemName = upgrade.ToString();
-            if (itemType == DropEntry.Type.Upgrade) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade(itemName);
-            else if (itemType == DropEntry.Type.Consumables) GameFriend.gameinstance.inventoryfriend.AddConsumable("bombArrows", amount);
+            if (itemType == DropEntry.Type.Upgrade) PlayerManager.instance.inventoryfriend.UnlockUpgrade(itemName);
+            else if (itemType == DropEntry.Type.Consumables) PlayerManager.instance.inventoryfriend.AddConsumable("bombArrows", amount);
             else if (itemType == DropEntry.Type.Health) player.health += amount;
             
             DespawnItem();

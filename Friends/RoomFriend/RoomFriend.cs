@@ -80,7 +80,7 @@ public partial class RoomFriend : Node3D
 		isTransitioning = true;
 		EnsureDungeonStarted();
 
-		var pm = GameFriend.gameinstance.player;
+		var pm = PlayerManager.instance;
 		pm.Velocity = Vector3.Zero;
 		pm.LockMovement(true);
 
@@ -101,10 +101,10 @@ public partial class RoomFriend : Node3D
 		if (matchedDoor != null)
 		{
 			pm.GlobalPosition = matchedDoor.GlobalPosition + matchedDoor.GetEntryOffset(doorEntryOffset);
-			if (GameFriend.gameinstance.raven != null)
-				GameFriend.gameinstance.raven.GlobalPosition = pm.GlobalPosition + new Vector3(0, 1.5f, 0);
+			if (PlayerManager.instance.raven != null)
+				PlayerManager.instance.raven.GlobalPosition = pm.GlobalPosition + new Vector3(0, 1.5f, 0);
 		}
-		GameFriend.gameinstance.camera?.SnapToPlayer();
+		PlayerManager.instance.camera?.SnapToPlayer();
 
 		await FadeFromBlack();
 
@@ -157,10 +157,10 @@ public partial class RoomFriend : Node3D
 	{
 		EnsureDungeonStarted();
 		LoadRoom(resPath);
-		var pm = GameFriend.gameinstance.player;
+		var pm = PlayerManager.instance;
 		Door anyDoor = FindAnyDoor(currentRoomScene);
 		pm.GlobalPosition = anyDoor != null ? anyDoor.GlobalPosition + anyDoor.GetEntryOffset(doorEntryOffset) : Vector3.Zero;
-		GameFriend.gameinstance.camera?.SnapToPlayer();
+		PlayerManager.instance.camera?.SnapToPlayer();
 	}
 
 	public void LoadRoom(string resPath)

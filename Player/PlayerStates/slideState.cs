@@ -20,7 +20,7 @@ public partial class slideState : PlayerState
 		crouchQueued = false;
 		slideTimer = 0;
 
-		if (pm.slideBoost && GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost"))
+		if (pm.slideBoost && pm.inventoryfriend.isUpgradeUnlocked("slideBoost"))
 		{
 			if (pm.slideBoostVFX != null)
 			{

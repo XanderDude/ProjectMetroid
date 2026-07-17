@@ -15,13 +15,13 @@ public partial class SaveFriend : Node3D
 
         public void SaveUpgrades(int slot)
     {
-       if (GameFriend.gameinstance?.inventoryfriend == null)
+       if (PlayerManager.instance?.inventoryfriend == null)
         {
             GD.PrintErr("SaveFriend: inventoryfriend is null!");
             return;
         }
 
-        var inv = GameFriend.gameinstance.inventoryfriend;
+        var inv = PlayerManager.instance.inventoryfriend;
         var data = new SaveData
         {
             CurrentRoom = RoomFriend.instance.currentRoomName,
@@ -34,7 +34,7 @@ public partial class SaveFriend : Node3D
         if (file != null)
         {
             file.StoreString(json);
-            GD.Print("Save successful!");
+            //GD.Print("Save successful!");
         }
         else
         {
@@ -47,11 +47,11 @@ public partial class SaveFriend : Node3D
 
             if (!FileAccess.FileExists(SavePath[slot]))
             {
-                GD.Print("No save file found.");
+                //GD.Print("No save file found.");
                 return;
             }
 
-            if (GameFriend.gameinstance?.inventoryfriend == null)
+            if (PlayerManager.instance?.inventoryfriend == null)
             {
                 GD.PrintErr("SaveFriend: inventoryfriend is null!");
                 return;
@@ -71,7 +71,7 @@ public partial class SaveFriend : Node3D
                 return;
             }
 
-            var inv = GameFriend.gameinstance.inventoryfriend;
+            var inv = PlayerManager.instance.inventoryfriend;
             inv.upgrades.Clear();
             foreach (var upgrade in data.Upgrades)
                 inv.upgrades.Add(upgrade);
@@ -80,11 +80,11 @@ public partial class SaveFriend : Node3D
             foreach (var kv in data.Consumables)
                 inv.consumables[kv.Key] = kv.Value;
 
-            var upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
-            GD.Print("Current Upgrades:");
+            var upgrades = PlayerManager.instance.inventoryfriend.upgrades;
+            //GD.Print("Current Upgrades:");
             foreach (var upgrade in upgrades)
             {
-                GD.Print("  - " + upgrade);
+                //GD.Print("  - " + upgrade);
             }
             string currentRoom = data.CurrentRoom;
             RoomFriend.instance.DebugTeleportToRoom(currentRoom);

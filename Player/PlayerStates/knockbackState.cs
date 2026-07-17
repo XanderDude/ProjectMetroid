@@ -5,11 +5,11 @@ using Godot;
 public partial class knockbackState : PlayerState
 {
 
-    public Vector3 knockbackVelocity = Vector3.Zero;
     public float gravity = 9.8f;
     public override void Enter()
     {
-        pm.Velocity = knockbackVelocity;
+        pm.Velocity = pm.knockbackVelocity;
+        pm.knockbackVelocity = Vector3.Zero;
         pm.pah.Airborne(false);
     }
 
@@ -17,10 +17,10 @@ public partial class knockbackState : PlayerState
     {
         Vector3 velocity = pm.Velocity;
         velocity.Y -= gravity * 2.5f * delta; // same as jumpState falling gravity
-        
+
         float input = Mathf.Sign(pm.aimDirection.X);
         velocity.X = Mathf.MoveToward(velocity.X, input * 5f, 3f * delta);
-        
+
         pm.Velocity = velocity;
         pm.MoveAndSlide();
 

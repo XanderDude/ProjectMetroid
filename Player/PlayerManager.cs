@@ -3,6 +3,8 @@ using System;
 
 public partial class PlayerManager : CharacterBody3D
 {
+	public static PlayerManager instance;
+
 	[Export] public Node3D playerMesh;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	[Export] public VerticalCollisionCheck vertColCheck;
@@ -13,10 +15,12 @@ public partial class PlayerManager : CharacterBody3D
 	[Export] public Raven raven;
 	[Export] public CameraFriend camera;
 	[Export] public int health = 100;
+	[Export] public int maxHealth = 100;
 	[Export] public float invulnDuration = 1f;
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
+	public Vector3 knockbackVelocity;
 
 	public InventoryFriend inventoryfriend = new InventoryFriend();
 
@@ -35,6 +39,8 @@ public partial class PlayerManager : CharacterBody3D
     public override void _Ready()
     {
 		NullChecks();
+		instance = this;
+		camera.init_camera();
 	}
 		
 
@@ -52,7 +58,6 @@ public partial class PlayerManager : CharacterBody3D
 	{
 		AimingLogic();
 		UpdateInvulnerability((float)delta);
-
 	}
 	public void SpawnJumpCloud(float yOffset,float rotation)
 	{
@@ -110,7 +115,15 @@ public partial class PlayerManager : CharacterBody3D
         if (health <= 0)
         {
             health = 0;
+            psm.transition_to("deathState");
         }
+    }
+
+	public void Heal(int amount)
+    {
+        health = Mathf.Min(health + amount, maxHealth);
+        if (health > 0 && psm.current_node_state_name == "deathState")
+            psm.transition_to("groundedState");
     }
 
 	public void NullChecks()

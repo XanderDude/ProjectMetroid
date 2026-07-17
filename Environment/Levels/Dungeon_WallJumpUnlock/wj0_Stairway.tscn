@@ -695,7 +695,5 @@ data = SubResource("VoxelGIData_v3yoy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
 [node name="Player" parent="." instance=ExtResource("999_player")]
-max_slides = 6
-safe_margin = 0.001
 
 [editable path="Interactable/Roof/StonePillar"]

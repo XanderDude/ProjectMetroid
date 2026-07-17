@@ -8,7 +8,7 @@ public partial class flyingaggroState : EnemyState
     
     public override void Enter()
     {
-        GD.Print("Entered Flying Aggro State");
+        //GD.Print("Entered Flying Aggro State");
         ec.IDLE = ec.runspeed;
         outOfRangeTimer = 0f;
     }

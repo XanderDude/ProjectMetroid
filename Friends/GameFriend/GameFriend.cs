@@ -5,11 +5,7 @@ using System.Collections;
 public partial class GameFriend : Node3D
 {
 	public static GameFriend gameinstance;
-	public Raven raven => player?.raven;
-	public CameraFriend camera => player?.camera;
-	public InventoryFriend inventoryfriend => player?.inventoryfriend;
 	public SaveFriend savefriend;
-	public PlayerManager player;
 	public DebugFriend debugfriend;
 
 	public SubViewportContainer svc;
@@ -23,8 +19,6 @@ public partial class GameFriend : Node3D
 	{
 		gameinstance = this;
 		init_filter();
-		player = svp.GetNode<PlayerManager>("Player");
-		camera.init_camera();
 		init_savefriend();
 		if (initdebugfriend == true) init_debugfriend("DebugFriend", DEBUGFRIEND_SCENE_PATH, "DebugFriend");
 	}

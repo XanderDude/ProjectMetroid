@@ -38,7 +38,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (player == null) { GD.Print("No player node assigned"); return; } //dont calculate if player hasn't been assigned
+		if (player == null) { /*GD.Print("No player node assigned");*/ return; } //dont calculate if player hasn't been assigned
 
 		if (currentRunSpeed != 0 || aimingTimer < _aimingMaxTime) //always exit idle when moving or aiming
 		{
@@ -99,8 +99,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 
 	public void Airborne(bool jump)
 	{
-		playback?.Start(JumpStateName);
-		if (jump) animTree.Set("parameters/Jumping/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
+		playback?.Start("Idle");
 	}
 
 	public void Grounded()
@@ -110,7 +109,7 @@ public partial class PlayerAnimationHandler : Node3D //goes on the playerMesh
 	}
 	public void SetGroundedColliders()
     {
-		GD.Print("Updating collider");
+		//GD.Print("Updating collider");
         physicsCollider.Position = new(0,8.5f,0);
 		var shape = (BoxShape3D)physicsCollider.Shape;
 		shape.Size = new(0.45f,1.7f,0.5f);

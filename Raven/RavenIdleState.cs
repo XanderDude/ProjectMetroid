@@ -57,11 +57,11 @@ public partial class RavenIdleState : RavenState
 					// Check if something was hit
 					if (result.Count > 0)
 					{
-						GD.Print("Ray hit: " + result["collider"]);
+						//GD.Print("Ray hit: " + result["collider"]);
 					}
 					else
 					{
-						GD.Print("Ray did not hit anything.");
+						//GD.Print("Ray did not hit anything.");
 					}
 					pm.GlobalPosition = raven.GlobalPosition;
 					raven.canTeleport = false;

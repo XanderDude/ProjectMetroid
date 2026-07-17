@@ -77,7 +77,7 @@ public partial class BombArrowProjectile : RigidBody3D
 	{
 		if (body is Enemy enemy)
 		{
-			GD.Print("Bomb dealing damage via body entered");
+			//GD.Print("Bomb dealing damage via body entered");
 			enemy.DamagedReceived(damage);
 
 		}

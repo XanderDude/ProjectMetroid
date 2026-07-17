@@ -7,6 +7,7 @@
 
 [node name="DebugFriend" type="CanvasLayer"]
 layer = 101
+process_mode = 3
 script = ExtResource("1_atxtx")
 
 [node name="BombArrowCount" type="Label" parent="."]
@@ -55,6 +56,14 @@ offset_left = 358.0
 offset_top = 1.0
 offset_right = 438.0
 offset_bottom = 24.0
+
+[node name="AddHealth" type="Button" parent="Health"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 33.0
+offset_right = 64.0
+offset_bottom = 64.0
+text = "Add HP"
 
 [node name="Save1" type="Button" parent="."]
 offset_left = 491.0

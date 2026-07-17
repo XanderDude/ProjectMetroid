@@ -47,7 +47,7 @@ public partial class attackState : PlayerState
 		if (Input.IsActionPressed("Shoot"))
 		{
 			ShootArrow(ArrowType.Normal);
-			if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot"))
+			if (pm.inventoryfriend.isUpgradeUnlocked("chargeShot"))
 			{
 				
 			}
@@ -77,7 +77,7 @@ public partial class attackState : PlayerState
 	public override void PhysicsUpdate(float delta)
 	{
 		shootCooldownTimer += delta;
-		if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot") || currentArrowType == ArrowType.Bomb)
+		if (!pm.inventoryfriend.isUpgradeUnlocked("chargeShot") || currentArrowType == ArrowType.Bomb)
         {
 			if (shootCooldownTimer >= shootCooldown) EmitSignal(SignalName.Transition, "noattackState");
             return;
@@ -104,9 +104,9 @@ public partial class attackState : PlayerState
 
 	private bool CanShootBomb()
 	{
-		if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
-			GameFriend.gameinstance.inventoryfriend.consumables.ContainsKey("bombArrows") &&
-			GameFriend.gameinstance.inventoryfriend.consumables["bombArrows"] > 0)
+		if (pm.inventoryfriend.isUpgradeUnlocked("bombArrows") && 
+			pm.inventoryfriend.consumables.ContainsKey("bombArrows") &&
+			pm.inventoryfriend.consumables["bombArrows"] > 0)
 		{
 			return true;
 		}
@@ -196,7 +196,7 @@ public partial class attackState : PlayerState
 				break;
 			case ArrowType.Bomb:
 				SoundFriend.Play(shootBombArrowSFX);
-				GameFriend.gameinstance.inventoryfriend.UseConsumable("bombArrows", 1);
+				pm.inventoryfriend.UseConsumable("bombArrows", 1);
 				break;
 			case ArrowType.HalfCharge:
 				SoundFriend.Play(shootHalfChargeSFX);

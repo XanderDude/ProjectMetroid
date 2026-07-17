@@ -17,7 +17,7 @@ public partial class SoundFriend : Node
        foreach (Node child in GetChildren())
         {
             string childName = child.Name.ToString();
-            GD.Print("SoundFriend: Loaded sound - " + childName);
+            //GD.Print("SoundFriend: Loaded sound - " + childName);
             
                 sounds[childName] = child as Godot.AudioStreamPlayer;
 

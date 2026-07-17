@@ -202,17 +202,17 @@ public partial class lungeState : EnemyState
 
 	private void OnParrySuccess()
 	{
-		GD.Print("Parry success!");
+		//GD.Print("Parry success!");
 		substate = SubStateParry.KNOCKBACK; // stops UpdateLunge from running
 
-		if (GameFriend.gameinstance?.camera != null)
-			GameFriend.gameinstance.camera.ZoomTo(ZOOM_DISTANCE, 0.10f);
+		if (PlayerManager.instance?.camera != null)
+			PlayerManager.instance.camera.ZoomTo(ZOOM_DISTANCE, 0.10f);
 		var tweene = CreateTween().SetIgnoreTimeScale(true);
-		GameFriend.gameinstance.player.LockMovement(true);
+		PlayerManager.instance.LockMovement(true);
 		tweene.TweenProperty(Engine.Singleton, "time_scale", 0.2, 0.1);
 		tweene.TweenInterval(0.3);
 		tweene.TweenProperty(Engine.Singleton, "time_scale", 1.0, 0.2);
-		tweene.Finished += () => GameFriend.gameinstance.player.LockMovement(false);
+		tweene.Finished += () => PlayerManager.instance.LockMovement(false);
 
 		if (IsInstanceValid(parryLight))
 		{
@@ -241,8 +241,8 @@ public partial class lungeState : EnemyState
 		{
 			if (IsInstanceValid(ec))
 			{
-				if (GameFriend.gameinstance?.camera != null)
-					GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
+				if (PlayerManager.instance?.camera != null)
+					PlayerManager.instance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
 
 				EmitSignal(SignalName.Transition, "patrolState");
 			}

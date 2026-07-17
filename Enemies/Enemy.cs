@@ -42,7 +42,7 @@ public partial class Enemy : Actor
 
 
 	private float meshDirection = -90f;
-	public PlayerManager player => GameFriend.gameinstance.player;
+	public PlayerManager player => PlayerManager.instance;
 	public Godot.Vector3 direction { get; set; } = Godot.Vector3.Zero;
 
 	private bool playerInDamageRange = false; //player is within damage collider
@@ -79,9 +79,21 @@ public partial class Enemy : Actor
 			Velocity += GravityVector * (float)delta;
 
 		MoveAndSlide();
+		PushPlayerAway((float)delta);
 		}
-		
-	
+
+	[Export] public float pushRadius = 0.6f;
+	[Export] public float pushSpeed = 2.0f;
+
+	private void PushPlayerAway(float delta)
+	{
+		if (player == null) return;
+		Vector3 toPlayer = player.GlobalPosition - GlobalPosition;
+		toPlayer.Y = 0;
+		float dist = toPlayer.Length();
+		if (dist < pushRadius && dist > 0.001f)
+			player.GlobalPosition += toPlayer.Normalized() * pushSpeed * delta;
+	}
 
 	public void OnCollide(Node3D node)
 	{
@@ -93,11 +105,11 @@ public partial class Enemy : Actor
 	{
 		if (node is PlayerManager p && p.canBeDamaged)
 	   {
-		   p.health -= damage;
+		   p.TakeDamage(damage);
+		   if (p.health <= 0) return; // already transitioned to deathState, don't override it with knockback
 		   float knockDir = Mathf.Sign(p.GlobalPosition.X - GlobalPosition.X);
-		   /*p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
-		   p.psm.TransitionTo("knockbackState");
-		   */
+		   p.knockbackVelocity = new Vector3(knockDir, 1f, 0f).Normalized() * attackknockback * 3f;
+		   p.psm.transition_to("knockbackState");
 	   }
 	}
 	public void OnLeaveCollider(Node3D node)
@@ -121,8 +133,8 @@ public partial class Enemy : Actor
 	public void KillEnemy()
 	{
 
-		if (GameFriend.gameinstance?.camera != null)
-		GameFriend.gameinstance.camera.ZoomTo(25f, 0.15f);
+		if (PlayerManager.instance?.camera != null)
+		PlayerManager.instance.camera.ZoomTo(25f, 0.15f);
 		DropItems();
 		QueueFree();
 	}

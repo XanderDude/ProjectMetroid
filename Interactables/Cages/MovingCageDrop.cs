@@ -41,7 +41,7 @@ public partial class MovingCageDrop : AnimatableBody3D
 		if (rayCast.IsColliding())
 		{
 			dropLocationY = rayCast.GetCollisionPoint().Y;
-			GD.Print(dropLocationY);
+			//GD.Print(dropLocationY);
 			collisionFound = true;
 			rayCast.Enabled = false;
 		}
@@ -98,19 +98,19 @@ public partial class MovingCageDrop : AnimatableBody3D
 		//CalculateFallDistance();
 		falling = true;
 		fallingCollider.Monitoring = true; //enable damage area
-		GD.Print("chain broken");
+		//GD.Print("chain broken");
 	}
 
 	public void _on_cage_crush(Node3D body)
     {
-		GD.Print("cage crush");
+		//GD.Print("cage crush");
 		if (body is Enemy enemy)
 		{
 			enemy.DamagedReceived(100000);
 		}
 		else if (body is PlayerManager player)
         {
-			player.Health -= 100000;
+			player.health -= 100000;
         }
     }
 

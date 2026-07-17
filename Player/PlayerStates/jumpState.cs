@@ -81,7 +81,7 @@ public partial class jumpState : PlayerState
 
     public override void Enter()
     {
-        GD.Print("Entered Jump State");
+        //GD.Print("Entered Jump State");
         if (pm.jumpQueued)
         {
             if (pm.jumpVFX != null && pm.psm.previous_node_state_name != "mantleState")
@@ -139,7 +139,7 @@ public partial class jumpState : PlayerState
                 EmitSignal(SignalName.Transition, "groundedState"); return;
             }
         }
-        else if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling") &&
+        else if (pm.inventoryfriend.isUpgradeUnlocked("mantling") &&
                  mantleTimer >= _mantleCooldown && pm.Velocity.Y <= 0 && pm.aimDirection.X != 0 && isSameHeight())
         {
             mantleTimer = 0;
@@ -177,7 +177,7 @@ public partial class jumpState : PlayerState
             EmitSignal(SignalName.Transition, "forgeState");
 
         if (@event.IsActionPressed("Jump") &&
-            GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("wallJump") &&
+            pm.inventoryfriend.isUpgradeUnlocked("wallJump") &&
             !pm.IsOnFloor() && isTouching() && !isSameHeight())
             EmitSignal(SignalName.Transition, "walljumpState");
     }

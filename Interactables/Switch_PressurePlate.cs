@@ -52,7 +52,7 @@ public partial class Switch_PressurePlate : Node3D
 	private void RotateLever(bool on)
     {
 		EmitSignal(SignalName.switch_flipped);
-		GD.Print("Emitting signal");
+		//GD.Print("Emitting signal");
 		if (on)
 		{
 			GetParent<Node3D>().RotationDegrees = new Vector3(0, 0, -45);

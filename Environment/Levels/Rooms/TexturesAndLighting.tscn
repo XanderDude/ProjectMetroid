@@ -1,32 +1,32 @@
-[gd_scene load_steps=50 format=4 uid="uid://cw0tot4q4y1mv"]
+[gd_scene load_steps=48 format=4 uid="uid://bj04crs2qg4xo"]
 
-[ext_resource type="Script" uid="uid://5oemo5w1umma" path="res://GameManager.cs" id="1_yt33h"]
-[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_scv3a"]
-[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_xcyv4"]
-[ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Rooms/JungleGym1.tscn" id="4_vvkmg"]
-[ext_resource type="PackedScene" uid="uid://dfkolgcfar5w3" path="res://Environment/Rooms/Room_SaveRoom.tscn" id="5_sfubw"]
-[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="6_iweo4"]
-[ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Rooms/roomHallway_Small.tscn" id="7_ls8fe"]
-[ext_resource type="ArrayMesh" uid="uid://cxmk0c6oino4b" path="res://Environment/Models/StoneMeshes/stoneWindowMesh.res" id="8_kvwfq"]
-[ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="9_jyn6s"]
-[ext_resource type="PackedScene" uid="uid://bfw31nl8kpm6" path="res://Environment/Rooms/WoodHouseSmall.tscn" id="10_xstwd"]
-[ext_resource type="PackedScene" uid="uid://cfuqhq4krsq54" path="res://Environment/Rooms/Room_DeepWell.tscn" id="11_jjpvx"]
-[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="12_schnu"]
-[ext_resource type="PackedScene" uid="uid://ylvrs4frhhf" path="res://Environment/Platforms/Wood2x0.5x6Platform.tscn" id="12_scv3a"]
-[ext_resource type="PackedScene" uid="uid://dvdvwneoqbhmf" path="res://Environment/Models/TreeLinePlanes.glb" id="13_0ik57"]
-[ext_resource type="Material" uid="uid://mfnek0rv47j4" path="res://Environment/Materials/BGEnvironmentMat.tres" id="14_k83ou"]
-[ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="15_c5ab7"]
-[ext_resource type="PackedScene" uid="uid://xbqb3ncnwmbs" path="res://Environment/Props/Environmental/UndergroundForeground.tscn" id="16_k1ful"]
-[ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="17_hay6r"]
-[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="18_bkdhi"]
-[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="19_bi0qg"]
-[ext_resource type="Script" uid="uid://cupqpycn8w34t" path="res://Environment/Rooms/DeathState.cs" id="20_5ps7j"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="21_slp15"]
-[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="22_liauk"]
-[ext_resource type="VoxelGIData" uid="uid://cnr8x1xpy8fko" path="res://Environment/Scenes/TexturesAndLighting.VoxelGI_data.res" id="23_8g25c"]
+[ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://Friends/GameFriend/GameFriend.cs" id="1_clrjg"]
+[ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="2_ypo2y"]
+[ext_resource type="PackedScene" uid="uid://dthh4s6ec6yvo" path="res://AreaTransitions/Complete/regaliaIntroText.tscn" id="3_w5r6f"]
+[ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="4_v1d21"]
+[ext_resource type="VoxelGIData" uid="uid://cnr8x1xpy8fko" path="res://Environment/Scenes/TexturesAndLighting.VoxelGI_data.res" id="5_x6fto"]
+[ext_resource type="PackedScene" uid="uid://dfkolgcfar5w3" path="res://Environment/Levels/Rooms/Room_SaveRoom.tscn" id="6_tw3t2"]
+[ext_resource type="PackedScene" uid="uid://bpdtxa4qxfht3" path="res://Environment/Levels/Rooms/roomHallway_Small.tscn" id="7_olupi"]
+[ext_resource type="PackedScene" uid="uid://csl1058efko08" path="res://Environment/Levels/Rooms/JungleGym1.tscn" id="8_cuncf"]
+[ext_resource type="ArrayMesh" uid="uid://cxmk0c6oino4b" path="res://Environment/Models/StoneMeshes/stoneWindowMesh.res" id="9_bgal7"]
+[ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="10_bcc5k"]
+[ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="10_bgal7"]
+[ext_resource type="PackedScene" uid="uid://cfuqhq4krsq54" path="res://Environment/Levels/Rooms/Room_DeepWell.tscn" id="11_bcc5k"]
+[ext_resource type="PackedScene" uid="uid://dvdvwneoqbhmf" path="res://Environment/Models/TreeLinePlanes.glb" id="11_w5r6f"]
+[ext_resource type="PackedScene" uid="uid://bfw31nl8kpm6" path="res://Environment/Levels/Rooms/WoodHouseSmall.tscn" id="11_ypo2y"]
+[ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="12_0pxb8"]
+[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="12_g1r6t"]
+[ext_resource type="PackedScene" uid="uid://xbqb3ncnwmbs" path="res://Environment/Props/Environmental/UndergroundForeground.tscn" id="12_w5r6f"]
+[ext_resource type="Material" uid="uid://mfnek0rv47j4" path="res://Environment/Materials/BGEnvironmentMat.tres" id="12_x6fto"]
+[ext_resource type="PackedScene" uid="uid://bvw8jjowu62a0" path="res://Environment/Props/Environmental/TreeLine.tscn" id="13_tw3t2"]
+[ext_resource type="PackedScene" uid="uid://hchxx8sxlxr2" path="res://Environment/Models/Cathedral.fbx" id="16_olupi"]
+[ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="17_cuncf"]
+[ext_resource type="PackedScene" uid="uid://bc5p23c5rrma5" path="res://Enemies/Traps/TrapAxe_Constant.tscn" id="19_clrjg"]
+[ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="22_0pxb8"]
+[ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="22_clrjg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002oh"]
-shader = ExtResource("2_scv3a")
+shader = ExtResource("2_ypo2y")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 16
@@ -55,7 +55,7 @@ size = Vector3(0.5, 2, 2)
 resource_local_to_scene = true
 size = Vector3(0.2, 14, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_scv3a"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iq2j"]
 resource_local_to_scene = true
 size = Vector3(2, 0.5, 6)
 
@@ -88,7 +88,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 18,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAFAAQABgAHAAUA"),
-"material": ExtResource("14_k83ou"),
+"material": ExtResource("12_x6fto"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
@@ -120,7 +120,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"material": ExtResource("14_k83ou"),
+"material": ExtResource("12_x6fto"),
 "name": "TreeLineMat",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -153,7 +153,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"material": ExtResource("14_k83ou"),
+"material": ExtResource("12_x6fto"),
 "name": "TreeLineMat",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -186,7 +186,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"material": ExtResource("14_k83ou"),
+"material": ExtResource("12_x6fto"),
 "name": "TreeLineMat",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -219,7 +219,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"material": ExtResource("14_k83ou"),
+"material": ExtResource("12_x6fto"),
 "name": "TreeLineMat",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -229,18 +229,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hcbv4")
 
-[sub_resource type="Gradient" id="Gradient_g1r6t"]
-interpolation_mode = 1
-colors = PackedColorArray(0.59775, 0.590232, 0.641509, 1, 0.596078, 0.592157, 0.643137, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bgal7"]
-gradient = SubResource("Gradient_g1r6t")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bcc5k"]
 render_priority = 0
-shader = ExtResource("18_bkdhi")
+shader = ExtResource("17_cuncf")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = SubResource("GradientTexture1D_bgal7")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(640, 360)
@@ -273,9 +268,9 @@ energy = 0.8
 propagation = 0.25
 interior = true
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
-script = ExtResource("1_yt33h")
-player = NodePath("SubViewportContainer/SubViewport/Player")
+[node name="Game" type="Node3D"]
+script = ExtResource("1_clrjg")
+initdebugfriend = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_002oh")
@@ -291,7 +286,7 @@ anisotropic_filtering_level = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_xcyv4")]
+[node name="AreaTextandMusic" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_w5r6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.5, 0)
 
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -309,78 +304,82 @@ shape = SubResource("BoxShape3D_vlgid")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 2, 0)
 shape = SubResource("BoxShape3D_vlgid")
 
-[node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("4_vvkmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 0)
+[node name="JungleGym1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("8_cuncf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9901, 0.0176075, -0.00160432)
 
-[node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("5_sfubw")]
+[node name="RoomSaveRoom2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("6_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="StoneWallMesh13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="12"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 0, 2)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="13"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 0, 4)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh19" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="14"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, -2, 2)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh20" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="15"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, -2, 4)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="16"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 2, 2)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh16" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="17"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 2, 4)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh17" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="18"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 4, 2)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh18" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/stoneWallLeft" index="19"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.1, 4, 4)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("")
 
 [node name="StoneWallMesh21" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/FrontWall" index="18"]
 transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, -4, 5.4995, 5.00026)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
 [node name="StoneWallMesh22" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/FrontWall" index="19"]
 transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, -2, 5.49975, 5.00013)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
 [node name="StoneWallMesh23" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/FrontWall" index="20"]
 transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 0, 5.5, 5)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
 [node name="StoneWallMesh24" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/FrontWall" index="21"]
 transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 2, 5.50025, 4.99987)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
 [node name="StoneWallMesh25" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/FrontWall" index="22"]
 transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 4, 5.5005, 4.99974)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 skeleton = NodePath("../..")
 
-[node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_ls8fe")]
+[node name="LightChandelier" parent="SubViewportContainer/SubViewport/Environment/RoomSaveRoom2/Decorations" index="1" node_paths=PackedStringArray("obj")]
+obj = NodePath(".")
+swingDistance = 10.0
+
+[node name="HallwaySmall" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 0)
 
 [node name="FloorCol" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable" index="0"]
@@ -392,20 +391,26 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 0
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="4"]
 transform = Transform3D(6.15888e-08, 0, -1, 0, 1, 0, 1, 0, 6.15888e-08, -1, 2, -8.74227e-08)
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 
 [node name="StoneWallMesh2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="5"]
-mesh = ExtResource("8_kvwfq")
+mesh = ExtResource("9_bgal7")
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_g1r6t")
 
-[node name="StoneFloorHalfMesh3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="7"]
+[node name="StoneFloorHalfMesh" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04, 0, -1.009)
+
+[node name="StoneFloorHalfMesh3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay" index="17"]
 transform = Transform3D(1, 8.74228e-08, 1.50996e-07, 8.74228e-08, -1, 8.74228e-08, 1.50996e-07, -8.74228e-08, -1, -1, 6, 1)
-mesh = ExtResource("9_jyn6s")
+mesh = ExtResource("10_bcc5k")
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/SideWalls/Wall_DoorWay1/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_bcc5k")
+
+[node name="BackwallMesh" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/Frontwall" index="24"]
+transform = Transform3D(7.99999, 0.000784394, -0.00161397, 0.0030097, -0.000822517, 4.31999, 0.0125453, -0.499999, -0.00710911, 0, 1.96889, -3.25)
 
 [node name="stonePillar14" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Interactable/Floor" index="46"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 1)
@@ -420,14 +425,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, -1)
 
 [node name="Light_Lantern" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall/Lights" index="1"]
-swingSpeed = 2.0
-swingDistance = 5.0
+swingSpeed = 0.1
+swingDistance = 0.6
+rotateUpdateSpeed = 0.3
 
-[node name="WoodHouse" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("10_xstwd")]
+[node name="WoodHouse" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_ypo2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -3)
 
-[node name="Room_DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_jjpvx")]
+[node name="Room_DeepWell" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("11_bcc5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, -20, 0)
+
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="15"]
+visible = true
+
+[node name="MeshInstance3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="16"]
+visible = true
+
+[node name="MeshInstance3D3" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="17"]
+visible = false
+
+[node name="MeshInstance3D4" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="18"]
+visible = false
+
+[node name="MeshInstance3D5" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Well" index="19"]
+visible = false
 
 [node name="StoneDoorFrameMesh" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.129881, 0, 0)
@@ -440,6 +461,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.950392, 0, 1, 0, -4.37114e-08,
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_0pxb8")
+
+[node name="StoneWallHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallLeft/Wall_DoorWay" index="13"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004, 0, 1.1)
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -1.00095, -9.09495e-13)
@@ -481,35 +505,32 @@ transform = Transform3D(0.498745, 0.866724, -0.00650479, 0, 0.00750483, 0.999972
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_4wuno")
 
+[node name="StoneWallHalfMesh2" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/stoneWallRight/Wall_DoorWay2" index="13"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.004, 0, 1.1)
+
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/Secret1/StonePlatformEdge/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_scv3a")
+shape = SubResource("BoxShape3D_3iq2j")
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_8s13j")
 
-[node name="WoodPlatformEdge3" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup" index="6"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -23.2532, 20, -1.00506)
-
-[node name="WoodPlatformEdge3" parent="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/WoodPlatformEdge3" index="13" instance=ExtResource("12_scv3a")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13, 20, -1)
-
-[node name="HallwaySmall2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_ls8fe")]
+[node name="HallwaySmall2" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("7_olupi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, -20, 0)
 
 [node name="CollisionShape3D2" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_ok65n")
 
 [node name="StoneWallMesh10" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="5"]
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 
 [node name="StoneWallMesh11" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="6"]
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 
 [node name="StoneWallMesh14" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="9"]
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 
 [node name="StoneWallMesh15" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Backwall" index="10"]
-mesh = ExtResource("6_iweo4")
+mesh = ExtResource("12_g1r6t")
 
 [node name="StoneWallMesh10" parent="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/Frontwall" index="5"]
 visible = false
@@ -527,24 +548,24 @@ visible = false
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70.1148, -25.2202, -23.6269)
-material_override = ExtResource("12_schnu")
+material_override = ExtResource("10_bgal7")
 size = Vector3(1.69312, 5, 1.25562)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 17.3468, -25.2202, -19.4502)
-material_override = ExtResource("12_schnu")
+material_override = ExtResource("10_bgal7")
 size = Vector3(1.69312, 5, 1.25562)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(80.64, 0, 0, 0, 22, 0, 0, 0, 67.5, -14.8241, -76, -15)
-material_override = ExtResource("12_schnu")
+material_override = ExtResource("10_bgal7")
 use_collision = true
 size = Vector3(1.24365, 5, 1)
 
 [node name="TreeGroup" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/BG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8048, -1.63908, -61.8022)
 
-[node name="TreeLinePlanes" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("13_0ik57")]
+[node name="TreeLinePlanes" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("11_w5r6f")]
 
 [node name="treeLineMesh" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLinePlanes" index="0"]
 transform = Transform3D(2.4767, 0, 0, 0, 2.4767, 0, 0, 0, 1, -0.0970001, 2.38419e-07, 22.3287)
@@ -560,7 +581,7 @@ transform = Transform3D(1.97355, 0, -0.130825, 0, 2.4767, 0, 1.13943, 0, 0.22659
 mesh = SubResource("ArrayMesh_tb85l")
 skeleton = NodePath("")
 
-[node name="TreeLine" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("15_c5ab7")]
+[node name="TreeLine" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("13_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1145, 1.63908, 52.3783)
 
 [node name="TreeLinePlanes" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine" index="0"]
@@ -569,10 +590,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49223, 0, -3.02526)
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine" index="1"]
 transform = Transform3D(24.4093, 0, 0, 0, 1, 0, 0, 0, 6.157, 6.44547, 0, 0)
 
-[node name="TreeLine3" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("15_c5ab7")]
+[node name="TreeLine3" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("13_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8116, 1.63908, 50.6427)
 
-[node name="TreeLine2" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("15_c5ab7")]
+[node name="TreeLine2" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("13_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4675, 1.63908, 53.0505)
 
 [node name="TreeLinePlanes" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine2" index="0"]
@@ -581,7 +602,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.29693)
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine2" index="1"]
 transform = Transform3D(18, 0, 0, 0, 1, 0, 0, 0, 6.157, 0, 0, -2.44318)
 
-[node name="TreeLine4" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("15_c5ab7")]
+[node name="TreeLine4" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup" instance=ExtResource("13_tw3t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9137, 1.63908, 49.4745)
 
 [node name="TreeIndividuals" type="Node3D" parent="SubViewportContainer/SubViewport/Environment/BG/TreeGroup"]
@@ -623,69 +644,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7735, 0, -0.422489)
 mesh = SubResource("ArrayMesh_q065r")
 skeleton = NodePath("")
 
-[node name="UndergroundForeground" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_k1ful")]
+[node name="UndergroundForeground" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("12_w5r6f")]
 transform = Transform3D(1.40148, 0, 0, 0, 1.53229, 0, 0, 0, 1, -43, -8.15, 0.948703)
 visible = false
 
-[node name="BelowHorizonBackdrop" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_k1ful")]
+[node name="BelowHorizonBackdrop" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("12_w5r6f")]
 transform = Transform3D(15.5687, 0, 0, 0, 4.44078, 0, 0, 0, 1, -13.3496, -22.2096, -8.96597)
 
-[node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("17_hay6r")]
+[node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_olupi")]
 transform = Transform3D(-0.40688, 0, 0.913482, 0, 1, 0, -0.913482, 0, -0.40688, -50.4516, 0, -46.0859)
 
 [node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG/Cathedral" index="0"]
 material_override = SubResource("ShaderMaterial_bcc5k")
 
-[node name="Cathedral2" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("17_hay6r")]
+[node name="Cathedral2" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_olupi")]
 transform = Transform3D(0.741421, 0, 2.561, 0, 2.66616, 0, -2.561, 0, 0.741421, -14.4773, -9.25068, -98.2954)
 
 [node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG/Cathedral2" index="0"]
 material_override = SubResource("ShaderMaterial_bcc5k")
 
-[node name="Cathedral3" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("17_hay6r")]
+[node name="Cathedral3" parent="SubViewportContainer/SubViewport/Environment/BG" instance=ExtResource("16_olupi")]
 transform = Transform3D(-9.62065e-08, 0, 2.20095, 0, 2.20095, 0, -2.20095, 0, -9.62065e-08, 1.96918, -15.884, -9.56914)
 
 [node name="Cathedral" parent="SubViewportContainer/SubViewport/Environment/BG/Cathedral3" index="0"]
 material_override = SubResource("ShaderMaterial_bcc5k")
 
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("19_bi0qg")]
+[node name="TrapAxe_Constant" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("19_clrjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -1)
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_0pxb8")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.3466, 0.240937, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2313, 0.058, 0)
 jumpVFX = null
 
-[node name="deathState2" type="Node" parent="SubViewportContainer/SubViewport/Player/MovementStateMachine" index="5"]
-script = ExtResource("20_5ps7j")
+[node name="StonePlatformEdge" parent="SubViewportContainer/SubViewport" instance=ExtResource("22_0pxb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1857, 1.66723, -0.734134)
 
-[node name="Camera" parent="SubViewportContainer/SubViewport" instance=ExtResource("21_slp15")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, 25)
-playerPath = NodePath("../Player")
-lookAheadDistance = 1.5
-roomMinX = -6000.0
-roomMaxX = 6000.0
-roomMinY = -18.0
-roomMaxY = 10000.0
-
-[node name="DirectionalLight_Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866026, 0.5, 8.74228e-08, 0.5, -0.866026, -14.7046, 19, -11)
-light_energy = 0.8
-light_indirect_energy = 0.333
-light_bake_mode = 1
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 10.0
-shadow_reverse_cull_face = true
-shadow_caster_mask = 4294967293
-directional_shadow_fade_start = 1.0
+[node name="DirectionalLight_Exterior_DayBreak" parent="." instance=ExtResource("22_clrjg")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("22_liauk")
+environment = ExtResource("4_v1d21")
 
 [node name="VoxelGI_SaveRoom" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01331, 2.27778, 0.0769348)
 visible = false
 size = Vector3(10.5929, 6.71423, 10.3574)
-data = ExtResource("23_8g25c")
+data = ExtResource("5_x6fto")
 
 [node name="VoxelGI_Well" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0155, -7.86691, 0.226046)
@@ -713,7 +717,6 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/Room_DeepWell/PlatformGroup/StonePlatformEdge2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2"]
 [editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Interactable/SideWalls/Wall_DoorWay"]
-[editable path="SubViewportContainer/SubViewport/Environment/HallwaySmall2/Lights/Light_CandleTriple_Wall"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLinePlanes"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/TreeGroup/TreeLine/TreeLinePlanes"]
@@ -722,5 +725,3 @@ data = SubResource("VoxelGIData_8g18c")
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral2"]
 [editable path="SubViewportContainer/SubViewport/Environment/BG/Cathedral3"]
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/PlayerMesh"]

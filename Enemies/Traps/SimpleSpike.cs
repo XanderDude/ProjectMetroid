@@ -15,10 +15,10 @@ public partial class SimpleSpike : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{ 
-        if (playerInRange && GameFriend.gameinstance.player.canBeDamaged) 
+        if (playerInRange && PlayerManager.instance.canBeDamaged) 
 		{
-			GD.Print("Player is touching spike");
-			GameFriend.gameinstance.player.Health -= damage;
+			//GD.Print("Player is touching spike");
+			PlayerManager.instance.health -= damage;
 		}
 	}
 

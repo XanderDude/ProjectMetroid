@@ -63,7 +63,7 @@ public partial class patrolState : EnemyState
                 ec.Velocity += ec.GravityVector * delta;
             if (ec.isPlayerInRange(ec.detectionrange) && ec.movementmode != Enemy.MovementMode.Hopping)
             {
-                GD.Print("in detection range");
+                //GD.Print("in detection range");
                 ec.Velocity = Vector3.Zero;
                 EmitSignal(SignalName.Transition, "aggroState");
             }
@@ -113,7 +113,7 @@ public partial class patrolState : EnemyState
         {
             ec.Velocity += new Vector3(0, ec.gravity,0);
         }
-        GD.Print($"{ec.Velocity}");
+        //GD.Print($"{ec.Velocity}");
     }
     private void _on_movement_flying()
     {
