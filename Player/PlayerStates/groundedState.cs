@@ -37,10 +37,11 @@ public partial class groundedState : State
 	public override void PhysicsUpdate(float delta)
 	{
 		player.ApplyFloorSnap();
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && msm._currentState.Name != "crouchState")
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
 			msm.TransitionTo("crouchState");
+			GD.Print("CROUCHING");
 			return;
 		}
 

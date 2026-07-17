@@ -6,7 +6,7 @@ public partial class CameraFriend : Camera3D
 	[ExportGroup("Follow Settings")]
 
 	[Export] public float followSpeed = 8.0f;
-	[Export] public float lookAheadDistance = 3.0f; 
+	[Export] public float lookAheadDistance = 1.0f; 
 	[Export] public float lookAheadSpeed = 2.0f; 
 	[Export] public float cameraYOffset = 1.5f;
 	
@@ -16,6 +16,7 @@ public partial class CameraFriend : Camera3D
 	[Export] public float roomMinY = -5.0f;
 	[Export] public float roomMaxY = 5.0f;
 	
+	private float newRoomMinX, newRoomMaxX, newRoomMinY, newRoomMaxY;
 	[Export] public float minMoveThreshold = 0.1f; 
 
 	[Export] public float cameraDistance = 25.0f;
@@ -34,8 +35,18 @@ public partial class CameraFriend : Camera3D
 			}
 	}
 
-	public override void _Process(double delta) {
+	public override void _Ready()
+	{
+		newRoomMinX = roomMinX;
+		newRoomMaxX = roomMaxX;	
+		newRoomMinY = roomMinY;
+		newRoomMaxY = roomMaxY;
+	}
+
+	public override void _Process(double delta) 
+	{
 		UpdateCameraPosition((float)delta);
+		UpdateCameraBounds((float)delta);
 	}
 
 	private void UpdateCameraPosition(float delta) {
@@ -44,6 +55,7 @@ public partial class CameraFriend : Camera3D
 		if (Mathf.Abs(playerVelocity.X) > minMoveThreshold) {
 			lastPlayerDirection = Mathf.Sign(playerVelocity.X);
 		}
+
 
 		
 		Vector3 desiredLookAhead = new Vector3(lastPlayerDirection * lookAheadDistance, 0, 0);
@@ -81,23 +93,35 @@ public partial class CameraFriend : Camera3D
 
 	private Vector3 GetPlayerVelocity()
 	{
-		if (GameFriend.gameinstance.player is CharacterBody3D characterBody) {
+		if (GameFriend.gameinstance.player is CharacterBody3D characterBody) 
+		{
 			return characterBody.Velocity;
 		}
-
-		
 		return Vector3.Zero;
 	}
 
 	
 	public void SetRoomBounds(float minX, float maxX, float minY, float maxY)
 	{
-		roomMinX = minX;
-		roomMaxX = maxX;
-		roomMinY = minY;
-		roomMaxY = maxY;
+		newRoomMinX = minX;
+		newRoomMaxX = maxX;
+		newRoomMinY = minY;
+		newRoomMaxY = maxY;
+	}
 
+	private void UpdateCameraBounds(float delta)
+	{
+		/*
+		roomMinX = Mathf.MoveToward(roomMinX, newRoomMinX, followSpeed / 2 * delta);
+		roomMaxX = Mathf.MoveToward(roomMaxX, newRoomMaxX, followSpeed / 2 * delta);
+		roomMinY = Mathf.MoveToward(roomMinY, newRoomMinY, followSpeed / 2 * delta);
+		roomMaxY = Mathf.MoveToward(roomMaxY, newRoomMaxY, followSpeed / 2 * delta);
+		*/
 		
+		roomMinX = Mathf.Lerp(roomMinX, newRoomMinX, followSpeed/1.5f * delta);
+		roomMaxX = Mathf.Lerp(roomMaxX, newRoomMaxX, followSpeed/1.5f * delta);
+		roomMinY = Mathf.Lerp(roomMinY, newRoomMinY, followSpeed/1.5f * delta);
+		roomMaxY = Mathf.Lerp(roomMaxY, newRoomMaxY, followSpeed/1.5f * delta);
 	}
 
 	public void ZoomTo(float targetDistance, float duration)

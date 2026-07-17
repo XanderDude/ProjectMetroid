@@ -1080,6 +1080,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.983799, 0)
 shape = SubResource("BoxShape3D_8y7u5")
 
 [node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
-transform = Transform3D(9.4597, 0, 0, 0, 5.33725, 0, 0, 0, 1, 0, 1.73215, 4)
+transform = Transform3D(10.498, 0, 0, 0, 6.61603, 0, 0, 0, 1, 0, 1.73215, 4)
 
 [editable path="CameraBounds"]

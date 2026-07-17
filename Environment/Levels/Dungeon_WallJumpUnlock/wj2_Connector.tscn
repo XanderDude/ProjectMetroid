@@ -1475,7 +1475,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.893494, 0)
 shape = SubResource("BoxShape3D_slk4n")
 
 [node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
-transform = Transform3D(20.3347, 0, 0, 0, 5.53432, 0, 0, 0, 1, 2, 1.66984, 4)
+transform = Transform3D(20.3347, 0, 0, 0, 8.34403, 0, 0, 0, 1, 1.9397, 1.52914, 4)
 
 [node name="Area2" type="Area3D" parent="CameraBounds" node_paths=PackedStringArray("boundsObject")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1371, -5.4432, 0)
@@ -1491,7 +1491,7 @@ shape = SubResource("BoxShape3D_agfde")
 debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
 
 [node name="BoundsNode" type="MeshInstance3D" parent="CameraBounds/Area2"]
-transform = Transform3D(8.35628, 0, 0, 0, 10.3459, 0, 0, 0, 1, 2.09569, 2.02122, 3.99)
+transform = Transform3D(14.8975, 0, 0, 0, 13.7636, 0, 0, 0, 1, 5.39217, 3.7714, 3.99)
 visible = false
 layers = 16
 ignore_occlusion_culling = true

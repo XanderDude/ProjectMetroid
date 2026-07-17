@@ -18,14 +18,15 @@ public partial class UpdateCameraBounds : Area3D
 
 	public void _body_entered(Node3D body)
 	{
-		GD.Print("Camera bounds updated");
+		//GD.Print("Camera bounds updated");
 		if (boundsObject != null)
 		{
 			//origin = position(x, y), Basis.X.X = width, Basis.Y.Y = height
-			camera.roomMinX = bounds.Origin.X - Math.Abs(bounds.Basis.X.X - 10) / 2; //left
-			camera.roomMaxX = bounds.Origin.X + Math.Abs(bounds.Basis.X.X - 10) / 2; //right
-			camera.roomMinY = bounds.Origin.Y - Math.Abs(bounds.Basis.Y.Y - 5) / 2; //bottom
-			camera.roomMaxY = bounds.Origin.Y + (bounds.Basis.Y.Y/ 2); //top
+			var roomMinX = bounds.Origin.X - Math.Abs(bounds.Basis.X.X - 10) / 2; //left
+			var roomMaxX = bounds.Origin.X + Math.Abs(bounds.Basis.X.X - 10) / 2; //right
+			var roomMinY = bounds.Origin.Y - Math.Abs(bounds.Basis.Y.Y - 2) / 2; //bottom
+			var roomMaxY = bounds.Origin.Y + (bounds.Basis.Y.Y/ 2); //top
+			camera.SetRoomBounds(roomMinX, roomMaxX, roomMinY, roomMaxY);
 		}
 	}
 }
