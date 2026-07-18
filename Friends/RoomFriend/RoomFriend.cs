@@ -9,7 +9,7 @@ public partial class RoomFriend : Node3D
 {
 	public static RoomFriend instance;
 
-	private const string DUNGEON_FOLDER = "Environment/Levels/Dungeon_WallJumpUnlock";
+	private const string LEVEL_FOLDER = "Environment/Levels/Dungeon_WallJumpUnlock";
 
 	// Nodes GameFriend actually manages under the viewport; anything else (leftover static
 	// content authored directly into a test scene, e.g. navtesting.tscn's nav-mesh sandbox)
@@ -23,13 +23,13 @@ public partial class RoomFriend : Node3D
 
 	//Random pointers / checks
 	public bool isTransitioning = false;
-	private bool dungeonStarted = false;
+	private bool levelStarted = false;
 
 	public Node3D currentRoomScene;
 	public string currentRoomName = "";
 	private string currentRoomPath = "";
 
-	// Values are full res:// paths (rooms can now live in subfolders of DUNGEON_FOLDER).
+	// Values are full res:// paths (rooms can now live in subfolders of LEVEL_FOLDER).
 	public Dictionary<int, string> tab1 = new Dictionary<int, string>();
 	public Dictionary<int, string> tab2 = new Dictionary<int, string>();
 
@@ -41,11 +41,11 @@ public partial class RoomFriend : Node3D
 	}
 
 	// Deliberately does nothing at launch - no table building, no trashing, no room loading.
-	// Deferred to the first real room load (a door, or a debug click) via EnsureDungeonStarted().
-	public void EnsureDungeonStarted()
+	// Deferred to the first real room load (a door, or a debug click) via EnsureLevelStarted().
+	public void EnsureLevelStarted()
 	{
-		if (dungeonStarted) return;
-		dungeonStarted = true;
+		if (levelStarted) return;
+		levelStarted = true;
 
 		room_table_init();
 		TrashUnmanagedViewportContent();
@@ -78,7 +78,7 @@ public partial class RoomFriend : Node3D
 	{
 		if (isTransitioning) return;
 		isTransitioning = true;
-		EnsureDungeonStarted();
+		EnsureLevelStarted();
 
 		var pm = PlayerManager.instance;
 		pm.Velocity = Vector3.Zero;
@@ -143,11 +143,11 @@ public partial class RoomFriend : Node3D
 	// DUNGEON_FOLDER, including subfolders.
 	public void DebugTeleportToRoom(string name)
 	{
-		EnsureDungeonStarted();
+		EnsureLevelStarted();
 		string path = allRoomPaths.Find(p => System.IO.Path.GetFileNameWithoutExtension(p) == name);
 		if (path == null)
 		{
-			GD.PrintErr($"[RoomFriend] No room named '{name}' found under {DUNGEON_FOLDER}");
+			GD.PrintErr($"[RoomFriend] No room named '{name}' found under {LEVEL_FOLDER}");
 			return;
 		}
 		DebugLoadRoom(path);
@@ -155,7 +155,7 @@ public partial class RoomFriend : Node3D
 
 	public void DebugLoadRoom(string resPath)
 	{
-		EnsureDungeonStarted();
+		EnsureLevelStarted();
 		LoadRoom(resPath);
 		var pm = PlayerManager.instance;
 		Door anyDoor = FindAnyDoor(currentRoomScene);
@@ -257,7 +257,7 @@ public partial class RoomFriend : Node3D
 	public void room_table_init()
 	{
 		allRoomPaths.Clear();
-		ScanRoomFolderRecursive(DUNGEON_FOLDER, allRoomPaths);
+		ScanRoomFolderRecursive(LEVEL_FOLDER, allRoomPaths);
 
 		foreach (var roomPath in allRoomPaths)
 		{

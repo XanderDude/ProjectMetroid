@@ -18,15 +18,18 @@ public partial class forgeState : PlayerState
 
     public override void Exit()
     {
-        //GD.Print("Exiting forge state");
-        //Restore collision
        
-        if (layerMasks != 0) pm.CollisionMask = layerMasks; //layerMasks = 0 during initialization
+       
+        if (layerMasks != 0) pm.CollisionMask = layerMasks; 
     }
 
     public override void PhysicsUpdate(float delta)
     {
-        Vector3 moveDirection = new(pm.aimDirection.X, pm.aimDirection.Y, 0);
+        Vector3 moveDirection;
+        if (!pm.noAimDirection) moveDirection = new(pm.aimDirection.X, pm.aimDirection.Y, 0);
+        else moveDirection = Vector3.Zero;
+        //stand still when no direction is pressed
+        if (pm.aimDirection.X == 0) moveDirection.X = 0;
         if (Input.IsActionPressed("Jump")) moveDirection.Y += 1;
         pm.Velocity = moveDirection.Normalized() * moveSpeed;
         pm.MoveAndSlide();

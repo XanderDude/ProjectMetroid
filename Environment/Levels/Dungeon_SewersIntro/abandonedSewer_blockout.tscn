@@ -1521,6 +1521,8 @@ text = "Level Complete
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_f1wm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1112, 1.2479, 0)
 
+[node name="TinyRat" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_6kw23")]
+
 [editable path="SubViewportContainer/SubViewport/sewerBlockout/Sewer1_1/LingeringSoul7"]
 [editable path="SubViewportContainer/SubViewport/sewerBlockout/Sewer1_2/Rat"]
 [editable path="SubViewportContainer/SubViewport/sewerBlockout/Sewer1_2/Rat/Rat"]
