@@ -10,11 +10,14 @@ public partial class Door : Node3D
   [Export] public DoorOrientation player_orientation = DoorOrientation.UpRight;
   [Export] public int DoorNumber = 0;
 
-  [Export] Node3D key;
+public enum DoorKey { None, BombArrow, RavenSlash, RavenTeleport }
 
-  public enum DoorType { Normal, Locked, Open};
+  [Export] public DoorKey keyType = DoorKey.BombArrow;
+
+  public enum DoorType { Normal, Open};
 
   [Export] public DoorType doorType = DoorType.Normal;
+
 
   public Area3D doorTransportArea => GetNode<Area3D>("DoorTransport");
 
@@ -63,7 +66,20 @@ public partial class Door : Node3D
   public void _on_physical_door_area_3d_body_entered(Node3D body)
   {
       EmitSignal(SignalName.DoorOpened);
-      if (key == body || key == null) CallDeferred("DoorEnabled", true);
+       bool correctKey = keyType switch
+    {
+        DoorKey.BombArrow => body is BombArrowProjectile,
+        DoorKey.RavenSlash => body is Raven, 
+        DoorKey.RavenTeleport => body is Raven,
+        DoorKey.None => true,
+        _ => false
+    };
+
+    if (correctKey)
+    {
+        EmitSignal(SignalName.DoorOpened);
+        CallDeferred(MethodName.DoorEnabled, true);
+    }
   }
   public void _on_door_transport_body_exited(Node3D body)
   {
