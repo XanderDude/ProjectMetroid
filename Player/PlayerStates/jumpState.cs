@@ -225,7 +225,7 @@ public partial class jumpState : State
 
 	public override void HandleInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("forgemode") && GameFriend.gameinstance.initroomfriend == true)
+		if (@event.IsActionPressed("forgemode") && GameFriend.gameinstance.initdebugfriend == true)
 		{
 			msm.TransitionTo("forgeState");
 		}

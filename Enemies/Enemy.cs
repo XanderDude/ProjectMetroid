@@ -124,8 +124,6 @@ public partial class Enemy : Actor
 	public void KillEnemy()
 	{
 
-		if (GameFriend.gameinstance?.camera != null)
-		GameFriend.gameinstance.camera.ZoomTo(25f, 0.15f);
 		DropItems();
 		QueueFree();
 	}

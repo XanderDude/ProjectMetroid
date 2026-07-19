@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://dif7w5ngagq42"]
 
 [ext_resource type="Shader" uid="uid://d08htx114fcw4" path="res://Raven/VFX/RavenSlashShaderGraph.tres" id="1_r5qca"]
-[ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Bird/RavenAnimation.fbx" id="2_r5qca"]
+[ext_resource type="PackedScene" uid="uid://hu45knn8o50r" path="res://Raven/Animations/RavenAnimation.fbx" id="2_r5qca"]
 [ext_resource type="ArrayMesh" uid="uid://tfmj8reuqnbd" path="res://Raven/VFX/RavenSlashMesh.res" id="3_r5qca"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8hb8"]

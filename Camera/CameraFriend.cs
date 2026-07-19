@@ -24,17 +24,24 @@ public partial class CameraFriend : Camera3D
 	private float lastPlayerDirection = 1.0f;
 	private Vector3 lookAheadOffset = Vector3.Zero;
 
-	public void init_camera()
+	public override void _Ready()
 	{
-		if (GameFriend.gameinstance.player != null)
-			{
-				playerPosition = GameFriend.gameinstance.player.GlobalPosition;
-				GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, 25.0f);
 
-			}
+		CallDeferred(MethodName._Connect);
+	}
+
+	private void _Connect()
+	{
+		GameFriend.gameinstance.Connect("ChangingRooms", Callable.From(() => {
+			playerPosition = GameFriend.gameinstance.player.GlobalPosition;
+			GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, cameraDistance);
+		}));
 	}
 
 	public override void _Process(double delta) {
+
+		//catch signal
+
 		UpdateCameraPosition((float)delta);
 	}
 

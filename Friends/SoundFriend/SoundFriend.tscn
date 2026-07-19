@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dyq7lfns17r48"]
 
-[ext_resource type="Script" uid="uid://d35fqc85b2uvp" path="res://SoundFriend/SoundFriend.cs" id="1_wcdol"]
+[ext_resource type="Script" uid="uid://d35fqc85b2uvp" path="res://Friends/SoundFriend/SoundFriend.cs" id="1_wcdol"]
 [ext_resource type="AudioStream" uid="uid://cfgimuf5j5hsj" path="res://Sounds/player_death_SFX.mp3" id="3_cdrqa"]
 [ext_resource type="AudioStream" uid="uid://lmc7aeplmkff" path="res://Sounds/player_normal_shoot_SFX.mp3" id="4_nol34"]
 [ext_resource type="AudioStream" uid="uid://d3b5bbo7j6jw4" path="res://Sounds/player_chargingArrowStart_SFX.mp3" id="4_x473h"]

@@ -15,7 +15,7 @@ public partial class SaveFriend : Node3D
 
         public void SaveUpgrades(int slot)
     {
-       if (GameFriend.gameinstance?.inventoryfriend == null)
+       if (GameFriend.gameinstance.inventoryfriend == null)
         {
             GD.PrintErr("SaveFriend: inventoryfriend is null!");
             return;
@@ -24,7 +24,7 @@ public partial class SaveFriend : Node3D
         var inv = GameFriend.gameinstance.inventoryfriend;
         var data = new SaveData
         {
-            CurrentRoom = GameFriend.gameinstance.roomfriend.currentRoomName,
+            CurrentRoom = RoomFriend.instance.currentRoomName,
             Upgrades = new List<string>(inv.upgrades),
             Consumables = new Dictionary<string, int>(inv.consumables)
         };
@@ -34,7 +34,7 @@ public partial class SaveFriend : Node3D
         if (file != null)
         {
             file.StoreString(json);
-            GD.Print("Save successful!");
+            //GD.Print("Save successful!");
         }
         else
         {
@@ -47,7 +47,7 @@ public partial class SaveFriend : Node3D
 
             if (!FileAccess.FileExists(SavePath[slot]))
             {
-                GD.Print("No save file found.");
+                //GD.Print("No save file found.");
                 return;
             }
 
@@ -81,12 +81,12 @@ public partial class SaveFriend : Node3D
                 inv.consumables[kv.Key] = kv.Value;
 
             var upgrades = GameFriend.gameinstance.inventoryfriend.upgrades;
-            GD.Print("Current Upgrades:");
+            //GD.Print("Current Upgrades:");
             foreach (var upgrade in upgrades)
             {
-                GD.Print("  - " + upgrade);
+                //GD.Print("  - " + upgrade);
             }
             string currentRoom = data.CurrentRoom;
-            if (GameFriend.gameinstance.roomfriend != null) GameFriend.gameinstance.roomfriend.room_init(currentRoom);
+            RoomFriend.instance.DebugTeleportToRoom(currentRoom);
         }
 }

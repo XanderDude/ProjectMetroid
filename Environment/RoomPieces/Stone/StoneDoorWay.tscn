@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://dx6inaiw5kq1u"]
+[gd_scene load_steps=14 format=4 uid="uid://dx6inaiw5kq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
 [ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_nx6tq"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="2_2ht27"]
-[ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="3_amw8g"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="3_bauuh"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="4_ecxvq"]
 [ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="5_k4pst"]
@@ -13,7 +12,9 @@
 render_priority = 0
 shader = ExtResource("2_2ht27")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("3_amw8g")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(640, 360)

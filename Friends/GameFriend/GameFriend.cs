@@ -4,26 +4,25 @@ using System.Collections;
 
 public partial class GameFriend : Node3D
 {
+
+    [Signal] public delegate void ChangingRoomsEventHandler();
     public static GameFriend gameinstance; 
     public InventoryFriend inventoryfriend; 
     public SaveFriend savefriend;
-    public RoomFriend roomfriend;
+
     public Raven raven;
     public PlayerManager player;
-    public CameraFriend camera;
     public DebugFriend debugfriend;
 
     public SubViewportContainer svc;
     public SubViewport svp;
-
-    [Export] public bool initroomfriend = false;
     [Export] public bool initdebugfriend = false;
 
-    private const string CAMERA_SCENE_PATH = "res://Camera/Camera.tscn";
+
     private const string PLAYER_SCENE_PATH = "res://Player/Player.tscn";
     [Export] private Node3D playerNode = null;
-    private const string ROOMFRIEND_SCENE_PATH = "res://RoomFriend/RoomFriend.tscn";
-    private const string DEBUGFRIEND_SCENE_PATH = "res://DebugFriend/DebugFriend.tscn";
+    private const string ROOMFRIEND_SCENE_PATH = "res://Friends/RoomFriend/RoomFriend.tscn";
+    private const string DEBUGFRIEND_SCENE_PATH = "res://Friends/DebugFriend/DebugFriend.tscn";
     private const string RAVEN_SCENE_PATH = "res://Raven/Raven.tscn";
 
     public override void _Ready()
@@ -31,10 +30,9 @@ public partial class GameFriend : Node3D
         gameinstance = this;
         init_filter();
         init_player("Player", PLAYER_SCENE_PATH, "Player");
-        init_camera("Camera", CAMERA_SCENE_PATH, "Camera");
+
         init_inventoryfriend();
         init_savefriend();
-        if (initroomfriend == true) init_roomfriend("RoomFriend", ROOMFRIEND_SCENE_PATH, "RoomFriend", "res://Environment/Levels/Dungeon_WallJumpUnlock/wj6_WJUnlock.tscn", "Environment/Levels/Dungeon_WallJumpUnlock", "wj");
         if (initdebugfriend == true) init_debugfriend("DebugFriend", DEBUGFRIEND_SCENE_PATH, "DebugFriend");
     }
 
@@ -60,21 +58,6 @@ public partial class GameFriend : Node3D
         debugfriend.init_debugfriend();
     }
 
-    private void init_roomfriend(string name, string path, string rootname, string initroom, string roomfolder, string roomprefix)
-    {
-        init_scene(name, path);
-        roomfriend = svp.GetNode<RoomFriend>(rootname);
-        var instantiator = GD.Load<PackedScene>(initroom);
-        roomfriend.init_roomfriend(roomfolder, roomprefix, instantiator);
-    }
-
-
-    private void init_camera(string name, string path, string rootname)
-    {
-        init_scene(name, path);
-        camera = svp.GetNode<CameraFriend>(rootname);
-        camera.init_camera();
-    }
 
     private void init_player(string name, string path, string rootname)
     {

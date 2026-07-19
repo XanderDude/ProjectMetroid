@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://chnmuhpj3q4yq"]
 
-[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://RoomFriend/RoomFriend.cs" id="1_a0wfd"]
+[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://Friends/RoomFriend/RoomFriend.cs" id="1_ntg3a"]
 
 [sub_resource type="Animation" id="Animation_ukxtb"]
 length = 0.001
@@ -63,8 +63,9 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4rfxh"]
 gradient = SubResource("Gradient_66ymm")
 
-[node name="RoomFriend" type="Node3D"]
-script = ExtResource("1_a0wfd")
+[node name="RoomFriend" type="Node3D" node_paths=PackedStringArray("fadeRect")]
+script = ExtResource("1_ntg3a")
+fadeRect = NodePath("CanvasLayer/TextureRect")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -78,4 +79,5 @@ layer = 100
 modulate = Color(1, 1, 1, 0)
 offset_right = 652.0
 offset_bottom = 358.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_4rfxh")

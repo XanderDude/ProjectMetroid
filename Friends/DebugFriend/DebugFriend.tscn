@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dei0cf7stvxe4"]
 
-[ext_resource type="Script" uid="uid://s02veagml56s" path="res://DebugFriend/DebugFriend.cs" id="1_atxtx"]
-[ext_resource type="Script" uid="uid://fhx2rmgkvqrj" path="res://SaveFriend/Button.cs" id="2_yoila"]
-[ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="3_dgl0o"]
-[ext_resource type="Script" uid="uid://ccf35p3d0yps4" path="res://SaveFriend/ResetButton.cs" id="4_dgl0o"]
+[ext_resource type="Script" uid="uid://s02veagml56s" path="res://Friends/DebugFriend/DebugFriend.cs" id="1_atxtx"]
+[ext_resource type="Script" uid="uid://fhx2rmgkvqrj" path="res://Friends/SaveFriend/Button.cs" id="2_yoila"]
+[ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://Friends/SaveFriend/Button2.cs" id="3_dgl0o"]
+[ext_resource type="Script" uid="uid://ccf35p3d0yps4" path="res://Friends/SaveFriend/ResetButton.cs" id="4_dgl0o"]
 
 [node name="DebugFriend" type="CanvasLayer"]
 layer = 101

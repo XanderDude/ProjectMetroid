@@ -23,7 +23,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoundFriend="*res://SoundFriend/SoundFriend.tscn"
+SoundFriend="*res://Friends/SoundFriend/SoundFriend.tscn"
+RoomFriendAutoLoad="*res://Friends/RoomFriend/RoomFriendAutoLoad.tscn"
 
 [display]
 
