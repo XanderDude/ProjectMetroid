@@ -79,13 +79,13 @@ public partial class DebugFriend : CanvasLayer
         dir.ListDirEnd();
     }
 
-    private void OnLevelListItemSelected(long index)
-    {
-        if (index == 0) { levellist.ReleaseFocus(); return; } // blank placeholder
-        RoomFriend.instance.DebugLoadRoom(levelScenePaths[(int)index - 1]);
-
-        levellist.ReleaseFocus();
-    }
+   private void OnLevelListItemSelected(long index)
+{
+    if (index == 0) { levellist.ReleaseFocus(); return; }
+    GD.Print($"index: {index} path: {levelScenePaths[(int)index - 1]}");
+    RoomFriend.instance.DebugLoadRoom(levelScenePaths[(int)index - 1]);
+    levellist.ReleaseFocus();
+}
 
     public override void _Process(double delta)
     {

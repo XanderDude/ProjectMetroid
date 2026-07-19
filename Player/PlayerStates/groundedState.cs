@@ -17,10 +17,10 @@ public partial class groundedState : State
 	}
 	public override void Enter()
 	{
-		player.ApplyFloorSnap();
+		if (player.IsOnFloor()) player.ApplyFloorSnap();
 		walkOffCDTimer = 0;
 		pm.slideBoost = false;
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0)
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0 && pm.IsOnFloor())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
 			msm.TransitionTo("crouchState");
@@ -36,13 +36,7 @@ public partial class groundedState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
-		player.ApplyFloorSnap();
-		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
-		{
-			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
-			msm.TransitionTo("crouchState");
-			return;
-		}
+		if (player.IsOnFloor()) player.ApplyFloorSnap();
 
 		if (!player.IsOnFloor() && !pm.groundCheck.IsColliding())
 		{
@@ -55,36 +49,34 @@ public partial class groundedState : State
 		}
 		else walkOffCDTimer = 0;
 
-		waterFootstepTimer -= delta;
-		if (waterFootstepTimer < 0)
+		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())
 		{
-			waterFootstepTimer = 0.0f;
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true);
+			msm.TransitionTo("crouchState");
+			return;
 		}
 
-		if (pm.inwater && waterFootstepTimer == 0.0f && Mathf.Abs(player.Velocity.X) > 0.4f)
+		if (turnAroundTimer < _turnAroundTime)
 		{
-			SoundFriend.Play("player_treading_water_SFX");
-			waterFootstepTimer = 0.3f;
-		}
-		
-		if (turnAroundTimer < _turnAroundTime) //player is turning around
-        {
 			turnAroundTimer += delta;
 		}
-		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && pm.vertColCheck != null && !pm.vertColCheck.VertCheckIsColliding()) //turn finished and player is holding direction
+		else if (!Input.IsActionPressed("Aim") && Mathf.Sign(pm.aimDirection.X) == pm.facingDirection && pm.vertColCheck != null && !pm.vertColCheck.VertCheckIsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Grounded();
 			msm.TransitionTo("groundedState");
-		} 
+		}
 
 		HandleGroundedMovement(delta);
 		player.MoveAndSlide();
 
-		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0 && pm.forwardCheck.IsColliding()) //check if player is trying to move into a wall
+		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0 && pm.forwardCheck.IsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
-		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
+		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0)
+		{
+			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
+		}
 	}
 
 	private void HandleGroundedMovement(float delta)

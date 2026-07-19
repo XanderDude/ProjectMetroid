@@ -703,9 +703,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.82137e-15, 8.74228e-08, 1, -1.81464, 5.11088, 0)
 player_orientation = 4
 DoorNumber = 100
+keyType = 2
 
 [node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_oitet")
+
+[node name="CollisionShape3D" parent="Wall_DoorWay2/PhysicalDoorArea3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171018, 1.01702, 0)
 
 [editable path="Interactable/Roof/StonePillar"]
 [editable path="Wall_DoorWay2"]

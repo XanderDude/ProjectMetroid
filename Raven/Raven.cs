@@ -45,12 +45,16 @@ public partial class Raven : CharacterBody3D
         if (player != null)
         {
             RavenStateMachine.PlayerManager = player;
+            GameFriend.gameinstance.Connect("ChangingRooms", Callable.From(() => {
+    GlobalPosition = GameFriend.gameinstance.player.GlobalPosition;
+}));
         }        
     }
 
     public override void _PhysicsProcess(double delta)
     {        
-
+        
+        
         if (RavenStateMachine._currentState != null)
         {
             if (RavenStateMachine._currentState.Name == "RavenLaunchState" || RavenStateMachine._currentState.Name == "RavenIdleState" || RavenStateMachine._currentState.Name == "RavenAttackState")

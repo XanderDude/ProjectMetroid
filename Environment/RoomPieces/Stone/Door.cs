@@ -69,21 +69,30 @@ public enum DoorKey { None, BombArrow, RavenSlash, RavenTeleport }
        bool correctKey = keyType switch
     {
         DoorKey.BombArrow => body is BombArrowProjectile,
-        DoorKey.RavenSlash => body is Raven, 
-        DoorKey.RavenTeleport => body is Raven,
-        DoorKey.None => true,
+        DoorKey.None => body is NormalArrow,
         _ => false
     };
-
     if (correctKey)
     {
         EmitSignal(SignalName.DoorOpened);
         CallDeferred(MethodName.DoorEnabled, true);
     }
   }
-  public void _on_door_transport_body_exited(Node3D body)
+  public void _on_physical_door_area_3d_area_entered(Area3D area)
   {
+      bool correctKey = keyType switch
+      {
+          DoorKey.RavenSlash => area.GetParent() is RavenSlash,
+          _ => false
+      };
 
+      if (correctKey)
+      {
+          EmitSignal(SignalName.DoorOpened);
+          CallDeferred(MethodName.DoorEnabled, true);
+      }
   }
+
+  
 
 }

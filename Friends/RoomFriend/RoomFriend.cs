@@ -13,7 +13,7 @@ public partial class RoomFriend : Node3D
 	// Nodes GameFriend actually manages under the viewport; anything else (leftover static
 	// content authored directly into a test scene, e.g. navtesting.tscn's nav-mesh sandbox)
 	// gets trashed on the first real room load so it can't sit overlapping the dungeon.
-	private static readonly HashSet<string> ManagedViewportNodeNames = new() { "Player", "DebugFriend" , "Camera3D", "WorldEnvironment", "DirectionalLight_Exterior_DayBreak" };
+	private static readonly HashSet<string> ManagedViewportNodeNames = new() { "Raven","Player", "DebugFriend" , "Camera3D", "WorldEnvironment", "DirectionalLight_Exterior_DayBreak" };
 
 	//Fade transition
 	[Export] public float fadeDuration = 0.35f;
