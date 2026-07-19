@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dx6inaiw5kq1u"]
+[gd_scene load_steps=15 format=4 uid="uid://dx6inaiw5kq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
 [ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_nx6tq"]
@@ -61,6 +61,9 @@ size = Vector3(1, 2.00586, 2.01587)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vemgm"]
 size = Vector3(0.2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_amw8g"]
+size = Vector3(1, 2.00586, 2.01587)
 
 [node name="Wall_DoorWay" type="Node3D" groups=["doors"]]
 script = ExtResource("1_nx6tq")
@@ -151,5 +154,16 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_vemgm")
 debug_color = Color(0.666667, 0.701961, 0, 0.407843)
 
+[node name="PhysicalDoorArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicalDoorArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171018, 1.01702, 0)
+shape = SubResource("BoxShape3D_amw8g")
+debug_color = Color(0.653567, 0.359282, 0.938358, 0.42)
+
 [connection signal="body_entered" from="DoorTransport" to="." method="_on_door_transport_body_entered"]
 [connection signal="body_exited" from="DoorTransport" to="." method="_on_door_transport_body_exited"]
+[connection signal="body_entered" from="PhysicalDoorArea3D" to="." method="_on_physical_door_area_3d_body_entered"]
+[connection signal="body_exited" from="PhysicalDoorArea3D" to="." method="_on_physical_door_area_3d_body_exited"]

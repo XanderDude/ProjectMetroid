@@ -100,6 +100,7 @@ public partial class RoomFriend : Node3D
 		if (matchedDoor != null)
 		{
 			pm.GlobalPosition = matchedDoor.GlobalPosition + matchedDoor.GetEntryOffset(doorEntryOffset);
+			pm.StateMachine.TransitionTo("knockbackState");
 			GameFriend.gameinstance.EmitSignal(GameFriend.SignalName.ChangingRooms);
 		}
 		
