@@ -74,7 +74,7 @@ public partial class Enemy : Actor
 		}
 		else
 		{
-			esm?._currentState?.PhysicsUpdate((float)delta);
+			esm?.currentState?.PhysicsUpdate((float)delta);
 		}
 		if (!isFlying && !IsOnFloor())
 			Velocity += GravityVector * (float)delta;
@@ -84,7 +84,7 @@ public partial class Enemy : Actor
 		
 	public override void _Process(double delta)
 	{
-		esm?._currentState?.Update((float)delta);
+		esm?.currentState?.Update((float)delta);
 	}
 
 	public void OnCollide(Node3D node)
