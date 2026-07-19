@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2mjye7yxifa3"]
+
+[ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_mfxx2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_amw8g"]
+size = Vector3(1, 2.00586, 2.01587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
+size = Vector3(1, 2.00586, 2.01587)
+
+[node name="DoorMechanics" type="Node3D" groups=["doors"]]
+script = ExtResource("1_mfxx2")
+keyType = 0
+
+[node name="PhysicalDoorArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicalDoorArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171018, 1.01702, 0)
+shape = SubResource("BoxShape3D_amw8g")
+debug_color = Color(0.653567, 0.359282, 0.938358, 0.42)
+
+[node name="DoorTransport" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTransport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.01702, 0)
+shape = SubResource("BoxShape3D_nx6tq")
+
+[connection signal="area_entered" from="PhysicalDoorArea3D" to="." method="_on_physical_door_area_3d_area_entered"]
+[connection signal="body_entered" from="DoorTransport" to="." method="_on_door_transport_body_entered"]

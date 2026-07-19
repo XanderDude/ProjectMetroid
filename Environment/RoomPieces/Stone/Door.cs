@@ -6,28 +6,20 @@ public partial class Door : Node3D
 {
   public enum DoorOrientation { Left, Right, UpRight, UpLeft, Down }
 
+  public enum DoorType { Normal, Open }
+
+  public enum DoorKey { None, BombArrow, RavenSlash, RavenTeleport }
   [Signal] public delegate void DoorOpenedEventHandler();
   [Export] public DoorOrientation player_orientation = DoorOrientation.UpRight;
   [Export] public int DoorNumber = 0;
 
-public enum DoorKey { None, BombArrow, RavenSlash, RavenTeleport }
-
   [Export] public DoorKey keyType = DoorKey.BombArrow;
 
-  public enum DoorType { Normal, Open};
 
   [Export] public DoorType doorType = DoorType.Normal;
 
 
   public Area3D doorTransportArea => GetNode<Area3D>("DoorTransport");
-
-  // Direction to nudge an arriving player so they land clear of this door's trigger area
-  // instead of standing inside it (which would immediately re-fire the transition, causing
-  // an infinite reload loop). Most doors in existing rooms never had orientation configured
-  // (it was unused before this) and every door that IS configured across the whole dungeon
-  // is Left or Right - Up/Down are never intentionally authored, just the enum default. So
-  // Up must never push down into the floor, but it also can't be a zero offset (that leaves
-  // the player standing in the trigger). Default to a horizontal nudge instead.
   public Vector3 GetEntryOffset(float distance)
   {
     return player_orientation switch
@@ -85,7 +77,7 @@ public enum DoorKey { None, BombArrow, RavenSlash, RavenTeleport }
           DoorKey.RavenSlash => area.GetParent() is RavenSlash,
           _ => false
       };
-
+      GD.Print($"Area: {area}");
       if (correctKey)
       {
           EmitSignal(SignalName.DoorOpened);

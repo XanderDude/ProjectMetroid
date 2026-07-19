@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d1lxrp6s03olt"]
+[gd_scene load_steps=25 format=4 uid="uid://d1lxrp6s03olt"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_gaqwk"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_g3bjo"]
@@ -19,6 +19,14 @@ size = Vector3(26, 0.5, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fm40f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1aef"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djft1"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xgeom"]
 _surfaces = [{
@@ -158,15 +166,22 @@ debug_fill = false
 
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("2_g3bjo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
+
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay1/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_p1aef")
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay1" index="17"]
 player_orientation = 0
 DoorNumber = 1
-keyType = 0
 
 [node name="Wall_DoorWay2" parent="Interactable/SideWalls" instance=ExtResource("2_g3bjo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, 0)
-player_orientation = 1
+
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_djft1")
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay2" index="17"]
 DoorNumber = -1
-keyType = 0
 
 [node name="stoneWall10" type="MeshInstance3D" parent="Interactable/SideWalls"]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 12, -2, 0)
@@ -701,15 +716,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("2_g3bjo")]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.82137e-15, 8.74228e-08, 1, -1.81464, 5.11088, 0)
-player_orientation = 4
-DoorNumber = 100
-keyType = 2
 
 [node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_oitet")
 
-[node name="CollisionShape3D" parent="Wall_DoorWay2/PhysicalDoorArea3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171018, 1.01702, 0)
+[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
+DoorNumber = 100
+keyType = 2
 
+[editable path="Interactable/SideWalls/Wall_DoorWay1"]
+[editable path="Interactable/SideWalls/Wall_DoorWay2"]
 [editable path="Interactable/Roof/StonePillar"]
 [editable path="Wall_DoorWay2"]

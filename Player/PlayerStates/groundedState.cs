@@ -17,7 +17,7 @@ public partial class groundedState : State
 	}
 	public override void Enter()
 	{
-		if (player.IsOnFloor()) player.ApplyFloorSnap();
+		if (pm.IsOnFloor()) pm.ApplyFloorSnap();
 		walkOffCDTimer = 0;
 		pm.slideBoost = false;
 		if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding() && pm.aimDirection.X != 0 && pm.IsOnFloor())
@@ -36,9 +36,9 @@ public partial class groundedState : State
 
 	public override void PhysicsUpdate(float delta)
 	{
-		if (player.IsOnFloor()) player.ApplyFloorSnap();
+		if (pm.IsOnFloor()) pm.ApplyFloorSnap();
 
-		if (!player.IsOnFloor() && !pm.groundCheck.IsColliding())
+		if (!pm.IsOnFloor() && !pm.groundCheck.IsColliding())
 		{
 			walkOffCDTimer += delta;
 			if (walkOffCDTimer >= _WalkOffCooldown)
@@ -67,13 +67,13 @@ public partial class groundedState : State
 		}
 
 		HandleGroundedMovement(delta);
-		player.MoveAndSlide();
+		pm.MoveAndSlide();
 
-		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && player.Velocity.X == 0 && pm.forwardCheck.IsColliding())
+		if (msm._currentState.Name == "groundedState" && pm.aimDirection.X != 0 && pm.Velocity.X == 0 && pm.forwardCheck.IsColliding())
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(true);
 		}
-		else if (msm._currentState.Name == "groundedState" && player.Velocity.X != 0)
+		else if (msm._currentState.Name == "groundedState" && pm.Velocity.X != 0)
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).WallCollided(false);
 		}
@@ -82,7 +82,7 @@ public partial class groundedState : State
 	private void HandleGroundedMovement(float delta)
 	{
 		//int input = Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")); //get absolute value of input (no negative), round up, multiply by sign to get direction
-		Vector3 velocity = player.Velocity;
+		Vector3 velocity = pm.Velocity;
 		velocity.Y = 0;
 		//velocity.Y -= _gravity * delta;
 		if (Input.IsActionPressed("Aim"))
@@ -91,7 +91,7 @@ public partial class groundedState : State
         }
 		else velocity.X = Mathf.MoveToward(velocity.X, Mathf.Sign(pm.aimDirection.X) * groundMaxSpeed, delta + groundAcceleration);
 		velocity.X = Mathf.Clamp(velocity.X, -groundMaxSpeed, groundMaxSpeed);
-		player.Velocity = velocity;
+		pm.Velocity = velocity;
 	}
 
 
@@ -119,7 +119,7 @@ public partial class groundedState : State
 			}
 			else
 			{
-				player.Set("jumpQueued", true);
+				pm.Set("jumpQueued", true);
 				msm.TransitionTo("jumpState");
 			}
 		}

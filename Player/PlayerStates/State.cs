@@ -6,7 +6,6 @@ public partial class State : Node
 	//Player related
 	public MovementStateMachine msm;
 	public AttackStateMachine asm;
-	public CharacterBody3D player;
 	public PlayerManager pm;
 	
 

@@ -407,13 +407,9 @@ skeleton = NodePath("")
 
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-player_orientation = 0
-DoorNumber = 2
-keyType = 0
 
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -8.74228e-07)
-DoorNumber = 1
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 0, -5)
@@ -1072,10 +1068,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("5_7jo1q")]
 transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, -3.82137e-15, 8.74228e-08, 1, -4.07331, 0.29723, 0)
-player_orientation = 3
-DoorNumber = 100
 
 [node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_30cq6")
+
+[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
+DoorNumber = 100
 
 [editable path="Wall_DoorWay2"]

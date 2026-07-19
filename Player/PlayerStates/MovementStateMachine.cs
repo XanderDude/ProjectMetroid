@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public partial class MovementStateMachine : Node
 {
-	[Export] public NodePath asmState;
-	private AttackStateMachine asm; 
 	[Export] public NodePath initialState; //the node path to the starting state
 	private CharacterBody3D _parent;
 	public CharacterBody3D Parent //assign from parent script prior to _ready
@@ -33,7 +31,6 @@ public partial class MovementStateMachine : Node
 	//Purpose: This is called when opening the game for the first time, after all child nodes are in the scene
 	public override void _Ready()
 	{
-		asm = GetNode<AttackStateMachine>(asmState);
 		_states = new Dictionary<string, State>();
 		foreach (Node node in GetChildren())
 		{
@@ -41,8 +38,6 @@ public partial class MovementStateMachine : Node
 			{
 				_states[node.Name] = s;
 				s.msm = this;  //assign self to the states
-				s.asm = asm;
-				s.player = Parent;
 				s.pm = ParentManager;
 				s.parentMesh = parentMesh;
 				s.Ready();
