@@ -27,7 +27,7 @@ public partial class RavenAttackState : State
 
 	public override void Enter()
 	{
-		GD.Print(pm == null);
+		//GD.Print(pm == null);
 		attackDirection = GetAttackDirection();
 		raven.Visible = false;
 		SpawnSlashVFX();
@@ -137,7 +137,7 @@ public partial class RavenAttackState : State
 	private void OnBodyEntered(Node3D body)
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
-		GD.Print("Body hit");
+		//GD.Print("Body hit");
 		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
 		{
 			pm.Set("jumpQueued", true);

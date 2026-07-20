@@ -136,7 +136,7 @@ public partial class aggroStateWIP : State
 
 	private void OnParrySuccess()
 	{
-		GD.Print("Parry success!");
+		//GD.Print("Parry success!");
 		substate = SubStateParry.KNOCKBACK; // stops UpdateLunge from running
 
         

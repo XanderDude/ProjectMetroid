@@ -77,7 +77,7 @@ public partial class Door : Node3D
           DoorKey.RavenSlash => area.GetParent() is RavenSlash,
           _ => false
       };
-      GD.Print($"Area: {area}");
+      //GD.Print($"Area: {area}");
       if (correctKey)
       {
           EmitSignal(SignalName.DoorOpened);

@@ -27,7 +27,7 @@ public partial class walljumpState : State
 		{
 			velocity.Y = jumpVelocity; //continously set upward velocity
 			jumpHeight = pm.GlobalPosition.Y - startPosition;
-			GD.Print("Jump Height: " + jumpHeight);
+			//GD.Print("Jump Height: " + jumpHeight);
 			return true;
 		}
 		else
@@ -42,7 +42,7 @@ public partial class walljumpState : State
     {
 		pm.jumpQueued = false;
         pm.Velocity = new Vector3(pm.Velocity.X, pm.Velocity.Y/2, pm.Velocity.Z);
-		GD.Print("Jump velocity Cancelled");
+		//GD.Print("Jump velocity Cancelled");
     }
 
 	public override void Enter()

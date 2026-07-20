@@ -45,7 +45,7 @@ public partial class Switch_Lever : Node3D
     {
 		isOn = on;
 		EmitSignal(SignalName.switch_flipped);
-		GD.Print("Emitting signal");
+		//GD.Print("Emitting signal");
 
     }
 }

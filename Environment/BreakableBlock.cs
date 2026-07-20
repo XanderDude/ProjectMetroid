@@ -22,12 +22,12 @@ public partial class BreakableBlock : Node3D
     
     private void OnBodyEntered(Node3D body)
     {
-        GD.Print("Something entered: " + body.Name);
+        //GD.Print("Something entered: " + body.Name);
         
         if (body is BombArrowProjectile)
         {
             health -= 1;
-            GD.Print("Hit by projectile! Health now: " + health);
+            //GD.Print("Hit by projectile! Health now: " + health);
             
             if (health == 1)
             {
@@ -36,7 +36,7 @@ public partial class BreakableBlock : Node3D
 
             if (health <= 0)
             {
-                GD.Print("Block destroyed!");
+                //GD.Print("Block destroyed!");
                 QueueFree(); 
             }
         }

@@ -1,13 +1,11 @@
 using Godot;
-using System;
-using System.Collections;
 
 public partial class GameFriend : Node3D
 {
 
     [Signal] public delegate void ChangingRoomsEventHandler();
-    public static GameFriend gameinstance; 
-    public InventoryFriend inventoryfriend; 
+    public static GameFriend gameinstance;
+    public InventoryFriend inventoryfriend;
     public SaveFriend savefriend;
 
     public Raven raven;
@@ -36,10 +34,10 @@ public partial class GameFriend : Node3D
         if (initdebugfriend == true) init_debugfriend("DebugFriend", DEBUGFRIEND_SCENE_PATH, "DebugFriend");
     }
 
-    
+
     private void init_filter()
     {
-        
+
         svc = GetNode<SubViewportContainer>("SubViewportContainer");
         svp = svc.GetNode<SubViewport>("SubViewport");
     }
@@ -51,7 +49,7 @@ public partial class GameFriend : Node3D
         svp.AddChild(instantiator);
     }
 
-   private void init_debugfriend(string name, string path, string rootname)
+    private void init_debugfriend(string name, string path, string rootname)
     {
         init_scene(name, path);
         debugfriend = svp.GetNode<DebugFriend>(rootname);
@@ -78,12 +76,12 @@ public partial class GameFriend : Node3D
         raven = player.GetNode<Raven>(rootname);
         raven.TopLevel = true;
         raven.init_raven();
-        GD.Print (raven.Name);
+        //GD.Print(raven.Name);
     }
 
     private void init_savefriend()
     {
-       savefriend = new SaveFriend();
+        savefriend = new SaveFriend();
     }
 
     private void init_inventoryfriend()
@@ -96,20 +94,20 @@ public partial class GameFriend : Node3D
     public override void _Process(double delta)
     {
 
-            
-                if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash") && !ravenunlocked)
-                {
-                    init_raven("Raven", RAVEN_SCENE_PATH, "Raven");
-                    ravenunlocked = true;
-                }
-                else if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash") && ravenunlocked)
-                {
-                    raven.QueueFree();
-                    raven = null;
-                    ravenunlocked = false;
-                    
-                }
-            
-        
+
+        if (GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash") && !ravenunlocked)
+        {
+            init_raven("Raven", RAVEN_SCENE_PATH, "Raven");
+            ravenunlocked = true;
+        }
+        else if (!GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash") && ravenunlocked)
+        {
+            raven.QueueFree();
+            raven = null;
+            ravenunlocked = false;
+
+        }
+
+
     }
 }

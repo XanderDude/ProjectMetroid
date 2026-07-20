@@ -27,7 +27,7 @@ public partial class SwitchManager : Node3D
 				if (!oneShotSwitch && waitToReactivate)
 				{ 
 					var script = obj.GetScript();
-					GD.Print(script);
+					//GD.Print(script);
 					if (script is MovingCage)
 					{
 						//obj.Connect(MovingCage.SignalName._movement_completed, Callable.From(FinishWaiting));
@@ -63,7 +63,7 @@ public partial class SwitchManager : Node3D
     {
 		if (switchOn != state)
 		{
-			GD.Print("Switch is now " + (state ? "FORWARD" : "BACK"));
+			//GD.Print("Switch is now " + (state ? "FORWARD" : "BACK"));
 			if (waitToReactivate)
 			{
 				switchObject.LockSwitch(true);
@@ -75,7 +75,7 @@ public partial class SwitchManager : Node3D
 		{
 			if (obj.HasMeta("State"))
 			{
-				GD.Print($"Toggling cage: {obj.Name} to the " + (switchOn ? "Forward" : "Back") + " state.");
+				//GD.Print($"Toggling cage: {obj.Name} to the " + (switchOn ? "Forward" : "Back") + " state.");
 				obj.SetMeta("State", switchOn ? "FORWARD" : "BACK");
 			}
 			else if (obj is MovingPlatform platform)

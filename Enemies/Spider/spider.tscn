@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://501bnwmqvo12"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gwdri"]
+
+[node name="Spider" type="CharacterBody3D"]
+
+[node name="SpiderMesh" type="Node3D" parent="."]
+
+[node name="SpiderCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gwdri")

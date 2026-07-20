@@ -265,12 +265,12 @@ public partial class RoomFriend : Node3D
 		}
 	/*
 		//Print WHole Table
-		GD.Print("[RoomFriend] Door table built:");
+		//GD.Print("[RoomFriend] Door table built:");
 		foreach (var kvp in tab1)
 		{
 			string room1 = kvp.Value;
 			string room2 = tab2.ContainsKey(kvp.Key) ? tab2[kvp.Key] : "(none)";
-			GD.Print($"  Door {kvp.Key}: {room1} <-> {room2}");
+			//GD.Print($"  Door {kvp.Key}: {room1} <-> {room2}");
 		}
 		*/
 	}

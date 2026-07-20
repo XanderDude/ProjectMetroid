@@ -17,7 +17,7 @@ public partial class aggroState : State
     public override void Enter()
     {       
             ec.Velocity = Vector3.Zero;
-            GD.Print($"{ec.Name}:aggroState");
+            //GD.Print($"{ec.Name}:aggroState");
             ec.timer = ec.attackcd;
             substate = SubState.APPROACH;
             rand = GD.RandRange(0, 3);
@@ -28,7 +28,7 @@ public partial class aggroState : State
 
     public override void Exit()
     {
-        GD.Print ($" Rat {ec.Name} is no longer aggroState");
+        //GD.Print ($" Rat {ec.Name} is no longer aggroState");
     }
 
     public override void Update(float delta)

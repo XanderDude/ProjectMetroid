@@ -16,7 +16,7 @@ public partial class Button2 : Godot.Button
     private void OnButtonPressed()
         {
            
-           GD.Print("Load was pressed!");
+           //GD.Print("Load was pressed!");
            GameFriend.gameinstance.savefriend.LoadUpgrades(saveslot);
            ReleaseFocus();
         }

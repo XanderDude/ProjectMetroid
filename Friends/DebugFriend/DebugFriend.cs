@@ -82,7 +82,7 @@ public partial class DebugFriend : CanvasLayer
    private void OnLevelListItemSelected(long index)
 {
     if (index == 0) { levellist.ReleaseFocus(); return; }
-    GD.Print($"index: {index} path: {levelScenePaths[(int)index - 1]}");
+    //GD.Print($"index: {index} path: {levelScenePaths[(int)index - 1]}");
     RoomFriend.instance.DebugLoadRoom(levelScenePaths[(int)index - 1]);
     levellist.ReleaseFocus();
 }
