@@ -60,10 +60,11 @@ mesh = SubResource("SphereMesh_hj7k2")
 
 [node name="Soul" type="CharacterBody3D" parent="."]
 collision_layer = 8
-collision_mask = 19
+collision_mask = 0
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
+motion_mode = 1
 
 [node name="GroundCollider" type="CollisionShape3D" parent="Soul"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.21388, 0)
