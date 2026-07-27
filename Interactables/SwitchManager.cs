@@ -20,6 +20,7 @@ public partial class SwitchManager : Node3D
 		switchObject.isOn = switchOn; 
 		SetSwitch(switchOn);
 
+		/* LEAVE THIS I WAS COOKING I THINK
 		foreach (Node3D obj in switchedObjects)
 		{
 			if (obj.HasMeta("State"))
@@ -30,17 +31,17 @@ public partial class SwitchManager : Node3D
 					GD.Print(script);
 					if (script is MovingCage)
 					{
-						//obj.Connect(MovingCage.SignalName._movement_completed, Callable.From(FinishWaiting));
+						obj.Connect(MovingCage.SignalName._movement_completed, Callable.From(FinishWaiting));
 					}
 					else if (script is MovingCageDrop)
 					{
-						//obj.Connect(MovingCageDrop.SignalName._movement_completed, Callable.From(FinishWaiting));
+						obj.Connect(MovingCageDrop.SignalName._movement_completed, Callable.From(FinishWaiting));
 					}
 					
 				}
 
 			}
-		}
+		}*/
 	}
 
 	public void _on_area_3d_switch_flipped()

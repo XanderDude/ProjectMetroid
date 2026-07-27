@@ -87,13 +87,19 @@ mesh = SubResource("BoxMesh_8x5tc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -2, -0.5)
 destination = Vector3(0, 3, 0)
 
+[node name="chain" parent="MovingCage_Medium" index="2"]
+visible = false
+
 [node name="Lever" parent="." node_paths=PackedStringArray("switchedObjects") instance=ExtResource("3_jh7ng")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, -2, 0)
 waitToReactivate = true
 oneShotSwitch = true
-switchedObjects = [NodePath("")]
+switchedObjects = [NodePath("../MovingCage_Medium")]
 
 [node name="CSGMesh3D72" type="CSGMesh3D" parent="."]
 transform = Transform3D(-3.94011e-07, -2.6775, 0, 9.01394, -1.17037e-07, 0, 0, 0, 2, 15.5, 5, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
+
+[editable path="MovingCage_Medium"]
+[editable path="MovingCage_Medium/CageMedium"]
