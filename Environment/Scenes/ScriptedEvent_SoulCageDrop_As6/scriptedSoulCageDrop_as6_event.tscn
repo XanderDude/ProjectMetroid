@@ -1,0 +1,188 @@
+[gd_scene load_steps=11 format=3 uid="uid://dnkmdktkkh6qo"]
+
+[ext_resource type="Script" uid="uid://bkbhv5hpi32ty" path="res://Environment/Scenes/ScriptedEvent_SoulCageDrop_As6/ScriptedSoulCageDropAs6.cs" id="1_nsreo"]
+[ext_resource type="PackedScene" uid="uid://dfj5sb41gg03o" path="res://Interactables/Cages/CageMedium.fbx" id="2_kvtyu"]
+[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="3_hlsck"]
+[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="4_wkded"]
+[ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="5_rqfdi"]
+[ext_resource type="AnimationLibrary" uid="uid://bdeichikgqxtx" path="res://Environment/Scenes/ScriptedEvent_SoulCageDrop_As6/ScriptedSoulCageDrop_as6_library.res" id="6_kvtyu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwphm"]
+size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsreo"]
+size = Vector3(2, 4, 2)
+
+[sub_resource type="Animation" id="Animation_hed68"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingCage2_2_Medium:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovingCage2_2_Medium:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MovingCage2_2_Medium:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-8.50226, 0, -0.0221672, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MovingCage2_1_Skinny:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MovingCage2_2_Medium:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -8.50226, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m1kf7"]
+_data = {
+&"RESET": SubResource("Animation_hed68")
+}
+
+[node name="ScriptedSoulCageDrop_as6_event" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_nsreo")
+player = NodePath("AnimationPlayer")
+metadata/State = &""
+
+[node name="MovingCage2_1_Skinny" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_mask = 0
+
+[node name="CageMedium" parent="MovingCage2_1_Skinny" instance=ExtResource("2_kvtyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="cageMedium" parent="MovingCage2_1_Skinny/CageMedium/SewerProps" index="0"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 1.5, 0)
+
+[node name="LingeringSoul" parent="MovingCage2_1_Skinny/CageMedium" instance=ExtResource("3_hlsck")]
+transform = Transform3D(-1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0, 1, 9.9476e-13, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingCage2_1_Skinny"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+shape = SubResource("BoxShape3D_fwphm")
+
+[node name="chain" type="Node3D" parent="MovingCage2_1_Skinny"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Chain" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 2.5, 0)
+
+[node name="Chain2" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 3.5, 0)
+
+[node name="Chain3" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4.5, 0)
+
+[node name="Chain4" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 5.5, 0)
+
+[node name="Chain5" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 6.5, 0)
+
+[node name="Chain6" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 7.5, 0)
+
+[node name="Chain7" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 8.5, 0)
+
+[node name="Chain8" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 9.5, 0)
+
+[node name="Chain9" parent="MovingCage2_1_Skinny/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 10.5, 0)
+
+[node name="MovingCage2_2_Medium" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.50226, 0)
+visible = false
+collision_mask = 0
+
+[node name="CageMedium" parent="MovingCage2_2_Medium" instance=ExtResource("2_kvtyu")]
+transform = Transform3D(1, 0, 0, 0, 1.33, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="cageMedium" parent="MovingCage2_2_Medium/CageMedium/SewerProps" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="LingeringSoul" parent="MovingCage2_2_Medium/CageMedium" instance=ExtResource("3_hlsck")]
+transform = Transform3D(-1, 1.50996e-07, 0, -1.13531e-07, -0.75188, 0, 0, 0, 1, -0.246126, 0.5794, 0)
+
+[node name="LingeringSoul2" parent="MovingCage2_2_Medium/CageMedium" instance=ExtResource("3_hlsck")]
+transform = Transform3D(-1, 1.50996e-07, 0, -1.13531e-07, -0.75188, 0, 0, 0, 1, 0.253874, 1.33128, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingCage2_2_Medium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_nsreo")
+
+[node name="chain" type="Node3D" parent="MovingCage2_2_Medium"]
+
+[node name="Chain" parent="MovingCage2_2_Medium/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0.5, 0)
+
+[node name="Chain2" parent="MovingCage2_2_Medium/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 1.5, 0)
+
+[node name="Chain3" parent="MovingCage2_2_Medium/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 2.5, 0)
+
+[node name="Chain4" parent="MovingCage2_2_Medium/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 3.5, 0)
+
+[node name="Chain5" parent="MovingCage2_2_Medium/chain" instance=ExtResource("4_wkded")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 4.27015, 0)
+region_rect = Rect2(0, -170.94, 70, 171.45)
+
+[node name="BreakableFloor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -2.5)
+
+[node name="StonePlatformEdge" parent="BreakableFloor" instance=ExtResource("5_rqfdi")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 0.7, -1.5, 0, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_m1kf7"),
+&"ScriptedSoulCageDrop_as6": ExtResource("6_kvtyu")
+}
+playback_auto_capture = false
+
+[editable path="MovingCage2_1_Skinny/CageMedium"]
+[editable path="MovingCage2_2_Medium/CageMedium"]
