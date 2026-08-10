@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cdkkcnq7voels"]
+[gd_scene load_steps=27 format=4 uid="uid://cdkkcnq7voels"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_46mkf"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_1tjg6"]
@@ -16,6 +16,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b16le8ja86a1w" path="res://Environment/Models/PropHouseMeshes/mugMesh.res" id="14_rn1jy"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_272sd"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_xo3d4"]
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="17_1tjg6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
@@ -104,6 +105,8 @@ dynamic_range = 1.0
 use_two_bounces = false
 interior = true
 
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
 [node name="HallwaySmall" type="Node3D"]
 
 [node name="Interactable" type="Node3D" parent="."]
@@ -162,11 +165,11 @@ debug_fill = false
 
 [node name="Wall_DoorWay" parent="Interactable/SideWalls" instance=ExtResource("2_1tjg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
-DoorNumber = 607
+DoorNumber = 7
 
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("2_1tjg6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
-DoorNumber = 606
+DoorNumber = 6
 
 [node name="stoneWall12" type="MeshInstance3D" parent="Interactable/SideWalls"]
 transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, -2, 0)
@@ -1159,3 +1162,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85237, -0.0819313, -0.9230
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_xo3d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[node name="CameraBounds" type="Node" parent="." node_paths=PackedStringArray("boundObjs")]
+script = ExtResource("17_1tjg6")
+boundObjs = [NodePath("CameraBounds")]
+
+[node name="CameraBounds" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(23.3691, 0, 0, 0, 4.0428, 0, 0, 0, 1, 0, 2.07996, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="CameraBounds"]

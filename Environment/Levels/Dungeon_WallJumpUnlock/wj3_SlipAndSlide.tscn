@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgbcoxnembajc"]
+[gd_scene load_steps=37 format=3 uid="uid://bgbcoxnembajc"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_fsi3n"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="2_kpmfn"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="18_h4m41"]
 [ext_resource type="ArrayMesh" uid="uid://bnrrq8ugaq0to" path="res://Environment/Models/PropLightMeshes/chainShortMesh.res" id="19_tn0kn"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="20_r442o"]
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="21_gej2x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
 resource_local_to_scene = true
@@ -69,12 +70,14 @@ size = Vector3(2, 2.59033, 2)
 resource_local_to_scene = true
 size = Vector3(2, 0.5, 6)
 
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
 [node name="wj3_SlipAndSlideIntoEscapeRoom" type="Node3D"]
 
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 4.12115e-13, 0, 1, 0, -4.12115e-13, 0, 1, 5, -19.015, 0)
 orientation = 1
-DoorNumber = 604
+DoorNumber = 4
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay2" index="4"]
 visible = false
@@ -106,7 +109,7 @@ mesh = ExtResource("3_ox4ct")
 [node name="Wall_DoorWay" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, -19.015, 0)
 orientation = 0
-DoorNumber = 605
+DoorNumber = 5
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay" index="4"]
 visible = false
@@ -136,7 +139,7 @@ mesh = ExtResource("3_ox4ct")
 [node name="Wall_DoorWay3" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0150414, 0)
 orientation = 1
-DoorNumber = 603
+DoorNumber = 3
 
 [node name="FloorCollider2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -19.265, 0)
@@ -4055,6 +4058,51 @@ transform = Transform3D(8.74228e-08, 0, -1, 0, 1, 0, 1, 0, 8.74228e-08, 13, -16.
 
 [node name="Light_CandleTriple_Wall4" parent="Lights" instance=ExtResource("20_r442o")]
 transform = Transform3D(1, 0, 1.31134e-07, 0, 1, 0, -1.31134e-07, 0, 1, 8, -17.674, -1.51856)
+
+[node name="CameraBounds" type="Node" parent="." node_paths=PackedStringArray("boundObjs")]
+script = ExtResource("21_gej2x")
+boundObjs = [NodePath("CollisionBoundsAndCameraMeta_Main"), NodePath("CollisionBoundsAndCameraMeta_SlideToMain"), NodePath("CameraAndCollisionBounds_Slide"), NodePath("CollisionBoundsAndCameraMeta_RightDoor")]
+
+[node name="CollisionBoundsAndCameraMeta_Main" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(10.6186, 0, 0, 0, 11.6603, 0, 0, 0, 1, 7.21559, -4.35058, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Rect2(1, -19, 12, 23.5)
+
+[node name="CollisionBoundsAndCameraMeta_SlideToMain" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(10.254, 0, 0, 0, 3.37173, 0, 0, 0, 1, 2.58975, -12.8506, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Rect2(-3, -14.5, 16, 20)
+
+[node name="CameraAndCollisionBounds_Slide" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(3.90819, 0, 0, 0, 18.4661, 0, 0, 0, 1, -2.827, -4.884, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+
+[node name="CollisionBoundsAndCameraMeta_RightDoor" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(4, 0, 0, 0, 3.5, 0, 0, 0, 1, 7.25, -17.1441, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Rect2(5, -19, 8, 9)
+
+[node name="Marker3D" type="Marker3D" parent="CameraBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -14.5, 0)
+
+[node name="Marker_TopRight" type="Marker3D" parent="CameraBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, 0)
 
 [editable path="Wall_DoorWay2"]
 [editable path="Wall_DoorWay"]

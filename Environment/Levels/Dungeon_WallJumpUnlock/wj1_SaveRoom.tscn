@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxdd1ykv1653r"]
+[gd_scene load_steps=16 format=3 uid="uid://bxdd1ykv1653r"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_30cq6"]
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_af5h3"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_flptt"]
 [ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_gy72u"]
 [ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="9_hn3v6"]
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="10_af5h3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
 
@@ -22,6 +23,8 @@ size = Vector3(12, 0.5, 2)
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
 
 [node name="wj1_SaveRoom" type="Node3D"]
 
@@ -404,12 +407,12 @@ skeleton = NodePath("")
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 orientation = 0
-DoorNumber = 602
+DoorNumber = 2
 
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -8.74228e-07)
 orientation = 1
-DoorNumber = 601
+DoorNumber = 1
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 0, -5)
@@ -1065,3 +1068,15 @@ material = SubResource("StandardMaterial3D_nilwv")
 
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_hn3v6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="CameraBounds" type="Node" parent="." node_paths=PackedStringArray("boundObjs")]
+script = ExtResource("10_af5h3")
+boundObjs = [NodePath("CameraAndCollisionBounds")]
+
+[node name="CameraAndCollisionBounds" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")

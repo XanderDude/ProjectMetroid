@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d1lxrp6s03olt"]
+[gd_scene load_steps=24 format=4 uid="uid://d1lxrp6s03olt"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_gaqwk"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_g3bjo"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cinp6j7ntw5w2" path="res://Environment/RoomPieces/Wood/Wood2x2Stairs.tscn" id="9_menm1"]
 [ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="9_v6icu"]
 [ext_resource type="ArrayMesh" uid="uid://bkuulp8qn8u7q" path="res://Environment/Models/WoodMeshes/woodWallMesh.res" id="11_oitet"]
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="14_gaqwk"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_tq5f0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3yoy"]
@@ -104,6 +105,8 @@ dynamic_range = 1.0
 use_two_bounces = false
 interior = true
 
+[sub_resource type="QuadMesh" id="QuadMesh_g3bjo"]
+
 [node name="HallwaySmall" type="Node3D"]
 
 [node name="Interactable" type="Node3D" parent="."]
@@ -154,7 +157,7 @@ debug_fill = false
 
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("2_g3bjo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
-DoorNumber = 601
+DoorNumber = 1
 
 [node name="Wall_DoorWay2" parent="Interactable/SideWalls" instance=ExtResource("2_g3bjo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, 0)
@@ -690,5 +693,17 @@ data = SubResource("VoxelGIData_v3yoy")
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_tq5f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[node name="CameraBounds" type="Node" parent="." node_paths=PackedStringArray("boundObjs") groups=["cameraBounds"]]
+script = ExtResource("14_gaqwk")
+boundObjs = [NodePath("BoundsRect")]
+
+[node name="BoundsRect" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(15.5, 0, 0, 0, 12, 0, 0, 0, 1, 1, 5.5, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_g3bjo")
+skeleton = NodePath("")
 
 [editable path="Interactable/Roof/StonePillar"]
