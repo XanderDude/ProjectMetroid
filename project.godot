@@ -38,7 +38,6 @@ project/assembly_name="ProjectMetroid"
 [global_group]
 
 doors="Every type of door "
-cameraBounds="The bounds or the empty node with all the bounds for the level"
 
 [input]
 

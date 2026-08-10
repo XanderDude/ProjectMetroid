@@ -1,35 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw0ppidcqyit8"]
+[gd_scene load_steps=3 format=3 uid="uid://dw0ppidcqyit8"]
 
-[ext_resource type="Script" uid="uid://dovnhc7c5tq6x" path="res://Camera/UpdateCameraBounds.cs" id="1_s8bvc"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_slk4n"]
-resource_local_to_scene = true
-size = Vector3(20, 1, 1)
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="1_s8bvc"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
 
-[node name="CameraBounds" type="Node" groups=["cameraBounds"]]
-
-[node name="Area1" type="Area3D" parent="." node_paths=PackedStringArray("boundsObject")]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
+[node name="CameraBounds" type="Node" node_paths=PackedStringArray("boundObjs")]
 script = ExtResource("1_s8bvc")
-boundsObject = NodePath("BoundsNode")
+boundObjs = []
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Area1"]
-shape = SubResource("BoxShape3D_slk4n")
-debug_color = Color(0.195725, 0.489994, 1.92523e-07, 0.42)
-
-[node name="BoundsNode" type="MeshInstance3D" parent="Area1"]
-transform = Transform3D(6, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 4)
+[node name="CameraAndCollisionBounds" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, 0, 2, 4)
 visible = false
 layers = 16
 ignore_occlusion_culling = true
 mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+
+[node name="CollisionBoundsAndCameraMeta" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Rect2(-2, 0, 4, 4)
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75292, -0.778237, 0)
-gizmo_extents = 1.5
-
-[connection signal="body_entered" from="Area1" to="Area1" method="_body_entered"]

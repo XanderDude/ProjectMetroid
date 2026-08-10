@@ -16,7 +16,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b16le8ja86a1w" path="res://Environment/Models/PropHouseMeshes/mugMesh.res" id="14_rn1jy"]
 [ext_resource type="PackedScene" uid="uid://1rkoiwbsujql" path="res://Environment/Props/Lights/Light_Lantern.tscn" id="15_272sd"]
 [ext_resource type="PackedScene" uid="uid://dhpj2fjcx3qu3" path="res://Environment/Props/Lights/Light_CandleTriple_Wall.tscn" id="16_xo3d4"]
-[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="17_1tjg6"]
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="17_1tjg6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlbv0"]
 
@@ -105,9 +105,7 @@ dynamic_range = 1.0
 use_two_bounces = false
 interior = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v051p"]
-resource_local_to_scene = true
-size = Vector3(26.1895, 1, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
 
 [node name="HallwaySmall" type="Node3D"]
 
@@ -1165,15 +1163,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85237, -0.0819313, -0.9230
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_xo3d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
-[node name="CameraBounds" parent="." instance=ExtResource("17_1tjg6")]
+[node name="CameraBounds" type="Node" parent="." node_paths=PackedStringArray("boundObjs")]
+script = ExtResource("17_1tjg6")
+boundObjs = [NodePath("CameraBounds")]
 
-[node name="Area1" parent="CameraBounds" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.983799, 0)
+[node name="CameraBounds" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(23.3691, 0, 0, 0, 4.0428, 0, 0, 0, 1, 0, 2.07996, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
 
-[node name="CollisionShape" parent="CameraBounds/Area1" index="0"]
-shape = SubResource("BoxShape3D_v051p")
-
-[node name="BoundsNode" parent="CameraBounds/Area1" index="1"]
-transform = Transform3D(24.2859, 0, 0, 0, 5.33725, 0, 0, 0, 1, 0, 1.20238, 4)
-
-[editable path="CameraBounds"]
+[node name="Marker3D" type="Marker3D" parent="CameraBounds"]
