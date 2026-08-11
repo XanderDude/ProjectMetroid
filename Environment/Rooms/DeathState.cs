@@ -12,8 +12,8 @@ public partial class DeathState : State
         SoundFriend.Play("player_death_SFX");
         //ProcessMode = ProcessModeEnum.Always;
         parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Death();
-        player.Velocity = Vector3.Zero;
-        player.MoveAndSlide();
+        pm.Velocity = Vector3.Zero;
+        pm.MoveAndSlide();
         
         PauseGame();
         

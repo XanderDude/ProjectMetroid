@@ -7,8 +7,8 @@ public partial class EnemyStateMachine : Node
     [Export] public NodePath initialState;
 
     private Dictionary<string, State> _states;
-    public State _currentState;
-    public State _previousState;
+    public State currentState;
+    public State previousState;
 
     public override void _Ready()
     {
@@ -30,32 +30,32 @@ public partial class EnemyStateMachine : Node
 
         if (initialState != null && !initialState.IsEmpty)
         {
-            _currentState = GetNode<State>(initialState);
-            _currentState.Enter();
+            currentState = GetNode<State>(initialState);
+            currentState.Enter();
         }
         else
         {
-            GD.PrintErr("EnemyStateMachine: initialState is not set!");
+            GD.PushError("EnemyStateMachine: initialState is not set!");
         }
     }
 
     public override void _Process(double delta)
     {
-        _currentState?.Update((float)delta);
+        currentState?.Update((float)delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        _currentState?.PhysicsUpdate((float)delta);
+        currentState?.PhysicsUpdate((float)delta);
     }
 
     public void TransitionTo(string key)
     {
-        if (!_states.TryGetValue(key, out State value) || _currentState == value)
+        if (!_states.TryGetValue(key, out State value) || currentState == value)
             return;
-        _currentState.Exit();
-        _previousState = _currentState;
-        _currentState = value;
-        _currentState.Enter();
+        currentState.Exit();
+        previousState = currentState;
+        currentState = value;
+        currentState.Enter();
     }
 }

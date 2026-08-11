@@ -858,18 +858,15 @@ skeleton = NodePath("../../..")
 
 [node name="Wall_DoorWay" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 24, 0)
-DoorNumber = 10
 
 [node name="Wall_DoorWay5" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, 24, 0)
-DoorNumber = 9
 
 [node name="Wall_DoorWay2" parent="NavigationRegion3D" instance=ExtResource("12_xsxld")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 20, -2.98023e-08)
 
 [node name="Wall_DoorWay3" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(-1, 0, -8.74232e-08, 0, 1, 0, 8.74232e-08, 0, -1, 5, 0, 0)
-DoorNumber = 7
 
 [node name="StaticBody3D" parent="NavigationRegion3D/Wall_DoorWay3" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 13, 0)
@@ -919,7 +916,6 @@ mesh = ExtResource("4_nbnte")
 
 [node name="Wall_DoorWay4" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 19, 0)
-DoorNumber = 8
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="NavigationRegion3D/Wall_DoorWay4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)

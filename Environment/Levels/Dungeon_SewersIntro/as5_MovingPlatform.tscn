@@ -1,0 +1,157 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv5pi7mwsq7y8"]
+
+[ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_5gacg"]
+[ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_0ebx5"]
+[ext_resource type="PackedScene" uid="uid://q571o852xbvc" path="res://Interactables/Moving Platforms/MovingPlatform_PingPong.tscn" id="3_1crb6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lqg8"]
+shading_mode = 0
+specular_mode = 2
+albedo_color = Color(0.0555436, 0.0641189, 0.0888642, 1)
+disable_receive_shadows = true
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bkmc1"]
+material = SubResource("StandardMaterial3D_5lqg8")
+
+[node name="Sewer1_5" type="Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5, 36.5, 0)
+pixel_size = 0.1
+billboard = 1
+double_sided = false
+texture_filter = 0
+modulate = Color(0.481789, 0.481789, 0.481789, 1)
+text = "Sewer1_5
+"
+
+[node name="StonePlatformEdge10" parent="." instance=ExtResource("1_5gacg")]
+transform = Transform3D(2.2275, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.5, -0.5)
+
+[node name="StonePlatformEdge14" parent="." instance=ExtResource("1_5gacg")]
+transform = Transform3D(-1.25311e-07, 0, 1, 0, 1, 0, -2.86679, 0, -4.37114e-08, -8.5, 1, 1.5)
+
+[node name="StonePlatformEdge13" parent="." instance=ExtResource("1_5gacg")]
+transform = Transform3D(1.11375, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -0.5)
+
+[node name="StonePlatformEdge12" parent="." instance=ExtResource("1_5gacg")]
+transform = Transform3D(2.2275, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5, -0.5)
+
+[node name="CSGMesh3D123" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -17.4493, 0, 2, -7.62736e-07, 0, 0, 0, 2, -0.5, -6, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D117" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -6.14719, 0, 2, -2.68702e-07, 0, 0, 0, 1.8, 0.5, -4, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D118" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1.60858e-07, -2.63451, 0, 3.68, -1.15158e-07, 0, 0, 0, 2, 1, -4, -0.5)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D108" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2, 9.05975e-07, 0, -3.01992e-07, -6, 0, 0, 0, 2, 12, -4.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D119" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2, 9.05975e-07, 0, -3.01992e-07, -6, 0, 0, 0, 2, -8.5, -2, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D120" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2, 4.52987e-07, 0, -3.01992e-07, -3, 0, 0, 0, 2, -8.5, 5.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D124" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2.72, 3.6692e-07, 0, -4.10709e-07, -2.43, 0, 0, 0, 1, -2.5, 7, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D114" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.6, 9.30137e-07, 0, -9.05976e-08, -6.16, 0, 0, 0, 2, 20.5, 0.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D112" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2, 7.54979e-07, 0, -3.01992e-07, -5, 0, 0, 0, 2, 12, 4, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D121" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2.86, 2.11394e-07, 0, -4.31848e-07, -1.4, 0, 0, 0, 2, -2.5, 2.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="Chain" parent="CSGMesh3D121" instance=ExtResource("2_0ebx5")]
+transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, 0.307693, -1.25714, 0)
+
+[node name="Chain2" parent="CSGMesh3D121" instance=ExtResource("2_0ebx5")]
+transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, -0.325176, -1.25714, 0)
+
+[node name="Chain3" parent="CSGMesh3D121" instance=ExtResource("2_0ebx5")]
+transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, 0.307693, -1.25714, 0)
+
+[node name="Chain4" parent="CSGMesh3D121" instance=ExtResource("2_0ebx5")]
+transform = Transform3D(0.275625, -2.4869e-14, 0, 1.42109e-14, 0.55125, 0, 0, 0, 0.275625, -0.325176, -1.25714, 0)
+
+[node name="CSGMesh3D122" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2.86, 2.11394e-07, 0, -4.31848e-07, -1.4, 0, 0, 0, 2, -5, -4.2791, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D110" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -19.3918, 0, 2, -8.47643e-07, 0, 0, 0, 2, 1.5, 7.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D111" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -19, 0, 2, -8.30516e-07, 0, 0, 0, 2, 22.5, 2.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D113" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -8, 0, 2, -3.49691e-07, 0, 0, 0, 2, 17, -2.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D116" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -8.14783, 0, 2, -3.56153e-07, 0, 0, 0, 2, 28.5, -4.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D115" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, -7.05623, 0, 1.73205, 4.07392, 0, 0, 0, 2, 24.1117, -3.9382, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="MovingPlatform_PingPong" parent="." instance=ExtResource("3_1crb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, 3.5, 0)
+
+[node name="RoomBlinders5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -5, 0)
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="RoomBlinders5"]
+transform = Transform3D(-11.375, -1.50996e-07, 0, 1.71758e-06, -1, 0, 0, 0, 20.3, 4.09368, 13.1168, 21)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RoomBlinders5"]
+transform = Transform3D(-3.34788e-07, 1, 0, -7.65906, -4.37114e-08, 0, 0, 0, 20.3, -5.40453, 5.44525, 21)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="RoomBlinders5"]
+transform = Transform3D(-3.42823e-07, -1, 0, 7.84288, -4.37114e-08, 0, 0, 0, 20.3, 14.5955, 5.44525, 21)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="RoomBlinders5"]
+transform = Transform3D(10.5879, 3.55271e-15, 0, 7.67386e-14, 1, 0, 0, 0, 20.3, 4.36114, -1.05475, 21)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")

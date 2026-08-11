@@ -1,26 +1,130 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm62ofjujy25i"]
+[gd_scene load_steps=13 format=3 uid="uid://bm62ofjujy25i"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysuep"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_hj7k2"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="1_hj7k2"]
+[ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="1_ysuep"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vqs66"]
 radius = 0.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7k2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.00392157, 1, 0.65098, 1)
+albedo_texture = ExtResource("1_ysuep")
+albedo_texture_force_srgb = true
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ysuep"]
+material = SubResource("StandardMaterial3D_hj7k2")
+size = Vector2(1.25, 1.5)
+center_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="Gradient" id="Gradient_ysuep"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.27619, 0.77619)
+colors = PackedColorArray(0.00392157, 0.8, 0.219608, 1, 0, 0.854902, 0.729412, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hj7k2"]
+gradient = SubResource("Gradient_ysuep")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysuep"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+albedo_texture = SubResource("GradientTexture2D_hj7k2")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hj7k2"]
+material = SubResource("StandardMaterial3D_ysuep")
+
+[sub_resource type="Animation" id="Animation_hj7k2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1bu6d"]
+resource_name = "Drift"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.03333, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(-0.1, 0, 0), Vector3(-0.076, 0.1, 0), Vector3(0.07, -0.02, 0), Vector3(0.08, 0.117, 0), Vector3(-0.1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rxtu"]
+_data = {
+&"RESET": SubResource("Animation_hj7k2"),
+&"Sway": SubResource("Animation_1bu6d")
+}
+
 [node name="LingeringSoul" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_ysuep")
-mesh = SubResource("SphereMesh_hj7k2")
-
-[node name="EnemyBat" type="CharacterBody3D" parent="."]
+[node name="Soul" type="CharacterBody3D" parent="."]
 collision_layer = 8
-collision_mask = 19
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
+collision_mask = 0
+motion_mode = 1
 
-[node name="GroundCollider" type="CollisionShape3D" parent="EnemyBat"]
+[node name="GroundCollider" type="CollisionShape3D" parent="Soul"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_vqs66")
+
+[node name="SoulFlameVFX" type="Node3D" parent="Soul"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Soul/SoulFlameVFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20999, 0)
+cast_shadow = 0
+amount = 1
+lifetime = 0.8
+randomness = 0.5
+fixed_fps = 15
+fract_delta = false
+local_coords = true
+mesh = SubResource("QuadMesh_ysuep")
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Soul"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hj7k2")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4rxtu")
+}
+script = ExtResource("1_hj7k2")
+idleAnim = "Sway"

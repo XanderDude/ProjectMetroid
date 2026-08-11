@@ -18,7 +18,7 @@ public partial class mantleState : State
 	
 	public override void PhysicsUpdate(float delta)
 	{
-		player.MoveAndCollide(Vector3.Zero);
+		pm.MoveAndCollide(Vector3.Zero);
 	}
 	
 	public override void HandleInput(InputEvent @event)
@@ -31,7 +31,7 @@ public partial class mantleState : State
 		
 		
 		if (@event.IsActionPressed("Jump")) {
-			player.Set("jumpQueued", true);
+			pm.Set("jumpQueued", true);
 			msm.TransitionTo("jumpState");
 		}
 

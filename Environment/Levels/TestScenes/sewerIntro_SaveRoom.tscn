@@ -1,0 +1,1066 @@
+[gd_scene load_steps=13 format=3 uid="uid://djyynu0w7dfoq"]
+
+[ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_sdjm4"]
+[ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_pne4x"]
+[ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="3_whw4g"]
+[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="4_y3jsu"]
+[ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="6_3p8si"]
+[ext_resource type="ArrayMesh" uid="uid://der10jf70rfjp" path="res://Environment/Models/StoneMeshes/stonePlatformMesh.res" id="7_yb31x"]
+[ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="8_ucabd"]
+[ext_resource type="PackedScene" uid="uid://c51ajww7vd1ce" path="res://Environment/Props/Lights/Light_Chandelier.tscn" id="9_5tyw2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6hvux"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mbcg4"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbcg4"]
+size = Vector3(12, 0.5, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[node name="wj1_SaveRoom" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+mesh_library = ExtResource("1_sdjm4")
+data = {
+"cells": PackedInt32Array(65532, 1, 1441828, 65534, 65535, 21, 65534, 0, 21, 65535, 0, 21, 65535, 65535, 21, 0, 65535, 21, 0, 0, 21, 1, 65535, 21, 1, 0, 21, 1, 1, 23, 0, 1, 23, 65534, 1, 23, 65535, 1, 23, 2, 1, 1048601, 65533, 1, 25, 2, 0, 1048599, 2, 65535, 1048599, 65533, 0, 1441815, 65533, 65535, 1441815, 65532, 65535, 655397, 65532, 0, 1441828, 3, 65535, 1441828, 3, 0, 1441828, 3, 1, 1441828, 3, 2, 1441828, 2, 2, 1441828, 1, 2, 1441830, 0, 2, 1441828, 65535, 2, 1441828, 65534, 2, 1441830, 65533, 2, 1441828, 65532, 2, 1441828, 65534, 65534, 13, 1, 65534, 13, 65535, 65534, 1, 0, 65534, 1, 65533, 65534, 1441815, 2, 65534, 1048599, 2, 65533, 1048603, 4, 65533, 27, 3, 65533, 1441828, 3, 65534, 1441828, 3, 65532, 655402, 4, 65534, 3, 4, 65535, 25, 4, 2, 1441794, 6, 65535, 14, 7, 65535, 2, 8, 65535, 2, 9, 65535, 2, 5, 65535, 4, 9, 0, 655384, 8, 0, 655364, 7, 0, 655362, 6, 0, 655374, 5, 0, 1441795, 4, 0, 1441817, 4, 1, 1441796, 3, 3, 655362, 2, 3, 655362, 1, 3, 655362, 0, 3, 655362, 65535, 3, 655362, 65534, 3, 655362, 65533, 3, 655362, 65532, 3, 655362, 65531, 3, 655362, 65530, 3, 655362, 65529, 3, 655374, 65533, 65533, 1441806, 65532, 65534, 1441828, 65532, 65533, 1441828, 65532, 65532, 1441828, 65533, 65532, 1441794, 65533, 65531, 27, 65532, 65531, 14, 65531, 65532, 1441828, 65530, 65532, 1441828, 65529, 65532, 1441828, 65531, 0, 1048578, 65531, 65535, 1048578, 65531, 65534, 1048578, 65531, 65533, 655384, 65530, 65533, 655374, 65530, 65531, 14, 65531, 65531, 2, 65529, 65531, 2, 65528, 65531, 2, 65527, 65531, 1048603, 65528, 65533, 655362, 65529, 65533, 655362, 65527, 65533, 655387, 65528, 65532, 655396, 65527, 65532, 1048596, 131068, 65531, 15, 131066, 65531, 15, 131069, 65533, 1441807, 131070, 65534, 15, 65537, 65534, 15, 196606, 65534, 18, 131073, 65534, 18, 196604, 65531, 18, 196602, 65531, 18, 196605, 65533, 1441810, 131071, 65534, 0, 65536, 65534, 0, 131067, 65531, 0, 131065, 65531, 0, 131064, 65531, 0, 131063, 65531, 1048581, 131069, 65532, 1441792, 131065, 65533, 655360, 131064, 65533, 655360, 131063, 65533, 655365, 131067, 65535, 1048576, 131067, 0, 1048576, 196599, 65531, 1048582, 196600, 65531, 9, 196601, 65531, 9, 196603, 65531, 9, 196605, 65532, 1441801, 196607, 65534, 9, 131072, 65534, 9, 131069, 65531, 5, 196605, 65531, 6, 65538, 65533, 1048581, 131074, 65533, 1048582, 131076, 65533, 6, 65540, 65533, 5, 65539, 65533, 15, 131075, 65533, 18, 131074, 65534, 1048611, 196605, 65534, 35, 65541, 65535, 8, 65540, 65534, 7, 131076, 65534, 11, 131077, 65535, 10, 196607, 65535, 29, 131072, 65535, 29, 196607, 0, 29, 196607, 1, 29, 131072, 1, 29, 131072, 0, 29, 131072, 2, 29, 196607, 2, 29, 131072, 3, 655369, 196607, 3, 655369, 131074, 65535, 29, 131074, 0, 29, 131076, 65535, 29, 131076, 0, 29, 131076, 1, 1441802, 131074, 1, 29, 131074, 2, 655389, 131076, 2, 1441801, 65542, 65535, 15, 131078, 65535, 18, 131078, 0, 655378, 65542, 0, 655375, 65543, 65535, 0, 65544, 65535, 0, 65545, 65535, 0, 65543, 0, 655360, 131079, 65535, 9, 131080, 65535, 9, 131079, 0, 655369, 131081, 65535, 9, 65544, 0, 655368, 131080, 0, 655370, 131081, 1, 655371, 65545, 1, 655367, 9, 1, 655363, 10, 1, 655396, 10, 0, 655396, 10, 65535, 1048601, 10, 65534, 1048590, 11, 0, 655396, 12, 1, 1441794, 11, 1, 655396, 12, 0, 1441794, 12, 65535, 1441815, 12, 2, 1441794, 9, 2, 1048578, 9, 3, 1048578, 12, 3, 1441794, 10, 2, 655398, 11, 2, 655398, 11, 3, 655396, 10, 3, 655396, 12, 65534, 1441806, 65548, 65534, 1441807, 65546, 65534, 1048591, 131082, 65534, 1048594, 131084, 65534, 1441810, 10, 65533, 1048603, 12, 65533, 27, 11, 65534, 655396, 11, 65532, 655402, 65546, 65533, 1048581, 65548, 65533, 5, 131082, 65533, 1048582, 131084, 65533, 6, 131083, 65533, 9, 65547, 65533, 0, 131083, 65534, 29, 131082, 65535, 1048611, 131084, 65535, 1441801, 131081, 0, 29, 131082, 0, 29, 131083, 0, 29, 131083, 65535, 29, 131082, 1, 29, 131083, 1, 29, 131084, 0, 1441801, 131084, 1, 1441801, 131084, 2, 1441801, 131084, 3, 1441801, 65548, 65535, 1441792, 65548, 0, 1441792, 65548, 1, 1441792, 65548, 2, 1441792, 65548, 3, 1441792, 65545, 3, 1048576, 65545, 2, 1048576, 131081, 2, 1048585, 131081, 3, 1048585, 131082, 3, 1048605, 131083, 3, 1048605, 131082, 2, 1048605, 131083, 2, 1048605, 9, 4, 655387, 12, 4, 1441819, 65545, 4, 655365, 65548, 4, 1441797, 131084, 4, 1441798, 131081, 4, 655366, 65547, 4, 655360, 65546, 4, 655360, 131083, 4, 655369, 131082, 4, 655369, 4, 3, 1441819, 131076, 3, 1441798, 131075, 3, 655369, 131074, 3, 655369, 196606, 3, 655369, 196605, 3, 655369, 196604, 3, 655369, 196603, 3, 655369, 196602, 3, 655369, 196601, 3, 655378, 65540, 3, 1441797, 65540, 1, 1441800, 65541, 0, 1441799, 131077, 0, 1441803, 65540, 2, 1441792, 65539, 3, 655360, 65538, 3, 655360, 65537, 3, 655360, 65536, 3, 655360, 131071, 3, 655360, 131070, 3, 655360, 131069, 3, 655360, 131068, 3, 655360, 131067, 3, 655360, 131066, 3, 655360, 131065, 3, 655375, 65531, 1, 1048601, 65531, 2, 1048612, 65530, 2, 1048612, 65529, 2, 1048612, 65529, 1, 14, 65530, 1, 2, 131066, 1, 0, 131065, 1, 15, 196601, 1, 18, 196602, 1, 9, 196603, 0, 1048585, 196603, 65535, 1048585, 196603, 65534, 1048585, 196602, 65533, 655378, 196601, 65533, 655369, 196600, 65533, 655369, 196599, 65533, 655366, 196603, 65533, 655395, 196603, 1, 1048611, 131066, 65533, 655375, 131067, 65534, 1048576, 196600, 65532, 29, 196601, 65532, 29, 196602, 65532, 29, 196599, 65532, 1048585, 196603, 65532, 29, 196604, 65533, 29, 196604, 65532, 29, 196604, 65534, 1441821, 196604, 65535, 1441821, 196605, 65535, 1441821, 196606, 65535, 655389, 196606, 0, 655389, 196606, 1, 655389, 131073, 0, 655389, 131073, 1, 655389, 131073, 2, 655389, 131073, 65535, 655389, 131075, 0, 655389, 131075, 1, 655389, 131075, 2, 655389, 131075, 65535, 655389, 131075, 65534, 655389, 196606, 2, 655389, 196605, 2, 655389, 196605, 1, 655389, 196605, 0, 655389, 196604, 0, 655389, 196604, 1, 655389, 196604, 2, 655389, 196603, 2, 655389, 196602, 2, 655389, 196601, 2, 655389, 131073, 3, 655369, 131063, 65532, 1048576, 65528, 3, 1441816, 65528, 2, 36, 65528, 1, 24, 65527, 1, 1048578, 65527, 2, 1048578, 131063, 2, 1048576, 131063, 1, 1048576, 196599, 2, 1048585, 196599, 1, 1048585, 196600, 2, 1048605, 196600, 1, 35, 65527, 3, 1048578, 131063, 3, 1048576, 196599, 3, 1048585, 65527, 4, 1048578, 131063, 4, 1048576, 196599, 4, 1048585, 65527, 0, 1048578, 131063, 0, 1048576, 196599, 0, 1048585, 65527, 65535, 1048578, 131063, 65535, 1048576, 196599, 65535, 1048585, 65527, 5, 1048578, 131063, 5, 1048576, 196599, 5, 1048585, 65528, 5, 1441794, 131064, 5, 1441792, 196600, 5, 1441801, 65528, 4, 1441794, 131064, 4, 1441792, 196600, 4, 1441801, 65528, 0, 1441794, 131064, 0, 1441792, 196600, 0, 1441801, 65528, 65535, 1441794, 131064, 65535, 1441792, 196600, 65535, 1441801, 196600, 3, 1441827, -4, 65535, 40, -65540, 65535, 40, -131076, 65535, 31, -131077, 65535, 29, -131077, 65534, 9, -131076, 65534, 9, -131077, 0, 655369, -131076, 0, 655369, -131075, 65535, 1441801, -131075, 0, 1441798, -131075, 65534, 6, -196613, 65534, 1, -196612, 65534, 1, -196611, 65534, 1, -196611, 65535, 1441793, -196611, 0, 1441793, -196612, 0, 655361, -196613, 0, 655361, 11, 65535, 655396, 11, 65533, 655396, -2, 2, 40, -65535, 2, 40, -65523, 65535, 1048576, 10, 4, 655385, 11, 4, 1441817, 10, 5, 28, -65524, 5, 0, 11, 5, 28, -65527, 5, 0, -65531, 1, 1048581, -65528, 1, 5, -65530, 1, 0, -65529, 1, 0, -65528, 2, 1441792, -65528, 3, 1441792, -65531, 2, 1048576, -65531, 3, 1048576, -65532, 4, 0, -65533, 4, 0, -65534, 4, 0, -65535, 4, 0, -65536, 4, 0, -1, 4, 0, -2, 4, 0, -6, 4, 0, -7, 4, 0, -7, 5, 1048576, -65528, 4, 1441792, -65523, 4, 1048576, -65523, 3, 1048576, -65523, 2, 1048576, -65523, 1, 1048576, -65523, 0, 1048576, -65523, 65534, 1048576, -65523, 65533, 1048576, -10, 65535, 1441792, -10, 0, 1441792, -10, 1, 1441792, -10, 2, 1441792, -10, 3, 1441792, -10, 4, 1441792, -10, 5, 1441792, -65522, 7, 24, -65521, 8, 41, -65520, 8, 41, -65520, 9, 41, -65519, 8, 41, -65518, 8, 41, -65517, 8, 41, -65516, 8, 41, -65515, 8, 41, -65521, 7, 21, -65521, 6, 21, -65520, 7, 21, -65519, 7, 21, -65518, 7, 21, -65517, 7, 21, -65516, 7, 21, -65515, 7, 21, -65520, 6, 21, -65519, 6, 21, -65518, 6, 21, -65517, 6, 21, -65516, 6, 21, -65515, 6, 21, -65522, 6, 24, -65514, 7, 43, -65514, 9, 2, -65512, 8, 1, -65513, 9, 1, -65512, 9, 1, -65511, 9, 1)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="CeilingCollider" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 5.75, 0)
+visible = false
+transparency = 1.0
+mesh = SubResource("BoxMesh_6hvux")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CeilingCollider"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CeilingCollider/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_mbcg4")
+
+[node name="FloorCollider" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_mbcg4")
+
+[node name="stoneWallBack" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+visible = false
+
+[node name="StonePillarMesh" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh2" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh3" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh5" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh6" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallBack"]
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh3" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh6" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh7" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh13" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh14" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh15" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWindowMesh" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWindowMesh2" type="MeshInstance3D" parent="stoneWallBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="stoneWallLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+visible = false
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh3" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh4" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh6" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh7" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StonePillarMesh" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh2" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh3" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh21" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.0005, 2.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh22" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.00025, 4.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh23" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000498533, 2.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh24" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000249386, 4.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh25" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.9995, 2.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh26" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.99975, 4.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh27" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.9995, 2.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh28" type="MeshInstance3D" parent="stoneWallLeft"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.99975, 4.00019)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="stoneWallRight" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 0, 0)
+visible = false
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh3" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh4" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh6" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh7" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 2)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 4)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("")
+
+[node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh7" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, -2, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh5" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 2, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StonePillarMesh6" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 4, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("3_whw4g")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh21" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.0005, -3.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh22" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -2.00025, -1.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh23" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000498533, -3.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh24" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, -0.000249386, -1.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh25" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.9995, -3.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh26" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 1.99975, -1.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh27" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.9995, -3.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh28" type="MeshInstance3D" parent="stoneWallRight"]
+transform = Transform3D(6.4064e-05, 0.000221156, -1, 0.000124653, 1, 0.00022117, 1, -0.000124678, 6.4016e-05, -0.1, 3.99975, -1.99981)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="FloorGroup" type="Node3D" parent="."]
+visible = false
+
+[node name="StoneFloorMesh" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh2" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh3" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh4" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh5" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh6" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh7" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh8" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh9" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh10" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh11" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh12" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh13" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh14" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh15" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh16" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh17" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh18" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh19" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StoneFloorMesh20" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("6_3p8si")
+skeleton = NodePath("../..")
+
+[node name="StonePlatformMesh" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("7_yb31x")
+
+[node name="StonePlatformMesh2" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("7_yb31x")
+
+[node name="StonePlatformMesh3" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("7_yb31x")
+
+[node name="StonePlatformMesh4" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("7_yb31x")
+
+[node name="StonePlatformMesh5" type="MeshInstance3D" parent="FloorGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("7_yb31x")
+
+[node name="CeilingGroup" type="Node3D" parent="."]
+visible = false
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5.5, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh2" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh3" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh4" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh5" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh21" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5.5, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh22" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh23" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh24" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh25" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh6" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5.5, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh7" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh8" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh9" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh10" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh11" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5.5, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh12" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh13" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh14" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh15" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh16" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5.5, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh17" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh18" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh19" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh20" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh26" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5, 6, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh27" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3, 6, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh28" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1, 6, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh29" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 6, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh30" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, 6, 1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh31" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5, 6, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh32" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3, 6, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh33" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1, 6, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh34" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 6, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh35" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, 6, 3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh36" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5, 6, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh37" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3, 6, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh38" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1, 6, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh39" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 6, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh40" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, 6, -1)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh41" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5, 6, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh42" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3, 6, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh43" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1, 6, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh44" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 6, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh45" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, 6, -3)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh46" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 5, 6, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh47" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 3, 6, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh48" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1, 6, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh49" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 6, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="StoneCeilingMesh50" type="MeshInstance3D" parent="CeilingGroup"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, 6, -5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("8_ucabd")
+skeleton = NodePath("")
+
+[node name="FrontWall" type="Node3D" parent="."]
+visible = false
+
+[node name="StoneWallMesh" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh3" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh10" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh6" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh7" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh9" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh16" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh12" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh13" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh4" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, -4, -2.0005, 5.00026)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh17" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, -2, -2.00025, 5.00013)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh18" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 0, -2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh19" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 2, -1.99975, 4.99987)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh20" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(1, -0.000124678, 6.40597e-05, 0.000124653, 1, 0.00022117, -6.41077e-05, -0.000221156, 1, 4, -1.9995, 4.99974)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh14" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 2, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh15" type="MeshInstance3D" parent="FrontWall"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 4, 5)
+material_override = ExtResource("2_pne4x")
+mesh = ExtResource("4_y3jsu")
+skeleton = NodePath("../..")
+
+[node name="Decorations" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.108218, 0)
+visible = false
+radius = 0.986816
+height = 0.331055
+material = SubResource("StandardMaterial3D_nilwv")
+
+[node name="LightChandelier" parent="Decorations" instance=ExtResource("9_5tyw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)

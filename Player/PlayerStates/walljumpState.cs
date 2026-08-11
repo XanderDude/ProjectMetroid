@@ -14,9 +14,9 @@ public partial class walljumpState : State
 
 	private void CheckDirection() 
 	{
-		KinematicCollision3D collision = player.GetSlideCollision(0);
+		KinematicCollision3D collision = pm.GetSlideCollision(0);
 		Node3D collider = collision.GetCollider() as Node3D;
-		airMaxSpeed *= Mathf.Sign(player.GlobalPosition.X - collider.GlobalPosition.X);
+		airMaxSpeed *= Mathf.Sign(pm.GlobalPosition.X - collider.GlobalPosition.X);
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).RotateMesh(Mathf.Sign(airMaxSpeed));
 		pm.SpawnJumpCloud(0.8f, -45f * Mathf.Sign(airMaxSpeed));
 	}
@@ -26,13 +26,13 @@ public partial class walljumpState : State
 		if (jumpHeight < jumpMaxHeight)
 		{
 			velocity.Y = jumpVelocity; //continously set upward velocity
-			jumpHeight = player.GlobalPosition.Y - startPosition;
+			jumpHeight = pm.GlobalPosition.Y - startPosition;
 			GD.Print("Jump Height: " + jumpHeight);
 			return true;
 		}
 		else
 		{
-			velocity.Y = player.Velocity.Y/2;
+			velocity.Y = pm.Velocity.Y/2;
 			pm.jumpQueued = false;
 			jumpHeight = jumpMaxHeight; //clamp
 			return false;
@@ -41,7 +41,7 @@ public partial class walljumpState : State
 	private void CancelUpwardVelocity()
     {
 		pm.jumpQueued = false;
-        player.Velocity = new Vector3(player.Velocity.X, player.Velocity.Y/2, player.Velocity.Z);
+        pm.Velocity = new Vector3(pm.Velocity.X, pm.Velocity.Y/2, pm.Velocity.Z);
 		GD.Print("Jump velocity Cancelled");
     }
 
@@ -52,7 +52,7 @@ public partial class walljumpState : State
 		SoundFriend.Play("player_jump_SFX");
 		pm.jumpQueued = true;
 		jumpHeight = 0.0f;
-		startPosition = player.GlobalPosition.Y;
+		startPosition = pm.GlobalPosition.Y;
 		pm.slideBoost = true; //player must be airborne, enable boost
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Airborne(true);
 	}
@@ -69,16 +69,16 @@ public partial class walljumpState : State
 			CancelUpwardVelocity();
 			pm.jumpQueued = false;
 		}
-		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((player.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity();
+		if (pm.jumpQueued && jumpHeight != 0 && Mathf.Floor(jumpHeight * 1000) == Mathf.Floor((pm.GlobalPosition.Y - startPosition)* 1000)) CancelUpwardVelocity();
 		HandleAirMovement(delta);
-		player.MoveAndSlide();
+		pm.MoveAndSlide();
 	}
 
 	private void HandleAirMovement(float delta)
 	{
-		Vector3 velocity = player.Velocity;
+		Vector3 velocity = pm.Velocity;
 
-		if ((bool)player.Get("jumpQueued") && IsAscending(delta, ref velocity))
+		if ((bool)pm.Get("jumpQueued") && IsAscending(delta, ref velocity))
 		{ //jump queued set true outside this state. if the player releases jump, the bool is set false 
 			velocity.X = airMaxSpeed;
 			velocity.Y -= _gravity * delta;
@@ -91,7 +91,7 @@ public partial class walljumpState : State
 		
 		if (velocity.Y < 0) msm.TransitionTo("jumpState");
 		
-		player.Velocity = velocity;
+		pm.Velocity = velocity;
 	}
 
 	public override void HandleInput(InputEvent @event)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://chnmuhpj3q4yq"]
+
+[ext_resource type="Script" uid="uid://08q4ywrpp45l" path="res://Friends/RoomFriend/RoomFriend.cs" id="1_ntg3a"]
+
+[sub_resource type="Animation" id="Animation_ukxtb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_87avy"]
+resource_name = "fade_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_khxmk"]
+resource_name = "fade_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dh7ne"]
+_data = {
+&"RESET": SubResource("Animation_ukxtb"),
+&"fade_black": SubResource("Animation_87avy"),
+&"fade_out": SubResource("Animation_khxmk")
+}
+
+[sub_resource type="Gradient" id="Gradient_66ymm"]
+offsets = PackedFloat32Array(0.805369, 0.993289, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4rfxh"]
+gradient = SubResource("Gradient_66ymm")
+
+[node name="RoomFriend" type="Node3D" node_paths=PackedStringArray("fadeRect")]
+script = ExtResource("1_ntg3a")
+fadeRect = NodePath("CanvasLayer/TextureRect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dh7ne")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 652.0
+offset_bottom = 358.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_4rfxh")

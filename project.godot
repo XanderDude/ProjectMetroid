@@ -16,14 +16,15 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="ProjectMetroid"
-run/main_scene="uid://d0k62aimg164v"
+run/main_scene="uid://spk3443rahc2"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-SoundFriend="*res://SoundFriend/SoundFriend.tscn"
+SoundFriend="*res://Friends/SoundFriend/SoundFriend.tscn"
+RoomFriendAutoLoad="*res://Friends/RoomFriend/RoomFriendAutoLoad.tscn"
 
 [display]
 
@@ -164,7 +165,6 @@ forgemode={
 [layer_names]
 
 3d_render/layer_2="Player"
-3d_render/layer_5="CameraBoundMesh"
 3d_physics/layer_1="Ground"
 3d_physics/layer_2="Wall"
 3d_physics/layer_3="Player"

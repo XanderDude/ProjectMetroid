@@ -140,7 +140,6 @@ debug_shape_custom_color = Color(0.636249, 0.571354, 9.62615e-07, 1)
 [node name="MovementStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_yifbt")
-asmState = NodePath("../AttackStateMachine")
 initialState = NodePath("groundedState")
 
 [node name="groundedState" type="Node" parent="MovementStateMachine"]
@@ -215,27 +214,27 @@ HangingStateName = "Hanging"
 physicsCollider = NodePath("../PhysicsCollider")
 
 [node name="Skeleton3D" parent="PlayerMesh" index="1"]
-bones/0/position = Vector3(0.017837, 0.895264, -0.0036815)
-bones/0/rotation = Quaternion(0.544345, 0.451017, 0.449116, 0.546413)
+bones/0/position = Vector3(0.0178309, 0.895151, -0.0149731)
+bones/0/rotation = Quaternion(0.541157, 0.453918, 0.446187, 0.549567)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(-0.0221096, 0.104888, -0.00578483, 0.994221)
+bones/1/rotation = Quaternion(0.0262928, 0.10448, -0.0107757, 0.994121)
 bones/3/position = Vector3(0.035671, 0.0139758, 1.63425e-15)
 bones/3/rotation = Quaternion(2.77556e-17, 8.32667e-17, 9.71445e-16, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/position = Vector3(0.117899, 0.0191126, -4.79616e-16)
-bones/4/rotation = Quaternion(0.0355499, 0.0253707, 0.0125897, 0.998967)
-bones/7/position = Vector3(0.0392687, 0.0601812, -0.00042666)
-bones/7/rotation = Quaternion(0.493053, 0.502188, 0.449265, -0.550335)
-bones/9/rotation = Quaternion(0.376247, -0.0502672, 0.924342, 0.0387705)
+bones/4/rotation = Quaternion(0.110426, 0.0284411, 0.064415, 0.991387)
+bones/7/position = Vector3(0.0365843, 0.0597618, 0.00039714)
+bones/7/rotation = Quaternion(0.516733, 0.482669, 0.479888, -0.519351)
+bones/9/rotation = Quaternion(0.366452, -0.0958401, 0.925483, 0.00310778)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.274528, 0.0180077, 0.02064)
-bones/10/rotation = Quaternion(0.524437, 0.561498, -0.460424, 0.444631)
+bones/10/rotation = Quaternion(0.504167, 0.574234, -0.421017, 0.488687)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.00688488, -0.515301, -0.174588, 0.839009)
-bones/13/rotation = Quaternion(0.0807958, -0.100581, 0.0571842, 0.989993)
+bones/11/rotation = Quaternion(0.010217, -0.518077, -0.172029, 0.837793)
+bones/13/rotation = Quaternion(0.0576112, -0.10352, 0.0893171, 0.988932)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.274528, -0.0180077, -0.0206399)
-bones/14/rotation = Quaternion(0.0955904, 0.0210655, -0.0986508, 0.990296)
+bones/14/rotation = Quaternion(0.0132733, 0.0462006, -0.192181, 0.980182)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(-0.247387, 0.0204223, -0.00866383)
 bones/15/rotation = Quaternion(-2.77556e-17, -1.66533e-16, -2.22045e-16, 1)
@@ -243,10 +242,10 @@ bones/20/position = Vector3(0.118946, -0.0253461, 0.0711915)
 bones/20/rotation = Quaternion(0.0901278, 0.701339, 0.701339, -0.0901278)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.386299, -0.0150746, -0.00780582)
-bones/21/rotation = Quaternion(0.996567, 0.0409726, -0.0278916, 0.0663092)
+bones/21/rotation = Quaternion(0.998406, 0.0361336, -0.0284515, 0.0327314)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/position = Vector3(0.556281, 0.0174909, -0.0344342)
-bones/22/rotation = Quaternion(0.504941, -0.467549, 0.521021, 0.504945)
+bones/22/rotation = Quaternion(0.494039, -0.456966, 0.532052, 0.513837)
 bones/22/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.509845, -0.0240002, -0.0837026, 0.855848)
 bones/24/scale = Vector3(1, 1, 1)
@@ -258,7 +257,7 @@ bones/26/rotation = Quaternion(0.555768, -0.433008, 0.436847, 0.559277)
 bones/26/scale = Vector3(1, 1, 1)
 
 [node name="Crossbow" parent="PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0928093, -0.836933, -0.539379, -0.338175, 0.483019, -0.80767, 0.936496, 0.257364, -0.238201, -0.354211, 1.09675, 0.00369053)
+transform = Transform3D(0.0280922, -0.889762, -0.45556, -0.190126, 0.442664, -0.8763, 0.981358, 0.111231, -0.156731, -0.361111, 1.0984, -0.0140919)
 bone_idx = 17
 
 [node name="ArrowSpawnLocation" type="Node3D" parent="PlayerMesh/Skeleton3D/Crossbow" index="0"]
@@ -276,11 +275,11 @@ visible = false
 VFXNodes = []
 
 [node name="ArrowNormal" parent="PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0928093, -0.836933, -0.539379, -0.338175, 0.483019, -0.80767, 0.936496, 0.257364, -0.238201, -0.416245, 1.1112, 0.0150872)
+transform = Transform3D(0.0280922, -0.889762, -0.45556, -0.190126, 0.442664, -0.8763, 0.981358, 0.111231, -0.156731, -0.424814, 1.10905, -0.0101756)
 bone_idx = 18
 
 [node name="ArrowBomb" parent="PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0928093, -0.836933, -0.539379, -0.338175, 0.483019, -0.80767, 0.936496, 0.257364, -0.238201, -0.416245, 1.1112, 0.0150872)
+transform = Transform3D(0.0280922, -0.889762, -0.45556, -0.190126, 0.442664, -0.8763, 0.981358, 0.111231, -0.156731, -0.424814, 1.10905, -0.0101756)
 bone_idx = 19
 
 [node name="AnimationPlayer" parent="PlayerMesh" index="2"]

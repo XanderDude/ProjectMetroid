@@ -1,19 +1,20 @@
-[gd_scene load_steps=15 format=4 uid="uid://dx6inaiw5kq1u"]
+[gd_scene load_steps=13 format=4 uid="uid://dx6inaiw5kq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_irt8q"]
-[ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_nx6tq"]
 [ext_resource type="Shader" uid="uid://bbq1tb07i480v" path="res://Environment/Shaders/ps1Jitter.gdshader" id="2_2ht27"]
-[ext_resource type="Texture2D" uid="uid://ch7n0dvwosxta" path="res://Environment/Materials/ArchitectureStone_Albedo.png" id="3_amw8g"]
 [ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="3_bauuh"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="4_ecxvq"]
 [ext_resource type="ArrayMesh" uid="uid://blvpfjwutk0m4" path="res://Environment/Models/StoneMeshes/stoneCeilingHalfMesh.res" id="5_k4pst"]
 [ext_resource type="ArrayMesh" uid="uid://cnpooxopt4nqa" path="res://Environment/Models/StoneMeshes/stoneFloorHalfMesh.res" id="6_2ht27"]
+[ext_resource type="PackedScene" uid="uid://d2mjye7yxifa3" path="res://Interactables/door_base.tscn" id="8_nx6tq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nx6tq"]
 render_priority = 0
 shader = ExtResource("2_2ht27")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("3_amw8g")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/brightness = 0.5
+shader_parameter/contrast = 1.0
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(640, 360)
@@ -55,14 +56,10 @@ shadow_mesh = SubResource("ArrayMesh_4huis")
 resource_local_to_scene = true
 size = Vector3(1, 4, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
-size = Vector3(1, 2.00586, 2.01587)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_vemgm"]
 size = Vector3(0.2, 2, 2)
 
 [node name="Wall_DoorWay" type="Node3D" groups=["doors"]]
-script = ExtResource("1_nx6tq")
 
 [node name="StoneDoorFrameMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.28372e-08, 0, 1, 0, 1, 0, -0.98, 0, -4.37114e-08, 0, 0, 0)
@@ -133,14 +130,6 @@ mesh = ExtResource("6_2ht27")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -1)
 mesh = ExtResource("5_k4pst")
 
-[node name="DoorTransport" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTransport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.01702, 0)
-shape = SubResource("BoxShape3D_nx6tq")
-
 [node name="BackupCollider" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1, 0)
 collision_layer = 16
@@ -150,5 +139,4 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_vemgm")
 debug_color = Color(0.666667, 0.701961, 0, 0.407843)
 
-[connection signal="body_entered" from="DoorTransport" to="." method="_on_door_transport_body_entered"]
-[connection signal="body_exited" from="DoorTransport" to="." method="_on_door_transport_body_exited"]
+[node name="DoorMechanics" parent="." instance=ExtResource("8_nx6tq")]

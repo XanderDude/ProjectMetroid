@@ -38,7 +38,6 @@ public partial class AttackStateMachine : Node
 			{
 				_states[node.Name] = s;
 				s.asm = this;  //assign self to the states
-				s.player = Parent;
 				s.pm = ParentManager;
 				s.parentMesh = parentMesh;
 				s.Ready();

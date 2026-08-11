@@ -38,26 +38,26 @@ public partial class slideState : State
 		}
 		//parentMesh.RotationDegrees = new Vector3(0, Mathf.Abs(parentMesh.RotationDegrees.Y) * slideDirection, 0); //rotate mesh
 		parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(true);
-		player.ApplyFloorSnap();
+		pm.ApplyFloorSnap();
 	}
 
 	public override void Exit()
 	{
-		player.Set(PlayerManager.PropertyName.slideBoost, false);
+		pm.Set(PlayerManager.PropertyName.slideBoost, false);
 		if (crouchQueued) parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(false);
 		else parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Sliding(false); //return to grounded state
 	}
 	public override void PhysicsUpdate(float delta)
 	{
 		slideTimer += delta;
-		player.ApplyFloorSnap();
-		if (!pm.groundCheck.IsColliding() && !player.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
+		pm.ApplyFloorSnap();
+		if (!pm.groundCheck.IsColliding() && !pm.IsOnFloor() && slideTimer > 0.05f) //immediately switch to jump state
 		{
 			msm.TransitionTo("jumpState");
 			return;
 		}
 
-		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(player.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
+		if ((Mathf.Sign(pm.aimDirection.X) == slideDirection * -1 || Mathf.Abs(pm.Velocity.X) < .01f) && !Input.IsActionPressed("Aim") && slideTimer >= slideMinTime)
 		{ //if player is holding opposite direction of slide or there's no movement, stop sliding
 			if (pm.vertColCheck != null && pm.vertColCheck.VertCheckIsColliding())// || Mathf.Sign(pm.aimDirection.X) == slideDirection * -1)
 			{
@@ -78,12 +78,12 @@ public partial class slideState : State
 			else msm.TransitionTo("groundedState"); //switch to grounded state
 		}
 		HandleSlidingMovement(delta);
-		player.MoveAndSlide();
+		pm.MoveAndSlide();
 	}
 
 	private void HandleSlidingMovement(float delta)
 	{
-		Vector3 velocity = player.Velocity;
+		Vector3 velocity = pm.Velocity;
 
 		if (pm.slideBoost)
 		{
@@ -96,7 +96,7 @@ public partial class slideState : State
 
 		//velocity.X = Mathf.MoveToward(slideMaxSpeed, 0, delta + slideDeceleration);
 		velocity.X = currentSlideSpeed;
-		player.Velocity = velocity; 
+		pm.Velocity = velocity; 
 	}
 
 	public override void HandleInput(InputEvent @event)
@@ -109,7 +109,7 @@ public partial class slideState : State
         	}
 			else
             {
-				player.Set(PlayerManager.PropertyName.jumpQueued, true);
+				pm.Set(PlayerManager.PropertyName.jumpQueued, true);
 				msm.TransitionTo("jumpState");
 			}
 		}

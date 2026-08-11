@@ -137,7 +137,7 @@ public partial class attackState : State
         {
             direction = new(pm.facingDirection, 0);
         }
-		else if (direction == Vector2.Zero || (player.IsOnFloor() && direction == new Vector2(0, -1)))
+		else if (direction == Vector2.Zero || (pm.IsOnFloor() && direction == new Vector2(0, -1)))
 		{
 			direction = new(pm.facingDirection, direction.Y);
 		}
@@ -183,7 +183,7 @@ public partial class attackState : State
 			return;
 		}
 		
-		player.GetParent().AddChild(arrow);
+		pm.AddChild(arrow);
 		arrow.GlobalPosition = new(arrowSpawnLoc.GlobalPosition.X, arrowSpawnLoc.GlobalPosition.Y, 0);
 
 		Vector2 shootDirection = GetShootDirection();

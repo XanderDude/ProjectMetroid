@@ -59,7 +59,6 @@ public partial class RavenStateMachine : Node
                 s.rsm = this;
                 s.raven = _raven;
                 s.pm = PlayerManager;
-                s.player = Parent;
                 s.parentMesh = parentMesh;
                 s.Ready();
                 s.Exit();

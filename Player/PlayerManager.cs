@@ -5,24 +5,26 @@ public partial class PlayerManager : CharacterBody3D
 {
     [Export] public NodePath playerMeshPath = "%PlayerMesh";
 
+	[Export] private ShaderMaterial mainMat, weaponMat;
+
+	[Export] public VerticalCollisionCheck vertColCheck;
+	[Export] public ShapeCast3D groundCheck, forwardCheck;
+
+	[Export] private float invulnTimer = 1f;
+
 	public bool jumpQueued;
 	public bool slideQueued;
 	public bool slideBoost;
 
 	public Vector3 knockbackVelocity = Vector3.Zero;
 	public bool isDead = false;
-	public bool isPressed = false; 
-	public bool inwater = false;
 
-	public bool movementlocked = false;
-	[Export] private ShaderMaterial mainMat, weaponMat;
+
 	private float alpha = 0f;
 
 	public Vector2 aimDirection = Vector2.Right;
 	public bool noAimDirection;
 	public int facingDirection = 1; //1 is right, -1 is left
-	[Export] public VerticalCollisionCheck vertColCheck;
-	[Export] public ShapeCast3D groundCheck, forwardCheck;
 
 	private int health = 100;
 	[Export] public int Health
@@ -36,13 +38,12 @@ public partial class PlayerManager : CharacterBody3D
 			if (health <= 0)
 			{
 				health = 0;
-				isDead = true;
+				StateMachine.TransitionTo("deathState");
 			}
 		}
 	}
 
-	[Export] public bool canBeDamaged = true;
-	[Export] private float invulnTimer = 1f;
+	public bool canBeDamaged = true;
 	private float _invulnTimer;
 	private MovementStateMachine _movementStateMachine;
 
@@ -77,15 +78,12 @@ public partial class PlayerManager : CharacterBody3D
 
 	public override void _Ready()
 	{
-		//Input.GetActionStrength
-		
 		_invulnTimer = invulnTimer;
 		invulnTimer = 0;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (isDead) StateMachine.TransitionTo("deathState");
 		forwardCheck.TargetPosition = new Vector3(Mathf.Abs(forwardCheck.TargetPosition.X) * facingDirection, 0, 0);
 	}
 	

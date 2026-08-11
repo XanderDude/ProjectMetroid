@@ -139,8 +139,7 @@ public partial class aggroStateWIP : State
 		GD.Print("Parry success!");
 		substate = SubStateParry.KNOCKBACK; // stops UpdateLunge from running
 
-        if (GameFriend.gameinstance?.camera != null)
-            GameFriend.gameinstance.camera.ZoomTo(ZOOM_DISTANCE, 0.10f);
+        
             var tweene = CreateTween().SetIgnoreTimeScale(true);
             GameFriend.gameinstance.player.LockMovement(true);
             tweene.TweenProperty(Engine.Singleton, "time_scale", 0.2, 0.1);
@@ -162,8 +161,6 @@ public partial class aggroStateWIP : State
 		tween.TweenCallback(Callable.From(() =>
 		{
 			if (IsInstanceValid(ec))
-            if (GameFriend.gameinstance?.camera != null)
-            GameFriend.gameinstance.camera.ZoomTo(ORIGINAL_CAMERA_DISTANCE, 0.01f);
             
 				esm.TransitionTo("patrolState");
 		}));
