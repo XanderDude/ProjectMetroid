@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cdkkcnq7voels"]
+[gd_scene load_steps=27 format=4 uid="uid://cdkkcnq7voels"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_46mkf"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_1tjg6"]
@@ -23,6 +23,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3yoy"]
 size = Vector3(26, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46mkf"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tjg6"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xgeom"]
 _surfaces = [{
@@ -163,8 +171,22 @@ debug_fill = false
 [node name="Wall_DoorWay" parent="Interactable/SideWalls" instance=ExtResource("2_1tjg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
 
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_46mkf")
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay" index="17"]
+player_orientation = 0
+DoorNumber = 7
+
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("2_1tjg6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
+
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay1/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_1tjg6")
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay1" index="17"]
+player_orientation = 1
+DoorNumber = 6
 
 [node name="stoneWall12" type="MeshInstance3D" parent="Interactable/SideWalls"]
 transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -12, -2, 0)
@@ -1157,3 +1179,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85237, -0.0819313, -0.9230
 
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_xo3d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[editable path="Interactable/SideWalls/Wall_DoorWay"]
+[editable path="Interactable/SideWalls/Wall_DoorWay/DoorMechanics"]
+[editable path="Interactable/SideWalls/Wall_DoorWay1"]
+[editable path="Interactable/SideWalls/Wall_DoorWay1/DoorMechanics"]
