@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0m3j13d130i7"]
+[gd_scene load_steps=11 format=3 uid="uid://b0m3j13d130i7"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_xl5e1"]
 [ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="2_aqeyy"]
+[ext_resource type="PackedScene" uid="uid://qjngdierwsy2" path="res://Interactables/LingeringSoulLantern.tscn" id="2_klfln"]
+[ext_resource type="PackedScene" uid="uid://bnfrhbrlbmndh" path="res://Interactables/DriftingSoul.tscn" id="3_a45e5"]
 [ext_resource type="PackedScene" uid="uid://35q544anjhdq" path="res://Interactables/Cages/movingCage_Medium.tscn" id="3_klfln"]
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="4_a45e5"]
+[ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="4_klfln"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="5_qs4q8"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="6_vpg12"]
 
@@ -20,7 +23,13 @@ text = "Sewer1_8
 "
 
 [node name="CSGMesh3D81" type="CSGMesh3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 7, 0, 0, 0, 2, 16.4838, -18.9426, 0)
+transform = Transform3D(2, 0, 0, 0, 7, 0, 0, 0, 2, 15.9838, -18.9426, 0)
+use_collision = true
+collision_layer = 2
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D82" type="CSGMesh3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 7, 0, 0, 0, 2, 20.9838, -18.9426, 0)
 use_collision = true
 collision_layer = 2
 mesh = SubResource("BoxMesh_8x5tc")
@@ -108,23 +117,33 @@ transform = Transform3D(0.517638, -5.79556, 0, 1.93185, 1.55291, 0, 0, 0, 2, -14
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
-[node name="LingeringSoul" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4838, 1.55741, 0)
+[node name="LingeringSoulLantern" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 1.5, 0)
 
-[node name="LingeringSoul2" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9838, -5.44259, 0)
+[node name="DriftingSoul" parent="." instance=ExtResource("3_a45e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -7, 0)
 
 [node name="LingeringSoul3" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0162, -6.44259, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3032, -2.99644, 0)
 
-[node name="LingeringSoul4" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0162, 3.55741, 0)
+[node name="LingeringSoulLantern2" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -6.5, 0)
 
-[node name="LingeringSoul5" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983757, 6.55741, 0)
+[node name="LingeringSoulLantern3" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2.5, 0)
 
-[node name="LingeringSoul6" parent="." instance=ExtResource("2_aqeyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48376, 9.05741, 0)
+[node name="LingeringSoulLantern6" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -2.5, 0)
+
+[node name="LingeringSoulLantern4" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 0)
+
+[node name="ChainLongMesh5" type="MeshInstance3D" parent="LingeringSoulLantern4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 0)
+mesh = ExtResource("4_klfln")
+
+[node name="LingeringSoulLantern5" parent="." instance=ExtResource("2_klfln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 9, 0)
 
 [node name="MovingCage_Medium3" parent="." instance=ExtResource("3_klfln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98376, 13.0574, -0.5)
@@ -135,7 +154,7 @@ destination = Vector3(0, -14, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.48376, 11.5574, 0)
 waitToReactivate = true
 oneShotSwitch = true
-switchedObjects = [NodePath("")]
+switchedObjects = [NodePath("../MovingCage_Medium3")]
 
 [node name="StonePillar" parent="." instance=ExtResource("5_qs4q8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, -3)
@@ -201,4 +220,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -2.5, -1)
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -26, 3, -1)
 
 [node name="StonePillar4" parent="." instance=ExtResource("6_vpg12")]
-transform = Transform3D(1, 0, 0, 0, 3.5, 0, 0, 0, 1, 19.5, -12, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, -12.5, -1)
+
+[node name="StonePillar23" parent="." instance=ExtResource("6_vpg12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, -6.5, -1)
+
+[node name="StonePillar24" parent="." instance=ExtResource("6_vpg12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, -6.5, -1)
+
+[node name="StonePillar25" parent="." instance=ExtResource("6_vpg12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, -4.5, -1)
+
+[editable path="LingeringSoulLantern4"]
