@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfv7vfxl0ff8u"]
+[gd_scene load_steps=17 format=3 uid="uid://bfv7vfxl0ff8u"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_2cev0"]
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_f7hsf"]
@@ -19,6 +19,14 @@ size = Vector3(19, 0.5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f7hsf"]
 size = Vector3(4, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lt58l"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raaho"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
 albedo_color = Color(1, 1, 0, 1)
@@ -859,12 +867,22 @@ skeleton = NodePath("")
 
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_vd2c5")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-orientation = 0
+
+[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_lt58l")
+
+[node name="DoorMechanics" parent="stoneWallRight/Wall_DoorWay2" index="17"]
+player_orientation = 1
 DoorNumber = 8
 
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_vd2c5")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 6, 3.49691e-07)
-orientation = 1
+
+[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_raaho")
+
+[node name="DoorMechanics" parent="stoneWallRight/Wall_DoorWay3" index="17"]
+player_orientation = 1
 DoorNumber = 9
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
@@ -1935,3 +1953,6 @@ material = SubResource("StandardMaterial3D_nilwv")
 
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_0et23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[editable path="stoneWallRight/Wall_DoorWay2"]
+[editable path="stoneWallRight/Wall_DoorWay3"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=52 format=4 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="9_yhgre"]
 [ext_resource type="ArrayMesh" uid="uid://b3ghn1a5lir6p" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="10_uppss"]
 [ext_resource type="ArrayMesh" uid="uid://bvwnj64yutec" path="res://Environment/Models/StoneMeshes/stoneWallDestroyedMesh.res" id="11_c64d4"]
-[ext_resource type="PackedScene" uid="uid://dhrd3n0oqqhuk" path="res://Environment/RoomPieces/Wood/WoodDoorWay.tscn" id="12_xsxld"]
 [ext_resource type="ArrayMesh" uid="uid://djgltj2rthdqi" path="res://Environment/Models/StoneMeshes/stone2x2StairsMesh.res" id="13_x557r"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="14_6jjw1"]
 [ext_resource type="Shader" uid="uid://dc4yhxl60u45" path="res://Environment/Shaders/ps1JitterNoAmbientLighting.gdshader" id="14_g2sos"]
@@ -84,10 +83,6 @@ data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0avxc"]
 data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 2, 0, 1, 2, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 1, 2, 0, 1, 2, 0, 0, 2, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 2, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q8u21"]
-resource_local_to_scene = true
-size = Vector3(0.2, 14, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7bwnk"]
 size = Vector3(16, 0.5, 2)
@@ -498,22 +493,22 @@ debug_color = Color(0.665, 0.7, 0, 1)
 [node name="StoneWallMesh8" type="MeshInstance3D" parent="NavigationRegion3D/Secret1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 mesh = ExtResource("4_nbnte")
-skeleton = NodePath("../../Wall_DoorWay2")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh9" type="MeshInstance3D" parent="NavigationRegion3D/Secret1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 mesh = ExtResource("4_nbnte")
-skeleton = NodePath("../../Wall_DoorWay2")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh10" type="MeshInstance3D" parent="NavigationRegion3D/Secret1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 1)
 mesh = ExtResource("4_nbnte")
-skeleton = NodePath("../../Wall_DoorWay2")
+skeleton = NodePath("")
 
 [node name="StoneWallMesh11" type="MeshInstance3D" parent="NavigationRegion3D/Secret1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, 1)
 mesh = ExtResource("4_nbnte")
-skeleton = NodePath("../../Wall_DoorWay2")
+skeleton = NodePath("")
 
 [node name="StoneCeilingMesh" type="MeshInstance3D" parent="NavigationRegion3D/Secret1"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 2, -1)
@@ -860,21 +855,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 24,
 [node name="Wall_DoorWay5" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, 24, 0)
 
-[node name="Wall_DoorWay2" parent="NavigationRegion3D" instance=ExtResource("12_xsxld")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 20, -2.98023e-08)
-
 [node name="Wall_DoorWay3" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(-1, 0, -8.74232e-08, 0, 1, 0, 8.74232e-08, 0, -1, 5, 0, 0)
-
-[node name="StaticBody3D" parent="NavigationRegion3D/Wall_DoorWay3" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 13, 0)
-
-[node name="CollisionShape3D2" parent="NavigationRegion3D/Wall_DoorWay3/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.04057, 0)
-shape = SubResource("BoxShape3D_q8u21")
-
-[node name="StoneWallHalfMesh3" parent="NavigationRegion3D/Wall_DoorWay3" index="7"]
-transform = Transform3D(0.999998, 0.00190241, -1.56319e-13, -0.00190241, 0.999998, -1.66315e-10, -1.56319e-13, 1.66315e-10, 1, -1, -2, 1)
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="NavigationRegion3D/Wall_DoorWay3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)
@@ -1199,4 +1181,3 @@ shape = SubResource("ConcavePolygonShape3D_amwor")
 [editable path="NavigationRegion3D/Secret1/StonePlatformEdge"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern2"]
-[editable path="NavigationRegion3D/Wall_DoorWay3"]
