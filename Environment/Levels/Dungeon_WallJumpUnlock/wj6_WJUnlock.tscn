@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://de7rywevvhf7u"]
+[gd_scene load_steps=56 format=4 uid="uid://de7rywevvhf7u"]
 
 [ext_resource type="ArrayMesh" uid="uid://cfbr7g1b3isrw" path="res://Environment/Models/StoneMeshes/stoneDoorFrameMesh.res" id="1_jwnfk"]
 [ext_resource type="ArrayMesh" uid="uid://dk2cgmfgsgw6i" path="res://Environment/Models/StoneMeshes/stonePillarMesh.res" id="2_lr27n"]
@@ -83,6 +83,22 @@ data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0avxc"]
 data = PackedVector3Array(1, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 1, 2, 0, 1, 2, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 1, 2, 0, 1, 2, 0, 0, 2, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 2, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vh3en"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ulabx"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2sos"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bi5t"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7bwnk"]
 size = Vector3(16, 0.5, 2)
@@ -852,11 +868,32 @@ skeleton = NodePath("../../..")
 [node name="Wall_DoorWay" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 24, 0)
 
+[node name="CollisionShape3D2" parent="NavigationRegion3D/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_vh3en")
+
+[node name="DoorMechanics" parent="NavigationRegion3D/Wall_DoorWay" index="17"]
+player_orientation = 1
+DoorNumber = 11
+
 [node name="Wall_DoorWay5" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, 24, 0)
 
+[node name="CollisionShape3D2" parent="NavigationRegion3D/Wall_DoorWay5/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ulabx")
+
+[node name="DoorMechanics" parent="NavigationRegion3D/Wall_DoorWay5" index="17"]
+player_orientation = 0
+DoorNumber = 9
+
 [node name="Wall_DoorWay3" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(-1, 0, -8.74232e-08, 0, 1, 0, 8.74232e-08, 0, -1, 5, 0, 0)
+
+[node name="CollisionShape3D2" parent="NavigationRegion3D/Wall_DoorWay3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_g2sos")
+
+[node name="DoorMechanics" parent="NavigationRegion3D/Wall_DoorWay3" index="17"]
+player_orientation = 1
+DoorNumber = 7
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="NavigationRegion3D/Wall_DoorWay3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)
@@ -896,6 +933,13 @@ mesh = ExtResource("4_nbnte")
 
 [node name="Wall_DoorWay4" parent="NavigationRegion3D" instance=ExtResource("9_yhgre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 19, 0)
+
+[node name="CollisionShape3D2" parent="NavigationRegion3D/Wall_DoorWay4/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_6bi5t")
+
+[node name="DoorMechanics" parent="NavigationRegion3D/Wall_DoorWay4" index="17"]
+player_orientation = 0
+DoorNumber = 8
 
 [node name="StoneWallMesh3" type="MeshInstance3D" parent="NavigationRegion3D/Wall_DoorWay4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)
@@ -1181,3 +1225,11 @@ shape = SubResource("ConcavePolygonShape3D_amwor")
 [editable path="NavigationRegion3D/Secret1/StonePlatformEdge"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern"]
 [editable path="NavigationRegion3D/Decorations/Light_Lantern2"]
+[editable path="NavigationRegion3D/Wall_DoorWay"]
+[editable path="NavigationRegion3D/Wall_DoorWay/DoorMechanics"]
+[editable path="NavigationRegion3D/Wall_DoorWay5"]
+[editable path="NavigationRegion3D/Wall_DoorWay5/DoorMechanics"]
+[editable path="NavigationRegion3D/Wall_DoorWay3"]
+[editable path="NavigationRegion3D/Wall_DoorWay3/DoorMechanics"]
+[editable path="NavigationRegion3D/Wall_DoorWay4"]
+[editable path="NavigationRegion3D/Wall_DoorWay4/DoorMechanics"]

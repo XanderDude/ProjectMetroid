@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://df7we5yafwkfo"]
+[gd_scene load_steps=36 format=3 uid="uid://df7we5yafwkfo"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_pclot"]
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="2_r04ko"]
@@ -24,6 +24,18 @@
 [ext_resource type="PackedScene" uid="uid://epb6lm3c7lsy" path="res://Environment/Platforms/Stone0.5x2x2Wall.tscn" id="21_5ytod"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="22_3eba3"]
 [ext_resource type="ArrayMesh" uid="uid://b3ghn1a5lir6p" path="res://Environment/Models/StoneMeshes/stoneWallCrackedMesh.res" id="24_wgkks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xu335"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkxb0"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffje0"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yfrp"]
 size = Vector3(26, 0.5, 2)
@@ -57,11 +69,32 @@ size = Vector3(0.500122, 2, 2)
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("1_pclot")]
 transform = Transform3D(1, 0, 4.12115e-13, 0, 1, 0, -4.12115e-13, 0, 1, -3.00891, -9.59038, 0)
 
+[node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_xu335")
+
+[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
+player_orientation = 0
+DoorNumber = 5
+
 [node name="Wall_DoorWay" parent="." instance=ExtResource("1_pclot")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.99109, -9.59038, 0)
 
+[node name="CollisionShape3D2" parent="Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_hkxb0")
+
+[node name="DoorMechanics" parent="Wall_DoorWay" index="17"]
+player_orientation = 1
+DoorNumber = 4
+
 [node name="Wall_DoorWay3" parent="." instance=ExtResource("1_pclot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0089, -26.5904, 0)
+
+[node name="CollisionShape3D2" parent="Wall_DoorWay3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ffje0")
+
+[node name="DoorMechanics" parent="Wall_DoorWay3" index="17"]
+player_orientation = 0
+DoorNumber = 6
 
 [node name="FloorCollider2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00890994, -28.8404, 0)
@@ -3759,6 +3792,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90956, -26.532, 0)
 [node name="EnemyRat3" parent="." instance=ExtResource("16_gd74j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09044, -26.532, 0)
 
+[editable path="Wall_DoorWay2"]
+[editable path="Wall_DoorWay2/DoorMechanics"]
+[editable path="Wall_DoorWay"]
+[editable path="Wall_DoorWay/DoorMechanics"]
+[editable path="Wall_DoorWay3"]
+[editable path="Wall_DoorWay3/DoorMechanics"]
 [editable path="Decorations/Light_Lantern"]
 [editable path="Lights/Light_Lantern2"]
 [editable path="PlatformGroup/StonePlatformEdge11"]
