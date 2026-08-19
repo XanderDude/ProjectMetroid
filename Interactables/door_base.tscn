@@ -8,7 +8,7 @@ size = Vector3(1, 2.00586, 2.01587)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
 size = Vector3(1, 2.00586, 2.01587)
 
-[node name="DoorMechanics" type="Node3D" groups=["doors"]]
+[node name="door_base" type="Node3D" groups=["doors"]]
 script = ExtResource("1_mfxx2")
 keyType = 0
 

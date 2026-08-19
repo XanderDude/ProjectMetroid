@@ -140,3 +140,5 @@ shape = SubResource("BoxShape3D_vemgm")
 debug_color = Color(0.666667, 0.701961, 0, 0.407843)
 
 [node name="DoorMechanics" parent="." instance=ExtResource("8_nx6tq")]
+
+[editable path="DoorMechanics"]
