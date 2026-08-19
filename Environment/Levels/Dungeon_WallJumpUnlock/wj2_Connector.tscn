@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cj3f7awqmbyby"]
+[gd_scene load_steps=33 format=4 uid="uid://cj3f7awqmbyby"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_78ct1"]
 [ext_resource type="Material" uid="uid://ducihyrqk73pc" path="res://Environment/Materials/ArchitectureStone_mat.tres" id="2_blkx3"]
@@ -33,6 +33,14 @@ size = Vector3(8, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_blkx3"]
 size = Vector3(2, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slk4n"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agfde"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3hx35"]
 resource_local_to_scene = true
@@ -197,18 +205,22 @@ debug_fill = false
 
 [node name="Wall_DoorWay" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
-orientation = 1
+
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_slk4n")
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay" index="17"]
+player_orientation = 0
 DoorNumber = 2
 
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
-orientation = 0
-DoorNumber = 3
+
+[node name="CollisionShape3D2" parent="Interactable/SideWalls/Wall_DoorWay1/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_agfde")
 
 [node name="Wall_DoorWay2" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -6, 0)
-orientation = 1
-DoorNumber = 10
 
 [node name="StoneWallMesh2" parent="Interactable/SideWalls/Wall_DoorWay2" index="4"]
 visible = false
@@ -225,6 +237,10 @@ visible = false
 
 [node name="StoneWallHalfMesh8" parent="Interactable/SideWalls/Wall_DoorWay2" index="12"]
 visible = false
+
+[node name="DoorMechanics" parent="Interactable/SideWalls/Wall_DoorWay2" index="17"]
+player_orientation = 1
+DoorNumber = 11
 
 [node name="stoneWall12" type="MeshInstance3D" parent="Interactable/SideWalls"]
 transform = Transform3D(1.47027e-07, 0, 1, 0, 1, 0, -1, 0, 1.47027e-07, -8, -2, 0)
@@ -1457,5 +1473,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 [node name="EnemyRat" parent="." instance=ExtResource("17_blkx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.72898, 0, 0)
 
+[editable path="Interactable/SideWalls/Wall_DoorWay"]
+[editable path="Interactable/SideWalls/Wall_DoorWay1"]
 [editable path="Interactable/SideWalls/Wall_DoorWay2"]
 [editable path="Interactable/Floor/StonePlatformEdge2"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxdd1ykv1653r"]
+[gd_scene load_steps=16 format=3 uid="uid://bxdd1ykv1653r"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_30cq6"]
 [ext_resource type="Material" uid="uid://dq0eyflucqbl0" path="res://Environment/Materials/ArchitectureStone_Weathered_mat.tres" id="2_af5h3"]
@@ -18,14 +18,18 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbcg4"]
 size = Vector3(12, 0.5, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_30cq6"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_af5h3"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nilwv"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_30cq6"]
-resource_local_to_scene = true
-size = Vector3(1, 4, 2)
 
 [node name="wj1_SaveRoom" type="Node3D"]
 
@@ -408,8 +412,22 @@ skeleton = NodePath("")
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 
+[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_30cq6")
+
+[node name="DoorMechanics" parent="stoneWallRight/Wall_DoorWay2" index="17"]
+player_orientation = 0
+DoorNumber = 2
+
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -8.74228e-07)
+
+[node name="CollisionShape3D2" parent="stoneWallRight/Wall_DoorWay3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_af5h3")
+
+[node name="DoorMechanics" parent="stoneWallRight/Wall_DoorWay3" index="17"]
+player_orientation = 1
+DoorNumber = 1
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 0, -5)
@@ -1066,13 +1084,5 @@ material = SubResource("StandardMaterial3D_nilwv")
 [node name="LightChandelier" parent="Decorations" instance=ExtResource("9_hn3v6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
-[node name="Wall_DoorWay2" parent="." instance=ExtResource("5_7jo1q")]
-transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, -3.82137e-15, 8.74228e-08, 1, -4.07331, 0.29723, 0)
-
-[node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_30cq6")
-
-[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
-DoorNumber = 100
-
-[editable path="Wall_DoorWay2"]
+[editable path="stoneWallRight/Wall_DoorWay2"]
+[editable path="stoneWallRight/Wall_DoorWay3"]

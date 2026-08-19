@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgbcoxnembajc"]
+[gd_scene load_steps=36 format=3 uid="uid://bgbcoxnembajc"]
 
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="1_fsi3n"]
 [ext_resource type="ArrayMesh" uid="uid://m4hpucjpwv3d" path="res://Environment/Models/StoneMeshes/stoneWallHalfMesh.res" id="2_kpmfn"]
@@ -28,6 +28,10 @@ size = Vector3(0.2, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0txx1"]
 resource_local_to_scene = true
 size = Vector3(0.2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gej2x"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yfrp"]
 size = Vector3(26, 0.5, 2)
@@ -73,8 +77,6 @@ size = Vector3(2, 0.5, 6)
 
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 4.12115e-13, 0, 1, 0, -4.12115e-13, 0, 1, 5, -19.015, 0)
-orientation = 1
-DoorNumber = 4
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay2" index="4"]
 visible = false
@@ -94,6 +96,10 @@ visible = false
 [node name="StoneWallHalfMesh8" parent="Wall_DoorWay2" index="12"]
 visible = false
 
+[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
+player_orientation = 0
+DoorNumber = 4
+
 [node name="StoneWallHalfMesh9" type="MeshInstance3D" parent="Wall_DoorWay2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 1)
 visible = false
@@ -105,8 +111,6 @@ mesh = ExtResource("3_ox4ct")
 
 [node name="Wall_DoorWay" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, -19.015, 0)
-orientation = 0
-DoorNumber = 5
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay" index="4"]
 visible = false
@@ -129,13 +133,22 @@ visible = false
 [node name="StoneWallHalfMesh2" parent="Wall_DoorWay" index="13"]
 visible = false
 
+[node name="DoorMechanics" parent="Wall_DoorWay" index="17"]
+player_orientation = 1
+DoorNumber = 5
+
 [node name="StoneFloorHalfMesh3" type="MeshInstance3D" parent="Wall_DoorWay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
 mesh = ExtResource("3_ox4ct")
 
 [node name="Wall_DoorWay3" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0150414, 0)
-orientation = 1
+
+[node name="CollisionShape3D2" parent="Wall_DoorWay3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_gej2x")
+
+[node name="DoorMechanics" parent="Wall_DoorWay3" index="17"]
+player_orientation = 1
 DoorNumber = 3
 
 [node name="FloorCollider2" type="StaticBody3D" parent="."]
@@ -4058,6 +4071,7 @@ transform = Transform3D(1, 0, 1.31134e-07, 0, 1, 0, -1.31134e-07, 0, 1, 8, -17.6
 
 [editable path="Wall_DoorWay2"]
 [editable path="Wall_DoorWay"]
+[editable path="Wall_DoorWay3"]
 [editable path="Decorations/Light_Lantern"]
 [editable path="PlatformGroup/StonePlatformEdge4"]
 [editable path="PlatformGroup/StonePlatformEdge13"]

@@ -52,28 +52,28 @@ Health = 2000
 script = ExtResource("6_ht5l1")
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/PlayerMesh" index="1"]
-bones/0/position = Vector3(0.0178289, 0.895112, -0.0172298)
-bones/0/rotation = Quaternion(0.540735, 0.4543, 0.4458, 0.549981)
-bones/1/rotation = Quaternion(0.0327964, 0.104408, -0.0114632, 0.993928)
-bones/4/rotation = Quaternion(0.110262, 0.0279404, 0.0639578, 0.991449)
-bones/7/position = Vector3(0.0368505, 0.0597799, -0.00012337)
-bones/7/rotation = Quaternion(0.51469, 0.484585, 0.475296, -0.523799)
-bones/9/rotation = Quaternion(0.369263, -0.110921, 0.922668, -0.0049627)
-bones/10/rotation = Quaternion(0.513359, 0.570055, -0.436138, 0.470408)
-bones/11/rotation = Quaternion(-0.00493094, -0.515625, -0.174308, 0.838882)
-bones/13/rotation = Quaternion(0.0603885, -0.103259, 0.0855682, 0.989125)
-bones/14/rotation = Quaternion(0.0214528, 0.042316, -0.166807, 0.984847)
-bones/21/rotation = Quaternion(0.998014, 0.0392095, -0.0282831, 0.0403842)
-bones/22/rotation = Quaternion(0.494909, -0.457811, 0.531188, 0.513141)
+bones/0/position = Vector3(0.0178322, 0.895174, 0.012376)
+bones/0/rotation = Quaternion(0.548846, 0.44686, 0.453255, 0.541889)
+bones/1/rotation = Quaternion(-0.0328642, 0.104942, -0.0045618, 0.993925)
+bones/4/rotation = Quaternion(-0.143637, 0.00608878, -0.0193401, 0.989423)
+bones/7/position = Vector3(0.0413996, 0.0608598, 0.00574067)
+bones/7/rotation = Quaternion(0.479341, 0.508682, 0.442146, -0.562123)
+bones/9/rotation = Quaternion(0.380736, -0.0320642, 0.923291, 0.03932)
+bones/10/rotation = Quaternion(0.495282, 0.59124, -0.436077, 0.463647)
+bones/11/rotation = Quaternion(0.084153, -0.528455, -0.158089, 0.829857)
+bones/13/rotation = Quaternion(0.0151844, -0.105749, 0.0739006, 0.991527)
+bones/14/rotation = Quaternion(0.135053, 0.0289451, -0.171316, 0.975486)
+bones/21/rotation = Quaternion(0.998615, -0.00903299, -0.0303189, 0.0420517)
+bones/22/rotation = Quaternion(0.527597, -0.489572, 0.496594, 0.485134)
 
 [node name="Crossbow" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="0"]
-transform = Transform3D(0.0517813, -0.877994, -0.475863, -0.231589, 0.452956, -0.860928, 0.971435, 0.154785, -0.179879, -0.360365, 1.0978, -0.00934578)
+transform = Transform3D(0.0480386, -0.859228, -0.509333, -0.252164, 0.482973, -0.838541, 0.966492, 0.168718, -0.193465, -0.353884, 1.10317, -0.000172108)
 
 [node name="ArrowNormal" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="1"]
-transform = Transform3D(0.0517813, -0.877994, -0.475863, -0.231589, 0.452956, -0.860928, 0.971435, 0.154785, -0.179879, -0.423727, 1.10938, -0.00317831)
+transform = Transform3D(0.0480386, -0.859228, -0.509333, -0.252164, 0.482973, -0.838541, 0.966492, 0.168718, -0.193465, -0.416724, 1.11704, 0.00659759)
 
 [node name="ArrowBomb" parent="SubViewportContainer/SubViewport/Player/PlayerMesh/Skeleton3D" index="2"]
-transform = Transform3D(0.0517813, -0.877994, -0.475863, -0.231589, 0.452956, -0.860928, 0.971435, 0.154785, -0.179879, -0.423727, 1.10938, -0.00317831)
+transform = Transform3D(0.0480386, -0.859228, -0.509333, -0.252164, 0.482973, -0.838541, 0.966492, 0.168718, -0.193465, -0.416724, 1.11704, 0.00659759)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport"]
 navigation_mesh = SubResource("NavigationMesh_egr1a")

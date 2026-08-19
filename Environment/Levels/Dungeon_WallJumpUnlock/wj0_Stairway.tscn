@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://d1lxrp6s03olt"]
+[gd_scene load_steps=24 format=4 uid="uid://d1lxrp6s03olt"]
 
 [ext_resource type="Material" uid="uid://dmek8siup3i7o" path="res://Environment/Materials/stoneWallBlank_mat.tres" id="1_gaqwk"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="2_g3bjo"]
@@ -111,10 +111,6 @@ _data = {
 dynamic_range = 1.0
 use_two_bounces = false
 interior = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_oitet"]
-resource_local_to_scene = true
-size = Vector3(1, 4, 2)
 
 [node name="HallwaySmall" type="Node3D"]
 
@@ -714,17 +710,8 @@ data = SubResource("VoxelGIData_v3yoy")
 [node name="Light_CandleTriple_Wall2" parent="Lights" instance=ExtResource("16_tq5f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
-[node name="Wall_DoorWay2" parent="." instance=ExtResource("2_g3bjo")]
-transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.82137e-15, 8.74228e-08, 1, -1.81464, 5.11088, 0)
-
-[node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_oitet")
-
-[node name="DoorMechanics" parent="Wall_DoorWay2" index="17"]
-DoorNumber = 100
-keyType = 2
-
 [editable path="Interactable/SideWalls/Wall_DoorWay1"]
+[editable path="Interactable/SideWalls/Wall_DoorWay1/DoorMechanics"]
 [editable path="Interactable/SideWalls/Wall_DoorWay2"]
+[editable path="Interactable/SideWalls/Wall_DoorWay2/DoorMechanics"]
 [editable path="Interactable/Roof/StonePillar"]
-[editable path="Wall_DoorWay2"]
