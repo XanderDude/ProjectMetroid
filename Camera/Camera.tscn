@@ -8,6 +8,7 @@ material = ExtResource("2_m7pi7")
 
 [node name="Camera3D" type="Camera3D"]
 keep_aspect = 0
+cull_mask = 1048559
 current = true
 fov = 32.0
 script = ExtResource("1_88gwk")

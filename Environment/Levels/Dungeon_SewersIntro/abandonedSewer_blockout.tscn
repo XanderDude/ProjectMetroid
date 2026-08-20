@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://spk3443rahc2"]
+[gd_scene load_steps=15 format=3 uid="uid://spk3443rahc2"]
 
 [ext_resource type="MeshLibrary" uid="uid://20wfourgdmmm" path="res://Environment/Models/SewerInterior_MeshLibrary.tres" id="1_0bo1q"]
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_8x5tc"]
 [ext_resource type="Environment" uid="uid://bieprckhve60v" path="res://Environment/Lighting/SewersAbandoned_EnvLighting.tres" id="2_8hlat"]
 [ext_resource type="PackedScene" uid="uid://bexgm8f7ve0mw" path="res://Player/Player.tscn" id="2_f1wm7"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_2c0r4"]
-[ext_resource type="PackedScene" uid="uid://cb1a5lyceph7y" path="res://Camera/Camera.tscn" id="5_jwfsh"]
 [ext_resource type="PackedScene" uid="uid://dj2fylxeec5s4" path="res://Environment/Levels/Dungeon_SewersIntro/as1_GameStart.tscn" id="6_kjv0w"]
 [ext_resource type="PackedScene" uid="uid://lwx63t5ens0a" path="res://Environment/Levels/Dungeon_SewersIntro/as2_Crossbow.tscn" id="7_jwfsh"]
 [ext_resource type="PackedScene" uid="uid://bpopisft6yld6" path="res://Environment/Levels/Dungeon_SewersIntro/as3_MantleBoss.tscn" id="8_adjyt"]
@@ -60,8 +59,6 @@ render_target_update_mode = 4
 
 [node name="Player" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("2_f1wm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5626, 35.2268, 0)
-
-[node name="Camera3D" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("5_jwfsh")]
 
 [node name="GridMap" type="GridMap" parent="SubViewportContainer/SubViewport/sewerBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
