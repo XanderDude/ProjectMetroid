@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnfrhbrlbmndh"]
+[gd_scene load_steps=14 format=3 uid="uid://bnfrhbrlbmndh"]
 
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="1_6an7o"]
+[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_pxbh3"]
 [ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="2_pxbh3"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_vqs66"]
-radius = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7k2"]
 transparency = 1
@@ -51,6 +49,9 @@ albedo_texture = SubResource("GradientTexture2D_hj7k2")
 [sub_resource type="SphereMesh" id="SphereMesh_hj7k2"]
 material = SubResource("StandardMaterial3D_ysuep")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_vqs66"]
+radius = 0.6
+
 [sub_resource type="Animation" id="Animation_1bu6d"]
 resource_name = "Drift"
 length = 8.0
@@ -92,13 +93,10 @@ _data = {
 [node name="DriftingSoul" type="Node3D"]
 
 [node name="Soul" type="CharacterBody3D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 motion_mode = 1
-
-[node name="GroundCollider" type="CollisionShape3D" parent="Soul"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("SphereShape3D_vqs66")
+script = ExtResource("1_pxbh3")
 
 [node name="SoulFlameVFX" type="Node3D" parent="Soul"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -122,9 +120,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_hj7k2")
 skeleton = NodePath("../..")
 
+[node name="Area3D" type="Area3D" parent="Soul"]
+collision_layer = 0
+collision_mask = 64
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Soul/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_vqs66")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4rxtu")
 }
 script = ExtResource("1_6an7o")
 idleAnim = "Drift"
+
+[connection signal="area_entered" from="Soul/Area3D" to="Soul" method="_on_area_3d_area_entered"]

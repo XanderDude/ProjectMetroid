@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://qjngdierwsy2"]
+[gd_scene load_steps=12 format=3 uid="uid://qjngdierwsy2"]
 
 [ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="1_bk5ye"]
+[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_poela"]
 [ext_resource type="ArrayMesh" uid="uid://boal3eyvblo0v" path="res://Environment/Models/PropLightMeshes/lanternMesh.res" id="2_2wxvx"]
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="3_opr5o"]
 
@@ -59,14 +60,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_hj7k2")
 
 [node name="Soul" type="CharacterBody3D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
 motion_mode = 1
+script = ExtResource("1_poela")
 
-[node name="GroundCollider" type="CollisionShape3D" parent="Soul"]
+[node name="Area3D" type="Area3D" parent="Soul"]
+collision_layer = 0
+collision_mask = 64
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Soul/Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.21388, 0)
 shape = SubResource("SphereShape3D_vqs66")
 
@@ -106,3 +113,5 @@ mesh = ExtResource("3_opr5o")
 [node name="ChainLongMesh4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
 mesh = ExtResource("3_opr5o")
+
+[connection signal="area_entered" from="Soul/Area3D" to="Soul" method="_on_area_3d_area_entered"]

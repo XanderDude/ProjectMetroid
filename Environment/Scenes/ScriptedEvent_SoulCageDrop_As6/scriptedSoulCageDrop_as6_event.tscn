@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkbhv5hpi32ty" path="res://Environment/Scenes/ScriptedEvent_SoulCageDrop_As6/ScriptedSoulCageDropAs6.cs" id="1_nsreo"]
 [ext_resource type="PackedScene" uid="uid://dfj5sb41gg03o" path="res://Interactables/Cages/CageMedium.fbx" id="2_kvtyu"]
-[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="3_hlsck"]
+[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="3_hlsck"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="4_wkded"]
 [ext_resource type="PackedScene" uid="uid://d1i66ayeg6n25" path="res://Environment/Platforms/Stone2x0.5x6Platform.tscn" id="5_rqfdi"]
 [ext_resource type="AnimationLibrary" uid="uid://bdeichikgqxtx" path="res://Environment/Scenes/ScriptedEvent_SoulCageDrop_As6/ScriptedSoulCageDrop_as6_library.res" id="6_kvtyu"]

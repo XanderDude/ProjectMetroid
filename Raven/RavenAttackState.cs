@@ -19,7 +19,7 @@ public partial class RavenAttackState : State
 
 	private Vector3 slashOffset = Vector3.Zero;
 
-	private Vector2 attackDirection = Vector2.Zero;
+	public Vector2 attackDirection = Vector2.Zero;
 	public override void Ready()
 	{
 		//if (ravenSlash != null) ravenSlash = ResourceLoader.Load((stringravenSlash.ResourcePath)
@@ -66,7 +66,7 @@ public partial class RavenAttackState : State
 
 	}
 
-	private Vector2 GetAttackDirection()
+	private Vector2 GetAttackDirection() //called once during ready to log attack direction
 	{
 		Vector2 direction = pm.aimDirection;
 
@@ -137,44 +137,42 @@ public partial class RavenAttackState : State
 	private void OnBodyEntered(Node3D body)
 	{
 		//GD.Print($"Body entered slash area: {body.Name} - Type: {body.GetType().Name}");
-		GD.Print("Body hit");
-		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
-		{
-			pm.Set("jumpQueued", true);
-			pm.StateMachine._currentState.Enter();		
-		}
+		//GD.Print("Body hit");
 
 		if (targetsDamaged.Contains(body)) return;
 
 		if (body is Enemy enemy)
+		{
+			//GD.Print("Dealing damage to enemy!");
+	
+			enemy.DamagedReceived(damage);
+			targetsDamaged.Add(body);
+			OnRavenSlashHit?.Invoke(enemy); // fire the event
+
+			targetsDamaged.Add(body);
+			if (attackDirection.Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
 			{
-				//GD.Print("Dealing damage to enemy!");
-				
-				
-{
-				enemy.DamagedReceived(damage);
-				targetsDamaged.Add(body);
-				OnRavenSlashHit?.Invoke(enemy); // fire the event
-}
-				targetsDamaged.Add(body);
-				
+				pm.Set("jumpQueued", true);
+				pm.StateMachine._currentState.Enter();
 			}
+		}
 	}
 	
 	private void OnAreaEntered(Area3D area)
 	{
 		
 		//GD.Print($"Area entered slash area: {area.Name} - Type: {area.GetType().Name}");
-		if (GetAttackDirection().Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
-		{
-			pm.Set("jumpQueued", true);
-			pm.StateMachine._currentState.Enter();
-		}
+
 		Node3D parent = area.GetParent<Node3D>();
 		if (parent != null && parent is Enemy enemy)
 		{
 			//GD.Print("Dealing damage to enemy via area!");
 			enemy.DamagedReceived(damage);
+			if (attackDirection.Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
+			{
+				pm.Set("jumpQueued", true);
+				pm.StateMachine._currentState.Enter();
+			}
 		}
 	}
 }

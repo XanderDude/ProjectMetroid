@@ -12,6 +12,7 @@ radius = 0.234266
 albedo_color = Color(0.215686, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_21gdj"]
+material = SubResource("StandardMaterial3D_ie0al")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oixoq"]
 radial_segments = 5
@@ -36,7 +37,6 @@ mesh = SubResource("CylinderMesh_p1qae")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.75, 0)
-material_override = SubResource("StandardMaterial3D_ie0al")
 mesh = SubResource("SphereMesh_21gdj")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

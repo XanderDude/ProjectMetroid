@@ -217,10 +217,23 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Area3D:monitorable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wd32c"]
 resource_name = "RavenAttack1"
 length = 0.26667
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -228,10 +241,10 @@ tracks/0/path = NodePath("SlashVFX:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 3.14159, -1.02974), Vector3(0, 3.14159, 0.523599), Vector3(0, 3.14159, 1.68075)]
+"values": [Vector3(0, 3.14159, -0.785398), Vector3(0, 3.14159, -0.253068), Vector3(0, 3.14159, 0.00582159), Vector3(0, 3.14159, 0.00582159), Vector3(0, 3.14159, 0.523599), Vector3(0, 3.14159, 0.523599), Vector3(0, 3.14159, 1.10218), Vector3(0, 3.14159, 1.68075)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -240,10 +253,10 @@ tracks/1/path = NodePath("SlashMeshPivot/slashMesh:surface_material_override/0:s
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 0.133333, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.4, 1.661, 2.0]
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.4, 1.487, 1.574, 1.661, 1.661, 1.774, 1.887, 2.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -264,10 +277,10 @@ tracks/3/path = NodePath("SlashVFX/RavenAnimation:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.166667, 0.233333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1)]
+"times": PackedFloat32Array(0, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.55, 0.55, 0.55), Vector3(0.1, 0.1, 0.1), Vector3(0.1, 0.1, 0.1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -288,7 +301,7 @@ tracks/5/path = NodePath("Area3D:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"times": PackedFloat32Array(0, 0.0333333, 0.233333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -300,9 +313,9 @@ tracks/6/path = NodePath("Area3D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.0666667, 0.1, 0.133333),
+"times": PackedFloat32Array(0.0333333, 0.1, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector3(0, 0, 0.488692), Vector3(0, 0, 0), Vector3(0, 0, -0.488692)]
 }
 tracks/7/type = "value"
@@ -312,7 +325,19 @@ tracks/7/path = NodePath("Area3D:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"times": PackedFloat32Array(0, 0.0333333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Area3D:monitorable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.233333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -345,7 +370,7 @@ transform = Transform3D(0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 0, 0, 1, 
 visible = false
 
 [node name="RavenAnimation" parent="SlashVFX" instance=ExtResource("2_r5qca")]
-transform = Transform3D(-1, 1.07285e-07, 4.37112e-08, -1.0677e-07, -0.707107, -0.707107, -4.49533e-08, -0.707107, 0.707107, -2, 0.634201, 0.498321)
+transform = Transform3D(-1, 1.07285e-07, 4.37103e-08, -1.0677e-07, -0.707107, -0.707107, -4.49545e-08, -0.707107, 0.707107, -2, 0.634201, 0.498321)
 
 [node name="SlashMeshVFX" type="GPUParticles3D" parent="SlashVFX/RavenAnimation"]
 transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, -0.707106, 0.707107, -2.98023e-08, -0.707106, -0.707107, -1.19209e-07, 0.433511, -0.197981)
@@ -378,9 +403,12 @@ libraries = {
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.882948, -0.469472, 0, 0.469472, 0.882948, 0, 0, 0, 1, 0, 0, 0)
 visible = false
-collision_layer = 0
+collision_layer = 64
 collision_mask = 11
+collision_priority = 2.0
+monitoring = false
 monitorable = false
+priority = 1
 
 [node name="OuterHitbox" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)

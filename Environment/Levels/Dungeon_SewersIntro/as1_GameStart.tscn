@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_0k13w"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="2_vugya"]
-[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="3_vrbje"]
+[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="3_vrbje"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="4_dk52d"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="5_lneio"]
 

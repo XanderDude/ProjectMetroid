@@ -171,6 +171,7 @@ forgemode={
 3d_physics/layer_4="Enemy"
 3d_physics/layer_5="WallNoJump"
 3d_physics/layer_6="PlayerProjectile"
+3d_physics/layer_7="RavenSlash"
 3d_physics/layer_9="FloorBreak"
 
 [rendering]
