@@ -1,0 +1,181 @@
+[gd_scene load_steps=10 format=3 uid="uid://dj2fylxeec5s4"]
+
+[ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_0k13w"]
+[ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="2_vugya"]
+[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="3_vrbje"]
+[ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="4_dk52d"]
+[ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="5_lneio"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_hd5b6"]
+left_to_right = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lqg8"]
+shading_mode = 0
+specular_mode = 2
+albedo_color = Color(0.0555436, 0.0641189, 0.0888642, 1)
+disable_receive_shadows = true
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bkmc1"]
+material = SubResource("StandardMaterial3D_5lqg8")
+
+[node name="Sewer1_1" type="Label3D"]
+layers = 0
+pixel_size = 0.1
+offset = Vector2(36.925, 13.345)
+billboard = 1
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+text = "Sewer1_1
+"
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -5, 2.5, 0)
+use_collision = true
+collision_layer = 2
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, -1, 6.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D83" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, 7, 6.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, -5.19615, 0, 1.73205, 3, 0, 0, 0, 2, 7, 5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.517638, -6.93747, 0, 1.93185, -1.85889, 0, 0, 0, 2, 26.4481, 5.34162, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1.03806e-07, 4.5, 3.01992e-07, 1.37495, 3.39741e-07, 7.64274e-15, -1.04201e-14, 6.79481e-07, -2, 32.0081, 5.89688, -2.81311e-07)
+use_collision = true
+mesh = SubResource("PrismMesh_hd5b6")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.517638, -17.5345, 0, 1.93185, -4.69836, 0, 0, 0, 2, 31.7574, 0.20358, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(-5.96046e-08, -8.62488, 0, 2, -3.42722e-07, 0, 0, 0, 2, 13.2549, 3.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D16" type="CSGMesh3D" parent="."]
+transform = Transform3D(-5.96046e-08, -29.795, 0, 2, -1.18395e-06, 0, 0, 0, 2, 9.75738, -2, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D14" type="CSGMesh3D" parent="."]
+transform = Transform3D(-5.96046e-08, -24.3, 0, 2, -9.65595e-07, 0, 0, 0, 2, 28.783, 11, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="StonePlatformEdge24" parent="." instance=ExtResource("1_0k13w")]
+transform = Transform3D(-8.65486e-08, 0, -1, 0, 1, 0, 1.98, 0, -4.37114e-08, 45, 11.5, -1)
+
+[node name="StonePlatformEdge25" parent="." instance=ExtResource("1_0k13w")]
+transform = Transform3D(-8.65486e-08, 0, -1, 0, 1, 0, 1.98, 0, -4.37114e-08, 45, 15, -1)
+
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2.07018e-07, -0.9504, 0, 6.94637, -3.77654e-08, 0, 0, 0, 2, 17.0984, 7.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1.4899e-07, -0.9504, 0, 4.99928, -3.77654e-08, 0, 0, 0, 2, 22.8008, 4.9711, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -6.6, 0, 2, -2.88495e-07, 0, 0, 0, 2, 43.1443, 3.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D17" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2, 6.92388e-07, 0, -1.74846e-07, -7.92, 0, 0, 0, 2, 44.5, 11, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(-2.38418e-08, -5.4, 0, 0.8, -2.14577e-07, 0, 0, 0, 2, 19.8888, 3.2, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="Item2" parent="." instance=ExtResource("2_vugya")]
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 19.9874, 3.4874, 0)
+
+[node name="LingeringSoul7" parent="." instance=ExtResource("3_vrbje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 7, 0)
+
+[node name="LingeringSoul8" parent="." instance=ExtResource("3_vrbje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 6, 0)
+
+[node name="StonePillar10" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -7, 2.5, -1)
+
+[node name="Item3" parent="." instance=ExtResource("2_vugya")]
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 19.9874, 3.4874, 0)
+
+[node name="LingeringSoul9" parent="." instance=ExtResource("3_vrbje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 7, 0)
+
+[node name="LingeringSoul10" parent="." instance=ExtResource("3_vrbje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 6, 0)
+
+[node name="StonePillar11" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(5.9, 0, 0, 0, 0.25, 0, 0, 0, 1, 22.5, 7, -1)
+
+[node name="StonePillar12" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -3)
+
+[node name="StonePillar" parent="." instance=ExtResource("5_lneio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 6.5, -3)
+
+[node name="StonePillar13" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(0.5, 0, 0, 0, 2.5, 0, 0, 0, 20, -5.5, 2.5, 0)
+
+[node name="RoomBlinders1" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(14.58, 0, 0, 0, 1, 0, 0, 0, 20.3, 9, -2, 20.5)
+layers = 2
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(-2.29432e-07, 1, 0, -5.2488, -4.37114e-08, 0, 0, 0, 20.3, -5, 2.5, 20.5)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(-6.82344, -8.74228e-08, 0, 5.96524e-07, -1, 0, 0, 0, 20.3, 2, 6.5, 20.5)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(-6.06, -1.50996e-07, 0, 9.15035e-07, -1, 0, 0, 0, 20.3, 16.556, 3.3, 20.5)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(-8.34465e-08, 1, 0, -2.01182, -1.3411e-07, 0, 0, 0, 20.3, 22.578, 5.16812, 20.5)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="RoomBlinders1"]
+transform = Transform3D(-2.95464, -0.5, 0, 1.70586, -0.866025, 0, 0, 0, 20.3, 7.75, 4.93301, 20.5)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bkmc1")
+
+[editable path="LingeringSoul7"]

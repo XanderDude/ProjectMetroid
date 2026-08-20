@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm62ofjujy25i"]
+[gd_scene load_steps=14 format=3 uid="uid://bnfrhbrlbmndh"]
 
-[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_1bu6d"]
-[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="1_hj7k2"]
-[ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="1_ysuep"]
+[ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="1_6an7o"]
+[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_pxbh3"]
+[ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="2_pxbh3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7k2"]
 transparency = 1
@@ -13,7 +13,7 @@ specular_mode = 2
 disable_ambient_light = true
 disable_fog = true
 albedo_color = Color(0.00392157, 1, 0.65098, 1)
-albedo_texture = ExtResource("1_ysuep")
+albedo_texture = ExtResource("2_pxbh3")
 albedo_texture_force_srgb = true
 texture_filter = 0
 disable_receive_shadows = true
@@ -52,6 +52,23 @@ material = SubResource("StandardMaterial3D_ysuep")
 [sub_resource type="SphereShape3D" id="SphereShape3D_vqs66"]
 radius = 0.6
 
+[sub_resource type="Animation" id="Animation_1bu6d"]
+resource_name = "Drift"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.26667, 2.16667, 4.53333, 5.96667, 8),
+"transitions": PackedFloat32Array(0.812252, 2.37841, 0.307786, 1, 3.73213, 0.63728),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.632075, 1.63208, 0), Vector3(2, 2, 0), Vector3(3.5, 0, 0), Vector3(1, -1.5, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_hj7k2"]
 length = 0.001
 tracks/0/type = "value"
@@ -67,36 +84,19 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1bu6d"]
-resource_name = "Drift"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Soul:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.03333, 1.5, 2),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(-0.1, 0, 0), Vector3(-0.076, 0.1, 0), Vector3(0.07, -0.02, 0), Vector3(0.08, 0.117, 0), Vector3(-0.1, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4rxtu"]
 _data = {
-&"RESET": SubResource("Animation_hj7k2"),
-&"Sway": SubResource("Animation_1bu6d")
+&"Drift": SubResource("Animation_1bu6d"),
+&"RESET": SubResource("Animation_hj7k2")
 }
 
-[node name="LingeringSoul" type="Node3D"]
+[node name="DriftingSoul" type="Node3D"]
 
 [node name="Soul" type="CharacterBody3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_1bu6d")
+script = ExtResource("1_pxbh3")
 
 [node name="SoulFlameVFX" type="Node3D" parent="Soul"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -133,7 +133,7 @@ shape = SubResource("SphereShape3D_vqs66")
 libraries = {
 &"": SubResource("AnimationLibrary_4rxtu")
 }
-script = ExtResource("1_hj7k2")
-idleAnim = "Sway"
+script = ExtResource("1_6an7o")
+idleAnim = "Drift"
 
 [connection signal="area_entered" from="Soul/Area3D" to="Soul" method="_on_area_3d_area_entered"]

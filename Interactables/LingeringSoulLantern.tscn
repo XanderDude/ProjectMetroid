@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://qjngdierwsy2"]
+
+[ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="1_bk5ye"]
+[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_poela"]
+[ext_resource type="ArrayMesh" uid="uid://boal3eyvblo0v" path="res://Environment/Models/PropLightMeshes/lanternMesh.res" id="2_2wxvx"]
+[ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="3_opr5o"]
+
+[sub_resource type="Gradient" id="Gradient_ysuep"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.27619, 0.77619)
+colors = PackedColorArray(0.00392157, 0.8, 0.219608, 1, 0, 0.854902, 0.729412, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hj7k2"]
+gradient = SubResource("Gradient_ysuep")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysuep"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+albedo_texture = SubResource("GradientTexture2D_hj7k2")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hj7k2"]
+material = SubResource("StandardMaterial3D_ysuep")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vqs66"]
+radius = 0.732628
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7k2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.00392157, 1, 0.65098, 1)
+albedo_texture = ExtResource("1_bk5ye")
+albedo_texture_force_srgb = true
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ysuep"]
+material = SubResource("StandardMaterial3D_hj7k2")
+size = Vector2(1.25, 1.5)
+center_offset = Vector3(0, 0.1, 0)
+
+[node name="LingeringSoulLantern" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hj7k2")
+
+[node name="Soul" type="CharacterBody3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+motion_mode = 1
+script = ExtResource("1_poela")
+
+[node name="Area3D" type="Area3D" parent="Soul"]
+collision_layer = 0
+collision_mask = 64
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Soul/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.21388, 0)
+shape = SubResource("SphereShape3D_vqs66")
+
+[node name="SoulFlameVFX" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="SoulFlameVFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20999, 0)
+cast_shadow = 0
+amount = 1
+lifetime = 0.8
+randomness = 0.5
+fixed_fps = 15
+fract_delta = false
+local_coords = true
+mesh = SubResource("QuadMesh_ysuep")
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+
+[node name="LanternMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2, -1.74846e-07, 0, 1.74846e-07, -2, 0, 0, 0, 2, 0, -0.269441, 0)
+mesh = ExtResource("2_2wxvx")
+
+[node name="ChainLongMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = ExtResource("3_opr5o")
+
+[node name="ChainLongMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+mesh = ExtResource("3_opr5o")
+
+[node name="ChainLongMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+mesh = ExtResource("3_opr5o")
+
+[node name="ChainLongMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
+mesh = ExtResource("3_opr5o")
+
+[connection signal="area_entered" from="Soul/Area3D" to="Soul" method="_on_area_3d_area_entered"]
