@@ -15,9 +15,9 @@ script = ExtResource("3_glgse")
 upgrade = 0
 itemType = 2
 itemScene = ExtResource("2_glgse")
-dropRate = 75.0
+dropRate = 100.0
 dropAmount = 1
-amount = 3
+amount = 5
 pitydrop = false
 metadata/_custom_type_script = "uid://bviplcgofk6df"
 
@@ -58,8 +58,8 @@ navagent = NodePath("NavigationAgent3D")
 esm = NodePath("EnemyStateMachine")
 revengeMode = true
 attackcd = 3.0
-lungespeed = 1.0
-attackDirMode = 2
+lungespeed = 1.5
+attackDirMode = 0
 isFlying = true
 health = 30
 dropTable = Array[ExtResource("3_glgse")]([SubResource("Resource_vq6sv")])
@@ -107,15 +107,16 @@ script = ExtResource("5_8n3kf")
 script = ExtResource("8_vq6sv")
 
 [node name="BatFly" parent="." instance=ExtResource("7_il1qx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0822946, 0)
 
 [node name="RavenFlying" parent="BatFly/Weapons" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, -0.309017, 0, 0.309017, 0.951057, 0, 0, 0)
 
 [node name="WingLeft" parent="BatFly/Weapons/RavenFlying" index="0"]
-transform = Transform3D(0.383357, -0.632456, -1.305, 1.44462, 0.284642, 0.286423, 0.126873, -1.33003, 0.681854, 0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.424841, -0.61255, -1.30165, 1.43259, 0.303821, 0.324603, 0.131089, -1.33509, 0.671074, 0.0374537, 0.136378, 0.0803157)
 
 [node name="WingRight" parent="BatFly/Weapons/RavenFlying" index="1"]
-transform = Transform3D(0.383357, 0.632456, 1.305, -1.44462, 0.284642, 0.286423, -0.126873, -1.33003, 0.681854, -0.0374537, 0.136378, 0.0803157)
+transform = Transform3D(0.424841, 0.61255, 1.30165, -1.43259, 0.303821, 0.324603, -0.131089, -1.33509, 0.671074, -0.0374537, 0.136378, 0.0803157)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BatFly")

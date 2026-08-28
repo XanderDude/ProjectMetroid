@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0m3j13d130i7"]
+[gd_scene load_steps=19 format=3 uid="uid://b0m3j13d130i7"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_xl5e1"]
 [ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="2_aqeyy"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="5_qs4q8"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="6_vpg12"]
 [ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="10_qs4q8"]
+[ext_resource type="Script" uid="uid://bviplcgofk6df" path="res://Enemies/DropEntry.cs" id="11_m8jud"]
+[ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="12_i5alg"]
 
 [sub_resource type="Gradient" id="Gradient_a45e5"]
 offsets = PackedFloat32Array(0, 0.29765, 1)
@@ -39,6 +41,17 @@ custom_aabb = AABB(-45, -45, 0, 95, 95, 0)
 size = Vector2(50, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
+
+[sub_resource type="Resource" id="Resource_lwmvw"]
+script = ExtResource("11_m8jud")
+upgrade = 0
+itemType = 2
+itemScene = ExtResource("12_i5alg")
+dropRate = 100.0
+dropAmount = 1
+amount = 5
+pitydrop = false
+metadata/_custom_type_script = "uid://bviplcgofk6df"
 
 [node name="Sewer1_8" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4838, 29.9426, 0)
@@ -258,6 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, -4.5, -1)
 
 [node name="Bat" parent="." instance=ExtResource("10_qs4q8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -2.5, 0)
+dropTable = Array[ExtResource("11_m8jud")]([SubResource("Resource_lwmvw")])
 
 [node name="Bat2" parent="." instance=ExtResource("10_qs4q8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 5.5, 0)

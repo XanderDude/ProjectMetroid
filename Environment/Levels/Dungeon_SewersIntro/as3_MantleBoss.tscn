@@ -241,7 +241,7 @@ mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="RatMiniboss" parent="." instance=ExtResource("8_ps3sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -9, 0)
-health = 100
+health = 200
 dropTable = Array[ExtResource("9_g38q1")]([SubResource("Resource_kpfyh"), SubResource("Resource_kd0yh")])
 runspeed = 2.0
 walkspeed = 0.5

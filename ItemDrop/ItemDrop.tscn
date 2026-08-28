@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn7qo37oaqxvj"]
+[gd_scene load_steps=6 format=3 uid="uid://bn7qo37oaqxvj"]
 
 [ext_resource type="AudioStream" uid="uid://chm6qj14ul5cv" path="res://Sounds/da_vinky.mp3" id="2_jf20d"]
 [ext_resource type="Script" uid="uid://dofk3lm3pf6cd" path="res://ItemDrop/ItemDrop.cs" id="2_u2oce"]
@@ -6,6 +6,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_yghj7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_myup0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jf20d"]
+height = 1.0
 
 [node name="Item" type="RigidBody3D"]
 transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 0, 0, 0)
@@ -21,20 +24,21 @@ linear_damp = 5.0
 script = ExtResource("2_u2oce")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00743103, 0.388216, -0.000119925)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_yghj7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.377202, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_myup0")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00743103, 0.388216, -0.000119925)
-shape = SubResource("BoxShape3D_yghj7")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_jf20d")
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_jf20d")

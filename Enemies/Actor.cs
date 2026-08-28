@@ -42,31 +42,27 @@ public partial class Actor : CharacterBody3D
 		if (dropTable == null || dropTable.Count == 0) return;
 		int pitycount = 0;
 		foreach (var entry in dropTable)
+		{
+			if (entry == null || entry.dropAmount == 0) continue;
+
+			for (int j = 1; j <= entry.dropAmount; j++)
 			{
-				if (entry == null) continue;
-
-				for (int j = 0; j <= entry.dropAmount; j++)
+				float roll = (float)GD.RandRange(0f, 100f);
+				
+				if (roll <= entry.dropRate || (pitycount == entry.dropAmount && entry.pitydrop))
 				{
-					float roll = (float)GD.RandRange(0f, 100f);
 					
-					if (roll <= entry.dropRate || (pitycount == entry.dropAmount && entry.pitydrop))
-					{
-						
-						var instance = entry.itemScene.Instantiate<ItemDrop>();
-						GetParent().AddChild(instance);
-						instance.itemType = entry.itemType;
-						instance.upgrade = entry.upgrade;
-						instance.amount = entry.amount;
-						instance.GlobalPosition = GlobalPosition;
-					}
-					else pitycount++;
-					
+					var instance = entry.itemScene.Instantiate<ItemDrop>();
+					GetParent().AddChild(instance);
+					instance.itemType = entry.itemType;
+					instance.upgrade = entry.upgrade;
+					instance.amount = entry.amount;
+					instance.GlobalPosition = GlobalPosition;
 				}
+				else pitycount++;
 			}
-		
+		}
 	}
-
-	
 }
 
 
