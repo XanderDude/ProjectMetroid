@@ -15,10 +15,10 @@
 size = Vector3(1.89575, 0.82019, 0.958557)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
-size = Vector3(0.743164, 0.723022, 1.56396)
+size = Vector3(0.743164, 0.578613, 1.81726)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
-size = Vector3(2.38171, 1, 1)
+size = Vector3(7, 4.5, 1)
 
 [node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
 collision_layer = 8
@@ -61,7 +61,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0610965, -0.248655)
 shape = SubResource("BoxShape3D_tysk3")
 debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
@@ -96,7 +96,7 @@ collision_mask = 0
 monitorable = false
 
 [node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 2.11934, -0.00824368)
 shape = SubResource("BoxShape3D_ut63f")
 
 [connection signal="navigation_finished" from="NavigationAgent3D" to="EnemyStateMachine/patrolState" method="_on_navigation_agent_3d_navigation_finished"]

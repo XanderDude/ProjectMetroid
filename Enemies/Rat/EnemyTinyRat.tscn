@@ -11,30 +11,30 @@
 [ext_resource type="Script" uid="uid://compyokf1qxa2" path="res://Enemies/enemyattackState.cs" id="7_v1qbj"]
 [ext_resource type="Script" uid="uid://cc1gtkoyuwvuh" path="res://Enemies/lungeState.cs" id="8_okgt4"]
 
-[sub_resource type="Resource" id="Resource_e85fv"]
+[sub_resource type="Resource" id="Resource_6c5e7"]
 script = ExtResource("2_6c5e7")
 upgrade = 0
 itemType = 2
 itemScene = ExtResource("3_tht3j")
-dropRate = 50.0
-dropAmount = 2
+dropRate = 100.0
+dropAmount = 1
 amount = 5
 pitydrop = false
 metadata/_custom_type_script = "uid://bviplcgofk6df"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tu7f2"]
+size = Vector3(2.5, 1.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icv41"]
-size = Vector3(1.89575, 0.82019, 0.958557)
+size = Vector3(0.846, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tysk3"]
-size = Vector3(0.743164, 0.723022, 1.56396)
+size = Vector3(0.552734, 0.189453, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
-size = Vector3(2.38171, 1, 1)
+size = Vector3(3, 1.5, 1)
 
 [node name="TinyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 collision_layer = 8
 collision_mask = 19
 axis_lock_linear_z = true
@@ -44,7 +44,8 @@ navagent = NodePath("NavigationAgent3D")
 esm = NodePath("EnemyStateMachine")
 ray = NodePath("Beam")
 movementmode = 1
-health = 80
+health = 30
+dropTable = Array[ExtResource("2_6c5e7")]([SubResource("Resource_6c5e7")])
 runspeed = 20.0
 maxspeed = 20.0
 walkspeed = 4.0
@@ -58,7 +59,7 @@ target_desired_distance = 0.1
 debug_enabled = true
 
 [node name="Rat" parent="." instance=ExtResource("2_eg3cj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1.39876e-08, 0, -0.32, 0, 0.32, 0, 0.32, 0, -1.39876e-08, 0, 0, 0)
 
 [node name="DodgeSensor" type="Area3D" parent="Rat"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -66,20 +67,19 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rat/DodgeSensor"]
-transform = Transform3D(1.69415, 0, 0, 0, 2.19267, 0, 0, 0, 1, 1.78207, 0.514353, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.5, 0)
 shape = SubResource("BoxShape3D_tu7f2")
 
 [node name="PhysicalCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149292, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("BoxShape3D_icv41")
 
 [node name="HitBox" type="Area3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138489, -0.157285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037, 0.144, 0)
 shape = SubResource("BoxShape3D_tysk3")
 debug_color = Color(0.898039, 0.109804, 0.239216, 0.419608)
 
@@ -103,7 +103,7 @@ script = ExtResource("7_v1qbj")
 script = ExtResource("8_okgt4")
 
 [node name="Beam" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553586, 0.16849, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352784, 0.16849, 0)
 target_position = Vector3(0, -0.5, 0)
 collision_mask = 3
 hit_from_inside = true
@@ -114,7 +114,7 @@ collision_mask = 0
 monitorable = false
 
 [node name="AttackCollision" type="CollisionShape3D" parent="AttackRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152273, 0.369343, -0.00824368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.619, 0)
 shape = SubResource("BoxShape3D_ut63f")
 
 [connection signal="navigation_finished" from="NavigationAgent3D" to="EnemyStateMachine/patrolState" method="_on_navigation_agent_3d_navigation_finished"]

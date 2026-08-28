@@ -63,7 +63,7 @@ public partial class aggroState : State
                 if (rand > 0 && !ec.isFlying)
                 {
                     ec.Velocity = Vector3.Zero;
-                    ec.Attack(2, 2, 100, 0.2f);
+                    ec.Attack(2, 2, ec.damagedealt, 0.2f);
                     ec.timer = 5f;
                     substate = SubState.RECOVER;
                 }
