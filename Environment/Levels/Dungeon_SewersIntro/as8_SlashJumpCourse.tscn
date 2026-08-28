@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0m3j13d130i7"]
+[gd_scene load_steps=16 format=3 uid="uid://b0m3j13d130i7"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_xl5e1"]
 [ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="2_aqeyy"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dkjjnkia5tsqf" path="res://Environment/Models/PropLightMeshes/chainLongMesh.res" id="4_klfln"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="5_qs4q8"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="6_vpg12"]
+[ext_resource type="PackedScene" uid="uid://xaymn5irbgw5" path="res://Enemies/Bat/EnemyBat.tscn" id="10_qs4q8"]
 
 [sub_resource type="Gradient" id="Gradient_a45e5"]
 offsets = PackedFloat32Array(0, 0.29765, 1)
@@ -254,5 +255,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, -6.5, -1)
 
 [node name="StonePillar25" parent="." instance=ExtResource("6_vpg12")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, -4.5, -1)
+
+[node name="Bat" parent="." instance=ExtResource("10_qs4q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -2.5, 0)
+
+[node name="Bat2" parent="." instance=ExtResource("10_qs4q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 5.5, 0)
+
+[node name="Bat3" parent="." instance=ExtResource("10_qs4q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 15.5, 0)
+
+[node name="Bat4" parent="." instance=ExtResource("10_qs4q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 14, 0)
 
 [editable path="LingeringSoulLantern4"]

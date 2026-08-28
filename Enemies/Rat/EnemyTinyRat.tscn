@@ -33,7 +33,7 @@ size = Vector3(0.743164, 0.723022, 1.56396)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut63f"]
 size = Vector3(2.38171, 1, 1)
 
-[node name="Rat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "ray")]
+[node name="TinyRat" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "navagent", "esm", "ray")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 collision_layer = 8
 collision_mask = 19
@@ -41,12 +41,17 @@ axis_lock_linear_z = true
 script = ExtResource("1_ejwuq")
 mesh = NodePath("Rat")
 navagent = NodePath("NavigationAgent3D")
+esm = NodePath("EnemyStateMachine")
 ray = NodePath("Beam")
-health = 30
-dropTable = Array[ExtResource("2_6c5e7")]([SubResource("Resource_e85fv")])
-runspeed = 3.0
-walkspeed = 1.5
+movementmode = 1
+health = 80
+runspeed = 20.0
+maxspeed = 20.0
+walkspeed = 4.0
+gravity = -20.0
 attackknockback = 1.0
+detectionrange = 0.0
+attackrange = 0.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
