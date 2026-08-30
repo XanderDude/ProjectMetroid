@@ -19,7 +19,7 @@ proximity_fade_enabled = true
 material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_5" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5, 36.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -11, 0)
 layers = 524288
 pixel_size = 0.1
 billboard = 1
@@ -160,9 +160,9 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
 
 [node name="Doorway_Blank" parent="." instance=ExtResource("4_0ebx5")]
-transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 8.29126, -7.14262, 0)
+transform = Transform3D(4.37114e-08, 1, 3.82137e-15, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, 0, -1, 8.29126, -6.64262, 0)
 orientation = 3
-DoorNumber = 105
+DoorNumber = 106
 
 [node name="Wall_DoorWay" parent="." instance=ExtResource("5_1crb6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.5, -1.5, 0)

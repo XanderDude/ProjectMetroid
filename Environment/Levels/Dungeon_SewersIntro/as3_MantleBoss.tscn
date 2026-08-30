@@ -54,7 +54,7 @@ proximity_fade_enabled = true
 material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_3" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 18.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.5, 0)
 layers = 524288
 pixel_size = 0.1
 offset = Vector2(12.445, 53.085)
@@ -186,8 +186,8 @@ use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CageDrop_Large" parent="." instance=ExtResource("5_fnaqd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6453, 5.1862, 0)
-dropLocationY = 9.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 5, 0)
+dropLocationY = -23.5
 useRaycast = false
 
 [node name="Light_CandleTriple_Plate" parent="CageDrop_Large" instance=ExtResource("6_ofm7x")]
@@ -241,7 +241,7 @@ mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="RatMiniBoss_mantleDrop" parent="." instance=ExtResource("8_vukk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1957, -8.93375, 0)
-dropTable = [SubResource("Resource_8x80i"), SubResource("Resource_sneme")]
+dropTable = Array[ExtResource("9_g38q1")]([SubResource("Resource_8x80i"), SubResource("Resource_sneme")])
 
 [node name="StonePillar11" parent="." instance=ExtResource("3_8x80i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -4.5)

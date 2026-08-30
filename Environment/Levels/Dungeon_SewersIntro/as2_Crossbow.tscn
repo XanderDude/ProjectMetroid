@@ -28,7 +28,7 @@ pitydrop = false
 metadata/_custom_type_script = "uid://bviplcgofk6df"
 
 [node name="Sewer1_2" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, 0)
 layers = 524288
 pixel_size = 0.1
 billboard = 1
@@ -165,12 +165,12 @@ DoorNumber = 102
 
 [node name="TinyRat" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -3.5, 0)
-dropTable = [SubResource("Resource_bkmc1")]
+dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
 
 [node name="TinyRat2" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -3.5, 0)
-dropTable = [SubResource("Resource_bkmc1")]
+dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
 
 [node name="TinyRat3" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -3.5, 0)
-dropTable = [SubResource("Resource_bkmc1")]
+dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])

@@ -6,7 +6,7 @@ public partial class CageDrop : StaticBody3D
 	private float fallSpeed = 0f;
 	private bool collisionFound = false;
 	private bool falling = false;
-	[Export] private float dropLocationY = 20f; //calulated on ready
+	[Export] private float dropLocationY = 20f; //automatically calulated unless useRaycast = false
 	[Export] private bool useRaycast = true;
 	[Export] private Area3D chain;
 	private Area3D fallingCollider; //area3d that damages while falling

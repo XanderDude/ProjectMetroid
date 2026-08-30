@@ -70,20 +70,27 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Sewer1_1" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("6_kjv0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Sewer1_2" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("7_jwfsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5, 1.5, 0)
 
 [node name="Sewer1_3" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("8_adjyt")]
 
 [node name="Sewer1_4" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("9_0mapx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.5, 23.5, 0)
 
 [node name="Sewer1_5" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_kjv0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5, 36.5, 0)
 
 [node name="Sewer1_6" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("11_6kw23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 32.5, 0)
 
 [node name="Sewer1_7" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("12_4b7p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5, 19, 0)
 
 [node name="Sewer1_8" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("13_evgvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4838, 31.9426, 0)
 
 [node name="LevelEnd" type="Label3D" parent="SubViewportContainer/SubViewport/sewerBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0162, 49.4426, 0)

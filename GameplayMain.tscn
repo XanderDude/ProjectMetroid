@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1dgedio24xf1"]
+[gd_scene load_steps=7 format=3 uid="uid://d1dgedio24xf1"]
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_d2wvo"]
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="2_4cfun"]
+[ext_resource type="PackedScene" uid="uid://50l6m37qesud" path="res://Environment/Levels/Dungeon_SewersIntro/as6_CagePuzzle.tscn" id="2_dyqg2"]
 [ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="3_dyqg2"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_i5ub3"]
 
@@ -16,6 +17,7 @@ shader_parameter/dither_size = 1
 script = ExtResource("1_d2wvo")
 initroomfriend = true
 initdebugfriend = true
+initialRoom = ExtResource("2_dyqg2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_4cfun")

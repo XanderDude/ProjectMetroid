@@ -57,7 +57,7 @@ pitydrop = false
 metadata/_custom_type_script = "uid://bviplcgofk6df"
 
 [node name="Sewer1_8" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4838, 29.9426, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0162001, -27.5574, 0)
 layers = 524288
 pixel_size = 0.1
 billboard = 1

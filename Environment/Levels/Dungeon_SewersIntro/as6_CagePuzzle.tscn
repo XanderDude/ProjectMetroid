@@ -15,7 +15,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
 [node name="Sewer1_6" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 32.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -20, 0)
 layers = 524288
 pixel_size = 0.1
 billboard = 1
@@ -254,7 +254,7 @@ transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, -0.5, 0.
 
 [node name="MovingCageDrop_Skinny" parent="." instance=ExtResource("5_epx3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
-dropLocationY = 29.0
+dropLocationY = -24.0
 destination = Vector3(0, -2.5, 0)
 autoMove = false
 
