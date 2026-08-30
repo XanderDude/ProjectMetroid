@@ -74,7 +74,7 @@ size = Vector3(2, 0.5, 6)
 [node name="Wall_DoorWay2" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 4.12115e-13, 0, 1, 0, -4.12115e-13, 0, 1, 5, -19.015, 0)
 orientation = 1
-DoorNumber = 4
+DoorNumber = 604
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay2" index="4"]
 visible = false
@@ -106,7 +106,7 @@ mesh = ExtResource("3_ox4ct")
 [node name="Wall_DoorWay" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, -19.015, 0)
 orientation = 0
-DoorNumber = 5
+DoorNumber = 605
 
 [node name="StoneWallMesh2" parent="Wall_DoorWay" index="4"]
 visible = false
@@ -136,7 +136,7 @@ mesh = ExtResource("3_ox4ct")
 [node name="Wall_DoorWay3" parent="." instance=ExtResource("1_fsi3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0150414, 0)
 orientation = 1
-DoorNumber = 3
+DoorNumber = 603
 
 [node name="FloorCollider2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -19.265, 0)

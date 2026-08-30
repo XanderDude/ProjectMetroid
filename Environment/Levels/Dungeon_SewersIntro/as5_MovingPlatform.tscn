@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv5pi7mwsq7y8"]
+[gd_scene load_steps=9 format=3 uid="uid://bs1iys3qg52x"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_5gacg"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_0ebx5"]
 [ext_resource type="PackedScene" uid="uid://q571o852xbvc" path="res://Interactables/Moving Platforms/MovingPlatform_PingPong.tscn" id="3_1crb6"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="4_0ebx5"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="5_1crb6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
@@ -18,6 +20,7 @@ material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_5" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5, 36.5, 0)
+layers = 524288
 pixel_size = 0.1
 billboard = 1
 double_sided = false
@@ -155,3 +158,17 @@ mesh = SubResource("PlaneMesh_bkmc1")
 transform = Transform3D(10.5879, 3.55271e-15, 0, 7.67386e-14, 1, 0, 0, 0, 20.3, 4.36114, -1.05475, 21)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="Doorway_Blank" parent="." instance=ExtResource("4_0ebx5")]
+transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 8.29126, -7.14262, 0)
+orientation = 3
+DoorNumber = 105
+
+[node name="Wall_DoorWay" parent="." instance=ExtResource("5_1crb6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.5, -1.5, 0)
+orientation = 1
+doorType = 1
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("4_0ebx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 0)
+DoorNumber = 107

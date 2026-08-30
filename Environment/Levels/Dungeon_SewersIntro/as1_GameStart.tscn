@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj2fylxeec5s4"]
+[gd_scene load_steps=11 format=3 uid="uid://dj2fylxeec5s4"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_0k13w"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="2_vugya"]
 [ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="3_vrbje"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="4_dk52d"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="5_lneio"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="6_vi5ne"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
@@ -22,7 +23,7 @@ proximity_fade_enabled = true
 material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_1" type="Label3D"]
-layers = 0
+layers = 524288
 pixel_size = 0.1
 offset = Vector2(36.925, 13.345)
 billboard = 1
@@ -37,17 +38,12 @@ collision_layer = 2
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, -1, 6.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D83" type="CSGMesh3D" parent="."]
-transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, 7, 6.5, 0)
+transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, -3, 6.5, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, -5.19615, 0, 1.73205, 3, 0, 0, 0, 2, 7, 5, 0)
+transform = Transform3D(1, -5.19615, 0, 1.73205, 3, 0, 0, 0, 2, 7.5, 5, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
@@ -102,6 +98,21 @@ transform = Transform3D(-8.74228e-08, -6.6, 0, 2, -2.88495e-07, 0, 0, 0, 2, 43.1
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
+[node name="CSGMesh3D18" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -6.6, 0, 2, -2.88495e-07, 0, 0, 0, 2, 48.6443, 8, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="."]
+transform = Transform3D(1.41421, -4.6669, 0, 1.41421, 4.6669, 0, 0, 0, 2, 48.1443, 1.34725, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D15" type="CSGMesh3D" parent="."]
+transform = Transform3D(1.41421, -6.06697, 0, 1.41421, 6.06697, 0, 0, 0, 2, 51.6443, 4.84725, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
 [node name="CSGMesh3D17" type="CSGMesh3D" parent="."]
 transform = Transform3D(-2, 6.92388e-07, 0, -1.74846e-07, -7.92, 0, 0, 0, 2, 44.5, 11, 0)
 use_collision = true
@@ -145,6 +156,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 6.5, -3)
 [node name="StonePillar13" parent="." instance=ExtResource("4_dk52d")]
 transform = Transform3D(0.5, 0, 0, 0, 2.5, 0, 0, 0, 20, -5.5, 2.5, 0)
 
+[node name="Doorway_Blank" parent="." instance=ExtResource("6_vi5ne")]
+transform = Transform3D(-0.707107, 0.707107, 6.18172e-08, 0.707107, 0.707107, -6.18172e-08, -8.74228e-08, 0, -1, 49, 2.5, 0)
+orientation = 1
+DoorNumber = 101
+
+[node name="CollisionShape3D" parent="Doorway_Blank/DoorTransport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.55795e-13, 0, 1, 0.100401, 1.01702, 0)
+
+[node name="CollisionShape3D" parent="Doorway_Blank/BackupCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.7053e-13, 0, 1, 0, 0, 0)
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("6_vi5ne")]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 41, 11.5, 0)
+orientation = 2
+DoorNumber = 112
+
+[node name="CollisionShape3D" parent="Doorway_Blank2/DoorTransport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.55795e-13, 0, 1, 0.100401, 1.01702, 0)
+
+[node name="BackupCollider" parent="Doorway_Blank2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 1, 0)
+
+[node name="CollisionShape3D" parent="Doorway_Blank2/BackupCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.7053e-13, 0, 1, 0, 0, 0)
+
+[node name="Doorway_Blank3" parent="." instance=ExtResource("6_vi5ne")]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 2, 10.5, 0)
+orientation = 2
+DoorNumber = 110
+
+[node name="CollisionShape3D" parent="Doorway_Blank3/DoorTransport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.55795e-13, 0, 1, 0.100401, 1.01702, 0)
+
+[node name="BackupCollider" parent="Doorway_Blank3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 1, 0)
+
+[node name="CollisionShape3D" parent="Doorway_Blank3/BackupCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.7053e-13, 0, 1, 0, 0, 0)
+
 [node name="RoomBlinders1" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RoomBlinders1"]
@@ -178,4 +228,13 @@ transform = Transform3D(-2.95464, -0.5, 0, 1.70586, -0.866025, 0, 0, 0, 20.3, 7.
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
 
+[node name="StonePillar2" parent="." instance=ExtResource("5_lneio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8.5, 0)
+
+[node name="StonePillar3" parent="." instance=ExtResource("5_lneio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 8.5, 0)
+
 [editable path="LingeringSoul7"]
+[editable path="Doorway_Blank"]
+[editable path="Doorway_Blank2"]
+[editable path="Doorway_Blank3"]

@@ -147,17 +147,17 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Wall_DoorWay" parent="Interactable" instance=ExtResource("1_6nfem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 orientation = 1
-DoorNumber = 2
+DoorNumber = -1
 
 [node name="Wall_DoorWay1" parent="Interactable" instance=ExtResource("1_6nfem")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
 orientation = 0
-DoorNumber = 3
+DoorNumber = -1
 
 [node name="Wall_DoorWay2" parent="Interactable" instance=ExtResource("1_6nfem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -6, 0)
 orientation = 1
-DoorNumber = 10
+DoorNumber = -1
 
 [node name="StoneWallMesh2" parent="Interactable/Wall_DoorWay2" index="4"]
 visible = false

@@ -198,17 +198,17 @@ debug_fill = false
 [node name="Wall_DoorWay" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 orientation = 1
-DoorNumber = 2
+DoorNumber = 602
 
 [node name="Wall_DoorWay1" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, -6.99382e-07)
 orientation = 0
-DoorNumber = 3
+DoorNumber = 603
 
 [node name="Wall_DoorWay2" parent="Interactable/SideWalls" instance=ExtResource("1_78ct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -6, 0)
 orientation = 1
-DoorNumber = 10
+DoorNumber = 610
 
 [node name="StoneWallMesh2" parent="Interactable/SideWalls/Wall_DoorWay2" index="4"]
 visible = false

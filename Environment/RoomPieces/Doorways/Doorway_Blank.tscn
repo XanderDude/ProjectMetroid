@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxdqlvrf6huy"]
+
+[ext_resource type="Script" uid="uid://cfnfc18642xja" path="res://Environment/RoomPieces/Stone/Door.cs" id="1_u33m6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx6tq"]
+size = Vector3(1.5, 2.5, 2.01587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vemgm"]
+size = Vector3(0.2, 3.5, 2)
+
+[node name="Doorway_Blank" type="Node3D" groups=["doors"]]
+script = ExtResource("1_u33m6")
+orientation = 0
+
+[node name="DoorTransport" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTransport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.01702, 0)
+shape = SubResource("BoxShape3D_nx6tq")
+
+[node name="BackupCollider" type="StaticBody3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1, 0)
+visible = false
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackupCollider"]
+shape = SubResource("BoxShape3D_vemgm")
+debug_color = Color(0.666667, 0.701961, 0, 0.407843)
+
+[node name="PlayerEnterDirection" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83324, 1.05498, 0)
+layers = 524288
+sorting_offset = 1.0
+ignore_occlusion_culling = true
+pixel_size = 0.05
+text = "<"
+
+[connection signal="body_entered" from="DoorTransport" to="." method="_on_door_transport_body_entered"]
+[connection signal="body_exited" from="DoorTransport" to="." method="_on_door_transport_body_exited"]

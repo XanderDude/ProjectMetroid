@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://p2u2xxtdepg7"]
+[gd_scene load_steps=11 format=3 uid="uid://p2u2xxtdepg7"]
 
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="1_lxwgq"]
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="2_wd3ea"]
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="3_6g2i0"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="4_wd3ea"]
+[ext_resource type="PackedScene" uid="uid://dfj5sb41gg03o" path="res://Interactables/Cages/CageMedium.fbx" id="5_6g2i0"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="5_bhshf"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2c0r4"]
 
@@ -21,6 +24,7 @@ material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_4" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.5, 25, 0)
+layers = 524288
 pixel_size = 0.1
 billboard = 1
 double_sided = false
@@ -113,3 +117,25 @@ mesh = SubResource("PlaneMesh_bkmc1")
 transform = Transform3D(-4.28529e-07, -1, 0, 9.8036, -4.37114e-08, 0, 0, 0, 20.3, 14.5955, 4.44525, 21)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
+
+[node name="Doorway_Blank" parent="." instance=ExtResource("4_wd3ea")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, -11.5, 29.5)
+orientation = 1
+DoorNumber = 103
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("4_wd3ea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -8, 29.5)
+DoorNumber = 104
+
+[node name="Wall_DoorWay" parent="." instance=ExtResource("5_bhshf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, -1.5, 0)
+orientation = 1
+DoorNumber = 105
+
+[node name="CageMedium" parent="." instance=ExtResource("5_6g2i0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94918, -25.1288, -207.5)
+
+[node name="cageMedium" parent="CageMedium/SewerProps" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, -2.5, 18.5, 0)
+
+[editable path="CageMedium"]

@@ -404,12 +404,12 @@ skeleton = NodePath("")
 [node name="Wall_DoorWay2" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 orientation = 0
-DoorNumber = 2
+DoorNumber = 602
 
 [node name="Wall_DoorWay3" parent="stoneWallRight" instance=ExtResource("5_7jo1q")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -8.74228e-07)
 orientation = 1
-DoorNumber = 1
+DoorNumber = 601
 
 [node name="StonePillarMesh4" type="MeshInstance3D" parent="stoneWallRight"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.76837e-07, 0, -5)

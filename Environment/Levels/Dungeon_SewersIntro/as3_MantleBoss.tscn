@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpopisft6yld6"]
+[gd_scene load_steps=21 format=3 uid="uid://bpopisft6yld6"]
 
 [ext_resource type="NavigationMesh" uid="uid://bj1q8lmn6vhvl" path="res://Environment/NavMesh_Basic.tres" id="1_vagrl"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="2_vukk2"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://bviplcgofk6df" path="res://Enemies/DropEntry.cs" id="9_g38q1"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="10_m0v7a"]
 [ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="11_n43di"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="12_vukk2"]
+[ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="13_8x80i"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
@@ -53,6 +55,7 @@ material = SubResource("StandardMaterial3D_5lqg8")
 
 [node name="Sewer1_3" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 18.5, 0)
+layers = 524288
 pixel_size = 0.1
 offset = Vector2(12.445, 53.085)
 billboard = 1
@@ -65,15 +68,12 @@ text = "Sewer1_3"
 navigation_mesh = ExtResource("1_vagrl")
 
 [node name="StonePillar" parent="NavigationLink3D" instance=ExtResource("2_vukk2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -8, -1)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -21, -8, -1)
 
 [node name="CSGMesh3D43" type="CSGMesh3D" parent="NavigationLink3D"]
 transform = Transform3D(-8.74228e-08, -12.474, 0, 2, -5.45256e-07, 0, 0, 0, 1.6, -12.5, -10, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="StonePillar3" parent="NavigationLink3D" instance=ExtResource("2_vukk2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -8, -1)
 
 [node name="StonePillar4" parent="NavigationLink3D" instance=ExtResource("2_vukk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -6, -1)
@@ -82,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -6, -1)
 transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, -7, 1.5, -1)
 
 [node name="StonePillar21" parent="NavigationLink3D" instance=ExtResource("3_8x80i")]
-transform = Transform3D(1, 0, 0, 0, 1.75, 0, 0, 0, 1, -19, 1, -1)
+transform = Transform3D(2, 0, 0, 0, 1.75, 0, 0, 0, 1, -21, 1, -1)
 
 [node name="StonePillar22" parent="NavigationLink3D" instance=ExtResource("3_8x80i")]
 transform = Transform3D(1.25, 0, 0, 0, 0.5, 0, 0, 0, 1, -17, 0, -1)
@@ -241,7 +241,7 @@ mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="RatMiniBoss_mantleDrop" parent="." instance=ExtResource("8_vukk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1957, -8.93375, 0)
-dropTable = Array[ExtResource("9_g38q1")]([SubResource("Resource_8x80i"), SubResource("Resource_sneme")])
+dropTable = [SubResource("Resource_8x80i"), SubResource("Resource_sneme")]
 
 [node name="StonePillar11" parent="." instance=ExtResource("3_8x80i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -4.5)
@@ -266,6 +266,27 @@ transform = Transform3D(2.25, 0, 0, 0, 0.1, 0, 0, 0, 1, 1.5, -8.7, -1)
 
 [node name="StonePillar9" parent="." instance=ExtResource("2_vukk2")]
 transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 1, 1.5, -10.5, -1)
+
+[node name="Doorway_Blank" parent="." instance=ExtResource("12_vukk2")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.5, -10.0926, 0)
+orientation = 3
+DoorNumber = 102
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("12_vukk2")]
+transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 1.5, 10.9074, 0)
+orientation = 2
+DoorNumber = 106
+
+[node name="CollisionShape3D" parent="Doorway_Blank2/DoorTransport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149599, 1.29144, 0)
+
+[node name="Wall_DoorWay" parent="." instance=ExtResource("13_8x80i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 5, 0)
+DoorNumber = 105
+
+[node name="Doorway_Blank3" parent="." instance=ExtResource("12_vukk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -5, 0)
+DoorNumber = 103
 
 [node name="RoomBlinders3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, -5, 0)
@@ -299,3 +320,6 @@ mesh = SubResource("PlaneMesh_bkmc1")
 transform = Transform3D(-4.55678e-07, 1, 0, -10.4247, -4.37114e-08, 0, 0, 0, 20.3, -1.40453, 4.5938, 21)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
+
+[editable path="Doorway_Blank"]
+[editable path="Doorway_Blank2"]

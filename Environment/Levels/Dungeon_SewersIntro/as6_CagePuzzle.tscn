@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://50l6m37qesud"]
+[gd_scene load_steps=13 format=3 uid="uid://50l6m37qesud"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_s3gyi"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_o85co"]
@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dnkmdktkkh6qo" path="res://Environment/Scenes/ScriptedEvent_SoulCageDrop_As6/scriptedSoulCageDrop_as6_event.tscn" id="8_o85co"]
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="8_sgaba"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="9_lknha"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="11_1ccxq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
 [node name="Sewer1_6" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 32.5, 0)
+layers = 524288
 pixel_size = 0.1
 billboard = 1
 double_sided = false
@@ -78,6 +80,11 @@ mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D145" type="CSGMesh3D" parent="."]
 transform = Transform3D(-8.74228e-08, -7.56, 0, 2, -3.30458e-07, 0, 0, 0, 2, -15, 4.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="CSGMesh3D149" type="CSGMesh3D" parent="."]
+transform = Transform3D(-8.74228e-08, -7.56, 0, 2, -3.30458e-07, 0, 0, 0, 2, -15, 10, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
@@ -290,5 +297,19 @@ transform = Transform3D(-1.25311e-07, 0, 0.256, 0, 1, 0, -2.86679, 0, -1.11901e-
 
 [node name="StonePillar20" parent="." instance=ExtResource("9_lknha")]
 transform = Transform3D(26, 0, 0, 0, 2.5, 0, 0, 0, 1, -12.5, 3.5, -4)
+
+[node name="Doorway_Blank" parent="." instance=ExtResource("11_1ccxq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 39.5, 5, 0)
+orientation = 1
+DoorNumber = 107
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("11_1ccxq")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 20, -4, 0)
+orientation = 3
+DoorNumber = 108
+
+[node name="Doorway_Blank3" parent="." instance=ExtResource("11_1ccxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5.5, 0)
+DoorNumber = 109
 
 [editable path="MovingCageDrop_Skinny"]

@@ -23,7 +23,7 @@ public partial class RoomFriend : Node3D
 		public bool isTransitioning = false;
 
 		public double transitionCooldown = 0.0;
-		private const double COOLDOWN_TIME = 2.0;
+		private const double COOLDOWN_TIME = 0.5;
 		
 		public Node3D currentRoomScene; 
 		public string currentRoomName = "";

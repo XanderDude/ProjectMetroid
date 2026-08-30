@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://lwx63t5ens0a"]
+[gd_scene load_steps=10 format=3 uid="uid://lwx63t5ens0a"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_u2iaf"]
 [ext_resource type="PackedScene" uid="uid://gojj3tua6rph" path="res://Enemies/Rat/EnemyTinyRat.tscn" id="2_c4xrj"]
 [ext_resource type="PackedScene" uid="uid://0soxiy0fnoub" path="res://Interactables/Cages/cage_drop_skinny.tscn" id="2_kk5v8"]
 [ext_resource type="Script" uid="uid://bviplcgofk6df" path="res://Enemies/DropEntry.cs" id="3_kk5v8"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="3_s8a05"]
 [ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="4_s8a05"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6kw23"]
@@ -28,6 +29,7 @@ metadata/_custom_type_script = "uid://bviplcgofk6df"
 
 [node name="Sewer1_2" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5, 0, 0)
+layers = 524288
 pixel_size = 0.1
 billboard = 1
 double_sided = false
@@ -112,17 +114,12 @@ use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D16" type="CSGMesh3D" parent="."]
-transform = Transform3D(1.41421, -4.39877, 0, 1.41421, 4.39877, 0, 0, 0, 2, -24.549, 1.54905, 0)
+transform = Transform3D(1.73205, -3.1104, 0, 0.999997, 5.38737, 0, 0, 0, 2, -25.421, 2.54905, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D18" type="CSGMesh3D" parent="."]
-transform = Transform3D(1.41421, -7.148, 0, 1.41421, 7.148, 0, 0, 0, 2, -22.1314, 4.63141, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D19" type="CSGMesh3D" parent="."]
-transform = Transform3D(-4.37114e-08, -3, 0, 1, -1.31134e-07, 0, 0, 0, 2, -23.1738, -0.499999, 0)
+transform = Transform3D(1.73205, -5.0544, 0, 0.999997, 8.75448, 0, 0, 0, 2, -21.6314, 5.13141, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
@@ -147,7 +144,7 @@ use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="CSGMesh3D29" type="CSGMesh3D" parent="."]
-transform = Transform3D(-2, 4.72083e-07, 0, -1.74846e-07, -5.4, 0, 0, 0, 2, -23.5, -2.40039, 0)
+transform = Transform3D(-2, 4.72083e-07, 0, -1.74846e-07, -5.4, 0, 0, 0, 2, -24, -2.40039, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
 
@@ -157,14 +154,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, -0.19548, 0)
 [node name="StonePlatformEdge5" parent="." instance=ExtResource("1_u2iaf")]
 transform = Transform3D(0.891, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.5, -1)
 
+[node name="Doorway_Blank" parent="." instance=ExtResource("3_s8a05")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -25.5, 5, 0)
+DoorNumber = 101
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("3_s8a05")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 10, 6, 0)
+orientation = 2
+DoorNumber = 102
+
 [node name="TinyRat" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -3.5, 0)
-dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
+dropTable = [SubResource("Resource_bkmc1")]
 
 [node name="TinyRat2" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -3.5, 0)
-dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
+dropTable = [SubResource("Resource_bkmc1")]
 
 [node name="TinyRat3" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -3.5, 0)
-dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
+dropTable = [SubResource("Resource_bkmc1")]

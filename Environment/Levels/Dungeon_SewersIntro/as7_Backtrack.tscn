@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://i81sdstndxxy"]
+[gd_scene load_steps=7 format=3 uid="uid://i81sdstndxxy"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_ykf4v"]
 [ext_resource type="PackedScene" uid="uid://35q544anjhdq" path="res://Interactables/Cages/movingCage_Medium.tscn" id="2_lh5l2"]
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="3_jh7ng"]
+[ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="4_lh5l2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
@@ -11,6 +12,7 @@ albedo_color = Color(1, 0.113725, 0.219608, 1)
 
 [node name="Sewer1_7" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5, 19, 0)
+layers = 524288
 pixel_size = 0.1
 billboard = 1
 double_sided = false
@@ -100,6 +102,21 @@ switchedObjects = [NodePath("../MovingCage_Medium")]
 transform = Transform3D(-3.94011e-07, -2.6775, 0, 9.01394, -1.17037e-07, 0, 0, 0, 2, 15.5, 5, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_8x5tc")
+
+[node name="Doorway_Blank" parent="." instance=ExtResource("4_lh5l2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.3, -2, 0)
+orientation = 1
+DoorNumber = 104
+
+[node name="Doorway_Blank2" parent="." instance=ExtResource("4_lh5l2")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.5, -3.5, 0)
+orientation = 3
+DoorNumber = 112
+
+[node name="Doorway_Blank3" parent="." instance=ExtResource("4_lh5l2")]
+transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 14, 9.5, 0)
+orientation = 2
+DoorNumber = 108
 
 [editable path="MovingCage_Medium"]
 [editable path="MovingCage_Medium/CageMedium"]

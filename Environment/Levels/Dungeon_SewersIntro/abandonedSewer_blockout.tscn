@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lwx63t5ens0a" path="res://Environment/Levels/Dungeon_SewersIntro/as2_Crossbow.tscn" id="7_jwfsh"]
 [ext_resource type="PackedScene" uid="uid://bpopisft6yld6" path="res://Environment/Levels/Dungeon_SewersIntro/as3_MantleBoss.tscn" id="8_adjyt"]
 [ext_resource type="PackedScene" uid="uid://p2u2xxtdepg7" path="res://Environment/Levels/Dungeon_SewersIntro/as4_RestArea.tscn" id="9_0mapx"]
-[ext_resource type="PackedScene" uid="uid://dv5pi7mwsq7y8" path="res://Environment/Levels/Dungeon_SewersIntro/as5_MovingPlatform.tscn" id="10_b6y4s"]
+[ext_resource type="PackedScene" uid="uid://bs1iys3qg52x" path="res://Environment/Levels/Dungeon_SewersIntro/as5_MovingPlatform.tscn" id="10_kjv0w"]
 [ext_resource type="PackedScene" uid="uid://50l6m37qesud" path="res://Environment/Levels/Dungeon_SewersIntro/as6_CagePuzzle.tscn" id="11_6kw23"]
 [ext_resource type="PackedScene" uid="uid://i81sdstndxxy" path="res://Environment/Levels/Dungeon_SewersIntro/as7_Backtrack.tscn" id="12_4b7p4"]
 [ext_resource type="PackedScene" uid="uid://b0m3j13d130i7" path="res://Environment/Levels/Dungeon_SewersIntro/as8_SlashJumpCourse.tscn" id="13_evgvf"]
@@ -77,7 +77,7 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Sewer1_4" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("9_0mapx")]
 
-[node name="Sewer1_5" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_b6y4s")]
+[node name="Sewer1_5" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("10_kjv0w")]
 
 [node name="Sewer1_6" parent="SubViewportContainer/SubViewport/sewerBlockout" instance=ExtResource("11_6kw23")]
 
