@@ -56,15 +56,17 @@ _data = {
 &"fade_out": SubResource("Animation_khxmk")
 }
 
-[sub_resource type="Gradient" id="Gradient_66ymm"]
-offsets = PackedFloat32Array(0.805369, 0.993289, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_87avy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4rfxh"]
-gradient = SubResource("Gradient_66ymm")
+gradient = SubResource("Gradient_87avy")
 
-[node name="RoomFriend" type="Node3D"]
+[node name="RoomFriend" type="Node3D" node_paths=PackedStringArray("fadeRect")]
 script = ExtResource("1_a0wfd")
+fadeDuration = 0.5
+fadeRect = NodePath("CanvasLayer/TextureRect")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -76,6 +78,9 @@ layer = 100
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
-offset_right = 652.0
-offset_bottom = 358.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture2D_4rfxh")

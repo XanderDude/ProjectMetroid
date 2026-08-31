@@ -27,17 +27,22 @@ public partial class RoomFriend : Node3D
 
 	public int roomCount = 0;
 	
+	//Fade transition
+	[Export] public float fadeDuration = 0.35f;
+	[Export] public float doorEntryOffset = 1.25f;
+	[Export] private Godot.TextureRect fadeRect;
 
 	public void init_roomfriend(string initRoomPath)
 	{
 		roomfolder = initRoomPath.GetBaseDir();
 		room_table_init(tab1, tab2);
 		room_init(initRoomPath.GetFile().GetBaseName());
+	
 	}
 
 	public override void _Process(double delta)
 	{
-		if (transitionCooldown > 0)
+		if (!isTransitioning && transitionCooldown > 0)
 		{
 			transitionCooldown -= delta;
 			isTransitioning = false;
@@ -50,7 +55,7 @@ public partial class RoomFriend : Node3D
 			GD.Print("Transitioning to door number: " + currentDoorNumber);
 			GD.Print("Current room: " + currentRoomName);
 
-			transitionCooldown = COOLDOWN_TIME; // Start cooldown
+			transitionCooldown = COOLDOWN_TIME; // set cooldown
 		}
 	}
 		
@@ -195,11 +200,13 @@ public partial class RoomFriend : Node3D
 		}
 	}
 	
-	public void TeleportToDoor(int doorID)
+	public async Task TeleportToDoor(int doorID)
 	{
 
-		GameFriend.gameinstance.player.Velocity = new Godot.Vector3(0,0,0);
-		
+		var player = GameFriend.gameinstance.player;
+		player.Velocity = new Godot.Vector3(0,0,0);
+		player.LockMovement(true);
+
 		string targetRoom = "";
 		
 		if (tab1.ContainsKey(doorID) && tab1[doorID] != currentRoomName)
@@ -213,6 +220,8 @@ public partial class RoomFriend : Node3D
 
 		if (targetRoom != "")
 		{
+			await FadeToBlack();
+			Engine.TimeScale = 0;
 			room_init(targetRoom);
 		}
 		else
@@ -228,13 +237,46 @@ public partial class RoomFriend : Node3D
 			int dID = (int)door.Get("DoorNumber");
 			if (dID == doorID)
 			{
-				GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
+				player.GlobalPosition = door.GlobalPosition;
 				if (GameFriend.gameinstance.raven != null) 
 					GameFriend.gameinstance.raven.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition + new Godot.Vector3(0, 1.5f, 0);;
 				break;	
 			}
 		}
+
+		Engine.TimeScale = 1;
+		await Task.Delay(500);
+		await FadeFromBlack();
+		player.LockMovement(false);
+		isTransitioning = false;
 	}
+
+	private void AddFadeLayer()
+	{
+		if (fadeRect != null) return;
+		CreateFadeLayer();
+		AddChild(fadeRect);
+	}
+	private void CreateFadeLayer()
+	{
+		fadeRect = new Godot.TextureRect();
+		fadeRect.Modulate = new Color(Colors.Black, 0);
+	}
+	private async Task FadeToBlack()
+	{
+		if (fadeRect == null) return;
+		var tween = CreateTween().SetIgnoreTimeScale();
+		tween.TweenProperty(fadeRect, "modulate:a", 1f, fadeDuration);
+		await ToSignal(tween, Tween.SignalName.Finished);
+	}
+
+	private async Task FadeFromBlack()
+	{
+		if (fadeRect == null) return;
+		var tween = CreateTween().SetIgnoreTimeScale().SetEase(Tween.EaseType.In);
+		tween.TweenProperty(fadeRect, "modulate:a", 0f, fadeDuration*.75);
+		await ToSignal(tween, Tween.SignalName.Finished);
+	}	
 }
 
 		
