@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://50l6m37qesud"]
+[gd_scene load_steps=14 format=3 uid="uid://50l6m37qesud"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_s3gyi"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_o85co"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://brmfwgp854pll" path="res://Interactables/Lever.tscn" id="8_sgaba"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="9_lknha"]
 [ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="11_1ccxq"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="12_3usuw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
 
@@ -304,12 +305,34 @@ orientation = 1
 DoorNumber = 107
 
 [node name="Doorway_Blank2" parent="." instance=ExtResource("11_1ccxq")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 20, -4, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 20.5667, -2.5, 0)
 orientation = 3
 DoorNumber = 108
+
+[node name="DoorTransport" parent="Doorway_Blank2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0)
+
+[node name="BackupCollider" parent="Doorway_Blank2" index="1"]
+process_mode = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 2, 0)
+visible = true
+
+[node name="CollisionShape3D" parent="Doorway_Blank2/BackupCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="PlayerEnterDirection" parent="Doorway_Blank2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33324, 2.05498, 0)
 
 [node name="Doorway_Blank3" parent="." instance=ExtResource("11_1ccxq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5.5, 0)
 DoorNumber = 109
 
+[node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("12_3usuw")]
+boundObjs = [NodePath("CameraAndCollisionBounds")]
+
+[node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
+transform = Transform3D(48, 0, 0, 0, 13.5, 0, 0, 0, 1, 2, -16, 4)
+
 [editable path="MovingCageDrop_Skinny"]
+[editable path="Doorway_Blank2"]
+[editable path="CameraBounds"]

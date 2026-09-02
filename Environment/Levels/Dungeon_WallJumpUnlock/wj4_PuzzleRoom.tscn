@@ -32,7 +32,7 @@ size = Vector3(0.2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xu335"]
 resource_local_to_scene = true
-size = Vector3(1, 2, 2)
+size = Vector3(1, 0.348755, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0txx1"]
 resource_local_to_scene = true
@@ -40,7 +40,7 @@ size = Vector3(0.2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkxb0"]
 resource_local_to_scene = true
-size = Vector3(1, 2, 2)
+size = Vector3(1, 0.348755, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_co8ak"]
 resource_local_to_scene = true
@@ -97,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 3, 0)
 shape = SubResource("BoxShape3D_q8u21")
 
 [node name="CollisionShape3D2" parent="Wall_DoorWay2/StaticBody3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825623, 0)
 shape = SubResource("BoxShape3D_xu335")
 
 [node name="StoneWallHalfMesh3" parent="Wall_DoorWay2" index="8"]
@@ -123,6 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3, 0)
 shape = SubResource("BoxShape3D_0txx1")
 
 [node name="CollisionShape3D2" parent="Wall_DoorWay/StaticBody3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825623, 0)
 shape = SubResource("BoxShape3D_hkxb0")
 
 [node name="StoneWallHalfMesh5" parent="Wall_DoorWay" index="10"]
@@ -3833,7 +3835,7 @@ mesh = ExtResource("24_wgkks")
 skeleton = NodePath("../..")
 
 [node name="EnemyRat" parent="." instance=ExtResource("16_gd74j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37847, -14.3892, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.11982, -14.3892, 0)
 
 [node name="EnemyRat2" parent="." instance=ExtResource("16_gd74j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90956, -26.532, 0)

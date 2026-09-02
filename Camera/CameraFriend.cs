@@ -15,7 +15,7 @@ public partial class CameraFriend : Camera3D
 	[Export] public float roomMaxX = 10.0f;
 	[Export] public float roomMinY = -5.0f;
 	[Export] public float roomMaxY = 5.0f;
-	
+	private Vector4 defaultBoundaries;
 	[Export] public float minMoveThreshold = 0.1f; 
 
 	[Export] public float cameraDistance = 25.0f;
@@ -26,6 +26,7 @@ public partial class CameraFriend : Camera3D
 
 	public void init_camera()
 	{
+		defaultBoundaries = new Vector4(roomMinX, roomMaxX, roomMinY, roomMaxY);
 		if (GameFriend.gameinstance.player != null)
 			{
 				playerPosition = GameFriend.gameinstance.player.GlobalPosition;
@@ -96,8 +97,14 @@ public partial class CameraFriend : Camera3D
 		roomMaxX = maxX;
 		roomMinY = minY;
 		roomMaxY = maxY;
+	}
 
-		
+	public void SetToDefaultBounds()
+	{
+		roomMinX = defaultBoundaries.X;
+		roomMaxX = defaultBoundaries.Y;
+		roomMinY = defaultBoundaries.Z;
+		roomMaxY = defaultBoundaries.W;
 	}
 
 	public void ZoomTo(float targetDistance, float duration)
