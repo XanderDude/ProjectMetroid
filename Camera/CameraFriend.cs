@@ -7,6 +7,7 @@ public partial class CameraFriend : Camera3D
 
 	[Export] public float followSpeed = 8.0f;
 	[Export] public float lookAheadDistance = 3.0f; 
+	[Export] public float lookAboveOrBelowDistance = 2.0f; 
 	[Export] public float lookAheadSpeed = 2.0f; 
 	[Export] public float cameraYOffset = 1.5f;
 	
@@ -21,8 +22,9 @@ public partial class CameraFriend : Camera3D
 	[Export] public float cameraDistance = 25.0f;
 
 	private Vector3 playerPosition;
-	private float lastPlayerDirection = 1.0f;
-	private Vector3 lookAheadOffset = Vector3.Zero;
+	private float playerDirection = 1.0f;
+	private float verticalLookDirection = 0f;
+	private Vector3 lookAheadOffset, adjustedCamPos = Vector3.Zero;
 
 	public void init_camera()
 	{
@@ -38,24 +40,36 @@ public partial class CameraFriend : Camera3D
 	public override void _Process(double delta) {
 		UpdateCameraPosition((float)delta);
 	}
+	
 
 	private void UpdateCameraPosition(float delta) {
-		Vector3 playerPos = GameFriend.gameinstance.player.GlobalPosition;
+		playerPosition = GameFriend.gameinstance.player.GlobalPosition;
 		Vector3 playerVelocity = GetPlayerVelocity();
+		var lookSpeed = lookAheadSpeed;
 		if (Mathf.Abs(playerVelocity.X) > minMoveThreshold) {
-			lastPlayerDirection = Mathf.Sign(playerVelocity.X);
+			playerDirection = Mathf.Sign(playerVelocity.X);
+			verticalLookDirection = 0;
+		}
+		else if (playerVelocity.X == 0 && GameFriend.gameinstance.player.IsOnFloor() && GameFriend.gameinstance.player.aimDirection.Y != 0)
+		{
+			verticalLookDirection = Mathf.Sign(GameFriend.gameinstance.player.aimDirection.Y);
+			lookSpeed = 4f;
+		}
+		else 
+		{
+			verticalLookDirection = 0;
+			lookSpeed = lookAheadSpeed * 1.5f;
 		}
 
 		
-		Vector3 desiredLookAhead = new Vector3(lastPlayerDirection * lookAheadDistance, 0, 0);
-		lookAheadOffset = lookAheadOffset.Lerp(desiredLookAhead, lookAheadSpeed * delta);
+		Vector3 desiredLookAheadPos = playerPosition + new Vector3(playerDirection * lookAheadDistance, verticalLookDirection * lookAboveOrBelowDistance, 0);
+		desiredLookAheadPos.X = Mathf.Clamp(desiredLookAheadPos.X, roomMinX, roomMaxX);
+		desiredLookAheadPos.Y = Mathf.Clamp(desiredLookAheadPos.Y, roomMinY, roomMaxY);
+		lookAheadOffset = lookAheadOffset.Lerp(desiredLookAheadPos - playerPosition, lookSpeed * delta);
 
-		
-		playerPosition = playerPos + lookAheadOffset;
-		playerPosition.X = Mathf.Clamp(playerPosition.X, roomMinX, roomMaxX);
-		playerPosition.Y = Mathf.Clamp(playerPosition.Y, roomMinY, roomMaxY);
-		
-		Vector3 currentPos = GlobalPosition;
+		adjustedCamPos = playerPosition + lookAheadOffset;
+		adjustedCamPos.X = Mathf.Clamp(adjustedCamPos.X, roomMinX, roomMaxX);
+		adjustedCamPos.Y = Mathf.Clamp(adjustedCamPos.Y, roomMinY, roomMaxY);
 
 		if (playerVelocity.Y > -14.0f) {
 			cameraYOffset = 1.5f;
@@ -63,18 +77,15 @@ public partial class CameraFriend : Camera3D
 			cameraYOffset = -0.5f;
 		}
 
-		Vector3 newPosition;
-
 		if (GameFriend.gameinstance.player.StateMachine._currentState.Name == "deathState")
 		{
-			newPosition = new Vector3(playerPosition.X, playerPosition.Y, currentPos.Z);
-			GlobalPosition = newPosition;
+			GlobalPosition = new Vector3(playerPosition.X, playerPosition.Y, GlobalPosition.Z);
 			GD.Print("Death State - Camera Locked to Player");
 		}
 		else
 		{
-			newPosition = new Vector3(playerPosition.X, playerPosition.Y + cameraYOffset, cameraDistance);
-			GlobalPosition = currentPos.Lerp(newPosition, followSpeed * delta);
+			var newPosition = new Vector3(adjustedCamPos.X, adjustedCamPos.Y + cameraYOffset, cameraDistance);
+			GlobalPosition = GlobalPosition.Lerp(newPosition, followSpeed * delta);
 		}
 	}
 	

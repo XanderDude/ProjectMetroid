@@ -131,7 +131,7 @@ DoorNumber = 108
 boundObjs = [NodePath("CameraAndCollisionBounds")]
 
 [node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
-transform = Transform3D(22.5, 0, 0, 0, 13, 0, 0, 0, 1, -0.5, -9, 4)
+transform = Transform3D(22.5, 0, 0, 0, 10, 0, 0, 0, 1, -0.5, -10.5, 4)
 
 [editable path="MovingCage_Medium"]
 [editable path="MovingCage_Medium/CageMedium"]

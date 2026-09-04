@@ -244,7 +244,7 @@ mesh = SubResource("BoxMesh_8x5tc")
 
 [node name="RatMiniBoss_mantleDrop" parent="." instance=ExtResource("8_vukk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1957, -8.93375, 0)
-dropTable = [SubResource("Resource_8x80i"), SubResource("Resource_sneme")]
+dropTable = Array[ExtResource("9_g38q1")]([SubResource("Resource_8x80i"), SubResource("Resource_sneme")])
 
 [node name="StonePillar11" parent="." instance=ExtResource("3_8x80i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -4.5)
