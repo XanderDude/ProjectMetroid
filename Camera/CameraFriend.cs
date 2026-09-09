@@ -6,7 +6,7 @@ public partial class CameraFriend : Camera3D
 	[ExportGroup("Follow Settings")]
 
 	[Export] public float followSpeed = 8.0f;
-	[Export] public float lookAheadDistance = 3.0f; 
+	[Export] public float lookAheadDistance = 2.0f; 
 	[Export] public float lookAboveOrBelowDistance = 2.0f; 
 	[Export] public float lookAheadSpeed = 2.0f; 
 	[Export] public float cameraYOffset = 1.5f;
@@ -25,6 +25,7 @@ public partial class CameraFriend : Camera3D
 	private float playerDirection = 1.0f;
 	private float verticalLookDirection = 0f;
 	private Vector3 lookAheadOffset, adjustedCamPos = Vector3.Zero;
+	private float lookDelayTimer, lookDelay = .4f;
 
 	public void init_camera()
 	{
@@ -49,15 +50,21 @@ public partial class CameraFriend : Camera3D
 		if (Mathf.Abs(playerVelocity.X) > minMoveThreshold) {
 			playerDirection = Mathf.Sign(playerVelocity.X);
 			verticalLookDirection = 0;
+			lookDelayTimer = lookDelay;
 		}
 		else if (playerVelocity.X == 0 && GameFriend.gameinstance.player.IsOnFloor() && GameFriend.gameinstance.player.aimDirection.Y != 0)
 		{
-			verticalLookDirection = Mathf.Sign(GameFriend.gameinstance.player.aimDirection.Y);
-			lookSpeed = 4f;
+			lookDelayTimer -= delta;
+			if (lookDelayTimer <= 0)
+			{
+				verticalLookDirection = Mathf.Sign(GameFriend.gameinstance.player.aimDirection.Y);
+				lookSpeed = 4f;
+			}
 		}
 		else 
 		{
 			verticalLookDirection = 0;
+			lookDelayTimer = lookDelay;
 			lookSpeed = lookAheadSpeed * 1.5f;
 		}
 
