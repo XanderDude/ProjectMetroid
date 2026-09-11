@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lwx63t5ens0a"]
+[gd_scene load_steps=11 format=3 uid="uid://lwx63t5ens0a"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_u2iaf"]
 [ext_resource type="PackedScene" uid="uid://gojj3tua6rph" path="res://Enemies/Rat/EnemyTinyRat.tscn" id="2_c4xrj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bviplcgofk6df" path="res://Enemies/DropEntry.cs" id="3_kk5v8"]
 [ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="3_s8a05"]
 [ext_resource type="PackedScene" uid="uid://24fid0tsbjm" path="res://ItemDrop/ItemDrop_HealthSmall.tscn" id="4_s8a05"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="7_s8a05"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6kw23"]
 vertices = PackedVector3Array(-3.49064, -1.9, -0.5, -3.49064, -1.9, 0.5, 4.50936, -1.9, 0.5, 4.50936, -1.9, -0.5, 5.50936, -3.34, -0.5, 5.50936, -3.34, 0.5, 19.0094, -3.34, 0.5, 19.0094, -3.34, -0.5, 20.0094, -1.9, -0.5, 20.0094, -1.9, 0.5, 26.7594, -1.9, 0.5, 26.7594, -1.9, -0.5)
@@ -174,3 +175,11 @@ dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
 [node name="TinyRat3" parent="." instance=ExtResource("2_c4xrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -3.5, 0)
 dropTable = Array[ExtResource("3_kk5v8")]([SubResource("Resource_bkmc1")])
+
+[node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("7_s8a05")]
+boundObjs = [NodePath("CameraAndCollisionBounds")]
+
+[node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
+transform = Transform3D(49.5, 0, 0, 0, 7.5, 0, 0, 0, 1, 2, -11.25, 4)
+
+[editable path="CameraBounds"]

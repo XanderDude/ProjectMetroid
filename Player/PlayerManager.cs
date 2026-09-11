@@ -15,6 +15,7 @@ public partial class PlayerManager : CharacterBody3D
 	public bool inwater = false;
 
 	public bool movementlocked = false;
+	public bool inputLocked = false;
 	[Export] private ShaderMaterial mainMat, weaponMat;
 	private float alpha = 0f;
 
@@ -96,7 +97,7 @@ public partial class PlayerManager : CharacterBody3D
 		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
 		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
 		
-		if (direction == Vector2.Zero) noAimDirection = true;
+		if (inputLocked || direction == Vector2.Zero) noAimDirection = true;
 		else
         {
 			noAimDirection = false;	
@@ -137,6 +138,4 @@ public partial class PlayerManager : CharacterBody3D
 		AxisLockLinearX = locked;
 		AxisLockLinearY = locked;
 	}
-	
-
 }

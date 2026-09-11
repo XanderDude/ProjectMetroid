@@ -204,8 +204,7 @@ public partial class RoomFriend : Node3D
 	{
 
 		var player = GameFriend.gameinstance.player;
-		player.Velocity = new Godot.Vector3(0,0,0);
-		player.LockMovement(true);
+
 
 		string targetRoom = "";
 		
@@ -220,6 +219,7 @@ public partial class RoomFriend : Node3D
 
 		if (targetRoom != "")
 		{
+			player.inputLocked = true;
 			await FadeToBlack();
 			Engine.TimeScale = 0;
 			room_init(targetRoom);
@@ -238,6 +238,8 @@ public partial class RoomFriend : Node3D
 			if (dID == doorID)
 			{
 				player.GlobalPosition = door.GlobalPosition;
+				GameFriend.gameinstance.camera.SetToDefaultBounds();
+				GameFriend.gameinstance.camera.GlobalPosition = player.GlobalPosition;
 				if (GameFriend.gameinstance.raven != null) 
 					GameFriend.gameinstance.raven.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition + new Godot.Vector3(0, 1.5f, 0);;
 				break;	
@@ -247,8 +249,8 @@ public partial class RoomFriend : Node3D
 		Engine.TimeScale = 1;
 		await Task.Delay(500);
 		await FadeFromBlack();
-		player.LockMovement(false);
 		isTransitioning = false;
+		player.inputLocked = false;
 	}
 
 	private void AddFadeLayer()

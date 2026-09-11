@@ -12,10 +12,10 @@ cull_mask = 524271
 current = true
 fov = 32.0
 script = ExtResource("1_88gwk")
-roomMinX = -200.0
-roomMaxX = 200.0
-roomMinY = -200.0
-roomMaxY = 200.0
+minBoundX = -200.0
+minBoundY = -200.0
+maxBoundX = 200.0
+maxBoundY = 200.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 1, 0, -4.69145, -30.6777)

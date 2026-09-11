@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0m3j13d130i7"]
+[gd_scene load_steps=23 format=3 uid="uid://b0m3j13d130i7"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_xl5e1"]
-[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/LingeringSoul.tscn" id="2_aqeyy"]
+[ext_resource type="PackedScene" uid="uid://bm62ofjujy25i" path="res://Interactables/lingeringSoul.tscn" id="2_aqeyy"]
 [ext_resource type="PackedScene" uid="uid://qjngdierwsy2" path="res://Interactables/LingeringSoulLantern.tscn" id="2_klfln"]
 [ext_resource type="PackedScene" uid="uid://bnfrhbrlbmndh" path="res://Interactables/DriftingSoul.tscn" id="3_a45e5"]
 [ext_resource type="PackedScene" uid="uid://35q544anjhdq" path="res://Interactables/Cages/movingCage_Medium.tscn" id="3_klfln"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="13_i5alg"]
 [ext_resource type="PackedScene" uid="uid://dx6inaiw5kq1u" path="res://Environment/RoomPieces/Stone/StoneDoorWay.tscn" id="14_lwmvw"]
 [ext_resource type="PackedScene" uid="uid://ewqyu8m66x7l" path="res://Environment/Platforms/Stone2x2x2Block.tscn" id="15_e0anq"]
+[ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="16_lkc6q"]
 
 [sub_resource type="Gradient" id="Gradient_a45e5"]
 offsets = PackedFloat32Array(0, 0.29765, 1)
@@ -278,12 +279,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 15.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 14, 0)
 
 [node name="Doorway_Blank" parent="." instance=ExtResource("13_i5alg")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30.5, 6.5, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 6.5, 0)
 orientation = 1
 DoorNumber = 109
 
 [node name="Doorway_Blank2" parent="." instance=ExtResource("13_i5alg")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 19.5, -20.5, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 19.5, -15.5, 0)
 orientation = 3
 DoorNumber = 110
 
@@ -295,4 +296,11 @@ DoorNumber = 111
 [node name="StoneBlock" parent="." instance=ExtResource("15_e0anq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -13.5, 0)
 
+[node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("16_lkc6q")]
+boundObjs = [NodePath("CameraAndCollisionBounds")]
+
+[node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
+transform = Transform3D(51.1067, 0, 0, 0, 36.5002, 0, 0, 0, 1, 1.58429, -23, 4)
+
 [editable path="LingeringSoulLantern4"]
+[editable path="CameraBounds"]

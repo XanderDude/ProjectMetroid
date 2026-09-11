@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw0ppidcqyit8"]
+
+[ext_resource type="Script" uid="uid://bjwft1p4oxqeb" path="res://Camera/CameraBoundsPlayerTracker.cs" id="1_s8bvc"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
+[node name="CameraBounds" type="Node" node_paths=PackedStringArray("boundObjs")]
+script = ExtResource("1_s8bvc")
+boundObjs = []
+
+[node name="CameraAndCollisionBounds" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, 0, 2, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+
+[node name="CollisionBoundsAndCameraMeta" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Vector4(-5, -2.5, 5, 2.5)
+
+[node name="Marker3D" type="Marker3D" parent="."]
