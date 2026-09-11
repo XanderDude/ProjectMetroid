@@ -15,6 +15,7 @@ public partial class CameraFriend : Camera3D
 	[Export] public float minBoundX = -100f;
 	[Export] public float minBoundY = -100f;
 	[Export] public float maxBoundX = 100f;
+	[Export] public float maxBoundY = 100f;
 	private Vector4 defaultBoundaries, newBounds;
 
 	[Export] public float minMoveThreshold = 0.1f; 
