@@ -11,7 +11,7 @@ public partial class CameraBoundsPlayerTracker : Node
 	private Node3D playerPos;
 	private CameraFriend camera;
 	float timeAccumulator = 0f;
-	float updateDelay = 0.1f;
+	float updateDelay = 0.06f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,7 +22,12 @@ public partial class CameraBoundsPlayerTracker : Node
 		{
 			var rect = new Rect2(new Vector2(obj.GlobalPosition.X - obj.Scale.X / 2, obj.GlobalPosition.Y - obj.Scale.Y / 2), new Vector2(obj.Scale.X, obj.Scale.Y));
 			collisionBounds.Add(rect);
-			if (obj.HasMeta("CameraBounds")) cameraBounds.Add((Rect2)obj.GetMeta("CameraBounds"));
+			if (obj.HasMeta("CameraBounds")) 
+			{
+				Vector4 meta = (Vector4)obj.GetMeta("CameraBounds");
+				Rect2 bounds = new(new(meta.X,meta.Y),new(meta.Z-meta.X, meta.W-meta.Y));
+				cameraBounds.Add(bounds);
+			}
 			else cameraBounds.Add(rect);
 		}
 		if (camera == null || playerPos == null)
@@ -36,7 +41,7 @@ public partial class CameraBoundsPlayerTracker : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (boundObjs == null || cameraBounds.Count == 0) return;
+		if (boundObjs == null || cameraBounds.Count < 1) return;
 		timeAccumulator += (float)delta;
 		if (timeAccumulator >= updateDelay) timeAccumulator -= updateDelay;
 		else return;
@@ -53,7 +58,7 @@ public partial class CameraBoundsPlayerTracker : Node
 				if (!newRect.HasArea()) newRect = cameraBounds[i];
 				else
 				{
-					newRect.Merge(cameraBounds[i]);
+					newRect = newRect.Merge(cameraBounds[i]);
 				}
 			}
 		}
@@ -74,7 +79,7 @@ public partial class CameraBoundsPlayerTracker : Node
 
 		if (boundObjs == null || cameraBounds.Count == 0) //no bound is set
 		{
-			camera.SetRoomBounds(-999f, 999f, -999f, 999f); //no bounds
+			camera.SetToDefaultBounds();
 			return;
 		}
 		else if (cameraBounds.Count > 1) //more than 1 bound in the level
@@ -113,31 +118,16 @@ public partial class CameraBoundsPlayerTracker : Node
 		return minDistance;
 	}
 
-	private void SetRoomBounds(Transform3D rect)
-	{
-		var sideOffset = 5f;
-		//origin = position(x, y), Basis.X.X = width, Basis.Y.Y = height
-
-		var roomMinX = rect.Basis.X.X <= sideOffset*2 ? rect.Origin.X : rect.Origin.X - rect.Basis.X.X / 2 + sideOffset; //left
-		var roomMaxX = rect.Basis.X.X <= sideOffset*2 ? rect.Origin.X : rect.Origin.X + rect.Basis.X.X / 2 - sideOffset; //right
-		var roomMinY = rect.Origin.Y - rect.Basis.Y.Y / 2; //bottom
-		var roomMaxY = rect.Origin.Y + rect.Basis.Y.Y / 2; //top
-
-		roomMinY += 2f;
-
-		camera.SetRoomBounds(roomMinX, roomMaxX, roomMinY, roomMaxY);
-	}
 	private void SetRoomBoundsRect(Rect2 rect)
 	{
 		currentRect = rect;
 		GD.Print("[Source Rect]Pos: " + currentRect.Position + " End: " + currentRect.End);
 		var roomMinX = rect.Size.X <= sideOffset * 2 ? rect.GetCenter().X : rect.Position.X + sideOffset; //left
 		var roomMaxX = rect.Size.X <= sideOffset * 2 ? rect.GetCenter().X : rect.End.X - sideOffset; //right
-		var roomMinY = rect.Position.Y; //bottom
-		var roomMaxY = rect.End.Y; //top
+		var roomMinY = rect.Position.Y + botOffset; //bottom
+		var roomMaxY = rect.Size.Y <= botOffset * 2 ? roomMinY : rect.End.Y; //top, if bounds height smaller than offset, set top to bottom pos
 
-		roomMinY += botOffset;
 		GD.Print($"[CameraBounds]Pos: ({roomMinX}, {roomMinY}) End: ({roomMaxX}, {roomMaxY})");
-		camera.SetRoomBounds(roomMinX, roomMaxX, roomMinY, roomMaxY);
+		camera.SetNewCamBounds(roomMinX, roomMinY, roomMaxX, roomMaxY, false);
 	}
 }

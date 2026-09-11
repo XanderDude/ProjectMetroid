@@ -351,7 +351,7 @@ boundObjs = [NodePath("CameraAndCollisionBounds"), NodePath("CameraAndCollisionB
 transform = Transform3D(22.5593, 0, 0, 0, 7.62691, 0, 0, 0, 1, 4.18002, -19.3975, 4)
 
 [node name="CameraAndCollisionBounds2" type="MeshInstance3D" parent="CameraBounds"]
-transform = Transform3D(11.3283, 0, 0, 0, 7.822, 0, 0, 0, 1, -12.32, -19.5105, 4)
+transform = Transform3D(10.1955, 0, 0, 0, 7.822, 0, 0, 0, 1, -12.32, -19.5105, 4)
 visible = false
 layers = 16
 ignore_occlusion_culling = true

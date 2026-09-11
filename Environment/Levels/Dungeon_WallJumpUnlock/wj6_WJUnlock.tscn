@@ -1229,6 +1229,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, 0, 12.5, 4)
 [node name="CollisionBoundsAndCameraMeta" parent="CameraBounds" index="1"]
 transform = Transform3D(12, 0, 0, 0, 31.2, 0, 0, 0, 1, 0, -10.5, 4)
 metadata/CameraBounds = Rect2(-5, -23.5, 10, 28.5)
+metadata/test = Vector4(-5, -23.5, 5, 6)
 
 [node name="Marker3D" parent="CameraBounds" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -23.5, 0)

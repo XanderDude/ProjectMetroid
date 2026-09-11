@@ -3854,7 +3854,7 @@ layers = 16
 ignore_occlusion_culling = true
 mesh = SubResource("QuadMesh_blkx3")
 skeleton = NodePath("")
-metadata/CameraBounds = Rect2(-3, -15, 6, 8)
+metadata/CameraBounds = Vector4(-3, -15, 3, -7)
 
 [node name="CameraBounds_Main" type="MeshInstance3D" parent="CameraBounds"]
 transform = Transform3D(22.498, 0, 0, 0, 16.387, 0, 0, 0, 1, -0.457945, -18.2778, 4)

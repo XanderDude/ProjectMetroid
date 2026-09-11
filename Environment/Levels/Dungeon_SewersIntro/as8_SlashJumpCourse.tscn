@@ -279,7 +279,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 15.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 14, 0)
 
 [node name="Doorway_Blank" parent="." instance=ExtResource("13_i5alg")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30.5, 6.5, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 6.5, 0)
 orientation = 1
 DoorNumber = 109
 
@@ -296,10 +296,11 @@ DoorNumber = 111
 [node name="StoneBlock" parent="." instance=ExtResource("15_e0anq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -13.5, 0)
 
-[node name="CameraBounds" parent="." instance=ExtResource("16_lkc6q")]
+[node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("16_lkc6q")]
+boundObjs = [NodePath("CameraAndCollisionBounds")]
 
 [node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
-transform = Transform3D(52.8158, 0, 0, 0, 38.48, 0, 0, 0, 1, 1.58429, -23, 4)
+transform = Transform3D(51.1067, 0, 0, 0, 36.5002, 0, 0, 0, 1, 1.58429, -23, 4)
 
 [editable path="LingeringSoulLantern4"]
 [editable path="CameraBounds"]

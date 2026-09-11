@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs1iys3qg52x"]
+[gd_scene load_steps=12 format=3 uid="uid://bs1iys3qg52x"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_5gacg"]
 [ext_resource type="PackedScene" uid="uid://br57fqbs34yoh" path="res://Environment/Props/General/chain.tscn" id="2_0ebx5"]
@@ -20,6 +20,8 @@ proximity_fade_enabled = true
 material = SubResource("StandardMaterial3D_5lqg8")
 
 [sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vdvww"]
 
 [node name="Sewer1_5" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -11, 0)
@@ -193,24 +195,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 0)
 DoorNumber = 107
 
 [node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("6_vdvww")]
-boundObjs = [NodePath("CameraAndCollisionBounds"), NodePath("CollisionBoundsAndCameraMeta"), NodePath("CameraAndCollisionBounds2")]
+boundObjs = [NodePath("CollisionBoundsAndCameraMeta"), NodePath("CollisionBoundsAndCameraMeta2"), NodePath("CameraAndCollisionBounds2")]
 
 [node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
-transform = Transform3D(18.4, 0, 0, 0, 11.292, 0, 0, 0, 1, -7.18889, -10.2593, 4)
+transform = Transform3D(18.5, 0, 0, 0, 11, 0, 0, 0, 1, -7, -10, 4)
 
 [node name="CollisionBoundsAndCameraMeta" parent="CameraBounds" index="1"]
-transform = Transform3D(10.8108, 0, 0, 0, 3.12, 0, 0, 0, 1, 6.30944, -10.9838, 4)
-metadata/CameraBounds = Rect2(-4, -12.5, 15, 3)
+transform = Transform3D(9.60018, 0, 0, 0, 3.12, 0, 0, 0, 1, 6.80944, -10.9838, 4)
+metadata/CameraBounds = Vector4(-8, -14.5, 12, -7.5)
 
 [node name="Marker3D" parent="CameraBounds" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -9.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, -16, 0)
+
+[node name="CollisionBoundsAndCameraMeta2" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(26.455, 0, 0, 0, 13.2, 0, 0, 0, 1, -4, -10.5, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+metadata/CameraBounds = Vector4(-16.5, -16, 2, -4.5)
 
 [node name="CameraAndCollisionBounds2" type="MeshInstance3D" parent="CameraBounds"]
 transform = Transform3D(10.5984, 0, 0, 0, 5.53307, 0, 0, 0, 1, 17.8111, -11.7593, 4)
 visible = false
 layers = 16
 ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_blkx3")
+mesh = SubResource("QuadMesh_vdvww")
 skeleton = NodePath("")
 
 [editable path="Doorway_Blank"]
