@@ -17,19 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://ewqyu8m66x7l" path="res://Environment/Platforms/Stone2x2x2Block.tscn" id="15_e0anq"]
 [ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="16_lkc6q"]
 
-[sub_resource type="Gradient" id="Gradient_a45e5"]
+[sub_resource type="Gradient" id="Gradient_lkc6q"]
 offsets = PackedFloat32Array(0, 0.29765, 1)
 colors = PackedColorArray(0.593134, 0.593134, 0.593134, 1, 0.629675, 0.629675, 0.629675, 1, 0.473976, 0.473976, 0.473976, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qs4q8"]
-gradient = SubResource("Gradient_a45e5")
+gradient = SubResource("Gradient_lkc6q")
 width = 4
 height = 4
 fill_from = Vector2(0, 0.320513)
 fill_to = Vector2(1, 0.316239)
 repeat = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpg12"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbjxv"]
 shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
@@ -40,7 +40,7 @@ uv1_world_triplanar = true
 texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_vpg12"]
-material = SubResource("StandardMaterial3D_vpg12")
+material = SubResource("StandardMaterial3D_xbjxv")
 custom_aabb = AABB(-45, -45, 0, 95, 95, 0)
 size = Vector2(50, 50)
 

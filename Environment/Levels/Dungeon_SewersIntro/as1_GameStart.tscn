@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dj2fylxeec5s4"]
+[gd_scene load_steps=26 format=3 uid="uid://dj2fylxeec5s4"]
 
 [ext_resource type="PackedScene" uid="uid://bi6oqvg3qqrev" path="res://Environment/Platforms/Stone1x0.5x6Platform.tscn" id="1_0k13w"]
 [ext_resource type="PackedScene" uid="uid://bn7qo37oaqxvj" path="res://ItemDrop/ItemDrop.tscn" id="2_vugya"]
@@ -6,12 +6,44 @@
 [ext_resource type="PackedScene" uid="uid://ggkm68wg86x" path="res://Environment/Platforms/Stone2x4x2Pillar.tscn" id="4_dk52d"]
 [ext_resource type="PackedScene" uid="uid://nstfpxg3o1vd" path="res://Environment/Platforms/Stone2x6x2Pillar.tscn" id="5_lneio"]
 [ext_resource type="PackedScene" uid="uid://bnxdqlvrf6huy" path="res://Environment/RoomPieces/Doorways/Doorway_Blank.tscn" id="6_vi5ne"]
+[ext_resource type="PackedScene" uid="uid://ewqyu8m66x7l" path="res://Environment/Platforms/Stone2x2x2Block.tscn" id="6_y1kya"]
 [ext_resource type="PackedScene" uid="uid://dw0ppidcqyit8" path="res://Camera/CameraBounds.tscn" id="7_u3sed"]
+[ext_resource type="ArrayMesh" uid="uid://bbckkyw6dx43n" path="res://Environment/Models/StoneMeshes/stoneCeilingMesh.res" id="7_xyors"]
+[ext_resource type="Material" uid="uid://b3r0tis1nja11" path="res://Environment/Materials/BGMaterials/as1_bgMat.tres" id="8_1ajpe"]
+[ext_resource type="ArrayMesh" uid="uid://d1mfvhs7jtbq6" path="res://Environment/Models/StoneMeshes/stoneFloorMesh.res" id="8_w0vwb"]
+[ext_resource type="ArrayMesh" uid="uid://dewtr4rxddygm" path="res://Environment/Models/StoneMeshes/stoneWallMesh.res" id="9_7kdyb"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8x5tc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wmrti"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
 
-[sub_resource type="PrismMesh" id="PrismMesh_hd5b6"]
-left_to_right = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_7kdyb"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_up1ln"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0vwb"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xyors"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y1kya"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ajpe"]
+resource_local_to_scene = true
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o22bx"]
+resource_local_to_scene = true
+size = Vector3(1, 0.5, 6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lqg8"]
 shading_mode = 0
@@ -23,7 +55,14 @@ proximity_fade_enabled = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_bkmc1"]
 material = SubResource("StandardMaterial3D_5lqg8")
 
+[sub_resource type="QuadMesh" id="QuadMesh_1ajpe"]
+material = ExtResource("8_1ajpe")
+custom_aabb = AABB(-45, -45, 0, 95, 95, 0)
+size = Vector2(50, 50)
+
 [sub_resource type="QuadMesh" id="QuadMesh_blkx3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_xyors"]
 
 [node name="Sewer1_1" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17, 0)
@@ -35,127 +74,248 @@ modulate = Color(0.446777, 0.446777, 0.446777, 1)
 text = "Sewer1_1
 "
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -5, 2.5, 0)
-use_collision = true
-collision_layer = 2
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(-8.74228e-08, -6, 0, 2, -2.62268e-07, 0, 0, 0, 2, -3, 6.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, -5.19615, 0, 1.73205, 3, 0, 0, 0, 2, 7.5, 5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
-transform = Transform3D(-0.517638, -6.93747, 0, 1.93185, -1.85889, 0, 0, 0, 2, 26.4481, 5.34162, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D10" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1.03806e-07, 4.5, 3.01992e-07, 1.37495, 3.39741e-07, 7.64274e-15, -1.04201e-14, 6.79481e-07, -2, 32.0081, 5.89688, -2.81311e-07)
-use_collision = true
-mesh = SubResource("PrismMesh_hd5b6")
-
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
-transform = Transform3D(-0.517638, -17.5345, 0, 1.93185, -4.69836, 0, 0, 0, 2, 31.7574, 0.20358, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
-transform = Transform3D(-5.96046e-08, -8.62488, 0, 2, -3.42722e-07, 0, 0, 0, 2, 13.2549, 3.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D16" type="CSGMesh3D" parent="."]
-transform = Transform3D(-5.96046e-08, -29.795, 0, 2, -1.18395e-06, 0, 0, 0, 2, 9.75738, -2, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D14" type="CSGMesh3D" parent="."]
-transform = Transform3D(-5.96046e-08, -24.3, 0, 2, -9.65595e-07, 0, 0, 0, 2, 28.783, 11, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
 [node name="StonePlatformEdge24" parent="." instance=ExtResource("1_0k13w")]
 transform = Transform3D(-8.65486e-08, 0, -1, 0, 1, 0, 1.98, 0, -4.37114e-08, 45, 11.5, -1)
 
 [node name="StonePlatformEdge25" parent="." instance=ExtResource("1_0k13w")]
 transform = Transform3D(-8.65486e-08, 0, -1, 0, 1, 0, 1.98, 0, -4.37114e-08, 45, 15, -1)
 
-[node name="CSGMesh3D12" type="CSGMesh3D" parent="."]
-transform = Transform3D(-2.07018e-07, -0.9504, 0, 6.94637, -3.77654e-08, 0, 0, 0, 2, 17.0984, 7.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
+[node name="StoneBlock8" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2.75, 0, 0, 0, 1, 0, 0, 0, 1, -6, 7.5, -1)
 
-[node name="CSGMesh3D13" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1.4899e-07, -0.9504, 0, 4.99928, -3.77654e-08, 0, 0, 0, 2, 22.8008, 4.9711, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
+[node name="StoneBlock9" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 1, -6, -1.5, -1)
 
-[node name="CSGMesh3D9" type="CSGMesh3D" parent="."]
-transform = Transform3D(-8.74228e-08, -6.6, 0, 2, -2.88495e-07, 0, 0, 0, 2, 43.1443, 3.5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D18" type="CSGMesh3D" parent="."]
-transform = Transform3D(-8.74228e-08, -6.6, 0, 2, -2.88495e-07, 0, 0, 0, 2, 48.6443, 8, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D11" type="CSGMesh3D" parent="."]
-transform = Transform3D(1.73205, -3.3, 0, 0.999997, 5.71576, 0, 0, 0, 2, 47.1443, 1.34725, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D15" type="CSGMesh3D" parent="."]
-transform = Transform3D(1.73205, -4.29, 0, 0.999997, 7.43049, 0, 0, 0, 2, 50.6443, 4.34725, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D17" type="CSGMesh3D" parent="."]
-transform = Transform3D(-2, 6.92388e-07, 0, -1.74846e-07, -7.92, 0, 0, 0, 2, 44.5, 11, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
-
-[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
-transform = Transform3D(-2.38418e-08, -5.4, 0, 0.8, -2.14577e-07, 0, 0, 0, 2, 19.8888, 3.2, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_8x5tc")
+[node name="StoneBlock10" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(1, 0, 0, 0, 3.5, 0, 0, 0, 1, -6, 5.5, -1)
 
 [node name="Item2" parent="." instance=ExtResource("2_vugya")]
-transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 19.4874, 4.4874, 0)
+transform = Transform3D(1.0028, 0, 0, 0, 1.0028, 0, 0, 0, 1.0028, 23.1986, 4.49068, 0)
 
 [node name="LingeringSoul7" parent="." instance=ExtResource("3_vrbje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 7, 0)
 
 [node name="LingeringSoul8" parent="." instance=ExtResource("3_vrbje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 6, 0)
-
-[node name="StonePillar10" parent="." instance=ExtResource("4_dk52d")]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -7, 2.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 9, 0)
 
 [node name="LingeringSoul9" parent="." instance=ExtResource("3_vrbje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 7, 0)
 
 [node name="LingeringSoul10" parent="." instance=ExtResource("3_vrbje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 6, 0)
-
-[node name="StonePillar11" parent="." instance=ExtResource("4_dk52d")]
-transform = Transform3D(5.9, 0, 0, 0, 0.25, 0, 0, 0, 1, 22.5, 7, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 6, 0)
 
 [node name="StonePillar12" parent="." instance=ExtResource("4_dk52d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 4.5, -3)
 
 [node name="StonePillar" parent="." instance=ExtResource("5_lneio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 6.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 6.5, -3)
 
 [node name="StonePillar13" parent="." instance=ExtResource("4_dk52d")]
-transform = Transform3D(0.5, 0, 0, 0, 2.5, 0, 0, 0, 20, -5.5, 2.5, 0)
+transform = Transform3D(0.5, 0, 0, 0, 2.5, 0, 0, 0, 20, -6, 2.5, -1)
+
+[node name="StonePillar17" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(0.5, 0, 0, 0, 1.05, 0, 0, 0, 20, 10, 4.5, -1)
+
+[node name="StonePillar20" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 20, 17.5, 7.5, -1)
+
+[node name="StonePillar25" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 20, 24.5, 5.5, -1)
+
+[node name="StonePillar22" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(0.5, 0, 0, 0, 1.75, 0, 0, 0, 20, 16.5, 14, -1)
+
+[node name="StonePillar14" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(3, 0, 0, 0, 0.25, 0, 0, 0, 20, -5, 7, -1)
+
+[node name="StonePillar18" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(16, 0, 0, 0, 0.25, 0, 0, 0, 20, -6, -3, -1)
+
+[node name="StonePillar16" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(2, 0, 0, 0, 0.25, 0, 0, 0, 18.5, 1, 7.5, 2)
+
+[node name="StonePillar15" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(3, 0, 0, 0, 0.25, 0, 0, 0, 20, 5, 7, -1)
+
+[node name="StonePillar19" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(7.25, 0, 0, 0, 0.25, 0, 0, 0, 20, 11, 3, -1)
+
+[node name="StonePillar21" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(3.5, 0, 0, 0, 0.25, 0, 0, 0, 19, 28, 10.5, 1)
+
+[node name="StonePillar27" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(2.5, 0, 0, 0, 0.25, 0, 0, 0, 19, 35, 10.5, 1)
+
+[node name="StonePillar23" parent="." instance=ExtResource("4_dk52d")]
+transform = Transform3D(6.5, 0, 0, 0, 0.25, 0, 0, 0, 20, 17.5, 17, -1)
+
+[node name="StoneBlock" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(5.5, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 7.5, -1)
+
+[node name="StoneBlock24" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(1.1, 0, 0, 0, 0.75, 0, 0, 0, 1, 23.5, 10, -1)
+
+[node name="StaticBody3D" parent="StoneBlock24" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock24/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_wmrti")
+
+[node name="StoneBlock13" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(0.25, 0, 0, 0, 1.25, 0, 0, 0, 19, 24.5, 10, 1)
+
+[node name="StoneBlock6" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(5.5, 0, 0, 0, 4.5, 0, 0, 0, 1, 30, 19, -1)
+
+[node name="StoneBlock7" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(3.5, 0, 0, 0, 2, 0, 0, 0, 1, 39, 4.5, -1)
+
+[node name="StoneBlock17" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2, 1.73205, 0, -3.4641, 1, 0, 0, 0, 0.99, 46, 4.5, -1)
+
+[node name="StaticBody3D" parent="StoneBlock17" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock17/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_7kdyb")
+
+[node name="StoneBlock18" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2.25, 0.866025, 0, -3.89711, 0.5, 0, 0, 0, 0.99, 49.5, 9, -1)
+
+[node name="StaticBody3D" parent="StoneBlock18" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock18/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_up1ln")
+
+[node name="StoneBlock16" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(7.7757, -0.258819, 0, 2.08349, 0.965926, 0, 0, 0, 1, 23.5, -1.5, -1)
+
+[node name="StaticBody3D" parent="StoneBlock16" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock16/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_w0vwb")
+
+[node name="StoneBlock14" type="Node3D" parent="."]
+transform = Transform3D(3.25, 0, 0, 0, 1.5, 0, 0, 0, 19, 21.5, 13, 1)
+
+[node name="Meshes" type="Node3D" parent="StoneBlock14"]
+
+[node name="StoneCeilingMesh" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = ExtResource("7_xyors")
+
+[node name="StoneFloorMesh" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+mesh = ExtResource("8_w0vwb")
+
+[node name="StoneWallMesh2" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 2)
+mesh = ExtResource("9_7kdyb")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh5" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 0, -2, 1)
+mesh = ExtResource("9_7kdyb")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh8" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, 2, -2, 1)
+mesh = ExtResource("9_7kdyb")
+skeleton = NodePath("../..")
+
+[node name="StoneWallMesh11" type="MeshInstance3D" parent="StoneBlock14/Meshes"]
+transform = Transform3D(-1, 0, -1.60936e-07, 0, 1, 0, 1.60936e-07, 0, -1, 1, -2, 0)
+mesh = ExtResource("9_7kdyb")
+skeleton = NodePath("../..")
+
+[node name="StoneBlock23" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(3.5, 0, 0, 0, 1.75, 0, 0, 0, 1, 21, 13.5, -1)
+
+[node name="StaticBody3D" parent="StoneBlock23" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock23/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_xyors")
+
+[node name="StoneBlock15" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(0.5, 0, 0, 0, 3.25, 0, 0, 0, 19, 30.5, 17.5, 1)
+
+[node name="StoneBlock20" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(0.5, 0, 0, 0, 3.25, 0, 0, 0, 19, 39, 17.5, 1)
+
+[node name="StoneBlock21" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(0.5, 0, 0, 0, 4.25, 0, 0, 0, 19, 44.5, 17.5, 1)
+
+[node name="StoneBlock19" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2.5, 0, 0, 0, 0.5, 0, 0, 0, 19, 44.5, 9, 1)
+
+[node name="StoneBlock22" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2.25, 0.433013, 0, -3.89711, 0.25, 0, 0, 0, 19, 49.5, 9, 1)
+
+[node name="StoneBlock11" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(6.75, 0, 0, 0, 1.5, 0, 0, 0, 1, 16.5, 19, -1)
+
+[node name="StoneBlock5" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 1, 19, 3.5, -1)
+
+[node name="StoneBlock2" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 24, 5.5, -1)
+
+[node name="StaticBody3D" parent="StoneBlock2" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_y1kya")
+
+[node name="StoneBlock3" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(5, 0, 0, 0, 5.25, 0, 0, 0, 1, 9, 12, -1)
+
+[node name="StaticBody3D" parent="StoneBlock3" index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="StoneBlock3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_1ajpe")
+
+[node name="StonePlatformEdge" parent="." instance=ExtResource("1_0k13w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 12, 0)
+
+[node name="CollisionShape3D" parent="StonePlatformEdge/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_o22bx")
+
+[node name="Meshes" parent="StonePlatformEdge" index="1"]
+visible = false
+
+[node name="StonePlatformEdge2" parent="." instance=ExtResource("1_0k13w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 13.5, 0)
+
+[node name="CollisionShape3D" parent="StonePlatformEdge2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_o22bx")
+
+[node name="Meshes" parent="StonePlatformEdge2" index="1"]
+visible = false
+
+[node name="StonePlatformEdge3" parent="." instance=ExtResource("1_0k13w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 13.5, 0)
+
+[node name="CollisionShape3D" parent="StonePlatformEdge3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_o22bx")
+
+[node name="Meshes" parent="StonePlatformEdge3" index="1"]
+visible = false
+
+[node name="StoneBlock12" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(4.5, 0, 0, 0, 3.5, 0, 0, 0, 1, 9, 19, -1)
+
+[node name="StoneBlock4" parent="." instance=ExtResource("6_y1kya")]
+transform = Transform3D(3.03109, 0.6, 0, -1.75, 1.03923, 0, 0, 0, 1, 6.5, 8, -1)
 
 [node name="Doorway_Blank" parent="." instance=ExtResource("6_vi5ne")]
 transform = Transform3D(-0.5, 0.866026, 4.37114e-08, 0.866026, 0.5, -7.57103e-08, -8.74228e-08, 0, -1, 48.5, 1.5, 0)
@@ -198,75 +358,101 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, -1.7053e-13, 0, 1, 0, 0, 0)
 
 [node name="RoomBlinders1" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RoomBlinders1"]
-transform = Transform3D(14.58, 0, 0, 0, 1, 0, 0, 0, 20.3, 9, -2, 20.5)
-layers = 2
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_bkmc1")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="RoomBlinders1"]
-transform = Transform3D(-2.29432e-07, 1, 0, -5.2488, -4.37114e-08, 0, 0, 0, 20.3, -5, 2.5, 20.5)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_bkmc1")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="RoomBlinders1"]
-transform = Transform3D(-6.82344, -8.74228e-08, 0, 5.96524e-07, -1, 0, 0, 0, 20.3, 2, 6.5, 20.5)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_bkmc1")
-
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="RoomBlinders1"]
 transform = Transform3D(-6.06, -1.50996e-07, 0, 9.15035e-07, -1, 0, 0, 0, 20.3, 16.556, 3.3, 20.5)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_bkmc1")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="RoomBlinders1"]
-transform = Transform3D(-8.34465e-08, 1, 0, -2.01182, -1.3411e-07, 0, 0, 0, 20.3, 22.578, 5.16812, 20.5)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_bkmc1")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="RoomBlinders1"]
-transform = Transform3D(-2.95464, -0.5, 0, 1.70586, -0.866025, 0, 0, 0, 20.3, 7.75, 4.93301, 20.5)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_bkmc1")
-
 [node name="StonePillar2" parent="." instance=ExtResource("5_lneio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8.5, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 4.5, 11.5, -1)
+
+[node name="StonePillar4" parent="." instance=ExtResource("5_lneio")]
+transform = Transform3D(3.4, 0, 0, 0, 2, 0, 0, 0, 1, 43.5, 13, -1)
 
 [node name="StonePillar3" parent="." instance=ExtResource("5_lneio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 8.5, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.5, 11.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.144, 0, 0, 0, 0.42974, 0, 0, 0, 1, 22.94, 8.04297, -1)
+mesh = SubResource("QuadMesh_1ajpe")
+skeleton = NodePath("../StonePillar3")
 
 [node name="CameraBounds" parent="." node_paths=PackedStringArray("boundObjs") instance=ExtResource("7_u3sed")]
-boundObjs = [NodePath("CollisionBoundsAndCameraMeta_Start"), NodePath("CollisionBoundsAndCameraMeta_RightSide"), NodePath("CollisionBoundsAndCameraMeta")]
+boundObjs = [NodePath("CollisionBoundsAndCameraMeta_Start"), NodePath("CollisionBoundsAndCameraMeta_Start2"), NodePath("CameraAndCollisionBounds"), NodePath("CameraAndCollisionBounds2"), NodePath("CameraAndCollisionBounds3"), NodePath("CollisionBoundsAndCameraMeta"), NodePath("CollisionBoundsAndCameraMeta_RightSide"), NodePath("CollisionBoundsAndCameraMeta_LowerRightSide")]
 
 [node name="CameraAndCollisionBounds" parent="CameraBounds" index="0"]
-transform = Transform3D(13, 0, 0, 0, 5, 0, 0, 0, 1, 23.5, 3, 4)
+transform = Transform3D(7, 0, 0, 0, 10, 0, 0, 0, 1, 21, -9, 4)
 
 [node name="CollisionBoundsAndCameraMeta" parent="CameraBounds" index="1"]
-transform = Transform3D(10, 0, 0, 0, 3.5, 0, 0, 0, 1, 28, -8, 4)
-metadata/CameraBounds = Vector4(17.5, -13.5, 46, -7)
+transform = Transform3D(7.344, 0, 0, 0, 4.2, 0, 0, 0, 1, 31.2374, -2.88756, 4)
+metadata/CameraBounds = Vector4(27.5, -9.5, 30.5, -0.5)
 
 [node name="Marker3D" parent="CameraBounds" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1924, -7.09582, 0)
+
+[node name="CameraAndCollisionBounds2" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(4, 0, 0, 0, 6, 0, 0, 0, 1, 19.5, -3.5, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
+
+[node name="CameraAndCollisionBounds3" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(16, 0, 0, 0, 3.5, 0, 0, 0, 1, 24, -2.25, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_blkx3")
+skeleton = NodePath("")
 
 [node name="CollisionBoundsAndCameraMeta_Start" type="MeshInstance3D" parent="CameraBounds"]
 transform = Transform3D(15.6, 0, 0, 0, 6.75, 0, 0, 0, 1, 3.5, -14.5, 4)
 visible = false
 layers = 16
 ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_blkx3")
+mesh = SubResource("QuadMesh_xyors")
 skeleton = NodePath("")
 metadata/CameraBounds = Vector4(-4, -18, 46, -7)
 
-[node name="CollisionBoundsAndCameraMeta_RightSide" type="MeshInstance3D" parent="CameraBounds"]
-transform = Transform3D(15.6, 0, 0, 0, 6.75, 0, 0, 0, 1, 39, -10.5, 4)
+[node name="CollisionBoundsAndCameraMeta_Start2" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(20.5, 0, 0, 0, 4, 0, 0, 0, 1, 17.5, -17.5, 4)
 visible = false
 layers = 16
 ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_blkx3")
+mesh = SubResource("QuadMesh_xyors")
 skeleton = NodePath("")
-metadata/CameraBounds = Vector4(-4, -18, 46, -7)
+metadata/CameraBounds = Vector4(-4, -18, 46, -14.5)
+
+[node name="CollisionBoundsAndCameraMeta_RightSide" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(15, 0, 0, 0, 4.4, 0, 0, 0, 1, 36, -9.25, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_xyors")
+skeleton = NodePath("")
+metadata/CameraBounds = Vector4(25, -18, 46, -7.5)
+
+[node name="CollisionBoundsAndCameraMeta_LowerRightSide" type="MeshInstance3D" parent="CameraBounds"]
+transform = Transform3D(18.2, 0, 0, 0, 3.9, 0, 0, 0, 1, 34.8356, -13.5, 4)
+visible = false
+layers = 16
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_xyors")
+skeleton = NodePath("")
+metadata/CameraBounds = Vector4(23.5, -18, 46, -7)
 
 [editable path="LingeringSoul7"]
+[editable path="StoneBlock24"]
+[editable path="StoneBlock17"]
+[editable path="StoneBlock18"]
+[editable path="StoneBlock16"]
+[editable path="StoneBlock23"]
+[editable path="StoneBlock2"]
+[editable path="StoneBlock3"]
+[editable path="StonePlatformEdge"]
+[editable path="StonePlatformEdge2"]
+[editable path="StonePlatformEdge3"]
 [editable path="Doorway_Blank"]
 [editable path="Doorway_Blank2"]
 [editable path="Doorway_Blank3"]

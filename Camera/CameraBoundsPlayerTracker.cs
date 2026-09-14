@@ -128,6 +128,6 @@ public partial class CameraBoundsPlayerTracker : Node
 		var roomMaxY = rect.Size.Y <= botOffset * 2 ? roomMinY : rect.End.Y; //top, if bounds height smaller than offset, set top to bottom pos
 
 		GD.Print($"[CameraBounds]Pos: ({roomMinX}, {roomMinY}) End: ({roomMaxX}, {roomMaxY})");
-		camera.SetNewCamBounds(roomMinX, roomMinY, roomMaxX, roomMaxY, false);
+		camera.SetNewCamBounds(roomMinX, roomMinY, roomMaxX, roomMaxY, true);
 	}
 }

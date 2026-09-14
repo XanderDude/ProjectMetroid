@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkl2evrpxkqy1" path="res://GameFriend/GameFriend.cs" id="1_d2wvo"]
 [ext_resource type="Environment" uid="uid://bm4c0ci186op8" path="res://Environment/Lighting/mainEnvLighting.tres" id="2_4cfun"]
-[ext_resource type="PackedScene" uid="uid://50l6m37qesud" path="res://Environment/Levels/Dungeon_SewersIntro/as6_CagePuzzle.tscn" id="2_dyqg2"]
+[ext_resource type="PackedScene" uid="uid://dj2fylxeec5s4" path="res://Environment/Levels/Dungeon_SewersIntro/as1_GameStart.tscn" id="2_dyqg2"]
 [ext_resource type="PackedScene" uid="uid://dsu10amfvawtu" path="res://Environment/Lighting/DirectionalLight_Exterior_DayBreak.tscn" id="3_dyqg2"]
 [ext_resource type="Shader" uid="uid://btuy25d15d7ws" path="res://Environment/Shaders/ps1PostProcess.gdshader" id="4_i5ub3"]
 
