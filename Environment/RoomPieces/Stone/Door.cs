@@ -50,6 +50,7 @@ public partial class Door : Node3D
   public void _on_door_transport_body_exited(Node3D body)
   {
     var rc = GameFriend.gameinstance.roomfriend;
+    rc.isTransitioning = false;
     rc.teleported = false;
   }
     
