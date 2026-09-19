@@ -100,19 +100,19 @@ public partial class DebugFriend : Node3D
 
 		//Has to be another way to write this lol 
 		if (WallJump) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("wallJump");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("wallJump");
+		else if (!WallJump && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("wallJump")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("wallJump");
 		if (RavenSlash) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("ravenSlash");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("ravenSlash");
+		else if (!RavenSlash && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenSlash")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("ravenSlash");
 		if (Mantling) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("mantling");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("mantling");
+		else if (!Mantling && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("mantling")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("mantling");
 		if (ChargeShot) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("chargeShot");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("chargeShot");
+		else if (!ChargeShot && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("chargeShot")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("chargeShot");
 		if (SlideBoost) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("slideBoost");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("slideBoost");
+		else if (!SlideBoost && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("slideBoost")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("slideBoost");
 		if (BombArrows) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("bombArrows");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("bombArrows");
+		else if (!BombArrows && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("bombArrows")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("bombArrows");
 		if (RavenTeleport) GameFriend.gameinstance.inventoryfriend.UnlockUpgrade("ravenTeleport");
-		else GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("ravenTeleport");
+		else if (!RavenTeleport && !GameFriend.gameinstance.inventoryfriend.isUpgradeUnlocked("ravenTeleport")) GameFriend.gameinstance.inventoryfriend.RemoveUpgrade("ravenTeleport");
 
 	   
 	}
