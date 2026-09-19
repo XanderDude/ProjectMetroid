@@ -5,17 +5,18 @@
 [ext_resource type="Script" uid="uid://3wv6basiv2av" path="res://SaveFriend/Button2.cs" id="3_dgl0o"]
 [ext_resource type="Script" uid="uid://ccf35p3d0yps4" path="res://SaveFriend/ResetButton.cs" id="4_dgl0o"]
 
-[node name="DebugFriend" type="CanvasLayer"]
-layer = 101
+[node name="DebugFriend" type="Node3D"]
 script = ExtResource("1_atxtx")
 
-[node name="BombArrowCount" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BombArrowCount" type="Label" parent="CanvasLayer"]
 offset_left = 482.0
 offset_top = 1.0
 offset_right = 596.0
 offset_bottom = 24.0
 
-[node name="AddBombArrow" type="Button" parent="BombArrowCount"]
+[node name="AddBombArrow" type="Button" parent="CanvasLayer/BombArrowCount"]
 layout_mode = 0
 offset_left = 89.0
 offset_top = 33.0
@@ -23,26 +24,26 @@ offset_right = 153.0
 offset_bottom = 64.0
 text = "Add BA"
 
-[node name="RoomTeleporter" type="OptionButton" parent="."]
+[node name="RoomTeleporter" type="OptionButton" parent="CanvasLayer"]
 offset_left = 7.0
 offset_top = 13.0
 offset_right = 160.0
 offset_bottom = 44.0
 
-[node name="Upgrades" type="OptionButton" parent="."]
+[node name="Upgrades" type="OptionButton" parent="CanvasLayer"]
 offset_left = 10.0
 offset_top = 60.0
 offset_right = 120.0
 offset_bottom = 92.0
 
-[node name="AddUpgrade" type="Button" parent="Upgrades"]
+[node name="AddUpgrade" type="Button" parent="CanvasLayer/Upgrades"]
 layout_mode = 0
 offset_top = 37.0
 offset_right = 54.0
 offset_bottom = 69.0
 text = "Add"
 
-[node name="RemUpgrade" type="Button" parent="Upgrades"]
+[node name="RemUpgrade" type="Button" parent="CanvasLayer/Upgrades"]
 layout_mode = 0
 offset_left = 62.0
 offset_top = 37.0
@@ -50,13 +51,13 @@ offset_right = 116.0
 offset_bottom = 69.0
 text = "Rem"
 
-[node name="Health" type="Label" parent="."]
+[node name="Health" type="Label" parent="CanvasLayer"]
 offset_left = 358.0
 offset_top = 1.0
 offset_right = 438.0
 offset_bottom = 24.0
 
-[node name="Save1" type="Button" parent="."]
+[node name="Save1" type="Button" parent="CanvasLayer"]
 offset_left = 491.0
 offset_top = 314.0
 offset_right = 559.0
@@ -65,7 +66,7 @@ text = "SAVE 1"
 script = ExtResource("2_yoila")
 saveslot = 1
 
-[node name="Load1" type="Button" parent="."]
+[node name="Load1" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.012
 anchor_top = 0.058
@@ -73,13 +74,13 @@ anchor_right = 0.056
 anchor_bottom = 0.225
 offset_left = 558.32
 offset_top = 293.12
-offset_right = 594.16
+offset_right = 595.16
 offset_bottom = 274.0
 text = "LOAD 1"
 script = ExtResource("3_dgl0o")
 saveslot = 1
 
-[node name="Save2" type="Button" parent="."]
+[node name="Save2" type="Button" parent="CanvasLayer"]
 offset_left = 490.0
 offset_top = 270.0
 offset_right = 558.0
@@ -88,7 +89,7 @@ text = "SAVE 2"
 script = ExtResource("2_yoila")
 saveslot = 2
 
-[node name="Load2" type="Button" parent="."]
+[node name="Load2" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.012
 anchor_top = 0.058
@@ -102,7 +103,7 @@ text = "LOAD 2"
 script = ExtResource("3_dgl0o")
 saveslot = 2
 
-[node name="Save3" type="Button" parent="."]
+[node name="Save3" type="Button" parent="CanvasLayer"]
 offset_left = 490.0
 offset_top = 225.0
 offset_right = 558.0
@@ -111,7 +112,7 @@ text = "SAVE 3"
 script = ExtResource("2_yoila")
 saveslot = 3
 
-[node name="Load3" type="Button" parent="."]
+[node name="Load3" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.012
 anchor_top = 0.058
@@ -125,7 +126,7 @@ text = "LOAD 3"
 script = ExtResource("3_dgl0o")
 saveslot = 3
 
-[node name="RESET" type="Button" parent="."]
+[node name="RESET" type="Button" parent="CanvasLayer"]
 offset_left = 563.0
 offset_top = 179.0
 offset_right = 631.0
