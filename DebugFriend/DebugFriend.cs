@@ -6,9 +6,14 @@ public partial class DebugFriend : Node3D
 
 	private Label labelbombarrow => GetNode<Label>("CanvasLayer/BombArrowCount");
 	private OptionButton roomteleporter => GetNode<OptionButton>("CanvasLayer/RoomTeleporter");
-	private OptionButton doorid => GetNode<OptionButton>("CanvasLayer/IDTeleporter");
+	private OptionButton doorid => GetNode<OptionButton>("CanvasLayer/DoorID");
 	private OptionButton upgradeselectorbutton => GetNode<OptionButton>("CanvasLayer/Upgrades");
 	private Godot.Button addupgradebutton => GetNode<Godot.Button>("CanvasLayer/Upgrades/AddUpgrade");
+
+	private Godot.Button addhealthbutton => GetNode<Godot.Button>("CanvasLayer/Health/AddHealth");
+
+	private Godot.Button goteleportbutton => GetNode<Godot.Button>("CanvasLayer/GoTeleport");
+
 	private Godot.Button removeupgradebutton => GetNode<Godot.Button>("CanvasLayer/Upgrades/RemUpgrade");
 	private Godot.Button addbombarrowbutton => GetNode<Godot.Button>("CanvasLayer/BombArrowCount/AddBombArrow");
 
@@ -19,6 +24,8 @@ public partial class DebugFriend : Node3D
 	private ItemDrop.Upgrade selected;
 
 	private string selectedRoom;
+
+	private int id;
 
 
 	//Editor upgrades
@@ -34,14 +41,14 @@ public partial class DebugFriend : Node3D
 
 	public override void _Ready()
 	{
+		//have to use this because otherwise roomfriend loads before this 
 		CallDeferred(nameof(init));
 	}
 
+
 	public void init()
 	{
-		
-		labelbombarrow.Text = "Bomb Arrows: ";
-		////////////////////////////////////////////////
+		roomteleporter.AddItem("Select Room");
 		if (GameFriend.gameinstance.roomfriend != null)
 		{
 			foreach (string name in GameFriend.gameinstance.roomfriend.tab1.Values)
@@ -57,8 +64,6 @@ public partial class DebugFriend : Node3D
 			roomteleporter.ItemSelected += OnDropdownRoomSelected;
 	}
 		
-			
-		////////////////////////////////////////////////
 		
 		
 
@@ -71,7 +76,9 @@ public partial class DebugFriend : Node3D
 		addupgradebutton.Pressed += OnAddUpgradePressed;
 		removeupgradebutton.Pressed += OnRemoveUpgradePressed;
 		addbombarrowbutton.Pressed += OnAddBombArrowPressed;
-
+		addhealthbutton.Pressed += OnAddHealthPressed;
+		goteleportbutton.Pressed += OnGoTeleportPressed;
+		doorid.ItemSelected += OnDropdownDoorSelected;
 
 
 	}
@@ -117,12 +124,67 @@ public partial class DebugFriend : Node3D
 	   
 	}
 
+
+
 	private void OnDropdownRoomSelected(long index)
 	{
-		//store door ids from selected room from both tables
+		doorid.Clear();
+		doorid.AddItem(0.ToString());
 		selectedRoom = roomteleporter.GetItemText((int)index);
-		if (GameFriend.gameinstance.roomfriend != null) GameFriend.gameinstance.roomfriend.room_init(selectedRoom);
+		foreach (int id in GameFriend.gameinstance.roomfriend.tab1.Keys)
+		{
+			if (GameFriend.gameinstance.roomfriend.tab1[id] == selectedRoom)
+			{
+				if (!OptionHasText(doorid, id.ToString()))
+					doorid.AddItem(id.ToString());
+			}
+		}
+		foreach (int id in GameFriend.gameinstance.roomfriend.tab2.Keys)
+		{
+			if (GameFriend.gameinstance.roomfriend.tab2[id] == selectedRoom)
+			{
+				if (!OptionHasText(doorid, id.ToString()))
+					doorid.AddItem(id.ToString());
+			}
+		}
 		roomteleporter.ReleaseFocus();
+		
+	}
+
+	private void OnDropdownDoorSelected(long index)
+	{
+		id = int.Parse(doorid.GetItemText((int)index));
+		doorid.ReleaseFocus();
+	}
+
+	private void OnAddHealthPressed()
+	{
+		GameFriend.gameinstance.player.Health += 50;
+	}
+
+	private async void OnGoTeleportPressed()
+	{
+		if (GameFriend.gameinstance.roomfriend != null && selectedRoom != null && selectedRoom != "Select Room") 
+		{
+			GameFriend.gameinstance.roomfriend.room_init(selectedRoom);
+			var doors = GameFriend.gameinstance.roomfriend.GetAllDoorsInRoom(GameFriend.gameinstance.roomfriend.currentRoomScene);
+			foreach (var door in doors)
+			{
+				int dID = (int)door.Get("DoorNumber");
+				if (dID == id)
+				{
+					GameFriend.gameinstance.roomfriend.teleported = true;
+					GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
+					GameFriend.gameinstance.camera.SetToDefaultBounds();
+					GameFriend.gameinstance.camera.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition;
+					if (GameFriend.gameinstance.raven != null) 
+						GameFriend.gameinstance.raven.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition + new Godot.Vector3(0, 1.5f, 0);;
+					break;	
+				}
+
+			}
+		}
+		goteleportbutton.ReleaseFocus();
 	}
 
    private void OnAddBombArrowPressed()

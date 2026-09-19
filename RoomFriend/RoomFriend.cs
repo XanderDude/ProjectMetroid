@@ -16,6 +16,8 @@ public partial class RoomFriend : Node3D
 	//Random pointers / checks 
 	public bool isTransitioning = false;
 
+	public bool teleported = false;
+
 	public double transitionCooldown = 0.0;
 	private const double COOLDOWN_TIME = 0.5;
 	
@@ -178,7 +180,7 @@ public partial class RoomFriend : Node3D
 		}
 	}
 
-	private List<Node3D> GetAllDoorsInRoom(Node3D room)
+	public List<Node3D> GetAllDoorsInRoom(Node3D room)
 	{
 		var doors = new List<Node3D>();
 		FindDoorsRecursive(room, doors);
@@ -249,9 +251,10 @@ public partial class RoomFriend : Node3D
 		Engine.TimeScale = 1;
 		await Task.Delay(500);
 		await FadeFromBlack();
-		isTransitioning = false;
+		
 		player.inputLocked = false;
 	}
+
 
 	private void AddFadeLayer()
 	{
