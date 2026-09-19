@@ -41,7 +41,6 @@ public partial class groundedState : State
 		{
 			parentMesh.GetNode<PlayerAnimationHandler>(parentMesh.GetPath()).Crouch(true); //force crouch
 			msm.TransitionTo("crouchState");
-			return;
 		}
 
 		if (!player.IsOnFloor() && !pm.groundCheck.IsColliding())
