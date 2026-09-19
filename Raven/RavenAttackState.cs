@@ -13,16 +13,18 @@ public partial class RavenAttackState : State
 	private MeshInstance3D slashMesh;
 	private CollisionShape3D slashCollision;
 	[Export] private PackedScene slashVFX;
-	private Node3D newSlash;
+	private Node3D slash;
 	[Export] private float attackSpeed = 0.3f;
 	private float attackTimer = 0.0f;
 
 	private Vector3 slashOffset = Vector3.Zero;
 
 	public Vector2 attackDirection = Vector2.Zero;
+
+
 	public override void Ready()
 	{
-		//if (ravenSlash != null) ravenSlash = ResourceLoader.Load((stringravenSlash.ResourcePath)
+		if (slashVFX != null) SpawnSlashVFX();
 	}
 
 	public override void Enter()
@@ -30,7 +32,7 @@ public partial class RavenAttackState : State
 		GD.Print(pm == null);
 		attackDirection = GetAttackDirection();
 		raven.Visible = false;
-		SpawnSlashVFX();
+		AimAndPlaySlashVFX();
 		//CreateSlashMesh();
 		attackTimer = 0.0f;
 		raven.isInAction = true;
@@ -48,6 +50,7 @@ public partial class RavenAttackState : State
 		targetsDamaged.Clear();
 	}
 
+	/*
 	public override void Update(float delta)
 	{
 		attackTimer += delta;
@@ -58,13 +61,13 @@ public partial class RavenAttackState : State
 			slashArea.GlobalPosition = playerPos + slashOffset;
 		}
 
-
 		if (attackTimer >= attackSpeed)
 		{
-			rsm.TransitionTo("RavenOnPlayerState");
+			
 		}
+	}*/
 
-	}
+
 
 	private Vector2 GetAttackDirection() //called once during ready to log attack direction
 	{
@@ -80,15 +83,23 @@ public partial class RavenAttackState : State
 
 	private void SpawnSlashVFX()
 	{
-		if (newSlash == null)
+		if (slash == null)
 		{
-			newSlash = slashVFX.Instantiate() as Node3D; //instantiate loaded vfx
-			pm.AddChild(newSlash); //add vfx to player
-			slashHitboxes = newSlash.GetNode<Area3D>("Area3D");
+			slash = slashVFX.Instantiate() as Node3D; //instantiate loaded vfx
+			pm.AddChild(slash); //add vfx to player
+			slashHitboxes = slash.GetNode<Area3D>("Area3D");
 			slashHitboxes.BodyEntered += OnBodyEntered;
+			slash.GetNode<AnimationPlayer>("AnimationPlayer").AnimationFinished += OnAnimationFinished;
 		}
+	}
 
-		newSlash.Position = new Vector3(0, 1f, 0);
+
+
+	private void AimAndPlaySlashVFX()
+	{
+		if (slash == null) return;
+
+		slash.Position = new Vector3(0, 1f, 0);
 
 		float dot = attackDirection.Dot(new Vector2(Mathf.Abs(attackDirection.X), 0));
 		float rotation = (attackDirection.Y >= 0)
@@ -97,11 +108,16 @@ public partial class RavenAttackState : State
 
 		rotation *= 360f;
 
-		newSlash.RotationDegrees = new(0, 0, rotation);
-		newSlash.GetNode<AnimationPlayer>("AnimationPlayer").Play("RESET");
-		newSlash.GetNode<AnimationPlayer>("AnimationPlayer").Play("RavenAttack1");
-
+		slash.RotationDegrees = new(0, 0, rotation);
+		slash.GetNode<AnimationPlayer>("AnimationPlayer").Play("RESET");
+		slash.GetNode<AnimationPlayer>("AnimationPlayer").Play("RavenAttack1");
 	}
+
+	private void OnAnimationFinished(StringName animName)
+	{
+		rsm.TransitionTo("RavenOnPlayerState");
+	}
+	
 	private void CreateSlashMesh()
 	{
 		slashArea = new Area3D();
@@ -150,10 +166,9 @@ public partial class RavenAttackState : State
 			OnRavenSlashHit?.Invoke(enemy); // fire the event
 
 			targetsDamaged.Add(body);
-			if (attackDirection.Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
+			if (attackDirection.Y < 0 && !pm.IsOnFloor())
 			{
-				pm.Set("jumpQueued", true);
-				pm.StateMachine._currentState.Enter();
+				pm.SlashJump();
 			}
 		}
 	}
@@ -168,10 +183,9 @@ public partial class RavenAttackState : State
 		{
 			//GD.Print("Dealing damage to enemy via area!");
 			enemy.DamagedReceived(damage);
-			if (attackDirection.Y < 0 && pm.StateMachine._currentState.Name == "jumpState")
+			if (attackDirection.Y < 0 && !pm.IsOnFloor())
 			{
-				pm.Set("jumpQueued", true);
-				pm.StateMachine._currentState.Enter();
+				pm.SlashJump();
 			}
 		}
 	}

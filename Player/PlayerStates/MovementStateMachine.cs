@@ -73,8 +73,8 @@ public partial class MovementStateMachine : Node
 		_currentState.PhysicsUpdate((float)delta);
 	}
 
-	public void TransitionTo(string key) {
-		if (!_states.TryGetValue(key, out State value) || _currentState == value) //return if state doesn't exist in dictionary or we're already in requested state
+	public void TransitionTo(string key, bool forceTransition = false) {
+		if (!_states.TryGetValue(key, out State value) || (!forceTransition && _currentState == value)) //return if state doesn't exist in dictionary, or if forceTransition is false and we're already in requested state 
 			return;
 		_currentState.Exit();
 		_previousState = _currentState;

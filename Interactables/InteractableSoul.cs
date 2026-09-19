@@ -21,8 +21,7 @@ public partial class InteractableSoul : Node3D
 			if (GameFriend.gameinstance.raven.RavenStateMachine.GetNode<RavenAttackState>("RavenAttackState").attackDirection.Y < 0 && !player.IsOnFloor())
 			{
 				cooldownTimer = 0f;
-				player.Velocity = new(player.Velocity.X, jumpSpeed, 0);
-				player.SpawnJumpCloud(0, 0);
+				player.SlashJump();
 			}
 		} 
 	}
