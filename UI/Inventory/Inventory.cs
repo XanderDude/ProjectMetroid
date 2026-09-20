@@ -265,6 +265,8 @@ public partial class Inventory : ItemList
 			EquipItem((int)index);
 		}
 	}
+
+	
 }
 
 public class Item

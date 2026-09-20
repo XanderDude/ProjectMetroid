@@ -11,6 +11,7 @@ public partial class Door : Node3D
   
   [Export] Node3D key;
 
+
   public enum DoorType { Normal, Locked, Open}; //Normal=Opens on interaction, Locked=Requires key or lever, Open=Just a doorway that can cause room transition
 
   [Export] public DoorType doorType = DoorType.Open;
@@ -38,7 +39,7 @@ public partial class Door : Node3D
   
   public void _on_door_transport_body_entered(Node3D body)
   {
-    if (DoorNumber > 0 && GameFriend.gameinstance != null && GameFriend.gameinstance.roomfriend != null)
+    if (DoorNumber > 0 && GameFriend.gameinstance != null && GameFriend.gameinstance.roomfriend != null && !GameFriend.gameinstance.roomfriend.teleported)
     {
       var rc = GameFriend.gameinstance.roomfriend;
       rc.currentDoorNumber = DoorNumber;
@@ -48,7 +49,9 @@ public partial class Door : Node3D
   
   public void _on_door_transport_body_exited(Node3D body)
   {
-      
+    var rc = GameFriend.gameinstance.roomfriend;
+    rc.isTransitioning = false;
+    rc.teleported = false;
   }
     
 }
