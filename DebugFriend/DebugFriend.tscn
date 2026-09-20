@@ -66,6 +66,7 @@ theme_override_font_sizes/font_size = 9
 text = "Health:"
 
 [node name="AddHealth" type="Button" parent="CanvasLayer/Health"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 33.0
 offset_right = 36.0

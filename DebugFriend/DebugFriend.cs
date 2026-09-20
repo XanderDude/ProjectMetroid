@@ -167,13 +167,13 @@ public partial class DebugFriend : Node3D
 		if (GameFriend.gameinstance.roomfriend != null && selectedRoom != null && selectedRoom != "Select Room") 
 		{
 			GameFriend.gameinstance.roomfriend.room_init(selectedRoom);
+			GameFriend.gameinstance.roomfriend.teleported = true;
 			var doors = GameFriend.gameinstance.roomfriend.GetAllDoorsInRoom(GameFriend.gameinstance.roomfriend.currentRoomScene);
 			foreach (var door in doors)
 			{
 				int dID = (int)door.Get("DoorNumber");
 				if (dID == id)
 				{
-					GameFriend.gameinstance.roomfriend.teleported = true;
 					GameFriend.gameinstance.player.GlobalPosition = door.GlobalPosition;
 					GameFriend.gameinstance.camera.SetToDefaultBounds();
 					GameFriend.gameinstance.camera.GlobalPosition = GameFriend.gameinstance.player.GlobalPosition;
