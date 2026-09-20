@@ -20,7 +20,7 @@ public partial class RavenAttackState : State
 	private Vector3 slashOffset = Vector3.Zero;
 
 	public Vector2 attackDirection = Vector2.Zero;
-
+	private Vector3 ravenLocation;
 
 	public override void Ready()
 	{
@@ -29,9 +29,8 @@ public partial class RavenAttackState : State
 
 	public override void Enter()
 	{
-		GD.Print(pm == null);
 		attackDirection = GetAttackDirection();
-		raven.Visible = false;
+		raven.ravenModel.Visible = false;
 		AimAndPlaySlashVFX();
 		//CreateSlashMesh();
 		attackTimer = 0.0f;
@@ -41,7 +40,6 @@ public partial class RavenAttackState : State
 
 	public override void Exit()
 	{
-		raven.Visible = true;
 		if (slashArea != null && IsInstanceValid(slashArea))
 		{
 			slashArea.QueueFree();
@@ -83,17 +81,22 @@ public partial class RavenAttackState : State
 
 	private void SpawnSlashVFX()
 	{
+		FindSlashVFX();
 		if (slash == null)
-		{
+		{	
 			slash = slashVFX.Instantiate() as Node3D; //instantiate loaded vfx
 			pm.AddChild(slash); //add vfx to player
-			slashHitboxes = slash.GetNode<Area3D>("Area3D");
-			slashHitboxes.BodyEntered += OnBodyEntered;
-			slash.GetNode<AnimationPlayer>("AnimationPlayer").AnimationFinished += OnAnimationFinished;
 		}
+		slashHitboxes = slash.GetNode<Area3D>("Area3D");
+		slashHitboxes.BodyEntered += OnBodyEntered;
+		slash.GetNode<AnimationPlayer>("AnimationPlayer").AnimationFinished += OnAnimationFinished;
 	}
 
-
+	private void FindSlashVFX()
+	{
+		var node = (Node3D)pm.FindChild("RavenSlashAnimation", false, false);
+		if (node != null) slash = node;
+	}
 
 	private void AimAndPlaySlashVFX()
 	{
@@ -115,6 +118,7 @@ public partial class RavenAttackState : State
 
 	private void OnAnimationFinished(StringName animName)
 	{
+		raven.GlobalPosition = slash.GetNode<Node3D>("SlashVFX/RavenAnimation").GlobalPosition;
 		rsm.TransitionTo("RavenOnPlayerState");
 	}
 	
