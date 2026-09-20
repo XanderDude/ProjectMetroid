@@ -6,11 +6,18 @@ public partial class InteractableSoul : Node3D
 	[Export] private float jumpSpeed = 12f;
 	float cooldown = .2f;
 	float cooldownTimer = 0f;
-
+	[Export] private Node3D pulseVFX;
 	public override void _PhysicsProcess(double delta)
 	{
-		if (cooldownTimer < cooldown) cooldownTimer += (float)delta;
-		else cooldownTimer = cooldown;
+		if (cooldownTimer < cooldown) 
+		{
+			cooldownTimer += (float)delta;
+			if (pulseVFX != null) pulseVFX.Scale = pulseVFX.Scale.Lerp(new(1,1,1), cooldown * (float)delta);
+		}
+		else {
+			cooldownTimer = cooldown;
+			if (pulseVFX != null) pulseVFX.Scale = new(1,1,1);
+		}
 	}
 
 	public void _on_area_3d_area_entered(Area3D area)
@@ -22,7 +29,13 @@ public partial class InteractableSoul : Node3D
 			{
 				cooldownTimer = 0f;
 				player.SlashJump();
+				if (pulseVFX != null) PulseSoul();
 			}
 		} 
+	}
+
+	private void PulseSoul()
+	{
+		pulseVFX.Scale *= 2;
 	}
 }
