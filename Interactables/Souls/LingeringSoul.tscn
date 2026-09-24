@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm62ofjujy25i"]
+[gd_scene load_steps=18 format=3 uid="uid://bm62ofjujy25i"]
 
-[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/InteractableSoul.cs" id="1_1bu6d"]
+[ext_resource type="Script" uid="uid://dumt5eaqc0f0k" path="res://Interactables/Souls/InteractableSoul.cs" id="1_1bu6d"]
 [ext_resource type="Script" uid="uid://cgvjlxvpskd24" path="res://Player/Animation/PlayAnimation.cs" id="1_hj7k2"]
 [ext_resource type="Texture2D" uid="uid://dp8udtkhav2lu" path="res://Environment/Materials/CandleFlameSpriteSheet.jpg" id="1_ysuep"]
 
@@ -26,6 +26,37 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_hj7k2")
 size = Vector2(1.25, 1.5)
 center_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="Gradient" id="Gradient_3pmgv"]
+offsets = PackedFloat32Array(0.132979, 0.664894)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4rxtu"]
+gradient = SubResource("Gradient_3pmgv")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k875t"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.00392157, 1, 0.65098, 1)
+albedo_texture = SubResource("GradientTexture2D_4rxtu")
+albedo_texture_force_srgb = true
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_4rxtu"]
+material = SubResource("StandardMaterial3D_k875t")
 
 [sub_resource type="Gradient" id="Gradient_ysuep"]
 interpolation_mode = 2
@@ -92,16 +123,16 @@ _data = {
 
 [node name="LingeringSoul" type="Node3D"]
 
-[node name="Soul" type="CharacterBody3D" parent="."]
+[node name="Soul" type="AnimatableBody3D" parent="." node_paths=PackedStringArray("pulseVFX")]
 collision_layer = 0
 collision_mask = 0
-motion_mode = 1
 script = ExtResource("1_1bu6d")
+pulseVFX = NodePath("CPUParticles3D_Pulse")
 
 [node name="SoulFlameVFX" type="Node3D" parent="Soul"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Soul/SoulFlameVFX"]
+[node name="CPUParticles3D_Flame" type="CPUParticles3D" parent="Soul/SoulFlameVFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20999, 0)
 cast_shadow = 0
 amount = 1
@@ -114,6 +145,18 @@ mesh = SubResource("QuadMesh_ysuep")
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 0.5
 anim_speed_max = 0.5
+
+[node name="CPUParticles3D_Pulse" type="CPUParticles3D" parent="Soul"]
+cast_shadow = 0
+amount = 1
+lifetime = 0.3
+fixed_fps = 15
+fract_delta = false
+local_coords = true
+mesh = SubResource("QuadMesh_4rxtu")
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 1.5
+scale_amount_max = 1.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Soul"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

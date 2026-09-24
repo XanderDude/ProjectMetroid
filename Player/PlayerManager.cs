@@ -9,6 +9,9 @@ public partial class PlayerManager : CharacterBody3D
 	public bool slideQueued;
 	public bool slideBoost;
 
+
+	public bool slashJumped = false;
+
 	public Vector3 knockbackVelocity = Vector3.Zero;
 	public bool isDead = false;
 	public bool isPressed = false; 
@@ -92,8 +95,6 @@ public partial class PlayerManager : CharacterBody3D
 	
 	public override void _PhysicsProcess(double delta)
 	{
-
-
 		var direction = new Vector2(Input.GetAxis("Left", "Right"), Input.GetAxis("Down", "Up")).Normalized();		
 		//new Vector2(Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Left", "Right"))) * Mathf.Sign(Input.GetAxis("Left", "Right")), Mathf.CeilToInt(Mathf.Abs(Input.GetAxis("Down", "Up"))) * Mathf.Sign(Input.GetAxis("Down", "Up")));
 		
@@ -124,6 +125,7 @@ public partial class PlayerManager : CharacterBody3D
 			weaponMat?.SetShaderParameter("flashing", false);
 		}	
 
+		if (IsOnFloor()) slashJumped = false;
 	}
 	public void SpawnJumpCloud(float yOffset,float rotation)
 	{
@@ -137,5 +139,15 @@ public partial class PlayerManager : CharacterBody3D
 	{
 		AxisLockLinearX = locked;
 		AxisLockLinearY = locked;
+	}
+
+	public void SlashJump() //NOTE: exits knockback state
+	{
+		if (slashJumped) return; //ensure function isn't called mutliple times per physics update
+		slashJumped = true;
+		Velocity = new(Velocity.X, GetNode<jumpState>(StateMachine.GetPath() + "/jumpState").jumpVelocity, 0);
+		StateMachine.TransitionTo("jumpState", true);
+		SpawnJumpCloud(0, 0);
+		SoundFriend.Play("player_jump_SFX");
 	}
 }

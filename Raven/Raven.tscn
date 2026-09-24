@@ -68,6 +68,7 @@ collision_mask = 4
 floor_max_angle = 0.0
 script = ExtResource("1_sgyn5")
 speed = 12.0
+ravenMat = ExtResource("10_swnu4")
 RavenStateMachine = NodePath("RavenStateMachine")
 
 [node name="RavenStateMachine" type="Node" parent="."]

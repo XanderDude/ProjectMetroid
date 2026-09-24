@@ -10,7 +10,7 @@ public partial class RavenOnPlayerState : State
 	{
 		raven.isInAction = false;
 		raven.isOnPlayer = true;
-		
+		raven.ravenModel.Visible = true;
 	}
 	
 	public override void Exit()
@@ -64,7 +64,7 @@ public partial class RavenOnPlayerState : State
 		}
 		else if (@event.IsActionPressed("RavenSlash"))
 		{
-			raven.GlobalPosition = pm.GlobalPosition + raven.Yoffset;
+			raven.ravenModel.Visible = false;
 			rsm.TransitionTo("RavenAttackState");
 		}
 	}
