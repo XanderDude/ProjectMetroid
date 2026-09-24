@@ -44,6 +44,7 @@ public partial class RavenAttackState : State
 		{
 			slashArea.QueueFree();
 		}
+		pm.slashJumped = false;
 		raven.isInAction = false;
 		targetsDamaged.Clear();
 	}
